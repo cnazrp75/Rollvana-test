@@ -285,7 +285,9 @@ main{padding-bottom:80px}
 <div id="app"></div>
 <script>(()=>{const b=document.getElementById("boot");
 const end=()=>{if(window.__introEnded)return;window.__introEnded=true;b.classList.add("done");dispatchEvent(new Event("introdone"))};
-if(new URLSearchParams(location.search).get("intro")==="0"){b.style.display="none";window.__introEnded=true;return}
+const iq=new URLSearchParams(location.search).get("intro");let seen=false;try{seen=!!sessionStorage.getItem("rv-intro")}catch(e){}
+if(iq==="0"||(seen&&iq!=="1")){b.style.display="none";window.__introEnded=true;window.__introSkipped=true;return}
+try{sessionStorage.setItem("rv-intro","1")}catch(e){}
 window.__introEnd=end;
 
 (()=>{
@@ -351,6 +353,8 @@ const {motion,AnimatePresence,useReducedMotion,useMotionValue,useTransform,useSc
 const html=htm.bind(React.createElement);
 const Q=new URLSearchParams(location.search);
 const M=s=>"media/"+s;
+// titles that have a page in this mockup
+const PAGE={"dune-part-two":"../title/rollvana-title.html?kind=film","severance":"../title/rollvana-title.html?kind=series"};
 const EASE=[0.22,1,0.36,1];
 const INFO={hide:{},show:r=>({transition:{staggerChildren:r?0:.045,delayChildren:r?0:.1}}),out:r=>({opacity:0,transition:{duration:r?.1:.16,ease:"easeIn"}})};
 const ITEM={hide:r=>r?{opacity:0}:{opacity:0,y:6,filter:"blur(3px)"},show:r=>({opacity:1,y:0,filter:"blur(0px)",transition:{duration:r?.15:.42,ease:EASE}})};
@@ -622,9 +626,9 @@ function Hero({items,loading,desk}){
       onDragStart=${()=>setHold(true)}
       onDragEnd=${(e,info)=>{if(info.offset.x>50||info.velocity.x>400)go(1);else if(info.offset.x<-50||info.velocity.x<-400)go(-1)}}>
       <div class="kick"><b></b><${Flip} v=${it.kind} reduced=${reduced}/><span class="dotsep">·</span><${GenreMorph} text=${it.g} reduced=${reduced}/></div>
-      <div class="logo"><${Cross} k=${"lg"+i} reduced=${reduced} dur=${.35}>
+      <a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}><${Cross} k=${"lg"+i} reduced=${reduced} dur=${.35}>
         ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}
-      </${Cross}></div>
+      </${Cross}></a>
       <div class="tFa"><${Cross} k=${"fa"+i} reduced=${reduced} blur=${6} dur=${.4} delay=${.04}><span>${it.fa}</span></${Cross}></div>
       <div class="meta">
         <span class="imdb"><small>IMDb</small><b><${Count} v=${Number(it.imdb)} dec=${1}/></b></span>
@@ -634,7 +638,7 @@ function Hero({items,loading,desk}){
       </div>
       <div class="syn"><${Cross} k=${"s"+i} reduced=${reduced} blur=${8} dur=${.55} delay=${.08}><p>${it.syn}</p></${Cross}></div>
       <div class="act">
-        <${motion.a} href="#" class="cta" whileTap=${{scale:.97}} transition=${SPR}><${I} n="play"/>جزئیات و تماشا</${motion.a}>
+        <${motion.a} href=${PAGE[it.s]||"#"} class="cta" whileTap=${{scale:.97}} transition=${SPR}><${I} n="play"/>جزئیات و تماشا</${motion.a}>
       </div>
       <${Dots} i=${i} n=${n} run=${!stop} dur=${DUR} reduced=${reduced} paused=${paused} toggle=${()=>setPaused(p=>!p)} to=${to}/>
     </${motion.div}>
@@ -695,7 +699,7 @@ function Review({st,set,reload,id,setId}){
     <span>حالت‌های طرح (فقط برای بررسی)</span>
     <div>${O.map(([k,l])=>html`<${motion.button} whileTap=${{scale:.95}} aria-pressed=${st===k} onClick=${()=>{set(k);scrollTo({top:0,behavior:"smooth"})}}>${l}</${motion.button}>`)}
       <${motion.button} whileTap=${{scale:.95}} onClick=${reload}>بارگذاری دوباره</${motion.button}>
-      <${motion.button} whileTap=${{scale:.95}} onClick=${()=>{const u=new URL(location.href);u.searchParams.delete("intro");u.searchParams.delete("load");location.href=u}}>اینترو از اول</${motion.button}></div>
+      <${motion.button} whileTap=${{scale:.95}} onClick=${()=>{const u=new URL(location.href);u.searchParams.set("intro","1");u.searchParams.delete("load");location.href=u}}>اینترو از اول</${motion.button}></div>
     <a class="syslink" href="../system/rollvana-design-system.html">سیستم طراحی رول‌وانا ←</a>
   </section>`;
 }
@@ -707,7 +711,7 @@ function App(){
   const [boot,setBoot]=useState(first);
   const [sim,setSim]=useState(Q.get("load")!=="0");
   useEffect(()=>{
-    const go=()=>{setBoot(false);Promise.all([READY,wait(1600)]).then(()=>setSim(false))};
+    const go=()=>{setBoot(false);Promise.all([READY,wait(window.__introSkipped?700:1600)]).then(()=>setSim(false))};
     if(!first){go();return}
     if(window.__introEnded){go();return}
     addEventListener("introdone",go,{once:true});return()=>removeEventListener("introdone",go);
