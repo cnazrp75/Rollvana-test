@@ -1,0 +1,470 @@
+<!doctype html>
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rollvana Design System</title>
+
+<style>
+@font-face{font-family:Vazirmatn;src:url(../home/media/vendor/vazirmatn.woff2) format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Instrument Serif";src:url(../home/media/vendor/instrument-serif.woff2) format("woff2");font-display:block}
+@font-face{font-family:"Instrument Serif";font-style:italic;src:url(../home/media/vendor/instrument-serif-italic.woff2) format("woff2");font-display:block}
+@property --acc{syntax:"<color>";inherits:true;initial-value:#b8864a}
+:root{
+--night-0:#07060C;
+--night-1:#0D0B15;
+--night-2:#15121F;
+--night-3:#1E1A2B;
+--ink-1:#F2EFF8;
+--ink-2:rgba(242,239,248,.72);
+--ink-3:rgba(242,239,248,.50);
+--ink-4:rgba(242,239,248,.28);
+--line-1:rgba(205,190,255,.10);
+--line-2:rgba(205,190,255,.22);
+--light:#A98BFF;
+--light-top:#C3ADFF;
+--light-hi:#CDBBFF;
+--light-lo:rgba(169,139,255,.18);
+--light-glow:rgba(150,110,255,.45);
+--on-light:#120A24;
+--ok:#5BD69A;--warn:#F2C14E;--err:#FF6B7A;
+
+--acc:#b8864a;
+--page:color-mix(in oklab,var(--acc) 6%,var(--night-0));
+--page-up:color-mix(in oklab,var(--acc) 8%,var(--night-2));
+
+--lit-0:none;
+--lit-1:0 0 0 1px var(--light-lo),0 6px 18px -10px var(--light-glow);
+--lit-2:inset 0 1px 0 rgba(255,255,255,.3),0 8px 22px -14px var(--light-glow);
+--lit-3:inset 0 1px 0 rgba(255,255,255,.35),0 10px 28px -12px var(--light-glow);
+--ring:0 0 0 2px var(--night-0),0 0 0 4px var(--light);
+
+--r-s:6px;--r-m:12px;--r-l:20px;--r-pill:999px;
+--s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:20px;--s-6:24px;--s-8:32px;--s-12:48px;--s-16:64px;
+
+--f-ui:Vazirmatn,system-ui,sans-serif;
+--f-mark:"Instrument Serif",Georgia,serif;
+--t-display:700 32px/1.25 var(--f-ui);
+--t-h1:700 22px/1.4 var(--f-ui);
+--t-h2:700 18px/1.5 var(--f-ui);
+--t-body:400 14px/1.85 var(--f-ui);
+--t-label:500 13px/1.4 var(--f-ui);
+--t-small:500 12px/1.4 var(--f-ui);
+--t-micro:500 11px/1.3 var(--f-ui);
+
+--d-1:160ms;--d-2:320ms;--d-3:600ms;--d-4:1100ms;
+--e-out:cubic-bezier(.22,1,.36,1);
+--e-in:cubic-bezier(.4,0,1,1);
+--e-io:cubic-bezier(.65,0,.35,1);
+transition:--acc var(--d-4) cubic-bezier(.4,0,.2,1);
+color-scheme:dark;
+}
+@media (min-width:1024px){:root{--t-display:700 48px/1.2 var(--f-ui);--t-h1:700 28px/1.35 var(--f-ui);--t-h2:700 22px/1.45 var(--f-ui);--t-body:400 15.5px/1.85 var(--f-ui)}}
+@media (prefers-reduced-motion:reduce){:root{--d-1:0ms;--d-2:0ms;--d-3:150ms;--d-4:150ms}}
+
+:root{
+--void:var(--night-0);--bg:var(--page);--bg-up:var(--page-up);
+--ink:var(--ink-1);--ink2:var(--ink-2);--mute:var(--ink-3);
+--line:var(--line-1);--line2:var(--line-2);
+--pri:var(--light);--pri-hi:var(--light-hi);--pri-ink:var(--on-light);--pri-soft:var(--light-lo);
+--r-card:var(--r-m);--r-btn:var(--r-pill);
+--f:var(--f-ui);--f-serif:var(--f-mark);
+--pad:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--void)}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+button,a{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:10px}
+img{display:block}
+.num{font-variant-numeric:tabular-nums}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none;transition:stroke-width .2s}
+
+.an-root{--an-spring:linear(0,.028 2.5%,.0995 5%,.198 7.5%,.3106 10%,.4272 12.5%,.5405 15%,.6454 17.5%,.7387 20%,.819 22.5%,.8856 25%,.9391 27.5%,.9803 30%,1.0107 32.5%,1.0317 35%,1.045 37.5%,1.052 40%,1.0543 42.5%,1.053 45%,1.0493 47.5%,1.044 50%,1.0379 52.5%,1.0316 55%,1.0254 57.5%,1.0197 60%,1.0146 62.5%,1.0102 65%,1.0065 67.5%,1.0035 70%,1.0012 72.5%,.9995 75%,.9984 77.5%,.9976 80%,.9972 82.5%,.9971 85%,.9971 87.5%,.9973 90%,.9976 92.5%,.9979 95%,.9983 97.5%,1);--an-dist:.6em;display:inline-flex;align-items:baseline;white-space:nowrap;font-variant-numeric:tabular-nums;direction:ltr}
+.an-slot{position:relative;display:inline-block}
+.an-layer{display:inline-block;will-change:transform,opacity,filter}
+.an-out{position:absolute;inset:0}
+.an-in{animation:an-in var(--an-dur,450ms) var(--an-spring) both,an-res var(--an-dur,450ms) cubic-bezier(.22,1,.36,1) both}
+.an-out{animation:an-outk var(--an-dur,450ms) cubic-bezier(.4,0,1,1) both,an-dis var(--an-dur,450ms) cubic-bezier(.4,0,1,1) both}
+@keyframes an-in{from{transform:translateY(calc(var(--an-dir,1)*var(--an-dist)))}to{transform:translateY(0)}}
+@keyframes an-outk{from{transform:translateY(0)}to{transform:translateY(calc(var(--an-dir,1)*var(--an-dist)*-1))}}
+@keyframes an-res{from{opacity:0;filter:blur(var(--an-blur,8px))}to{opacity:1;filter:blur(0)}}
+@keyframes an-dis{from{opacity:1;filter:blur(0)}to{opacity:0;filter:blur(var(--an-blur,8px))}}
+
+.hdr{position:fixed;inset:0 0 auto 0;z-index:20;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad) 0 8px}
+.hdr-bg{position:absolute;inset:0;z-index:-1;background:color-mix(in oklab,var(--bg) 72%,transparent);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 1px 0 var(--line)}
+.wm{display:inline-flex;align-items:center;height:44px;color:var(--ink-1)}
+.wm svg{height:22px;width:auto;display:block}
+.hl{display:flex;align-items:center;gap:2px;font-size:13.5px;font-weight:500}
+.ib{width:44px;height:44px;display:grid;place-items:center;border-radius:999px;color:var(--ink);transition:background .2s}
+.ib.is-hover,.ib:hover{background:rgba(242,239,248,.08)}
+.bell{position:relative}
+.bell .dot{position:absolute;top:10px;right:11px;width:7px;height:7px;border-radius:50%;background:var(--light)}
+.sub{height:34px;display:flex;align-items:center;padding:0 14px;border-radius:var(--r-pill);color:var(--ink-1);box-shadow:inset 0 0 0 1px var(--line-2);margin-inline:4px;white-space:nowrap;transition:box-shadow .25s,background .25s}
+.sub.is-hover,.sub:hover{box-shadow:inset 0 0 0 1px rgba(242,239,248,.45);background:rgba(242,239,248,.06)}
+.login{height:44px;display:flex;align-items:center;padding:0 12px;background:rgba(243,239,232,.0);color:var(--ink2);transition:color .2s}
+.login:hover{color:var(--ink)}
+.av{background:var(--night-3)!important;color:var(--ink-1);box-shadow:inset 0 0 0 1px var(--line-2);width:32px;height:32px;display:grid;place-items:center;font-size:14px;font-weight:600;background:color-mix(in oklab,var(--acc) 45%,#222);margin-inline:6px 4px}
+.nav,.search{display:none}
+.acct{position:relative}
+.menu{position:absolute;top:calc(100% + 8px);left:0;min-width:220px;padding:6px;border-radius:16px;background:color-mix(in oklab,var(--night-2) 92%,transparent);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:inset 0 0 0 1px var(--line-2),0 24px 60px -20px rgba(0,0,0,.8);transform-origin:top left;z-index:40}
+.menu .who{padding:10px 12px 12px;border-bottom:1px solid var(--line-1);margin-bottom:6px}
+.menu .who b{display:block;font-size:14px;font-weight:700}
+.menu .who small{font-size:12px;color:var(--ink-3)}
+.menu a{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:10px;font-size:14px;color:var(--ink-2);transition:background .2s,color .2s}
+.menu a:hover,.menu a:focus-visible{background:rgba(242,239,248,.07);color:var(--ink-1)}
+.menu a svg{width:19px;height:19px}
+.menu hr{border:0;border-top:1px solid var(--line-1);margin:6px 0}
+
+.hero{position:relative;height:min(80svh,680px);min-height:580px;overflow:hidden;isolation:isolate;outline:none}
+.bgl{position:absolute;inset:-2% -4%;z-index:-2}
+.bgl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgl .kb{animation:kb 9s linear both}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.bgl .kb{animation:none}}
+.grade{position:absolute;inset:0;z-index:-1;pointer-events:none;
+background:linear-gradient(to bottom,rgba(5,5,6,.6) 0,rgba(5,5,6,0) 120px),
+linear-gradient(to bottom,transparent 32%,color-mix(in oklab,var(--bg) 70%,transparent) 60%,var(--bg) 92%)}
+.copy{position:absolute;inset:auto 0 0 0;padding:0 var(--pad) 22px;touch-action:pan-y}
+.swap{position:relative;display:block}
+.kick{font-size:12.5px;font-weight:500;color:var(--ink2);margin-bottom:14px;display:flex;gap:8px;align-items:center;height:18px}
+.kick b{width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
+.logo{height:76px;position:relative}
+.logo{position:relative}
+.logo img{max-height:76px;max-width:min(280px,78vw);width:auto;height:auto;object-fit:contain;object-position:right bottom}
+.tEn{font-family:var(--f-serif);font-size:40px;line-height:1.02;direction:ltr;text-align:right;width:min(330px,88vw);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tFa{font-size:16px;font-weight:700;margin-top:12px;height:26px;position:relative}
+.tFa span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cross{position:absolute;inset:0}
+.logo .cross{display:flex;align-items:flex-end}
+.dotsep{color:var(--mute)}
+.flip{display:inline-grid;overflow:hidden;height:18px;vertical-align:top}
+.flip>*{grid-area:1/1}
+.gm{display:inline-flex;flex-wrap:nowrap;gap:0;white-space:nowrap}
+.gm>span{display:inline-block;white-space:pre}
+.rtw{display:inline-grid}
+.rtw>*{grid-area:1/1}
+.rt{display:inline-flex;gap:4px;white-space:nowrap;align-items:baseline}
+.tFa .w,.gn .w,.kick .w{display:inline-block;white-space:pre}
+.meta{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:13px;color:var(--ink2);height:26px}
+.meta .sep{width:3px;height:3px;border-radius:50%;background:var(--mute);flex:none}
+.imdb{display:inline-flex;align-items:baseline;gap:5px;direction:ltr}
+.imdb small{font-size:10.5px;font-weight:800;letter-spacing:.02em;color:var(--mute)}
+.imdb b{font-weight:700;color:var(--ink)}
+.gn{white-space:nowrap;overflow:hidden;position:relative}
+.bdg.dub,.cm .bdg.dub{background:rgba(242,239,248,.14);box-shadow:none;color:var(--ink-1)}
+.bdg{font-size:11.5px;font-weight:500;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:var(--r-s);box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink);overflow:hidden;white-space:nowrap;position:relative}
+.syn{height:52px;position:relative;margin-top:12px;max-width:560px}
+.syn p{font-size:14px;line-height:1.85;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.act{display:flex;align-items:center;gap:10px;margin-top:20px}
+.cta{height:48px;padding:0 22px 0 24px;border-radius:var(--r-pill);background:var(--light);color:var(--on-light);font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:background var(--d-2) var(--e-out)}
+.cta:hover,.cta.is-hover{background:var(--light-hi)}
+.cta svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.ghost{height:48px;padding:0 20px 0 22px;border-radius:var(--r-pill);background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--ink-1);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:background var(--d-2) var(--e-out)}
+.ghost:hover{background:rgba(242,239,248,.2)}
+.ghost svg{width:19px;height:19px}
+.pp{width:36px;height:36px;margin-inline-end:-6px;display:grid;place-items:center;border-radius:50%;color:var(--ink2);flex:none;transition:background .2s,color .2s}
+.pp:hover{background:rgba(242,239,248,.08);color:var(--ink-1)}
+.pp svg{width:14px;height:14px}
+.dots{display:flex;align-items:center;gap:2px;margin-top:18px;margin-inline-start:-10px}
+.dots .seg{height:32px;padding:0 4px;display:grid;place-items:center}
+.dots .seg i{display:block;width:22px;height:3px;border-radius:3px;background:rgba(242,239,248,.22);position:relative;overflow:hidden;transition:width var(--d-2) var(--e-out)}
+.dots .seg[aria-current=true] i{width:36px}
+.dots .seg i b{position:absolute;inset:0;background:var(--ink-1);transform-origin:right center}
+.dots .seg[aria-current=true] i b{background:var(--light)}
+.strip{display:none}
+
+main{position:relative;z-index:2;padding-bottom:96px}
+.row{margin-top:30px;position:relative}
+.row:first-child{margin-top:8px}
+.rh{display:flex;align-items:baseline;justify-content:space-between;padding:0 var(--pad);margin-bottom:14px}
+.rh h2{font-size:18px;font-weight:700}
+.more{font-size:13px;color:var(--ink2);display:inline-flex;align-items:center;gap:2px;height:32px;transition:color .2s}
+.more:hover{color:var(--ink)}
+.more svg{width:16px;height:16px}
+.sc{display:flex;gap:12px;overflow-x:auto;padding:4px var(--pad) 18px;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scrollbar-width:none;scroll-behavior:smooth}
+.sc::-webkit-scrollbar{display:none}
+.card:focus-visible{box-shadow:none}
+.card:focus-visible .po{box-shadow:var(--ring)}
+.card{flex:none;width:118px;scroll-snap-align:start;text-align:right;display:block}
+.pw{position:relative;isolation:isolate}
+.pw .glow{position:absolute;left:10%;right:10%;top:16%;width:80%;height:88%;object-fit:cover;filter:blur(20px) saturate(1.5);z-index:-1;pointer-events:none}
+.po{width:100%;aspect-ratio:2/3;border-radius:var(--r-card);overflow:hidden;background:var(--bg-up);position:relative;box-shadow:0 0 0 1px var(--line) inset}
+.po img{width:100%;height:100%;object-fit:cover}
+.po:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);pointer-events:none}
+.fr{font-size:11px;color:var(--mute);margin-top:11px;height:16px}
+.ct{font-size:13px;font-weight:600;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:right}
+.cm{display:flex;align-items:center;gap:8px;margin-top:5px;font-size:12px}
+.cm .bdg{height:20px;font-size:11px;padding:0 6px;color:var(--ink2)}
+.arr{display:none}
+.peek{display:none}
+.gen{flex:none;width:156px;height:92px;border-radius:var(--r-card);overflow:hidden;position:relative;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;isolation:isolate}
+.gen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.gen:before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--line-1);transition:box-shadow var(--d-2) var(--e-out);z-index:1;pointer-events:none}
+.gen.is-hover:before,.gen:hover:before{box-shadow:inset 0 0 0 1px rgba(242,239,248,.35)}
+.gen:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(5,5,6,.88),rgba(5,5,6,.15));transition:opacity .3s}
+.gen b{font-size:16px;font-weight:700}
+.gen small{font-size:11.5px;color:var(--ink2);margin-top:2px}
+
+.tabs{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:30;display:flex;height:52px;padding:0 6px;border-radius:var(--r-pill);background:color-mix(in oklab,var(--night-1) 78%,transparent);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
+.tab{width:52px;display:grid;place-items:center;color:var(--ink-3);position:relative;transition:color .25s}
+.tab[aria-current=page]{color:var(--ink-1)}
+.tab .mark{position:absolute;bottom:6px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--light)}
+
+.sk{background:linear-gradient(100deg,rgba(242,239,248,.05) 0,rgba(242,239,248,.10) 40%,rgba(242,239,248,.05) 80%);background-size:300% 100%;animation:sh 1.4s linear infinite;border-radius:8px}
+@keyframes sh{from{background-position:100% 0}to{background-position:-200% 0}}
+
+.boot{position:fixed;inset:0;z-index:100;background:var(--night-0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s var(--e-out),visibility .6s}
+.boot.done{opacity:0;visibility:hidden}
+.boot .intro{width:min(420px,72vw);height:auto;overflow:visible}
+.boot .tag{font:500 15px/1.6 var(--f);color:var(--ink-2);display:flex;gap:.3em;flex-wrap:wrap;justify-content:center}
+.boot .tag span{display:inline-block;opacity:0}
+.boot .lt{opacity:0}
+.review{margin:56px var(--pad) 0;padding:16px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line2);display:flex;flex-direction:column;gap:12px;font-size:12.5px;color:var(--mute)}
+.review div{display:flex;flex-wrap:wrap;gap:8px}
+.syslink{color:var(--ink-1);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-2);font:var(--t-label);align-self:flex-start;padding:6px 0}
+.syslink:hover{text-decoration-color:var(--ink-1)}
+.review button{height:36px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line2);color:var(--ink2);font-size:13px;transition:background .2s,color .2s}
+.review button[aria-pressed=true]{background:var(--ink-1);color:var(--night-0);box-shadow:none}
+.review .sw{width:10px;height:10px;border-radius:50%;display:inline-block;margin-inline-end:8px;vertical-align:middle}
+.review .grp{display:flex;flex-direction:column;gap:8px}
+
+@media (min-width:1024px){
+:root{--pad:56px}
+.hdr{height:76px;padding:0 var(--pad);gap:36px}
+.wm svg{height:26px}
+.nav{display:flex;gap:2px;margin-inline-end:auto;font-size:14.5px;font-weight:500;position:relative}
+.nav a{height:40px;display:flex;align-items:center;padding:0 16px;color:var(--ink2);position:relative;border-radius:999px;transition:color .2s}
+.nav a[aria-current=page],.nav a:hover{color:var(--ink)}
+.nav .hov{position:absolute;inset:0;border-radius:999px;background:rgba(242,239,248,.07);z-index:-1}
+.nav .sel{position:absolute;bottom:3px;right:50%;width:4px;height:4px;margin-right:-2px;border-radius:50%;background:var(--light)}
+.search{transition:width .45s cubic-bezier(.22,1,.36,1),box-shadow .25s,background .25s;display:flex;align-items:center;gap:10px;height:42px;padding:0 16px;border-radius:999px;background:rgba(243,239,232,.08);box-shadow:inset 0 0 0 1px var(--line);color:var(--mute);font-size:13.5px;transition:box-shadow .25s,background .25s}
+.search.is-focus,.search:focus-within{box-shadow:inset 0 0 0 1px var(--light);background:rgba(243,239,232,.12)}
+.search input{all:unset;flex:1;color:var(--ink);font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:rtl;text-align:right;display:block;height:42px;line-height:42px}
+.search input::placeholder{color:var(--mute)}
+.search kbd{font:500 12px/1 var(--f);color:var(--mute);width:22px;height:22px;display:grid;place-items:center;border-radius:6px;box-shadow:inset 0 0 0 1px var(--line2);transition:opacity .2s}
+.search:focus-within kbd{opacity:0}
+.search svg{width:18px;height:18px}
+.hl{font-size:14px;gap:6px}
+.hero{height:min(84vh,800px);min-height:640px}
+.grade{background:
+linear-gradient(to bottom,rgba(5,5,6,.6) 0,rgba(5,5,6,0) 160px),
+linear-gradient(to left,rgba(5,5,6,.78) 0,rgba(5,5,6,.35) 34%,rgba(5,5,6,0) 62%),
+linear-gradient(to bottom,transparent 45%,color-mix(in oklab,var(--bg) 55%,transparent) 75%,var(--bg) 93%)}
+.copy{inset:auto 0 auto auto;bottom:96px;padding:0 var(--pad);width:700px}
+.logo{height:112px}
+.tFa{height:30px}
+.logo img{max-height:112px;max-width:440px}
+.tEn{font-size:60px;width:600px}
+.tFa{font-size:19px;margin-top:16px;height:30px}
+.meta{font-size:14px;margin-top:10px}
+.syn{height:58px;margin-top:14px}
+.syn p{font-size:15.5px}
+.act{margin-top:24px}
+main{padding-bottom:80px}
+.row{margin-top:44px}
+.row:first-child{margin-top:20px}
+.rh h2{font-size:22px}
+.more{font-size:14px}
+.sc{gap:20px}
+.card{width:184px}
+.peek{display:flex;justify-content:space-between;align-items:flex-end;position:absolute;inset:auto 0 0 0;padding:64px 12px 10px;font-size:12px;color:var(--ink);background:linear-gradient(to top,rgba(5,5,6,.95) 30%,transparent)}
+.ct{font-size:14px}
+.arr{display:grid;place-items:center;position:absolute;top:calc(50% - 30px);z-index:3;width:48px;height:48px;border-radius:50%;background:color-mix(in oklab,var(--bg) 70%,rgba(243,239,232,.1));backdrop-filter:blur(12px);box-shadow:0 0 0 1px var(--line2),0 10px 30px -10px rgba(0,0,0,.7);color:var(--ink)}
+.arr.l{left:20px}.arr.r{right:20px}
+.gen{width:240px;height:128px;padding:18px 20px}
+.gen b{font-size:20px}
+.tabs{display:none}
+}
+</style>
+<style>
+body{background:var(--night-0)}
+.ds{max-width:1120px;margin:0 auto;padding:48px 20px 96px;display:flex;flex-direction:column;gap:64px}
+.ds h1{font:var(--t-display);letter-spacing:-.01em}
+.ds-h{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.ds-h span{font:var(--t-h1);color:var(--ink-2)}
+.ds h1 i{font-family:var(--f-mark);font-style:italic;font-weight:400;color:var(--light-hi);text-shadow:0 0 24px var(--light-glow)}
+.ds h2{font:var(--t-h1);margin-bottom:6px}
+.ds .lead{font:var(--t-body);color:var(--ink-2);max-width:66ch;margin-top:14px}
+.ds .why{font:var(--t-body);color:var(--ink-2);max-width:66ch}
+.ds .why b{color:var(--ink-1)}
+.ds section{display:flex;flex-direction:column;gap:20px}
+.ds .sub-h{font:var(--t-small);color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.sw{border-radius:var(--r-m);overflow:hidden;box-shadow:inset 0 0 0 1px var(--line-1);background:var(--night-1)}
+.sw .c{height:84px}
+.sw .t{padding:12px;display:flex;flex-direction:column;gap:3px}
+.sw .t b{font:var(--t-label)}
+.sw .t code,.ds code{font:500 11.5px/1.4 ui-monospace,monospace;color:var(--ink-3);direction:ltr;unicode-bidi:isolate;display:inline-block}
+.sw .t code{align-self:flex-start}
+.sw .t span{font:var(--t-small);color:var(--ink-2)}
+.ty{display:flex;flex-direction:column;gap:14px;background:var(--night-1);border-radius:var(--r-l);padding:24px;box-shadow:inset 0 0 0 1px var(--line-1)}
+.ty div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line-1);padding-bottom:12px}
+.ty div:last-child{border:0;padding:0}
+.board{background:var(--night-1);border-radius:var(--r-l);padding:24px;box-shadow:inset 0 0 0 1px var(--line-1);display:flex;flex-wrap:wrap;gap:28px 24px;align-items:flex-start}
+.st{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.st>small{font:var(--t-micro);color:var(--ink-3)}
+.lv{width:150px;height:72px;border-radius:var(--r-m);background:var(--night-2);display:grid;place-items:center;font:var(--t-small);color:var(--ink-2)}
+table{width:100%;border-collapse:collapse;font:var(--t-label)}
+td,th{padding:12px 10px;border-bottom:1px solid var(--line-1);text-align:right;vertical-align:top}
+th{font:var(--t-small);color:var(--ink-3)}
+td:first-child{color:var(--ink-1);white-space:nowrap}
+td{color:var(--ink-2)}
+.tw{overflow-x:auto;background:var(--night-1);border-radius:var(--r-l);padding:8px 16px;box-shadow:inset 0 0 0 1px var(--line-1)}
+.tabs.demo{display:flex!important;position:static;transform:none;width:max-content}
+.demo-card{width:150px}
+.hdr.demo{position:static;width:100%;border-radius:var(--r-l);background:var(--night-2)}
+</style>
+</head><body>
+<div class="ds">
+  <header>
+    <h1 class="ds-h"><svg viewBox="-40 -820 3689 870" aria-label="Rollvana" style="height:34px;width:auto;display:block"><path d="M223 -334 445 0H588L350 -334ZM78 -700V0H196V-700ZM148 -598H289Q330 -598 360 -584Q390 -570 407 -544Q424 -518 424 -480Q424 -443 407 -416.5Q390 -390 360 -376.5Q330 -363 289 -363H148V-265H294Q371 -265 427 -292Q483 -319 514.5 -368Q546 -417 546 -483Q546 -549 514.5 -597.5Q483 -646 427 -673Q371 -700 294 -700H148Z M1208 -780V0H1317V-780Z M1444 -780V0H1553V-780Z M1610 -460 1849 42 2087 -460H1969L1849 -163L1729 -460Z M2213 -143Q2213 -165 2223.5 -180Q2234 -195 2255 -203.5Q2276 -212 2310 -212Q2349 -212 2384 -202Q2419 -192 2450 -170V-225Q2441 -236 2419 -249.5Q2397 -263 2363.5 -273Q2330 -283 2284 -283Q2198 -283 2151 -243.5Q2104 -204 2104 -137Q2104 -90 2126 -57Q2148 -24 2185 -7Q2222 10 2265 10Q2305 10 2343.5 -4.5Q2382 -19 2407.5 -49Q2433 -79 2433 -123L2417 -183Q2417 -148 2401 -123Q2385 -98 2358.5 -84.5Q2332 -71 2299 -71Q2274 -71 2254.5 -79Q2235 -87 2224 -103.5Q2213 -120 2213 -143ZM2179 -340Q2190 -347 2210 -357.5Q2230 -368 2258.5 -375.5Q2287 -383 2319 -383Q2340 -383 2358 -379Q2376 -375 2389.5 -366Q2403 -357 2410 -343Q2417 -329 2417 -307V0H2523V-328Q2523 -374 2498.5 -406Q2474 -438 2430 -454.5Q2386 -471 2330 -471Q2265 -471 2216 -453Q2167 -435 2135 -416Z M2935 -280V0H3046V-293Q3046 -375 3005 -422.5Q2964 -470 2886 -470Q2839 -470 2804.5 -450Q2770 -430 2748 -389V-460H2639V0H2748V-280Q2748 -311 2760.5 -334.5Q2773 -358 2796 -370.5Q2819 -383 2850 -383Q2893 -383 2914 -357Q2935 -331 2935 -280Z M3242 -143Q3242 -165 3252.5 -180Q3263 -195 3284 -203.5Q3305 -212 3339 -212Q3378 -212 3413 -202Q3448 -192 3479 -170V-225Q3470 -236 3448 -249.5Q3426 -263 3392.5 -273Q3359 -283 3313 -283Q3227 -283 3180 -243.5Q3133 -204 3133 -137Q3133 -90 3155 -57Q3177 -24 3214 -7Q3251 10 3294 10Q3334 10 3372.5 -4.5Q3411 -19 3436.5 -49Q3462 -79 3462 -123L3446 -183Q3446 -148 3430 -123Q3414 -98 3387.5 -84.5Q3361 -71 3328 -71Q3303 -71 3283.5 -79Q3264 -87 3253 -103.5Q3242 -120 3242 -143ZM3208 -340Q3219 -347 3239 -357.5Q3259 -368 3287.5 -375.5Q3316 -383 3348 -383Q3369 -383 3387 -379Q3405 -375 3418.5 -366Q3432 -357 3439 -343Q3446 -329 3446 -307V0H3552V-328Q3552 -374 3527.5 -406Q3503 -438 3459 -454.5Q3415 -471 3359 -471Q3294 -471 3245 -453Q3196 -435 3164 -416Z" fill="#F2EFF8"/><circle cx="867" cy="-230" r="190" fill="none" stroke="#F2EFF8" stroke-width="100"/><circle cx="912" cy="-275" r="50" fill="var(--light)"/></svg><span>سیستم طراحی</span></h1>
+    <p class="lead">یک ایده پشت همه‌ی تصمیم‌ها: <b>نور در تاریکی</b>. سالن سینما تاریک است و فقط پرده روشن است. در رول‌وانا هم رنگِ اصلی خودِ فیلم است؛ رابط آرام و خنثی است و نور بنفش فقط جایی می‌تابد که کاربر باید بداند: اقدام اصلی، جایی که هست، و چیزی که انتخاب کرده.</p>
+  </header>
+
+  <section>
+    <h2>لوگو</h2>
+    <p class="why">«o» در Rollvana چشمی است که نقطه‌ای نور در آن افتاده؛ نماد از دل خود اسم بیرون آمده. ساختار، نسخه‌ها، اندازه‌ها، حریم و اینترو در <a href="../brand/rollvana-logo.html" style="color:var(--ink-1);text-decoration:underline;text-underline-offset:4px">برگه‌ی لوگو</a>.</p>
+  </section>
+
+  <section>
+    <h2>چرا بنفش</h2>
+    <p class="why"><b>۱. به محتوا نمی‌جنگد.</b> پوسترها و استیل‌های فیلم تقریباً همه در پالت نارنجی و فیروزه‌ای اصلاح رنگ می‌شوند. رابطی که خودش نارنجی یا فیروزه‌ای باشد روی هر پوستر گم می‌شود؛ بنفش رنگی است که پوسترها کم دارند، پس دکمه و حالت انتخاب روی هر تصویری دیده می‌شوند.</p>
+    <p class="why"><b>۲. مال رقیب نیست.</b> فیلمکیو طلایی است، زرفیلم نارنجی، نیک‌مووی قرمز، و کاربران از تلگرام می‌آیند که آبی است. بنفش در این بازار خالی است.</p>
+    <p class="why"><b>۳. معنای اسم را دارد.</b> Rollvana یعنی Roll و Nirvana، و شعار علی «حس خلسه‌ی تماشا» است. بنفش رنگ گرگ‌ومیش است، همان لحظه‌ای که چراغ‌های سالن خاموش می‌شود و فیلم شروع می‌شود.</p>
+    <p class="why"><b>۴. برای تماشای شبانه روی گوشی ساخته شده.</b> کاربران شب و در تاریکی تماشا می‌کنند. بنفش روشن روی سیاه گرم با کنتراست ۷٫۵ خوانا است ولی مثل سفید خالص چشم را نمی‌زند، و سطح‌ها کمی به بنفش متمایل‌اند تا سیاهِ صفحه با نور یکی باشد.</p>
+  </section>
+
+  <section>
+    <h2>اندازه‌ی رنگ</h2>
+    <p class="why">بنفش کم است تا معنا داشته باشد. فقط چهار نقش حق استفاده از آن را دارند و هر جای دیگر خنثی است:</p>
+    <div class="tw"><table>
+      <tr><th>نقش</th><th>کجا</th><th>چرا</th></tr>
+      <tr><td>اقدام اصلی</td><td>«جزئیات و تماشا»، یک بار در هر نما</td><td>مهم‌ترین کار کاربر روشن‌ترین چیز رابط است</td></tr>
+      <tr><td>جایی که هستی</td><td>نقطه‌ی زیر تب فعال در منوی پایین موبایل و منوی دسکتاپ</td><td>جهت‌یابی</td></tr>
+      <tr><td>پیشرفت</td><td>خط فعلی در نشانگر اسلاید</td><td>زمانی که می‌گذرد</td></tr>
+      <tr><td>فوکوس و خبر</td><td>حلقه‌ی فوکوس، نقطه‌ی اعلان تازه</td><td>دسترس‌پذیری و چیزی که منتظر کاربر است</td></tr>
+    </table></div>
+    <p class="why">بقیه، حتی برچسب دوبله، دکمه‌ی اشتراک و آواتار، خنثی‌اند و با پررنگی جوهر از هم جدا می‌شوند، نه با رنگ.</p>
+  </section>
+
+  <section>
+    <h2>دسترس‌پذیری یک اصل است</h2>
+    <p class="why">هر متن و آیکونی حداقل استاندارد WCAG 2.2 AA را دارد: متن عادی ۴٫۵:۱، متن درشت و آیکون ۳:۱. اهداف لمسی حداقل ۴۴ پیکسل، حلقه‌ی فوکوس روی همه‌ی کنترل‌ها، دکمه‌ی توقف برای هر چیزی که بیش از ۵ ثانیه خودکار حرکت می‌کند، و نسخه‌ی کاهش‌حرکت برای همه‌ی انیمیشن‌ها. رنگی که این را پاس نکند وارد سیستم نمی‌شود.</p>
+  </section>
+
+  <section>
+    <h2>رنگ‌ها</h2>
+    <span class="sub-h">کنتراست‌ها با فرمول WCAG روی پس‌زمینه‌ی صفحه اندازه‌گیری شده‌اند.</span>
+    <div class="grid">
+      <div class="sw"><div class="c" style="background:var(--night-0)"></div><div class="t"><b>شب ۰، صفحه</b><code>--night-0 #07060C</code><span>زمین صفحه؛ رنگ فیلمِ اسلاید روی آن ۶٪ می‌نشیند</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-1)"></div><div class="t"><b>شب ۱، سطح</b><code>--night-1 #0D0B15</code><span>پنل‌ها و برگه‌ها</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-2)"></div><div class="t"><b>شب ۲، بالاتر</b><code>--night-2 #15121F</code><span>کارت خالی، اسکلت</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-3)"></div><div class="t"><b>شب ۳، کنترل</b><code>--night-3 #1E1A2B</code><span>کنترل غیرفعال</span></div></div>
+      <div class="sw"><div class="c" style="background:linear-gradient(180deg,var(--light-top),var(--light));box-shadow:inset 0 -30px 40px -30px var(--light-glow)"></div><div class="t"><b>نور</b><code>--light #A98BFF</code><span>فقط پنج نقش بالا. روی صفحه ۷٫۵:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--light-hi)"></div><div class="t"><b>نورِ متن</b><code>--light-hi #CDBBFF</code><span>آیکون تب فعال. روی سطح ۱۱٫۳:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-1);box-shadow:inset 0 0 0 999px var(--light-lo)"></div><div class="t"><b>هاله</b><code>--light-lo 18%</code><span>فقط زمینه‌ی تب فعال</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--on-light)"></div><div class="t"><b>روی نور</b><code>--on-light #120A24</code><span>متن روی دکمه‌ی روشن. ۷٫۲:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-1)"></div><div class="t"><b>جوهر ۱</b><code>--ink-1 #F2EFF8</code><span>عنوان و متن اصلی. ۱۷٫۸:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-0);box-shadow:inset 0 0 0 999px var(--ink-2)"></div><div class="t"><b>جوهر ۲</b><code>--ink-2 72%</code><span>متن ثانوی، خلاصه. ۹٫۲:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-0);box-shadow:inset 0 0 0 999px var(--ink-3)"></div><div class="t"><b>جوهر ۳</b><code>--ink-3 50%</code><span>برچسب و توضیح. ۴٫۸:۱</span></div></div>
+      <div class="sw"><div class="c" style="background:var(--night-0);box-shadow:inset 0 0 0 999px var(--ink-4)"></div><div class="t"><b>جوهر ۴</b><code>--ink-4 28%</code><span>فقط غیرفعال و ریل، نه متن خواندنی</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>سطح‌های نور</h2>
+    <p class="why">در این سیستم سایه نداریم، نور داریم. ارتفاع یعنی چقدر نور از چیزی می‌تابد.</p>
+    <div class="board">
+      <div class="st"><div class="lv">نور ۰</div><small>خاموش: کارت، متن، آیکون در حالت عادی</small></div>
+      <div class="st"><div class="lv" style="box-shadow:var(--lit-1)">نور ۱</div><small>هاله: انتخاب‌شده، فشرده</small></div>
+      <div class="st"><div class="lv" style="background:linear-gradient(180deg,var(--light-top),var(--light));color:var(--on-light);box-shadow:var(--lit-2)">نور ۲</div><small>اقدام اصلی</small></div>
+      <div class="st"><div class="lv" style="background:linear-gradient(180deg,var(--light-top),var(--light));color:var(--on-light);box-shadow:var(--lit-3)">نور ۳</div><small>اقدام اصلی زیر هاور</small></div>
+      <div class="st"><div class="lv" style="box-shadow:var(--ring)">حلقه</div><small>فوکوس صفحه‌کلید، روی همه‌ی کنترل‌ها</small></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>تایپوگرافی</h2>
+    <span class="sub-h">وزیرمتن برای همه‌ی متن‌ها؛ Instrument Serif فقط در لوگو. ارقام: داده‌ای که دنیا لاتین نگه می‌دارد (سال، IMDb) لاتین؛ شمارش‌های رابط (مدت، فصل، شمارنده) فارسی.</span>
+    <div class="ty">
+      <div><span style="font:var(--t-display)">تلماسه: بخش دوم</span><code>--t-display 32/40 · 48 دسکتاپ</code></div>
+      <div><span style="font:var(--t-h1)">جدیدترین فیلم‌ها</span><code>--t-h1 22 · 28</code></div>
+      <div><span style="font:var(--t-h2)">بلید رانر ۲۰۴۹</span><code>--t-h2 18 · 22</code></div>
+      <div><span style="font:var(--t-body);color:var(--ink-2)">پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندانی می‌رود که خانواده‌اش را نابود کرد.</span><code>--t-body 14/1.85</code></div>
+      <div><span style="font:var(--t-label)">جزئیات و تماشا</span><code>--t-label 13 500</code></div>
+      <div><span style="font:var(--t-small);color:var(--ink-3)">۳ روز پیش</span><code>--t-small 12</code></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>اجزا و حالت‌ها</h2>
+    <span class="sub-h">همین کلاس‌ها در صفحه‌ی خانه استفاده شده‌اند؛ این برگه و صفحه از یک CSS ساخته می‌شوند.</span>
+
+    <div class="board">
+      <div class="st"><small>دکمه‌ی اصلی · عادی</small><a class="cta" href="#"><svg class="i" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>جزئیات و تماشا</a></div>
+      <div class="st"><small>هاور: روشن‌تر</small><a class="cta is-hover" href="#"><svg class="i" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>جزئیات و تماشا</a></div>
+      <div class="st"><small>فوکوس</small><a class="cta" href="#" style="box-shadow:var(--ring)"><svg class="i" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>جزئیات و تماشا</a></div>
+    </div>
+
+    <div class="board">
+      <div class="st"><small>اشتراک · خنثی</small><a class="sub" href="#">خرید اشتراک</a></div>
+      <div class="st"><small>هاور</small><a class="sub is-hover" href="#">خرید اشتراک</a></div>
+      <div class="st"><small>دوبله · پر</small><span class="bdg dub">دوبله فارسی</span></div>
+      <div class="st"><small>زیرنویس · خالی</small><span class="bdg">زیرنویس</span></div>
+      <div class="st"><small>آیکون · عادی</small><button class="ib"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></div>
+      <div class="st"><small>هاور</small><button class="ib is-hover"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button></div>
+      <div class="st"><small>اعلان تازه</small><button class="ib bell"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i class="dot"></i></button></div>
+      <div class="st"><small>آواتار</small><span class="av" style="border-radius:50%">س</span></div>
+    </div>
+
+    <div class="board">
+      <div class="st" style="flex:1;min-width:280px"><small>جستجو · عادی</small><label class="search" style="display:flex;background:rgba(242,239,248,.08);width:340px;max-width:100%"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input placeholder="جستجوی فیلم، سریال یا بازیگر"><kbd>/</kbd></label></div>
+      <div class="st" style="flex:1;min-width:280px"><small>فوکوس: کادر روشن می‌شود و پهن‌تر</small><label class="search is-focus" style="display:flex;background:rgba(242,239,248,.12);width:420px;max-width:100%"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input placeholder="جستجوی فیلم، سریال یا بازیگر"></label></div>
+      <div class="st"><small>نشانگر اسلاید: یک خط برای هر اسلاید، خط فعلی بلندتر و با نور پر می‌شود</small><div class="dots" style="margin:0"><button class="pp"><svg viewBox="0 0 24 24" class="i"><path fill="currentColor" stroke="none" d="M6 5 L10 5 L10 19 L6 19 Z"/><path fill="currentColor" stroke="none" d="M14 5 L18 5 L18 19 L14 19 Z"/></svg></button><span class="seg"><i><b style="opacity:.7"></b></i></span><span class="seg" aria-current="true"><i><b style="transform:scaleX(.6)"></b></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span></div></div>
+    </div>
+
+    <div class="board">
+      <div class="st"><small>کارت · عادی</small><a class="card demo-card" href="#"><div class="pw"><img class="glow" src="../home/media/p-sinners.jpg" alt="" style="opacity:.32"><div class="po"><img src="../home/media/p-sinners.jpg" alt=""></div></div><div class="fr">امروز</div><div class="ct">Sinners</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.6</b></span><span class="bdg dub">دوبله</span></div></a></div>
+      <div class="st"><small>هاور (دسکتاپ): بالا می‌آید، ژانر و سال پیدا می‌شود</small><a class="card demo-card" href="#" style="transform:translateY(-6px)"><div class="pw"><img class="glow" src="../home/media/p-weapons.jpg" alt="" style="opacity:.7"><div class="po"><img src="../home/media/p-weapons.jpg" alt="" style="transform:scale(1.04)"><div class="peek" style="display:flex"><span>ترسناک، معمایی</span><span class="num">2025</span></div></div></div><div class="fr">دیروز</div><div class="ct">Weapons</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.5</b></span><span class="bdg dub">دوبله</span></div></a></div>
+      <div class="st"><small>فوکوس</small><a class="card demo-card" href="#"><div class="pw"><div class="po" style="box-shadow:var(--ring)"><img src="../home/media/p-arrival.jpg" alt=""></div></div><div class="fr">&nbsp;</div><div class="ct">Arrival</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.9</b></span><span class="bdg">زیرنویس</span></div></a></div>
+      <div class="st"><small>بارگذاری</small><div class="card demo-card"><div class="po sk"></div><div class="sk" style="height:13px;width:80%;margin-top:12px"></div><div class="sk" style="height:12px;width:50%;margin-top:8px"></div></div></div>
+      <div class="st"><small>ژانر · عادی</small><a class="gen" href="#"><img src="../home/media/b-blade-runner-2049.jpg" alt="" style="object-position:30% 30%"><b>علمی‌تخیلی</b><small>۸۶۰ عنوان</small></a></div>
+      <div class="st"><small>ژانر · هاور</small><a class="gen is-hover" href="#"><img src="../home/media/b-the-last-of-us.jpg" alt="" style="object-position:55% 30%;transform:scale(1.08)"><b>درام</b><small>۲٬۳۱۰ عنوان</small></a></div>
+    </div>
+
+    <div class="board">
+      <div class="st" style="width:100%"><small>منوی پایین موبایل: کوچک و شناور وسط صفحه، فقط آیکون (اسم هر کدام برای صفحه‌خوان هست)، بدون پس‌زمینه پشت آیکون؛ جای فعلی را نقطه‌ی نور نشان می‌دهد. با اسکرول به پایین کنار می‌رود و با اسکرول به بالا برمی‌گردد.</small>
+        <nav class="tabs demo"><a class="tab" href="#" aria-current="page"><svg class="i" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><i class="mark"></i></a><a class="tab" href="#"><svg class="i" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></a><a class="tab" href="#"><svg class="i" viewBox="0 0 24 24"><path d="M7 21h10"/><rect width="20" height="14" x="2" y="3" rx="2"/></svg></a><a class="tab" href="#"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></a></nav>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>حرکت</h2>
+    <p class="why">شخصیت حرکت از سینما می‌آید: <b>دیزالو، نه کات</b>. چیزی ناگهان عوض نمی‌شود؛ هر تغییر نرم و کوتاه است، با فنر یا خروج نرم، و هرگز کاربر را برای خواندن منتظر نمی‌گذارد.</p>
+    <div class="tw"><table>
+      <tr><th>توکن</th><th>مقدار</th><th>کجا</th></tr>
+      <tr><td><code>--d-1</code></td><td>۱۶۰ میلی‌ثانیه</td><td>هاور، فشار، رنگ</td></tr>
+      <tr><td><code>--d-2</code></td><td>۳۲۰ میلی‌ثانیه</td><td>تغییر حالت: نور، برچسب، کادر جستجو، هدر</td></tr>
+      <tr><td><code>--d-3</code></td><td>۶۰۰ میلی‌ثانیه</td><td>دیزالو محتوا: متن، لوگو، عکس کارت</td></tr>
+      <tr><td><code>--d-4</code></td><td>۱۱۰۰ میلی‌ثانیه</td><td>صحنه: عکس هیرو، رنگ فیلم روی صفحه</td></tr>
+      <tr><td><code>--e-out</code></td><td>cubic-bezier(.22,1,.36,1)</td><td>هر چیزی که وارد می‌شود</td></tr>
+      <tr><td><code>--e-in</code></td><td>cubic-bezier(.4,0,1,1)</td><td>هر چیزی که خارج می‌شود</td></tr>
+      <tr><td>فنر تند</td><td>stiffness 380 · damping 32</td><td>نشانگر تب و منو، آواتار</td></tr>
+      <tr><td>فنر نرم</td><td>stiffness 260 · damping 34</td><td>نشانگر اسلاید</td></tr>
+    </table></div>
+    <div class="tw"><table>
+      <tr><td colspan="3" style="color:var(--ink-1)">فقط چیزهایی که به هم مربوط‌اند به هم تبدیل می‌شوند: یک امتیاز به امتیاز دیگر، یک سال به سال دیگر. مدت فیلم به تعداد فصل سریال تبدیل نمی‌شود؛ وقتی جنس عوض شود، فقط دیزالو می‌شود.</td></tr>
+      <tr><th>جنس</th><th>چطور تبدیل می‌شود</th><th>نمونه</th></tr>
+      <tr><td>مقدار هم‌جنس</td><td>از عدد قبلی تا عدد جدید می‌شمرد</td><td>IMDb به IMDb، دقیقه به دقیقه، فصل به فصل</td></tr>
+      <tr><td>مقدار با جنس دیگر</td><td>فقط دیزالو، بدون شمارش</td><td>۱۶۶ دقیقه ← ۲ فصل</td></tr>
+      <tr><td>نقطه‌ای در زمان</td><td>فقط رقم‌های تغییرکرده می‌چرخند؛ بالا برای جدیدتر</td><td>سال</td></tr>
+      <tr><td>فهرست کلمه</td><td>کلمه‌ی مشترک می‌ماند و جابه‌جا می‌شود</td><td>ژانر</td></tr>
+      <tr><td>متن خواندنی</td><td>دیزالو در همان کادر، بدون جابه‌جایی</td><td>عنوان فارسی، خلاصه</td></tr>
+      <tr><td>دسته‌ی دوحالته</td><td>چرخش عمودی</td><td>فیلم / سریال</td></tr>
+      <tr><td>کنترل</td><td>شکل عوض می‌کند</td><td>توقف ↔ پخش</td></tr>
+      <tr><td>حالت</td><td>نور و عرض نرم عوض می‌شوند</td><td>دوبله / زیرنویس</td></tr>
+      <tr><td>همان جا، معنای جدید</td><td>یکی به دیگری تبدیل می‌شود</td><td>ورود → آواتار</td></tr>
+      <tr><td>تصویر</td><td>دیزالو ساده، بدون morph</td><td>لوگوی فیلم</td></tr>
+    </table></div>
+  </section>
+</div>
+</body></html>
