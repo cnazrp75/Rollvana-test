@@ -112,7 +112,7 @@ svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.75;str
 .menu a svg{width:19px;height:19px}
 .menu hr{border:0;border-top:1px solid var(--line-1);margin:6px 0}
 
-.hero{position:relative;height:min(80svh,680px);min-height:580px;overflow:hidden;isolation:isolate;outline:none}
+.hero{position:relative;z-index:1;height:min(80svh,680px);min-height:580px;overflow:hidden;isolation:isolate;outline:none}
 .bgl{position:absolute;inset:-2% -4%;z-index:-2}
 .bgl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bgl .kb{animation:kb 9s linear both}
@@ -120,14 +120,15 @@ svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.75;str
 @media (prefers-reduced-motion:reduce){.bgl .kb{animation:none}}
 .grade{position:absolute;inset:0;z-index:-1;pointer-events:none;
 background:linear-gradient(to bottom,rgba(5,5,6,.6) 0,rgba(5,5,6,0) 120px),
-linear-gradient(to bottom,transparent 32%,color-mix(in oklab,var(--bg) 70%,transparent) 60%,var(--bg) 92%)}
+linear-gradient(to bottom,transparent 22%,rgba(7,6,12,.55) 46%,color-mix(in oklab,var(--bg) 88%,transparent) 66%,var(--bg) 92%)}
 .copy{position:absolute;inset:auto 0 0 0;padding:0 var(--pad) 22px;touch-action:pan-y}
 .swap{position:relative;display:block}
-.kick{font-size:12.5px;font-weight:500;color:var(--ink2);margin-bottom:14px;display:flex;gap:8px;align-items:center;height:18px}
+.kick{font-size:12.5px;font-weight:500;color:var(--ink-1);margin-bottom:14px;display:inline-flex;gap:8px;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(13,11,21,.38);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);box-shadow:inset 0 0 0 1px rgba(242,239,248,.1)}
+.copy .tFa,.copy .meta,.copy .syn p{text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 18px rgba(0,0,0,.45)}
 .kick b{width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
 .logo{height:76px;position:relative}
 .logo{position:relative}
-.logo img{max-height:76px;max-width:min(280px,78vw);width:auto;height:auto;object-fit:contain;object-position:right bottom}
+.logo img{filter:brightness(1.12) drop-shadow(0 1px 2px rgba(0,0,0,.7)) drop-shadow(0 0 16px rgba(0,0,0,.65)) drop-shadow(0 0 40px rgba(0,0,0,.45));max-height:76px;max-width:min(280px,78vw);width:auto;height:auto;object-fit:contain;object-position:right bottom}
 .tEn{font-family:var(--f-serif);font-size:40px;line-height:1.02;direction:ltr;text-align:right;width:min(330px,88vw);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tFa{font-size:16px;font-weight:700;margin-top:12px;height:26px;position:relative}
 .tFa span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -171,6 +172,8 @@ linear-gradient(to bottom,transparent 32%,color-mix(in oklab,var(--bg) 70%,trans
 .strip{display:none}
 
 main{position:relative;z-index:2;padding-bottom:96px}
+.amb2{position:absolute;left:0;right:0;top:calc(max(min(80svh,680px),580px) - 260px);height:1000px;z-index:2;pointer-events:none;background-color:color-mix(in oklch,color-mix(in oklch,var(--acc,#6b5aa8) 58%,var(--light) 42%) 80%,var(--ink-3) 20%);transition:background-color 1.4s cubic-bezier(.22,1,.36,1);opacity:.09;-webkit-mask:linear-gradient(transparent,#000 30%,#000 45%,transparent 95%),radial-gradient(85% 70% at 55% 30%,#000,transparent 80%);-webkit-mask-composite:source-in;mask:linear-gradient(transparent,#000 30%,#000 45%,transparent 95%),radial-gradient(85% 70% at 55% 30%,#000,transparent 80%);mask-composite:intersect}
+.hero:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .row{margin-top:30px;position:relative}
 .row:first-child{margin-top:8px}
 .rh{display:flex;align-items:baseline;justify-content:space-between;padding:0 var(--pad);margin-bottom:14px}
@@ -194,6 +197,16 @@ main{position:relative;z-index:2;padding-bottom:96px}
 .cm .bdg{height:20px;font-size:11px;padding:0 6px;color:var(--ink2)}
 .arr{display:none}
 .peek{display:none}
+.cw{flex:none;width:236px;scroll-snap-align:start;display:block}
+.cw.sk{height:170px;border-radius:var(--r-card)}
+.cwi{position:relative;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;background:var(--bg-up);box-shadow:inset 0 0 0 1px var(--line)}
+.cwi img{width:100%;height:100%;object-fit:cover}
+.cwi .pg{position:absolute;inset:auto 0 0 0;height:3px;background:rgba(242,239,248,.22)}
+.cwi .pg i{position:absolute;inset:0;background:var(--light);transform-origin:right center}
+.cwp{position:absolute;inset:0;margin:auto;width:40px;height:40px;border-radius:50%;background:rgba(13,11,21,.55);backdrop-filter:blur(8px);display:grid;place-items:center}
+.cwp svg{width:15px;height:15px;fill:#fff;stroke:none}
+.cw b{display:block;font-size:13.5px;font-weight:600;margin-top:10px;direction:ltr;text-align:right}
+.cw small{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
 .gen{flex:none;width:156px;height:92px;border-radius:var(--r-card);overflow:hidden;position:relative;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;isolation:isolate}
 .gen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .gen:before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--line-1);transition:box-shadow var(--d-2) var(--e-out);z-index:1;pointer-events:none}
@@ -201,11 +214,6 @@ main{position:relative;z-index:2;padding-bottom:96px}
 .gen:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(5,5,6,.88),rgba(5,5,6,.15));transition:opacity .3s}
 .gen b{font-size:16px;font-weight:700}
 .gen small{font-size:11.5px;color:var(--ink2);margin-top:2px}
-
-.tabs{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:30;display:flex;height:52px;padding:0 6px;border-radius:var(--r-pill);background:color-mix(in oklab,var(--night-1) 78%,transparent);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
-.tab{width:52px;display:grid;place-items:center;color:var(--ink-3);position:relative;transition:color .25s}
-.tab[aria-current=page]{color:var(--ink-1)}
-.tab .mark{position:absolute;bottom:6px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--light)}
 
 .sk{background:linear-gradient(100deg,rgba(242,239,248,.05) 0,rgba(242,239,248,.10) 40%,rgba(242,239,248,.05) 80%);background-size:300% 100%;animation:sh 1.4s linear infinite;border-radius:8px}
 @keyframes sh{from{background-position:100% 0}to{background-position:-200% 0}}
@@ -243,6 +251,7 @@ main{position:relative;z-index:2;padding-bottom:96px}
 .search svg{width:18px;height:18px}
 .hl{font-size:14px;gap:6px}
 .hero{height:min(84vh,800px);min-height:640px}
+.amb2{top:calc(max(min(84vh,800px),640px) - 300px)}
 .grade{background:
 linear-gradient(to bottom,rgba(5,5,6,.6) 0,rgba(5,5,6,0) 160px),
 linear-gradient(to left,rgba(5,5,6,.78) 0,rgba(5,5,6,.35) 34%,rgba(5,5,6,0) 62%),
@@ -269,9 +278,119 @@ main{padding-bottom:80px}
 .arr{display:grid;place-items:center;position:absolute;top:calc(50% - 30px);z-index:3;width:48px;height:48px;border-radius:50%;background:color-mix(in oklab,var(--bg) 70%,rgba(243,239,232,.1));backdrop-filter:blur(12px);box-shadow:0 0 0 1px var(--line2),0 10px 30px -10px rgba(0,0,0,.7);color:var(--ink)}
 .arr.l{left:20px}.arr.r{right:20px}
 .gen{width:240px;height:128px;padding:18px 20px}
+.cw{width:320px}
 .gen b{font-size:20px}
 .tabs{display:none}
 }
+/* bottom bar (shared) */
+.tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
+.tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
+.tab .tl{font-size:10.5px;font-weight:500;line-height:1}
+.tab[aria-current=page],.tab[aria-expanded=true]{color:var(--ink-1)}
+.tab .mark{position:absolute;bottom:5px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--light)}
+
+/* ---- site menu ---- */
+.scrim.lite{background:rgba(3,2,7,.35);backdrop-filter:none;-webkit-backdrop-filter:none;z-index:18}
+.mega{position:fixed;z-index:19;top:84px;left:var(--pad);right:var(--pad);max-width:1120px;margin:0 auto;border-radius:22px;background:color-mix(in oklab,var(--night-1) 94%,transparent);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:inset 0 0 0 1px var(--line-2),0 30px 80px -24px rgba(0,0,0,.85);padding:28px 32px;transform-origin:top center}
+.msheet .mb{padding:0 20px 8px}
+.mb{display:flex;flex-direction:column;gap:22px}
+.mb h3{font-size:12.5px;font-weight:600;color:var(--ink-3);margin:4px 0 10px}
+.mu{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:rgba(242,239,248,.06)}
+.mu b{display:block;font-size:15px;font-weight:700}.mu small{display:block;font-size:12px;color:var(--ink-3)}
+.mu>svg{width:18px;height:18px;margin-inline-start:auto;color:var(--ink-3)}
+.mlib{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:-12px}
+.mlib a{height:48px;border-radius:14px;background:rgba(242,239,248,.04);display:flex;align-items:center;gap:10px;padding:0 14px;font-size:13.5px;color:var(--ink-1)}
+.mlib svg{width:18px;height:18px;color:var(--ink-2)}
+.mg{padding:16px;border-radius:16px;background:rgba(242,239,248,.06)}
+.mg p{font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.mg2{display:flex;gap:8px;margin-top:12px}.mg2 .cta{height:44px}.mg2 .sub{height:44px;margin:0}
+.msec{display:grid;grid-template-columns:1fr 1fr;gap:2px 8px}
+.msec a{height:46px;display:flex;align-items:center;gap:12px;padding:0 10px;border-radius:12px;font-size:14px;color:var(--ink-1);transition:background .2s}
+.msec a:hover{background:rgba(242,239,248,.06)}
+.msec svg{width:19px;height:19px;color:var(--ink-3)}
+.mood2{display:flex;flex-wrap:wrap;gap:8px}
+.mood2 a{height:36px;padding:0 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-2);font-size:13px;display:inline-flex;align-items:center;color:var(--ink-1);transition:background .2s}
+.mood2 a:hover{background:rgba(242,239,248,.08)}
+.mood2+h3{margin-top:22px}
+.mgen{border-top:1px solid var(--line-1)}
+.mgen button{width:100%;height:48px;display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--ink-1)}
+.mgen button svg{width:18px;height:18px;color:var(--ink-3);transition:transform .3s var(--e-out)}
+.mgl{overflow:hidden}.mgl>div{display:flex;flex-wrap:wrap;gap:6px;padding:2px 0 14px}
+.mgl a{height:34px;padding:0 12px;border-radius:10px;background:rgba(242,239,248,.06);font-size:13px;display:inline-flex;align-items:center}
+.mtg{display:flex;flex-direction:column;gap:6px}
+.mtg a{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:14px;transition:background .2s}
+.mtg a:hover{background:rgba(242,239,248,.06)}
+.tgi{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#2AABEE;color:#fff;flex:none}
+.tgi svg{width:19px;height:19px}
+.mtg b{display:block;font-size:14px;font-weight:600}.mtg small{display:block;font-size:12px;color:var(--ink-3);direction:rtl}
+.more3{height:40px;display:flex;align-items:center;gap:4px;padding:0 12px 0 16px;color:var(--ink2);border-radius:999px;font-size:14.5px;font-weight:500;transition:color .2s,background .2s}
+.more3:hover,.more3.on{color:var(--ink);background:rgba(242,239,248,.07)}
+.more3 svg{width:16px;height:16px;transition:transform .3s var(--e-out)}
+@media (min-width:1024px){
+.mb{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:0 40px;align-items:start}
+.mb>.mu,.mb>.mg{grid-column:1 / -1;margin-bottom:20px}.mb>.mlib{grid-column:1 / -1;margin:-8px 0 20px;grid-template-columns:repeat(4,1fr)}
+.mg{display:flex;align-items:center;justify-content:space-between;gap:20px}.mg2{margin:0}
+}
+
+/* sheet (shared by the menu and the title page) */
+
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(3,2,7,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.sheet{position:fixed;inset:auto 0 0 0;z-index:61;max-height:90svh;overflow:auto;border-radius:24px 24px 0 0;background:var(--night-1);box-shadow:inset 0 1px 0 var(--line-2),0 -30px 80px -20px rgba(0,0,0,.8);padding:0 0 calc(20px + env(safe-area-inset-bottom));overscroll-behavior:contain}
+.sheet .grab{position:sticky;top:0;z-index:2;height:28px;display:grid;place-items:center;background:linear-gradient(var(--night-1) 60%,transparent)}
+.sheet .grab i{width:40px;height:4px;border-radius:4px;background:var(--line-2)}
+.sheet .x{position:absolute;top:10px;left:12px;z-index:3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(13,11,21,.6);color:var(--ink-1)}
+.sheet .x{position:absolute;top:10px;left:12px;z-index:3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(13,11,21,.6);color:var(--ink-1)}
+@media (min-width:1024px){.sheet{inset:0 0 0 auto;width:480px;max-height:none;border-radius:0}.sheet .grab{display:none}}
+
+
+/* round 15: the card's data sits on the poster; taste row first */
+.card{width:132px}
+.card .po{position:relative}
+.card .fr{position:absolute;top:8px;right:8px;z-index:2;margin:0;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:600;color:var(--ink);background:rgba(13,11,21,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:calc(100% - 16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .ov{position:absolute;inset:auto 0 0 0;z-index:2;padding:52px 9px 9px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.86) 46%,rgba(8,7,12,0) 100%);pointer-events:none}
+.card .ct{margin:0;font-size:12.5px;font-weight:700;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.card .cm{margin-top:5px;gap:6px;font-size:11.5px;justify-content:flex-start}
+.card .cm .bdg{height:18px;font-size:10px;padding:0 6px;color:var(--ink);background:rgba(13,11,21,.45);box-shadow:inset 0 0 0 1px rgba(242,239,248,.22)}
+.card .cm .bdg.dub{background:rgba(242,239,248,.2);box-shadow:none}
+.card .imdb small{color:rgba(242,239,248,.7)}
+.rh h2{display:flex;flex-direction:column;gap:3px}
+.rh h2 small{font-size:12.5px;font-weight:500;color:var(--mute)}
+.card .peek{display:none}
+@media (min-width:1024px){.card{width:184px}.card .ov{padding:64px 12px 12px}.card .ct{font-size:14.5px}.card .cm{font-size:12.5px}.card .cm .bdg{height:20px;font-size:11px}.card .fr{top:10px;right:10px;font-size:11.5px;height:24px;padding:0 10px}}
+
+/* round 16: full data on the card, full titles, no date tags; the taste row is bigger and shows the match */
+.card{width:148px}
+.card .ov{padding:56px 10px 10px;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.9) 55%,rgba(8,7,12,0) 100%)}
+.card .cf{display:block;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.card .ct{white-space:normal;overflow:visible;text-overflow:clip;font-size:11.5px;font-weight:500;line-height:1.35;color:rgba(242,239,248,.72);margin-top:2px;text-align:right}
+.card .cy{font-size:10.5px;line-height:1.5;color:rgba(242,239,248,.62);margin-top:4px}
+.card .cm{margin-top:6px}
+.card .cy span{display:block}
+.match{display:inline-flex;align-items:center;height:20px;padding:0 7px;margin-bottom:6px;border-radius:999px;font-size:10.5px;font-weight:700;color:var(--ink);background:rgba(242,239,248,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.row.big .card{width:200px}
+.row.big .card .cf{font-size:15px}
+.row.big .card .ct{font-size:12.5px}
+.row.big .card .cy{font-size:11.5px}
+@media (min-width:1024px){.card{width:196px}.card .ov{padding:72px 12px 12px}.card .cf{font-size:15px}.card .ct{font-size:12.5px}.card .cy{font-size:11.5px}
+.row.big .card{width:268px}.row.big .card .cf{font-size:18px}.row.big .card .ct{font-size:14px}.row.big .card .cy{font-size:12.5px}.match{height:24px;font-size:12px;padding:0 10px}}
+
+/* round 17: room under the cards so the glow is not cut; a shorter data block */
+.sc{padding-bottom:48px;margin-bottom:-30px}
+.card .cm{gap:8px}
+.card .cm .cy{font-size:11.5px;color:rgba(242,239,248,.62);margin:0}
+
+/* round 18: the score in one small box at the top */
+.sbox{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 7px;border-radius:8px;background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.14);direction:ltr}
+.sbox svg{width:26px;height:13px;color:var(--ink)}
+.sbox b{font-size:12px;font-weight:700;color:var(--ink)}
+@media (min-width:1024px){.sbox{top:10px;left:10px;height:28px;padding:0 9px;gap:6px}.sbox svg{width:30px;height:15px}.sbox b{font-size:13.5px}}
+
+/* round 19: a plain star, the badge to the left, the text block starts lower on the poster */
+.sbox{gap:4px;padding:0 7px 0 6px}
+.sbox svg{width:13px;height:13px;color:var(--ink)}
+.card .cm{justify-content:space-between}
+.card .ov{padding-top:34px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.82) 50%,rgba(8,7,12,0) 100%)}
+@media (min-width:1024px){.sbox svg{width:15px;height:15px}.card .ov{padding-top:44px}}
 </style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"><svg class="intro" id="intro" viewBox="-40 -820 3689 1130" role="img" aria-label="Rollvana" data-ocx="867" data-w="3609">
@@ -357,7 +476,7 @@ const M=s=>"media/"+s;
 const PAGE={"dune-part-two":"../title/rollvana-title.html?kind=film","severance":"../title/rollvana-title.html?kind=series"};
 const EASE=[0.22,1,0.36,1];
 const INFO={hide:{},show:r=>({transition:{staggerChildren:r?0:.045,delayChildren:r?0:.1}}),out:r=>({opacity:0,transition:{duration:r?.1:.16,ease:"easeIn"}})};
-const ITEM={hide:r=>r?{opacity:0}:{opacity:0,y:6,filter:"blur(3px)"},show:r=>({opacity:1,y:0,filter:"blur(0px)",transition:{duration:r?.15:.42,ease:EASE}})};
+const ITEM={hide:r=>r?{opacity:0}:{opacity:0,y:6,filter:"blur(3px)"},show:r=>({opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"},transition:{duration:r?.15:.42,ease:EASE}})};
 const SPR={type:"spring",stiffness:380,damping:32};
 const SOFT={type:"spring",stiffness:260,damping:34,mass:.9};
 
@@ -401,7 +520,13 @@ const PICKS=[C("past-lives","Past Lives","7.8","زیرنویس"),C("arrival","Ar
 const GENRES=[["اکشن","Action","fallout","50% 45%","#c09040",1240],["علمی‌تخیلی","Sci-Fi","blade-runner-2049","30% 30%","#7a3fd0",860],["درام","Drama","the-last-of-us","55% 30%","#8a9a4a",2310],["تاریخی","History","shogun","50% 25%","#2a9a96",640],["معمایی","Mystery","severance","60% 30%","#3f86c0",410],["ماجراجویی","Adventure","dune-part-two","40% 30%","#b8864a",980],["فانتزی","Fantasy","poor-things","60% 25%","#2aa8e0",520],["زندگی‌نامه","Biography","oppenheimer","47% 40%","#d98a2a",370]];
 
 const CMETA={"sinners":["ترسناک، درام",2025],"one-battle-after-another":["اکشن، درام",2025],"weapons":["ترسناک، معمایی",2025],"f1":["ورزشی، درام",2025],"frankenstein":["فانتزی، درام",2025],"mission-impossible-the-final-reckoning":["اکشن، ماجراجویی",2025],"the-running-man":["اکشن، علمی‌تخیلی",2025],"oppenheimer":["زندگی‌نامه، درام",2023],"the-bear":["کمدی، درام",2022],"star-wars-andor":["علمی‌تخیلی، ماجراجویی",2022],"slow-horses":["جنایی، هیجان‌انگیز",2022],"the-penguin":["جنایی، درام",2024],"the-white-lotus":["کمدی، درام",2021],"squid-game":["هیجان‌انگیز، درام",2021],"house-of-the-dragon":["فانتزی، درام",2022],"wednesday":["کمدی، فانتزی",2022],"past-lives":["عاشقانه، درام",2023],"arrival":["علمی‌تخیلی، درام",2016],"interstellar":["علمی‌تخیلی، ماجراجویی",2014],"parasite":["هیجان‌انگیز، کمدی",2019],"whiplash":["درام، موسیقی",2014],"her":["عاشقانه، علمی‌تخیلی",2013],"prisoners":["جنایی، معمایی",2013],"blade-runner-2049":["علمی‌تخیلی، معمایی",2017]};
-[...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CMETA[c.s];if(m){c.g=m[0];c.y=m[1]}});
+[...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CMETA[c.s];if(m){c.g=m[0];c.y=m[1]}});// full card data: Persian title, length (minutes for films, seasons for series), taste match for the taste row
+const CFA={"sinners":["گناهکاران","۱۳۷ دقیقه"],"one-battle-after-another":["نبردی پس از نبرد دیگر","۱۶۲ دقیقه"],"weapons":["سلاح‌ها","۱۲۸ دقیقه"],"f1":["اف وان","۱۵۵ دقیقه"],"frankenstein":["فرانکنشتاین","۱۴۹ دقیقه"],"mission-impossible-the-final-reckoning":["ماموریت غیرممکن: حساب‌رسی نهایی","۱۶۹ دقیقه"],"the-running-man":["مرد فراری","۱۳۳ دقیقه"],"oppenheimer":["اوپنهایمر","۱۸۰ دقیقه"],
+"the-bear":["خرس","۴ فصل"],"star-wars-andor":["اندور","۲ فصل"],"slow-horses":["اسب‌های کند","۵ فصل"],"the-penguin":["پنگوئن","۱ فصل"],"the-white-lotus":["نیلوفر سفید","۳ فصل"],"squid-game":["بازی مرکب","۳ فصل"],"house-of-the-dragon":["خاندان اژدها","۲ فصل"],"wednesday":["ونزدی","۲ فصل"],
+"past-lives":["زندگی‌های گذشته","۱۰۶ دقیقه"],"arrival":["ورود","۱۱۶ دقیقه"],"interstellar":["میان‌ستاره‌ای","۱۶۹ دقیقه"],"parasite":["انگل","۱۳۲ دقیقه"],"whiplash":["ویپلش","۱۰۶ دقیقه"],"her":["او","۱۲۶ دقیقه"],"prisoners":["زندانیان","۱۵۳ دقیقه"],"blade-runner-2049":["بلید رانر ۲۰۴۹","۱۶۴ دقیقه"]};
+[...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CFA[c.s];if(m){c.fa=m[0];c.d=m[1]}delete c.f});
+[97,95,94,92,91,89,88,86].forEach((m,i)=>{if(PICKS[i])PICKS[i].m=m});
+
 
 // every image the first screens need, fetched and decoded while the intro plays
 const ASSETS=(()=>{const u=new Set();
@@ -518,7 +643,7 @@ function Header({user,desk}){
   const [hide,setHide]=useState(false);
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
-  return html`<${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
+  return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
     <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:sc?1:0}} transition=${{duration:.35}}/>
     <a class="wm" href="#" aria-label="Rollvana"><svg viewBox="-40 -820 3689 870" aria-hidden="true"><path d="M223 -334 445 0H588L350 -334ZM78 -700V0H196V-700ZM148 -598H289Q330 -598 360 -584Q390 -570 407 -544Q424 -518 424 -480Q424 -443 407 -416.5Q390 -390 360 -376.5Q330 -363 289 -363H148V-265H294Q371 -265 427 -292Q483 -319 514.5 -368Q546 -417 546 -483Q546 -549 514.5 -597.5Q483 -646 427 -673Q371 -700 294 -700H148Z M1208 -780V0H1317V-780Z M1444 -780V0H1553V-780Z M1610 -460 1849 42 2087 -460H1969L1849 -163L1729 -460Z M2213 -143Q2213 -165 2223.5 -180Q2234 -195 2255 -203.5Q2276 -212 2310 -212Q2349 -212 2384 -202Q2419 -192 2450 -170V-225Q2441 -236 2419 -249.5Q2397 -263 2363.5 -273Q2330 -283 2284 -283Q2198 -283 2151 -243.5Q2104 -204 2104 -137Q2104 -90 2126 -57Q2148 -24 2185 -7Q2222 10 2265 10Q2305 10 2343.5 -4.5Q2382 -19 2407.5 -49Q2433 -79 2433 -123L2417 -183Q2417 -148 2401 -123Q2385 -98 2358.5 -84.5Q2332 -71 2299 -71Q2274 -71 2254.5 -79Q2235 -87 2224 -103.5Q2213 -120 2213 -143ZM2179 -340Q2190 -347 2210 -357.5Q2230 -368 2258.5 -375.5Q2287 -383 2319 -383Q2340 -383 2358 -379Q2376 -375 2389.5 -366Q2403 -357 2410 -343Q2417 -329 2417 -307V0H2523V-328Q2523 -374 2498.5 -406Q2474 -438 2430 -454.5Q2386 -471 2330 -471Q2265 -471 2216 -453Q2167 -435 2135 -416Z M2935 -280V0H3046V-293Q3046 -375 3005 -422.5Q2964 -470 2886 -470Q2839 -470 2804.5 -450Q2770 -430 2748 -389V-460H2639V0H2748V-280Q2748 -311 2760.5 -334.5Q2773 -358 2796 -370.5Q2819 -383 2850 -383Q2893 -383 2914 -357Q2935 -331 2935 -280Z M3242 -143Q3242 -165 3252.5 -180Q3263 -195 3284 -203.5Q3305 -212 3339 -212Q3378 -212 3413 -202Q3448 -192 3479 -170V-225Q3470 -236 3448 -249.5Q3426 -263 3392.5 -273Q3359 -283 3313 -283Q3227 -283 3180 -243.5Q3133 -204 3133 -137Q3133 -90 3155 -57Q3177 -24 3214 -7Q3251 10 3294 10Q3334 10 3372.5 -4.5Q3411 -19 3436.5 -49Q3462 -79 3462 -123L3446 -183Q3446 -148 3430 -123Q3414 -98 3387.5 -84.5Q3361 -71 3328 -71Q3303 -71 3283.5 -79Q3264 -87 3253 -103.5Q3242 -120 3242 -143ZM3208 -340Q3219 -347 3239 -357.5Q3259 -368 3287.5 -375.5Q3316 -383 3348 -383Q3369 -383 3387 -379Q3405 -375 3418.5 -366Q3432 -357 3439 -343Q3446 -329 3446 -307V0H3552V-328Q3552 -374 3527.5 -406Q3503 -438 3459 -454.5Q3415 -471 3359 -471Q3294 -471 3245 -453Q3196 -435 3164 -416Z" fill="currentColor"/><circle cx="867" cy="-230" r="190" fill="none" stroke="currentColor" stroke-width="100"/><circle cx="912" cy="-275" r="50" fill="var(--light)"/></svg></a>
     ${desk&&html`<nav class="nav" aria-label="ناوبری اصلی" onMouseLeave=${()=>setHov(null)}>
@@ -527,6 +652,7 @@ function Header({user,desk}){
         ${l}
         ${k===0&&html`<span class="sel"></span>`}
       </a>`)}
+    <${MoreNav}/>
     </nav>`}
     ${desk&&html`<${motion.label} class="search" initial=${false} whileFocus=${{}} style=${{width:340}} animate=${{}}
         onFocus=${e=>e.currentTarget.style.width="420px"} onBlur=${e=>e.currentTarget.style.width="340px"}>
@@ -540,7 +666,7 @@ function Header({user,desk}){
               :html`<${motion.a} key="in" layoutId="me" class="login" href="#" style=${{borderRadius:10}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.1}}}>ورود</${motion.span}></${motion.a}>`}
       </${AnimatePresence}>
     </div>
-  </${motion.header}>`;
+  </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
 }
 
 function Account(){
@@ -582,7 +708,7 @@ function Hero({items,loading,desk}){
   const [hovering,setHovering]=useState(false);
   const reduced=useReducedMotion();
   const n=items.length,it=items[i];
-  const DUR=7000;
+  const DUR=5000;
   const go=useCallback(d=>{setDir(d);setI(x=>(x+d+n)%n)},[n]);
   const to=k=>{setDir(k>i?1:-1);setI(k)};
   useEffect(()=>{if(!loading)document.documentElement.style.setProperty("--acc",it.acc)},[i,loading]);
@@ -645,30 +771,33 @@ function Hero({items,loading,desk}){
   </section>`;
 }
 
+const IMDB_SVG="<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>";
 function Card({c,k,reduced}){
   return html`<${motion.a} href="#" class="card"
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <${motion.img} class="glow" src=${M("p-"+c.s+".jpg")} alt="" aria-hidden="true" variants=${{r:{opacity:.32},h:{opacity:.7}}} transition=${{duration:.35}}/>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M("p-"+c.s+".jpg")}/></${motion.div}>
-        ${c.g&&html`<${motion.div} class="peek" variants=${{r:{opacity:0},h:{opacity:1}}} transition=${{duration:.25}}><span>${c.g}</span><span class="num">${c.y}</span></${motion.div}>`}</div>
+        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"/></svg><b>${c.imdb}</b></span>
+        <div class="ov">
+          ${c.m&&html`<span class="match num">${fa(c.m)}٪ هم‌سلیقه</span>`}
+          ${c.fa&&html`<b class="cf">${c.fa}</b>`}
+          <div class="ct" dir="ltr">${c.en}</div>
+          <div class="cm">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}<span class=${"bdg"+(c.b==="دوبله"?" dub":"")}>${c.b}</span></div></div></div>
     </${motion.div}>
-    ${c.f&&html`<div class="fr">${c.f}</div>`}
-    <div class="ct" title=${c.en}>${c.en}</div>
-    <div class="cm"><span class="imdb num"><small>IMDb</small><b>${c.imdb}</b></span><span class=${"bdg"+(c.b==="دوبله"?" dub":"")}>${c.b}</span></div>
   </${motion.a}>`;
 }
-function SkCard(){return html`<div class="card"><div class="po sk"></div><div class="sk" style=${{height:13,width:"80%",marginTop:12}}></div><div class="sk" style=${{height:12,width:"50%",marginTop:8}}></div></div>`}
+function SkCard(){return html`<div class="card"><div class="po sk"></div></div>`}
 
-function Row({title,items,loading,genre,desk}){
+function Row({title,sub,items,loading,genre,desk,big}){
   const ref=useRef();const reduced=useReducedMotion();
   const [hov,setHov]=useState(false);
   const [edge,setEdge]=useState({s:true,e:false});
   const upd=()=>{const el=ref.current;if(!el)return;const x=Math.abs(el.scrollLeft);setEdge({s:x<4,e:x+el.clientWidth>=el.scrollWidth-4})};
   if(!loading&&!items.length)return null;
   const by=d=>{const el=ref.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:"smooth"})};
-  return html`<section class="row" onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
-    <div class="rh"><h2>${title}</h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">همه<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
+  return html`<section class=${"row"+(big?" big":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
+    <div class="rh"><h2>${title}${sub&&!loading&&html`<small>${sub}</small>`}</h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">همه<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
     ${desk&&!loading&&html`<${AnimatePresence}>
       ${hov&&!edge.e&&html`<${motion.button} key="l" class="arr l" aria-label="بعدی" onClick=${()=>by(1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="left"/></${motion.button}>`}
       ${hov&&!edge.s&&html`<${motion.button} key="r" class="arr r" aria-label="قبلی" onClick=${()=>by(-1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="right"/></${motion.button}>`}
@@ -682,14 +811,28 @@ function Row({title,items,loading,genre,desk}){
   </section>`;
 }
 
+const CONT=[{s:"severance",img:"e-sev-2-5.jpg",en:"Severance",sub:"فصل ۲، قسمت ۵",left:"۲۸ دقیقه مانده",p:.46,kind:"series"},
+  {s:"dune-part-two",img:"b-dune-part-two.jpg",en:"Dune: Part Two",sub:"فیلم",left:"۹۹ دقیقه مانده",p:.41,kind:"film"},
+  {s:"the-last-of-us",img:"b-the-last-of-us.jpg",en:"The Last of Us",sub:"فصل ۱، قسمت ۳",left:"۱۲ دقیقه مانده",p:.82,kind:"series"}];
+function ContinueRow({loading}){
+  return html`<section class="row"><div class="rh"><h2>ادامه‌ی تماشا</h2></div>
+    <div class="sc">${CONT.map(c=>loading?html`<div class="cw sk" key=${c.s}></div>`:html`<${motion.a} key=${c.s} href=${PAGE[c.s]||"#"} class="cw" whileHover="h" whileTap=${{scale:.97}} initial="r" animate="r">
+      <div class="cwi"><${motion.img} src=${M(c.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.6,ease:EASE}}/>
+        <span class="cwp" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span>
+        <span class="pg"><i style=${{transform:"scaleX("+c.p+")"}}></i></span></div>
+      <b>${c.en}</b><small>${c.sub} · ${c.left}</small>
+    </${motion.a}>`)}</div></section>`;
+}
+
 function Tabs(){
   const [sel,setSel]=useState(0);const [hide,setHide]=useState(false);const reduced=useReducedMotion();
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;if(y>200&&y>last+6)setHide(true);else if(y<last-6||y<200)setHide(false);last=y};addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[]);
   const T=[["home","خانه"],["film","فیلم‌ها"],["tv","سریال‌ها"],["search","جستجو"]];
+  const [mo,setMo]=useState(false);useEffect(()=>{const f=e=>setMo(e.detail);addEventListener("rv-menu-state",f);return()=>removeEventListener("rv-menu-state",f)},[]);
   return html`<${motion.nav} class="tabs" aria-label="ناوبری اصلی" style=${{x:"-50%"}} initial=${false}
-      animate=${hide?{y:90,opacity:reduced?0:1}:{y:0,opacity:1}} transition=${{duration:.35,ease:EASE}}>${T.map(([n,l],k)=>html`<${motion.a} href="#" class="tab" aria-label=${l} aria-current=${k===sel?"page":undefined}
+      animate=${hide?{y:90,opacity:reduced?0:1}:{y:0,opacity:1}} transition=${{duration:.35,ease:EASE}}>${T.map(([n,l],k)=>html`<${motion.a} href="#" class="tab" aria-current=${k===sel?"page":undefined}
       onClick=${e=>{e.preventDefault();if(k===sel)scrollTo({top:0,behavior:"smooth"});else setSel(k)}} whileTap=${{scale:.9}}>
-    <${I} n=${n}/>${k===sel&&html`<${motion.i} class="mark" layoutId="tabmark" transition=${SPR}/>`}</${motion.a}>`)}</${motion.nav}>`;
+    <${I} n=${n}/><span class="tl">${l}</span>${k===sel&&!mo&&html`<${motion.i} class="mark" layoutId="tabmark" transition=${SPR}/>`}</${motion.a}>`)}<${motion.button} class="tab" aria-expanded=${mo} onClick=${()=>dispatchEvent(new Event("rv-menu"))} whileTap=${{scale:.9}}><${I} n="grid"/><span class="tl">بیشتر</span>${mo&&html`<${motion.i} class="mark" layoutId="tabmark" transition=${SPR}/>`}</${motion.button}></${motion.nav}>`;
 }
 
 const IDS=[["nirvana","نیروانا (بنفش)","#A97BFF"],["beam","پرتو (فیروزه‌ای)","#3DE0D2"],["copper","مس (مسی)","#E78A53"]];
@@ -722,17 +865,19 @@ function App(){
   const long=st==="long";
   const reload=()=>{scrollTo({top:0});setSim(true);setTimeout(()=>setSim(false),1800)};
   const hero=long?[LONG,...HERO.slice(1)]:HERO;
-  const films=long?[C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning of Ethan Hunt","7.2","دوبله","امروز"),...FILMS]:FILMS;
+  const films=long?[{...C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning of Ethan Hunt","7.2","دوبله"),fa:"ماموریت غیرممکن: حساب‌رسی نهایی اتان هانت",g:"اکشن، ماجراجویی",y:2025,d:"۱۶۹ دقیقه"},...FILMS]:FILMS;
   return html`<${React.Fragment}>
     <${Header} user=${user} desk=${desk}/>
     <${AnimatePresence} mode="wait" initial=${false}>
       <${motion.div} key=${loading?"sk":"ok"+st} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.35}}>
+        <div class="amb2" aria-hidden="true"></div>
         <${Hero} items=${hero} loading=${loading} desk=${desk}/>
         <main>
+          ${user&&html`<${ContinueRow} loading=${loading}/>`}
+          ${user&&html`<${Row} title="بر اساس سلیقه‌ی شما" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
           <${Row} title="جدیدترین فیلم‌ها" items=${films} loading=${loading} desk=${desk}/>
           <${Row} title="جدیدترین سریال‌ها" items=${SERIES} loading=${loading} desk=${desk}/>
-          <${Row} title="پیشنهاد ما" items=${PICKS} loading=${loading} desk=${desk}/>
-          <${Row} title="ژانرها" items=${GENRES} loading=${loading} genre=${true} desk=${desk}/>
+          ${!user&&html`<${Row} title="پیشنهاد ما" items=${PICKS.map(({m,...c})=>c)} loading=${loading} desk=${desk}/>`}
           <${Row} title="مستندها" items=${[]} loading=${false}/>
           <${Review} st=${st} set=${setSt} reload=${reload}/>
         </main>
@@ -741,6 +886,71 @@ function App(){
     ${!desk&&html`<${Tabs}/>`}
   </${React.Fragment}>`;
 }
+/* ---- the site menu (app-menu, ZIP story): one menu for every section, the account and Ali's Telegram ---- */
+Object.assign(ICON,{
+grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
+chev:'<path d="m6 9 6 6 6-6"/>',
+tgm:'<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>',
+x2:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'
+});
+const MSEC=[["خانه","home"],["همه‌ی فیلم‌ها","film"],["همه‌ی سریال‌ها","tv"],["۲۵۰ فیلم برتر","top"],["۲۵۰ سریال برتر","top"],["مجموعه‌ها","stack"],["هنرمندان","user"],["فیلم‌دوست‌ها","users"],["تقویم پخش","cal"],["چی ببینم؟","spark"]];
+Object.assign(ICON,{top:'<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',stack:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M6 5h12M9 2.5h6"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>'});
+const MOODS=["حال خوب","هیجان","فکر کردن","ترس","گریه","با خانواده","کوتاه و سریع"];
+const MGEN={"فیلم":["اکشن","علمی‌تخیلی","درام","کمدی","ترسناک","انیمیشن","جنایی","عاشقانه","مستند"],"سریال":["درام","جنایی","علمی‌تخیلی","کمدی","فانتزی","انیمه","مینی‌سریال"]};
+const TG=[["@Rollvana","کانال رول‌وانا"]];
+function MenuBody({user,close}){
+  const [g,setG]=useState(null);
+  return html`<div class="mb">
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+      :html`<div class="mg"><p>با حساب رول‌وانا لیست تماشا، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+    <div class="mcol">
+      <h3>بخش‌ها</h3>
+      <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
+    </div>
+    <div class="mcol">
+      <h3>حال‌وهوا</h3>
+      <div class="mood2">${MOODS.map(m=>html`<a href="#" key=${m}>${m}</a>`)}</div>
+      <h3>ژانرها</h3>
+      ${Object.entries(MGEN).map(([k,list])=>html`<div class="mgen" key=${k}>
+        <button aria-expanded=${g===k} onClick=${()=>setG(x=>x===k?null:k)}>ژانرهای ${k}<svg class="i" viewBox="0 0 24 24" style=${{transform:g===k?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.chev}}></svg></button>
+        <${AnimatePresence} initial=${false}>${g===k&&html`<${motion.div} class="mgl" initial=${{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${{height:0,opacity:0}} transition=${{duration:.3,ease:EASE}}><div>${list.map(x=>html`<a href="#" key=${x}>${x}</a>`)}</div></${motion.div}>`}</${AnimatePresence}>
+      </div>`)}
+    </div>
+    <div class="mcol">
+      <h3>تلگرام</h3>
+      <div class="mtg">${TG.map(([h,l])=>html`<a href=${"https://t.me/"+h.slice(1)} key=${h} target="_blank" rel="noopener"><span class="tgi"><${I} n="tgm"/></span><span><b>${l}</b><small><bdi dir="ltr">${h}</bdi> · تلگرام</small></span></a>`)}</div>
+    </div>
+  </div>`;
+}
+function AppMenu({user,desk}){
+  const [open,setOpen]=useState(false);const reduced=useReducedMotion();const ref=useRef();
+  useEffect(()=>{const o=()=>setOpen(v=>!v);addEventListener("rv-menu",o);return()=>removeEventListener("rv-menu",o)},[]);
+  useEffect(()=>{if(!open)return;
+    const k=e=>{if(e.key==="Escape")setOpen(false)};addEventListener("keydown",k);
+    history.pushState({rvmenu:1},"");const pop=()=>setOpen(false);addEventListener("popstate",pop);
+    if(!desk)document.body.style.overflow="hidden";
+    return()=>{removeEventListener("keydown",k);removeEventListener("popstate",pop);document.body.style.overflow="";if(history.state&&history.state.rvmenu)history.back()}},[open,desk]);
+  useEffect(()=>{dispatchEvent(new CustomEvent("rv-menu-state",{detail:open}))},[open]);
+  const close=()=>setOpen(false);
+  return html`<${AnimatePresence}>${open&&html`<${React.Fragment} key="m">
+    <${motion.div} class=${"scrim"+(desk?" lite":"")} onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
+    ${desk?html`<${motion.div} class="mega" role="dialog" aria-label="همه‌ی بخش‌ها" ref=${ref}
+        initial=${reduced?{opacity:0}:{opacity:0,y:-10,scale:.985}} animate=${{opacity:1,y:0,scale:1}} exit=${reduced?{opacity:0}:{opacity:0,y:-6,transition:{duration:.15}}} transition=${{duration:.28,ease:EASE}}>
+        <${MenuBody} user=${user} close=${close}/></${motion.div}>`
+    :html`<${motion.div} class="sheet msheet" role="dialog" aria-modal="true" aria-label="همه‌ی بخش‌ها"
+        initial=${reduced?{opacity:0}:{y:"100%"}} animate=${{y:0}} exit=${reduced?{opacity:0}:{y:"100%"}} transition=${{type:"spring",stiffness:300,damping:34}}
+        drag="y" dragConstraints=${{top:0,bottom:0}} dragElastic=${{top:0,bottom:.6}} onDragEnd=${(e,i)=>{if(i.offset.y>120||i.velocity.y>600)close()}}>
+        <div class="grab"><i></i></div><button class="x" onClick=${close} aria-label="بستن"><${I} n="x2"/></button>
+        <${MenuBody} user=${user} close=${close}/></${motion.div}>`}
+  </${React.Fragment}>`}</${AnimatePresence}>`;
+}
+function MoreNav(){
+  const [open,setOpen]=useState(false);
+  useEffect(()=>{const f=e=>setOpen(e.detail);addEventListener("rv-menu-state",f);return()=>removeEventListener("rv-menu-state",f)},[]);
+  return html`<button class=${"more3"+(open?" on":"")} aria-expanded=${open} aria-haspopup="dialog" onClick=${()=>dispatchEvent(new Event("rv-menu"))}>بیشتر<svg class="i" viewBox="0 0 24 24" style=${{transform:open?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.chev}}></svg></button>`;
+}
+
 ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
 </script>
 </body></html>
