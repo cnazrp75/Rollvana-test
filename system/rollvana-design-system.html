@@ -358,6 +358,40 @@ main{padding-bottom:80px}
 .rh h2 small{font-size:12.5px;font-weight:500;color:var(--mute)}
 .card .peek{display:none}
 @media (min-width:1024px){.card{width:184px}.card .ov{padding:64px 12px 12px}.card .ct{font-size:14.5px}.card .cm{font-size:12.5px}.card .cm .bdg{height:20px;font-size:11px}.card .fr{top:10px;right:10px;font-size:11.5px;height:24px;padding:0 10px}}
+
+/* round 16: full data on the card, full titles, no date tags; the taste row is bigger and shows the match */
+.card{width:148px}
+.card .ov{padding:56px 10px 10px;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.9) 55%,rgba(8,7,12,0) 100%)}
+.card .cf{display:block;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.card .ct{white-space:normal;overflow:visible;text-overflow:clip;font-size:11.5px;font-weight:500;line-height:1.35;color:rgba(242,239,248,.72);margin-top:2px;text-align:right}
+.card .cy{font-size:10.5px;line-height:1.5;color:rgba(242,239,248,.62);margin-top:4px}
+.card .cm{margin-top:6px}
+.card .cy span{display:block}
+.match{display:inline-flex;align-items:center;height:20px;padding:0 7px;margin-bottom:6px;border-radius:999px;font-size:10.5px;font-weight:700;color:var(--ink);background:rgba(242,239,248,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.row.big .card{width:200px}
+.row.big .card .cf{font-size:15px}
+.row.big .card .ct{font-size:12.5px}
+.row.big .card .cy{font-size:11.5px}
+@media (min-width:1024px){.card{width:196px}.card .ov{padding:72px 12px 12px}.card .cf{font-size:15px}.card .ct{font-size:12.5px}.card .cy{font-size:11.5px}
+.row.big .card{width:268px}.row.big .card .cf{font-size:18px}.row.big .card .ct{font-size:14px}.row.big .card .cy{font-size:12.5px}.match{height:24px;font-size:12px;padding:0 10px}}
+
+/* round 17: room under the cards so the glow is not cut; a shorter data block */
+.sc{padding-bottom:48px;margin-bottom:-30px}
+.card .cm{gap:8px}
+.card .cm .cy{font-size:11.5px;color:rgba(242,239,248,.62);margin:0}
+
+/* round 18: the score in one small box at the top */
+.sbox{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 7px;border-radius:8px;background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.14);direction:ltr}
+.sbox svg{width:26px;height:13px;color:var(--ink)}
+.sbox b{font-size:12px;font-weight:700;color:var(--ink)}
+@media (min-width:1024px){.sbox{top:10px;left:10px;height:28px;padding:0 9px;gap:6px}.sbox svg{width:30px;height:15px}.sbox b{font-size:13.5px}}
+
+/* round 19: a plain star, the badge to the left, the text block starts lower on the poster */
+.sbox{gap:4px;padding:0 7px 0 6px}
+.sbox svg{width:13px;height:13px;color:var(--ink)}
+.card .cm{justify-content:space-between}
+.card .ov{padding-top:34px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.82) 50%,rgba(8,7,12,0) 100%)}
+@media (min-width:1024px){.sbox svg{width:15px;height:15px}.card .ov{padding-top:44px}}
 </style>
 <style>
 body{background:var(--night-0)}
