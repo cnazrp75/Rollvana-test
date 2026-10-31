@@ -391,6 +391,12 @@ main{padding-bottom:80px}
 .card .cm{justify-content:space-between}
 .card .ov{padding-top:34px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.82) 50%,rgba(8,7,12,0) 100%)}
 @media (min-width:1024px){.sbox svg{width:15px;height:15px}.card .ov{padding-top:44px}}
+
+/* round 20 (self-review): one kind of digits, one score mark; the match as quiet text, not another chip */
+.star2{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--ink)}
+.star2 svg{width:14px;height:14px}
+.match{display:block;height:auto;padding:0;margin:0 0 4px;border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:11px;font-weight:600;color:rgba(242,239,248,.78)}
+@media (min-width:1024px){.match{height:auto;padding:0;font-size:12.5px}}
 </style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"><svg class="intro" id="intro" viewBox="-40 -820 3689 1130" role="img" aria-label="Rollvana" data-ocx="867" data-w="3609">
@@ -757,8 +763,8 @@ function Hero({items,loading,desk}){
       </${Cross}></a>
       <div class="tFa"><${Cross} k=${"fa"+i} reduced=${reduced} blur=${6} dur=${.4} delay=${.04}><span>${it.fa}</span></${Cross}></div>
       <div class="meta">
-        <span class="imdb"><small>IMDb</small><b><${Count} v=${Number(it.imdb)} dec=${1}/></b></span>
-        <i class="sep"></i><${AnimChars} text=${String(it.y)} dir=${yrDir} dur=${560} blur=${6}/>
+        <span class="star2" aria-label=${"امتیاز IMDb "+it.imdb}><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"/></svg><b><${Count} v=${Number(it.imdb)} dec=${1} fmt=${x=>fa(x).replace(".","٫")}/></b></span>
+        <i class="sep"></i><${AnimChars} text=${fa(it.y)} dir=${yrDir} dur=${560} blur=${6}/>
         <i class="sep"></i><${Runtime} rt=${it.rt} kind=${it.kind} reduced=${reduced}/>
         <${Badge} b=${it.b}/>
       </div>
@@ -778,9 +784,9 @@ function Card({c,k,reduced}){
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <${motion.img} class="glow" src=${M("p-"+c.s+".jpg")} alt="" aria-hidden="true" variants=${{r:{opacity:.32},h:{opacity:.7}}} transition=${{duration:.35}}/>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M("p-"+c.s+".jpg")}/></${motion.div}>
-        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"/></svg><b>${c.imdb}</b></span>
+        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8z"/></svg><b>${fa(c.imdb).replace(".","٫")}</b></span>
         <div class="ov">
-          ${c.m&&html`<span class="match num">${fa(c.m)}٪ هم‌سلیقه</span>`}
+          ${c.m&&html`<span class="match num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}
           ${c.fa&&html`<b class="cf">${c.fa}</b>`}
           <div class="ct" dir="ltr">${c.en}</div>
           <div class="cm">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}<span class=${"bdg"+(c.b==="دوبله"?" dub":"")}>${c.b}</span></div></div></div>
