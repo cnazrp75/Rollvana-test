@@ -2,7 +2,7 @@
 <html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Rollvana Title</title>
 <style>
-@font-face{font-family:Vazirmatn;src:url(../home/media/vendor/vazirmatn.woff2) format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:IRANYekanX;src:url(../home/media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:block}
 @font-face{font-family:"Instrument Serif";src:url(../home/media/vendor/instrument-serif.woff2) format("woff2");font-display:block}
 @font-face{font-family:"Instrument Serif";font-style:italic;src:url(../home/media/vendor/instrument-serif-italic.woff2) format("woff2");font-display:block}
 @property --acc{syntax:"<color>";inherits:true;initial-value:#b8864a}
@@ -38,7 +38,7 @@
 --r-s:6px;--r-m:12px;--r-l:20px;--r-pill:999px;
 --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:20px;--s-6:24px;--s-8:32px;--s-12:48px;--s-16:64px;
 
---f-ui:Vazirmatn,system-ui,sans-serif;
+--f-ui:IRANYekanX,system-ui,sans-serif;
 --f-mark:"Instrument Serif",Georgia,serif;
 --t-display:700 32px/1.25 var(--f-ui);
 --t-h1:700 22px/1.4 var(--f-ui);
@@ -1234,6 +1234,67 @@ svg.i [opacity]{transition:opacity .25s}.tab[aria-current=page] svg.i [opacity],
 
 .pst[aria-current=page] .po,.pst[aria-current=page] img{box-shadow:0 0 0 2px var(--hue)}
 
+/* ===== round 38: back toward minimal. No colour poured over the page; colour lives in small, meaningful marks ===== */
+.amb3{display:none}
+.tinted{--wash:color-mix(in oklab,var(--acc) 9%,#0D0B15);--wash2:color-mix(in oklab,var(--acc) 3%,#0D0B15)}
+/* chapters: no boxes. Space + a hairline + a coloured icon */
+.chap{background:none!important;box-shadow:none!important;border-radius:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  margin:0!important;padding:36px var(--pad) 8px!important;border-top:1px solid var(--line-1)}
+.spy+.chap{border-top:0;padding-top:20px!important}
+.chap:before{display:none}
+.chh{column-gap:10px}
+.chh .chi{width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border-radius:0}
+.chh .chi svg{width:24px!important;height:24px!important}
+@media (min-width:1024px){.chap{padding:56px 0 8px!important}.spy+.chap{padding-top:28px!important}}
+/* small colour marks with a meaning */
+.dtag.k4{color:#F2C46B;background:rgba(242,196,107,.12)}
+.tc .bdg.dub,.bdg.dub{color:var(--ink-1);background:var(--s2)}
+.sdl .dl4,.chap>.sec{margin-top:18px}
+
+/* ===== round 40 · chapter menu as a right rail on desktop; content scrolls on the left ===== */
+.spy .spi{display:none}
+@media (max-width:1023px){.split,.chaps{display:contents}}
+@media (min-width:1024px){
+  .split{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 72px;align-items:start;margin-top:56px}
+  .split>.spy{position:sticky!important;top:112px!important;margin:0!important;padding:0!important;display:block;z-index:3}
+  .split>.spy ol{display:flex;flex-direction:column;gap:2px!important;padding:0 12px 0 0!important;margin:0;list-style:none;position:relative}
+  .split>.spy ol::before{content:"";position:absolute;top:6px;bottom:6px;right:0;width:1px;background:var(--line-1)}
+  .split>.spy li{position:relative;display:block}
+  .split>.spy a{position:relative;z-index:1;display:flex!important;align-items:center;gap:12px;height:44px!important;padding:0 14px!important;border-radius:12px!important;font-size:14.5px!important;color:var(--ink-3)!important;transition:color .2s}
+  .split>.spy a:hover{color:var(--ink-1)!important;background:rgba(242,239,248,.04)!important}
+  .split>.spy a[aria-current=location]{color:var(--ink-1)!important;font-weight:700!important}
+  .split>.spy .hov2{inset:0!important;border-radius:12px!important;background:var(--s2)!important}
+  .split>.spy .line2{display:block!important;position:absolute!important;inset:10px -13px 10px auto!important;width:3px!important;height:auto!important;margin:0!important;border-radius:3px!important;background:var(--v,#B9A2FF)!important}
+  .split>.spy .spi{display:grid;place-items:center;width:20px;height:20px;opacity:.55;transition:opacity .2s}
+  .split>.spy .spi svg{width:20px;height:20px}
+  .split>.spy a[aria-current=location] .spi{opacity:1}
+  /* chapters: heading above content, the rail already names them */
+  .chaps .chap{display:block!important;margin:0!important;padding:0 0 72px!important;border-top:0!important}
+  .chaps .chap+.chap{padding-top:72px!important;border-top:1px solid var(--line-1)!important}
+  .chaps .chap>.chh{position:static!important;margin:0 0 28px!important;grid-row:auto!important}
+  .chaps .chap>.sec{margin-top:0!important}
+  .chaps .chap>.sec+.sec{margin-top:44px!important}
+  .chaps .chap.about{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px 56px}
+  .chaps .chap.about>*{grid-column:auto!important;grid-row:auto!important;margin:0!important}
+  .chaps .chap.about>.chh,.chaps .chap.about>.sec:last-child{grid-column:1/-1!important}
+  .chaps .chap.about>.chh{margin-bottom:-16px!important}
+}
+@media (min-width:1024px){
+  .split>.spy,.split>.spy ol{background:none!important;box-shadow:none!important;border:0!important;border-radius:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;width:auto!important;height:auto!important;overflow:visible!important}
+}
+
+/* ===== round 41 · one icon colour; phone strip matches the desktop rail ===== */
+.chh .chi,.split>.spy .spi{color:var(--ink-1)!important}
+@media (max-width:1023px){
+  .spy ol{position:relative}
+  .spy li{position:relative}
+  .spy a{display:flex!important;align-items:center;gap:7px}
+  .spy .spi{display:grid;place-items:center;width:16px;height:16px;color:var(--ink-1);opacity:.5;transition:opacity .2s}
+  .spy .spi svg{width:16px;height:16px}
+  .spy a[aria-current=location] .spi{opacity:1}
+  .spy .line2{display:block!important;position:absolute!important;top:auto!important;bottom:-1px!important;left:50%!important;right:auto!important;width:18px!important;height:2px!important;margin:0 0 0 -9px!important;border-radius:2px!important;background:var(--v,#B9A2FF)!important}
+}
+
 /* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
@@ -1880,13 +1941,15 @@ function Spy({sections}){
     const go=e=>to(e.detail);
     addEventListener("scroll",on,{passive:true});addEventListener("resize",on);addEventListener("rv-spy",go);measure();
     return()=>{removeEventListener("scroll",on);removeEventListener("resize",on);removeEventListener("rv-spy",go);cancelAnimationFrame(raf)}},[sections.map(x=>x[0]).join()]);
+  /* phones: keep the active item in view inside the strip */
+  useEffect(()=>{if(desk)return;const ol=bar.current&&bar.current.querySelector("ol");const li=ol&&ol.querySelector('li[data-s="'+act+'"]');if(ol&&li)ol.scrollTo({left:li.offsetLeft-(ol.clientWidth-li.offsetWidth)/2,behavior:reduced?"auto":"smooth"})},[act,desk]);
   const to=id=>{const n=document.getElementById(id);if(!n)return;lock.current=id;setAct(id);
     scrollTo({top:n.getBoundingClientRect().top+scrollY-OFF+20,behavior:reduced?"auto":"smooth"});
     clearTimeout(to.t);to.t=setTimeout(()=>{lock.current=null},900)};
-  return html`<${motion.nav} class="spy" aria-label="بخش‌های این صفحه" ref=${bar} initial=${false} animate=${{top:desk?76:up?0:60}} transition=${{duration:.32,ease:EASE}}><ol>${sections.map(([id,l])=>html`<li key=${id}>
+  return html`<${motion.nav} class="spy" aria-label="بخش‌های این صفحه" ref=${bar} initial=${false} animate=${{top:desk?76:up?0:60}} transition=${{duration:.32,ease:EASE}}><ol>${sections.map(([id,l,ic])=>html`<li key=${id} data-s=${id}>
       ${act===id&&html`<${motion.span} class="hov2" layoutId=${reduced?undefined:"spyp"} transition=${{type:"spring",stiffness:520,damping:34,mass:.45}}/>`}
       ${act===id&&html`<${motion.span} class="line2" layoutId=${reduced?undefined:"spy"} transition=${{type:"spring",stiffness:520,damping:34,mass:.45}}/>`}
-      <a href=${"#"+id} aria-current=${act===id?"location":undefined} onClick=${e=>{e.preventDefault();to(id)}}>${l}</a></li>`)}</ol></${motion.nav}>`;
+      <a href=${"#"+id} aria-current=${act===id?"location":undefined} onClick=${e=>{e.preventDefault();to(id)}}>${ic&&html`<span class="spi"><${I} n=${ic}/></span>`}<span class="spl">${l}</span></a></li>`)}</ol></${motion.nav}>`;
 }
 
 /* one chapter per strip item: a clear heading, then its parts */
@@ -1927,7 +1990,7 @@ function Downloads({t,access,title="دانلود",note}){
     <p class="dlmeta">${src} · ${ver==="dub"?"دوبله‌ی فارسی ۵.۱ همراه صدای اصلی":"صدای اصلی ۵.۱ با زیرنویس چسبیده"}</p>
     <div class="dll">
       ${rows.map(([q,lab,sz])=>{const [tag,codec,hdr]=DLSPEC[q]||[lab,"",""];const r=q===rec;return html`<div class=${"dlrow"+(r?" rec":"")} key=${ver+q}>
-        <div class="dq"><b>${q}</b><span class="dtag">${tag}</span></div>
+        <div class="dq"><b>${q}</b><span class=${"dtag"+(tag==="4K"?" k4":"")}>${tag}</span></div>
         <div class="dspec">${codec}${hdr!=="SDR"?" · "+hdr:""}${r?html`<em>پیشنهادی</em>`:""}</div>
         <span class="dsz num"><${Size} v=${sz}/></span>
         <${motion.a} href=${lock?undefined:"#"} class="dgo" aria-label=${"دانلود "+q} aria-disabled=${lock} tabIndex=${lock?-1:0} whileTap=${{scale:.92}}><${I} n="dl"/></${motion.a}>
@@ -2153,7 +2216,7 @@ function App(){
   const [ep,setEp]=useState(null);const [season,setSeason]=useState(null);
   const [msg,setMsg]=useState(null);const tm=useRef();const say=m=>{setMsg(m);clearTimeout(tm.current);tm.current=setTimeout(()=>setMsg(null),2000)};
   const t=st.kind==="film"?FILM:SERIES_T;const prog=!!st.prog&&st.access==="sub";
-  const SECS=t.kind==="series"?[["s-eps","قسمت‌ها"],["s-dl","دانلود"],["s-about","درباره"],["s-cmt","نظرها"],["s-more","مشابه"]]:[["s-dl","دانلود"],["s-about","درباره"],["s-cmt","نظرها"],["s-more","مشابه"]];
+  const SECS=t.kind==="series"?[["s-eps","قسمت‌ها","cEps"],["s-dl","دانلود","cDl"],["s-about","درباره","cAbout"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]]:[["s-dl","دانلود","cDl"],["s-about","درباره","cAbout"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]];
   const vote=useVote(t);
   const sp={on:!!st.spoil,set:v=>setSt(s=>({...s,spoil:v?1:0}))};
   return html`<${Spoil.Provider} value=${sp}>
@@ -2169,14 +2232,14 @@ function App(){
             ${t.kind==="series"&&t.next&&html`<div class="nextep"><span class="lbl">قسمت بعد<b>فصل ${fa(t.next.s)}، قسمت ${fa(t.next.e)}</b></span><${Countdown} sec=${t.next.in}/></div>`}
           </div>`}
           <${Audience} key=${t.s+prog} t=${t} prog=${prog}/>
-          <${Spy} sections=${SECS}/>
+          <div class="split"><${Spy} sections=${SECS}/><div class="chaps">
           ${t.kind==="series"&&html`<${Chap} icon="cEps" id="s-eps" title="قسمت‌ها" sub="هر قسمت جدا، یا کل فصل یک‌جا"><${Episodes} t=${t} prog=${prog} access=${st.access} onOpen=${(s,e)=>setEp([s,e])} onSeason=${s=>setSeason(s)}/></${Chap}>`}
           ${t.kind==="series"&&html`<${Chap} id="s-dl" title="دانلود" sub="یک قسمت یا کل فصل، دوبله یا زیرنویس" icon="cDl"><${SeriesDl} t=${t} access=${st.access} onSeason=${s=>setSeason(s)}/></${Chap}>`}
           ${t.kind==="film"&&html`<${Chap} icon="cDl" id="s-dl" title="دانلود" sub="دوبله یا زیرنویس، در چهار کیفیت"><${Downloads} t=${t} access=${st.access} title=""/></${Chap}>`}
           <${Chap} icon="cAbout" id="s-about" title="درباره" sub="داستان، عوامل، بازیگران و موسیقی" cls="about"><${About} t=${t}/><${Music} t=${t}/><${Cast} t=${t}/></${Chap}>
           <${Chap} icon="cCmt" id="s-cmt" title="نظرها" sub=${"امتیاز کاربران رول‌وانا و "+fa(COMMENTS.length+1)+" نظر"}><${Comments} t=${t} access=${st.access} vote=${vote}/></${Chap}>
           <${Chap} icon="cMore" id="s-more" title="مشابه" sub=${t.kind==="film"?"بقیه‌ی مجموعه و عنوان‌هایی در همین حال‌وهوا":"اگر "+t.en+" را دوست دارید"}>${t.kind==="film"&&html`<${Posters} title="مجموعه‌ی تلماسه" items=${t.franchise} cur=${t.s}/>`}<${Posters} title=${t.kind==="film"?"عنوان‌های مشابه":""} items=${t.similar}/></${Chap}>
-          <${Review2} st=${st} set=${setSt}/>
+          </div></div><${Review2} st=${st} set=${setSt}/>
         </div>`}
       </${motion.div}>
     </${AnimatePresence}>
