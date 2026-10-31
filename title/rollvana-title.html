@@ -831,6 +831,79 @@ main{padding-bottom:80px}
 .chap .posters{margin:0;padding-left:0;padding-right:0}
 }
 
+/* round 22: episodes as a rail of landscape cards (after 21st.dev "Carousel Cards") */
+.eph2{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.epcount{font-size:12.5px;color:var(--ink-3)}
+.epact{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+.rarr{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink-1);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16);transition:background .2s,opacity .2s}
+.rarr:hover{background:rgba(242,239,248,.08)}.rarr:disabled{opacity:.3;cursor:default;background:none}
+.rarr svg{width:18px;height:18px}
+.erail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scrollbar-width:none;margin:18px calc(var(--pad)*-1) 0;padding:4px var(--pad) 10px}
+.erail::-webkit-scrollbar{display:none}
+.epc{flex:none;width:268px;scroll-snap-align:start;cursor:pointer;border-radius:14px;outline:none}
+.epc:focus-visible .ecv{box-shadow:0 0 0 2px var(--ink-1)}
+.ecv{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--night-1);box-shadow:inset 0 0 0 1px var(--line-1)}
+.ecv img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--e-out),filter .3s}
+.epc:hover .ecv img{transform:scale(1.04)}
+.ecv img.hid{filter:blur(14px) brightness(.7)}
+.ecv:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.55),transparent 45%);pointer-events:none}
+.eno{position:absolute;top:8px;right:8px;z-index:2;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:7px;font-size:11px;font-weight:700;color:var(--ink-1);background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.ecv .done{position:absolute;top:8px;left:8px;z-index:2;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink-1)}
+.ecv .done svg{width:13px;height:13px}
+.etr{position:absolute;bottom:10px;left:8px;z-index:2;height:26px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:600;color:var(--ink-1);background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .2s}
+.etr:hover{background:rgba(13,11,21,.8)}.etr svg{width:13px;height:13px}
+.eplay{position:absolute;inset:0;z-index:2;display:grid;place-items:center}
+.eplay svg{width:44px;height:44px;padding:13px;border-radius:50%;background:rgba(13,11,21,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink-1);fill:var(--ink-1)}
+.epg{position:absolute;left:0;right:0;bottom:0;z-index:2;height:3px;background:rgba(242,239,248,.25)}
+.epg i{display:block;height:100%;background:var(--ink-1);transform-origin:right}
+.epc.watched .ecv img{filter:saturate(.6) brightness(.8)}
+.etx{padding:10px 2px 0}
+.etx b{display:block;font-size:14.5px;font-weight:700;line-height:1.5;color:var(--ink-1)}
+.etx small{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+.etx p{font-size:12.5px;line-height:1.75;color:var(--ink-2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.etx p.hid{filter:blur(5px);user-select:none}
+.etx .reveal{margin-top:8px}
+.epc.cur .etx b:after{content:"در حال تماشا";display:inline-block;margin-inline-start:8px;font-size:10.5px;font-weight:600;color:var(--ink-2);padding:1px 7px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);vertical-align:2px}
+.epc.up{cursor:default}
+.epc.up .ecv{display:grid;place-items:center;background:repeating-linear-gradient(135deg,rgba(242,239,248,.03) 0 10px,transparent 10px 20px),var(--night-1)}
+.epc.up .ecv:after{display:none}
+.soon{font-size:15px;font-weight:700;color:var(--ink-2)}
+@media (min-width:1024px){
+.erail{margin:20px 0 0;padding:4px 0 12px;scroll-padding-inline:0;gap:18px}
+.epc{width:300px}
+}
+@media (min-width:1024px){.erail{-webkit-mask:linear-gradient(to left,#000 calc(100% - 60px),transparent);mask:linear-gradient(to left,#000 calc(100% - 60px),transparent)}}
+
+/* round 23: a clear hierarchy in the rail
+   - the episode you are on is the big card; the rest are smaller
+   - one switch for hidden synopses instead of a button on every card
+   - the season's progress as a thin line; the header stays on one line */
+.eph2{flex-wrap:nowrap}
+.eph2 .seasondl{height:36px;padding:0 12px;gap:6px}
+.eprog{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--ink-3)}
+.ebar{flex:1;min-width:80px;max-width:220px;height:3px;border-radius:3px;background:rgba(242,239,248,.12);overflow:hidden}
+.ebar i{display:block;height:100%;background:var(--ink-2);transform-origin:right}
+.eshow{display:inline-flex;align-items:center;gap:8px;margin-inline-start:auto;color:var(--ink-2);cursor:pointer;font-size:12.5px}
+.eshow .sw2{width:34px;height:20px}
+.eshow .sw2 i{width:14px;height:14px}
+.erail{align-items:flex-start}
+.epc{width:226px}
+.epc.cur{width:300px}
+.epc.cur .ecv{box-shadow:inset 0 0 0 1px rgba(242,239,248,.28)}
+.epc.cur .etx b{font-size:16px}
+.etx b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.epc.cur .etx b{white-space:normal}
+.etx p{-webkit-line-clamp:2;min-height:calc(1.75em*2)}
+.epc.cur .etx p{-webkit-line-clamp:3}
+.ehid{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-3);margin-top:6px;min-height:calc(1.75em*2)}
+.ehid svg{width:14px;height:14px;flex:none}
+.epc.watched .etx b,.epc.watched .etx p{color:var(--ink-3)}
+@media (max-width:379px){.eph2 .lbl2{display:none}.eph2 .seasondl{width:36px;padding:0;justify-content:center}}
+@media (min-width:1024px){.epc{width:262px}.epc.cur{width:380px}.epc.cur .etx b{font-size:17px}}
+/* round 24: no synopsis switch; no fade at the rail's edge on desktop, it read as a stray shadow */
+@media (min-width:1024px){.erail{-webkit-mask:none;mask:none}}
+.ecv:after{background:linear-gradient(to top,rgba(8,7,12,.35),transparent 35%)}
+
 /* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
@@ -1561,36 +1634,54 @@ function epState(t,s,e,prog){
   const P=t.progress;const before=s<P.s||(s===P.s&&e<P.e);
   return{w:before,p:s===P.s&&e===P.e?P.p:0,cur:s===P.s&&e===P.e};
 }
+/* episodes as a rail of landscape cards, after 21st.dev "Carousel Cards" (kokonutui, 19168):
+   still with a badge on top, title and details under it, arrows on desktop; the rail opens on the episode you are on */
 function Episodes({t,prog,onOpen,onSeason,access}){
-  const sp=React.useContext(Spoil);const reduced=useReducedMotion();
+  const sp=React.useContext(Spoil);const reduced=useReducedMotion();const desk=useDesk();
   const [s,setS]=useState(prog?t.progress.s:1);const eps=SEV_EP[s];
-  const [shown,setShown]=useState({});
+  const [showAll,setShowAll]=useState(false);const shown=showAll?new Proxy({},{get:()=>1}):{};const rail=useRef();const [edge,setEdge]=useState({s:true,e:false});
   const after=(e)=>sp.on&&prog&&(s>t.lastWatched.s||(s===t.lastWatched.s&&e>t.lastWatched.e))&&!(s===t.progress.s&&e===t.progress.e);
   const nextS=prog?t.progress.s:1,nextE=prog?t.progress.e:1;
   const unseen=(e)=>s>nextS||(s===nextS&&e>nextE);
-  return html`<section class="sec"><div class="eph"><${Seg} items=${[[1,"فصل ۱"],[2,"فصل ۲"]]} val=${s} set=${setS} id="season"/>
-      <${motion.button} class="seasondl" whileTap=${{scale:.96}} onClick=${()=>onSeason(s)}><${I} n="dl"/>دانلود کل فصل</${motion.button}></div>
+  const seen=prog?eps.filter((_,k)=>epState(t,s,k+1,prog).w).length:0;
+  const upd=()=>{const el=rail.current;if(!el)return;const x=Math.abs(el.scrollLeft);setEdge({s:x<4,e:x+el.clientWidth>=el.scrollWidth-4})};
+  useLayoutEffect(()=>{const el=rail.current;if(!el)return;const c=el.querySelector(".epc.cur");
+    if(c){const r=c.getBoundingClientRect(),R=el.getBoundingClientRect(),pad=parseFloat(getComputedStyle(el).paddingRight)||0;el.scrollLeft+=r.right-(R.right-pad)}else el.scrollLeft=0;upd()},[s]);
+  const by=d=>{const el=rail.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:reduced?"auto":"smooth"})};
+  return html`<section class="sec epsr">
+    <div class="eph2">
+      <${Seg} items=${[[1,"فصل ۱"],[2,"فصل ۲"]]} val=${s} set=${setS} id="season"/>
+      <span class="epact">
+        <${motion.button} class="seasondl" whileTap=${{scale:.96}} onClick=${()=>onSeason(s)} aria-label=${"دانلود کل فصل "+fa(s)}><${I} n="dl"/><span class="lbl2">کل فصل</span></${motion.button}>
+        ${desk&&html`<button class="rarr" aria-label="قبلی" disabled=${edge.s} onClick=${()=>by(-1)}><${I} n="right"/></button><button class="rarr" aria-label="بعدی" disabled=${edge.e} onClick=${()=>by(1)}><${I} n="left"/></button>`}
+      </span>
+    </div>
+    <div class="eprog">
+      ${prog?html`<span class="num">${fa(seen)} از ${fa(eps.length)} قسمت دیده‌شده</span><span class="ebar" aria-hidden="true"><${motion.i} initial=${{scaleX:0}} animate=${{scaleX:seen/eps.length}} transition=${{duration:.8,ease:EASE}}/></span>`:html`<span class="num">${fa(eps.length)} قسمت</span>`}
+    </div>
     ${sp.on&&html`<div class="spochip"><${I} n="eyeoff"/>بدون اسپویل: قسمت‌های بعد از آخرین قسمتی که دیده‌اید پوشیده‌اند.</div>`}
     <${AnimatePresence} mode="wait" initial=${false}>
-    <${motion.div} class="eps" key=${s} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0,transition:{duration:.15}}}>
+    <${motion.div} class="erail" key=${s} ref=${rail} onScroll=${upd} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0,transition:{duration:.15}}}>
       ${eps.map(([n,d,rt,syn],k)=>{const e=k+1,st=epState(t,s,e,prog),hide=after(e)&&!shown[s+"-"+e],tr=t.trailers[s+"-"+e];
-        return html`<${motion.div} key=${e} class=${"ep"+(st.w?" watched":"")+(st.cur?" cur":"")} role="button" tabIndex="0" aria-label=${"قسمت "+fa(e)+": "+n}
+        return html`<${motion.div} key=${e} class=${"epc"+(st.w?" watched":"")+(st.cur?" cur":"")} role="button" tabIndex="0" aria-label=${"قسمت "+fa(e)+": "+n}
             onClick=${()=>onOpen(s,e)} onKeyDown=${ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();onOpen(s,e)}}}
-            initial=${reduced?{opacity:0}:{opacity:0,y:8}} animate=${{opacity:1,y:0}} whileTap=${{scale:.985}} transition=${{duration:.4,delay:reduced?0:k*.035,ease:EASE}}>
-          <div class="cv">
-            <img src=${M("e-sev-"+s+"-"+e+".jpg")} alt="" class=${hide?"hid":""}/>
+            initial=${reduced?{opacity:0}:{opacity:0,x:-12}} animate=${{opacity:1,x:0}} whileHover=${reduced?undefined:{y:-4}} whileTap=${{scale:.98}} transition=${{duration:.4,delay:reduced?0:Math.min(k,6)*.04,ease:EASE}}>
+          <div class="ecv">
+            <img src=${M("e-sev-"+s+"-"+e+".jpg")} alt="" class=${hide?"hid":""} loading="lazy"/>
+            <span class="eno num">قسمت ${fa(e)}</span>
             ${st.w&&html`<span class="done" aria-label="دیده شده"><${I} n="check"/></span>`}
-            ${st.cur&&html`<span class="now"><span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.trailer}}></svg></span></span>`}
-            ${st.p>0&&html`<span class="pg"><i style=${{transform:"scaleX("+st.p+")"}}></i></span>`}
+            ${tr&&!st.w&&html`<button class="etr" aria-label=${"تریلر قسمت "+fa(e)} onClick=${ev=>ev.stopPropagation()} onKeyDown=${ev=>ev.stopPropagation()}><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.trailer}}></svg>تریلر</button>`}
+            ${st.cur&&html`<span class="eplay" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span>`}
+            ${st.p>0&&html`<span class="epg"><i style=${{transform:"scaleX("+st.p+")"}}></i></span>`}
           </div>
-          <div class="tx"><b><em class="num">${fa(e)}</em>${n}</b><small>${fa(rt)} دقیقه · ${d}${st.cur?" · "+t.progress.leftLong:""}</small>
-            ${unseen(e)&&!shown[s+"-"+e]?html`<button class="reveal" onClick=${ev=>{ev.stopPropagation();setShown(x=>({...x,[s+"-"+e]:1}))}}><${I} n="eyeoff"/>خلاصه پنهان است · نمایش</button>`
-              :html`<${motion.p} class=${hide?"hid":""} initial=${shown[s+"-"+e]?{opacity:0,filter:"blur(6px)"}:false} animate=${{opacity:1,filter:"blur(0px)"}} transition=${{duration:.4}}>${syn}</${motion.p}>`}
-            ${tr&&html`<button class="tr" aria-label=${"تریلر قسمت "+fa(e)} onClick=${ev=>ev.stopPropagation()} onKeyDown=${ev=>ev.stopPropagation()}><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.trailer}}></svg>تریلر</button>`}
+          <div class="etx">
+            <b>${n}</b>
+            <small class="num">${st.cur?t.progress.leftLong:fa(rt)+" دقیقه"} · ${d}</small>
+            ${unseen(e)&&!showAll?html`<p class="ehid"><${I} n="eyeoff"/>خلاصه پنهان است</p>`
+              :html`<${motion.p} key=${showAll?"o":"c"} class=${hide?"hid":""} initial=${unseen(e)?{opacity:0,filter:"blur(6px)"}:false} animate=${{opacity:1,filter:"blur(0px)"}} transition=${{duration:.4}}>${syn}</${motion.p}>`}
           </div>
-          <svg class="i go" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg>
         </${motion.div}>`})}
-      ${s===t.next.s&&html`<div class="ep up"><div class="cv"><span>به‌زودی</span></div><div class="tx"><b><em class="num">${fa(t.next.e)}</em>قسمت ${fa(t.next.e)}</b><small>پخش در <${Countdown} sec=${t.next.in}/></small></div></div>`}
+      ${s===t.next.s&&html`<div class="epc up"><div class="ecv"><span class="eno num">قسمت ${fa(t.next.e)}</span><span class="soon">به‌زودی</span></div><div class="etx"><b>قسمت ${fa(t.next.e)}</b><small>پخش در <${Countdown} sec=${t.next.in}/></small></div></div>`}
     </${motion.div}></${AnimatePresence}>
   </section>`;
 }
