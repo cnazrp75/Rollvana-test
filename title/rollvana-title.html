@@ -1188,6 +1188,15 @@ svg.i [opacity]{transition:opacity .25s}.tab[aria-current=page] svg.i [opacity],
 .tinted .cta.play2 .trk2{background:rgba(18,14,28,.16)}.tinted .cta.play2 .trk2 i{background:#120E1C}
 .tinted{isolation:isolate}.amb3{z-index:-1}
 
+/* ===== round 36: colour dialled back: one source (the ambient glow), everything else neutral ===== */
+.amb3{opacity:.36}
+@media (min-width:1024px){.amb3{opacity:.3}}
+.chap{background:radial-gradient(110% 80% at 100% 0%,color-mix(in oklab,var(--acc) 8%,transparent),transparent 60%),rgba(242,239,248,.03);box-shadow:inset 0 0 0 1px rgba(242,239,248,.07)}
+.chh .chi{background:rgba(242,239,248,.06);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);color:var(--hue)!important}
+.aud .audc,.recap{background:rgba(13,11,21,.35)}
+.astat b{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink-1)}
+.tinted .cta.play2{box-shadow:none}
+
 /* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
