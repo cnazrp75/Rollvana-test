@@ -496,6 +496,129 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .undo{bottom:32px}
 }
 
+
+/* ===== round 50 · home follows the title page system ===== */
+/* section heads: the same round icon badge and type as the title page chapters */
+.rh{align-items:center!important;margin-bottom:20px!important}
+.rh h2{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;font-size:20px!important;font-weight:800!important}
+.rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
+.rh h2 small{font-size:12.5px!important;font-weight:400!important;color:var(--ink-3)!important}
+.rhi{width:36px!important;height:36px!important;border-radius:50%!important;background:rgba(242,239,248,.06)!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)!important;color:var(--ink-1)!important;flex:none}
+.rhi svg{width:18px!important;height:18px!important}
+@media (min-width:1024px){.rh h2{font-size:24px!important}}
+.more,.more svg{color:var(--ink-2)!important}
+.more:hover{color:var(--ink-1)!important}
+/* one rhythm between sections, like the chapters */
+main .row{margin-top:64px!important}
+main>.row:first-child{margin-top:28px!important}
+@media (max-width:1023px){main .row{margin-top:52px!important}}
+/* cover: same height and placement as the title page, text sits low over the image */
+.hero{height:min(100vh,980px)!important;min-height:640px!important}
+@media (max-width:1023px){.hero{height:calc(100svh - 60px)!important;min-height:600px!important}}
+.kick{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:var(--ink-2)!important;font-size:13.5px!important;margin-bottom:12px!important}
+.kick b{display:none!important}
+.hero .cta{background:#F4F1FA!important;color:#0D0B15!important;box-shadow:none!important}
+.hero .cta svg{fill:#0D0B15!important;color:#0D0B15!important}
+/* posters: no coloured glow, the art is enough */
+.card .glow{display:none!important}
+/* continue watching: frosted play button, like the episode cards */
+.cwp{background:rgba(13,11,21,.28)!important;backdrop-filter:blur(14px) saturate(1.4)!important;-webkit-backdrop-filter:blur(14px) saturate(1.4)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important}
+.cwp svg{fill:#fff!important;color:#fff!important}
+/* news: plain rows with hairlines, like the download list */
+.nw{background:none!important;box-shadow:none!important;border-radius:0!important;padding:14px 0!important;border-bottom:1px solid rgba(242,239,248,.08)}
+.nw img{border-radius:10px}
+.nw.top{border-bottom:0;padding-top:0!important}
+.nw.top img{border-radius:14px}
+.nw em{color:var(--ink-3)!important}
+.dots .seg[aria-current=true] i b{background:#F4F1FA!important}
+
+/* ===== round 51 ===== */
+/* hero copy: a stage that hands over line by line */
+.stage{display:block}
+.stage>.kick{display:flex!important;gap:8px}
+.logo2{height:76px;display:flex;align-items:flex-end}
+.logo2 .logo{height:auto}
+.tFa{height:auto!important;min-height:26px}
+.meta .bdg{margin-inline-start:4px}
+.syn{height:auto!important;min-height:52px}
+.syn p .w{display:inline-block;white-space:pre}
+.syn p{display:block!important;-webkit-line-clamp:unset!important;max-height:calc(2 * 1.85em);overflow:hidden}
+@media (max-width:1023px){.strip2{bottom:30px}.hero .copy{padding-bottom:114px!important}}
+@media (min-width:1024px){.logo2{height:96px}.logo2 .logo img{max-height:96px;max-width:360px}}
+/* the strip: every slide visible, the current one lit */
+.dots,.upnext{display:none!important}
+.strip2{position:absolute;z-index:3;left:0;right:0;bottom:14px;display:flex;align-items:center;gap:6px;padding-inline-start:calc(var(--pad) - 8px)}
+.strip2 .pp{margin:0;flex:none}
+.strip2 ol{list-style:none;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;padding-left:var(--pad);flex:1;min-width:0;scroll-snap-type:x proximity}
+.strip2 ol::-webkit-scrollbar{display:none}
+.strip2 li{flex:none;scroll-snap-align:center}
+.th{position:relative;display:block;width:108px;height:62px;border-radius:12px;overflow:hidden;text-align:right;box-shadow:inset 0 0 0 1px rgba(242,239,248,.12);transition:box-shadow .3s,transform .3s}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.8);transition:filter .4s}
+.th:hover img{filter:brightness(.7) saturate(1)}
+.th.on{box-shadow:inset 0 0 0 1.5px rgba(244,241,250,.9)}
+.th.on img{filter:brightness(.8) saturate(1.05)}
+.tht{position:absolute;inset:auto 8px 9px 8px;display:flex;flex-direction:column;z-index:1}
+.tht b{font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.tht small{font-size:10px;color:rgba(242,239,248,.65)}
+.th:not(.on) .tht b{color:rgba(242,239,248,.75)}
+.thp{position:absolute;inset:auto 0 0 0;height:3px;background:transparent}
+.th.on .thp{background:rgba(242,239,248,.18)}
+.thp b{position:absolute;inset:0;background:#F4F1FA;transform-origin:right center}
+.hero .copy{padding-bottom:96px!important}
+@media (min-width:1024px){
+  .strip2{bottom:28px}
+  .strip2 li{flex:1 1 0;min-width:0}
+  .th{width:100%;height:84px;border-radius:14px}
+  .tht{inset:auto 12px 12px 12px}.tht b{font-size:13px}.tht small{font-size:11px}
+  .hero .copy{padding-bottom:150px!important}
+}
+/* dubbed is just one more fact: same badge as everything else */
+.bdg,.bdg.dub,.cm .bdg,.cm .bdg.dub,.card .cm .bdg,.card .cm .bdg.dub{background:transparent!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.22)!important;color:var(--ink-1)!important}
+.card .cm .bdg{background:rgba(13,11,21,.45)!important}
+/* card score: a yellow star and the number */
+.sbox{gap:4px!important;padding:0 7px 0 6px!important}
+.sbox .st{width:14px;height:14px;color:#F5C518;flex:none}
+@media (min-width:1024px){.sbox .st{width:15px;height:15px}}
+.star2{display:inline-flex;align-items:center;gap:5px}.star2 .st{width:15px;height:15px;color:#F5C518}.star2 b{color:var(--ink-1);font-weight:700}
+.card .ct{font-size:13px!important;font-weight:700!important;color:var(--ink-1)!important;margin-top:0!important;line-height:1.4!important}
+/* cards a little larger; on a phone exactly two fit, with a sliver of the next */
+@media (max-width:1023px){
+  .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
+  .row.big .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
+  .card.wide{width:calc(100vw - var(--pad) - 12px - 48px)!important}
+}
+@media (min-width:1024px){
+  .card{width:224px!important}.row.big .card{width:290px!important}.card.wide{width:404px!important}
+  .card .ct{font-size:14.5px!important}
+}
+
+/* ===== round 52 ===== */
+.hero .cta{background:var(--v)!important;color:#0D0B15!important}
+.hero .cta:hover{background:#B9A0FF!important}
+/* selected slide: wider, bright, outlined; the rest step back */
+.th img{filter:brightness(.32) saturate(.5)!important}
+.th:hover img{filter:brightness(.55) saturate(.8)!important}
+.th.on img{filter:none!important}
+.th{box-shadow:none!important;opacity:.85;transition:opacity .3s,width .45s cubic-bezier(.22,1,.36,1),flex-grow .45s cubic-bezier(.22,1,.36,1)!important}
+.th.on{opacity:1;box-shadow:0 0 0 2px #F4F1FA,0 10px 28px -10px rgba(0,0,0,.8)!important;width:150px}
+.th.on .thp{height:4px;background:rgba(13,11,21,.45)}
+.tht{left:10px;right:10px;text-align:left}
+.tht b{font-size:12.5px!important;color:#fff!important;font-family:var(--f-en,inherit)}
+.th.on:after{content:"";position:absolute;inset:40% 0 0 0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);pointer-events:none}
+.tht{z-index:2}
+.strip2 ol{padding-top:4px;padding-bottom:4px;padding-right:4px}
+@media (min-width:1024px){
+  .strip2 li{transition:flex-grow .45s cubic-bezier(.22,1,.36,1)}
+  .strip2 li:has(.th.on){flex-grow:1.9}
+  .th.on{width:100%}
+  .tht b{font-size:14px!important}
+}
+
+/* round 53: the section link names where it goes */
+.rh{gap:12px}
+.rh h2{min-width:0}
+.more{white-space:nowrap;flex:none;font-size:13px!important}
+@media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
 </style>
 <style>
 body{background:var(--night-0)}

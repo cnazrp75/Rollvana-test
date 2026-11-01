@@ -495,6 +495,129 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .undo{bottom:32px}
 }
 
+
+/* ===== round 50 · home follows the title page system ===== */
+/* section heads: the same round icon badge and type as the title page chapters */
+.rh{align-items:center!important;margin-bottom:20px!important}
+.rh h2{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;font-size:20px!important;font-weight:800!important}
+.rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
+.rh h2 small{font-size:12.5px!important;font-weight:400!important;color:var(--ink-3)!important}
+.rhi{width:36px!important;height:36px!important;border-radius:50%!important;background:rgba(242,239,248,.06)!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)!important;color:var(--ink-1)!important;flex:none}
+.rhi svg{width:18px!important;height:18px!important}
+@media (min-width:1024px){.rh h2{font-size:24px!important}}
+.more,.more svg{color:var(--ink-2)!important}
+.more:hover{color:var(--ink-1)!important}
+/* one rhythm between sections, like the chapters */
+main .row{margin-top:64px!important}
+main>.row:first-child{margin-top:28px!important}
+@media (max-width:1023px){main .row{margin-top:52px!important}}
+/* cover: same height and placement as the title page, text sits low over the image */
+.hero{height:min(100vh,980px)!important;min-height:640px!important}
+@media (max-width:1023px){.hero{height:calc(100svh - 60px)!important;min-height:600px!important}}
+.kick{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:var(--ink-2)!important;font-size:13.5px!important;margin-bottom:12px!important}
+.kick b{display:none!important}
+.hero .cta{background:#F4F1FA!important;color:#0D0B15!important;box-shadow:none!important}
+.hero .cta svg{fill:#0D0B15!important;color:#0D0B15!important}
+/* posters: no coloured glow, the art is enough */
+.card .glow{display:none!important}
+/* continue watching: frosted play button, like the episode cards */
+.cwp{background:rgba(13,11,21,.28)!important;backdrop-filter:blur(14px) saturate(1.4)!important;-webkit-backdrop-filter:blur(14px) saturate(1.4)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important}
+.cwp svg{fill:#fff!important;color:#fff!important}
+/* news: plain rows with hairlines, like the download list */
+.nw{background:none!important;box-shadow:none!important;border-radius:0!important;padding:14px 0!important;border-bottom:1px solid rgba(242,239,248,.08)}
+.nw img{border-radius:10px}
+.nw.top{border-bottom:0;padding-top:0!important}
+.nw.top img{border-radius:14px}
+.nw em{color:var(--ink-3)!important}
+.dots .seg[aria-current=true] i b{background:#F4F1FA!important}
+
+/* ===== round 51 ===== */
+/* hero copy: a stage that hands over line by line */
+.stage{display:block}
+.stage>.kick{display:flex!important;gap:8px}
+.logo2{height:76px;display:flex;align-items:flex-end}
+.logo2 .logo{height:auto}
+.tFa{height:auto!important;min-height:26px}
+.meta .bdg{margin-inline-start:4px}
+.syn{height:auto!important;min-height:52px}
+.syn p .w{display:inline-block;white-space:pre}
+.syn p{display:block!important;-webkit-line-clamp:unset!important;max-height:calc(2 * 1.85em);overflow:hidden}
+@media (max-width:1023px){.strip2{bottom:30px}.hero .copy{padding-bottom:114px!important}}
+@media (min-width:1024px){.logo2{height:96px}.logo2 .logo img{max-height:96px;max-width:360px}}
+/* the strip: every slide visible, the current one lit */
+.dots,.upnext{display:none!important}
+.strip2{position:absolute;z-index:3;left:0;right:0;bottom:14px;display:flex;align-items:center;gap:6px;padding-inline-start:calc(var(--pad) - 8px)}
+.strip2 .pp{margin:0;flex:none}
+.strip2 ol{list-style:none;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;padding-left:var(--pad);flex:1;min-width:0;scroll-snap-type:x proximity}
+.strip2 ol::-webkit-scrollbar{display:none}
+.strip2 li{flex:none;scroll-snap-align:center}
+.th{position:relative;display:block;width:108px;height:62px;border-radius:12px;overflow:hidden;text-align:right;box-shadow:inset 0 0 0 1px rgba(242,239,248,.12);transition:box-shadow .3s,transform .3s}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.45) saturate(.8);transition:filter .4s}
+.th:hover img{filter:brightness(.7) saturate(1)}
+.th.on{box-shadow:inset 0 0 0 1.5px rgba(244,241,250,.9)}
+.th.on img{filter:brightness(.8) saturate(1.05)}
+.tht{position:absolute;inset:auto 8px 9px 8px;display:flex;flex-direction:column;z-index:1}
+.tht b{font-size:11.5px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.tht small{font-size:10px;color:rgba(242,239,248,.65)}
+.th:not(.on) .tht b{color:rgba(242,239,248,.75)}
+.thp{position:absolute;inset:auto 0 0 0;height:3px;background:transparent}
+.th.on .thp{background:rgba(242,239,248,.18)}
+.thp b{position:absolute;inset:0;background:#F4F1FA;transform-origin:right center}
+.hero .copy{padding-bottom:96px!important}
+@media (min-width:1024px){
+  .strip2{bottom:28px}
+  .strip2 li{flex:1 1 0;min-width:0}
+  .th{width:100%;height:84px;border-radius:14px}
+  .tht{inset:auto 12px 12px 12px}.tht b{font-size:13px}.tht small{font-size:11px}
+  .hero .copy{padding-bottom:150px!important}
+}
+/* dubbed is just one more fact: same badge as everything else */
+.bdg,.bdg.dub,.cm .bdg,.cm .bdg.dub,.card .cm .bdg,.card .cm .bdg.dub{background:transparent!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.22)!important;color:var(--ink-1)!important}
+.card .cm .bdg{background:rgba(13,11,21,.45)!important}
+/* card score: a yellow star and the number */
+.sbox{gap:4px!important;padding:0 7px 0 6px!important}
+.sbox .st{width:14px;height:14px;color:#F5C518;flex:none}
+@media (min-width:1024px){.sbox .st{width:15px;height:15px}}
+.star2{display:inline-flex;align-items:center;gap:5px}.star2 .st{width:15px;height:15px;color:#F5C518}.star2 b{color:var(--ink-1);font-weight:700}
+.card .ct{font-size:13px!important;font-weight:700!important;color:var(--ink-1)!important;margin-top:0!important;line-height:1.4!important}
+/* cards a little larger; on a phone exactly two fit, with a sliver of the next */
+@media (max-width:1023px){
+  .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
+  .row.big .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
+  .card.wide{width:calc(100vw - var(--pad) - 12px - 48px)!important}
+}
+@media (min-width:1024px){
+  .card{width:224px!important}.row.big .card{width:290px!important}.card.wide{width:404px!important}
+  .card .ct{font-size:14.5px!important}
+}
+
+/* ===== round 52 ===== */
+.hero .cta{background:var(--v)!important;color:#0D0B15!important}
+.hero .cta:hover{background:#B9A0FF!important}
+/* selected slide: wider, bright, outlined; the rest step back */
+.th img{filter:brightness(.32) saturate(.5)!important}
+.th:hover img{filter:brightness(.55) saturate(.8)!important}
+.th.on img{filter:none!important}
+.th{box-shadow:none!important;opacity:.85;transition:opacity .3s,width .45s cubic-bezier(.22,1,.36,1),flex-grow .45s cubic-bezier(.22,1,.36,1)!important}
+.th.on{opacity:1;box-shadow:0 0 0 2px #F4F1FA,0 10px 28px -10px rgba(0,0,0,.8)!important;width:150px}
+.th.on .thp{height:4px;background:rgba(13,11,21,.45)}
+.tht{left:10px;right:10px;text-align:left}
+.tht b{font-size:12.5px!important;color:#fff!important;font-family:var(--f-en,inherit)}
+.th.on:after{content:"";position:absolute;inset:40% 0 0 0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);pointer-events:none}
+.tht{z-index:2}
+.strip2 ol{padding-top:4px;padding-bottom:4px;padding-right:4px}
+@media (min-width:1024px){
+  .strip2 li{transition:flex-grow .45s cubic-bezier(.22,1,.36,1)}
+  .strip2 li:has(.th.on){flex-grow:1.9}
+  .th.on{width:100%}
+  .tht b{font-size:14px!important}
+}
+
+/* round 53: the section link names where it goes */
+.rh{gap:12px}
+.rh h2{min-width:0}
+.more{white-space:nowrap;flex:none;font-size:13px!important}
+@media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
 </style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"><svg class="intro" id="intro" viewBox="-40 -820 3689 1130" role="img" aria-label="Rollvana" data-ocx="867" data-w="3609">
@@ -824,6 +947,42 @@ function Dots({i,n,run,dur,reduced,paused,toggle,to}){
   </div>`;
 }
 
+/* round 51: every slide in one strip; the current one is lit and carries the timer */
+function Strip({items,i,to,run,dur,reduced,paused,toggle,desk}){
+  const ol=useRef();
+  useEffect(()=>{const el=ol.current;const li=el&&el.children[i];if(!el||!li)return;
+    el.scrollTo({left:li.offsetLeft-(el.clientWidth-li.offsetWidth)/2,behavior:reduced?"auto":"smooth"})},[i]);
+  return html`<div class="strip2" role="group" aria-label=${"اسلاید "+fa(i+1)+" از "+fa(items.length)}>
+    <${motion.button} class="pp" aria-label=${paused?"پخش خودکار":"توقف پخش خودکار"} onClick=${toggle} whileTap=${{scale:.9}}>
+      <svg viewBox="0 0 24 24" class="i" aria-hidden="true">
+        <${motion.path} fill="currentColor" stroke="none" initial=${false} animate=${{d:paused?"M7 4 L13 7.75 L13 16.25 L7 20 Z":"M6 5 L10 5 L10 19 L6 19 Z"}} transition=${{duration:.28,ease:EASE}}/>
+        <${motion.path} fill="currentColor" stroke="none" initial=${false} animate=${{d:paused?"M13 7.75 L19 12 L19 12 L13 16.25 Z":"M14 5 L18 5 L18 19 L14 19 Z"}} transition=${{duration:.28,ease:EASE}}/>
+      </svg>
+    </${motion.button}>
+    <ol ref=${ol}>${items.map((it,k)=>html`<li key=${k}><button class=${"th"+(k===i?" on":"")} aria-current=${k===i} aria-label=${it.fa} onClick=${()=>to(k)}>
+      <img src=${M("b-"+(it.s||"dune-part-two")+".jpg")} alt="" style=${{objectPosition:it.pos}}/>
+      ${k===i&&html`<span class="tht" dir="ltr"><b>${it.en}</b></span>`}
+      <i class="thp">${k===i&&html`<${motion.b} key=${"p"+i+run} initial=${{scaleX:0}} animate=${{scaleX:run?1:0}} transition=${{duration:run&&!reduced?dur/1000:.3,ease:"linear"}}/>`}</i>
+    </button></li>`)}</ol>
+  </div>`;
+}
+const LINE={hidden:{opacity:0,y:34,filter:"blur(12px)",clipPath:"inset(0 0 100% 0)"},
+  show:{opacity:1,y:0,filter:"blur(0px)",clipPath:"inset(0 0 -20% 0)",transition:{duration:.5,ease:EASE}},
+  exit:{opacity:0,y:-14,filter:"blur(8px)",transition:{duration:.22,ease:[0.64,0,0.78,0]}}};
+const LINE_R={hidden:{opacity:0},show:{opacity:1,transition:{duration:.2}},exit:{opacity:0,transition:{duration:.12}}};
+const WORD={hidden:{opacity:0,y:12,filter:"blur(8px)"},show:{opacity:1,y:0,filter:"blur(0px)",transition:{duration:.4,ease:EASE}},exit:{opacity:0,transition:{duration:.18}}};
+function Stage({k,reduced,children}){
+  return html`<${AnimatePresence} mode="wait" initial=${false}>
+    <${motion.div} key=${k} class="stage" initial="hidden" animate="show" exit="exit"
+      variants=${{hidden:{},show:{transition:{staggerChildren:reduced?0:.06,delayChildren:0}},exit:{transition:{staggerChildren:reduced?0:.02,staggerDirection:-1}}}}>${children}</${motion.div}>
+  </${AnimatePresence}>`;
+}
+function Line({cls,children,reduced,style}){return html`<${motion.div} class=${cls} style=${style} variants=${reduced?LINE_R:LINE}>${children}</${motion.div}>`}
+function SynWords({text,reduced}){
+  if(reduced)return html`<p>${text}</p>`;
+  const w=text.split(" ");
+  return html`<${motion.p} variants=${{hidden:{},show:{transition:{staggerChildren:.005}},exit:{opacity:0,filter:"blur(8px)",transition:{duration:.3}}}}>${w.map((x,j)=>html`<${motion.span} key=${j} class="w" variants=${WORD}>${x}${j<w.length-1?" ":""}</${motion.span}>`)}</${motion.p}>`;
+}
 /* the next slides, so you know what is coming; click one to jump */
 function UpNext({items,i,to,desk,reduced}){
   const n=items.length,k=desk?4:3;const next=Array.from({length:k},(_,j)=>(i+1+j)%n);
@@ -841,7 +1000,7 @@ function Hero({items,loading,desk}){
   const [hovering,setHovering]=useState(false);
   const reduced=useReducedMotion();
   const n=items.length,it=items[i];
-  const DUR=5000;
+  const DUR=6000;
   const go=useCallback(d=>{setDir(d);setI(x=>(x+d+n)%n)},[n]);
   const to=k=>{setDir(k>i?1:-1);setI(k)};
   useEffect(()=>{if(!loading)document.documentElement.style.setProperty("--acc",it.acc)},[i,loading]);
@@ -874,10 +1033,10 @@ function Hero({items,loading,desk}){
     onKeyDown=${e=>{if(e.key==="ArrowLeft")go(1);if(e.key==="ArrowRight")go(-1)}}>
     <${motion.div} style=${{position:"absolute",inset:0,x:imgX,zIndex:-2}}>
       <${AnimatePresence} initial=${false} custom=${dir}>
-        <${motion.div} class="bgl" key=${"bg"+i} custom=${dir}
-          initial=${reduced?{opacity:0}:{clipPath:dir>0?"inset(0 100% 0 0)":"inset(0 0 0 100%)",scale:1.08}}
-          animate=${reduced?{opacity:1}:{clipPath:"inset(0 0% 0 0%)",scale:1,transition:{duration:1.05,ease:[0.76,0,0.24,1]}}}
-          exit=${reduced?{opacity:0}:{scale:.94,opacity:.25,transition:{duration:1.05,ease:[0.76,0,0.24,1]}}}>
+        <${motion.div} class="bgl" key=${"bg"+i}
+          initial=${reduced?{opacity:0}:{opacity:0,scale:1.08,filter:"blur(18px) saturate(1.5) brightness(1.15)"}}
+          animate=${reduced?{opacity:1}:{opacity:1,scale:1,filter:"blur(0px) saturate(1) brightness(1)",transition:{duration:.85,ease:[0.22,1,0.36,1]}}}
+          exit=${reduced?{opacity:0}:{opacity:0,scale:1.03,filter:"blur(16px) saturate(1.2) brightness(.9)",transition:{duration:.7,ease:[0.4,0,0.2,1]}}}>
           <img class="kb" src=${M("b-"+(it.s||"dune-part-two")+".jpg")} alt="" style=${{objectPosition:desk?"50% 30%":it.pos}}/>
         </${motion.div}>
       </${AnimatePresence}>
@@ -886,47 +1045,46 @@ function Hero({items,loading,desk}){
     <${motion.div} class="copy" style=${{x:dragX}} drag=${desk?false:"x"} dragConstraints=${{left:0,right:0}} dragElastic=${.18}
       onDragStart=${()=>setHold(true)}
       onDragEnd=${(e,info)=>{if(info.offset.x>50||info.velocity.x>400)go(1);else if(info.offset.x<-50||info.velocity.x<-400)go(-1)}}>
-      <div class="kick"><b></b><${Flip} v=${it.kind} reduced=${reduced}/><span class="dotsep">·</span><${GenreMorph} text=${it.g} reduced=${reduced}/></div>
-      <a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}><${Cross} k=${"lg"+i} reduced=${reduced} dur=${.35}>
-        ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}
-      </${Cross}></a>
-      <div class="tFa"><${Cross} k=${"fa"+i} reduced=${reduced} blur=${6} dur=${.4} delay=${.04}><span>${it.fa}</span></${Cross}></div>
-      <div class="meta">
-        <span class="star2" aria-label=${"امتیاز IMDb "+it.imdb}>${IMDB}<b><${Count} v=${Number(it.imdb)} dec=${1} fmt=${x=>fa(x).replace(".","٫")}/></b></span>
-        <i class="sep"></i><${AnimChars} text=${fa(it.y)} dir=${yrDir} dur=${560} blur=${6}/>
-        <i class="sep"></i><${Runtime} rt=${it.rt} kind=${it.kind} reduced=${reduced}/>
-        <${Badge} b=${it.b}/>
-      </div>
-      <div class="syn"><${Cross} k=${"s"+i} reduced=${reduced} blur=${8} dur=${.55} delay=${.08}><p>${it.syn}</p></${Cross}></div>
+      <${Stage} k=${i} reduced=${reduced}>
+        <${Line} cls="kick" reduced=${reduced}>${it.kind}<span class="dotsep">·</span>${it.g}</${Line}>
+        <${Line} cls="logo2" reduced=${reduced}><a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}>
+          ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}</a></${Line}>
+        <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span></${Line}>
+        <${Line} cls="meta" reduced=${reduced}>
+          <span class="star2" aria-label=${"امتیاز IMDb "+it.imdb}>${STAR}<b class="num">${fa(it.imdb).replace(".","٫")}</b></span>
+          <i class="sep"></i><span class="num">${fa(it.y)}</span>
+          <i class="sep"></i><span>${it.rt}</span>
+          <span class="bdg">${it.b}</span>
+        </${Line}>
+        <div class="syn"><${SynWords} text=${it.syn} reduced=${reduced}/></div>
+      </${Stage}>
       <div class="act">
         <${motion.a} href=${PAGE[it.s]||"#"} class="cta" whileTap=${{scale:.97}} transition=${SPR}><${I} n="play"/>جزئیات و تماشا</${motion.a}>
       </div>
-      <${Dots} i=${i} n=${n} run=${!stop} dur=${DUR} reduced=${reduced} paused=${paused} toggle=${()=>setPaused(p=>!p)} to=${to}/>
     </${motion.div}>
-    <${UpNext} items=${items} i=${i} to=${to} desk=${desk} reduced=${reduced}/>
+    <${Strip} items=${items} i=${i} to=${to} run=${!stop} dur=${DUR} reduced=${reduced} paused=${paused} toggle=${()=>setPaused(p=>!p)} desk=${desk}/>
   </section>`;
 }
 
 const IMDB_SVG="<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>";
 const IMDB=html`<span class="imdbm" aria-hidden="true">IMDb</span>`;
+const STAR=html`<svg class="st" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg>`;
 function Card({c,k,reduced}){
   return html`<${motion.a} href="#" class=${"card"+(c.ep?" wide":"")}
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
-      <${motion.img} class="glow" src=${M((c.ep?"w-":"p-")+c.s+".jpg")} alt="" aria-hidden="true" variants=${{r:{opacity:.32},h:{opacity:.7}}} transition=${{duration:.35}}/>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M((c.ep?"w-":"p-")+c.s+".jpg")}/></${motion.div}>
-        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}>${IMDB}<b>${fa(c.imdb).replace(".","٫")}</b></span>
+        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}>${STAR}<b>${fa(c.imdb).replace(".","٫")}</b></span>
         <div class="ov">
           ${c.m&&html`<span class="match num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}
-          ${c.fa&&html`<b class="cf">${c.fa}</b>`}
           <div class="ct" dir="ltr">${c.en}</div>
-          ${c.g&&html`<div class="cg">${c.ep?html`<b class="num">${c.ep} تازه</b> · `:""}${c.g}</div>`}<div class="cm">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}<span class=${"bdg"+(c.b==="دوبله"?" dub":"")}>${c.b}</span></div></div></div>
+          ${c.g&&html`<div class="cg">${c.ep?html`<b class="num">${c.ep} تازه</b> · `:""}${c.g}</div>`}<div class="cm">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}<span class="bdg">${c.b}</span></div></div></div>
     </${motion.div}>
   </${motion.a}>`;
 }
 function SkCard(){return html`<div class="card"><div class="po sk"></div></div>`}
 
-function Row({title,sub,items,loading,genre,desk,big,icon}){
+function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌ی بیشتر"}){
   const ref=useRef();const reduced=useReducedMotion();
   const [hov,setHov]=useState(false);
   const [edge,setEdge]=useState({s:true,e:false});
@@ -934,7 +1092,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon}){
   if(!loading&&!items.length)return null;
   const by=d=>{const el=ref.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:"smooth"})};
   return html`<section class=${"row"+(big?" big":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
-    <div class="rh"><h2>${icon&&html`<span class="rhi"><${I} n=${icon}/></span>`}<span>${title}${sub&&!loading&&html`<small>${sub}</small>`}</span></h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">همه<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
+    <div class="rh"><h2>${icon&&html`<span class="rhi"><${I} n=${icon}/></span>`}<span>${title}${sub&&!loading&&html`<small>${sub}</small>`}</span></h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">${more}<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
     ${desk&&!loading&&html`<${AnimatePresence}>
       ${hov&&!edge.e&&html`<${motion.button} key="l" class="arr l" aria-label="بعدی" onClick=${()=>by(1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="left"/></${motion.button}>`}
       ${hov&&!edge.s&&html`<${motion.button} key="r" class="arr r" aria-label="قبلی" onClick=${()=>by(-1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="right"/></${motion.button}>`}
@@ -980,14 +1138,14 @@ function ContinueRow({loading,desk}){
 /* reviews come in from the editorial side by themselves; news under them */
 function Reviews({loading}){
   if(loading)return null;
-  return html`<section class="row"><div class="rh"><h2><span class="rhi"><${I} n="sReview"/></span><span>نقد و بررسی<small>تازه‌ترین نقدهای تحریریه، خودکار</small></span></h2><a href="#" class="more">همه<${I} n="left"/></a></div>
+  return html`<section class="row"><div class="rh"><h2><span class="rhi"><${I} n="sReview"/></span><span>نقد و بررسی</span></h2><a href="#" class="more">آرشیو نقدها<${I} n="left"/></a></div>
     <div class="sc">${REVIEWS.map(r=>html`<${motion.a} href="#" key=${r.s} class="rv" whileHover="h" initial="r" animate="r">
-      <div class="rvi"><${motion.img} src=${M(r.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.6,ease:EASE}}/><span class="rvs num"><${I} n="crown"/>${r.score} از ۵</span></div>
+      <div class="rvi"><${motion.img} src=${M(r.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.6,ease:EASE}}/></div>
       <b>${r.t}</b><small>${r.by} · ${r.d} · ${fa(r.min)} دقیقه مطالعه</small></${motion.a}>`)}</div></section>`;
 }
 function News({loading}){
   if(loading)return null;
-  return html`<section class="row news"><div class="rh"><h2><span class="rhi"><${I} n="sNews"/></span><span>اخبار</span></h2><a href="#" class="more">همه<${I} n="left"/></a></div>
+  return html`<section class="row news"><div class="rh"><h2><span class="rhi"><${I} n="sNews"/></span><span>اخبار</span></h2><a href="#" class="more">آرشیو اخبار<${I} n="left"/></a></div>
     <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><em>${x.tag}</em><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div></section>`;
 }
 
@@ -1041,11 +1199,11 @@ function App(){
         <${Hero} items=${hero} loading=${loading} desk=${desk}/>
         <main>
           ${user&&html`<${ContinueRow} loading=${loading} desk=${desk}/>`}
-          ${user&&html`<${Row} title="بر اساس سلیقه‌ی شما" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
-          <${Row} title="جدیدترین فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
-          <${Row} title="قسمت‌های تازه‌ی سریال‌ها" icon="sSeries" items=${SERIES} loading=${loading} desk=${desk}/>
+          ${user&&html`<${Row} title="بر اساس سلیقه‌ی شما" more="پیشنهادهای بیشتر" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
+          <${Row} title="جدیدترین فیلم‌ها" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
+          <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${SERIES} loading=${loading} desk=${desk}/>
           <${Reviews} loading=${loading}/>
-          ${!user&&html`<${Row} title="پیشنهاد ما" icon="sPick" items=${PICKS.map(({m,...c})=>c)} loading=${loading} desk=${desk}/>`}
+          ${!user&&html`<${Row} title="پیشنهاد ما" more="پیشنهادهای بیشتر" icon="sPick" items=${PICKS.map(({m,...c})=>c)} loading=${loading} desk=${desk}/>`}
           <${News} loading=${loading}/>
           <${Row} title="مستندها" items=${[]} loading=${false}/>
           <${Review} st=${st} set=${setSt} reload=${reload}/>
