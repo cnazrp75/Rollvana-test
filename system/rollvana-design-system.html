@@ -619,6 +619,236 @@ main>.row:first-child{margin-top:28px!important}
 .rh h2{min-width:0}
 .more{white-space:nowrap;flex:none;font-size:13px!important}
 @media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
+
+/* ===== round 54 ===== */
+/* header: plain glass buttons, no icons */
+.hdr .sub,.hdr .login{background:rgba(242,239,248,.1)!important;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16)!important;color:var(--ink-1)!important;font-weight:600!important;border-radius:999px!important}
+.hdr .sub:hover,.hdr .login:hover{background:rgba(242,239,248,.18)!important}
+.hdr .sub svg,.hdr .login svg{display:none!important}
+/* slider: kind as a chip, genre readable */
+.stage>.kick{align-items:center;gap:10px!important}
+.kchip{height:26px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(242,239,248,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);color:#fff;font-size:12.5px;font-weight:700}
+.kg{color:rgba(255,255,255,.9);font-size:14px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+/* scores: star, number, /10, votes */
+.scr{display:inline-flex;align-items:center;gap:4px;direction:rtl}
+.scr .st{width:14px;height:14px;color:#F5C518;flex:none}
+.scr b{font-weight:700;color:var(--ink-1)}
+.scr small{font-size:.82em;color:rgba(242,239,248,.6);font-weight:500}
+.scr em{font-style:normal;font-size:12.5px;color:var(--ink-2);margin-inline-start:6px}
+.meta .scr .st{width:16px;height:16px}
+.sbox .scr b{font-size:12px}.sbox .scr small{font-size:10px}
+.sbox>.st{display:none}
+/* strip: arrows at both ends; neighbours a step brighter */
+.strip2 .pp{display:none!important}
+.harr{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18);transition:background .2s}
+.harr:hover{background:rgba(242,239,248,.24)}
+.harr svg{width:20px;height:20px}
+.strip2{padding-inline:calc(var(--pad) - 6px)!important;gap:8px!important}
+.strip2 ol{padding:4px!important}
+.th.nb img{filter:brightness(.6) saturate(.85)!important}
+@media (max-width:1023px){.harr{width:34px;height:34px}.harr svg{width:17px;height:17px}}
+/* section heads: plain icon, title, a hairline to the link */
+.rh{align-items:center!important;gap:12px!important;margin-bottom:16px!important}
+.rh h2{gap:10px!important;font-size:19px!important}
+.rh h2>span:last-child{flex-direction:row!important;align-items:baseline!important;gap:10px!important}
+.rh h2 small{font-size:12.5px!important}
+.rhi{width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:var(--v)!important}
+.rhi svg{width:22px!important;height:22px!important}
+.rh:after{content:"";flex:1;height:1px;background:linear-gradient(to left,rgba(242,239,248,.12),rgba(242,239,248,0));order:1;align-self:center;min-width:24px}
+.rh>.more,.rh>.ctabs{order:2}
+.more{font-size:12px!important;gap:2px!important;height:28px!important}
+.more svg{width:14px!important;height:14px!important}
+@media (min-width:1024px){.rh h2{font-size:22px!important}}
+@media (max-width:420px){.rh h2 small{display:none}}
+/* cards: corner badge, year · votes; series: episode line, genre under it */
+.card .po .cbdg{position:absolute;top:8px;right:8px;z-index:2;height:22px!important;font-size:10.5px!important;padding:0 8px!important;border-radius:999px!important;background:rgba(13,11,21,.5)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18)!important}
+.card .cm{justify-content:flex-start!important}
+.card .cy{font-size:11px!important;color:rgba(242,239,248,.62)!important;white-space:nowrap}
+.cep{font-size:11.5px;font-weight:700;color:var(--gold);margin-top:3px}
+.card.wide .cg{margin-top:1px}
+/* continue / history tabs */
+.ctabs{display:inline-flex;gap:14px}
+.ctabs button{font-size:12.5px;color:var(--ink-3);height:28px;position:relative}
+.ctabs button[aria-pressed=true]{color:var(--ink-1);font-weight:700}
+.ctabs button[aria-pressed=true]:after{content:"";position:absolute;inset:auto 0 0 0;height:2px;border-radius:2px;background:var(--v)}
+.cw.hist .cwi img{filter:saturate(.75) brightness(.8)}
+.cwdone{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(13,11,21,.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);color:#fff}
+.cwdone svg{width:15px;height:15px}
+.cw.hist .pg i{background:rgba(242,239,248,.4)!important}
+.cw.hist .cwl em{color:var(--v)!important;font-style:normal;font-weight:600;margin-inline-start:auto}
+/* reviews: editorial covers with the writer */
+.rv2{position:relative;flex:none;width:250px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;scroll-snap-align:start;display:block;background:var(--s1)}
+.rv2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rv2:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.7) 38%,rgba(8,7,12,0) 70%)}
+.rvk{position:absolute;top:12px;right:12px;z-index:2;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#0D0B15;font-size:11.5px;font-weight:800}
+.rvb{position:absolute;inset:auto 14px 14px 14px;z-index:2;display:flex;flex-direction:column;gap:10px}
+.rvb>b{font-size:15.5px;font-weight:800;line-height:1.6;color:#fff}
+.rvby{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(242,239,248,.8)}
+.rvby i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700;background:rgba(242,239,248,.16);color:#fff}
+.rvby small{color:rgba(242,239,248,.55);font-size:11.5px}
+@media (min-width:1024px){.rv2{width:300px}.rvb>b{font-size:17px}}
+.rvrow .sc{padding-bottom:18px!important;margin-bottom:0!important}
+/* the film crowd */
+.post{flex:none;width:290px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:16px;background:linear-gradient(180deg,rgba(242,239,248,.06),rgba(242,239,248,.025));box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)}
+.post .ph{display:flex;align-items:center;gap:8px;font-size:13px}
+.post .ph b{font-weight:700;color:var(--ink-1)}
+.post .ph small{color:var(--ink-3);font-size:11.5px;margin-inline-start:auto}
+.av3{width:30px;height:30px;border-radius:50%;display:inline-grid;place-items:center;font-style:normal;font-size:13px;font-weight:800;color:#0D0B15;background:linear-gradient(135deg,#C9B6FF,#8B6BF2);flex:none}
+.post .pt{display:flex;align-items:center;gap:10px;padding:8px;border-radius:12px;background:rgba(13,11,21,.45)}
+.post .pt img{width:34px;height:50px;border-radius:6px;object-fit:cover}
+.post .pt>span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.post .pt b{font-size:13px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+.post .pt em{font-style:normal;display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-2)}
+.post .pt em .st,.post .pt em svg{width:13px;height:13px;color:#F5C518}
+.post p{font-size:13.5px;line-height:1.85;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(3 * 1.85em)}
+.post .pf{display:flex;gap:16px;font-size:12px;color:var(--ink-3)}
+.post .pf>span{display:inline-flex;align-items:center;gap:5px}
+.post .pf svg{width:15px;height:15px}
+.subh{font-size:14px;font-weight:700;color:var(--ink-2);padding:0 var(--pad);margin:10px 0 12px}
+.ulist{flex:none;width:250px;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03) 60%);box-shadow:inset 0 0 0 1px rgba(169,139,255,.16)}
+.ulist .stack{position:relative;height:128px;margin-bottom:8px}
+.ulist .stack img{position:absolute;top:0;right:8px;width:84px;height:124px;border-radius:10px;object-fit:cover;box-shadow:0 10px 24px -8px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.ulist b{font-size:14.5px;font-weight:800;color:var(--ink-1)}
+.ulist small{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-3)}
+.ulist small .av3{width:20px;height:20px;font-size:10px}
+.scr .sv{display:inline-flex;align-items:baseline;gap:1px}
+
+/* ===== round 55 ===== */
+/* subscribe is the brand action, login stays glass */
+.hdr .sub{background:var(--v)!important;color:#120E1C!important;box-shadow:0 8px 22px -10px rgba(169,139,255,.8)!important;font-weight:800!important;backdrop-filter:none!important}
+.hdr .sub:hover{background:#B9A0FF!important}
+/* strip: every slide readable, the current one lit; labelled previous / next */
+.th img{filter:brightness(.62) saturate(.9)!important}
+.th:hover img{filter:brightness(.85) saturate(1)!important}
+.th.nb img{filter:brightness(.7) saturate(.95)!important}
+.th.on img{filter:none!important}
+.th:after{content:"";position:absolute;inset:35% 0 0 0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);pointer-events:none}
+.tht{display:flex!important}
+.th:not(.on) .tht b{font-size:11px!important;color:rgba(255,255,255,.82)!important}
+.harr{width:auto!important;height:62px!important;border-radius:14px!important;padding:0 10px;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;font-weight:700}
+.harr span{line-height:1}
+@media (min-width:1024px){.harr{height:84px!important;padding:0 14px;font-size:12.5px}.harr svg{width:22px!important;height:22px!important}}
+@media (max-width:1023px){.th{width:92px!important;height:54px!important}.th.on{width:124px!important}.harr{height:54px!important;padding:0 7px}.tht b{font-size:10.5px!important}}
+/* card score: plain, in the bottom line */
+.card .cm{display:flex;align-items:center;gap:8px}
+.card .cm .scr .st{width:13px;height:13px}
+.card .cm .scr b{font-size:12px}
+.card .cm .scr small{font-size:10px}
+/* reviews: quote cards led by words, not photos */
+.rq{flex:none;width:320px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;gap:12px;padding:22px 20px 18px;border-radius:18px;background:linear-gradient(165deg,rgba(169,139,255,.12),rgba(242,239,248,.03) 55%);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);overflow:hidden}
+.rqm{position:absolute;top:-18px;left:14px;font-size:120px;line-height:1;font-family:Georgia,serif;color:rgba(169,139,255,.22);pointer-events:none}
+.rq b{font-size:16.5px;font-weight:800;line-height:1.7;color:var(--ink-1);position:relative}
+.rq p{font-size:13.5px;line-height:1.95;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(3 * 1.95em)}
+.rqf{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(242,239,248,.08)}
+.rqf img{width:30px;height:44px;border-radius:6px;object-fit:cover}
+.rqf>span:not(.rqk){display:flex;flex-direction:column;gap:2px}
+.rqf em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--ink-1)}
+.rqf small{font-size:11.5px;color:var(--ink-3)}
+.rqk{margin-inline-start:auto;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#120E1C;font-size:11.5px;font-weight:800}
+@media (max-width:1023px){.rq{width:280px}}
+
+/* ===== round 57 · Ali's notes ===== */
+/* subscribe: glass with a violet tint, still apart from the plain glass login */
+.hdr .sub{background:rgba(169,139,255,.2)!important;color:#E6DCFF!important;backdrop-filter:blur(16px) saturate(1.5)!important;-webkit-backdrop-filter:blur(16px) saturate(1.5)!important;box-shadow:inset 0 0 0 1px rgba(190,165,255,.5),0 8px 22px -12px rgba(169,139,255,.7)!important;font-weight:800!important}
+.hdr .sub:hover{background:rgba(169,139,255,.3)!important}
+/* section heads: cleaner, no line, link as a quiet pill */
+.rh:after{display:none!important}
+.rh{justify-content:space-between!important;margin-bottom:14px!important}
+.rh h2{font-size:20px!important;font-weight:800!important;letter-spacing:-.01em}
+.rhi svg{width:20px!important;height:20px!important}
+.rh .more{height:30px!important;padding:0 10px 0 8px;border-radius:999px;background:rgba(242,239,248,.06);color:var(--ink-2)!important;font-size:12px!important}
+.rh .more:hover{background:rgba(242,239,248,.12);color:var(--ink-1)!important}
+@media (min-width:1024px){.rh h2{font-size:23px!important}}
+/* score on cards: Latin digits, star, quiet /10 */
+.scr .sv{font-family:var(--f-ui);letter-spacing:0}
+.scr .sv small{opacity:.55;font-size:.8em}
+/* taste match: a small chip on the poster */
+.mchip{position:absolute;top:8px;left:8px;z-index:2;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:700;color:#0D0B15;background:rgba(245,196,81,.92)}
+.card .match{display:none!important}
+/* continue: history card at the end of the row */
+.cw.histc{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:0 22px;width:220px;aspect-ratio:auto;align-self:stretch;min-height:150px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03));box-shadow:inset 0 0 0 1px rgba(242,239,248,.1);scroll-snap-align:start}
+.histc .hci{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08);color:var(--v);margin-bottom:6px}
+.histc .hci svg{width:20px;height:20px}
+.histc b{font-size:15px;font-weight:800;color:var(--ink-1)}
+.histc small{font-size:12px;color:var(--ink-3)}
+.histc .hcg{display:inline-flex;align-items:center;gap:2px;margin-top:8px;font-size:12.5px;font-weight:700;color:var(--v)}
+.histc .hcg svg{width:15px;height:15px}
+/* the journal: reviews and news in their own band */
+.mag{position:relative;margin-top:72px;padding:48px 0 40px;background:radial-gradient(120% 70% at 85% 0%,rgba(169,139,255,.10),transparent 60%),linear-gradient(180deg,#16121F,#100D17);border-top:1px solid rgba(242,239,248,.08);border-bottom:1px solid rgba(242,239,248,.08)}
+.magh{padding:0 var(--pad);margin-bottom:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.magk{font-size:12px;font-weight:800;color:var(--v);letter-spacing:.02em}
+.magt{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:44px;line-height:1.05;color:var(--ink-1)}
+.magt i{font-style:italic;color:#CDBBFF}
+.magh small{font-size:13px;color:var(--ink-3)}
+.mag .row{margin-top:36px!important}
+.mag .rh h2{font-size:17px!important}
+.mag .rhi{color:var(--ink-2)!important}
+.mag .rq{background:rgba(242,239,248,.035)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)!important}
+.mag .nw{border-bottom-color:rgba(242,239,248,.07)!important}
+@media (min-width:1024px){.magt{font-size:64px}.mag{padding:64px 0 56px}}
+
+/* round 58: the slide selector shows every slide at once, none dimmed; the active one gets a ring that slides between them */
+.klab{display:inline-flex;align-items:center;gap:10px;color:#CDBBFF;font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.klab:after{content:"";width:1px;height:12px;background:rgba(255,255,255,.45)}
+.strip2 ol{overflow:visible!important;scroll-snap-type:none!important;gap:10px!important}
+.strip2 li,.strip2 li:has(.th.on){flex:1 1 0!important;min-width:0}
+.th,.th.on{width:100%!important;height:72px!important;opacity:1!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.14)!important;border-radius:12px;overflow:visible!important}
+.th img,.th.nb img,.th:hover img{filter:brightness(.82) saturate(1)!important;border-radius:12px}
+.th.on img{filter:brightness(1)!important}
+.th:hover img{filter:brightness(.95)!important}
+.th:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent 60%);z-index:1;pointer-events:none}
+.th.on:after{display:none}
+.th:not(.on) .tht b,.tht b{color:#fff!important;font-size:12px!important}
+.thr{position:absolute;inset:-4px;border-radius:15px;box-shadow:0 0 0 2px #F4F1FA;z-index:3;pointer-events:none}
+.thp,.th.on .thp{inset:auto 8px 0 8px!important;height:3px!important;bottom:-11px!important;border-radius:3px;background:rgba(242,239,248,.16)!important;overflow:hidden}
+.th:not(.on) .thp{background:transparent!important}
+.strip2{bottom:24px!important}
+@media (max-width:1023px){
+  .strip2{bottom:34px!important;padding-inline:var(--pad)!important}
+  .hero .copy{padding-bottom:104px!important}
+  .strip2 .harr{display:none!important}
+  .strip2 ol{gap:6px!important;padding:4px 0!important}
+  .th,.th.on{height:46px!important;border-radius:10px}
+  .th img{border-radius:10px}.th:before{border-radius:10px}
+  .thr{inset:-3px;border-radius:12px}
+  .tht{display:none!important}
+  .thp,.th.on .thp{inset:auto 4px 0 4px!important;bottom:-8px!important}
+}
+
+/* round 59: score on the poster's top-left, larger card type, section-head rule back, slider progress inside the thumb */
+.ctl{position:absolute;top:10px;left:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.ctl .mchip{position:static}
+.cscore{height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(13,11,21,.62);box-shadow:inset 0 0 0 1px rgba(242,239,248,.12)}
+.cscore .scr .st{width:14px!important;height:14px!important}
+.cscore .scr b{font-size:14px!important;font-weight:800}
+.cscore .scr small{font-size:11px!important}
+.card .ct{font-size:15px!important;font-weight:800!important}
+.card .cg{font-size:12.5px!important;margin-top:4px}
+.card .cep{font-size:13px!important}
+.card .cm .cy,.card .cy{font-size:12.5px!important}
+.card .po .cbdg{height:24px!important;font-size:11.5px!important;padding:0 10px!important}
+.mchip{height:24px!important;font-size:11.5px!important;padding:0 9px!important}
+@media (min-width:1024px){.card .ct{font-size:16.5px!important}.card .cg{font-size:13.5px!important}.card .cm .cy,.card .cy{font-size:13px!important}.cscore{height:30px}.cscore .scr b{font-size:15px!important}}
+.rh:after{display:block!important;content:"";flex:1;height:1px;min-width:24px;align-self:center;order:0;background:linear-gradient(to left,rgba(242,239,248,.16),rgba(242,239,248,0))}
+.rh h2{order:-1}.rh .more{order:1}
+.thp,.th.on .thp{inset:auto 10px 8px 10px!important;bottom:8px!important;height:3px!important;z-index:2;background:rgba(242,239,248,.25)!important}
+.th:not(.on) .thp{background:transparent!important}
+.th.on .tht{bottom:16px!important}
+@media (max-width:1023px){.thp,.th.on .thp{inset:auto 6px 6px 6px!important;bottom:6px!important}}
+
+/* round 60: plain score (no pill), year then genre on one line, the story slides in on hover */
+.cscore{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 12px rgba(0,0,0,.6)}
+.cscore .st{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+.card .cg{display:flex!important;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
+.card .cg .cy{flex:none;margin:0!important;color:rgba(242,239,248,.9)!important;font-weight:700}
+.card .cg .cy:after{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:rgba(242,239,248,.5);margin-inline-start:8px;vertical-align:middle}
+.card .cgg{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.csyn{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;margin:0;max-height:0;opacity:0;font-size:12.5px;line-height:1.75;color:rgba(242,239,248,.85);transition:max-height .45s cubic-bezier(.22,1,.36,1),opacity .3s,margin .45s cubic-bezier(.22,1,.36,1)}
+.card:hover .csyn,.card:focus-visible .csyn{max-height:92px;opacity:1;margin-top:8px}
+.card .ov{transition:background .35s}
+.card:hover .ov{background:linear-gradient(to top,rgba(8,7,12,.97) 0,rgba(8,7,12,.9) 62%,rgba(8,7,12,0) 100%)!important}
+@media (min-width:1024px){.csyn{font-size:13px}}
+@media (hover:none){.csyn{display:none}}
 </style>
 <style>
 body{background:var(--night-0)}

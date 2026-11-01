@@ -1470,6 +1470,183 @@ section.chap.about>.chb>*+*{margin-top:40px!important}
 .vb.dn:not(.on) svg{color:var(--neg)}
 @media (max-width:1023px){.top{min-height:calc(100svh - 60px)!important}}
 
+/* ===== round 54 ===== */
+.tinted{--hl:color-mix(in oklab,var(--acc) 62%,#fff)}
+/* header buttons: glass, no icons */
+.hdr .sub,.hdr .login{background:rgba(242,239,248,.1)!important;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16)!important;color:var(--ink-1)!important;font-weight:600!important;border-radius:999px!important}
+.hdr .sub svg,.hdr .login svg{display:none!important}
+/* cover: text sits lower, story moved out, trailer controls */
+.tctl{position:absolute;z-index:3;display:flex;gap:8px;left:var(--pad);bottom:28px}
+.tctl .ic2{position:static!important;inset:auto!important}
+.gline{display:flex!important;align-items:center;gap:10px}
+.kchip{height:26px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(242,239,248,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);color:#fff;font-size:12.5px;font-weight:700}
+.kg{color:rgba(255,255,255,.9);font-size:14px;font-weight:600}
+.top .tc h1{margin-top:10px}
+.enrow{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.en2{font-size:15px;font-weight:600;color:var(--ink-2);margin-inline-end:4px}
+.mini{height:30px;display:inline-flex;align-items:center;gap:5px;padding:0 11px 0 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--ink-1);background:rgba(242,239,248,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16);transition:background .2s}
+.mini:hover{background:rgba(242,239,248,.18)}
+.mini svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mini.on{background:var(--hl);color:#120E1C;box-shadow:none}
+.sc2 .sv{display:inline-flex;align-items:baseline;gap:1px}.sc2 .sv small{font-size:.75em;opacity:.65}
+.row1{display:flex;align-items:center;gap:10px}
+.trbtn{height:52px;display:inline-flex;align-items:center;gap:8px;padding:0 20px;border-radius:999px;font-size:15px;font-weight:700;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);flex:none}
+.trbtn svg{width:19px;height:19px}
+.trbtn:hover{background:rgba(242,239,248,.2)}
+@media (max-width:1023px){.trbtn{height:48px;padding:0 16px}.tctl{top:72px;bottom:auto}}
+.hsyn{display:none!important}
+.story{padding-top:28px!important}
+.story p{max-width:780px;font-size:16px;line-height:2.05;color:var(--ink-1)}
+@media (max-width:1023px){.story p{font-size:15px}}
+/* votes: no colour on the icons, a percentage on each side */
+.vb svg,.vb:not(.on):not(.dn) svg,.vb.dn:not(.on) svg{color:currentColor!important}
+.vb.on:not(.dn),.vote.big .vb.on:not(.dn),.top .vb.on:not(.dn),.vb.dn.on,.vote.big .vb.dn.on,.top .vb.dn.on{background:#F4F1FA!important;color:#120E1C!important}
+.vb .vn{opacity:.75;font-weight:700}
+.vsum small{font-size:12px;color:var(--ink-3)}
+/* trailer player */
+.tmodal{position:fixed;z-index:60;left:50%;top:50%;width:min(1100px,94vw);translate:-50% -50%;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 40px 120px -20px rgba(0,0,0,.9)}
+.tmodal video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.tmh{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#0D0B15}
+.tmh b{font-size:15px}.tmh small{color:var(--ink-3);font-size:13px}
+.tmh .x{margin-inline-start:auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08)}
+.tmh .x svg{width:18px;height:18px}
+/* colour from the title: icons, active marks, links */
+.chh .chi{color:var(--hl)!important;background:color-mix(in oklab,var(--acc) 16%,transparent)!important;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--acc) 30%,transparent)!important}
+.split>.spy .spi{color:var(--ink-2)!important}
+.split>.spy a[aria-current] .spi{color:var(--hl)!important}
+.spy .line2{background:var(--hl)!important}
+.chb{border-right-color:color-mix(in oklab,var(--acc) 26%,transparent)!important}
+.dlfoot a,.more2{color:var(--hl)!important}
+/* about: every fact, two columns on desktop */
+.facts2{display:grid!important;grid-template-columns:1fr;gap:0!important;margin-top:12px;border-top:1px solid var(--line-1)}
+.facts2 div{padding:11px 0;border-bottom:1px solid var(--line-1);gap:16px!important}
+.facts2 dt{width:96px!important;font-size:13px}
+.facts2 dd{font-size:14px;line-height:1.7}
+@media (min-width:1024px){.facts2{grid-template-columns:1fr 1fr;column-gap:40px}}
+/* downloads: quality tiles */
+.qgrid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px}
+.qt{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:16px;background:linear-gradient(180deg,rgba(242,239,248,.06),rgba(242,239,248,.025));box-shadow:inset 0 0 0 1px rgba(242,239,248,.08);transition:box-shadow .25s,transform .25s}
+.qt:hover{box-shadow:inset 0 0 0 1px rgba(242,239,248,.18);transform:translateY(-2px)}
+.qt.rec{background:linear-gradient(160deg,color-mix(in oklab,var(--acc) 28%,transparent),color-mix(in oklab,var(--acc) 6%,transparent) 70%);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--acc) 50%,transparent)}
+.qh{display:flex;align-items:baseline;gap:8px}
+.qh b{font-size:22px;font-weight:800;direction:ltr;letter-spacing:-.01em}
+.qtag{font-size:12px;font-weight:700;color:var(--ink-2)}
+.qh em{margin-inline-start:auto;font-style:normal;font-size:11px;font-weight:800;height:22px;display:inline-flex;align-items:center;padding:0 9px;border-radius:999px;background:var(--hl);color:#120E1C}
+.qt>small{font-size:11.5px;color:var(--ink-3);text-align:right}
+.qf{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.qs{font-size:13px;color:var(--ink-1);font-weight:600}
+.qdl{height:36px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(242,239,248,.1);color:var(--ink-1)}
+.qdl svg{width:16px;height:16px}
+.qt.rec .qdl{background:#F4F1FA;color:#120E1C}
+.qdl[aria-disabled=true]{opacity:.45;pointer-events:none}
+@media (max-width:560px){.qgrid{grid-template-columns:1fr 1fr;gap:10px}.qt{padding:13px}.qh b{font-size:18px}.qh em{position:absolute;top:-9px;left:10px}.qdl{padding:0 11px;height:34px}.qf{flex-direction:column;align-items:stretch;gap:8px}.qdl{justify-content:center}}
+.dl6 .fh{margin-top:20px!important}
+.dl6 .fmore{border-top:0!important}
+/* comments: like and dislike */
+.cmt .ft .cv{display:inline-flex;align-items:center;gap:5px}
+.cmt .ft .cv svg{width:16px;height:16px}
+.cmt .ft .cv.on{color:var(--ink-1)}
+.cmt .ft .cv.on svg{fill:currentColor;fill-opacity:.25}
+/* user lists */
+.ulrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:12px}
+.ulist{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:16px;background:linear-gradient(160deg,color-mix(in oklab,var(--acc) 22%,transparent),rgba(242,239,248,.03) 60%);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--acc) 26%,transparent)}
+.ulist .stack{position:relative;height:128px;margin-bottom:8px}
+.ulist .stack img{position:absolute;top:0;right:8px;width:84px;height:124px;border-radius:10px;object-fit:cover;box-shadow:0 10px 24px -8px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.ulist b{font-size:14.5px;font-weight:800;color:var(--ink-1)}
+.ulist small{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-3)}
+.av3{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;font-style:normal;font-size:10px;font-weight:800;color:#120E1C;background:var(--hl);flex:none}
+@media (max-width:560px){.ulrow{display:flex;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad)}.ulist{flex:0 0 240px}}
+/* episode sheet: the still with the title on it */
+.ehero{position:relative;margin:-8px -0px 0;border-radius:18px;overflow:hidden;aspect-ratio:16/9}
+.ehero img{width:100%;height:100%;object-fit:cover}
+.ehero:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.95),rgba(8,7,12,.35) 50%,rgba(8,7,12,0))}
+.ehc{position:absolute;z-index:2;inset:auto 18px 16px 18px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.ehc h3{font-size:22px;font-weight:800;color:#fff;margin:0}
+.ehc small{font-size:12.5px;color:rgba(242,239,248,.75)}
+.eact{display:flex;align-items:center;gap:8px;margin-top:4px}
+.eact .play{flex:1;justify-content:center;margin:0!important;background:var(--hl)!important;color:#120E1C!important}
+.enav{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08);box-shadow:inset 0 0 0 1px rgba(242,239,248,.12);flex:none}
+.enav svg{width:20px;height:20px}
+.enav:disabled{opacity:.3}
+.sheet .in .full{font-size:15px;line-height:2;color:var(--ink-1);margin-top:16px}
+
+:root{--hl:color-mix(in oklab,var(--acc,#A98BFF) 62%,#fff)}
+.sc2 .sv,.scr .sv{direction:ltr;unicode-bidi:isolate}
+@media (min-width:1024px){.chb .qgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.sheet .qgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.sheet .ehero{margin:0;border-radius:0}
+.sheet .x{z-index:5}
+.qh{flex-wrap:nowrap}.qtag,.qs,.qh b{white-space:nowrap}
+.qh em{position:absolute;top:-11px;left:12px;margin:0}
+.qf{flex-direction:column;align-items:stretch;gap:10px}
+.qdl{justify-content:center}
+.qt>small{min-height:2.6em}
+
+/* ===== round 56 ===== */
+.mc4 svg.mcl{color:initial!important;width:20px;height:20px}
+/* list and bookmark: clearly buttons */
+.mini{height:38px!important;padding:0 14px 0 16px!important;font-size:13.5px!important;font-weight:700!important;gap:7px!important;background:rgba(242,239,248,.16)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.3),0 6px 16px -8px rgba(0,0,0,.6)!important;cursor:pointer}
+.mini:hover{background:rgba(242,239,248,.26)!important}
+.mini svg{width:17px!important;height:17px!important}
+.mini.on{background:var(--hl)!important;color:#120E1C!important;box-shadow:none!important}
+.enrow{gap:10px!important;margin-top:10px!important}
+.en2{font-size:16px!important}
+/* trailers */
+.trn{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:rgba(242,239,248,.18);font-size:12px;margin-inline-start:2px}
+.tmodal{width:min(1240px,95vw)!important}
+.tmh{order:-1}
+.tmb{display:grid;grid-template-columns:minmax(0,1fr) 300px;background:#0D0B15}
+.tmb video{width:100%;aspect-ratio:16/9;background:#000;display:block}
+.tml{list-style:none;padding:10px;display:flex;flex-direction:column;gap:6px;max-height:calc((min(1240px,95vw) - 300px)*9/16);overflow:auto}
+.tml button{width:100%;display:flex;align-items:center;gap:10px;padding:6px;border-radius:12px;text-align:right;transition:background .2s}
+.tml button:hover{background:rgba(242,239,248,.06)}
+.tml button[aria-current=true]{background:rgba(242,239,248,.1);box-shadow:inset 0 0 0 1px var(--hl)}
+.tmi{position:relative;width:112px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;flex:none;display:grid;place-items:center}
+.tmi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.tmi svg{position:relative;width:20px;height:20px;fill:#fff;color:#fff}
+.tmi .now{position:relative;font-style:normal;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;background:var(--hl);color:#120E1C}
+.tmt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.tmt b{font-size:13px;font-weight:700;color:var(--ink-1)}
+.tmt small{font-size:11.5px;color:var(--ink-3)}
+@media (max-width:900px){.tmb{grid-template-columns:1fr}.tml{max-height:40vh}.tmodal{top:auto!important;bottom:12px;translate:-50% 0!important}}
+
+.tscrim{z-index:85!important}.tmodal{z-index:90!important}
+.tmopen .tabs{display:none!important}.tmopen .hdr{opacity:.12;pointer-events:none;transition:opacity .25s}
+
+/* round 58: plain type label (only clickable things are glass), list/bookmark beside the main button,
+   coloured votes, trailers as a chapter */
+.klab{display:inline-flex;align-items:center;gap:10px;color:var(--hl);font-size:13px;font-weight:800;letter-spacing:.01em;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.klab:after{content:"";width:1px;height:12px;background:rgba(255,255,255,.4)}
+.gline{display:flex;align-items:center;gap:10px}
+.en2{margin-top:6px;color:rgba(242,239,248,.78);font-size:15px;font-weight:600;text-align:right}
+.rb{flex:none;height:52px;min-width:52px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0 10px;border-radius:16px;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.22);transition:background .2s,color .2s;cursor:pointer}
+.rb:hover{background:rgba(242,239,248,.22)}
+.rb svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rbl{font-size:10.5px;font-weight:700;line-height:1}
+.rb.on{background:#F4F1FA;color:#120E1C;box-shadow:none}
+@media (max-width:1023px){.rb{height:48px;min-width:48px;border-radius:14px}.row1{gap:8px}}
+.vb.on:not(.dn),.vote.big .vb.on:not(.dn),.top .vb.on:not(.dn){background:#3DD68C!important;color:#06200F!important;box-shadow:0 6px 18px -8px rgba(61,214,140,.7)!important}
+.vb.dn.on,.vote.big .vb.dn.on,.top .vb.dn.on{background:#F0566B!important;color:#2A0509!important;box-shadow:0 6px 18px -8px rgba(240,86,107,.7)!important}
+.trs{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+.trv{border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.trv video{display:block;width:100%;height:100%;background:#000}
+.trp{position:relative;display:block;width:100%;height:100%}
+.trp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.trp:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent 55%)}
+.trpi{position:absolute;z-index:1;left:50%;top:50%;translate:-50% -50%;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.18);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.3);transition:transform .25s}
+.trp:hover .trpi{transform:scale(1.08)}
+.trpi svg{width:26px;height:26px;fill:#fff;stroke:none}
+.trpt{position:absolute;z-index:1;right:16px;bottom:14px;display:flex;flex-direction:column;gap:2px;text-align:right}
+.trpt b{font-size:16px}.trpt small{color:rgba(242,239,248,.75);font-size:12.5px}
+.trl{max-height:none!important;padding:0!important;background:none}
+@media (max-width:900px){.trs{grid-template-columns:1fr}}
+.trs{grid-template-columns:minmax(0,1fr)!important;min-width:0}
+.trl{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px!important;flex-direction:row!important}
+.trl button{flex-direction:column;align-items:stretch!important;gap:8px!important;padding:6px!important}
+.trl .tmi{width:100%!important}
+@media (max-width:900px){.trl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.trs{max-width:720px}
+
 /* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
@@ -1613,7 +1790,7 @@ const BRAND2={"imdb-light": {"vb": "0 127 512 258", "body": "<path fill=\"curren
 const BRAND={"imdb": "M22.3781 0H1.6218C.7411.0583.0587.7437.0018 1.5953l-.001 20.783c.0585.8761.7125 1.543 1.5559 1.6191A.337.337 0 0 0 1.6016 24h20.7971a.4579.4579 0 0 0 .0437-.002c.8727-.0768 1.5568-.8271 1.5568-1.7085V1.7098c0-.8914-.696-1.6416-1.584-1.7078A.3294.3294 0 0 0 22.3781 0zm0 .496a1.2144 1.2144 0 0 1 1.1252 1.2139v20.5797c0 .6377-.4875 1.1602-1.1045 1.2145H1.6016c-.5967-.0543-1.0645-.5297-1.1053-1.1258V1.6284C.5371 1.0185 1.0184.5364 1.6217.496h20.7564zM4.7954 8.2603v7.3636H2.8899V8.2603h1.9055zm6.5367 0v7.3636H9.6707v-4.9704l-.6711 4.9704H7.813l-.6986-4.8618-.0066 4.8618h-1.668V8.2603h2.468c.0748.4476.1492.9694.2307 1.5734l.2712 1.8713.4407-3.4447h2.4817zm2.9772 1.3289c.0742.0404.122.108.1417.2034.0279.0953.0345.3118.0345.6442v2.8548c0 .4881-.0345.7867-.0955.8954-.0609.1152-.2304.1695-.5018.1695V9.5211c.204 0 .3457.0205.4211.0681zm-.0211 6.0347c.4543 0 .8006-.0265 1.0245-.0742.2304-.0477.4204-.1357.5694-.2648.1556-.1218.2642-.298.3251-.5219.0611-.2238.1021-.6648.1021-1.3224v-2.5832c0-.6986-.0271-1.1668-.0742-1.4039-.041-.237-.1431-.4543-.3126-.6437-.1695-.1973-.4198-.3324-.7456-.421-.3191-.0808-.8542-.1285-1.7694-.1285h-1.4244v7.3636h2.3051zm5.14-1.7827c0 .3523-.0199.5762-.0544.6708-.033.0947-.1894.1424-.3046.1424-.1086 0-.19-.0477-.2238-.1351-.041-.0887-.0609-.2986-.0609-.6238v-1.9469c0-.3324.0199-.5423.0543-.6237.0338-.0808.1086-.122.2171-.122.1153 0 .2709.0412.3114.1425.041.0947.0609.2986.0609.6032v1.8926zm-2.4747-5.5809v7.3636h1.7157l.1152-.4675c.1556.1894.3251.3324.5152.4271.1828.0881.4608.1357.678.1357.3047 0 .5629-.0748.7802-.237.2165-.1562.3589-.3462.4198-.5628.0543-.2173.0887-.543.0887-.9841v-2.0675c0-.4409-.0139-.7324-.0344-.8681-.0199-.1357-.0742-.2781-.1695-.4204-.1021-.1425-.2437-.251-.4272-.3325-.1834-.0742-.3999-.1152-.6576-.1152-.2172 0-.4952.0477-.6846.1285-.1835.0887-.353.2238-.5086.4007V8.2603h-1.8309z", "rottentomatoes": "M5.866 0L4.335 1.262l2.082 1.8c-2.629-.989-4.842 1.4-5.012 2.338 1.384-.323 2.24-.422 3.344-.335-7.042 4.634-4.978 13.148-1.434 16.094 5.784 4.612 13.77 3.202 17.91-1.316C27.26 13.363 22.993.65 10.86 2.766c.107-1.17.633-1.503 1.243-1.602-.89-1.493-3.67-.734-4.556 1.374C7.52 2.602 5.866 0 5.866 0zM4.422 7.217H6.9c2.673 0 2.898.012 3.55.202 1.06.307 1.868.973 2.313 1.904.05.106.092.206.13.305l7.623.008.027 2.912-2.745-.024v7.549l-2.982-.016v-7.522l-2.127.016a2.92 2.92 0 0 1-1.056 1.134c-.287.176-.3.19-.254.264.127.2 2.125 3.642 2.125 3.659l-3.39.019-2.013-3.376c-.034-.047-.122-.068-.344-.084l-.297-.02.037 3.48-3.075-.038zm3.016 2.288l.024.338c.014.186.024.729.024 1.206v.867l.582-.025c.32-.013.695-.049.833-.078.694-.146 1.048-.478 1.087-1.018.027-.378-.063-.636-.303-.87-.318-.309-.761-.416-1.733-.418Z", "metacritic": "M11.99 0A12 12 0 1 0 24 12v-.014A12 12 0 0 0 11.99 0Zm-.055 2.564a9.399 9.399 0 0 1 9.407 9.389v.01a9.399 9.399 0 1 1-9.408-9.399Zm-1.61 17.198 2.046-2.046-3.94-3.94c-.165-.166-.345-.373-.442-.608-.221-.47-.318-1.203.221-1.742.664-.664 1.548-.387 2.406.47l3.788 3.788 2.046-2.046-3.954-3.954a2.48 2.48 0 0 1-.456-.622c-.263-.539-.25-1.216.235-1.7.677-.678 1.562-.429 2.544.553l3.677 3.677 2.046-2.046-3.982-3.982c-2.018-2.018-3.912-1.949-5.212-.65-.498.499-.802 1.024-.954 1.618a4.026 4.026 0 0 0-.055 1.686l-.027.028c-.996-.414-2.13-.166-3 .705-1.162 1.161-1.12 2.392-.982 3.11l-.042.043-1.009-.816-1.77 1.77a64.1 64.1 0 0 1 2.213 2.1z"};
 // stand-in content (TMDB images); text written for the mockup
 const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"تلماسه: بخش دوم",y:"2024",rt:"۲ ساعت و ۴۶ دقیقه",g:["علمی‌تخیلی","ماجراجویی","درام"],
-  imdb:8.5,imdbVotes:680000,tomato:92,meta:79,age:"+۱۳",dir:"دنی ویلنوو",progress:{at:"۱:۰۷:۱۲",p:.41,left:"۹۹ دقیقه",leftLong:"۹۹ دقیقه مانده"},
+  imdb:8.5,imdbVotes:681354,tomato:92,meta:79,age:"+۱۳",dir:"دنی ویلنوو",progress:{at:"۱:۰۷:۱۲",p:.41,left:"۹۹ دقیقه",leftLong:"۹۹ دقیقه مانده"},
   recap:{upto:"تا دقیقه‌ی ۶۷",text:"پل و مادرش جسیکا به فرمن‌ها پناه برده‌اند. پل کنار چانی راه‌ورسم صحرا را یاد می‌گیرد و برای اولین بار سوار کرم شنی می‌شود و فرمن‌ها کم‌کم او را همان منجی موعود می‌بینند. جسیکا آب حیات را می‌نوشد و مادر مقدس قبیله می‌شود. در همین حال هارکونن‌ها فید-روتا را وارث خود معرفی می‌کنند و او در میدان مبارزه نشان می‌دهد چقدر بی‌رحم است."},
   mood:[88,8,4],
   syn:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندان هارکونن می‌رود؛ خاندانی که پدرش را کشت و خانواده‌اش را نابود کرد. هرچه به قدرت نزدیک‌تر می‌شود، رؤیاهای آینده روشن‌تر می‌شوند: جنگی مقدس که به نام او میلیون‌ها نفر را می‌کشد. پل باید میان عشق به چانی و سرنوشتی که برایش نوشته‌اند یکی را انتخاب کند.",
@@ -1625,6 +1802,9 @@ const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"
     neg:["مدت طولانی فیلم","شتاب‌زدگی پرده‌ی آخر","شخصیت‌های فرعی کم‌عمق"]},
   music:[["Beginnings Are Such Delicate Times","Hans Zimmer","۰:۰۲:۱۰","آغاز فیلم، صحرای آراکیس"],["Harvester Attack","Hans Zimmer","۰:۲۱:۴۰","حمله به برداشت‌کننده‌ی ادویه"],["Worm Ride","Hans Zimmer","۰:۵۸:۰۵","اولین سواری پل بر کرم شنی"],["Harkonnen Arena","Hans Zimmer","۱:۰۴:۳۰","مبارزه‌ی فید-روتا در میدان"],["Kiss the Ring","Hans Zimmer","۲:۲۸:۱۵","رویارویی پایانی"]],
   rating:{avg:8.4,n:1230},votes:{up:1132,down:98},
+  trs:[["تریلر رسمی ۲","۲:۵۸","b-dune-part-two.jpg"],["تریلر رسمی ۱","۳:۰۳","c-dune-0.jpg"],["تیزر","۱:۲۷","c-dune-4.jpg"],["پشت صحنه: ساختن آراکیس","۵:۴۰","c-dune-1.jpg"]],
+  facts:[["کارگردان","دنی ویلنوو"],["نویسندگان","دنی ویلنوو، جان اسپیتس"],["بر اساس","رمان «تلماسه» نوشته‌ی فرانک هربرت"],["فیلم‌برداری","گرگ فریزر"],["موسیقی","هانس زیمر"],["کشور","آمریکا، کانادا"],["زبان اصلی","انگلیسی"],["اکران","۱۰ اسفند ۱۴۰۲"],["مدت","۲ ساعت و ۴۶ دقیقه"],["رده‌ی سنی","+۱۳"],["استودیو","لجندری پیکچرز، برادران وارنر"],["بودجه","۱۹۰ میلیون دلار"],["فروش جهانی","۷۱۴ میلیون دلار"],["جوایز","برنده‌ی ۲ اسکار: صدا و جلوه‌های ویژه"]],
+  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:"۱٫۲ هزار",p:["dune-part-two","interstellar","arrival"]},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:"۸۴۰",p:["dune-part-two","oppenheimer","blade-runner-2049"]},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:"۴۹۰",p:["dune-part-one","dune-part-two","poor-things"]}],
   similar:["dune-part-one","blade-runner-2049","interstellar","arrival","oppenheimer","poor-things"],
   franchise:[["dune-part-one","تلماسه","2021"],["dune-part-two","تلماسه: بخش دوم","2024"]]};
 
@@ -1647,7 +1827,7 @@ const SEV_EP={
 ["چیخای باردو","۶ مارس ۲۰۲۵","۵۲","گذشته‌ی گما بالاخره روشن می‌شود."],
 ["زاج شیرین","۱۳ مارس ۲۰۲۵","۵۵","کوبل به جایی برمی‌گردد که همه‌چیز از آن‌جا شروع شد."]]};
 const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"جداسازی",y:"2022",rt:"۲ فصل",g:["درام","معمایی","علمی‌تخیلی"],
-  imdb:8.7,imdbVotes:320000,tomato:96,meta:84,age:"+۱۶",dir:"بن استیلر",
+  imdb:8.7,imdbVotes:322487,tomato:96,meta:84,age:"+۱۶",dir:"بن استیلر",
   syn:"کارمندان شرکت لومن با یک عمل جراحی، خاطرات کار را از زندگی شخصی‌شان جدا کرده‌اند: در دفتر هیچ‌چیز از بیرون به یاد نمی‌آورند و بیرون هیچ‌چیز از دفتر. مارک، که این کار را بعد از مرگ همسرش انتخاب کرده، کم‌کم می‌فهمد پشت این دیوارهای سفید چه می‌گذرد.",
   dub:true,subs:["فارسی","انگلیسی"],
   cast:[["آدام اسکات","مارک اسکات"],["بریت لوئر","هلی ریگز"],["ترامل تیلمن","سث میلچیک"],["زک چری","دیلن جورج"],["جن تولوک","کیسی"],["کریستوفر واکن","برت گودمن"],["جان تورتورو","اروینگ بیلی"],["پاتریشیا آرکت","هارمونی کوبل"]],
@@ -1661,6 +1841,9 @@ const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"ج�
   next:{s:2,e:8,in:2*86400+5*3600+38*60+12},
   trailers:{"1-1":1,"2-1":1,"2-4":1},
   rating:{avg:8.8,n:2140},votes:{up:1985,down:155},
+  trs:[["تریلر فصل ۲","۲:۲۱","b-severance.jpg"],["تیزر فصل ۲","۱:۰۴","e-sev-2-1.jpg"],["تریلر فصل ۱","۲:۱۰","e-sev-1-1.jpg"]],
+  facts:[["سازنده","دن اریکسون"],["کارگردان‌ها","بن استیلر، آئوفه مک‌آردل"],["موسیقی","تئودور شاپیرو"],["شبکه","اپل تی‌وی پلاس"],["کشور","آمریکا"],["زبان اصلی","انگلیسی"],["شروع پخش","۲۸ بهمن ۱۴۰۰"],["فصل‌ها","۲ فصل، ۱۹ قسمت"],["هر قسمت","حدود ۵۰ دقیقه"],["رده‌ی سنی","+۱۶"],["جوایز","برنده‌ی جوایز امی، از جمله بهترین بازیگر زن نقش اول"]],
+  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:"۶۱۰",p:["severance","the-bear","slow-horses"]},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:"۷۳۰",p:["severance","the-last-of-us","shogun"]},{n:"بهترین‌های اپل",u:"نگار",c:9,f:"۳۲۰",p:["severance","slow-horses","the-bear"]}],
   review:{n:6180,date:"۷ آبان",tone:"بیشتر مخاطبان آن را هوشمندترین و عجیب‌ترین سریال این سال‌ها می‌دانند و فصل دوم را تاریک‌تر اما جسورتر از فصل اول می‌بینند.",
     pos:["فضای سرد و طراحی منحصربه‌فرد دفتر","بازی آدام اسکات و بریت لوئر","معماهایی که مخاطب را تا آخر نگه می‌دارد"],
     neg:["ریتم کند چند قسمت میانی","پاسخ‌های کم به سؤال‌های اصلی","فاصله‌ی طولانی میان فصل‌ها"]},
@@ -1775,8 +1958,8 @@ function Header({user,desk,logo,alt}){
   const [sc,setSc]=useState(false);
   const [hov,setHov]=useState(null);
   const reduced=useReducedMotion();
-  const [hide,setHide]=useState(false);
-  useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
+  const [hide,setHide]=useState(false);const [past,setPast]=useState(false);
+  useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);setPast(y>innerHeight*.75);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
   return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
     <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:sc?1:0}} transition=${{duration:.35}}/>
@@ -1990,15 +2173,36 @@ function Toast({msg}){
   return html`<${AnimatePresence}>${msg&&html`<${motion.div} key=${msg} class="toast" role="status" initial=${{opacity:0,y:12,scale:.98}} animate=${{opacity:1,y:0,scale:1}} exit=${{opacity:0,y:8}} transition=${{duration:.28,ease:EASE}}>${msg}</${motion.div}>`}</${AnimatePresence}>`;
 }
 /* the trailer plays muted behind the text; the backdrop shows until the first frame is ready */
-function Trailer({t,desk,muted}){
+function Trailer({t,desk,muted,paused}){
   const v=useRef();const reduced=useReducedMotion();const [ready,setReady]=useState(false);
-  useEffect(()=>{const el=v.current;if(!el)return;el.muted=muted;if(!muted)el.play().catch(()=>{})},[muted]);
+  useEffect(()=>{const el=v.current;if(!el)return;el.muted=muted;if(!muted&&!paused)el.play().catch(()=>{})},[muted]);
+  useEffect(()=>{const el=v.current;if(!el)return;if(paused)el.pause();else el.play().catch(()=>{})},[paused]);
   useEffect(()=>{setReady(false)},[t.s]);
   const pos=desk?"50% 30%":t.kind==="film"?"38% 30%":"50% 30%";
   return html`<div class="bgl">
     <img src=${M("b-"+t.s+".jpg")} alt="" style=${{objectPosition:pos}}/>
     ${!reduced&&html`<${motion.video} ref=${v} key=${t.s} src=${M("t-"+t.s+".mp4")} autoPlay muted playsInline loop preload="auto" aria-hidden="true"
       onPlaying=${()=>setReady(true)} initial=${false} animate=${{opacity:ready?1:0}} transition=${{duration:1.2,ease:EASE}} style=${{objectPosition:"50% 50%"}}/>`}
+  </div>`;
+}
+const MC_MARK='<circle fill="#000" stroke="#FFCC34" stroke-width="7" cx="44" cy="44" r="40"/><path transform="translate(-10 -961) matrix(1.2756629,-1.3487733,1.3685717,1.2634987,-267.04706,1066.0743)" fill="#fff" d="m126.73438,92.087002 5.05859,0 0,2.832031 c 1.80989-2.200501 3.96483-3.30076 6.46484-3.300781 1.32811,2.1e-5 2.48045,.273458 3.45703,.820312 .97655,.546895 1.77733,1.373717 2.40235,2.480469 .91144-1.106752 1.89451-1.933574 2.94922-2.480469 1.05466-0.546854 2.18096-0.820291 3.3789-0.820312 1.52341,2.1e-5 2.81247,.309265 3.86719,.927734 1.05466,.618509 1.84242,1.526711 2.36328,2.724609 .37757,.885434 .56637,2.317724 .56641,4.296875 l 0,13.26172-5.48828,0 0-11.85547 c-3e-5-2.057277-0.18883-3.385401-0.56641-3.984375-0.50784-0.781233-1.28909-1.171858-2.34375-1.171875-0.76825,1.7e-5-1.49091,.234392-2.16797,.703125-0.6771,.468766-1.16538,1.155614-1.46484,2.060547-0.2995,.904961-0.44924,2.333998-0.44922,4.287108 l 0,9.96094-5.48828,0 0-11.36719 c-2e-5-2.018214-0.0977-3.320296-0.29297-3.906248-0.19533-0.585922-0.49806-1.02212-0.9082-1.308594-0.41017-0.286442-0.96681-0.429671-1.66993-0.429688-0.84636,1.7e-5-1.60808,.227882-2.28515,.683594-0.6771,.455745-1.16212,1.113297-1.45508,1.972656-0.29298,.859389-0.43946,2.28517-0.43945,4.27734 l 0,10.07813-5.48828,0z"/>';
+function TrailerModal({t,onClose}){
+  const [cur,setCur]=useState(0);
+  useEffect(()=>{document.body.classList.add("tmopen");return()=>document.body.classList.remove("tmopen")},[]);
+  useEffect(()=>{const k=e=>{if(e.key==="Escape")onClose()};addEventListener("keydown",k);document.body.style.overflow="hidden";return()=>{removeEventListener("keydown",k);document.body.style.overflow=""}},[]);
+  return html`<${React.Fragment}><${motion.div} class="scrim tscrim" onClick=${onClose} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}}/>
+    <${motion.div} class="tmodal" role="dialog" aria-modal="true" aria-label=${"تریلر "+t.fa} initial=${{opacity:0,scale:.94,y:20}} animate=${{opacity:1,scale:1,y:0}} exit=${{opacity:0,scale:.96}} transition=${{type:"spring",stiffness:300,damping:30}}>
+      <div class="tmh"><b>تریلرها و ویدیوها</b><small dir="ltr">${t.en}</small><button class="x" onClick=${onClose} aria-label="بستن"><${I} n="x"/></button></div>
+      <div class="tmb"><video key=${cur} src=${M("t-"+t.s+".mp4")} controls autoPlay playsInline poster=${M(t.trs[cur][2])}></video>
+        <ol class="tml">${t.trs.map(([n,d,img],k)=>html`<li key=${k}><button aria-current=${k===cur} onClick=${()=>setCur(k)}><span class="tmi"><img src=${M(img)} alt=""/>${k===cur?html`<i class="now">در حال پخش</i>`:html`<svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg>`}</span><span class="tmt"><b>${n}</b><small class="num">${d}</small></span></button></li>`)}</ol></div>
+    </${motion.div}></${React.Fragment}>`;
+}
+/* trailers get their own chapter, like downloads and music: a player and the list beside it */
+function Trailers({t}){
+  const [cur,setCur]=useState(0);const [go,setGo]=useState(false);
+  return html`<div class="trs">
+    <div class="trv">${go?html`<video key=${cur} src=${M("t-"+t.s+".mp4")} controls autoPlay playsInline poster=${M(t.trs[cur][2])}></video>`:html`<button class="trp" onClick=${()=>setGo(true)} aria-label=${"پخش "+t.trs[cur][0]}><img src=${M(t.trs[cur][2])} alt=""/><span class="trpi"><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span><span class="trpt"><b>${t.trs[cur][0]}</b><small class="num">${t.trs[cur][1]}</small></span></button>`}</div>
+    <ol class="tml trl">${t.trs.map(([n,d,img],k)=>html`<li key=${k}><button aria-current=${k===cur} onClick=${()=>{setCur(k);setGo(true)}}><span class="tmi"><img src=${M(img)} alt=""/>${k===cur&&go?html`<i class="now">در حال پخش</i>`:html`<svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg>`}</span><span class="tmt"><b>${n}</b><small class="num">${d}</small></span></button></li>`)}</ol>
   </div>`;
 }
 function Recap({t}){
@@ -2024,11 +2228,11 @@ function Vote({v,access,big}){
   const B=(dir,n,label,path)=>html`<${motion.button} class=${"vb"+(v.mine===dir?" on":"")+(dir<0?" dn":"")} aria-pressed=${v.mine===dir} aria-label=${label+"، "+fa(n)+" رأی"} disabled=${!can} title=${can?"":"برای رأی دادن وارد شوید"}
       onClick=${()=>v.set(dir)} whileTap=${{scale:.9}}>
       <${motion.svg} viewBox="0 0 24 24" class="i" aria-hidden="true" animate=${v.mine===dir?{rotate:dir>0?[-12,8,0]:[12,-8,0],scale:[1,1.25,1]}:{rotate:0,scale:1}} transition=${{duration:.45}}><path d=${path}/></${motion.svg}>
-      <span class="vl">${label}</span><span class="num vn"><${Count} v=${n} fmt=${nf}/></span></${motion.button}>`;
+      <span class="vl">${label}</span><span class="num vn">${fa(dir>0?v.pct:100-v.pct)}٪</span></${motion.button}>`;
   return html`<div class=${"vote"+(big?" big":"")}>
     ${B(1,v.up,"پسندیدم","M7 10v10H4V10zM7 10l4-7c1.7 0 2.6 1 2.3 2.7L12.8 9H19a2 2 0 0 1 2 2.3l-1.3 7A2 2 0 0 1 17.7 20H7")}
     ${B(-1,v.down,"نپسندیدم","M17 14V4h3v10zM17 14l-4 7c-1.7 0-2.6-1-2.3-2.7l.5-3.3H5a2 2 0 0 1-2-2.3l1.3-7A2 2 0 0 1 6.3 4H17")}
-    <span class="vsum"><b class="num">${fa(v.pct)}٪</b> پسندیدند<small class="num">${nf(v.n)} رأی کاربران رول‌وانا</small></span>
+    <span class="vsum"><small class="num">${nf(v.n)} رأی</small></span>
   </div>`;
 }
 function HSyn({text,reduced}){
@@ -2036,40 +2240,49 @@ function HSyn({text,reduced}){
   return html`<${motion.p} class=${"hsyn"+(open?" open":"")} variants=${ITEM} custom=${reduced} onClick=${()=>set(o=>!o)} role="button" tabIndex="0" aria-expanded=${open}>${text}</${motion.p}>`;
 }
 function Top({t,access,prog,desk,reduced,toast,onRate,vote}){
-  const [muted,setMuted]=useState(true);const [inList,setInList]=useState(false);
+  const [muted,setMuted]=useState(true);const [paused,setPaused]=useState(false);const [inList,setInList]=useState(false);const [saved,setSaved]=useState(false);
   const why=access==="guest"?"دیدن این صفحه رایگان است؛ تماشا و دانلود برای اعضاست.":access==="nosub"?"تماشا و دانلود با اشتراک فعال است.":null;
   return html`<section class="top">
-    <${Trailer} t=${t} desk=${desk} muted=${muted}/>
+    <${Trailer} t=${t} desk=${desk} muted=${muted} paused=${paused}/>
     <div class="grade"></div>
-    <${IconToggle} on=${!muted} onClick=${()=>setMuted(m=>!m)} label="پخش صدای تریلر" onLabel="قطع صدای تریلر"
-      paths=${[["M4 9.5h3.5L12 6v12l-4.5-3.5H4z","M4 9.5h3.5L12 6v12l-4.5-3.5H4z"],["M16 9.5l5 5","M16 9a4 4 0 0 1 0 6"],["M21 9.5l-5 5","M18.5 6.5a7.5 7.5 0 0 1 0 11"]]}/>
+    <div class="tctl">
+      <${IconToggle} on=${!muted} onClick=${()=>setMuted(m=>!m)} label="پخش صدای تریلر" onLabel="قطع صدای تریلر"
+        paths=${[["M4 9.5h3.5L12 6v12l-4.5-3.5H4z","M4 9.5h3.5L12 6v12l-4.5-3.5H4z"],["M16 9.5l5 5","M16 9a4 4 0 0 1 0 6"],["M21 9.5l-5 5","M18.5 6.5a7.5 7.5 0 0 1 0 11"]]}/>
+      <${IconToggle} on=${paused} onClick=${()=>setPaused(p=>!p)} label="توقف تریلر" onLabel="پخش تریلر"
+        paths=${[["M7 5h3.5v14H7z","M7 4.5l6 3.75v7.5L7 19.5z"],["M13.5 5H17v14h-3.5z","M13 8.25l6 3.75v0l-6 3.75z"]]}/>
+    </div>
     <${motion.div} class="tc" variants=${INFO} initial="hide" animate="show" custom=${reduced}>
+      <${motion.p} class="gline" variants=${ITEM} custom=${reduced}><span class="klab">${t.kind==="film"?"فیلم":"سریال"}</span><span class="kg">${t.g.join("، ")}</span></${motion.p}>
       <${motion.h1} variants=${ITEM} custom=${reduced}>${t.fa}</${motion.h1}>
-      <${motion.p} class="gline" variants=${ITEM} custom=${reduced}>${t.kind==="film"?"فیلم":"سریال"}<span class="dotsep">·</span>${t.g.join("، ")}</${motion.p}>
+      <${motion.p} class="en2" dir="ltr" variants=${ITEM} custom=${reduced}>${t.en}</${motion.p}>
       <${motion.div} class="tmeta" variants=${ITEM} custom=${reduced}>
         <span>${fa(t.y)}</span><i class="sep"></i><span>${t.rt}</span><i class="sep"></i><span class="age">${t.age}</span>
         ${t.dub&&html`<span class="bdg dub">دوبله فارسی</span>`}
       </${motion.div}>
       <${motion.div} class="scores2" variants=${ITEM} custom=${reduced}>
-        <span class="sc2 imdb2" aria-label=${"امتیاز IMDb "+t.imdb+" از ۱۰"}><svg class="bi imdb3" viewBox=${BRAND2["imdb-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["imdb-light"].body}}></svg><b>${fa(t.imdb.toFixed(1)).replace(".","٫")}</b>${t.imdbVotes&&html`<small class="num">${fa(Math.round(t.imdbVotes/1000))} هزار رأی</small>`}</span>
+        <span class="sc2 imdb2" aria-label=${"امتیاز IMDb "+t.imdb+" از ۱۰"}><svg class="bi imdb3" viewBox=${BRAND2["imdb-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["imdb-light"].body}}></svg><span class="sv" dir="ltr"><b>${t.imdb.toFixed(1)}</b><small>/10</small></span>${t.imdbVotes&&html`<small class="num">${nf(t.imdbVotes)} رأی</small>`}</span>
         <span class="sc2 rt2" aria-label=${"Rotten Tomatoes "+t.tomato+" درصد"}><svg class="bi" viewBox=${BRAND2["rotten-tomatoes-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["rotten-tomatoes-light"].body}}></svg><b>${fa(t.tomato)}٪</b></span>
-        <span class="sc2 mc4" aria-label=${"Metascore "+t.meta}><svg class="bi" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d=${BRAND.metacritic}/></svg><b>${fa(t.meta)}</b></span>
+        <span class="sc2 mc4" aria-label=${"Metascore "+t.meta}><svg class="bi mcl" viewBox="0 0 88 88" aria-hidden="true" dangerouslySetInnerHTML=${{__html:MC_MARK}}></svg><b>${fa(t.meta)}</b></span>
       </${motion.div}>
-      <${HSyn} text=${t.syn} reduced=${reduced}/>
       <${motion.div} class="row1" variants=${ITEM} custom=${reduced}>
         <${MainBtn} t=${t} access=${access} prog=${prog} reduced=${reduced}/>
+        <${motion.button} class=${"rb"+(inList?" on":"")} aria-pressed=${inList} title=${inList?"در لیست من":"افزودن به لیست"} aria-label=${inList?"در لیست من":"افزودن به لیست"} whileTap=${{scale:.9}} onClick=${()=>{setInList(v=>!v);toast(inList?"از لیست برداشته شد":"به لیست اضافه شد")}}>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><${motion.path} initial=${false} animate=${{d:inList?"M5 12.5 L9.5 17 L19 7.5":"M12 5 L12 19 M5 12 L19 12"}} transition=${{duration:.3,ease:EASE}}/></svg><span class="rbl">لیست</span></${motion.button}>
+        <${motion.button} class=${"rb"+(saved?" on":"")} aria-pressed=${saved} title="نشان کردن" aria-label=${saved?"نشان‌شده":"نشان کردن"} whileTap=${{scale:.9}} onClick=${()=>{setSaved(v=>!v);toast(saved?"نشان برداشته شد":"نشان شد")}}>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" fill=${saved?"currentColor":"none"}/></svg><span class="rbl">نشان</span></${motion.button}>
       </${motion.div}>
       <${motion.div} class="row2" variants=${ITEM} custom=${reduced}>
         <${Vote} v=${vote} access=${access}/>
         <span class="row2sp"></span>
-        <${motion.button} class=${"pill3 ic"+(inList?" on":"")} aria-label=${inList?"در لیست من":"افزودن به لیست من"} title=${inList?"در لیست من":"لیست من"} aria-pressed=${inList} whileTap=${{scale:.95}} onClick=${()=>{setInList(v=>!v);toast(inList?"از لیست تماشا برداشته شد":"به لیست تماشا اضافه شد")}}>
-          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><${motion.path} initial=${false} animate=${{d:inList?"M5 12.5 L9.5 17 L19 7.5":"M12 5 L12 19 M5 12 L19 12"}} transition=${{duration:.3,ease:EASE}}/></svg></${motion.button}>
         <${motion.button} class="pill3 ic" aria-label="اشتراک‌گذاری" title="اشتراک‌گذاری" whileTap=${{scale:.95}} onClick=${()=>toast("لینک صفحه کپی شد")}><${I} n="share"/></${motion.button}>
       </${motion.div}>
-      
       ${why&&html`<${motion.p} class="why" variants=${ITEM} custom=${reduced}>${why}</${motion.p}>`}
     </${motion.div}>
   </section>`;
+}
+/* the story, under the cover and under the vote, so the trailer has the screen */
+function Story({t}){
+  return html`<div class="sec story"><p>${t.syn}</p></div>`;
 }
 /* what the audience says: the first thing under the hero, because it decides "should I watch this" */
 /* the audience in one card, after 21st.dev "Sentiment Analysis Card" (7459) and the count-up of "Review Summary Card" (7506) */
@@ -2141,8 +2354,8 @@ function About({t}){
   const [open,set]=useState(false);const ref=useRef();const [h,setH]=useState({c:84,f:84});
   useLayoutEffect(()=>{const el=ref.current;if(el)setH({c:Math.min(el.scrollHeight,84),f:el.scrollHeight})},[t]);
   return html`<section class="sec"><h2>مشخصات</h2>
-    <dl class="facts">
-      <div><dt>${t.kind==="film"?"کارگردان":"سازنده"}</dt><dd>${t.dir}</dd></div>
+    <dl class="facts facts2">
+      ${(t.facts||[]).map(([k,v])=>html`<div key=${k}><dt>${k}</dt><dd>${v}</dd></div>`)}
       <div><dt>صدا</dt><dd><span class="chips">${t.dub&&html`<span class="chip"><${I} n="check"/>دوبله فارسی</span>`}<span class="chip"><${I} n="check"/>صدای اصلی</span></span></dd></div>
       <div><dt>زیرنویس</dt><dd><span class="chips">${t.subs.map(s=>html`<span class="chip"><${I} n="check"/>${s}</span>`)}</span></dd></div>
     </dl>
@@ -2165,9 +2378,11 @@ function Downloads({t,access,title="دانلود",note}){
      the dubbed files sit in a quiet group underneath, closed by default */
   const lock=access!=="sub";const src=t.kind==="film"?"BluRay":"WEB-DL";const [dub,setDub]=useState(false);
   const rec=t.dl.sub.some(r=>r[0]==="1080p")?"1080p":t.dl.sub[0][0];
-  const List=({v})=>html`<ul class="fl">${t.dl[v].map(([q,,sz])=>{const [tag,codec,hdr]=DLSPEC[q]||[q,"",""];const r=q===rec&&v==="sub";return html`<li key=${v+q} class=${r?"rec":""}>
-      <div class="fn"><b>${q}</b>${r&&html`<em>پیشنهادی</em>`}<small><span dir="ltr">${tag} · ${codec}${hdr!=="SDR"?" · "+hdr:""}</span><i></i><span class="num"><${Size} v=${sz}/></span></small></div>
-      <${motion.a} href=${lock?undefined:"#"} class="fdl" aria-label=${"دانلود "+q+(v==="dub"?" دوبله":"")} aria-disabled=${lock} tabIndex=${lock?-1:0} whileTap=${{scale:.92}}><${I} n="dl"/></${motion.a}>
+  const List=({v})=>html`<ul class="qgrid">${t.dl[v].map(([q,,sz])=>{const [tag,codec,hdr]=DLSPEC[q]||[q,"",""];const r=q===rec&&v==="sub";return html`<li key=${v+q} class=${"qt"+(r?" rec":"")}>
+      <div class="qh"><b>${q}</b><span class="qtag">${tag}</span>${r&&html`<em>پیشنهادی</em>`}</div>
+      <small dir="ltr">${codec}${hdr!=="SDR"?" · "+hdr:""}</small>
+      <div class="qf"><span class="num qs"><${Size} v=${sz}/></span>
+      <${motion.a} href=${lock?undefined:"#"} class="qdl" aria-label=${"دانلود "+q+(v==="dub"?" دوبله":"")} aria-disabled=${lock} tabIndex=${lock?-1:0} whileTap=${{scale:.94}}><${I} n="dl"/>دانلود</${motion.a}></div>
     </li>`})}</ul>`;
   return html`<section class="sec dl6">${title&&html`<h2>${title}${note&&html`<small>${note}</small>`}</h2>`}
     <div class="dll">
@@ -2216,7 +2431,7 @@ function Rating({t,access}){
 }
 
 function Comment({c,reply}){
-  const [shown,setShown]=useState(!c.spoiler);const [liked,setLiked]=useState(false);const [rep,setRep]=useState(false);
+  const [shown,setShown]=useState(!c.spoiler);const [mine,setMine]=useState(0);const [rep,setRep]=useState(false);const dis=Math.round(c.likes*.12)+1;
   return html`<${motion.div} class="cmt" layout="position" transition=${SOFT}>
     <span class="av2">${c.n[0]}</span>
     <div class="bd">
@@ -2226,9 +2441,8 @@ function Comment({c,reply}){
           <${AnimatePresence}>${!shown&&html`<${motion.div} class="veil" exit=${{opacity:0}}><span>داستان را لو می‌دهد · نمایش</span></${motion.div}>`}</${AnimatePresence}>
         </div>`:html`<p>${c.text}</p>`}
       <div class="ft">
-        <${motion.button} class=${liked?"liked":""} aria-pressed=${liked} onClick=${()=>setLiked(l=>!l)} whileTap=${{scale:.9}}>
-          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><${motion.path} d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" initial=${false} animate=${{fill:liked?"rgba(242,239,248,1)":"rgba(242,239,248,0)"}} transition=${{duration:.2}}/></svg>
-          <${Count} v=${c.likes+(liked?1:0)} fmt=${fa}/></${motion.button}>
+        <${motion.button} class=${"cv"+(mine===1?" on":"")} aria-pressed=${mine===1} aria-label="پسندیدم" onClick=${()=>setMine(m=>m===1?0:1)} whileTap=${{scale:.9}}><${I} n="thumbup"/><${Count} v=${c.likes+(mine===1?1:0)} fmt=${fa}/></${motion.button}>
+        <${motion.button} class=${"cv"+(mine===-1?" on":"")} aria-pressed=${mine===-1} aria-label="نپسندیدم" onClick=${()=>setMine(m=>m===-1?0:-1)} whileTap=${{scale:.9}}><${I} n="thumbdown"/><${Count} v=${dis+(mine===-1?1:0)} fmt=${fa}/></${motion.button}>
         ${!reply&&html`<button onClick=${()=>setRep(r=>!r)} aria-expanded=${rep}><${I} n="reply"/>پاسخ</button>`}
         <button aria-label="گزارش این نظر"><${I} n="flag"/></button>
       </div>
@@ -2253,6 +2467,11 @@ function Comments({t,access,vote}){
   </section>`;
 }
 
+function ULists({t}){
+  return html`<section class="sec wide"><h2>در لیست‌های کاربران<small>${fa(t.lists.length)} لیست</small></h2><div class="ulrow">${t.lists.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulist" whileHover="h" initial="r" animate="r">
+    <span class="stack">${l.p.map((s,j)=>html`<${motion.img} key=${s} src=${M("p-"+s+".jpg")} alt="" style=${{zIndex:3-j}} variants=${{r:{x:j*-34,rotate:j*-4,y:j*4},h:{x:j*-46,rotate:j*-7,y:j*6}}} transition=${SPR}/>`)}</span>
+    <b>${l.n}</b><small><i class="av3">${l.u[0]}</i>${l.u} · <span class="num">${fa(l.c)}</span> عنوان · <span class="num">${l.f}</span> دنبال‌کننده</small></${motion.a}>`)}</div></section>`;
+}
 function Posters({title,items,cur}){
   return html`<section class="sec wide">${title&&html`<h2>${title}</h2>`}<div class="posters">${items.map(x=>{const [s,n,y]=Array.isArray(x)?x:[x];return html`<${motion.a} href="#" class="pst" key=${s} aria-current=${s===cur?"page":undefined} whileHover=${{y:-4}} whileTap=${{scale:.97}} transition=${SPR}>
     <div class="po"><${Img} src=${M("p-"+s+".jpg")}/>${s===cur&&html`<span class="here">همین فیلم</span>`}</div>
@@ -2329,19 +2548,22 @@ function Sheet({onClose,children,label}){
     </${motion.div}>
   </${React.Fragment}>`;
 }
-function EpisodeSheet({t,s,e,access,onClose}){
-  const [n,d,rt,syn]=SEV_EP[s][e-1];
+function EpisodeSheet({t,s,e,access,onClose,onGo}){
+  const [n,d,rt,syn]=SEV_EP[s][e-1];const L=SEV_EP[s].length;
   const T={...t,dl:t.dl};
   return html`<${Sheet} onClose=${onClose} label=${"قسمت "+fa(e)}>
-    <div class="hero2"><${Img} src=${M("e-sev-"+s+"-"+e+".jpg")}/></div>
+    <${AnimatePresence} mode="wait" initial=${false}><${motion.div} key=${s+"-"+e} initial=${{opacity:0,y:10}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:-6}} transition=${{duration:.25,ease:EASE}}>
+    <div class="ehero"><${Img} src=${M("e-sev-"+s+"-"+e+".jpg")}/>
+      <div class="ehc"><span class="kchip">فصل ${fa(s)} · قسمت ${fa(e)}</span><h3>${n}</h3><small class="num">${fa(rt)} دقیقه · ${d}</small></div></div>
     <div class="in">
-      <h3><em>فصل ${fa(s)}، قسمت ${fa(e)}</em>${n}</h3>
-      <div class="meta2">${fa(rt)} دقیقه · ${d}</div>
-      <a href="#" class="play" style=${{marginTop:16}}><${I} n="play"/>${access==="guest"?"ورود برای تماشا":access==="nosub"?"خرید اشتراک برای تماشا":"تماشای این قسمت"}</a>
+      <div class="eact"><a href="#" class="play"><${I} n="play"/>${access==="guest"?"ورود برای تماشا":access==="nosub"?"خرید اشتراک برای تماشا":"تماشای این قسمت"}</a>
+        <button class="enav" disabled=${e<=1} onClick=${()=>onGo(s,e-1)} aria-label="قسمت قبل"><${I} n="right"/></button>
+        <button class="enav" disabled=${e>=L} onClick=${()=>onGo(s,e+1)} aria-label="قسمت بعد"><${I} n="left"/></button></div>
       <p class="full">${syn}</p>
     </div>
-    <div style=${{margin:"0 -0px"}}><${Downloads} t=${T} access=${access} title="دانلود این قسمت"/></div>
+    <${Downloads} t=${T} access=${access} title="دانلود این قسمت"/>
     ${(()=>{const m=t.music.filter(x=>x[2]==="ف"+fa(s)+" ق"+fa(e));return m.length?html`<${Music} t=${{...t,music:m}}/>`:null})()}
+    </${motion.div}></${AnimatePresence}>
   </${Sheet}>`;
 }
 function SeasonSheet({t,s,access,onClose}){
@@ -2396,8 +2618,9 @@ function App(){
   const [ep,setEp]=useState(null);const [season,setSeason]=useState(null);
   const [msg,setMsg]=useState(null);const tm=useRef();const say=m=>{setMsg(m);clearTimeout(tm.current);tm.current=setTimeout(()=>setMsg(null),2000)};
   const t=st.kind==="film"?FILM:SERIES_T;const prog=!!st.prog&&st.access==="sub";
-  const SECS=t.kind==="series"?[["s-eps","قسمت‌ها","cEps"],["s-dl","دانلود","cDl"],["s-about","درباره","cAbout"],["s-music","موسیقی","cMusic"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]]:[["s-dl","دانلود","cDl"],["s-about","درباره","cAbout"],["s-music","موسیقی","cMusic"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]];
+  const SECS=t.kind==="series"?[["s-eps","قسمت‌ها","cEps"],["s-dl","دانلود","cDl"],["s-tr","تریلرها","cTr"],["s-about","درباره","cAbout"],["s-music","موسیقی","cMusic"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]]:[["s-dl","دانلود","cDl"],["s-tr","تریلرها","cTr"],["s-about","درباره","cAbout"],["s-music","موسیقی","cMusic"],["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]];
   const vote=useVote(t);
+  useEffect(()=>{document.documentElement.style.setProperty("--acc",t.acc)},[t.acc]);
   const sp={on:!!st.spoil,set:v=>setSt(s=>({...s,spoil:v?1:0}))};
   return html`<${Spoil.Provider} value=${sp}>
     <${Header} user=${st.access!=="guest"} desk=${desk} logo=${st.load?null:M("l-"+t.s+".png")} alt=${t.en}/>
@@ -2407,6 +2630,7 @@ function App(){
                 <${Top} vote=${vote} t=${t} access=${st.access} prog=${prog} desk=${desk} reduced=${reduced} toast=${say} onRate=${()=>dispatchEvent(new CustomEvent("rv-spy",{detail:"s-cmt"}))}/>
         <div class="amb3" aria-hidden="true" style=${{backgroundImage:"url("+M("b-"+t.s+".jpg")+")"}}></div>
         <div class="body">
+          <${Story} t=${t}/>
           ${(t.kind==="series"&&t.next)&&html`<div class="sec lead">
             ${t.kind==="series"&&t.next&&html`<div class="nextep"><span class="lbl">قسمت بعد<b>فصل ${fa(t.next.s)}، قسمت ${fa(t.next.e)}</b></span><${Countdown} sec=${t.next.in}/></div>`}
           </div>`}
@@ -2415,16 +2639,17 @@ function App(){
           ${t.kind==="series"&&html`<${Chap} icon="cEps" id="s-eps" title="قسمت‌ها" sub="هر قسمت جدا، یا کل فصل یک‌جا"><${Episodes} t=${t} prog=${prog} access=${st.access} onOpen=${(s,e)=>setEp([s,e])} onSeason=${s=>setSeason(s)}/></${Chap}>`}
           ${t.kind==="series"&&html`<${Chap} id="s-dl" title="دانلود" sub="یک قسمت یا کل فصل، دوبله یا زیرنویس" icon="cDl"><${SeriesDl} t=${t} access=${st.access} onSeason=${s=>setSeason(s)}/></${Chap}>`}
           ${t.kind==="film"&&html`<${Chap} icon="cDl" id="s-dl" title="دانلود" sub="دوبله یا زیرنویس، در چهار کیفیت"><${Downloads} t=${t} access=${st.access} title=""/></${Chap}>`}
+          <${Chap} icon="cTr" id="s-tr" title="تریلرها"><${Trailers} key=${t.s} t=${t}/></${Chap}>
           <${Chap} icon="cAbout" id="s-about" title="درباره" sub="داستان، عوامل، بازیگران و موسیقی" cls="about"><${About} t=${t}/><${Cast} t=${t}/></${Chap}>
           <${Chap} icon="cMusic" id="s-music" title="موسیقی"><${Music} t=${t}/></${Chap}>
           <${Chap} icon="cCmt" id="s-cmt" title="نظرها" sub=${"امتیاز کاربران رول‌وانا و "+fa(COMMENTS.length+1)+" نظر"}><${Comments} t=${t} access=${st.access} vote=${vote}/></${Chap}>
-          <${Chap} icon="cMore" id="s-more" title="مشابه" sub=${t.kind==="film"?"بقیه‌ی مجموعه و عنوان‌هایی در همین حال‌وهوا":"اگر "+t.en+" را دوست دارید"}>${t.kind==="film"&&html`<${Posters} title="مجموعه‌ی تلماسه" items=${t.franchise} cur=${t.s}/>`}<${Posters} title=${t.kind==="film"?"عنوان‌های مشابه":""} items=${t.similar}/></${Chap}>
+          <${Chap} icon="cMore" id="s-more" title="مشابه" sub=${t.kind==="film"?"بقیه‌ی مجموعه و عنوان‌هایی در همین حال‌وهوا":"اگر "+t.en+" را دوست دارید"}>${t.kind==="film"&&html`<${Posters} title="مجموعه‌ی تلماسه" items=${t.franchise} cur=${t.s}/>`}<${Posters} title=${t.kind==="film"?"عنوان‌های مشابه":""} items=${t.similar}/><${ULists} t=${t}/></${Chap}>
           </div></div><${Review2} st=${st} set=${setSt}/>
         </div>`}
       </${motion.div}>
     </${AnimatePresence}>
     <${AnimatePresence}>
-      ${ep&&html`<${EpisodeSheet} key="ep" t=${t} s=${ep[0]} e=${ep[1]} access=${st.access} onClose=${()=>setEp(null)}/>`}
+      ${ep&&html`<${EpisodeSheet} key="ep" t=${t} s=${ep[0]} e=${ep[1]} access=${st.access} onClose=${()=>setEp(null)} onGo=${(s,e)=>setEp([s,e])}/>`}
       ${season&&html`<${SeasonSheet} key="ss" t=${t} s=${season} access=${st.access} onClose=${()=>setSeason(null)}/>`}
     </${AnimatePresence}>
     <${Toast} msg=${msg}/>
@@ -2435,6 +2660,7 @@ function App(){
 const PHOSPHOR={"arrow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/></g>", "bell": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/></g>", "cal": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160z\"/></g>", "card": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 16v24H32V64Zm0 128H32v-88h192zm-16-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8m-64 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></g>", "chev": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "clock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8\"/></g>", "copy": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/></g>", "crown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.9 73.6a15.85 15.85 0 0 0-18.9 3.79l-33.67 36.29l-35.8-80.29a1 1 0 0 1 0-.1a16 16 0 0 0-29.06 0a1 1 0 0 1 0 .1l-35.8 80.29L44 77.39a16 16 0 0 0-27.75 13.42c0 .11 0 .21.07.32L39 195a16 16 0 0 0 15.72 13h146.57A16 16 0 0 0 217 195l22.68-103.87c0-.11 0-.21.07-.32a15.85 15.85 0 0 0-8.85-17.21m-29.55 118.08l-.06.32H54.71l-.06-.32L32 88l.14.16l42 45.24a8 8 0 0 0 13.18-2.18L128 40l40.69 91.25a8 8 0 0 0 13.18 2.18l42-45.24l.13-.19Z\"/></g>", "dl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/></g>", "down": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "eyeoff": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M53.92 34.62a8 8 0 1 0-11.84 10.76l19.24 21.17C25 88.84 9.38 123.2 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208a127.1 127.1 0 0 0 52.07-10.83l22 24.21a8 8 0 1 0 11.84-10.76Zm47.33 75.84l41.67 45.85a32 32 0 0 1-41.67-45.85M128 192c-30.78 0-57.67-11.19-79.93-33.25A133.2 133.2 0 0 1 25 128c4.69-8.79 19.66-33.39 47.35-49.38l18 19.75a48 48 0 0 0 63.66 70l14.73 16.2A112 112 0 0 1 128 192m6-95.43a8 8 0 0 1 3-15.72a48.16 48.16 0 0 1 38.77 42.64a8 8 0 0 1-7.22 8.71a6 6 0 0 1-.75 0a8 8 0 0 1-8-7.26A32.09 32.09 0 0 0 134 96.57m113.28 34.69c-.42.94-10.55 23.37-33.36 43.8a8 8 0 1 1-10.67-11.92a132.8 132.8 0 0 0 27.8-35.14a133.2 133.2 0 0 0-23.12-30.77C185.67 75.19 158.78 64 128 64a118.4 118.4 0 0 0-19.36 1.57A8 8 0 1 1 106 49.79A134 134 0 0 1 128 48c34.88 0 66.57 13.26 91.66 38.35c18.83 18.83 27.3 37.62 27.65 38.41a8 8 0 0 1 0 6.5Z\"/></g>", "film": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "flag": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M42.76 50A8 8 0 0 0 40 56v168a8 8 0 0 0 16 0v-44.23c26.79-21.16 49.87-9.75 76.45 3.41c16.4 8.11 34.06 16.85 53 16.85c13.93 0 28.54-4.75 43.82-18a8 8 0 0 0 2.76-6V56a8 8 0 0 0-13.27-6c-28 24.23-51.72 12.49-79.21-1.12C111.07 34.76 78.78 18.79 42.76 50M216 172.25c-26.79 21.16-49.87 9.74-76.45-3.41c-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16 49.87-9.75 76.45 3.4c25 12.35 52.82 26.13 83.55 8.4Z\"/></g>", "frown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.08 64a8 8 0 1 1-13.84 8c-7.47-12.91-19.21-20-33.08-20s-25.61 7.1-33.08 20a8 8 0 1 1-13.84-8c10.29-17.79 27.39-28 46.92-28s36.63 10.2 46.92 28\"/></g>", "gear": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></g>", "grid": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "heart": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/></g>", "home": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/></g>", "info": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/></g>", "left": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/></g>", "list": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16m0 177.57l-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z\"/></g>", "lock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160zm-68-56a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "meh": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m48-56a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8m-96-52a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "menu": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "news": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M88 112a8 8 0 0 1 8-8h80a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m8 40h80a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16m136-88v120a24 24 0 0 1-24 24H32a24 24 0 0 1-24-23.89V88a8 8 0 0 1 16 0v96a8 8 0 0 0 16 0V64a16 16 0 0 1 16-16h160a16 16 0 0 1 16 16m-16 0H56v120a23.8 23.8 0 0 1-1.37 8H208a8 8 0 0 0 8-8Z\"/></g>", "out": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M120 216a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h64a8 8 0 0 1 0 16H56v160h56a8 8 0 0 1 8 8m109.66-93.66l-40-40a8 8 0 0 0-11.32 11.32L204.69 120H112a8 8 0 0 0 0 16h92.69l-26.35 26.34a8 8 0 0 0 11.32 11.32l40-40a8 8 0 0 0 0-11.32\"/></g>", "pen": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m227.32 73.37l-44.69-44.68a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h168a8 8 0 0 0 0-16H115.32l112-112a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.69L147.32 64l24-24L216 84.69Z\"/></g>", "play": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128\"/></g>", "plus": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/></g>", "reply": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 109.66l-48 48a8 8 0 0 1-11.32-11.32L204.69 112H128a88.1 88.1 0 0 0-88 88a8 8 0 0 1-16 0A104.11 104.11 0 0 1 128 96h76.69l-34.35-34.34a8 8 0 0 1 11.32-11.32l48 48a8 8 0 0 1 0 11.32\"/></g>", "right": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/></g>", "search": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/></g>", "share": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/></g>", "smile": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.07 48c-10.29 17.79-27.4 28-46.93 28s-36.63-10.2-46.92-28a8 8 0 1 1 13.84-8c7.47 12.91 19.21 20 33.08 20s25.61-7.1 33.07-20a8 8 0 0 1 13.86 8\"/></g>", "spark": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sparkles": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "stack": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.91 172a8 8 0 0 1-2.91 10.91l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 36 169.09l92 53.65l92-53.65a8 8 0 0 1 10.91 2.91M220 121.09l-92 53.65l-92-53.65a8 8 0 0 0-8 13.82l96 56a8 8 0 0 0 8.06 0l96-56a8 8 0 1 0-8.06-13.82M24 80a8 8 0 0 1 4-6.91l96-56a8 8 0 0 1 8.06 0l96 56a8 8 0 0 1 0 13.82l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 24 80m23.88 0L128 126.74L208.12 80L128 33.26Z\"/></g>", "tg": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "tgm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "thumbdown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m239.82 157l-12-96A24 24 0 0 0 204 40H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h43.06l37.78 75.58A8 8 0 0 0 120 240a40 40 0 0 0 40-40v-16h56a24 24 0 0 0 23.82-27M72 144H32V56h40Zm150 21.29a7.88 7.88 0 0 1-6 2.71h-64a8 8 0 0 0-8 8v24a24 24 0 0 1-19.29 23.54L88 150.11V56h116a8 8 0 0 1 7.94 7l12 96a7.87 7.87 0 0 1-1.94 6.29\"/></g>", "thumbup": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9\"/></g>", "top": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5\"/></g>", "trailer": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 216h-48.64A103.95 103.95 0 1 0 128 232h104a8 8 0 0 0 0-16M40 128a88 88 0 1 1 88 88a88.1 88.1 0 0 1-88-88m88-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m24 104a24 24 0 1 0-24 24a24 24 0 0 0 24-24m-32 0a8 8 0 1 1 8 8a8 8 0 0 1-8-8m56-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m-96-16a24 24 0 1 0 24 24a24 24 0 0 0-24-24m0 32a8 8 0 1 1 8-8a8 8 0 0 1-8 8\"/></g>", "tv": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "user": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0\"/></g>", "users": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07\"/></g>", "x": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "x2": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "sCont": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M136 80v43.47l36.12 21.67a8 8 0 0 1-8.24 13.72l-40-24A8 8 0 0 1 120 128V80a8 8 0 0 1 16 0m-8-48a95.44 95.44 0 0 0-67.92 28.15C52.81 67.51 46.35 74.59 40 82V64a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16H49c7.15-8.42 14.27-16.35 22.39-24.57a80 80 0 1 1 1.66 114.75a8 8 0 1 0-11 11.64A96 96 0 1 0 128 32\"/></g>", "sTaste": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sPick": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.1 8.1 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96M56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72m112 131.06l-36.43-18.21a8 8 0 0 0-7.16 0L88 227.06v-52.69a87.89 87.89 0 0 0 80 0ZM128 152a56 56 0 1 0-56-56a56.06 56.06 0 0 0 56 56m0-96a40 40 0 1 1-40 40a40 40 0 0 1 40-40\"/></g>", "sFilm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "sSeries": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z\"/></g>", "sReview": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M248 92.68a15.86 15.86 0 0 0-4.69-11.31l-68.68-68.69a16 16 0 0 0-22.63 0l-28.43 28.43l-58 21.77a16.06 16.06 0 0 0-10.22 12.35L32.11 214.68A8 8 0 0 0 40 224a8.4 8.4 0 0 0 1.32-.11l139.44-23.24a16 16 0 0 0 12.35-10.17l21.77-58L243.31 104A15.87 15.87 0 0 0 248 92.68m-69.87 92.19L63.32 204l47.37-47.37a28 28 0 1 0-11.32-11.32L52 192.7L71.13 77.86L126 57.29L198.7 130ZM112 132a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96-15.32L139.31 48l24-24L232 92.68Z\"/></g>", "sNews": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 40H40a16 16 0 0 0-16 16v160a8 8 0 0 0 11.58 7.15L64 208.94l28.42 14.21a8 8 0 0 0 7.16 0L128 208.94l28.42 14.21a8 8 0 0 0 7.16 0L192 208.94l28.42 14.21A8 8 0 0 0 232 216V56a16 16 0 0 0-16-16m0 163.06l-20.42-10.22a8 8 0 0 0-7.16 0L160 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L96 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L40 203.06V56h176ZM136 112a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m0 32a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-72 24h48a8 8 0 0 0 8-8V96a8 8 0 0 0-8-8H64a8 8 0 0 0-8 8v64a8 8 0 0 0 8 8m8-64h32v48H72Z\"/></g>", "cEps": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M32 64a8 8 0 0 1 8-8h176a8 8 0 0 1 0 16H40a8 8 0 0 1-8-8m8 72h120a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m72 48H40a8 8 0 0 0 0 16h72a8 8 0 0 0 0-16m135.66-57.7a8 8 0 0 1-10 5.36L208 122.75V192a32.05 32.05 0 1 1-16-27.69V112a8 8 0 0 1 10.3-7.66l40 12a8 8 0 0 1 5.36 9.96M192 192a16 16 0 1 0-16 16a16 16 0 0 0 16-16\"/></g>", "cDl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16m0 16v104h-28.7a15.86 15.86 0 0 0-11.3 4.69L148.69 176h-41.38L88 156.69A15.86 15.86 0 0 0 76.69 152H48V48Zm0 160H48v-40h28.69L96 187.31a15.86 15.86 0 0 0 11.31 4.69h41.38a15.86 15.86 0 0 0 11.31-4.69L179.31 168H208zM90.34 125.66a8 8 0 0 1 11.32-11.32L120 132.69V72a8 8 0 0 1 16 0v60.69l18.34-18.35a8 8 0 0 1 11.32 11.32l-32 32a8 8 0 0 1-11.32 0Z\"/></g>", "cAbout": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 48h-72a40 40 0 0 0-32 16a40 40 0 0 0-32-16H24a8 8 0 0 0-8 8v144a8 8 0 0 0 8 8h72a24 24 0 0 1 24 24a8 8 0 0 0 16 0a24 24 0 0 1 24-24h72a8 8 0 0 0 8-8V56a8 8 0 0 0-8-8M96 192H32V64h64a24 24 0 0 1 24 24v112a39.8 39.8 0 0 0-24-8m128 0h-64a39.8 39.8 0 0 0-24 8V88a24 24 0 0 1 24-24h64ZM160 88h40a8 8 0 0 1 0 16h-40a8 8 0 0 1 0-16m48 40a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8m0 32a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8\"/></g>", "cCmt": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232.07 186.76a80 80 0 0 0-62.5-114.17a80 80 0 1 0-145.64 66.17l-7.27 24.71a16 16 0 0 0 19.87 19.87l24.71-7.27a80.4 80.4 0 0 0 25.18 7.35a80 80 0 0 0 108.34 40.65l24.71 7.27a16 16 0 0 0 19.87-19.86ZM62 159.5a8.3 8.3 0 0 0-2.26.32L32 168l8.17-27.76a8 8 0 0 0-.63-6A64 64 0 1 1 65.8 160.5a8 8 0 0 0-3.8-1m153.79 28.73L224 216l-27.76-8.17a8 8 0 0 0-6 .63a64.05 64.05 0 0 1-85.87-24.88a79.93 79.93 0 0 0 70.33-93.87a64 64 0 0 1 41.75 92.48a8 8 0 0 0-.63 6.04Z\"/></g>", "cMore": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 88H48a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16m0 112H48v-96h160zM48 64a8 8 0 0 1 8-8h144a8 8 0 0 1 0 16H56a8 8 0 0 1-8-8m16-32a8 8 0 0 1 8-8h112a8 8 0 0 1 0 16H72a8 8 0 0 1-8-8\"/></g>", "sound": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M155.51 24.81a8 8 0 0 0-8.42.88L77.25 80H32a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h45.25l69.84 54.31A8 8 0 0 0 160 224V32a8 8 0 0 0-4.49-7.19M32 96h40v64H32Zm112 111.64l-56-43.55V91.91l56-43.55Zm54-106.08a40 40 0 0 1 0 52.88a8 8 0 0 1-12-10.58a24 24 0 0 0 0-31.72a8 8 0 0 1 12-10.58M248 128a79.9 79.9 0 0 1-20.37 53.34a8 8 0 0 1-11.92-10.67a64 64 0 0 0 0-85.33a8 8 0 1 1 11.92-10.67A79.83 79.83 0 0 1 248 128\"/></g>", "cc": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zm-105.08-40.29a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92m80 0a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92\"/></g>"};
 PHOSPHOR.cMusic="<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M212.92 17.69a8 8 0 0 0-6.86-1.45l-128 32A8 8 0 0 0 72 56v110.08A36 36 0 1 0 88 196v-85.75l112-28v51.83A36 36 0 1 0 216 164V24a8 8 0 0 0-3.08-6.31M52 216a20 20 0 1 1 20-20a20 20 0 0 1-20 20M88 93.75v-31.5l112-28v31.5ZM180 184a20 20 0 1 1 20-20a20 20 0 0 1-20 20\"/></g>";
 Object.assign(ICON,PHOSPHOR);
+ICON.cTr='<rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M10.2 9.4v5.2l4.4-2.6z" fill="currentColor"/>';
 ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
 
 </script>

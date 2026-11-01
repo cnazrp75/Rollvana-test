@@ -618,6 +618,236 @@ main>.row:first-child{margin-top:28px!important}
 .rh h2{min-width:0}
 .more{white-space:nowrap;flex:none;font-size:13px!important}
 @media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
+
+/* ===== round 54 ===== */
+/* header: plain glass buttons, no icons */
+.hdr .sub,.hdr .login{background:rgba(242,239,248,.1)!important;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16)!important;color:var(--ink-1)!important;font-weight:600!important;border-radius:999px!important}
+.hdr .sub:hover,.hdr .login:hover{background:rgba(242,239,248,.18)!important}
+.hdr .sub svg,.hdr .login svg{display:none!important}
+/* slider: kind as a chip, genre readable */
+.stage>.kick{align-items:center;gap:10px!important}
+.kchip{height:26px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(242,239,248,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);color:#fff;font-size:12.5px;font-weight:700}
+.kg{color:rgba(255,255,255,.9);font-size:14px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+/* scores: star, number, /10, votes */
+.scr{display:inline-flex;align-items:center;gap:4px;direction:rtl}
+.scr .st{width:14px;height:14px;color:#F5C518;flex:none}
+.scr b{font-weight:700;color:var(--ink-1)}
+.scr small{font-size:.82em;color:rgba(242,239,248,.6);font-weight:500}
+.scr em{font-style:normal;font-size:12.5px;color:var(--ink-2);margin-inline-start:6px}
+.meta .scr .st{width:16px;height:16px}
+.sbox .scr b{font-size:12px}.sbox .scr small{font-size:10px}
+.sbox>.st{display:none}
+/* strip: arrows at both ends; neighbours a step brighter */
+.strip2 .pp{display:none!important}
+.harr{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18);transition:background .2s}
+.harr:hover{background:rgba(242,239,248,.24)}
+.harr svg{width:20px;height:20px}
+.strip2{padding-inline:calc(var(--pad) - 6px)!important;gap:8px!important}
+.strip2 ol{padding:4px!important}
+.th.nb img{filter:brightness(.6) saturate(.85)!important}
+@media (max-width:1023px){.harr{width:34px;height:34px}.harr svg{width:17px;height:17px}}
+/* section heads: plain icon, title, a hairline to the link */
+.rh{align-items:center!important;gap:12px!important;margin-bottom:16px!important}
+.rh h2{gap:10px!important;font-size:19px!important}
+.rh h2>span:last-child{flex-direction:row!important;align-items:baseline!important;gap:10px!important}
+.rh h2 small{font-size:12.5px!important}
+.rhi{width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:var(--v)!important}
+.rhi svg{width:22px!important;height:22px!important}
+.rh:after{content:"";flex:1;height:1px;background:linear-gradient(to left,rgba(242,239,248,.12),rgba(242,239,248,0));order:1;align-self:center;min-width:24px}
+.rh>.more,.rh>.ctabs{order:2}
+.more{font-size:12px!important;gap:2px!important;height:28px!important}
+.more svg{width:14px!important;height:14px!important}
+@media (min-width:1024px){.rh h2{font-size:22px!important}}
+@media (max-width:420px){.rh h2 small{display:none}}
+/* cards: corner badge, year · votes; series: episode line, genre under it */
+.card .po .cbdg{position:absolute;top:8px;right:8px;z-index:2;height:22px!important;font-size:10.5px!important;padding:0 8px!important;border-radius:999px!important;background:rgba(13,11,21,.5)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18)!important}
+.card .cm{justify-content:flex-start!important}
+.card .cy{font-size:11px!important;color:rgba(242,239,248,.62)!important;white-space:nowrap}
+.cep{font-size:11.5px;font-weight:700;color:var(--gold);margin-top:3px}
+.card.wide .cg{margin-top:1px}
+/* continue / history tabs */
+.ctabs{display:inline-flex;gap:14px}
+.ctabs button{font-size:12.5px;color:var(--ink-3);height:28px;position:relative}
+.ctabs button[aria-pressed=true]{color:var(--ink-1);font-weight:700}
+.ctabs button[aria-pressed=true]:after{content:"";position:absolute;inset:auto 0 0 0;height:2px;border-radius:2px;background:var(--v)}
+.cw.hist .cwi img{filter:saturate(.75) brightness(.8)}
+.cwdone{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(13,11,21,.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);color:#fff}
+.cwdone svg{width:15px;height:15px}
+.cw.hist .pg i{background:rgba(242,239,248,.4)!important}
+.cw.hist .cwl em{color:var(--v)!important;font-style:normal;font-weight:600;margin-inline-start:auto}
+/* reviews: editorial covers with the writer */
+.rv2{position:relative;flex:none;width:250px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;scroll-snap-align:start;display:block;background:var(--s1)}
+.rv2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rv2:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.7) 38%,rgba(8,7,12,0) 70%)}
+.rvk{position:absolute;top:12px;right:12px;z-index:2;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#0D0B15;font-size:11.5px;font-weight:800}
+.rvb{position:absolute;inset:auto 14px 14px 14px;z-index:2;display:flex;flex-direction:column;gap:10px}
+.rvb>b{font-size:15.5px;font-weight:800;line-height:1.6;color:#fff}
+.rvby{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(242,239,248,.8)}
+.rvby i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700;background:rgba(242,239,248,.16);color:#fff}
+.rvby small{color:rgba(242,239,248,.55);font-size:11.5px}
+@media (min-width:1024px){.rv2{width:300px}.rvb>b{font-size:17px}}
+.rvrow .sc{padding-bottom:18px!important;margin-bottom:0!important}
+/* the film crowd */
+.post{flex:none;width:290px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:16px;background:linear-gradient(180deg,rgba(242,239,248,.06),rgba(242,239,248,.025));box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)}
+.post .ph{display:flex;align-items:center;gap:8px;font-size:13px}
+.post .ph b{font-weight:700;color:var(--ink-1)}
+.post .ph small{color:var(--ink-3);font-size:11.5px;margin-inline-start:auto}
+.av3{width:30px;height:30px;border-radius:50%;display:inline-grid;place-items:center;font-style:normal;font-size:13px;font-weight:800;color:#0D0B15;background:linear-gradient(135deg,#C9B6FF,#8B6BF2);flex:none}
+.post .pt{display:flex;align-items:center;gap:10px;padding:8px;border-radius:12px;background:rgba(13,11,21,.45)}
+.post .pt img{width:34px;height:50px;border-radius:6px;object-fit:cover}
+.post .pt>span{display:flex;flex-direction:column;gap:3px;min-width:0}
+.post .pt b{font-size:13px;font-weight:700;color:var(--ink-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+.post .pt em{font-style:normal;display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-2)}
+.post .pt em .st,.post .pt em svg{width:13px;height:13px;color:#F5C518}
+.post p{font-size:13.5px;line-height:1.85;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(3 * 1.85em)}
+.post .pf{display:flex;gap:16px;font-size:12px;color:var(--ink-3)}
+.post .pf>span{display:inline-flex;align-items:center;gap:5px}
+.post .pf svg{width:15px;height:15px}
+.subh{font-size:14px;font-weight:700;color:var(--ink-2);padding:0 var(--pad);margin:10px 0 12px}
+.ulist{flex:none;width:250px;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03) 60%);box-shadow:inset 0 0 0 1px rgba(169,139,255,.16)}
+.ulist .stack{position:relative;height:128px;margin-bottom:8px}
+.ulist .stack img{position:absolute;top:0;right:8px;width:84px;height:124px;border-radius:10px;object-fit:cover;box-shadow:0 10px 24px -8px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.ulist b{font-size:14.5px;font-weight:800;color:var(--ink-1)}
+.ulist small{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-3)}
+.ulist small .av3{width:20px;height:20px;font-size:10px}
+.scr .sv{display:inline-flex;align-items:baseline;gap:1px}
+
+/* ===== round 55 ===== */
+/* subscribe is the brand action, login stays glass */
+.hdr .sub{background:var(--v)!important;color:#120E1C!important;box-shadow:0 8px 22px -10px rgba(169,139,255,.8)!important;font-weight:800!important;backdrop-filter:none!important}
+.hdr .sub:hover{background:#B9A0FF!important}
+/* strip: every slide readable, the current one lit; labelled previous / next */
+.th img{filter:brightness(.62) saturate(.9)!important}
+.th:hover img{filter:brightness(.85) saturate(1)!important}
+.th.nb img{filter:brightness(.7) saturate(.95)!important}
+.th.on img{filter:none!important}
+.th:after{content:"";position:absolute;inset:35% 0 0 0;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);pointer-events:none}
+.tht{display:flex!important}
+.th:not(.on) .tht b{font-size:11px!important;color:rgba(255,255,255,.82)!important}
+.harr{width:auto!important;height:62px!important;border-radius:14px!important;padding:0 10px;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;font-weight:700}
+.harr span{line-height:1}
+@media (min-width:1024px){.harr{height:84px!important;padding:0 14px;font-size:12.5px}.harr svg{width:22px!important;height:22px!important}}
+@media (max-width:1023px){.th{width:92px!important;height:54px!important}.th.on{width:124px!important}.harr{height:54px!important;padding:0 7px}.tht b{font-size:10.5px!important}}
+/* card score: plain, in the bottom line */
+.card .cm{display:flex;align-items:center;gap:8px}
+.card .cm .scr .st{width:13px;height:13px}
+.card .cm .scr b{font-size:12px}
+.card .cm .scr small{font-size:10px}
+/* reviews: quote cards led by words, not photos */
+.rq{flex:none;width:320px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;gap:12px;padding:22px 20px 18px;border-radius:18px;background:linear-gradient(165deg,rgba(169,139,255,.12),rgba(242,239,248,.03) 55%);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);overflow:hidden}
+.rqm{position:absolute;top:-18px;left:14px;font-size:120px;line-height:1;font-family:Georgia,serif;color:rgba(169,139,255,.22);pointer-events:none}
+.rq b{font-size:16.5px;font-weight:800;line-height:1.7;color:var(--ink-1);position:relative}
+.rq p{font-size:13.5px;line-height:1.95;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(3 * 1.95em)}
+.rqf{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(242,239,248,.08)}
+.rqf img{width:30px;height:44px;border-radius:6px;object-fit:cover}
+.rqf>span:not(.rqk){display:flex;flex-direction:column;gap:2px}
+.rqf em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--ink-1)}
+.rqf small{font-size:11.5px;color:var(--ink-3)}
+.rqk{margin-inline-start:auto;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#120E1C;font-size:11.5px;font-weight:800}
+@media (max-width:1023px){.rq{width:280px}}
+
+/* ===== round 57 · Ali's notes ===== */
+/* subscribe: glass with a violet tint, still apart from the plain glass login */
+.hdr .sub{background:rgba(169,139,255,.2)!important;color:#E6DCFF!important;backdrop-filter:blur(16px) saturate(1.5)!important;-webkit-backdrop-filter:blur(16px) saturate(1.5)!important;box-shadow:inset 0 0 0 1px rgba(190,165,255,.5),0 8px 22px -12px rgba(169,139,255,.7)!important;font-weight:800!important}
+.hdr .sub:hover{background:rgba(169,139,255,.3)!important}
+/* section heads: cleaner, no line, link as a quiet pill */
+.rh:after{display:none!important}
+.rh{justify-content:space-between!important;margin-bottom:14px!important}
+.rh h2{font-size:20px!important;font-weight:800!important;letter-spacing:-.01em}
+.rhi svg{width:20px!important;height:20px!important}
+.rh .more{height:30px!important;padding:0 10px 0 8px;border-radius:999px;background:rgba(242,239,248,.06);color:var(--ink-2)!important;font-size:12px!important}
+.rh .more:hover{background:rgba(242,239,248,.12);color:var(--ink-1)!important}
+@media (min-width:1024px){.rh h2{font-size:23px!important}}
+/* score on cards: Latin digits, star, quiet /10 */
+.scr .sv{font-family:var(--f-ui);letter-spacing:0}
+.scr .sv small{opacity:.55;font-size:.8em}
+/* taste match: a small chip on the poster */
+.mchip{position:absolute;top:8px;left:8px;z-index:2;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:700;color:#0D0B15;background:rgba(245,196,81,.92)}
+.card .match{display:none!important}
+/* continue: history card at the end of the row */
+.cw.histc{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:0 22px;width:220px;aspect-ratio:auto;align-self:stretch;min-height:150px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03));box-shadow:inset 0 0 0 1px rgba(242,239,248,.1);scroll-snap-align:start}
+.histc .hci{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08);color:var(--v);margin-bottom:6px}
+.histc .hci svg{width:20px;height:20px}
+.histc b{font-size:15px;font-weight:800;color:var(--ink-1)}
+.histc small{font-size:12px;color:var(--ink-3)}
+.histc .hcg{display:inline-flex;align-items:center;gap:2px;margin-top:8px;font-size:12.5px;font-weight:700;color:var(--v)}
+.histc .hcg svg{width:15px;height:15px}
+/* the journal: reviews and news in their own band */
+.mag{position:relative;margin-top:72px;padding:48px 0 40px;background:radial-gradient(120% 70% at 85% 0%,rgba(169,139,255,.10),transparent 60%),linear-gradient(180deg,#16121F,#100D17);border-top:1px solid rgba(242,239,248,.08);border-bottom:1px solid rgba(242,239,248,.08)}
+.magh{padding:0 var(--pad);margin-bottom:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.magk{font-size:12px;font-weight:800;color:var(--v);letter-spacing:.02em}
+.magt{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:44px;line-height:1.05;color:var(--ink-1)}
+.magt i{font-style:italic;color:#CDBBFF}
+.magh small{font-size:13px;color:var(--ink-3)}
+.mag .row{margin-top:36px!important}
+.mag .rh h2{font-size:17px!important}
+.mag .rhi{color:var(--ink-2)!important}
+.mag .rq{background:rgba(242,239,248,.035)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)!important}
+.mag .nw{border-bottom-color:rgba(242,239,248,.07)!important}
+@media (min-width:1024px){.magt{font-size:64px}.mag{padding:64px 0 56px}}
+
+/* round 58: the slide selector shows every slide at once, none dimmed; the active one gets a ring that slides between them */
+.klab{display:inline-flex;align-items:center;gap:10px;color:#CDBBFF;font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.klab:after{content:"";width:1px;height:12px;background:rgba(255,255,255,.45)}
+.strip2 ol{overflow:visible!important;scroll-snap-type:none!important;gap:10px!important}
+.strip2 li,.strip2 li:has(.th.on){flex:1 1 0!important;min-width:0}
+.th,.th.on{width:100%!important;height:72px!important;opacity:1!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.14)!important;border-radius:12px;overflow:visible!important}
+.th img,.th.nb img,.th:hover img{filter:brightness(.82) saturate(1)!important;border-radius:12px}
+.th.on img{filter:brightness(1)!important}
+.th:hover img{filter:brightness(.95)!important}
+.th:before{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.72),transparent 60%);z-index:1;pointer-events:none}
+.th.on:after{display:none}
+.th:not(.on) .tht b,.tht b{color:#fff!important;font-size:12px!important}
+.thr{position:absolute;inset:-4px;border-radius:15px;box-shadow:0 0 0 2px #F4F1FA;z-index:3;pointer-events:none}
+.thp,.th.on .thp{inset:auto 8px 0 8px!important;height:3px!important;bottom:-11px!important;border-radius:3px;background:rgba(242,239,248,.16)!important;overflow:hidden}
+.th:not(.on) .thp{background:transparent!important}
+.strip2{bottom:24px!important}
+@media (max-width:1023px){
+  .strip2{bottom:34px!important;padding-inline:var(--pad)!important}
+  .hero .copy{padding-bottom:104px!important}
+  .strip2 .harr{display:none!important}
+  .strip2 ol{gap:6px!important;padding:4px 0!important}
+  .th,.th.on{height:46px!important;border-radius:10px}
+  .th img{border-radius:10px}.th:before{border-radius:10px}
+  .thr{inset:-3px;border-radius:12px}
+  .tht{display:none!important}
+  .thp,.th.on .thp{inset:auto 4px 0 4px!important;bottom:-8px!important}
+}
+
+/* round 59: score on the poster's top-left, larger card type, section-head rule back, slider progress inside the thumb */
+.ctl{position:absolute;top:10px;left:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.ctl .mchip{position:static}
+.cscore{height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(13,11,21,.62);box-shadow:inset 0 0 0 1px rgba(242,239,248,.12)}
+.cscore .scr .st{width:14px!important;height:14px!important}
+.cscore .scr b{font-size:14px!important;font-weight:800}
+.cscore .scr small{font-size:11px!important}
+.card .ct{font-size:15px!important;font-weight:800!important}
+.card .cg{font-size:12.5px!important;margin-top:4px}
+.card .cep{font-size:13px!important}
+.card .cm .cy,.card .cy{font-size:12.5px!important}
+.card .po .cbdg{height:24px!important;font-size:11.5px!important;padding:0 10px!important}
+.mchip{height:24px!important;font-size:11.5px!important;padding:0 9px!important}
+@media (min-width:1024px){.card .ct{font-size:16.5px!important}.card .cg{font-size:13.5px!important}.card .cm .cy,.card .cy{font-size:13px!important}.cscore{height:30px}.cscore .scr b{font-size:15px!important}}
+.rh:after{display:block!important;content:"";flex:1;height:1px;min-width:24px;align-self:center;order:0;background:linear-gradient(to left,rgba(242,239,248,.16),rgba(242,239,248,0))}
+.rh h2{order:-1}.rh .more{order:1}
+.thp,.th.on .thp{inset:auto 10px 8px 10px!important;bottom:8px!important;height:3px!important;z-index:2;background:rgba(242,239,248,.25)!important}
+.th:not(.on) .thp{background:transparent!important}
+.th.on .tht{bottom:16px!important}
+@media (max-width:1023px){.thp,.th.on .thp{inset:auto 6px 6px 6px!important;bottom:6px!important}}
+
+/* round 60: plain score (no pill), year then genre on one line, the story slides in on hover */
+.cscore{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 12px rgba(0,0,0,.6)}
+.cscore .st{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
+.card .cg{display:flex!important;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
+.card .cg .cy{flex:none;margin:0!important;color:rgba(242,239,248,.9)!important;font-weight:700}
+.card .cg .cy:after{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:rgba(242,239,248,.5);margin-inline-start:8px;vertical-align:middle}
+.card .cgg{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.csyn{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;margin:0;max-height:0;opacity:0;font-size:12.5px;line-height:1.75;color:rgba(242,239,248,.85);transition:max-height .45s cubic-bezier(.22,1,.36,1),opacity .3s,margin .45s cubic-bezier(.22,1,.36,1)}
+.card:hover .csyn,.card:focus-visible .csyn{max-height:92px;opacity:1;margin-top:8px}
+.card .ov{transition:background .35s}
+.card:hover .ov{background:linear-gradient(to top,rgba(8,7,12,.97) 0,rgba(8,7,12,.9) 62%,rgba(8,7,12,0) 100%)!important}
+@media (min-width:1024px){.csyn{font-size:13px}}
+@media (hover:none){.csyn{display:none}}
 </style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"><svg class="intro" id="intro" viewBox="-40 -820 3689 1130" role="img" aria-label="Rollvana" data-ocx="867" data-w="3609">
@@ -773,6 +1003,9 @@ const NEWS=[
  {img:"w-wednesday.jpg",t:"تاریخ پخش قسمت‌های تازه‌ی «ونزدی» اعلام شد",tag:"سریال",d:"امروز"},
  {img:"w-f1.jpg",t:"«اف وان» پرفروش‌ترین فیلم ورزشی تاریخ شد",tag:"باکس‌آفیس",d:"دیروز"},
  {img:"w-house-of-the-dragon.jpg",t:"فصل سوم «خاندان اژدها» تابستان سال بعد می‌آید",tag:"سریال",d:"۲ روز پیش"}];
+// one-line story for the card hover
+const CSYN={"sinners":"دو برادر دوقلو به شهر زادگاهشان برمی‌گردند تا از نو شروع کنند، اما شری کهنه‌تر از گذشته‌شان منتظرشان است.","one-battle-after-another":"انقلابیِ بازنشسته‌ای وقتی دخترش ناپدید می‌شود، ناچار است با دشمنان قدیمی‌اش دوباره روبه‌رو شود.","weapons":"یک شب، همه‌ی بچه‌های یک کلاس جز یکی، در یک ساعت از خانه بیرون می‌روند و دیگر برنمی‌گردند.","f1":"راننده‌ی کهنه‌کار فرمول یک برمی‌گردد تا هم‌تیمی جوانش را به قهرمانی برساند و حساب خودش را با گذشته صاف کند.","frankenstein":"دانشمندی جاه‌طلب به مرده جان می‌دهد و آفریده‌اش، تنها و خشمگین، پاسخ همه‌چیز را از او می‌خواهد.","mission-impossible-the-final-reckoning":"ایتن هانت و تیمش در مسابقه‌ای با زمان، باید جلوی هوش مصنوعی‌ای را بگیرند که دنیا را تهدید می‌کند.","the-running-man":"مردی بی‌پول در یک مسابقه‌ی تلویزیونی شرکت می‌کند که در آن شکارچیان برای کشتنش آزادند.","the-bear":"آشپزی برجسته به ساندویچ‌فروشی خانوادگی‌اش در شیکاگو برمی‌گردد تا آن را از ورشکستگی نجات دهد.","star-wars-andor":"کاسیان آندور از دزدی بی‌هدف به یکی از چهره‌های اصلی شورش علیه امپراتوری تبدیل می‌شود.","slow-horses":"گروهی از مأموران اخراجیِ سازمان اطلاعات بریتانیا، بی‌آنکه کسی جدی‌شان بگیرد، درگیر پرونده‌های واقعی می‌شوند.","the-penguin":"اسوالد کابل‌پات در خلأ قدرت گاتهام، پله‌پله به سوی تاج‌وتخت دنیای تبهکاری بالا می‌رود.","the-white-lotus":"تعطیلات چند مهمان ثروتمند در یک هتل لوکس، هفته‌به‌هفته به سمت یک مرگ مرموز پیش می‌رود.","wednesday":"ونزدی آدامز در مدرسه‌ی شبانه‌روزی نورمور، رازی را دنبال می‌کند که به گذشته‌ی خانواده‌اش گره خورده است.","squid-game":"صدها بدهکار در بازی‌های کودکانه‌ای شرکت می‌کنند که جایزه‌اش ثروت است و باختش مرگ.","house-of-the-dragon":"دویست سال پیش از «بازی تاج و تخت»، جنگ جانشینی خاندان تارگرین را از درون می‌شکافد.","past-lives":"دو دوست کودکی پس از بیست سال در نیویورک دوباره هم را می‌بینند و از «اگر»های زندگی‌شان می‌پرسند.","arrival":"زبان‌شناسی مأمور می‌شود با موجوداتی فضایی حرف بزند و در این راه، نگاهش به زمان دگرگون می‌شود.","interstellar":"گروهی از فضانوردان از کرمچاله‌ای می‌گذرند تا خانه‌ی تازه‌ای برای بشریت پیدا کنند.","parasite":"خانواده‌ای فقیر یکی‌یکی به خانه‌ی خانواده‌ای ثروتمند راه پیدا می‌کنند، تا وقتی که رازی زیر خانه پیدا می‌شود.","whiplash":"درامری جوان زیر دست استادی بی‌رحم، مرز میان نبوغ و ویرانی را می‌آزماید.","her":"مردی تنها در آینده‌ای نزدیک، عاشق سیستم‌عاملی هوشمند می‌شود که هر روز بیشتر از او می‌فهمد.","prisoners":"وقتی دختر کوچکش ناپدید می‌شود و پلیس به جایی نمی‌رسد، پدری تصمیم می‌گیرد خودش قانون را در دست بگیرد.","blade-runner-2049":"شکارچی تازه‌ای رازی را کشف می‌کند که می‌تواند باقی‌مانده‌ی جامعه را به آشوب بکشد.","oppenheimer":"داستان دانشمندی که بمب اتم را ساخت، و بهایی که برای آن پرداخت."};
+[...FILMS,...SERIES,...PICKS].forEach(c=>{if(CSYN[c.s])c.syn=CSYN[c.s]});
 
 
 // every image the first screens need, fetched and decoded while the intro plays
@@ -908,9 +1141,9 @@ function Header({user,desk}){
     <div class="hl">
       ${user&&html`<${motion.button} class="ib bell" aria-label="اعلان‌ها، ۲ مورد تازه" whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><i class="dot"></i></${motion.button}>`}
       <${AnimatePresence} mode="popLayout" initial=${false}>
-        ${!user&&html`<${motion.a} key="sub" class="sub" href="#" whileTap=${{scale:.96}} initial=${{opacity:0,width:0,paddingLeft:0,paddingRight:0}} animate=${{opacity:1,width:"auto",paddingLeft:14,paddingRight:14}} exit=${{opacity:0,width:0,paddingLeft:0,paddingRight:0,marginLeft:0,marginRight:0}} transition=${SOFT} style=${{overflow:"hidden"}}><${I} n="crown"/>خرید اشتراک</${motion.a}>`}
+        ${!user&&html`<${motion.a} key="sub" class="sub" href="#" whileTap=${{scale:.96}} initial=${{opacity:0,width:0,paddingLeft:0,paddingRight:0}} animate=${{opacity:1,width:"auto",paddingLeft:14,paddingRight:14}} exit=${{opacity:0,width:0,paddingLeft:0,paddingRight:0,marginLeft:0,marginRight:0}} transition=${SOFT} style=${{overflow:"hidden"}}>خرید اشتراک</${motion.a}>`}
         ${user?html`<${Account} key="av"/>`
-              :html`<${motion.a} key="in" layoutId="me" class="login" href="#" style=${{borderRadius:10}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.1}}}><${I} n="user"/>ورود</${motion.span}></${motion.a}>`}
+              :html`<${motion.a} key="in" layoutId="me" class="login" href="#" style=${{borderRadius:10}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.1}}}>ورود</${motion.span}></${motion.a}>`}
       </${AnimatePresence}>
     </div>
   </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
@@ -950,20 +1183,14 @@ function Dots({i,n,run,dur,reduced,paused,toggle,to}){
 /* round 51: every slide in one strip; the current one is lit and carries the timer */
 function Strip({items,i,to,run,dur,reduced,paused,toggle,desk}){
   const ol=useRef();
-  useEffect(()=>{const el=ol.current;const li=el&&el.children[i];if(!el||!li)return;
-    el.scrollTo({left:li.offsetLeft-(el.clientWidth-li.offsetWidth)/2,behavior:reduced?"auto":"smooth"})},[i]);
   return html`<div class="strip2" role="group" aria-label=${"اسلاید "+fa(i+1)+" از "+fa(items.length)}>
-    <${motion.button} class="pp" aria-label=${paused?"پخش خودکار":"توقف پخش خودکار"} onClick=${toggle} whileTap=${{scale:.9}}>
-      <svg viewBox="0 0 24 24" class="i" aria-hidden="true">
-        <${motion.path} fill="currentColor" stroke="none" initial=${false} animate=${{d:paused?"M7 4 L13 7.75 L13 16.25 L7 20 Z":"M6 5 L10 5 L10 19 L6 19 Z"}} transition=${{duration:.28,ease:EASE}}/>
-        <${motion.path} fill="currentColor" stroke="none" initial=${false} animate=${{d:paused?"M13 7.75 L19 12 L19 12 L13 16.25 Z":"M14 5 L18 5 L18 19 L14 19 Z"}} transition=${{duration:.28,ease:EASE}}/>
-      </svg>
-    </${motion.button}>
-    <ol ref=${ol}>${items.map((it,k)=>html`<li key=${k}><button class=${"th"+(k===i?" on":"")} aria-current=${k===i} aria-label=${it.fa} onClick=${()=>to(k)}>
+    <${motion.button} class="harr" aria-label=${"قبلی: "+items[(i-1+items.length)%items.length].fa} onClick=${()=>to((i-1+items.length)%items.length,-1)} whileTap=${{scale:.94}}><${I} n="right"/><span>قبلی</span></${motion.button}>
+    <ol ref=${ol}>${items.map((it,k)=>html`<li key=${k}><button class=${"th"+(k===i?" on":"")+(k===(i+1)%items.length||k===(i-1+items.length)%items.length?" nb":"")} aria-current=${k===i} aria-label=${it.fa} onClick=${()=>to(k)}>
       <img src=${M("b-"+(it.s||"dune-part-two")+".jpg")} alt="" style=${{objectPosition:it.pos}}/>
-      ${k===i&&html`<span class="tht" dir="ltr"><b>${it.en}</b></span>`}
+      <span class="tht" dir="ltr"><b>${it.en}</b></span>${k===i&&html`<${motion.i} class="thr" layoutId=${reduced?undefined:"thr"} transition=${{type:"spring",stiffness:420,damping:36}}/>`}
       <i class="thp">${k===i&&html`<${motion.b} key=${"p"+i+run} initial=${{scaleX:0}} animate=${{scaleX:run?1:0}} transition=${{duration:run&&!reduced?dur/1000:.3,ease:"linear"}}/>`}</i>
     </button></li>`)}</ol>
+    <${motion.button} class="harr" aria-label=${"بعدی: "+items[(i+1)%items.length].fa} onClick=${()=>to((i+1)%items.length,1)} whileTap=${{scale:.94}}><${I} n="left"/><span>بعدی</span></${motion.button}>
   </div>`;
 }
 const LINE={hidden:{opacity:0,y:34,filter:"blur(12px)",clipPath:"inset(0 0 100% 0)"},
@@ -995,14 +1222,14 @@ function UpNext({items,i,to,desk,reduced}){
 function Hero({items,loading,desk}){
   const [i,setI]=useState(+Q.get("i")||0);
   const [dir,setDir]=useState(1);
-  const [paused,setPaused]=useState(Q.get("auto")==="0");
+  const [paused]=useState(Q.get("auto")==="0");const setPaused=()=>{};
   const [hold,setHold]=useState(false);
   const [hovering,setHovering]=useState(false);
   const reduced=useReducedMotion();
   const n=items.length,it=items[i];
   const DUR=6000;
   const go=useCallback(d=>{setDir(d);setI(x=>(x+d+n)%n)},[n]);
-  const to=k=>{setDir(k>i?1:-1);setI(k)};
+  const to=(k,d)=>{setDir(d||(k>i?1:-1));setI(k)};
   useEffect(()=>{if(!loading)document.documentElement.style.setProperty("--acc",it.acc)},[i,loading]);
   const stop=paused||hold||hovering;
   useEffect(()=>{if(stop||loading)return;const t=setTimeout(()=>go(1),DUR);return()=>clearTimeout(t)},[i,stop,loading]);
@@ -1029,7 +1256,7 @@ function Hero({items,loading,desk}){
   return html`<section class="hero" aria-roledescription="carousel" aria-label="عنوان‌های منتخب" tabIndex="0"
     style=${{"--stripH":full+"px","--cardW":cardW+"px"}}
     onPointerEnter=${()=>desk&&setHovering(true)} onPointerLeave=${()=>{setHovering(false);setHold(false)}}
-    onPointerDown=${e=>{if(!desk&&!e.target.closest("a,button"))setHold(true)}} onPointerUp=${()=>setHold(false)} onPointerCancel=${()=>setHold(false)}
+    onPointerDown=${e=>{if(!e.target.closest("a,button"))setHold(true)}} onPointerUp=${()=>setHold(false)} onPointerCancel=${()=>setHold(false)}
     onKeyDown=${e=>{if(e.key==="ArrowLeft")go(1);if(e.key==="ArrowRight")go(-1)}}>
     <${motion.div} style=${{position:"absolute",inset:0,x:imgX,zIndex:-2}}>
       <${AnimatePresence} initial=${false} custom=${dir}>
@@ -1046,12 +1273,12 @@ function Hero({items,loading,desk}){
       onDragStart=${()=>setHold(true)}
       onDragEnd=${(e,info)=>{if(info.offset.x>50||info.velocity.x>400)go(1);else if(info.offset.x<-50||info.velocity.x<-400)go(-1)}}>
       <${Stage} k=${i} reduced=${reduced}>
-        <${Line} cls="kick" reduced=${reduced}>${it.kind}<span class="dotsep">·</span>${it.g}</${Line}>
+        <${Line} cls="kick" reduced=${reduced}><span class="klab">${it.kind}</span><span class="kg">${it.g}</span></${Line}>
         <${Line} cls="logo2" reduced=${reduced}><a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}>
           ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}</a></${Line}>
         <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span></${Line}>
         <${Line} cls="meta" reduced=${reduced}>
-          <span class="star2" aria-label=${"امتیاز IMDb "+it.imdb}>${STAR}<b class="num">${fa(it.imdb).replace(".","٫")}</b></span>
+          ${Score({v:it.imdb,s:it.s,full:true})}
           <i class="sep"></i><span class="num">${fa(it.y)}</span>
           <i class="sep"></i><span>${it.rt}</span>
           <span class="bdg">${it.b}</span>
@@ -1068,17 +1295,24 @@ function Hero({items,loading,desk}){
 
 const IMDB_SVG="<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>";
 const IMDB=html`<span class="imdbm" aria-hidden="true">IMDb</span>`;
+/* IMDb votes in thousands (mock data, rounded) */
+const VOTES={"dune-part-two":680,"blade-runner-2049":700,"oppenheimer":900,"severance":320,"shogun":230,"the-last-of-us":640,"poor-things":330,"fallout":330,
+"sinners":260,"one-battle-after-another":180,"weapons":230,"f1":200,"frankenstein":120,"mission-impossible-the-final-reckoning":160,"the-running-man":40,
+"the-bear":320,"star-wars-andor":290,"slow-horses":110,"the-penguin":180,"the-white-lotus":220,"squid-game":650,"house-of-the-dragon":500,"wednesday":440,
+"past-lives":150,"arrival":800,"interstellar":2300,"parasite":1000,"whiplash":1000,"her":700,"prisoners":850};
+const votesOf=s=>{const k=VOTES[s]||100;return k>=1000?fa((k/1000).toFixed(1).replace(/\.0$/,"")).replace(".","٫")+" میلیون رأی":fa(k)+" هزار رأی"};
+function Score({v,s,full}){return html`<span class="scr" aria-label=${"امتیاز IMDb "+v+" از ۱۰"+(s?"، "+votesOf(s):"")}>${STAR}<span class="sv" dir="ltr"><b>${v}</b><small>/10</small></span>${full&&s&&html`<em class="num">${votesOf(s)}</em>`}</span>`}
 const STAR=html`<svg class="st" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg>`;
 function Card({c,k,reduced}){
   return html`<${motion.a} href="#" class=${"card"+(c.ep?" wide":"")}
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M((c.ep?"w-":"p-")+c.s+".jpg")}/></${motion.div}>
-        <span class="sbox num" aria-label=${"امتیاز IMDb "+c.imdb}>${STAR}<b>${fa(c.imdb).replace(".","٫")}</b></span>
+        <span class="bdg cbdg">${c.b}</span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}${c.m&&html`<span class="mchip num">${fa(c.m)}٪ هم‌سلیقه</span>`}</span>
         <div class="ov">
-          ${c.m&&html`<span class="match num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}
+          
           <div class="ct" dir="ltr">${c.en}</div>
-          ${c.g&&html`<div class="cg">${c.ep?html`<b class="num">${c.ep} تازه</b> · `:""}${c.g}</div>`}<div class="cm">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}<span class="bdg">${c.b}</span></div></div></div>
+          ${c.ep&&html`<div class="cep num">${c.ep}</div>`}<div class="cg">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}${c.g&&html`<span class="cgg">${c.g}</span>`}</div>${c.syn&&html`<p class="csyn">${c.syn}</p>`}</div></div>
     </${motion.div}>
   </${motion.a}>`;
 }
@@ -1113,12 +1347,21 @@ const CONT0=[{s:"severance",img:"e-sev-2-5.jpg",en:"Severance",fa:"جداساز�
   {s:"oppenheimer",img:"b-oppenheimer.jpg",en:"Oppenheimer",fa:"اوپنهایمر",sub:"فیلم",left:"۴۸ دقیقه مانده",p:.73,kind:"film"},
   {s:"fallout",img:"b-fallout.jpg",en:"Fallout",fa:"فال‌اوت",sub:"فصل ۱، قسمت ۴",ep:"غول‌ها",left:"۲۰ دقیقه مانده",p:.62,kind:"series"},
   {s:"the-penguin",img:"w-the-penguin.jpg",en:"The Penguin",fa:"پنگوئن",sub:"فصل ۱، قسمت ۲",ep:"داخل یک بانک",left:"۴۱ دقیقه مانده",p:.18,kind:"series"}];
+const HIST=[{s:"interstellar",img:"w-interstellar.jpg",fa:"میان‌ستاره‌ای",sub:"فیلم",when:"دیروز"},
+  {s:"severance",img:"e-sev-2-4.jpg",fa:"جدایی",sub:"فصل ۲، قسمت ۴",when:"۲ روز پیش"},
+  {s:"arrival",img:"w-arrival.jpg",fa:"ورود",sub:"فیلم",when:"۴ روز پیش"},
+  {s:"past-lives",img:"w-past-lives.jpg",fa:"زندگی‌های گذشته",sub:"فیلم",when:"هفته‌ی پیش"},
+  {s:"f1",img:"w-f1.jpg",fa:"اف وان",sub:"فیلم",when:"هفته‌ی پیش"},
+  {s:"poor-things",img:"b-poor-things.jpg",fa:"موجودات بیچاره",sub:"فیلم",when:"دو هفته پیش"}];
 function ContinueRow({loading,desk}){
+  return html`<${ContinueList} loading=${loading} desk=${desk} head=${html`<div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا</span></h2><a href="#" class="more">تاریخچه<${I} n="left"/></a></div>`}/>`;
+}
+function ContinueList({loading,desk,head}){
   const [list,setList]=useState(CONT0);const [undo,setUndo]=useState(null);const tm=useRef();const reduced=useReducedMotion();
   const remove=c=>{setList(l=>l.filter(x=>x.s!==c.s));setUndo(c);clearTimeout(tm.current);tm.current=setTimeout(()=>setUndo(null),4000)};
   const back=()=>{setList(l=>CONT0.filter(x=>x.s===undo.s||l.some(y=>y.s===x.s)));setUndo(null)};
   if(!list.length&&!undo)return null;
-  return html`<section class="row cont"><div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا<small>${fa(list.length)} عنوان نیمه‌کاره</small></span></h2></div>
+  return html`<section class="row cont">${head}
     <div class="sc"><${AnimatePresence} initial=${false}>${list.map(c=>loading?html`<div class="cw sk" key=${c.s}></div>`:html`<${motion.div} key=${c.s} class="cw" layout=${!reduced}
         exit=${{opacity:0,scale:.9,transition:{duration:.2}}} transition=${SOFT}>
       <${motion.a} href=${PAGE[c.s]||"#"} class="cwa" whileHover="h" whileTap=${{scale:.98}} initial="r" animate="r">
@@ -1129,19 +1372,48 @@ function ContinueRow({loading,desk}){
         <span class="cwl"><${I} n="clock"/>${c.left}<em class="num">${fa(Math.round(c.p*100))}٪ دیده‌شده</em></span>
       </${motion.a}>
       <button class="cwx" aria-label=${"برداشتن "+c.fa+" از ادامه‌ی تماشا"} onClick=${()=>remove(c)}><${I} n="x"/></button>
-    </${motion.div}>`)}</${AnimatePresence}></div>
+    </${motion.div}>`)}</${AnimatePresence}>${!loading&&html`<a href="#" class="cw histc"><span class="hci"><${I} n="clock"/></span><b>تاریخچه‌ی تماشا</b><small>هرچه دیده‌اید، به ترتیب</small><span class="hcg">مشاهده<${I} n="left"/></span></a>`}</div>
     <${AnimatePresence}>${undo&&html`<${motion.div} class="undo" role="status" initial=${{opacity:0,y:12}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:12}}>
       «${undo.fa}» از ادامه‌ی تماشا برداشته شد<button onClick=${back}>برگردان</button></${motion.div}>`}</${AnimatePresence}>
   </section>`;
 }
 
 /* reviews come in from the editorial side by themselves; news under them */
+const RVX={"one-battle-after-another":"اندرسون با کمدی سیاه و تعقیبی بی‌وقفه، شخصی‌ترین و پرانرژی‌ترین فیلمش را ساخته است.","sinners":"کوگلر ژانر خون‌آشامی را با بلوز جنوب آمریکا گره می‌زند؛ ترسناکی که بیشتر از هر چیز شنیدنی است.","frankenstein":"دل تورو هیولا را مهربان‌ترین آدم داستان می‌کند و سازنده را هیولای واقعی.","the-penguin":"کالین فارل زیر گریم ناپدید می‌شود و گاتهام هیچ‌وقت این‌قدر واقعی نبوده است."};
 function Reviews({loading}){
   if(loading)return null;
-  return html`<section class="row"><div class="rh"><h2><span class="rhi"><${I} n="sReview"/></span><span>نقد و بررسی</span></h2><a href="#" class="more">آرشیو نقدها<${I} n="left"/></a></div>
-    <div class="sc">${REVIEWS.map(r=>html`<${motion.a} href="#" key=${r.s} class="rv" whileHover="h" initial="r" animate="r">
-      <div class="rvi"><${motion.img} src=${M(r.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.6,ease:EASE}}/></div>
-      <b>${r.t}</b><small>${r.by} · ${r.d} · ${fa(r.min)} دقیقه مطالعه</small></${motion.a}>`)}</div></section>`;
+  return html`<section class="row rvrow"><div class="rh"><h2><span class="rhi"><${I} n="sReview"/></span><span>نقد و بررسی</span></h2><a href="#" class="more">آرشیو نقدها<${I} n="left"/></a></div>
+    <div class="sc">${REVIEWS.map(r=>html`<${motion.a} href="#" key=${r.s} class="rq" whileHover=${{y:-4}} transition=${SPR}>
+      <span class="rqm" aria-hidden="true">”</span>
+      <b>${r.t}</b>
+      <p>${RVX[r.s]}</p>
+      <span class="rqf"><img src=${M("p-"+r.s+".jpg")} alt=""/><span><em>${r.by}</em><small class="num">${r.d} · ${fa(r.min)} دقیقه مطالعه</small></span><span class="rqk">نقد</span></span>
+    </${motion.a}>`)}</div></section>`;
+}
+/* the film crowd: what people are saying and the lists they make */
+const POSTS=[{u:"نگار",s:"dune-part-two",n:"Dune: Part Two",r:9,d:"۲ ساعت پیش",l:214,c:31,x:"صحنه‌ی سوار شدن روی کرم شنی رو سه بار دیدم. این فیلم رو باید با صدای بلند دید."},
+  {u:"امیر",s:"severance",n:"Severance",r:10,d:"۵ ساعت پیش",l:186,c:44,x:"فصل دوم کند شروع شد ولی قسمت آخر همه‌چیز رو جبران کرد. هنوز توی فکرشم."},
+  {u:"سارا",s:"past-lives",n:"Past Lives",r:8,d:"دیروز",l:97,c:12,x:"آرام‌ترین و تلخ‌ترین عاشقانه‌ای که امسال دیدم. بدون یک دیالوگ اضافه."},
+  {u:"رضا",s:"the-penguin",n:"The Penguin",r:9,d:"دیروز",l:143,c:26,x:"کالین فارل زیر اون گریم ناپدید شده. بهترین سریال کمیک‌بوکی سال‌ها."},
+  {u:"مهسا",s:"sinners",n:"Sinners",r:8,d:"۲ روز پیش",l:121,c:18,x:"موسیقی‌اش تا چند روز توی سرم بود. نیمه‌ی دوم واقعاً ترسناکه."}];
+const ULISTS=[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:"۱٫۲ هزار",p:["interstellar","arrival","blade-runner-2049"]},
+  {n:"با صدای بلند ببینید",u:"نگار",c:18,f:"۸۴۰",p:["dune-part-two","oppenheimer","f1"]},
+  {n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:"۶۱۰",p:["severance","the-bear","slow-horses"]},
+  {n:"عاشقانه‌های آرام",u:"مهسا",c:15,f:"۵۲۰",p:["past-lives","her","whiplash"]}];
+function Crowd({loading}){
+  if(loading)return null;
+  return html`<section class="row crowd"><div class="rh"><h2><span class="rhi"><${I} n="users"/></span><span>جمع فیلم‌بازها</span></h2><a href="#" class="more">بیشتر<${I} n="left"/></a></div>
+    <div class="sc">${POSTS.map((p,k)=>html`<${motion.a} href="#" key=${k} class="post" whileHover=${{y:-4}} transition=${SPR}>
+      <span class="ph"><i class="av3">${p.u[0]}</i><b>${p.u}</b><small>${p.d}</small></span>
+      <span class="pt"><img src=${M("p-"+p.s+".jpg")} alt=""/><span><b dir="ltr">${p.n}</b><em>${STAR}<span class="num">${fa(p.r)}/۱۰</span></em></span></span>
+      <p>${p.x}</p>
+      <span class="pf"><span><${I} n="thumbup"/><span class="num">${fa(p.l)}</span></span><span><${I} n="reply"/><span class="num">${fa(p.c)}</span></span></span>
+    </${motion.a}>`)}</div>
+    <h3 class="subh">لیست‌های کاربران</h3>
+    <div class="sc">${ULISTS.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulist" whileHover="h" initial="r" animate="r">
+      <span class="stack">${l.p.map((s,j)=>html`<${motion.img} key=${s} src=${M("p-"+s+".jpg")} alt="" style=${{zIndex:3-j}} variants=${{r:{x:j*-34,rotate:j*-4,y:j*4},h:{x:j*-46,rotate:j*-7,y:j*6}}} transition=${SPR}/>`)}</span>
+      <b>${l.n}</b><small><i class="av3">${l.u[0]}</i>${l.u} · <span class="num">${fa(l.c)}</span> عنوان · <span class="num">${l.f}</span> دنبال‌کننده</small>
+    </${motion.a}>`)}</div></section>`;
 }
 function News({loading}){
   if(loading)return null;
@@ -1199,12 +1471,14 @@ function App(){
         <${Hero} items=${hero} loading=${loading} desk=${desk}/>
         <main>
           ${user&&html`<${ContinueRow} loading=${loading} desk=${desk}/>`}
-          ${user&&html`<${Row} title="بر اساس سلیقه‌ی شما" more="پیشنهادهای بیشتر" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
-          <${Row} title="جدیدترین فیلم‌ها" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
+          ${user&&html`<${Row} title="پیشنهاد برای شما" more="بیشتر" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
+          <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
           <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${SERIES} loading=${loading} desk=${desk}/>
-          <${Reviews} loading=${loading}/>
-          ${!user&&html`<${Row} title="پیشنهاد ما" more="پیشنهادهای بیشتر" icon="sPick" items=${PICKS.map(({m,...c})=>c)} loading=${loading} desk=${desk}/>`}
-          <${News} loading=${loading}/>
+          ${!loading&&html`<section class="mag" aria-label="مجله‌ی رول‌وانا"><div class="magh"><span class="magk">مجله‌ی رول‌وانا</span><b class="magt" dir="ltr">Rollvana <i>Journal</i></b><small>نقد، خبر و هرچه پشت پرده‌ی فیلم‌ها می‌گذرد</small></div>
+            <${Reviews} loading=${loading}/>
+            <${News} loading=${loading}/>
+          </section>`}
+          <${Crowd} loading=${loading}/>
           <${Row} title="مستندها" items=${[]} loading=${false}/>
           <${Review} st=${st} set=${setSt} reload=${reload}/>
         </main>
