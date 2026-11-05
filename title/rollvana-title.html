@@ -1650,6 +1650,27 @@ section.chap.about>.chb>*+*{margin-top:40px!important}
 .eptc .ic2 svg{width:19px;height:19px}
 .eptp{position:absolute;inset:auto 0 0 0;height:3px;background:rgba(242,239,248,.2)}
 .eptp i{display:block;height:100%;background:var(--ink-1);transform-origin:right}
+.ulrow{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))!important}
+.ulm{display:flex;flex-direction:column;gap:6px;padding:10px 10px 14px;border-radius:18px;background:rgba(242,239,248,.035);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);transition:background .25s}
+.ulm:hover{background:rgba(242,239,248,.06)}
+.ulm:focus-visible{box-shadow:var(--ring)}
+.ulg{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:4px;aspect-ratio:16/11;margin-bottom:8px;border-radius:12px;overflow:hidden}
+.ulp{position:relative;overflow:hidden;background:var(--bg-up)}
+.ulp.lead{grid-row:1 / span 2;display:block!important;margin:0!important;padding:0!important}
+.ulp img{width:100%;height:100%;object-fit:cover;display:block}
+.ulmore{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-size:16px;font-weight:800;color:#fff;background:rgba(13,11,21,.62);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.ulm b{font-size:15px;font-weight:800;color:var(--ink-1);padding:0 4px;line-height:1.6}
+.ulmeta,.ulby{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3);padding:0 4px}
+.ulby{color:var(--ink-2);font-weight:600;margin-top:2px}
+.ulby .av3{width:24px;height:24px;font-size:11px}
+.dot2{width:3px;height:3px;border-radius:50%;background:rgba(242,239,248,.4);flex:none;display:inline-block}
+@media (max-width:560px){.ulm{flex:0 0 264px}}
+.hdr .login,.hdr .sub{backdrop-filter:blur(20px) saturate(0) contrast(.3) brightness(.4)!important;-webkit-backdrop-filter:blur(20px) saturate(0) contrast(.3) brightness(.4)!important;text-shadow:none!important;font-weight:700!important;color:#fff!important}
+.hdr .login{background:rgba(242,239,248,.14)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.3)!important}
+.hdr .login:hover{background:rgba(242,239,248,.22)!important}
+.hdr .sub{background:rgba(150,118,255,.44)!important;box-shadow:inset 0 0 0 1px rgba(205,187,255,.55)!important;font-weight:800!important}
+.hdr .sub:hover{background:rgba(150,118,255,.56)!important}
+.sv small{opacity:1!important;color:rgba(242,239,248,.86)!important;font-weight:600}
 </style>
 </head><body>
 <div id="app"></div>
@@ -1745,7 +1766,7 @@ const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"
   rating:{avg:8.4,n:1230},votes:{up:1132,down:98},
   trs:[["تریلر رسمی ۲","۲:۵۸","b-dune-part-two.jpg"],["تریلر رسمی ۱","۳:۰۳","c-dune-0.jpg"],["تیزر","۱:۲۷","c-dune-4.jpg"],["پشت صحنه: ساختن آراکیس","۵:۴۰","c-dune-1.jpg"]],
   facts:[["کارگردان","دنی ویلنوو"],["نویسندگان","دنی ویلنوو، جان اسپیتس"],["بر اساس","رمان «تلماسه» نوشته‌ی فرانک هربرت"],["فیلم‌برداری","گرگ فریزر"],["موسیقی","هانس زیمر"],["کشور","آمریکا، کانادا"],["زبان اصلی","انگلیسی"],["اکران","۱۰ اسفند ۱۴۰۲"],["مدت","۲ ساعت و ۴۶ دقیقه"],["رده‌ی سنی","+۱۳"],["استودیو","لجندری پیکچرز، برادران وارنر"],["بودجه","۱۹۰ میلیون دلار"],["فروش جهانی","۷۱۴ میلیون دلار"],["جوایز","برنده‌ی ۲ اسکار: صدا و جلوه‌های ویژه"]],
-  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["dune-part-two","interstellar","arrival"]},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["dune-part-two","oppenheimer","blade-runner-2049"]},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:490,p:["dune-part-one","dune-part-two","poor-things"]}],
+  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["dune-part-two","interstellar","arrival","blade-runner-2049","her"]},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["dune-part-two","oppenheimer","f1","sinners","mission-impossible-the-final-reckoning"]},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:490,p:["dune-part-one","dune-part-two","poor-things","frankenstein","star-wars-andor"]}],
   similar:["dune-part-one","blade-runner-2049","interstellar","arrival","oppenheimer","poor-things"],
   franchise:[["dune-part-one","تلماسه","2021"],["dune-part-two","تلماسه: بخش دوم","2024"]]};
 
@@ -1784,7 +1805,7 @@ const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"ج�
   rating:{avg:8.8,n:2140},votes:{up:1985,down:155},
   trs:[["تریلر فصل ۲","۲:۲۱","b-severance.jpg"],["تیزر فصل ۲","۱:۰۴","e-sev-2-1.jpg"],["تریلر فصل ۱","۲:۱۰","e-sev-1-1.jpg"]],
   facts:[["سازنده","دن اریکسون"],["کارگردان‌ها","بن استیلر، آئوفه مک‌آردل"],["موسیقی","تئودور شاپیرو"],["شبکه","اپل تی‌وی پلاس"],["کشور","آمریکا"],["زبان اصلی","انگلیسی"],["شروع پخش","۲۸ بهمن ۱۴۰۰"],["فصل‌ها","۲ فصل، ۱۹ قسمت"],["هر قسمت","حدود ۵۰ دقیقه"],["رده‌ی سنی","+۱۶"],["جوایز","برنده‌ی جوایز امی، از جمله بهترین بازیگر زن نقش اول"]],
-  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses"]},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:730,p:["severance","the-last-of-us","shogun"]},{n:"بهترین‌های اپل",u:"نگار",c:9,f:320,p:["severance","slow-horses","the-bear"]}],
+  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses","the-penguin","the-white-lotus"]},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:730,p:["severance","the-last-of-us","shogun","prisoners","wednesday"]},{n:"بهترین‌های اپل",u:"نگار",c:9,f:320,p:["severance","slow-horses","star-wars-andor","the-bear","squid-game"]}],
   review:{n:6180,date:"۷ آبان",tone:"بیشتر بینندگان ایده و فضای سرد سریال را ستوده‌اند و فصل دوم را تاریک‌تر اما جسورتر از فصل اول دانسته‌اند.",
     pos:["فضای سرد و طراحی منحصربه‌فرد دفتر","بازی آدام اسکات و بریت لوئر","معماهایی که مخاطب را تا آخر نگه می‌دارد"],
     neg:["ریتم کند چند قسمت میانی","پاسخ‌های کم به سؤال‌های اصلی","فاصله‌ی طولانی میان فصل‌ها"]},
@@ -2455,9 +2476,11 @@ function ReportSheet({t,id,step,onSend,onClose}){
 }
 
 function ULists({t}){
-  return html`<section class="sec wide"><h2>در لیست‌های کاربران<small>${fa(t.lists.length)} لیست</small></h2><div class="ulrow">${t.lists.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulist" whileHover="h" initial="r" animate="r">
-    <span class="stack">${l.p.map((s,j)=>html`<${motion.img} key=${s} src=${M("p-"+s+".jpg")} alt="" style=${{zIndex:3-j}} variants=${{r:{x:j*-34,rotate:j*-4,y:j*4},h:{x:j*-46,rotate:j*-7,y:j*6}}} transition=${SPR}/>`)}</span>
-    <b>${l.n}</b><small><i class="av3">${l.u[0]}</i>${l.u} · <span class="num">${fa(l.c)}</span> عنوان · <span class="num">${nf(l.f)}</span> دنبال‌کننده</small></${motion.a}>`)}</div></section>`;
+  return html`<section class="sec wide"><h2>در لیست‌های کاربران<small>${fa(t.lists.length)} لیست</small></h2><div class="ulrow">${t.lists.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulm" whileHover="h" whileTap=${{scale:.98}} initial="r" animate="r">
+    <span class="ulg">${l.p.slice(0,5).map((s,j)=>html`<span key=${s} class=${"ulp"+(j===0?" lead":"")}><${motion.img} src=${M("p-"+s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:j===0?1.04:1}}} transition=${{duration:.6,ease:EASE}}/>${j===4&&l.c>5&&html`<i class="ulmore num">+${fa(l.c-4)}</i>`}</span>`)}</span>
+    <b>${l.n}</b>
+    <small class="ulmeta"><span class="num">${fa(l.c)} عنوان</span><i class="dot2"></i><span class="num">${nf(l.f)} دنبال‌کننده</span></small>
+    <small class="ulby"><i class="av3">${l.u[0]}</i>${l.u}</small></${motion.a}>`)}</div></section>`;
 }
 function Posters({title,items,cur}){
   return html`<section class="sec wide">${title&&html`<h2>${title}</h2>`}<div class="posters">${items.map(x=>{const [s,n,y]=Array.isArray(x)?x:[x];return html`<${motion.a} href="#" class="pst" key=${s} aria-current=${s===cur?"page":undefined} whileHover=${{y:-4}} whileTap=${{scale:.97}} transition=${SPR}>
