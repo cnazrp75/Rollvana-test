@@ -1,5 +1,6 @@
 <!doctype html>
 <html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>Rollvana Design System</title>
 
 <style>
@@ -284,14 +285,12 @@ main{padding-bottom:80px}
 .gen b{font-size:20px}
 .tabs{display:none}
 }
-/* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
-.tab .tl{font-size:10.5px;font-weight:500;line-height:1}
+.tab .tl{font-size:11px;font-weight:500;line-height:1}
 .tab[aria-current=page],.tab[aria-expanded=true]{color:var(--ink-1)}
 .tab .mark{position:absolute;bottom:5px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--light)}
 
-/* ---- site menu ---- */
 .scrim.lite{background:rgba(3,2,7,.35);backdrop-filter:none;-webkit-backdrop-filter:none;z-index:18}
 .mega{position:fixed;z-index:19;top:84px;left:var(--pad);right:var(--pad);max-width:1120px;margin:0 auto;border-radius:22px;background:color-mix(in oklab,var(--night-1) 94%,transparent);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:inset 0 0 0 1px var(--line-2),0 30px 80px -24px rgba(0,0,0,.85);padding:28px 32px;transform-origin:top center}
 .msheet .mb{padding:0 20px 8px}
@@ -334,7 +333,6 @@ main{padding-bottom:80px}
 .mg{display:flex;align-items:center;justify-content:space-between;gap:20px}.mg2{margin:0}
 }
 
-/* sheet (shared by the menu and the title page) */
 
 .scrim{position:fixed;inset:0;z-index:60;background:rgba(3,2,7,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .sheet{position:fixed;inset:auto 0 0 0;z-index:61;max-height:90svh;overflow:auto;border-radius:24px 24px 0 0;background:var(--night-1);box-shadow:inset 0 1px 0 var(--line-2),0 -30px 80px -20px rgba(0,0,0,.8);padding:0 0 calc(20px + env(safe-area-inset-bottom));overscroll-behavior:contain}
@@ -345,7 +343,6 @@ main{padding-bottom:80px}
 @media (min-width:1024px){.sheet{inset:0 0 0 auto;width:480px;max-height:none;border-radius:0}.sheet .grab{display:none}}
 
 
-/* round 15: the card's data sits on the poster; taste row first */
 .card{width:132px}
 .card .po{position:relative}
 .card .fr{position:absolute;top:8px;right:8px;z-index:2;margin:0;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:600;color:var(--ink);background:rgba(13,11,21,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:calc(100% - 16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -360,7 +357,6 @@ main{padding-bottom:80px}
 .card .peek{display:none}
 @media (min-width:1024px){.card{width:184px}.card .ov{padding:64px 12px 12px}.card .ct{font-size:14.5px}.card .cm{font-size:12.5px}.card .cm .bdg{height:20px;font-size:11px}.card .fr{top:10px;right:10px;font-size:11.5px;height:24px;padding:0 10px}}
 
-/* round 16: full data on the card, full titles, no date tags; the taste row is bigger and shows the match */
 .card{width:148px}
 .card .ov{padding:56px 10px 10px;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.9) 55%,rgba(8,7,12,0) 100%)}
 .card .cf{display:block;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.6)}
@@ -376,39 +372,32 @@ main{padding-bottom:80px}
 @media (min-width:1024px){.card{width:196px}.card .ov{padding:72px 12px 12px}.card .cf{font-size:15px}.card .ct{font-size:12.5px}.card .cy{font-size:11.5px}
 .row.big .card{width:268px}.row.big .card .cf{font-size:18px}.row.big .card .ct{font-size:14px}.row.big .card .cy{font-size:12.5px}.match{height:24px;font-size:12px;padding:0 10px}}
 
-/* round 17: room under the cards so the glow is not cut; a shorter data block */
 .sc{padding-bottom:48px;margin-bottom:-30px}
 .card .cm{gap:8px}
 .card .cm .cy{font-size:11.5px;color:rgba(242,239,248,.62);margin:0}
 
-/* round 18: the score in one small box at the top */
 .sbox{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 7px;border-radius:8px;background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.14);direction:ltr}
 .sbox svg{width:26px;height:13px;color:var(--ink)}
 .sbox b{font-size:12px;font-weight:700;color:var(--ink)}
 @media (min-width:1024px){.sbox{top:10px;left:10px;height:28px;padding:0 9px;gap:6px}.sbox svg{width:30px;height:15px}.sbox b{font-size:13.5px}}
 
-/* round 19: a plain star, the badge to the left, the text block starts lower on the poster */
 .sbox{gap:4px;padding:0 7px 0 6px}
 .sbox svg{width:13px;height:13px;color:var(--ink)}
 .card .cm{justify-content:space-between}
 .card .ov{padding-top:34px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.82) 50%,rgba(8,7,12,0) 100%)}
 @media (min-width:1024px){.sbox svg{width:15px;height:15px}.card .ov{padding-top:44px}}
 
-/* round 20 (self-review): one kind of digits, one score mark; the match as quiet text, not another chip */
 .star2{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--ink)}
 .star2 svg{width:14px;height:14px}
 .match{display:block;height:auto;padding:0;margin:0 0 4px;border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:11px;font-weight:600;color:rgba(242,239,248,.78)}
 @media (min-width:1024px){.match{height:auto;padding:0;font-size:12.5px}}
 
-/* round 25 (Ali): colour by 70-20-10 — 70 night neutrals, 20 violet-tinted surfaces, 10 violet accent;
-   gold is the complement of our violet and marks scores and "new" */
 :root{--v:#A98BFF;--v-2:#8B6BF2;--v-soft:rgba(169,139,255,.14);--v-line:rgba(169,139,255,.28);--gold:#F5C451;--gold-soft:rgba(245,196,81,.14);--surf:#151026;--surf-2:#1C1532}
 body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),transparent 70%),var(--bg)}
 .imdbm{display:inline-flex;align-items:center;height:16px;padding:0 4px;border-radius:3px;background:#F5C518;color:#000;font:800 10px/1 Arial,Helvetica,sans-serif;letter-spacing:-.02em;direction:ltr}
 .star2{gap:6px}.star2 b{color:var(--ink)}
 .sbox{gap:6px;padding:0 7px 0 5px;background:rgba(13,11,21,.62)}
 .sbox .imdbm{height:15px;font-size:9.5px}
-/* hero: taller, and the next slides in view */
 .hero{height:min(92svh,760px);min-height:620px}
 .bgl{will-change:clip-path,transform}
 .upnext{position:absolute;z-index:3;left:var(--pad);right:var(--pad);bottom:16px;display:flex;align-items:center;gap:8px}
@@ -421,13 +410,11 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .unc small{font-size:10px;color:var(--ink-2)}
 .hero .copy{padding-bottom:92px}
 .dots .seg[aria-current=true] i b{background:var(--v)}
-/* row titles with an icon in the accent */
 .rh h2{flex-direction:row;align-items:center;gap:10px}
 .rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
 .rhi{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;background:radial-gradient(120% 120% at 100% 0%,rgba(169,139,255,.28),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 20px -12px rgba(0,0,0,.8);color:#F4F1FA}
 .rhi svg{width:19px;height:19px}
 .more{color:var(--v)}
-/* cards: bigger, genre on the cover; series as landscape stills with the new episode */
 .card{width:156px}
 .row.big .card{width:206px}
 .card.wide{width:276px}
@@ -437,7 +424,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .cg b{color:var(--gold);font-weight:700}
 .card .match{color:var(--gold)}
 .card .fr{display:none}
-/* continue watching, redesigned */
 .cont .sc{padding-bottom:22px;margin-bottom:0}
 .cw{position:relative;width:272px}
 .cwa{display:block}
@@ -457,7 +443,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .cwx svg{width:15px;height:15px}
 .undo{position:fixed;z-index:60;left:50%;bottom:96px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:10px 12px 10px 16px;border-radius:14px;background:var(--surf-2);box-shadow:0 12px 32px -12px rgba(0,0,0,.7),inset 0 0 0 1px var(--v-line);font-size:13px;white-space:nowrap}
 .undo button{color:var(--v);font-weight:700}
-/* reviews */
 .rv{flex:none;width:280px;scroll-snap-align:start;display:block}
 .rvi{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--surf)}
 .rvi img{width:100%;height:100%;object-fit:cover}
@@ -465,7 +450,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .rvs svg{width:13px;height:13px}
 .rv b{display:block;font-size:14px;font-weight:700;line-height:1.6;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rv small{display:block;font-size:11.5px;color:var(--ink-3);margin-top:4px}
-/* news */
 .nwl{display:grid;gap:10px;padding:0 var(--pad)}
 .nw{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;background:var(--surf);box-shadow:inset 0 0 0 1px var(--line-1);transition:background .2s}
 .nw:hover{background:var(--surf-2)}
@@ -474,7 +458,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .nw em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--v)}
 .nw b{font-size:13.5px;font-weight:700;line-height:1.6}
 .nw small{font-size:11px;color:var(--ink-3)}
-/* header: subscribe is the accent button, login is clear */
 .sub{gap:6px;background:var(--v);color:var(--on-light);box-shadow:0 6px 18px -8px var(--light-glow);font-weight:700}
 .sub:hover,.sub.is-hover{background:var(--light-top);box-shadow:0 6px 18px -8px var(--light-glow)}
 .sub svg{width:15px;height:15px}
@@ -497,8 +480,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 }
 
 
-/* ===== round 50 · home follows the title page system ===== */
-/* section heads: the same round icon badge and type as the title page chapters */
 .rh{align-items:center!important;margin-bottom:20px!important}
 .rh h2{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;font-size:20px!important;font-weight:800!important}
 .rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
@@ -508,23 +489,18 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 @media (min-width:1024px){.rh h2{font-size:24px!important}}
 .more,.more svg{color:var(--ink-2)!important}
 .more:hover{color:var(--ink-1)!important}
-/* one rhythm between sections, like the chapters */
 main .row{margin-top:64px!important}
 main>.row:first-child{margin-top:28px!important}
 @media (max-width:1023px){main .row{margin-top:52px!important}}
-/* cover: same height and placement as the title page, text sits low over the image */
 .hero{height:min(100vh,980px)!important;min-height:640px!important}
 @media (max-width:1023px){.hero{height:calc(100svh - 60px)!important;min-height:600px!important}}
 .kick{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:var(--ink-2)!important;font-size:13.5px!important;margin-bottom:12px!important}
 .kick b{display:none!important}
 .hero .cta{background:#F4F1FA!important;color:#0D0B15!important;box-shadow:none!important}
 .hero .cta svg{fill:#0D0B15!important;color:#0D0B15!important}
-/* posters: no coloured glow, the art is enough */
 .card .glow{display:none!important}
-/* continue watching: frosted play button, like the episode cards */
 .cwp{background:rgba(13,11,21,.28)!important;backdrop-filter:blur(14px) saturate(1.4)!important;-webkit-backdrop-filter:blur(14px) saturate(1.4)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important}
 .cwp svg{fill:#fff!important;color:#fff!important}
-/* news: plain rows with hairlines, like the download list */
 .nw{background:none!important;box-shadow:none!important;border-radius:0!important;padding:14px 0!important;border-bottom:1px solid rgba(242,239,248,.08)}
 .nw img{border-radius:10px}
 .nw.top{border-bottom:0;padding-top:0!important}
@@ -532,8 +508,6 @@ main>.row:first-child{margin-top:28px!important}
 .nw em{color:var(--ink-3)!important}
 .dots .seg[aria-current=true] i b{background:#F4F1FA!important}
 
-/* ===== round 51 ===== */
-/* hero copy: a stage that hands over line by line */
 .stage{display:block}
 .stage>.kick{display:flex!important;gap:8px}
 .logo2{height:76px;display:flex;align-items:flex-end}
@@ -545,7 +519,6 @@ main>.row:first-child{margin-top:28px!important}
 .syn p{display:block!important;-webkit-line-clamp:unset!important;max-height:calc(2 * 1.85em);overflow:hidden}
 @media (max-width:1023px){.strip2{bottom:30px}.hero .copy{padding-bottom:114px!important}}
 @media (min-width:1024px){.logo2{height:96px}.logo2 .logo img{max-height:96px;max-width:360px}}
-/* the strip: every slide visible, the current one lit */
 .dots,.upnext{display:none!important}
 .strip2{position:absolute;z-index:3;left:0;right:0;bottom:14px;display:flex;align-items:center;gap:6px;padding-inline-start:calc(var(--pad) - 8px)}
 .strip2 .pp{margin:0;flex:none}
@@ -572,16 +545,13 @@ main>.row:first-child{margin-top:28px!important}
   .tht{inset:auto 12px 12px 12px}.tht b{font-size:13px}.tht small{font-size:11px}
   .hero .copy{padding-bottom:150px!important}
 }
-/* dubbed is just one more fact: same badge as everything else */
 .bdg,.bdg.dub,.cm .bdg,.cm .bdg.dub,.card .cm .bdg,.card .cm .bdg.dub{background:transparent!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.22)!important;color:var(--ink-1)!important}
 .card .cm .bdg{background:rgba(13,11,21,.45)!important}
-/* card score: a yellow star and the number */
 .sbox{gap:4px!important;padding:0 7px 0 6px!important}
 .sbox .st{width:14px;height:14px;color:#F5C518;flex:none}
 @media (min-width:1024px){.sbox .st{width:15px;height:15px}}
 .star2{display:inline-flex;align-items:center;gap:5px}.star2 .st{width:15px;height:15px;color:#F5C518}.star2 b{color:var(--ink-1);font-weight:700}
 .card .ct{font-size:13px!important;font-weight:700!important;color:var(--ink-1)!important;margin-top:0!important;line-height:1.4!important}
-/* cards a little larger; on a phone exactly two fit, with a sliver of the next */
 @media (max-width:1023px){
   .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
   .row.big .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
@@ -592,10 +562,8 @@ main>.row:first-child{margin-top:28px!important}
   .card .ct{font-size:14.5px!important}
 }
 
-/* ===== round 52 ===== */
 .hero .cta{background:var(--v)!important;color:#0D0B15!important}
 .hero .cta:hover{background:#B9A0FF!important}
-/* selected slide: wider, bright, outlined; the rest step back */
 .th img{filter:brightness(.32) saturate(.5)!important}
 .th:hover img{filter:brightness(.55) saturate(.8)!important}
 .th.on img{filter:none!important}
@@ -614,22 +582,17 @@ main>.row:first-child{margin-top:28px!important}
   .tht b{font-size:14px!important}
 }
 
-/* round 53: the section link names where it goes */
 .rh{gap:12px}
 .rh h2{min-width:0}
 .more{white-space:nowrap;flex:none;font-size:13px!important}
 @media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
 
-/* ===== round 54 ===== */
-/* header: plain glass buttons, no icons */
 .hdr .sub,.hdr .login{background:rgba(242,239,248,.1)!important;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16)!important;color:var(--ink-1)!important;font-weight:600!important;border-radius:999px!important}
 .hdr .sub:hover,.hdr .login:hover{background:rgba(242,239,248,.18)!important}
 .hdr .sub svg,.hdr .login svg{display:none!important}
-/* slider: kind as a chip, genre readable */
 .stage>.kick{align-items:center;gap:10px!important}
 .kchip{height:26px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(242,239,248,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);color:#fff;font-size:12.5px;font-weight:700}
 .kg{color:rgba(255,255,255,.9);font-size:14px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-/* scores: star, number, /10, votes */
 .scr{display:inline-flex;align-items:center;gap:4px;direction:rtl}
 .scr .st{width:14px;height:14px;color:#F5C518;flex:none}
 .scr b{font-weight:700;color:var(--ink-1)}
@@ -638,7 +601,6 @@ main>.row:first-child{margin-top:28px!important}
 .meta .scr .st{width:16px;height:16px}
 .sbox .scr b{font-size:12px}.sbox .scr small{font-size:10px}
 .sbox>.st{display:none}
-/* strip: arrows at both ends; neighbours a step brighter */
 .strip2 .pp{display:none!important}
 .harr{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18);transition:background .2s}
 .harr:hover{background:rgba(242,239,248,.24)}
@@ -647,7 +609,6 @@ main>.row:first-child{margin-top:28px!important}
 .strip2 ol{padding:4px!important}
 .th.nb img{filter:brightness(.6) saturate(.85)!important}
 @media (max-width:1023px){.harr{width:34px;height:34px}.harr svg{width:17px;height:17px}}
-/* section heads: plain icon, title, a hairline to the link */
 .rh{align-items:center!important;gap:12px!important;margin-bottom:16px!important}
 .rh h2{gap:10px!important;font-size:19px!important}
 .rh h2>span:last-child{flex-direction:row!important;align-items:baseline!important;gap:10px!important}
@@ -660,13 +621,11 @@ main>.row:first-child{margin-top:28px!important}
 .more svg{width:14px!important;height:14px!important}
 @media (min-width:1024px){.rh h2{font-size:22px!important}}
 @media (max-width:420px){.rh h2 small{display:none}}
-/* cards: corner badge, year · votes; series: episode line, genre under it */
 .card .po .cbdg{position:absolute;top:8px;right:8px;z-index:2;height:22px!important;font-size:10.5px!important;padding:0 8px!important;border-radius:999px!important;background:rgba(13,11,21,.5)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18)!important}
 .card .cm{justify-content:flex-start!important}
 .card .cy{font-size:11px!important;color:rgba(242,239,248,.62)!important;white-space:nowrap}
 .cep{font-size:11.5px;font-weight:700;color:var(--gold);margin-top:3px}
 .card.wide .cg{margin-top:1px}
-/* continue / history tabs */
 .ctabs{display:inline-flex;gap:14px}
 .ctabs button{font-size:12.5px;color:var(--ink-3);height:28px;position:relative}
 .ctabs button[aria-pressed=true]{color:var(--ink-1);font-weight:700}
@@ -676,7 +635,6 @@ main>.row:first-child{margin-top:28px!important}
 .cwdone svg{width:15px;height:15px}
 .cw.hist .pg i{background:rgba(242,239,248,.4)!important}
 .cw.hist .cwl em{color:var(--v)!important;font-style:normal;font-weight:600;margin-inline-start:auto}
-/* reviews: editorial covers with the writer */
 .rv2{position:relative;flex:none;width:250px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;scroll-snap-align:start;display:block;background:var(--s1)}
 .rv2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .rv2:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.7) 38%,rgba(8,7,12,0) 70%)}
@@ -688,7 +646,6 @@ main>.row:first-child{margin-top:28px!important}
 .rvby small{color:rgba(242,239,248,.55);font-size:11.5px}
 @media (min-width:1024px){.rv2{width:300px}.rvb>b{font-size:17px}}
 .rvrow .sc{padding-bottom:18px!important;margin-bottom:0!important}
-/* the film crowd */
 .post{flex:none;width:290px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:16px;background:linear-gradient(180deg,rgba(242,239,248,.06),rgba(242,239,248,.025));box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)}
 .post .ph{display:flex;align-items:center;gap:8px;font-size:13px}
 .post .ph b{font-weight:700;color:var(--ink-1)}
@@ -713,11 +670,8 @@ main>.row:first-child{margin-top:28px!important}
 .ulist small .av3{width:20px;height:20px;font-size:10px}
 .scr .sv{display:inline-flex;align-items:baseline;gap:1px}
 
-/* ===== round 55 ===== */
-/* subscribe is the brand action, login stays glass */
 .hdr .sub{background:var(--v)!important;color:#120E1C!important;box-shadow:0 8px 22px -10px rgba(169,139,255,.8)!important;font-weight:800!important;backdrop-filter:none!important}
 .hdr .sub:hover{background:#B9A0FF!important}
-/* strip: every slide readable, the current one lit; labelled previous / next */
 .th img{filter:brightness(.62) saturate(.9)!important}
 .th:hover img{filter:brightness(.85) saturate(1)!important}
 .th.nb img{filter:brightness(.7) saturate(.95)!important}
@@ -729,12 +683,10 @@ main>.row:first-child{margin-top:28px!important}
 .harr span{line-height:1}
 @media (min-width:1024px){.harr{height:84px!important;padding:0 14px;font-size:12.5px}.harr svg{width:22px!important;height:22px!important}}
 @media (max-width:1023px){.th{width:92px!important;height:54px!important}.th.on{width:124px!important}.harr{height:54px!important;padding:0 7px}.tht b{font-size:10.5px!important}}
-/* card score: plain, in the bottom line */
 .card .cm{display:flex;align-items:center;gap:8px}
 .card .cm .scr .st{width:13px;height:13px}
 .card .cm .scr b{font-size:12px}
 .card .cm .scr small{font-size:10px}
-/* reviews: quote cards led by words, not photos */
 .rq{flex:none;width:320px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;gap:12px;padding:22px 20px 18px;border-radius:18px;background:linear-gradient(165deg,rgba(169,139,255,.12),rgba(242,239,248,.03) 55%);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);overflow:hidden}
 .rqm{position:absolute;top:-18px;left:14px;font-size:120px;line-height:1;font-family:Georgia,serif;color:rgba(169,139,255,.22);pointer-events:none}
 .rq b{font-size:16.5px;font-weight:800;line-height:1.7;color:var(--ink-1);position:relative}
@@ -747,11 +699,8 @@ main>.row:first-child{margin-top:28px!important}
 .rqk{margin-inline-start:auto;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#120E1C;font-size:11.5px;font-weight:800}
 @media (max-width:1023px){.rq{width:280px}}
 
-/* ===== round 57 · Ali's notes ===== */
-/* subscribe: glass with a violet tint, still apart from the plain glass login */
 .hdr .sub{background:rgba(169,139,255,.2)!important;color:#E6DCFF!important;backdrop-filter:blur(16px) saturate(1.5)!important;-webkit-backdrop-filter:blur(16px) saturate(1.5)!important;box-shadow:inset 0 0 0 1px rgba(190,165,255,.5),0 8px 22px -12px rgba(169,139,255,.7)!important;font-weight:800!important}
 .hdr .sub:hover{background:rgba(169,139,255,.3)!important}
-/* section heads: cleaner, no line, link as a quiet pill */
 .rh:after{display:none!important}
 .rh{justify-content:space-between!important;margin-bottom:14px!important}
 .rh h2{font-size:20px!important;font-weight:800!important;letter-spacing:-.01em}
@@ -759,13 +708,10 @@ main>.row:first-child{margin-top:28px!important}
 .rh .more{height:30px!important;padding:0 10px 0 8px;border-radius:999px;background:rgba(242,239,248,.06);color:var(--ink-2)!important;font-size:12px!important}
 .rh .more:hover{background:rgba(242,239,248,.12);color:var(--ink-1)!important}
 @media (min-width:1024px){.rh h2{font-size:23px!important}}
-/* score on cards: Latin digits, star, quiet /10 */
 .scr .sv{font-family:var(--f-ui);letter-spacing:0}
 .scr .sv small{opacity:.55;font-size:.8em}
-/* taste match: a small chip on the poster */
 .mchip{position:absolute;top:8px;left:8px;z-index:2;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:700;color:#0D0B15;background:rgba(245,196,81,.92)}
 .card .match{display:none!important}
-/* continue: history card at the end of the row */
 .cw.histc{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:0 22px;width:220px;aspect-ratio:auto;align-self:stretch;min-height:150px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03));box-shadow:inset 0 0 0 1px rgba(242,239,248,.1);scroll-snap-align:start}
 .histc .hci{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08);color:var(--v);margin-bottom:6px}
 .histc .hci svg{width:20px;height:20px}
@@ -773,7 +719,6 @@ main>.row:first-child{margin-top:28px!important}
 .histc small{font-size:12px;color:var(--ink-3)}
 .histc .hcg{display:inline-flex;align-items:center;gap:2px;margin-top:8px;font-size:12.5px;font-weight:700;color:var(--v)}
 .histc .hcg svg{width:15px;height:15px}
-/* the journal: reviews and news in their own band */
 .mag{position:relative;margin-top:72px;padding:48px 0 40px;background:radial-gradient(120% 70% at 85% 0%,rgba(169,139,255,.10),transparent 60%),linear-gradient(180deg,#16121F,#100D17);border-top:1px solid rgba(242,239,248,.08);border-bottom:1px solid rgba(242,239,248,.08)}
 .magh{padding:0 var(--pad);margin-bottom:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .magk{font-size:12px;font-weight:800;color:var(--v);letter-spacing:.02em}
@@ -787,7 +732,6 @@ main>.row:first-child{margin-top:28px!important}
 .mag .nw{border-bottom-color:rgba(242,239,248,.07)!important}
 @media (min-width:1024px){.magt{font-size:64px}.mag{padding:64px 0 56px}}
 
-/* round 58: the slide selector shows every slide at once, none dimmed; the active one gets a ring that slides between them */
 .klab{display:inline-flex;align-items:center;gap:10px;color:#CDBBFF;font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .klab:after{content:"";width:1px;height:12px;background:rgba(255,255,255,.45)}
 .strip2 ol{overflow:visible!important;scroll-snap-type:none!important;gap:10px!important}
@@ -815,7 +759,6 @@ main>.row:first-child{margin-top:28px!important}
   .thp,.th.on .thp{inset:auto 4px 0 4px!important;bottom:-8px!important}
 }
 
-/* round 59: score on the poster's top-left, larger card type, section-head rule back, slider progress inside the thumb */
 .ctl{position:absolute;top:10px;left:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .ctl .mchip{position:static}
 .cscore{height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(13,11,21,.62);box-shadow:inset 0 0 0 1px rgba(242,239,248,.12)}
@@ -836,7 +779,6 @@ main>.row:first-child{margin-top:28px!important}
 .th.on .tht{bottom:16px!important}
 @media (max-width:1023px){.thp,.th.on .thp{inset:auto 6px 6px 6px!important;bottom:6px!important}}
 
-/* round 60: plain score (no pill), year then genre on one line, the story slides in on hover */
 .cscore{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 12px rgba(0,0,0,.6)}
 .cscore .st{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
 .card .cg{display:flex!important;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
@@ -850,7 +792,6 @@ main>.row:first-child{margin-top:28px!important}
 @media (min-width:1024px){.csyn{font-size:13px}}
 @media (hover:none){.csyn{display:none}}
 
-/* round 61: star before the score, match chip under the badge, readable header buttons, no slider arrows */
 .cscore .scr{direction:ltr!important;gap:5px}
 .ctr{position:absolute;top:10px;right:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .card .po .ctr .cbdg{position:static!important}
@@ -861,7 +802,6 @@ main>.row:first-child{margin-top:28px!important}
 .hdr .sub:hover{background:rgba(110,78,215,.75)!important}
 .strip2 .harr{display:none!important}
 
-/* round 62: match chip above the badge, both flush right; light glass header buttons without text shadow; blurred search */
 .ctr{align-items:flex-start!important}
 .hdr .login,.hdr .sub{text-shadow:none!important;backdrop-filter:blur(18px) saturate(1.5)!important;-webkit-backdrop-filter:blur(18px) saturate(1.5)!important}
 .hdr .login{background:rgba(242,239,248,.16)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.3)!important}
@@ -870,7 +810,6 @@ main>.row:first-child{margin-top:28px!important}
 .hdr .sub:hover{background:rgba(169,139,255,.45)!important}
 @media (min-width:1024px){.hdr .search{backdrop-filter:blur(18px) saturate(1.4)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4)!important}}
 
-/* round 63: the search field gets a visible edge on desktop */
 @media (min-width:1024px){.hdr .search{box-shadow:inset 0 0 0 1px rgba(242,239,248,.3)!important}.hdr .search:focus-within{box-shadow:inset 0 0 0 1px rgba(242,239,248,.6)!important}}
 </style>
 <style>
@@ -982,7 +921,7 @@ td{color:var(--ink-2)}
 
   <section>
     <h2>تایپوگرافی</h2>
-    <span class="sub-h">وزیرمتن برای همه‌ی متن‌ها؛ Instrument Serif فقط در لوگو. ارقام: داده‌ای که دنیا لاتین نگه می‌دارد (سال، IMDb) لاتین؛ شمارش‌های رابط (مدت، فصل، شمارنده) فارسی.</span>
+    <span class="sub-h">وزیرمتن برای همه‌ی متن‌ها؛ Instrument Serif فقط در لوگو. ارقام، یک قاعده: امتیاز لاتین است و کنار نشان خودش، جدا از متن (★ 8.5/10، IMDb 8.5/10، Rotten Tomatoes 92%، Metascore 79)؛ هر عدد دیگر فارسی است: سال، مدت، فصل و قسمت، تاریخ، شمار رأی و نظر و دنبال‌کننده (کامل، با ٬)، درصد پسند کاربران رول‌وانا. نام کیفیت فایل (1080p، 4K) نام فنی است و لاتین می‌ماند.</span>
     <div class="ty">
       <div><span style="font:var(--t-display)">تلماسه: بخش دوم</span><code>--t-display 32/40 · 48 دسکتاپ</code></div>
       <div><span style="font:var(--t-h1)">جدیدترین فیلم‌ها</span><code>--t-h1 22 · 28</code></div>
@@ -1022,7 +961,7 @@ td{color:var(--ink-2)}
 
     <div class="board">
       <div class="st"><small>کارت · عادی</small><a class="card demo-card" href="#"><div class="pw"><img class="glow" src="../home/media/p-sinners.jpg" alt="" style="opacity:.32"><div class="po"><img src="../home/media/p-sinners.jpg" alt=""></div></div><div class="fr">امروز</div><div class="ct">Sinners</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.6</b></span><span class="bdg dub">دوبله</span></div></a></div>
-      <div class="st"><small>هاور (دسکتاپ): بالا می‌آید، ژانر و سال پیدا می‌شود</small><a class="card demo-card" href="#" style="transform:translateY(-6px)"><div class="pw"><img class="glow" src="../home/media/p-weapons.jpg" alt="" style="opacity:.7"><div class="po"><img src="../home/media/p-weapons.jpg" alt="" style="transform:scale(1.04)"><div class="peek" style="display:flex"><span>ترسناک، معمایی</span><span class="num">2025</span></div></div></div><div class="fr">دیروز</div><div class="ct">Weapons</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.5</b></span><span class="bdg dub">دوبله</span></div></a></div>
+      <div class="st"><small>هاور (دسکتاپ): بالا می‌آید، ژانر و سال پیدا می‌شود</small><a class="card demo-card" href="#" style="transform:translateY(-6px)"><div class="pw"><img class="glow" src="../home/media/p-weapons.jpg" alt="" style="opacity:.7"><div class="po"><img src="../home/media/p-weapons.jpg" alt="" style="transform:scale(1.04)"><div class="peek" style="display:flex"><span>ترسناک، معمایی</span><span class="num">۲۰۲۵</span></div></div></div><div class="fr">دیروز</div><div class="ct">Weapons</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.5</b></span><span class="bdg dub">دوبله</span></div></a></div>
       <div class="st"><small>فوکوس</small><a class="card demo-card" href="#"><div class="pw"><div class="po" style="box-shadow:var(--ring)"><img src="../home/media/p-arrival.jpg" alt=""></div></div><div class="fr">&nbsp;</div><div class="ct">Arrival</div><div class="cm"><span class="imdb num"><small>IMDb</small><b>7.9</b></span><span class="bdg">زیرنویس</span></div></a></div>
       <div class="st"><small>بارگذاری</small><div class="card demo-card"><div class="po sk"></div><div class="sk" style="height:13px;width:80%;margin-top:12px"></div><div class="sk" style="height:12px;width:50%;margin-top:8px"></div></div></div>
       <div class="st"><small>ژانر · عادی</small><a class="gen" href="#"><img src="../home/media/b-blade-runner-2049.jpg" alt="" style="object-position:30% 30%"><b>علمی‌تخیلی</b><small>۸۶۰ عنوان</small></a></div>

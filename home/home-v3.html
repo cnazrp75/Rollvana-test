@@ -1,5 +1,6 @@
 <!doctype html>
 <html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>Rollvana Home</title>
 <style>
 @font-face{font-family:IRANYekanX;src:url(media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:block}
@@ -283,14 +284,12 @@ main{padding-bottom:80px}
 .gen b{font-size:20px}
 .tabs{display:none}
 }
-/* bottom bar (shared) */
 .tabs{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;height:62px;padding:0 4px;border-radius:24px;background:color-mix(in oklab,var(--night-1) 62%,transparent);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:inset 0 0 0 1px var(--line-1),0 14px 34px -14px rgba(0,0,0,.85)}
 .tab{width:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding-bottom:4px;color:var(--ink-3);position:relative;transition:color .25s}
-.tab .tl{font-size:10.5px;font-weight:500;line-height:1}
+.tab .tl{font-size:11px;font-weight:500;line-height:1}
 .tab[aria-current=page],.tab[aria-expanded=true]{color:var(--ink-1)}
 .tab .mark{position:absolute;bottom:5px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--light)}
 
-/* ---- site menu ---- */
 .scrim.lite{background:rgba(3,2,7,.35);backdrop-filter:none;-webkit-backdrop-filter:none;z-index:18}
 .mega{position:fixed;z-index:19;top:84px;left:var(--pad);right:var(--pad);max-width:1120px;margin:0 auto;border-radius:22px;background:color-mix(in oklab,var(--night-1) 94%,transparent);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:inset 0 0 0 1px var(--line-2),0 30px 80px -24px rgba(0,0,0,.85);padding:28px 32px;transform-origin:top center}
 .msheet .mb{padding:0 20px 8px}
@@ -333,7 +332,6 @@ main{padding-bottom:80px}
 .mg{display:flex;align-items:center;justify-content:space-between;gap:20px}.mg2{margin:0}
 }
 
-/* sheet (shared by the menu and the title page) */
 
 .scrim{position:fixed;inset:0;z-index:60;background:rgba(3,2,7,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .sheet{position:fixed;inset:auto 0 0 0;z-index:61;max-height:90svh;overflow:auto;border-radius:24px 24px 0 0;background:var(--night-1);box-shadow:inset 0 1px 0 var(--line-2),0 -30px 80px -20px rgba(0,0,0,.8);padding:0 0 calc(20px + env(safe-area-inset-bottom));overscroll-behavior:contain}
@@ -344,7 +342,6 @@ main{padding-bottom:80px}
 @media (min-width:1024px){.sheet{inset:0 0 0 auto;width:480px;max-height:none;border-radius:0}.sheet .grab{display:none}}
 
 
-/* round 15: the card's data sits on the poster; taste row first */
 .card{width:132px}
 .card .po{position:relative}
 .card .fr{position:absolute;top:8px;right:8px;z-index:2;margin:0;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:600;color:var(--ink);background:rgba(13,11,21,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:calc(100% - 16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -359,7 +356,6 @@ main{padding-bottom:80px}
 .card .peek{display:none}
 @media (min-width:1024px){.card{width:184px}.card .ov{padding:64px 12px 12px}.card .ct{font-size:14.5px}.card .cm{font-size:12.5px}.card .cm .bdg{height:20px;font-size:11px}.card .fr{top:10px;right:10px;font-size:11.5px;height:24px;padding:0 10px}}
 
-/* round 16: full data on the card, full titles, no date tags; the taste row is bigger and shows the match */
 .card{width:148px}
 .card .ov{padding:56px 10px 10px;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.9) 55%,rgba(8,7,12,0) 100%)}
 .card .cf{display:block;font-size:13px;font-weight:700;line-height:1.5;color:var(--ink);text-shadow:0 1px 2px rgba(0,0,0,.6)}
@@ -375,39 +371,32 @@ main{padding-bottom:80px}
 @media (min-width:1024px){.card{width:196px}.card .ov{padding:72px 12px 12px}.card .cf{font-size:15px}.card .ct{font-size:12.5px}.card .cy{font-size:11.5px}
 .row.big .card{width:268px}.row.big .card .cf{font-size:18px}.row.big .card .ct{font-size:14px}.row.big .card .cy{font-size:12.5px}.match{height:24px;font-size:12px;padding:0 10px}}
 
-/* round 17: room under the cards so the glow is not cut; a shorter data block */
 .sc{padding-bottom:48px;margin-bottom:-30px}
 .card .cm{gap:8px}
 .card .cm .cy{font-size:11.5px;color:rgba(242,239,248,.62);margin:0}
 
-/* round 18: the score in one small box at the top */
 .sbox{position:absolute;top:8px;left:8px;z-index:2;display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 7px;border-radius:8px;background:rgba(13,11,21,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.14);direction:ltr}
 .sbox svg{width:26px;height:13px;color:var(--ink)}
 .sbox b{font-size:12px;font-weight:700;color:var(--ink)}
 @media (min-width:1024px){.sbox{top:10px;left:10px;height:28px;padding:0 9px;gap:6px}.sbox svg{width:30px;height:15px}.sbox b{font-size:13.5px}}
 
-/* round 19: a plain star, the badge to the left, the text block starts lower on the poster */
 .sbox{gap:4px;padding:0 7px 0 6px}
 .sbox svg{width:13px;height:13px;color:var(--ink)}
 .card .cm{justify-content:space-between}
 .card .ov{padding-top:34px;background:linear-gradient(to top,rgba(8,7,12,.95) 0,rgba(8,7,12,.82) 50%,rgba(8,7,12,0) 100%)}
 @media (min-width:1024px){.sbox svg{width:15px;height:15px}.card .ov{padding-top:44px}}
 
-/* round 20 (self-review): one kind of digits, one score mark; the match as quiet text, not another chip */
 .star2{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--ink)}
 .star2 svg{width:14px;height:14px}
 .match{display:block;height:auto;padding:0;margin:0 0 4px;border-radius:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;font-size:11px;font-weight:600;color:rgba(242,239,248,.78)}
 @media (min-width:1024px){.match{height:auto;padding:0;font-size:12.5px}}
 
-/* round 25 (Ali): colour by 70-20-10 — 70 night neutrals, 20 violet-tinted surfaces, 10 violet accent;
-   gold is the complement of our violet and marks scores and "new" */
 :root{--v:#A98BFF;--v-2:#8B6BF2;--v-soft:rgba(169,139,255,.14);--v-line:rgba(169,139,255,.28);--gold:#F5C451;--gold-soft:rgba(245,196,81,.14);--surf:#151026;--surf-2:#1C1532}
 body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),transparent 70%),var(--bg)}
 .imdbm{display:inline-flex;align-items:center;height:16px;padding:0 4px;border-radius:3px;background:#F5C518;color:#000;font:800 10px/1 Arial,Helvetica,sans-serif;letter-spacing:-.02em;direction:ltr}
 .star2{gap:6px}.star2 b{color:var(--ink)}
 .sbox{gap:6px;padding:0 7px 0 5px;background:rgba(13,11,21,.62)}
 .sbox .imdbm{height:15px;font-size:9.5px}
-/* hero: taller, and the next slides in view */
 .hero{height:min(92svh,760px);min-height:620px}
 .bgl{will-change:clip-path,transform}
 .upnext{position:absolute;z-index:3;left:var(--pad);right:var(--pad);bottom:16px;display:flex;align-items:center;gap:8px}
@@ -420,13 +409,11 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .unc small{font-size:10px;color:var(--ink-2)}
 .hero .copy{padding-bottom:92px}
 .dots .seg[aria-current=true] i b{background:var(--v)}
-/* row titles with an icon in the accent */
 .rh h2{flex-direction:row;align-items:center;gap:10px}
 .rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
 .rhi{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;background:radial-gradient(120% 120% at 100% 0%,rgba(169,139,255,.28),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 20px -12px rgba(0,0,0,.8);color:#F4F1FA}
 .rhi svg{width:19px;height:19px}
 .more{color:var(--v)}
-/* cards: bigger, genre on the cover; series as landscape stills with the new episode */
 .card{width:156px}
 .row.big .card{width:206px}
 .card.wide{width:276px}
@@ -436,7 +423,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .cg b{color:var(--gold);font-weight:700}
 .card .match{color:var(--gold)}
 .card .fr{display:none}
-/* continue watching, redesigned */
 .cont .sc{padding-bottom:22px;margin-bottom:0}
 .cw{position:relative;width:272px}
 .cwa{display:block}
@@ -456,7 +442,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .cwx svg{width:15px;height:15px}
 .undo{position:fixed;z-index:60;left:50%;bottom:96px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:10px 12px 10px 16px;border-radius:14px;background:var(--surf-2);box-shadow:0 12px 32px -12px rgba(0,0,0,.7),inset 0 0 0 1px var(--v-line);font-size:13px;white-space:nowrap}
 .undo button{color:var(--v);font-weight:700}
-/* reviews */
 .rv{flex:none;width:280px;scroll-snap-align:start;display:block}
 .rvi{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--surf)}
 .rvi img{width:100%;height:100%;object-fit:cover}
@@ -464,7 +449,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .rvs svg{width:13px;height:13px}
 .rv b{display:block;font-size:14px;font-weight:700;line-height:1.6;margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rv small{display:block;font-size:11.5px;color:var(--ink-3);margin-top:4px}
-/* news */
 .nwl{display:grid;gap:10px;padding:0 var(--pad)}
 .nw{display:flex;gap:12px;align-items:center;padding:8px;border-radius:14px;background:var(--surf);box-shadow:inset 0 0 0 1px var(--line-1);transition:background .2s}
 .nw:hover{background:var(--surf-2)}
@@ -473,7 +457,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 .nw em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--v)}
 .nw b{font-size:13.5px;font-weight:700;line-height:1.6}
 .nw small{font-size:11px;color:var(--ink-3)}
-/* header: subscribe is the accent button, login is clear */
 .sub{gap:6px;background:var(--v);color:var(--on-light);box-shadow:0 6px 18px -8px var(--light-glow);font-weight:700}
 .sub:hover,.sub.is-hover{background:var(--light-top);box-shadow:0 6px 18px -8px var(--light-glow)}
 .sub svg{width:15px;height:15px}
@@ -496,8 +479,6 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 }
 
 
-/* ===== round 50 · home follows the title page system ===== */
-/* section heads: the same round icon badge and type as the title page chapters */
 .rh{align-items:center!important;margin-bottom:20px!important}
 .rh h2{display:flex!important;flex-direction:row!important;align-items:center!important;gap:14px!important;font-size:20px!important;font-weight:800!important}
 .rh h2>span:last-child{display:flex;flex-direction:column;gap:2px}
@@ -507,23 +488,18 @@ body{background:radial-gradient(1200px 600px at 85% 60%,rgba(120,80,255,.07),tra
 @media (min-width:1024px){.rh h2{font-size:24px!important}}
 .more,.more svg{color:var(--ink-2)!important}
 .more:hover{color:var(--ink-1)!important}
-/* one rhythm between sections, like the chapters */
 main .row{margin-top:64px!important}
 main>.row:first-child{margin-top:28px!important}
 @media (max-width:1023px){main .row{margin-top:52px!important}}
-/* cover: same height and placement as the title page, text sits low over the image */
 .hero{height:min(100vh,980px)!important;min-height:640px!important}
 @media (max-width:1023px){.hero{height:calc(100svh - 60px)!important;min-height:600px!important}}
 .kick{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:var(--ink-2)!important;font-size:13.5px!important;margin-bottom:12px!important}
 .kick b{display:none!important}
 .hero .cta{background:#F4F1FA!important;color:#0D0B15!important;box-shadow:none!important}
 .hero .cta svg{fill:#0D0B15!important;color:#0D0B15!important}
-/* posters: no coloured glow, the art is enough */
 .card .glow{display:none!important}
-/* continue watching: frosted play button, like the episode cards */
 .cwp{background:rgba(13,11,21,.28)!important;backdrop-filter:blur(14px) saturate(1.4)!important;-webkit-backdrop-filter:blur(14px) saturate(1.4)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important}
 .cwp svg{fill:#fff!important;color:#fff!important}
-/* news: plain rows with hairlines, like the download list */
 .nw{background:none!important;box-shadow:none!important;border-radius:0!important;padding:14px 0!important;border-bottom:1px solid rgba(242,239,248,.08)}
 .nw img{border-radius:10px}
 .nw.top{border-bottom:0;padding-top:0!important}
@@ -531,8 +507,6 @@ main>.row:first-child{margin-top:28px!important}
 .nw em{color:var(--ink-3)!important}
 .dots .seg[aria-current=true] i b{background:#F4F1FA!important}
 
-/* ===== round 51 ===== */
-/* hero copy: a stage that hands over line by line */
 .stage{display:block}
 .stage>.kick{display:flex!important;gap:8px}
 .logo2{height:76px;display:flex;align-items:flex-end}
@@ -544,7 +518,6 @@ main>.row:first-child{margin-top:28px!important}
 .syn p{display:block!important;-webkit-line-clamp:unset!important;max-height:calc(2 * 1.85em);overflow:hidden}
 @media (max-width:1023px){.strip2{bottom:30px}.hero .copy{padding-bottom:114px!important}}
 @media (min-width:1024px){.logo2{height:96px}.logo2 .logo img{max-height:96px;max-width:360px}}
-/* the strip: every slide visible, the current one lit */
 .dots,.upnext{display:none!important}
 .strip2{position:absolute;z-index:3;left:0;right:0;bottom:14px;display:flex;align-items:center;gap:6px;padding-inline-start:calc(var(--pad) - 8px)}
 .strip2 .pp{margin:0;flex:none}
@@ -571,16 +544,13 @@ main>.row:first-child{margin-top:28px!important}
   .tht{inset:auto 12px 12px 12px}.tht b{font-size:13px}.tht small{font-size:11px}
   .hero .copy{padding-bottom:150px!important}
 }
-/* dubbed is just one more fact: same badge as everything else */
 .bdg,.bdg.dub,.cm .bdg,.cm .bdg.dub,.card .cm .bdg,.card .cm .bdg.dub{background:transparent!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.22)!important;color:var(--ink-1)!important}
 .card .cm .bdg{background:rgba(13,11,21,.45)!important}
-/* card score: a yellow star and the number */
 .sbox{gap:4px!important;padding:0 7px 0 6px!important}
 .sbox .st{width:14px;height:14px;color:#F5C518;flex:none}
 @media (min-width:1024px){.sbox .st{width:15px;height:15px}}
 .star2{display:inline-flex;align-items:center;gap:5px}.star2 .st{width:15px;height:15px;color:#F5C518}.star2 b{color:var(--ink-1);font-weight:700}
 .card .ct{font-size:13px!important;font-weight:700!important;color:var(--ink-1)!important;margin-top:0!important;line-height:1.4!important}
-/* cards a little larger; on a phone exactly two fit, with a sliver of the next */
 @media (max-width:1023px){
   .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
   .row.big .card{width:calc((100vw - var(--pad) - 24px - 18px)/2)!important}
@@ -591,10 +561,8 @@ main>.row:first-child{margin-top:28px!important}
   .card .ct{font-size:14.5px!important}
 }
 
-/* ===== round 52 ===== */
 .hero .cta{background:var(--v)!important;color:#0D0B15!important}
 .hero .cta:hover{background:#B9A0FF!important}
-/* selected slide: wider, bright, outlined; the rest step back */
 .th img{filter:brightness(.32) saturate(.5)!important}
 .th:hover img{filter:brightness(.55) saturate(.8)!important}
 .th.on img{filter:none!important}
@@ -613,22 +581,17 @@ main>.row:first-child{margin-top:28px!important}
   .tht b{font-size:14px!important}
 }
 
-/* round 53: the section link names where it goes */
 .rh{gap:12px}
 .rh h2{min-width:0}
 .more{white-space:nowrap;flex:none;font-size:13px!important}
 @media (max-width:420px){.rh h2{font-size:18px!important}.more{font-size:12.5px!important}}
 
-/* ===== round 54 ===== */
-/* header: plain glass buttons, no icons */
 .hdr .sub,.hdr .login{background:rgba(242,239,248,.1)!important;backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(242,239,248,.16)!important;color:var(--ink-1)!important;font-weight:600!important;border-radius:999px!important}
 .hdr .sub:hover,.hdr .login:hover{background:rgba(242,239,248,.18)!important}
 .hdr .sub svg,.hdr .login svg{display:none!important}
-/* slider: kind as a chip, genre readable */
 .stage>.kick{align-items:center;gap:10px!important}
 .kchip{height:26px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;background:rgba(242,239,248,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.2);color:#fff;font-size:12.5px;font-weight:700}
 .kg{color:rgba(255,255,255,.9);font-size:14px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-/* scores: star, number, /10, votes */
 .scr{display:inline-flex;align-items:center;gap:4px;direction:rtl}
 .scr .st{width:14px;height:14px;color:#F5C518;flex:none}
 .scr b{font-weight:700;color:var(--ink-1)}
@@ -637,7 +600,6 @@ main>.row:first-child{margin-top:28px!important}
 .meta .scr .st{width:16px;height:16px}
 .sbox .scr b{font-size:12px}.sbox .scr small{font-size:10px}
 .sbox>.st{display:none}
-/* strip: arrows at both ends; neighbours a step brighter */
 .strip2 .pp{display:none!important}
 .harr{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#fff;background:rgba(242,239,248,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18);transition:background .2s}
 .harr:hover{background:rgba(242,239,248,.24)}
@@ -646,7 +608,6 @@ main>.row:first-child{margin-top:28px!important}
 .strip2 ol{padding:4px!important}
 .th.nb img{filter:brightness(.6) saturate(.85)!important}
 @media (max-width:1023px){.harr{width:34px;height:34px}.harr svg{width:17px;height:17px}}
-/* section heads: plain icon, title, a hairline to the link */
 .rh{align-items:center!important;gap:12px!important;margin-bottom:16px!important}
 .rh h2{gap:10px!important;font-size:19px!important}
 .rh h2>span:last-child{flex-direction:row!important;align-items:baseline!important;gap:10px!important}
@@ -659,13 +620,11 @@ main>.row:first-child{margin-top:28px!important}
 .more svg{width:14px!important;height:14px!important}
 @media (min-width:1024px){.rh h2{font-size:22px!important}}
 @media (max-width:420px){.rh h2 small{display:none}}
-/* cards: corner badge, year · votes; series: episode line, genre under it */
 .card .po .cbdg{position:absolute;top:8px;right:8px;z-index:2;height:22px!important;font-size:10.5px!important;padding:0 8px!important;border-radius:999px!important;background:rgba(13,11,21,.5)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(242,239,248,.18)!important}
 .card .cm{justify-content:flex-start!important}
 .card .cy{font-size:11px!important;color:rgba(242,239,248,.62)!important;white-space:nowrap}
 .cep{font-size:11.5px;font-weight:700;color:var(--gold);margin-top:3px}
 .card.wide .cg{margin-top:1px}
-/* continue / history tabs */
 .ctabs{display:inline-flex;gap:14px}
 .ctabs button{font-size:12.5px;color:var(--ink-3);height:28px;position:relative}
 .ctabs button[aria-pressed=true]{color:var(--ink-1);font-weight:700}
@@ -675,7 +634,6 @@ main>.row:first-child{margin-top:28px!important}
 .cwdone svg{width:15px;height:15px}
 .cw.hist .pg i{background:rgba(242,239,248,.4)!important}
 .cw.hist .cwl em{color:var(--v)!important;font-style:normal;font-weight:600;margin-inline-start:auto}
-/* reviews: editorial covers with the writer */
 .rv2{position:relative;flex:none;width:250px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;scroll-snap-align:start;display:block;background:var(--s1)}
 .rv2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .rv2:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,12,.96) 0,rgba(8,7,12,.7) 38%,rgba(8,7,12,0) 70%)}
@@ -687,7 +645,6 @@ main>.row:first-child{margin-top:28px!important}
 .rvby small{color:rgba(242,239,248,.55);font-size:11.5px}
 @media (min-width:1024px){.rv2{width:300px}.rvb>b{font-size:17px}}
 .rvrow .sc{padding-bottom:18px!important;margin-bottom:0!important}
-/* the film crowd */
 .post{flex:none;width:290px;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:16px;background:linear-gradient(180deg,rgba(242,239,248,.06),rgba(242,239,248,.025));box-shadow:inset 0 0 0 1px rgba(242,239,248,.08)}
 .post .ph{display:flex;align-items:center;gap:8px;font-size:13px}
 .post .ph b{font-weight:700;color:var(--ink-1)}
@@ -712,11 +669,8 @@ main>.row:first-child{margin-top:28px!important}
 .ulist small .av3{width:20px;height:20px;font-size:10px}
 .scr .sv{display:inline-flex;align-items:baseline;gap:1px}
 
-/* ===== round 55 ===== */
-/* subscribe is the brand action, login stays glass */
 .hdr .sub{background:var(--v)!important;color:#120E1C!important;box-shadow:0 8px 22px -10px rgba(169,139,255,.8)!important;font-weight:800!important;backdrop-filter:none!important}
 .hdr .sub:hover{background:#B9A0FF!important}
-/* strip: every slide readable, the current one lit; labelled previous / next */
 .th img{filter:brightness(.62) saturate(.9)!important}
 .th:hover img{filter:brightness(.85) saturate(1)!important}
 .th.nb img{filter:brightness(.7) saturate(.95)!important}
@@ -728,12 +682,10 @@ main>.row:first-child{margin-top:28px!important}
 .harr span{line-height:1}
 @media (min-width:1024px){.harr{height:84px!important;padding:0 14px;font-size:12.5px}.harr svg{width:22px!important;height:22px!important}}
 @media (max-width:1023px){.th{width:92px!important;height:54px!important}.th.on{width:124px!important}.harr{height:54px!important;padding:0 7px}.tht b{font-size:10.5px!important}}
-/* card score: plain, in the bottom line */
 .card .cm{display:flex;align-items:center;gap:8px}
 .card .cm .scr .st{width:13px;height:13px}
 .card .cm .scr b{font-size:12px}
 .card .cm .scr small{font-size:10px}
-/* reviews: quote cards led by words, not photos */
 .rq{flex:none;width:320px;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;gap:12px;padding:22px 20px 18px;border-radius:18px;background:linear-gradient(165deg,rgba(169,139,255,.12),rgba(242,239,248,.03) 55%);box-shadow:inset 0 0 0 1px rgba(242,239,248,.09);overflow:hidden}
 .rqm{position:absolute;top:-18px;left:14px;font-size:120px;line-height:1;font-family:Georgia,serif;color:rgba(169,139,255,.22);pointer-events:none}
 .rq b{font-size:16.5px;font-weight:800;line-height:1.7;color:var(--ink-1);position:relative}
@@ -746,11 +698,8 @@ main>.row:first-child{margin-top:28px!important}
 .rqk{margin-inline-start:auto;height:24px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--v);color:#120E1C;font-size:11.5px;font-weight:800}
 @media (max-width:1023px){.rq{width:280px}}
 
-/* ===== round 57 · Ali's notes ===== */
-/* subscribe: glass with a violet tint, still apart from the plain glass login */
 .hdr .sub{background:rgba(169,139,255,.2)!important;color:#E6DCFF!important;backdrop-filter:blur(16px) saturate(1.5)!important;-webkit-backdrop-filter:blur(16px) saturate(1.5)!important;box-shadow:inset 0 0 0 1px rgba(190,165,255,.5),0 8px 22px -12px rgba(169,139,255,.7)!important;font-weight:800!important}
 .hdr .sub:hover{background:rgba(169,139,255,.3)!important}
-/* section heads: cleaner, no line, link as a quiet pill */
 .rh:after{display:none!important}
 .rh{justify-content:space-between!important;margin-bottom:14px!important}
 .rh h2{font-size:20px!important;font-weight:800!important;letter-spacing:-.01em}
@@ -758,13 +707,10 @@ main>.row:first-child{margin-top:28px!important}
 .rh .more{height:30px!important;padding:0 10px 0 8px;border-radius:999px;background:rgba(242,239,248,.06);color:var(--ink-2)!important;font-size:12px!important}
 .rh .more:hover{background:rgba(242,239,248,.12);color:var(--ink-1)!important}
 @media (min-width:1024px){.rh h2{font-size:23px!important}}
-/* score on cards: Latin digits, star, quiet /10 */
 .scr .sv{font-family:var(--f-ui);letter-spacing:0}
 .scr .sv small{opacity:.55;font-size:.8em}
-/* taste match: a small chip on the poster */
 .mchip{position:absolute;top:8px;left:8px;z-index:2;height:22px;display:inline-flex;align-items:center;padding:0 8px;border-radius:999px;font-size:10.5px;font-weight:700;color:#0D0B15;background:rgba(245,196,81,.92)}
 .card .match{display:none!important}
-/* continue: history card at the end of the row */
 .cw.histc{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;padding:0 22px;width:220px;aspect-ratio:auto;align-self:stretch;min-height:150px;border-radius:16px;background:linear-gradient(160deg,rgba(169,139,255,.14),rgba(242,239,248,.03));box-shadow:inset 0 0 0 1px rgba(242,239,248,.1);scroll-snap-align:start}
 .histc .hci{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(242,239,248,.08);color:var(--v);margin-bottom:6px}
 .histc .hci svg{width:20px;height:20px}
@@ -772,7 +718,6 @@ main>.row:first-child{margin-top:28px!important}
 .histc small{font-size:12px;color:var(--ink-3)}
 .histc .hcg{display:inline-flex;align-items:center;gap:2px;margin-top:8px;font-size:12.5px;font-weight:700;color:var(--v)}
 .histc .hcg svg{width:15px;height:15px}
-/* the journal: reviews and news in their own band */
 .mag{position:relative;margin-top:72px;padding:48px 0 40px;background:radial-gradient(120% 70% at 85% 0%,rgba(169,139,255,.10),transparent 60%),linear-gradient(180deg,#16121F,#100D17);border-top:1px solid rgba(242,239,248,.08);border-bottom:1px solid rgba(242,239,248,.08)}
 .magh{padding:0 var(--pad);margin-bottom:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .magk{font-size:12px;font-weight:800;color:var(--v);letter-spacing:.02em}
@@ -786,7 +731,6 @@ main>.row:first-child{margin-top:28px!important}
 .mag .nw{border-bottom-color:rgba(242,239,248,.07)!important}
 @media (min-width:1024px){.magt{font-size:64px}.mag{padding:64px 0 56px}}
 
-/* round 58: the slide selector shows every slide at once, none dimmed; the active one gets a ring that slides between them */
 .klab{display:inline-flex;align-items:center;gap:10px;color:#CDBBFF;font-size:13px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .klab:after{content:"";width:1px;height:12px;background:rgba(255,255,255,.45)}
 .strip2 ol{overflow:visible!important;scroll-snap-type:none!important;gap:10px!important}
@@ -814,7 +758,6 @@ main>.row:first-child{margin-top:28px!important}
   .thp,.th.on .thp{inset:auto 4px 0 4px!important;bottom:-8px!important}
 }
 
-/* round 59: score on the poster's top-left, larger card type, section-head rule back, slider progress inside the thumb */
 .ctl{position:absolute;top:10px;left:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .ctl .mchip{position:static}
 .cscore{height:28px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(13,11,21,.62);box-shadow:inset 0 0 0 1px rgba(242,239,248,.12)}
@@ -835,7 +778,6 @@ main>.row:first-child{margin-top:28px!important}
 .th.on .tht{bottom:16px!important}
 @media (max-width:1023px){.thp,.th.on .thp{inset:auto 6px 6px 6px!important;bottom:6px!important}}
 
-/* round 60: plain score (no pill), year then genre on one line, the story slides in on hover */
 .cscore{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 12px rgba(0,0,0,.6)}
 .cscore .st{filter:drop-shadow(0 1px 2px rgba(0,0,0,.7))}
 .card .cg{display:flex!important;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
@@ -849,7 +791,6 @@ main>.row:first-child{margin-top:28px!important}
 @media (min-width:1024px){.csyn{font-size:13px}}
 @media (hover:none){.csyn{display:none}}
 
-/* round 61: star before the score, match chip under the badge, readable header buttons, no slider arrows */
 .cscore .scr{direction:ltr!important;gap:5px}
 .ctr{position:absolute;top:10px;right:10px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .card .po .ctr .cbdg{position:static!important}
@@ -860,7 +801,6 @@ main>.row:first-child{margin-top:28px!important}
 .hdr .sub:hover{background:rgba(110,78,215,.75)!important}
 .strip2 .harr{display:none!important}
 
-/* round 62: match chip above the badge, both flush right; light glass header buttons without text shadow; blurred search */
 .ctr{align-items:flex-start!important}
 .hdr .login,.hdr .sub{text-shadow:none!important;backdrop-filter:blur(18px) saturate(1.5)!important;-webkit-backdrop-filter:blur(18px) saturate(1.5)!important}
 .hdr .login{background:rgba(242,239,248,.16)!important;box-shadow:inset 0 0 0 1px rgba(242,239,248,.3)!important}
@@ -869,8 +809,20 @@ main>.row:first-child{margin-top:28px!important}
 .hdr .sub:hover{background:rgba(169,139,255,.45)!important}
 @media (min-width:1024px){.hdr .search{backdrop-filter:blur(18px) saturate(1.4)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4)!important}}
 
-/* round 63: the search field gets a visible edge on desktop */
 @media (min-width:1024px){.hdr .search{box-shadow:inset 0 0 0 1px rgba(242,239,248,.3)!important}.hdr .search:focus-within{box-shadow:inset 0 0 0 1px rgba(242,239,248,.6)!important}}
+
+.boot.off{display:none}
+.boot .intro,.boot .tag{transition:transform .5s var(--e-out),filter .5s var(--e-out)}
+.boot.done{transition:opacity .5s var(--e-out),visibility 0s linear .5s}
+.boot.done .intro,.boot.done .tag{transform:scale(1.04);filter:blur(6px)}
+@media (prefers-reduced-motion:reduce){.boot.done{transition:opacity .15s linear,visibility 0s linear .15s}.boot.done .intro,.boot.done .tag{transform:none;filter:none}}
+.logo2:has(.tEn){height:auto!important;display:block}
+.logo2 .logo:has(.tEn){height:auto}
+.tEn{font-family:var(--f-ui);font-weight:800;letter-spacing:-.025em;display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;line-height:1.08;padding-top:.04em;overflow-wrap:break-word;text-wrap:balance}
+.tFa span{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.6}
+.tht b{white-space:normal!important;overflow:hidden!important;text-overflow:clip!important;line-height:1.25;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.sx{display:inline-flex;align-items:center;gap:4px;direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.scr .sx{gap:inherit}
 </style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"><svg class="intro" id="intro" viewBox="-40 -820 3689 1130" role="img" aria-label="Rollvana" data-ocx="867" data-w="3609">
@@ -883,64 +835,50 @@ main>.row:first-child{margin-top:28px!important}
 </svg><div class="tag" id="tag" aria-label="حس خلسه‌ی تماشای فیلم و سریال"><span aria-hidden="true">حس</span><span aria-hidden="true">خلسه‌ی</span><span aria-hidden="true">تماشای</span><span aria-hidden="true">فیلم</span><span aria-hidden="true">و</span><span aria-hidden="true">سریال</span></div></div>
 <div id="app"></div>
 <script>(()=>{const b=document.getElementById("boot");
-const end=()=>{if(window.__introEnded)return;window.__introEnded=true;b.classList.add("done");dispatchEvent(new Event("introdone"))};
-const iq=new URLSearchParams(location.search).get("intro");let seen=false;try{seen=!!sessionStorage.getItem("rv-intro")}catch(e){}
-if(iq==="0"||(seen&&iq!=="1")){b.style.display="none";window.__introEnded=true;window.__introSkipped=true;return}
-try{sessionStorage.setItem("rv-intro","1")}catch(e){}
-window.__introEnd=end;
-
-(()=>{
+const P=new URLSearchParams(location.search);const iq=P.get("intro");
+const slow=Math.max(0,parseFloat(P.get("slow"))||0)*1000;
+let seen=false;try{seen=!!sessionStorage.getItem("rv-intro")}catch(e){}
+if(iq!=="0"){try{sessionStorage.setItem("rv-intro","1")}catch(e){}}
+const loaded=new Promise(r=>{const fin=()=>setTimeout(r,Math.max(0,slow-performance.now()));if(document.readyState==="complete")fin();else addEventListener("load",fin,{once:true})});
+const show=slow>0&&iq!=="0"&&(iq==="1"||!seen);
+window.__rv={slow,intro:show,loaded};
+if(!show){b.classList.add("off");window.__introEnded=true;window.__introSkipped=true;return}
 const svg=document.getElementById("intro"),tag=document.getElementById("tag");
-const OCX=+svg.dataset.ocx,W=+svg.dataset.w,CX=W/2,CY=-230;
-const sym=svg.querySelector("#sym"),spin=svg.querySelector("#spin"),eye=svg.querySelector("#eye"),dot=svg.querySelector("#dot"),ring=svg.querySelector("#ring"),halo=svg.querySelector("#halo");
+const OCX=+svg.dataset.ocx;
+const spin=svg.querySelector("#spin"),eye=svg.querySelector("#eye"),dot=svg.querySelector("#dot"),ring=svg.querySelector("#ring"),halo=svg.querySelector("#halo");
 const lts=[...svg.querySelectorAll(".lt")].map(p=>({p,c:+p.dataset.c}));
 const words=[...tag.querySelectorAll("span")];
-const cl=v=>v<0?0:v>1?1:v, seg=(t,a,b)=>cl((t-a)/(b-a)), mix=(a,b,p)=>a+(b-a)*p;
-const out3=p=>1-Math.pow(1-p,3), io=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
-const outQ=p=>1-Math.pow(1-p,5);
-const spring=p=>p>=1?1:1-Math.exp(-6.5*p)*Math.cos(8.5*p);
-// time line (ms)
-const T={born:[250,950],focus:[200,1050],roll:[950,1650],name:[1520,2400],tag:[2000,2600],end:2700};
-const S0=1.32,RO=240,DIST=CX-OCX;
-// roll angle: rolling left without slipping, radius shrinks with scale
-const ROLL=-(DIST/(RO*(S0+1)/2))*180/Math.PI;
+const cl=v=>v<0?0:v>1?1:v,seg=(t,a,z)=>cl((t-a)/(z-a)),mix=(a,z,p)=>a+(z-a)*p;
+const out3=p=>1-Math.pow(1-p,3),outQ=p=>1-Math.pow(1-p,5),io=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const L=1200;
 halo.style.display="none";
+dot.setAttribute("cx",45);dot.setAttribute("cy",-45);
 function frame(t){
-  // 1. the eye opens like a lens aperture: a solid disc whose centre opens to the ring
-  const w=mix(480,100,out3(seg(t,...T.focus)));
+  const n=Math.floor(t/L),u=t-n*L,a=n?t:Math.min(t,L);
+  const w=mix(480,100,out3(seg(a,0,450)));
   ring.setAttribute("stroke-width",w);ring.setAttribute("r",240-w/2);
-  eye.style.opacity=out3(seg(t,T.focus[0],T.focus[0]+250));
-  const lightOn=out3(seg(240-w,60,140));
-  // 2. the light comes on inside it: no glow, no scale
-  dot.style.opacity=lightOn; dot.style.filter="none";
-  // 3. the eye rolls home; the light drifts from the centre to the catchlight
-  const r=io(seg(t,...T.roll));
-  const x=mix(CX,OCX,r), s=mix(S0,1,r), a=ROLL*r;
-  sym.setAttribute("transform",`translate(${x} ${CY}) scale(${s})`);
-  spin.setAttribute("transform",`rotate(${a})`);
-  const d=out3(seg(t,T.roll[0]-150,T.roll[1])), rad=-a*Math.PI/180;
-  const lx0=45*d, ly0=-45*d;
-  dot.setAttribute("cx",lx0*Math.cos(rad)-ly0*Math.sin(rad));
-  dot.setAttribute("cy",lx0*Math.sin(rad)+ly0*Math.cos(rad));
-  // 4. the name grows out of the eye, nearest letters first
+  eye.style.opacity=out3(seg(a,0,200));
+  dot.style.opacity=out3(seg(240-w,60,140));
   for(const l of lts){
-    const st=T.name[0]+Math.abs(l.c-OCX)*.14, p=outQ(seg(t,st,st+500));
-    l.p.setAttribute("transform",`translate(${(l.c<OCX?1:-1)*140*(1-p)} 0)`);
-    l.p.style.opacity=p; l.p.style.filter=p<1?`blur(${(1-p)*7}px)`:"none";
+    const st=120+Math.abs(l.c-OCX)*.05,p=outQ(seg(a,st,st+380));
+    l.p.setAttribute("transform",`translate(${(l.c<OCX?1:-1)*60*(1-p)} 0)`);
+    l.p.style.opacity=p;l.p.style.filter=p<1?`blur(${(1-p)*6}px)`:"none";
   }
-  // 5. the tagline, word by word (joined script: never by letter)
-  words.forEach((w,i)=>{const st=T.tag[0]+i*90,p=out3(seg(t,st,st+480));
-    w.style.opacity=p;w.style.transform=`translateY(${(1-p)*6}px)`;w.style.filter=p<1?`blur(${(1-p)*5}px)`:"none";});
+  words.forEach((x,i)=>{const st=380+i*50,p=out3(seg(a,st,st+360));
+    x.style.opacity=p;x.style.transform=`translateY(${(1-p)*6}px)`;x.style.filter=p<1?`blur(${(1-p)*5}px)`:"none"});
+  const roll=n?io(seg(u,0,950)):0;
+  spin.setAttribute("transform",`rotate(${-360*roll})`);
+  dot.setAttribute("r",n?50+8*Math.sin(Math.PI*seg(u,950,L)):50);
 }
-let raf;
-function play(){cancelAnimationFrame(raf);
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches){frame(T.end);window.__introEnd&&setTimeout(window.__introEnd,900);return;}
-  const t0=performance.now();const step=n=>{const t=n-t0;frame(t);if(t<T.end)raf=requestAnimationFrame(step);else window.__introEnd&&setTimeout(window.__introEnd,350)};frame(0);raf=requestAnimationFrame(step);}
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let gone=false;
+const dissolve=()=>{if(gone)return;gone=true;b.classList.add("done");window.__introEnded=true;dispatchEvent(new Event("introdone"));setTimeout(()=>b.classList.add("off"),reduce?200:600)};
 window.__introFrame=frame;
-frame(matchMedia("(prefers-reduced-motion: reduce)").matches?T.end:0);
-const rb=document.getElementById("replay");if(rb)rb.onclick=play;
-new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){play();o.disconnect()}},{threshold:.5}).observe(svg);
-})();
+if(reduce){frame(L-1);loaded.then(dissolve);return}
+const t0=performance.now();let endAt=Infinity;
+loaded.then(()=>{const t=performance.now()-t0;endAt=Math.max(L,Math.ceil(t/L)*L)});
+const step=now=>{const t=now-t0;if(t>=endAt){frame(endAt-1);dissolve();return}frame(t);requestAnimationFrame(step)};
+frame(0);requestAnimationFrame(step);
 })();</script>
 <script src="media/vendor/react.production.min.js"></script>
 <script src="media/vendor/react-dom.production.min.js"></script>
@@ -952,7 +890,6 @@ const {motion,AnimatePresence,useReducedMotion,useMotionValue,useTransform,useSc
 const html=htm.bind(React.createElement);
 const Q=new URLSearchParams(location.search);
 const M=s=>"media/"+s;
-// titles that have a page in this mockup
 const PAGE={"dune-part-two":"../title/rollvana-title.html?kind=film","severance":"../title/rollvana-title.html?kind=series"};
 const EASE=[0.22,1,0.36,1];
 const INFO={hide:{},show:r=>({transition:{staggerChildren:r?0:.045,delayChildren:r?0:.1}}),out:r=>({opacity:0,transition:{duration:r?.1:.16,ease:"easeIn"}})};
@@ -987,6 +924,7 @@ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
 crown:'<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/>'});
 const I=({n,c})=>html`<svg class=${"i "+(c||"")} viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:ICON[n]}}></svg>`;
 const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const faN=n=>fa(String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"٬"));
 const pad2=n=>fa(String(n).padStart(2,"0"));
 
 const HERO=[
@@ -999,7 +937,7 @@ const HERO=[
 {s:"poor-things",rt:"۱۴۱ دقیقه",cr:"Yorgos Lanthimos · Emma Stone · Mark Ruffalo",kind:"فیلم",en:"Poor Things",fa:"موجودات بیچاره",y:2023,imdb:"7.8",g:"کمدی، فانتزی",b:"زیرنویس",acc:"#2aa8e0",pos:"60% 25%",syn:"بلا بکستر که دانشمندی عجیب او را به زندگی بازگردانده، از خانه می‌گریزد تا جهان را با چشمانی تازه کشف کند."},
 {s:"fallout",rt:"۲ فصل",cr:"Jonathan Nolan · Ella Purnell · Walton Goggins",kind:"سریال",en:"Fallout",fa:"فال‌اوت",y:2024,imdb:"8.3",g:"علمی‌تخیلی، اکشن",b:"دوبله فارسی",acc:"#c09040",pos:"50% 50%",syn:"دویست سال پس از آخرالزمان هسته‌ای، لوسی از پناهگاه امنش بیرون می‌آید و با دنیای بی‌رحم و عجیب بیرون روبه‌رو می‌شود."}
 ];
-const LONG={...HERO[0],s:null,en:"The Extraordinary Adventures of Adèle Blanc-Sec",fa:"ماجراهای خارق‌العاده‌ی آدل بلان‌سک و مومیایی‌ها",acc:"#b8864a"};
+const LONG={...HERO[0],s:null,en:"The Assassination of Jesse James by the Coward Robert Ford",fa:"ترور جسی جیمز به دست رابرت فورد بزدل",acc:"#b8864a"};
 const C=(s,en,imdb,b,f)=>({s,en,imdb,b,f});
 const FILMS=[C("sinners","Sinners","7.6","دوبله","امروز"),C("one-battle-after-another","One Battle After Another","8.1","زیرنویس","امروز"),C("weapons","Weapons","7.5","دوبله","دیروز"),C("f1","F1","7.7","دوبله","دیروز"),C("frankenstein","Frankenstein","7.5","زیرنویس","۳ روز پیش"),C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning","7.2","دوبله","۴ روز پیش"),C("the-running-man","The Running Man","6.6","زیرنویس","۵ روز پیش"),C("oppenheimer","Oppenheimer","8.3","دوبله","یک هفته پیش")];
 const SERIES=[C("the-bear","The Bear","8.5","زیرنویس","فصل ۴ · قسمت ۲ تازه"),C("star-wars-andor","Andor","8.6","دوبله","فصل ۲ · قسمت ۱۲ تازه"),C("slow-horses","Slow Horses","8.3","زیرنویس","فصل ۵ · قسمت ۶ تازه"),C("the-penguin","The Penguin","8.6","دوبله","فصل ۱ · قسمت ۸ تازه"),C("the-white-lotus","The White Lotus","8.0","زیرنویس","فصل ۳ · قسمت ۸ تازه"),C("squid-game","Squid Game","8.0","دوبله","فصل ۳ · قسمت ۶ تازه"),C("house-of-the-dragon","House of the Dragon","8.3","دوبله","فصل ۲ · قسمت ۸ تازه"),C("wednesday","Wednesday","8.0","دوبله","فصل ۲ · قسمت ۸ تازه")];
@@ -1013,7 +951,6 @@ const CFA={"sinners":["گناهکاران","۱۳۷ دقیقه"],"one-battle-afte
 "past-lives":["زندگی‌های گذشته","۱۰۶ دقیقه"],"arrival":["ورود","۱۱۶ دقیقه"],"interstellar":["میان‌ستاره‌ای","۱۶۹ دقیقه"],"parasite":["انگل","۱۳۲ دقیقه"],"whiplash":["ویپلش","۱۰۶ دقیقه"],"her":["او","۱۲۶ دقیقه"],"prisoners":["زندانیان","۱۵۳ دقیقه"],"blade-runner-2049":["بلید رانر ۲۰۴۹","۱۶۴ دقیقه"]};
 [...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CFA[c.s];if(m){c.fa=m[0];c.d=m[1]}delete c.f});
 [97,95,94,92,91,89,88,86].forEach((m,i)=>{if(PICKS[i])PICKS[i].m=m});
-// round 25: series as landscape cards with the new episode; more in continue watching; reviews and news
 const SNEW={"the-bear":"فصل ۴ · قسمت ۲","star-wars-andor":"فصل ۲ · قسمت ۱۲","slow-horses":"فصل ۵ · قسمت ۶","the-penguin":"فصل ۱ · قسمت ۸","the-white-lotus":"فصل ۳ · قسمت ۸","squid-game":"فصل ۳ · قسمت ۶","house-of-the-dragon":"فصل ۲ · قسمت ۸","wednesday":"فصل ۲ · قسمت ۸"};
 SERIES.forEach(c=>{c.ep=SNEW[c.s]});
 const REVIEWS=[
@@ -1026,12 +963,10 @@ const NEWS=[
  {img:"w-wednesday.jpg",t:"تاریخ پخش قسمت‌های تازه‌ی «ونزدی» اعلام شد",tag:"سریال",d:"امروز"},
  {img:"w-f1.jpg",t:"«اف وان» پرفروش‌ترین فیلم ورزشی تاریخ شد",tag:"باکس‌آفیس",d:"دیروز"},
  {img:"w-house-of-the-dragon.jpg",t:"فصل سوم «خاندان اژدها» تابستان سال بعد می‌آید",tag:"سریال",d:"۲ روز پیش"}];
-// one-line story for the card hover
 const CSYN={"sinners":"دو برادر دوقلو به شهر زادگاهشان برمی‌گردند تا از نو شروع کنند، اما شری کهنه‌تر از گذشته‌شان منتظرشان است.","one-battle-after-another":"انقلابیِ بازنشسته‌ای وقتی دخترش ناپدید می‌شود، ناچار است با دشمنان قدیمی‌اش دوباره روبه‌رو شود.","weapons":"یک شب، همه‌ی بچه‌های یک کلاس جز یکی، در یک ساعت از خانه بیرون می‌روند و دیگر برنمی‌گردند.","f1":"راننده‌ی کهنه‌کار فرمول یک برمی‌گردد تا هم‌تیمی جوانش را به قهرمانی برساند و حساب خودش را با گذشته صاف کند.","frankenstein":"دانشمندی جاه‌طلب به مرده جان می‌دهد و آفریده‌اش، تنها و خشمگین، پاسخ همه‌چیز را از او می‌خواهد.","mission-impossible-the-final-reckoning":"ایتن هانت و تیمش در مسابقه‌ای با زمان، باید جلوی هوش مصنوعی‌ای را بگیرند که دنیا را تهدید می‌کند.","the-running-man":"مردی بی‌پول در یک مسابقه‌ی تلویزیونی شرکت می‌کند که در آن شکارچیان برای کشتنش آزادند.","the-bear":"آشپزی برجسته به ساندویچ‌فروشی خانوادگی‌اش در شیکاگو برمی‌گردد تا آن را از ورشکستگی نجات دهد.","star-wars-andor":"کاسیان آندور از دزدی بی‌هدف به یکی از چهره‌های اصلی شورش علیه امپراتوری تبدیل می‌شود.","slow-horses":"گروهی از مأموران اخراجیِ سازمان اطلاعات بریتانیا، بی‌آنکه کسی جدی‌شان بگیرد، درگیر پرونده‌های واقعی می‌شوند.","the-penguin":"اسوالد کابل‌پات در خلأ قدرت گاتهام، پله‌پله به سوی تاج‌وتخت دنیای تبهکاری بالا می‌رود.","the-white-lotus":"تعطیلات چند مهمان ثروتمند در یک هتل لوکس، هفته‌به‌هفته به سمت یک مرگ مرموز پیش می‌رود.","wednesday":"ونزدی آدامز در مدرسه‌ی شبانه‌روزی نورمور، رازی را دنبال می‌کند که به گذشته‌ی خانواده‌اش گره خورده است.","squid-game":"صدها بدهکار در بازی‌های کودکانه‌ای شرکت می‌کنند که جایزه‌اش ثروت است و باختش مرگ.","house-of-the-dragon":"دویست سال پیش از «بازی تاج و تخت»، جنگ جانشینی خاندان تارگرین را از درون می‌شکافد.","past-lives":"دو دوست کودکی پس از بیست سال در نیویورک دوباره هم را می‌بینند و از «اگر»های زندگی‌شان می‌پرسند.","arrival":"زبان‌شناسی مأمور می‌شود با موجوداتی فضایی حرف بزند و در این راه، نگاهش به زمان دگرگون می‌شود.","interstellar":"گروهی از فضانوردان از کرمچاله‌ای می‌گذرند تا خانه‌ی تازه‌ای برای بشریت پیدا کنند.","parasite":"خانواده‌ای فقیر یکی‌یکی به خانه‌ی خانواده‌ای ثروتمند راه پیدا می‌کنند، تا وقتی که رازی زیر خانه پیدا می‌شود.","whiplash":"درامری جوان زیر دست استادی بی‌رحم، مرز میان نبوغ و ویرانی را می‌آزماید.","her":"مردی تنها در آینده‌ای نزدیک، عاشق سیستم‌عاملی هوشمند می‌شود که هر روز بیشتر از او می‌فهمد.","prisoners":"وقتی دختر کوچکش ناپدید می‌شود و پلیس به جایی نمی‌رسد، پدری تصمیم می‌گیرد خودش قانون را در دست بگیرد.","blade-runner-2049":"شکارچی تازه‌ای رازی را کشف می‌کند که می‌تواند باقی‌مانده‌ی جامعه را به آشوب بکشد.","oppenheimer":"داستان دانشمندی که بمب اتم را ساخت، و بهایی که برای آن پرداخت."};
 [...FILMS,...SERIES,...PICKS].forEach(c=>{if(CSYN[c.s])c.syn=CSYN[c.s]});
 
 
-// every image the first screens need, fetched and decoded while the intro plays
 const ASSETS=(()=>{const u=new Set();
   [...HERO,LONG].forEach(h=>{u.add(M("b-"+(h.s||"dune-part-two")+".jpg"));if(h.s)u.add(M("l-"+h.s+".png"))});
   [...FILMS,...SERIES,...PICKS,{s:"mission-impossible-the-final-reckoning"}].forEach(c=>u.add(M("p-"+c.s+".jpg")));
@@ -1093,7 +1028,7 @@ function Count({v,dec=0,fmt}){
   const [d,setD]=useState(v);const cur=useRef(v);const reduced=useReducedMotion();
   useEffect(()=>{if(reduced){setD(v);cur.current=v;return}const c=Motion.animate(cur.current,v,{type:"spring",stiffness:120,damping:20,mass:.8,onUpdate:x=>{cur.current=x;setD(x)}});return()=>c.stop()},[v]);
   const t=d.toFixed(dec);
-  return html`<span class="num" aria-label=${v.toFixed(dec)}>${fmt?fmt(t):t}</span>`;
+  return html`<span class="num" aria-label=${fa(v.toFixed(dec))}>${fmt?fmt(t):t}</span>`;
 }
 function Flip({v,reduced}){
   return html`<span class="flip"><${AnimatePresence} initial=${false} mode="popLayout">
@@ -1203,7 +1138,6 @@ function Dots({i,n,run,dur,reduced,paused,toggle,to}){
   </div>`;
 }
 
-/* round 51: every slide in one strip; the current one is lit and carries the timer */
 function Strip({items,i,to,run,dur,reduced,paused,toggle,desk}){
   const ol=useRef();
   return html`<div class="strip2" role="group" aria-label=${"اسلاید "+fa(i+1)+" از "+fa(items.length)}>
@@ -1233,7 +1167,6 @@ function SynWords({text,reduced}){
   const w=text.split(" ");
   return html`<${motion.p} variants=${{hidden:{},show:{transition:{staggerChildren:.005}},exit:{opacity:0,filter:"blur(8px)",transition:{duration:.3}}}}>${w.map((x,j)=>html`<${motion.span} key=${j} class="w" variants=${WORD}>${x}${j<w.length-1?" ":""}</${motion.span}>`)}</${motion.p}>`;
 }
-/* the next slides, so you know what is coming; click one to jump */
 function UpNext({items,i,to,desk,reduced}){
   const n=items.length,k=desk?4:3;const next=Array.from({length:k},(_,j)=>(i+1+j)%n);
   return html`<div class="upnext" aria-label="اسلایدهای بعدی"><span class="unl">بعدی</span>
@@ -1273,8 +1206,8 @@ function Hero({items,loading,desk}){
       <div class="sk" style=${{width:"92%",height:14,marginTop:18}}></div>
       <div class="sk" style=${{width:"70%",height:14,marginTop:10}}></div>
       <div class="sk" style=${{width:172,height:48,marginTop:20,borderRadius:999}}></div>
-      <div class="sk" style=${{width:200,height:3,marginTop:32}}></div>
     </div>
+    <div class="strip2" aria-hidden="true"><ol>${items.map((x,k)=>html`<li key=${k}><span class="th sk"></span></li>`)}</ol></div>
   </section>`;
   return html`<section class="hero" aria-roledescription="carousel" aria-label="عنوان‌های منتخب" tabIndex="0"
     style=${{"--stripH":full+"px","--cardW":cardW+"px"}}
@@ -1318,13 +1251,12 @@ function Hero({items,loading,desk}){
 
 const IMDB_SVG="<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>";
 const IMDB=html`<span class="imdbm" aria-hidden="true">IMDb</span>`;
-/* IMDb votes in thousands (mock data, rounded) */
-const VOTES={"dune-part-two":680,"blade-runner-2049":700,"oppenheimer":900,"severance":320,"shogun":230,"the-last-of-us":640,"poor-things":330,"fallout":330,
-"sinners":260,"one-battle-after-another":180,"weapons":230,"f1":200,"frankenstein":120,"mission-impossible-the-final-reckoning":160,"the-running-man":40,
-"the-bear":320,"star-wars-andor":290,"slow-horses":110,"the-penguin":180,"the-white-lotus":220,"squid-game":650,"house-of-the-dragon":500,"wednesday":440,
-"past-lives":150,"arrival":800,"interstellar":2300,"parasite":1000,"whiplash":1000,"her":700,"prisoners":850};
-const votesOf=s=>{const k=VOTES[s]||100;return k>=1000?fa((k/1000).toFixed(1).replace(/\.0$/,"")).replace(".","٫")+" میلیون رأی":fa(k)+" هزار رأی"};
-function Score({v,s,full}){return html`<span class="scr" aria-label=${"امتیاز IMDb "+v+" از ۱۰"+(s?"، "+votesOf(s):"")}>${STAR}<span class="sv" dir="ltr"><b>${v}</b><small>/10</small></span>${full&&s&&html`<em class="num">${votesOf(s)}</em>`}</span>`}
+const VOTES={"dune-part-two":681354,"blade-runner-2049":702118,"oppenheimer":912407,"severance":318562,"shogun":231940,"the-last-of-us":641275,"poor-things":334806,"fallout":329113,
+"sinners":262481,"one-battle-after-another":181337,"weapons":228904,"f1":203566,"frankenstein":118742,"mission-impossible-the-final-reckoning":160215,"the-running-man":40877,
+"the-bear":321650,"star-wars-andor":289473,"slow-horses":108931,"the-penguin":179284,"the-white-lotus":221709,"squid-game":652318,"house-of-the-dragon":501846,"wednesday":437592,
+"past-lives":151204,"arrival":801377,"interstellar":2304519,"parasite":1004862,"whiplash":1003245,"her":702960,"prisoners":851733};
+const votesOf=s=>VOTES[s]?faN(VOTES[s])+" رأی":null;
+function Score({v,s,full}){const vo=full&&votesOf(s);return html`<span class="scr" aria-label=${"امتیاز IMDb "+v+" از 10"+(vo?"، "+vo:"")}><bdi class="sx" dir="ltr">${STAR}<span class="sv"><b>${v}</b><small>/10</small></span></bdi>${vo&&html`<em class="num">${vo}</em>`}</span>`}
 const STAR=html`<svg class="st" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg>`;
 function Card({c,k,reduced}){
   return html`<${motion.a} href="#" class=${"card"+(c.ep?" wide":"")}
@@ -1339,7 +1271,7 @@ function Card({c,k,reduced}){
     </${motion.div}>
   </${motion.a}>`;
 }
-function SkCard(){return html`<div class="card"><div class="po sk"></div></div>`}
+function SkCard({wide}){return html`<div class=${"card"+(wide?" wide":"")}><div class="po sk"></div></div>`}
 
 function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌ی بیشتر"}){
   const ref=useRef();const reduced=useReducedMotion();
@@ -1359,7 +1291,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌�
 >
           <${motion.img} src=${M("b-"+g[2]+".jpg")} style=${{objectPosition:g[3]}} alt="" variants=${{h:{scale:1.08}}} transition=${{duration:.8,ease:EASE}}/>
           <b>${g[0]}</b><small>${fa(g[5])} عنوان</small></${motion.a}>`)
-      :items.map((c,k)=>loading?html`<${SkCard} key=${k}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced}/>`)}</div>
+      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced}/>`)}</div>
   </section>`;
 }
 
@@ -1376,16 +1308,17 @@ const HIST=[{s:"interstellar",img:"w-interstellar.jpg",fa:"میان‌ستاره
   {s:"past-lives",img:"w-past-lives.jpg",fa:"زندگی‌های گذشته",sub:"فیلم",when:"هفته‌ی پیش"},
   {s:"f1",img:"w-f1.jpg",fa:"اف وان",sub:"فیلم",when:"هفته‌ی پیش"},
   {s:"poor-things",img:"b-poor-things.jpg",fa:"موجودات بیچاره",sub:"فیلم",when:"دو هفته پیش"}];
-function ContinueRow({loading,desk}){
-  return html`<${ContinueList} loading=${loading} desk=${desk} head=${html`<div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا</span></h2><a href="#" class="more">تاریخچه<${I} n="left"/></a></div>`}/>`;
+function ContinueRow({loading,desk,long}){
+  return html`<${ContinueList} loading=${loading} desk=${desk} long=${long} head=${html`<div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا</span></h2><a href="#" class="more">تاریخچه<${I} n="left"/></a></div>`}/>`;
 }
-function ContinueList({loading,desk,head}){
-  const [list,setList]=useState(CONT0);const [undo,setUndo]=useState(null);const tm=useRef();const reduced=useReducedMotion();
+function ContinueList({loading,desk,head,long}){
+  const C0=long?[{...CONT0[1],s:"dune-long",en:LONG.en,fa:LONG.fa},CONT0[0],...CONT0.slice(2)]:CONT0;
+  const [list,setList]=useState(C0);const [undo,setUndo]=useState(null);const tm=useRef();const reduced=useReducedMotion();
   const remove=c=>{setList(l=>l.filter(x=>x.s!==c.s));setUndo(c);clearTimeout(tm.current);tm.current=setTimeout(()=>setUndo(null),4000)};
-  const back=()=>{setList(l=>CONT0.filter(x=>x.s===undo.s||l.some(y=>y.s===x.s)));setUndo(null)};
+  const back=()=>{setList(l=>C0.filter(x=>x.s===undo.s||l.some(y=>y.s===x.s)));setUndo(null)};
   if(!list.length&&!undo)return null;
   return html`<section class="row cont">${head}
-    <div class="sc"><${AnimatePresence} initial=${false}>${list.map(c=>loading?html`<div class="cw sk" key=${c.s}></div>`:html`<${motion.div} key=${c.s} class="cw" layout=${!reduced}
+    <div class="sc"><${AnimatePresence} initial=${false}>${list.map(c=>loading?html`<div class="cw" key=${c.s}><div class="cwi sk"></div><span class="cwl"><span class="sk" style=${{width:"64%",height:14,margin:"3px 0"}}></span></span></div>`:html`<${motion.div} key=${c.s} class="cw" layout=${!reduced}
         exit=${{opacity:0,scale:.9,transition:{duration:.2}}} transition=${SOFT}>
       <${motion.a} href=${PAGE[c.s]||"#"} class="cwa" whileHover="h" whileTap=${{scale:.98}} initial="r" animate="r">
         <div class="cwi"><${motion.img} src=${M(c.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.6,ease:EASE}}/>
@@ -1401,7 +1334,6 @@ function ContinueList({loading,desk,head}){
   </section>`;
 }
 
-/* reviews come in from the editorial side by themselves; news under them */
 const RVX={"one-battle-after-another":"اندرسون با کمدی سیاه و تعقیبی بی‌وقفه، شخصی‌ترین و پرانرژی‌ترین فیلمش را ساخته است.","sinners":"کوگلر ژانر خون‌آشامی را با بلوز جنوب آمریکا گره می‌زند؛ ترسناکی که بیشتر از هر چیز شنیدنی است.","frankenstein":"دل تورو هیولا را مهربان‌ترین آدم داستان می‌کند و سازنده را هیولای واقعی.","the-penguin":"کالین فارل زیر گریم ناپدید می‌شود و گاتهام هیچ‌وقت این‌قدر واقعی نبوده است."};
 function Reviews({loading}){
   if(loading)return null;
@@ -1413,29 +1345,28 @@ function Reviews({loading}){
       <span class="rqf"><img src=${M("p-"+r.s+".jpg")} alt=""/><span><em>${r.by}</em><small class="num">${r.d} · ${fa(r.min)} دقیقه مطالعه</small></span><span class="rqk">نقد</span></span>
     </${motion.a}>`)}</div></section>`;
 }
-/* the film crowd: what people are saying and the lists they make */
 const POSTS=[{u:"نگار",s:"dune-part-two",n:"Dune: Part Two",r:9,d:"۲ ساعت پیش",l:214,c:31,x:"صحنه‌ی سوار شدن روی کرم شنی رو سه بار دیدم. این فیلم رو باید با صدای بلند دید."},
   {u:"امیر",s:"severance",n:"Severance",r:10,d:"۵ ساعت پیش",l:186,c:44,x:"فصل دوم کند شروع شد ولی قسمت آخر همه‌چیز رو جبران کرد. هنوز توی فکرشم."},
   {u:"سارا",s:"past-lives",n:"Past Lives",r:8,d:"دیروز",l:97,c:12,x:"آرام‌ترین و تلخ‌ترین عاشقانه‌ای که امسال دیدم. بدون یک دیالوگ اضافه."},
   {u:"رضا",s:"the-penguin",n:"The Penguin",r:9,d:"دیروز",l:143,c:26,x:"کالین فارل زیر اون گریم ناپدید شده. بهترین سریال کمیک‌بوکی سال‌ها."},
   {u:"مهسا",s:"sinners",n:"Sinners",r:8,d:"۲ روز پیش",l:121,c:18,x:"موسیقی‌اش تا چند روز توی سرم بود. نیمه‌ی دوم واقعاً ترسناکه."}];
-const ULISTS=[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:"۱٫۲ هزار",p:["interstellar","arrival","blade-runner-2049"]},
-  {n:"با صدای بلند ببینید",u:"نگار",c:18,f:"۸۴۰",p:["dune-part-two","oppenheimer","f1"]},
-  {n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:"۶۱۰",p:["severance","the-bear","slow-horses"]},
-  {n:"عاشقانه‌های آرام",u:"مهسا",c:15,f:"۵۲۰",p:["past-lives","her","whiplash"]}];
+const ULISTS=[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["interstellar","arrival","blade-runner-2049"]},
+  {n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["dune-part-two","oppenheimer","f1"]},
+  {n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses"]},
+  {n:"عاشقانه‌های آرام",u:"مهسا",c:15,f:520,p:["past-lives","her","whiplash"]}];
 function Crowd({loading}){
   if(loading)return null;
-  return html`<section class="row crowd"><div class="rh"><h2><span class="rhi"><${I} n="users"/></span><span>جمع فیلم‌بازها</span></h2><a href="#" class="more">بیشتر<${I} n="left"/></a></div>
+  return html`<section class="row crowd"><div class="rh"><h2><span class="rhi"><${I} n="users"/></span><span>جمع فیلم‌بازها</span></h2><a href="#" class="more">لیست‌های کاربران<${I} n="left"/></a></div>
     <div class="sc">${POSTS.map((p,k)=>html`<${motion.a} href="#" key=${k} class="post" whileHover=${{y:-4}} transition=${SPR}>
       <span class="ph"><i class="av3">${p.u[0]}</i><b>${p.u}</b><small>${p.d}</small></span>
-      <span class="pt"><img src=${M("p-"+p.s+".jpg")} alt=""/><span><b dir="ltr">${p.n}</b><em>${STAR}<span class="num">${fa(p.r)}/۱۰</span></em></span></span>
+      <span class="pt"><img src=${M("p-"+p.s+".jpg")} alt=""/><span><b dir="ltr">${p.n}</b><em><bdi class="sx" dir="ltr">${STAR}<span>${p.r}/10</span></bdi></em></span></span>
       <p>${p.x}</p>
-      <span class="pf"><span><${I} n="thumbup"/><span class="num">${fa(p.l)}</span></span><span><${I} n="reply"/><span class="num">${fa(p.c)}</span></span></span>
+      <span class="pf"><span><${I} n="thumbup"/><span class="num">${faN(p.l)}</span></span><span><${I} n="reply"/><span class="num">${faN(p.c)}</span></span></span>
     </${motion.a}>`)}</div>
     <h3 class="subh">لیست‌های کاربران</h3>
     <div class="sc">${ULISTS.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulist" whileHover="h" initial="r" animate="r">
       <span class="stack">${l.p.map((s,j)=>html`<${motion.img} key=${s} src=${M("p-"+s+".jpg")} alt="" style=${{zIndex:3-j}} variants=${{r:{x:j*-34,rotate:j*-4,y:j*4},h:{x:j*-46,rotate:j*-7,y:j*6}}} transition=${SPR}/>`)}</span>
-      <b>${l.n}</b><small><i class="av3">${l.u[0]}</i>${l.u} · <span class="num">${fa(l.c)}</span> عنوان · <span class="num">${l.f}</span> دنبال‌کننده</small>
+      <b>${l.n}</b><small><i class="av3">${l.u[0]}</i>${l.u} · <span class="num">${faN(l.c)}</span> عنوان · <span class="num">${faN(l.f)}</span> دنبال‌کننده</small>
     </${motion.a}>`)}</div></section>`;
 }
 function News({loading}){
@@ -1456,61 +1387,63 @@ function Tabs(){
 }
 
 const IDS=[["nirvana","نیروانا (بنفش)","#A97BFF"],["beam","پرتو (فیروزه‌ای)","#3DE0D2"],["copper","مس (مسی)","#E78A53"]];
-function Review({st,set,reload,id,setId}){
-  const O=[["guest","مهمان"],["user","واردشده"],["loading","در حال بارگذاری"],["long","عنوان‌های بلند"]];
+function Review({user,setUser,content,setContent}){
+  const nav=p=>{const u=new URL(location.href);Object.entries(p).forEach(([k,v])=>v==null?u.searchParams.delete(k):u.searchParams.set(k,v));location.href=u};
+  const slow=SLOW/1000;
+  const B=(on,l,f)=>html`<${motion.button} whileTap=${{scale:.95}} aria-pressed=${on} onClick=${f}>${l}</${motion.button}>`;
+  const top=()=>scrollTo({top:0,behavior:"smooth"});
   return html`<section class="review" aria-label="حالت‌های طرح">
     <span>حالت‌های طرح (فقط برای بررسی)</span>
-    <div>${O.map(([k,l])=>html`<${motion.button} whileTap=${{scale:.95}} aria-pressed=${st===k} onClick=${()=>{set(k);scrollTo({top:0,behavior:"smooth"})}}>${l}</${motion.button}>`)}
-      <${motion.button} whileTap=${{scale:.95}} onClick=${reload}>بارگذاری دوباره</${motion.button}>
-      <${motion.button} whileTap=${{scale:.95}} onClick=${()=>{const u=new URL(location.href);u.searchParams.set("intro","1");u.searchParams.delete("load");location.href=u}}>اینترو از اول</${motion.button}></div>
+    <div class="grp"><span>کاربر</span><div>${[[false,"مهمان"],[true,"واردشده"]].map(([k,l])=>B(user===k,l,()=>{setUser(k);top()}))}</div></div>
+    <div class="grp"><span>محتوا</span><div>${[["normal","عادی"],["loading","در حال بارگذاری"],["long","عنوان‌های بلند"]].map(([k,l])=>B(content===k,l,()=>{setContent(k);top()}))}</div></div>
+    <div class="grp"><span>بارگذاری کند صفحه</span><div>${[[0,"خاموش"],[3,"۳ ثانیه"],[6,"۶ ثانیه"]].map(([k,l])=>B(slow===k,l,()=>nav({slow:k||null,intro:null})))}
+      <${motion.button} whileTap=${{scale:.95}} onClick=${()=>nav({intro:null})}>بارگذاری دوباره</${motion.button}>
+      <${motion.button} whileTap=${{scale:.95}} onClick=${()=>nav({intro:"1",slow:slow||3})}>اینترو از اول</${motion.button}></div></div>
     <a class="syslink" href="../system/rollvana-design-system.html">سیستم طراحی رول‌وانا ←</a>
   </section>`;
 }
 
+const SLOW=(window.__rv&&window.__rv.slow)||0;
+const CONTENT0=["normal","loading","long"].includes(Q.get("content"))?Q.get("content"):Q.get("state")==="loading"?"loading":Q.get("long")==="1"?"long":"normal";
 function App(){
   const desk=useDesk();
-  const [st,setSt]=useState(Q.get("state")==="loading"?"loading":Q.get("long")==="1"?"long":Q.get("user")==="1"?"user":"guest");
-  const first=Q.get("intro")!=="0";
-  const [boot,setBoot]=useState(first);
-  const [sim,setSim]=useState(Q.get("load")!=="0");
-  useEffect(()=>{
-    const go=()=>{setBoot(false);Promise.all([READY,wait(window.__introSkipped?700:1600)]).then(()=>setSim(false))};
-    if(!first){go();return}
-    if(window.__introEnded){go();return}
-    addEventListener("introdone",go,{once:true});return()=>removeEventListener("introdone",go);
-  },[]);
-
-  const user=st==="user"||st==="long";
-  const loading=st==="loading"||sim;
-  const long=st==="long";
-  const reload=()=>{scrollTo({top:0});setSim(true);setTimeout(()=>setSim(false),1800)};
+  const [user,setUser]=useState(Q.get("user")==="1"||(Q.get("long")==="1"&&!Q.has("user")));
+  const [content,setContent]=useState(CONTENT0);
+  const [sim,setSim]=useState(SLOW>0);
+  useEffect(()=>{if(!sim)return;let on=true;window.__rv.loaded.then(()=>{if(on)setSim(false)});return()=>{on=false}},[]);
+  const firstRun=useRef(true);
+  useEffect(()=>{if(firstRun.current){firstRun.current=false;return}
+    const u=new URL(location.href);u.searchParams.set("user",user?"1":"0");u.searchParams.set("content",content);u.searchParams.delete("state");u.searchParams.delete("long");u.searchParams.delete("load");history.replaceState(history.state,"",u)},[user,content]);
+  const loading=content==="loading"||sim;
+  const long=content==="long";
   const hero=long?[LONG,...HERO.slice(1)]:HERO;
-  const films=long?[{...C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning of Ethan Hunt","7.2","دوبله"),fa:"ماموریت غیرممکن: حساب‌رسی نهایی اتان هانت",g:"اکشن، ماجراجویی",y:2025,d:"۱۶۹ دقیقه"},...FILMS]:FILMS;
+  const LF={...C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning of Ethan Hunt","7.2","دوبله"),fa:"ماموریت غیرممکن: حساب‌رسی نهایی اتان هانت",g:"اکشن، ماجراجویی",y:2025,d:"۱۶۹ دقیقه",syn:CSYN["mission-impossible-the-final-reckoning"]};
+  const films=long?[LF,...FILMS.filter(c=>c.s!==LF.s)]:FILMS;
+  const series=long?SERIES.map(c=>c.s==="house-of-the-dragon"?{...c,en:"House of the Dragon: The Dance of the Dragons"}:c).sort((x,y)=>(y.s==="house-of-the-dragon")-(x.s==="house-of-the-dragon")):SERIES;
   return html`<${React.Fragment}>
     <${Header} user=${user} desk=${desk}/>
-    <${AnimatePresence} mode="wait" initial=${false}>
-      <${motion.div} key=${loading?"sk":"ok"+st} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.35}}>
+    <${AnimatePresence} mode="popLayout" initial=${false}>
+      <${motion.div} key=${loading?"sk":"ok"+(user?1:0)+content} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.5,ease:EASE}}>
         <div class="amb2" aria-hidden="true"></div>
         <${Hero} items=${hero} loading=${loading} desk=${desk}/>
         <main>
-          ${user&&html`<${ContinueRow} loading=${loading} desk=${desk}/>`}
-          ${user&&html`<${Row} title="پیشنهاد برای شما" more="بیشتر" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
+          ${user&&html`<${ContinueRow} loading=${loading} desk=${desk} long=${long}/>`}
+          ${user&&html`<${Row} title="پیشنهاد برای شما" more="همه‌ی پیشنهادها" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
           <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
-          <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${SERIES} loading=${loading} desk=${desk}/>
+          <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${series} loading=${loading} desk=${desk}/>
           ${!loading&&html`<section class="mag" aria-label="مجله‌ی رول‌وانا"><div class="magh"><span class="magk">مجله‌ی رول‌وانا</span><b class="magt" dir="ltr">Rollvana <i>Journal</i></b><small>نقد، خبر و هرچه پشت پرده‌ی فیلم‌ها می‌گذرد</small></div>
             <${Reviews} loading=${loading}/>
             <${News} loading=${loading}/>
           </section>`}
           <${Crowd} loading=${loading}/>
           <${Row} title="مستندها" items=${[]} loading=${false}/>
-          <${Review} st=${st} set=${setSt} reload=${reload}/>
+          <${Review} user=${user} setUser=${setUser} content=${content} setContent=${setContent}/>
         </main>
       </${motion.div}>
     </${AnimatePresence}>
     ${!desk&&html`<${Tabs}/>`}
   </${React.Fragment}>`;
 }
-/* ---- the site menu (app-menu, ZIP story): one menu for every section, the account and Ali's Telegram ---- */
 Object.assign(ICON,{
 grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
 chev:'<path d="m6 9 6 6 6-6"/>',
@@ -1575,7 +1508,6 @@ function MoreNav(){
   return html`<button class=${"more3"+(open?" on":"")} aria-expanded=${open} aria-haspopup="dialog" onClick=${()=>dispatchEvent(new Event("rv-menu"))}><svg class="i mi" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.menu}}></svg>منو<svg class="i" viewBox="0 0 24 24" style=${{transform:open?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.chev}}></svg></button>`;
 }
 
-/* icons: Phosphor Regular (MIT), via Iconify */
 const PHOSPHOR={"arrow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/></g>", "bell": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/></g>", "cal": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160z\"/></g>", "card": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 16v24H32V64Zm0 128H32v-88h192zm-16-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8m-64 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></g>", "chev": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "clock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8\"/></g>", "copy": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/></g>", "crown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.9 73.6a15.85 15.85 0 0 0-18.9 3.79l-33.67 36.29l-35.8-80.29a1 1 0 0 1 0-.1a16 16 0 0 0-29.06 0a1 1 0 0 1 0 .1l-35.8 80.29L44 77.39a16 16 0 0 0-27.75 13.42c0 .11 0 .21.07.32L39 195a16 16 0 0 0 15.72 13h146.57A16 16 0 0 0 217 195l22.68-103.87c0-.11 0-.21.07-.32a15.85 15.85 0 0 0-8.85-17.21m-29.55 118.08l-.06.32H54.71l-.06-.32L32 88l.14.16l42 45.24a8 8 0 0 0 13.18-2.18L128 40l40.69 91.25a8 8 0 0 0 13.18 2.18l42-45.24l.13-.19Z\"/></g>", "dl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/></g>", "down": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "eyeoff": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M53.92 34.62a8 8 0 1 0-11.84 10.76l19.24 21.17C25 88.84 9.38 123.2 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208a127.1 127.1 0 0 0 52.07-10.83l22 24.21a8 8 0 1 0 11.84-10.76Zm47.33 75.84l41.67 45.85a32 32 0 0 1-41.67-45.85M128 192c-30.78 0-57.67-11.19-79.93-33.25A133.2 133.2 0 0 1 25 128c4.69-8.79 19.66-33.39 47.35-49.38l18 19.75a48 48 0 0 0 63.66 70l14.73 16.2A112 112 0 0 1 128 192m6-95.43a8 8 0 0 1 3-15.72a48.16 48.16 0 0 1 38.77 42.64a8 8 0 0 1-7.22 8.71a6 6 0 0 1-.75 0a8 8 0 0 1-8-7.26A32.09 32.09 0 0 0 134 96.57m113.28 34.69c-.42.94-10.55 23.37-33.36 43.8a8 8 0 1 1-10.67-11.92a132.8 132.8 0 0 0 27.8-35.14a133.2 133.2 0 0 0-23.12-30.77C185.67 75.19 158.78 64 128 64a118.4 118.4 0 0 0-19.36 1.57A8 8 0 1 1 106 49.79A134 134 0 0 1 128 48c34.88 0 66.57 13.26 91.66 38.35c18.83 18.83 27.3 37.62 27.65 38.41a8 8 0 0 1 0 6.5Z\"/></g>", "film": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "flag": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M42.76 50A8 8 0 0 0 40 56v168a8 8 0 0 0 16 0v-44.23c26.79-21.16 49.87-9.75 76.45 3.41c16.4 8.11 34.06 16.85 53 16.85c13.93 0 28.54-4.75 43.82-18a8 8 0 0 0 2.76-6V56a8 8 0 0 0-13.27-6c-28 24.23-51.72 12.49-79.21-1.12C111.07 34.76 78.78 18.79 42.76 50M216 172.25c-26.79 21.16-49.87 9.74-76.45-3.41c-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16 49.87-9.75 76.45 3.4c25 12.35 52.82 26.13 83.55 8.4Z\"/></g>", "frown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.08 64a8 8 0 1 1-13.84 8c-7.47-12.91-19.21-20-33.08-20s-25.61 7.1-33.08 20a8 8 0 1 1-13.84-8c10.29-17.79 27.39-28 46.92-28s36.63 10.2 46.92 28\"/></g>", "gear": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></g>", "grid": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "heart": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/></g>", "home": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/></g>", "info": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/></g>", "left": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/></g>", "list": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16m0 177.57l-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z\"/></g>", "lock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160zm-68-56a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "meh": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m48-56a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8m-96-52a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "menu": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "news": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M88 112a8 8 0 0 1 8-8h80a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m8 40h80a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16m136-88v120a24 24 0 0 1-24 24H32a24 24 0 0 1-24-23.89V88a8 8 0 0 1 16 0v96a8 8 0 0 0 16 0V64a16 16 0 0 1 16-16h160a16 16 0 0 1 16 16m-16 0H56v120a23.8 23.8 0 0 1-1.37 8H208a8 8 0 0 0 8-8Z\"/></g>", "out": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M120 216a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h64a8 8 0 0 1 0 16H56v160h56a8 8 0 0 1 8 8m109.66-93.66l-40-40a8 8 0 0 0-11.32 11.32L204.69 120H112a8 8 0 0 0 0 16h92.69l-26.35 26.34a8 8 0 0 0 11.32 11.32l40-40a8 8 0 0 0 0-11.32\"/></g>", "pen": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m227.32 73.37l-44.69-44.68a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h168a8 8 0 0 0 0-16H115.32l112-112a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.69L147.32 64l24-24L216 84.69Z\"/></g>", "play": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128\"/></g>", "plus": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/></g>", "reply": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 109.66l-48 48a8 8 0 0 1-11.32-11.32L204.69 112H128a88.1 88.1 0 0 0-88 88a8 8 0 0 1-16 0A104.11 104.11 0 0 1 128 96h76.69l-34.35-34.34a8 8 0 0 1 11.32-11.32l48 48a8 8 0 0 1 0 11.32\"/></g>", "right": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/></g>", "search": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/></g>", "share": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/></g>", "smile": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.07 48c-10.29 17.79-27.4 28-46.93 28s-36.63-10.2-46.92-28a8 8 0 1 1 13.84-8c7.47 12.91 19.21 20 33.08 20s25.61-7.1 33.07-20a8 8 0 0 1 13.86 8\"/></g>", "spark": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sparkles": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "stack": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.91 172a8 8 0 0 1-2.91 10.91l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 36 169.09l92 53.65l92-53.65a8 8 0 0 1 10.91 2.91M220 121.09l-92 53.65l-92-53.65a8 8 0 0 0-8 13.82l96 56a8 8 0 0 0 8.06 0l96-56a8 8 0 1 0-8.06-13.82M24 80a8 8 0 0 1 4-6.91l96-56a8 8 0 0 1 8.06 0l96 56a8 8 0 0 1 0 13.82l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 24 80m23.88 0L128 126.74L208.12 80L128 33.26Z\"/></g>", "tg": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "tgm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "thumbdown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m239.82 157l-12-96A24 24 0 0 0 204 40H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h43.06l37.78 75.58A8 8 0 0 0 120 240a40 40 0 0 0 40-40v-16h56a24 24 0 0 0 23.82-27M72 144H32V56h40Zm150 21.29a7.88 7.88 0 0 1-6 2.71h-64a8 8 0 0 0-8 8v24a24 24 0 0 1-19.29 23.54L88 150.11V56h116a8 8 0 0 1 7.94 7l12 96a7.87 7.87 0 0 1-1.94 6.29\"/></g>", "thumbup": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9\"/></g>", "top": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5\"/></g>", "trailer": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 216h-48.64A103.95 103.95 0 1 0 128 232h104a8 8 0 0 0 0-16M40 128a88 88 0 1 1 88 88a88.1 88.1 0 0 1-88-88m88-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m24 104a24 24 0 1 0-24 24a24 24 0 0 0 24-24m-32 0a8 8 0 1 1 8 8a8 8 0 0 1-8-8m56-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m-96-16a24 24 0 1 0 24 24a24 24 0 0 0-24-24m0 32a8 8 0 1 1 8-8a8 8 0 0 1-8 8\"/></g>", "tv": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "user": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0\"/></g>", "users": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07\"/></g>", "x": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "x2": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "sCont": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M136 80v43.47l36.12 21.67a8 8 0 0 1-8.24 13.72l-40-24A8 8 0 0 1 120 128V80a8 8 0 0 1 16 0m-8-48a95.44 95.44 0 0 0-67.92 28.15C52.81 67.51 46.35 74.59 40 82V64a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16H49c7.15-8.42 14.27-16.35 22.39-24.57a80 80 0 1 1 1.66 114.75a8 8 0 1 0-11 11.64A96 96 0 1 0 128 32\"/></g>", "sTaste": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sPick": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.1 8.1 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96M56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72m112 131.06l-36.43-18.21a8 8 0 0 0-7.16 0L88 227.06v-52.69a87.89 87.89 0 0 0 80 0ZM128 152a56 56 0 1 0-56-56a56.06 56.06 0 0 0 56 56m0-96a40 40 0 1 1-40 40a40 40 0 0 1 40-40\"/></g>", "sFilm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "sSeries": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z\"/></g>", "sReview": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M248 92.68a15.86 15.86 0 0 0-4.69-11.31l-68.68-68.69a16 16 0 0 0-22.63 0l-28.43 28.43l-58 21.77a16.06 16.06 0 0 0-10.22 12.35L32.11 214.68A8 8 0 0 0 40 224a8.4 8.4 0 0 0 1.32-.11l139.44-23.24a16 16 0 0 0 12.35-10.17l21.77-58L243.31 104A15.87 15.87 0 0 0 248 92.68m-69.87 92.19L63.32 204l47.37-47.37a28 28 0 1 0-11.32-11.32L52 192.7L71.13 77.86L126 57.29L198.7 130ZM112 132a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96-15.32L139.31 48l24-24L232 92.68Z\"/></g>", "sNews": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 40H40a16 16 0 0 0-16 16v160a8 8 0 0 0 11.58 7.15L64 208.94l28.42 14.21a8 8 0 0 0 7.16 0L128 208.94l28.42 14.21a8 8 0 0 0 7.16 0L192 208.94l28.42 14.21A8 8 0 0 0 232 216V56a16 16 0 0 0-16-16m0 163.06l-20.42-10.22a8 8 0 0 0-7.16 0L160 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L96 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L40 203.06V56h176ZM136 112a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m0 32a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-72 24h48a8 8 0 0 0 8-8V96a8 8 0 0 0-8-8H64a8 8 0 0 0-8 8v64a8 8 0 0 0 8 8m8-64h32v48H72Z\"/></g>", "cEps": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M32 64a8 8 0 0 1 8-8h176a8 8 0 0 1 0 16H40a8 8 0 0 1-8-8m8 72h120a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m72 48H40a8 8 0 0 0 0 16h72a8 8 0 0 0 0-16m135.66-57.7a8 8 0 0 1-10 5.36L208 122.75V192a32.05 32.05 0 1 1-16-27.69V112a8 8 0 0 1 10.3-7.66l40 12a8 8 0 0 1 5.36 9.96M192 192a16 16 0 1 0-16 16a16 16 0 0 0 16-16\"/></g>", "cDl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16m0 16v104h-28.7a15.86 15.86 0 0 0-11.3 4.69L148.69 176h-41.38L88 156.69A15.86 15.86 0 0 0 76.69 152H48V48Zm0 160H48v-40h28.69L96 187.31a15.86 15.86 0 0 0 11.31 4.69h41.38a15.86 15.86 0 0 0 11.31-4.69L179.31 168H208zM90.34 125.66a8 8 0 0 1 11.32-11.32L120 132.69V72a8 8 0 0 1 16 0v60.69l18.34-18.35a8 8 0 0 1 11.32 11.32l-32 32a8 8 0 0 1-11.32 0Z\"/></g>", "cAbout": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 48h-72a40 40 0 0 0-32 16a40 40 0 0 0-32-16H24a8 8 0 0 0-8 8v144a8 8 0 0 0 8 8h72a24 24 0 0 1 24 24a8 8 0 0 0 16 0a24 24 0 0 1 24-24h72a8 8 0 0 0 8-8V56a8 8 0 0 0-8-8M96 192H32V64h64a24 24 0 0 1 24 24v112a39.8 39.8 0 0 0-24-8m128 0h-64a39.8 39.8 0 0 0-24 8V88a24 24 0 0 1 24-24h64ZM160 88h40a8 8 0 0 1 0 16h-40a8 8 0 0 1 0-16m48 40a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8m0 32a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8\"/></g>", "cCmt": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232.07 186.76a80 80 0 0 0-62.5-114.17a80 80 0 1 0-145.64 66.17l-7.27 24.71a16 16 0 0 0 19.87 19.87l24.71-7.27a80.4 80.4 0 0 0 25.18 7.35a80 80 0 0 0 108.34 40.65l24.71 7.27a16 16 0 0 0 19.87-19.86ZM62 159.5a8.3 8.3 0 0 0-2.26.32L32 168l8.17-27.76a8 8 0 0 0-.63-6A64 64 0 1 1 65.8 160.5a8 8 0 0 0-3.8-1m153.79 28.73L224 216l-27.76-8.17a8 8 0 0 0-6 .63a64.05 64.05 0 0 1-85.87-24.88a79.93 79.93 0 0 0 70.33-93.87a64 64 0 0 1 41.75 92.48a8 8 0 0 0-.63 6.04Z\"/></g>", "cMore": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 88H48a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16m0 112H48v-96h160zM48 64a8 8 0 0 1 8-8h144a8 8 0 0 1 0 16H56a8 8 0 0 1-8-8m16-32a8 8 0 0 1 8-8h112a8 8 0 0 1 0 16H72a8 8 0 0 1-8-8\"/></g>"};
 Object.assign(ICON,PHOSPHOR);
 ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
