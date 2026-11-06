@@ -1,362 +1,250 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>رول‌وانا · پخش</title>
-<link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
-<link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg">
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="../brand/rollvana-favicon-32.svg">
+<title>Rollvana — پخش آنلاین</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css">
 <link rel="stylesheet" href="../system/rollvana-player.css">
 <style>
 @font-face{font-family:IRANYekanX;src:url(../home/media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:block}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--night-0);color:var(--ink-1);font-family:var(--f-ui);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
-.review{margin:0;padding:32px 20px 48px;display:flex;flex-direction:column;gap:16px;font:var(--t-small);color:var(--ink-2);background:var(--night-1)}
-.review h2{margin:0;font:var(--t-h2);color:var(--ink-1)}
-.review .grp{display:flex;flex-direction:column;gap:8px}
-.review .row{display:flex;flex-wrap:wrap;gap:8px}
-.review button{height:44px;padding:0 16px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(205,190,255,.22);color:var(--ink-1);font:var(--t-label);background:none;border:0;cursor:pointer}
-.review button[aria-pressed=true]{background:var(--ink-1);color:var(--night-0);box-shadow:none}
-.review button:focus-visible{outline:none;box-shadow:var(--ring)}
+html,body{margin:0;background:var(--night-0);color:var(--ink-1);font:var(--t-body)}
+.rv{padding:40px 20px 64px;max-width:1100px;margin:0 auto}
+.rv h2{margin:0;font:var(--t-h2)}
+.rv p{margin:6px 0 0;color:var(--ink-2);font:var(--t-label)}
+.rv h3{margin:22px 0 10px;font:600 13px/1.4 var(--f-ui);color:var(--ink-2)}
+.rv-g{display:flex;flex-wrap:wrap;gap:8px}
+.rv a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:var(--r-pill);background:rgba(242,239,248,.08);color:var(--ink-1);text-decoration:none;font:500 14px/1 var(--f-ui)}
+.rv a[aria-current=true]{background:rgba(242,239,248,.2);font-weight:700;box-shadow:inset 0 0 0 1.5px var(--light)}
+.rv a:focus-visible{outline:2px solid var(--light);outline-offset:3px}
 </style>
 </head>
 <body>
-<div id="app"></div>
-<script src="../home/media/vendor/react.production.min.js"></script>
-<script src="../home/media/vendor/react-dom.production.min.js"></script>
-<script src="../home/media/vendor/framer-motion.js"></script>
-<script src="../home/media/vendor/htm.umd.js"></script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-caret-right" viewBox="0 0 256 256"><path fill="currentColor" d="m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32"/></symbol><symbol id="i-play-fill" viewBox="0 0 256 256"><path fill="currentColor" d="M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128"/></symbol><symbol id="i-pause-fill" viewBox="0 0 256 256"><path fill="currentColor" d="M216 48v160a16 16 0 0 1-16 16h-40a16 16 0 0 1-16-16V48a16 16 0 0 1 16-16h40a16 16 0 0 1 16 16M96 32H56a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h40a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16"/></symbol><symbol id="i-arrow-clockwise" viewBox="0 0 256 256"><path fill="currentColor" d="M240 56v48a8 8 0 0 1-8 8h-48a8 8 0 0 1 0-16h27.4l-26.59-24.36l-.25-.24a80 80 0 1 0-1.67 114.78a8 8 0 0 1 11 11.63A95.44 95.44 0 0 1 128 224h-1.32a96 96 0 1 1 69.07-164L224 85.8V56a8 8 0 1 1 16 0"/></symbol><symbol id="i-arrow-counter-clockwise" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a96 96 0 0 1-94.71 96H128a95.38 95.38 0 0 1-65.9-26.2a8 8 0 0 1 11-11.63a80 80 0 1 0-1.67-114.78a3 3 0 0 1-.26.25L44.59 96H72a8 8 0 0 1 0 16H24a8 8 0 0 1-8-8V56a8 8 0 0 1 16 0v29.8L60.25 60A96 96 0 0 1 224 128"/></symbol><symbol id="i-speaker-high" viewBox="0 0 256 256"><path fill="currentColor" d="M155.51 24.81a8 8 0 0 0-8.42.88L77.25 80H32a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h45.25l69.84 54.31A8 8 0 0 0 160 224V32a8 8 0 0 0-4.49-7.19M32 96h40v64H32Zm112 111.64l-56-43.55V91.91l56-43.55Zm54-106.08a40 40 0 0 1 0 52.88a8 8 0 0 1-12-10.58a24 24 0 0 0 0-31.72a8 8 0 0 1 12-10.58M248 128a79.9 79.9 0 0 1-20.37 53.34a8 8 0 0 1-11.92-10.67a64 64 0 0 0 0-85.33a8 8 0 1 1 11.92-10.67A79.83 79.83 0 0 1 248 128"/></symbol><symbol id="i-speaker-x" viewBox="0 0 256 256"><path fill="currentColor" d="M155.51 24.81a8 8 0 0 0-8.42.88L77.25 80H32a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h45.25l69.84 54.31A8 8 0 0 0 160 224V32a8 8 0 0 0-4.49-7.19M32 96h40v64H32Zm112 111.64l-56-43.55V91.91l56-43.55Zm101.66-61.3a8 8 0 0 1-11.32 11.32L216 139.31l-18.34 18.35a8 8 0 0 1-11.32-11.32L204.69 128l-18.35-18.34a8 8 0 0 1 11.32-11.32L216 116.69l18.34-18.35a8 8 0 0 1 11.32 11.32L227.31 128Z"/></symbol><symbol id="i-subtitles" viewBox="0 0 256 256"><path fill="currentColor" d="M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zM48 136a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H56a8 8 0 0 1-8-8m160 0a8 8 0 0 1-8 8h-96a8 8 0 0 1 0-16h96a8 8 0 0 1 8 8m-48 32a8 8 0 0 1-8 8H56a8 8 0 0 1 0-16h96a8 8 0 0 1 8 8m48 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8"/></symbol><symbol id="i-waveform" viewBox="0 0 256 256"><path fill="currentColor" d="M56 96v64a8 8 0 0 1-16 0V96a8 8 0 0 1 16 0m32-72a8 8 0 0 0-8 8v192a8 8 0 0 0 16 0V32a8 8 0 0 0-8-8m40 32a8 8 0 0 0-8 8v128a8 8 0 0 0 16 0V64a8 8 0 0 0-8-8m40 32a8 8 0 0 0-8 8v64a8 8 0 0 0 16 0V96a8 8 0 0 0-8-8m40-16a8 8 0 0 0-8 8v96a8 8 0 0 0 16 0V80a8 8 0 0 0-8-8"/></symbol><symbol id="i-sliders-horizontal" viewBox="0 0 256 256"><path fill="currentColor" d="M40 88h33a32 32 0 0 0 62 0h81a8 8 0 0 0 0-16h-81a32 32 0 0 0-62 0H40a8 8 0 0 0 0 16m64-24a16 16 0 1 1-16 16a16 16 0 0 1 16-16m112 104h-17a32 32 0 0 0-62 0H40a8 8 0 0 0 0 16h97a32 32 0 0 0 62 0h17a8 8 0 0 0 0-16m-48 24a16 16 0 1 1 16-16a16 16 0 0 1-16 16"/></symbol><symbol id="i-share-network" viewBox="0 0 256 256"><path fill="currentColor" d="M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24"/></symbol><symbol id="i-corners-out" viewBox="0 0 256 256"><path fill="currentColor" d="M216 48v40a8 8 0 0 1-16 0V56h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8M88 200H56v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16m120-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8M88 40H48a8 8 0 0 0-8 8v40a8 8 0 0 0 16 0V56h32a8 8 0 0 0 0-16"/></symbol><symbol id="i-corners-in" viewBox="0 0 256 256"><path fill="currentColor" d="M152 96V48a8 8 0 0 1 16 0v40h40a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-56 56H48a8 8 0 0 0 0 16h40v40a8 8 0 0 0 16 0v-48a8 8 0 0 0-8-8m112 0h-48a8 8 0 0 0-8 8v48a8 8 0 0 0 16 0v-40h40a8 8 0 0 0 0-16M96 40a8 8 0 0 0-8 8v40H48a8 8 0 0 0 0 16h48a8 8 0 0 0 8-8V48a8 8 0 0 0-8-8"/></symbol><symbol id="i-telegram-logo" viewBox="0 0 256 256"><path fill="currentColor" d="M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z"/></symbol><symbol id="i-link-simple" viewBox="0 0 256 256"><path fill="currentColor" d="M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31"/></symbol><symbol id="i-check" viewBox="0 0 256 256"><path fill="currentColor" d="m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32"/></symbol><symbol id="i-x" viewBox="0 0 256 256"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></symbol><symbol id="i-keyboard" viewBox="0 0 256 256"><path fill="currentColor" d="M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zm-16-64a8 8 0 0 1-8 8H56a8 8 0 0 1 0-16h144a8 8 0 0 1 8 8m0-32a8 8 0 0 1-8 8H56a8 8 0 0 1 0-16h144a8 8 0 0 1 8 8M72 160a8 8 0 0 1-8 8h-8a8 8 0 0 1 0-16h8a8 8 0 0 1 8 8m96 0a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m40 0a8 8 0 0 1-8 8h-8a8 8 0 0 1 0-16h8a8 8 0 0 1 8 8"/></symbol><symbol id="i-warning-circle" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m-8-80V80a8 8 0 0 1 16 0v56a8 8 0 0 1-16 0m20 36a12 12 0 1 1-12-12a12 12 0 0 1 12 12"/></symbol><symbol id="i-lock-simple" viewBox="0 0 256 256"><path fill="currentColor" d="M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160z"/></symbol><symbol id="i-crown-simple" viewBox="0 0 256 256"><path fill="currentColor" d="M230.9 73.6a15.85 15.85 0 0 0-18.9 3.79l-33.67 36.29l-35.8-80.29a1 1 0 0 1 0-.1a16 16 0 0 0-29.06 0a1 1 0 0 1 0 .1l-35.8 80.29L44 77.39a16 16 0 0 0-27.75 13.42c0 .11 0 .21.07.32L39 195a16 16 0 0 0 15.72 13h146.57A16 16 0 0 0 217 195l22.68-103.87c0-.11 0-.21.07-.32a15.85 15.85 0 0 0-8.85-17.21m-29.55 118.08l-.06.32H54.71l-.06-.32L32 88l.14.16l42 45.24a8 8 0 0 0 13.18-2.18L128 40l40.69 91.25a8 8 0 0 0 13.18 2.18l42-45.24l.13-.19Z"/></symbol><symbol id="i-arrow-right" viewBox="0 0 256 256"><path fill="currentColor" d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32"/></symbol><symbol id="i-skip-forward" viewBox="0 0 256 256"><path fill="currentColor" d="M200 32a8 8 0 0 0-8 8v69.23L72.43 34.45A15.95 15.95 0 0 0 48 47.88v160.24a16 16 0 0 0 24.43 13.43L192 146.77V216a8 8 0 0 0 16 0V40a8 8 0 0 0-8-8M64 207.93V48.05l127.84 80Z"/></symbol><symbol id="i-user-circle" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0"/></symbol><symbol id="i-minus" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8"/></symbol><symbol id="i-plus" viewBox="0 0 256 256"><path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8"/></symbol><symbol id="i-info" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12"/></symbol></svg>
+<main class="pp" id="pp" data-ui="on" aria-label="پخش‌کننده" tabindex="-1" aria-keyshortcuts="Space K ArrowLeft ArrowRight ArrowUp ArrowDown M F C ?">
+<div class="pp-glow" aria-hidden="true"><img id="glowImg" alt=""></div>
+<div class="pp-stage" id="stage">
+<div class="pp-pic"><img id="pic" alt=""></div>
+<div class="pp-sub" id="sub"><span lang="en" id="subEn"></span><span lang="fa" id="subFa"></span></div>
+<div class="pp-mid">
+<button class="pp-cbtn pp-glassbtn" data-act="jump" data-v="-10" aria-label="۱۰ ثانیه عقب"><svg class="i" aria-hidden="true"><use href="#i-arrow-counter-clockwise"/></svg><em>۱۰</em><span class="pp-flash" id="flashB">۱۰ ثانیه عقب</span></button>
+<button class="pp-cbtn big pp-glassbtn" data-act="play" id="cPlay" aria-label="توقف"><span class="pp-morph"><svg class="i" aria-hidden="true" data-k="pause"><use href="#i-pause-fill"/></svg><svg class="i" aria-hidden="true" data-k="play" data-off><use href="#i-play-fill"/></svg></span></button>
+<button class="pp-cbtn pp-glassbtn" data-act="jump" data-v="10" aria-label="۱۰ ثانیه جلو"><svg class="i" aria-hidden="true"><use href="#i-arrow-clockwise"/></svg><em>۱۰</em><span class="pp-flash" id="flashF">۱۰ ثانیه جلو</span></button>
+</div>
+<div class="pp-ring" id="ring" role="status" aria-label="در حال بارگذاری"></div>
+<button class="pp-skip pp-glassbtn" id="skip" data-act="skipintro" hidden><span>رد کردن تیتراژ</span><svg class="i" aria-hidden="true"><use href="#i-skip-forward"/></svg></button>
+</div>
+<div class="pp-dim"></div>
+<div class="pp-shade t"></div>
+<div class="pp-shade b"></div>
+<header class="pp-top">
+<button class="pp-back pp-glassbtn" data-act="back" id="back"><svg class="i" aria-hidden="true"><use href="#i-caret-right"/></svg><span><b id="ttl"></b><small id="meta"></small></span></button>
+</header>
+<div class="pp-dock" id="dock">
+<div class="pp-seekrow">
+<span class="pp-time" id="tEl"></span>
+<div class="pp-seek" id="seek" role="slider" tabindex="0" aria-label="جابه‌جایی در زمان" aria-valuemin="0">
+<div class="pp-track"></div><div class="pp-buf"></div><div class="pp-played"></div><div class="pp-knob"></div>
+<div class="pp-tip" aria-hidden="true"><div class="pp-frame"><img id="tipImg" alt=""></div><b id="tipT"></b></div>
+</div>
+<span class="pp-time r" id="tRem"></span>
+</div>
+<div class="pp-row">
+<div class="pp-grp">
+<button class="pp-ib pp-d" data-act="play" id="bPlay" aria-label="توقف"><span class="pp-morph"><svg class="i" aria-hidden="true" data-k="pause"><use href="#i-pause-fill"/></svg><svg class="i" aria-hidden="true" data-k="play" data-off><use href="#i-play-fill"/></svg></span></button>
+<button class="pp-ib pp-d" data-act="jump" data-v="-10" aria-label="۱۰ ثانیه عقب"><svg class="i" aria-hidden="true" style="width:30px;height:30px"><use href="#i-arrow-counter-clockwise"/></svg><em>۱۰</em></button>
+<button class="pp-ib pp-d" data-act="jump" data-v="10" aria-label="۱۰ ثانیه جلو"><svg class="i" aria-hidden="true" style="width:30px;height:30px"><use href="#i-arrow-clockwise"/></svg><em>۱۰</em></button>
+<div class="pp-vol pp-d"><button class="pp-ib" data-act="mute" id="bMute" aria-label="بی‌صدا"><span class="pp-morph"><svg class="i" aria-hidden="true" data-k="on"><use href="#i-speaker-high"/></svg><svg class="i" aria-hidden="true" data-k="off" data-off><use href="#i-speaker-x"/></svg></span></button><div class="pp-vbar" id="vbar" role="slider" tabindex="0" aria-label="بلندی صدا" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70" aria-valuetext="۷۰ درصد"></div></div>
+</div>
+<div class="pp-grp end">
+<button class="pp-ib" data-act="menu" data-v="subs" aria-label="زیرنویس" aria-expanded="false"><svg class="i" aria-hidden="true"><use href="#i-subtitles"/></svg></button>
+<button class="pp-ib" data-act="menu" data-v="audio" id="bAudio" aria-label="صدا و دوبله" aria-expanded="false"><svg class="i" aria-hidden="true"><use href="#i-waveform"/></svg></button>
+<button class="pp-ib" data-act="menu" data-v="quality" aria-label="کیفیت و تصویر" aria-expanded="false"><svg class="i" aria-hidden="true"><use href="#i-sliders-horizontal"/></svg></button>
+<button class="pp-ib" data-act="menu" data-v="share" aria-label="اشتراک‌گذاری" aria-expanded="false"><svg class="i" aria-hidden="true"><use href="#i-share-network"/></svg></button>
+<button class="pp-ib pp-d" data-act="keys" aria-label="میان‌برهای صفحه‌کلید"><svg class="i" aria-hidden="true"><use href="#i-keyboard"/></svg></button>
+<button class="pp-ib" data-act="fs" id="bFs" aria-label="تمام‌صفحه"><span class="pp-morph"><svg class="i" aria-hidden="true" data-k="out"><use href="#i-corners-out"/></svg><svg class="i" aria-hidden="true" data-k="in" data-off><use href="#i-corners-in"/></svg></span></button>
+</div>
+</div>
+</div>
+<div id="layer"></div>
+</main>
+<section class="rv" aria-labelledby="rvh">
+<h2 id="rvh">پنل بازبینی طرح</h2>
+<p>این بخش جزو محصول نیست؛ فقط برای دیدن حالت‌ها. هر حالت با نشانی هم باز می‌شود: ‎?state=…&amp;kind=film|series&amp;rm=1</p>
+<h3>محتوا</h3><div class="rv-g" id="rvKind"></div>
+<h3>حالت‌ها</h3><div class="rv-g" id="rvState"></div>
+<h3>حرکت</h3><div class="rv-g" id="rvRm"></div>
+</section>
 <script>
-const {useState,useEffect,useRef}=React;
-const {motion,AnimatePresence,MotionConfig}=Motion;
-const html=htm.bind(React.createElement);
-const Q=new URLSearchParams(location.search);
-const PM=f=>"media/"+f;
-const FA="۰۱۲۳۴۵۶۷۸۹";
-const fa=s=>String(s).replace(/\d/g,d=>FA[d]);
-const two=n=>String(n).padStart(2,"0");
-const clock=t=>{t=Math.max(0,Math.floor(t));const h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60;return fa(h?`${h}:${two(m)}:${two(s)}`:`${m}:${two(s)}`)};
-const ICON={"tgm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88,26.19a9,9,0,0,0-9.16-1.57L17.06,103.93a14.22,14.22,0,0,0,2.43,27.21L72,141.45V200a15.92,15.92,0,0,0,10,14.83,15.91,15.91,0,0,0,17.51-3.73l25.32-26.26L165,220a15.88,15.88,0,0,0,10.51,4,16.3,16.3,0,0,0,5-.79,15.85,15.85,0,0,0,10.67-11.63L231.77,35A9,9,0,0,0,228.88,26.19Zm-61.14,36L78.15,126.35l-49.6-9.73ZM88,200V152.52l24.79,21.74Zm87.53,8L92.85,135.5l119-85.29Z\"/></g>", "play": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z\"/></g>", "pause": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216,48V208a16,16,0,0,1-16,16H160a16,16,0,0,1-16-16V48a16,16,0,0,1,16-16h40A16,16,0,0,1,216,48ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Z\"/></g>", "back": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z\"/></g>", "fwd": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4L184.81,71.64l-.25-.24a80,80,0,1,0-1.67,114.78,8,8,0,0,1,11,11.63A95.44,95.44,0,0,1,128,224h-1.32A96,96,0,1,1,195.75,60L224,85.8V56a8,8,0,1,1,16,0Z\"/></g>", "vol": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm54-106.08a40,40,0,0,1,0,52.88,8,8,0,0,1-12-10.58,24,24,0,0,0,0-31.72,8,8,0,0,1,12-10.58ZM248,128a79.9,79.9,0,0,1-20.37,53.34,8,8,0,0,1-11.92-10.67,64,64,0,0,0,0-85.33,8,8,0,1,1,11.92-10.67A79.83,79.83,0,0,1,248,128Z\"/></g>", "mute": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M155.51,24.81a8,8,0,0,0-8.42.88L77.25,80H32A16,16,0,0,0,16,96v64a16,16,0,0,0,16,16H77.25l69.84,54.31A8,8,0,0,0,160,224V32A8,8,0,0,0,155.51,24.81ZM32,96H72v64H32ZM144,207.64,88,164.09V91.91l56-43.55Zm101.66-61.3a8,8,0,0,1-11.32,11.32L216,139.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L204.69,128l-18.35-18.34a8,8,0,0,1,11.32-11.32L216,116.69l18.34-18.35a8,8,0,0,1,11.32,11.32L227.31,128Z\"/></g>", "max": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216,48V88a8,8,0,0,1-16,0V56H168a8,8,0,0,1,0-16h40A8,8,0,0,1,216,48ZM88,200H56V168a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H88a8,8,0,0,0,0-16Zm120-40a8,8,0,0,0-8,8v32H168a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V168A8,8,0,0,0,208,160ZM88,40H48a8,8,0,0,0-8,8V88a8,8,0,0,0,16,0V56H88a8,8,0,0,0,0-16Z\"/></g>", "min": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M152,96V48a8,8,0,0,1,16,0V88h40a8,8,0,0,1,0,16H160A8,8,0,0,1,152,96ZM96,152H48a8,8,0,0,0,0,16H88v40a8,8,0,0,0,16,0V160A8,8,0,0,0,96,152Zm112,0H160a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V168h40a8,8,0,0,0,0-16ZM96,40a8,8,0,0,0-8,8V88H48a8,8,0,0,0,0,16H96a8,8,0,0,0,8-8V48A8,8,0,0,0,96,40Z\"/></g>", "cc": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zm-105.08-40.29a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92m80 0a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92\"/></g>", "gear": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></g>", "share": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/></g>", "x": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></g>", "left": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/></g>", "right": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/></g>", "arrow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/></g>", "skip": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M200,32a8,8,0,0,0-8,8v69.23L72.43,34.45A15.95,15.95,0,0,0,48,47.88V208.12a16,16,0,0,0,24.43,13.43L192,146.77V216a8,8,0,0,0,16,0V40A8,8,0,0,0,200,32ZM64,207.93V48.05l127.84,80Z\"/></g>", "refresh": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z\"/></g>", "wifi": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M213.92,210.62a8,8,0,1,1-11.84,10.76l-52-57.15a60,60,0,0,0-57.41,7.24,8,8,0,1,1-9.42-12.93A75.43,75.43,0,0,1,128,144c1.28,0,2.55,0,3.82.1L104.9,114.49A108,108,0,0,0,61,135.31,8,8,0,0,1,49.73,134,8,8,0,0,1,51,122.77a124.27,124.27,0,0,1,41.71-21.66L69.37,75.4a155.43,155.43,0,0,0-40.29,24A8,8,0,0,1,18.92,87,171.87,171.87,0,0,1,58,62.86L42.08,45.38A8,8,0,1,1,53.92,34.62ZM128,192a12,12,0,1,0,12,12A12,12,0,0,0,128,192ZM237.08,87A172.3,172.3,0,0,0,106,49.4a8,8,0,1,0,2,15.87A158.33,158.33,0,0,1,128,64a156.25,156.25,0,0,1,98.92,35.37A8,8,0,0,0,237.08,87ZM195,135.31a8,8,0,0,0,11.24-1.3,8,8,0,0,0-1.3-11.24,124.25,124.25,0,0,0-51.73-24.2A8,8,0,1,0,150,114.24,108.12,108.12,0,0,1,195,135.31Z\"/></g>", "link": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/></g>", "copy": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z\"/></g>", "keys": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,144H32V64H224V192Zm-16-64a8,8,0,0,1-8,8H56a8,8,0,0,1,0-16H200A8,8,0,0,1,208,128Zm0-32a8,8,0,0,1-8,8H56a8,8,0,0,1,0-16H200A8,8,0,0,1,208,96ZM72,160a8,8,0,0,1-8,8H56a8,8,0,0,1,0-16h8A8,8,0,0,1,72,160Zm96,0a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,160Zm40,0a8,8,0,0,1-8,8h-8a8,8,0,0,1,0-16h8A8,8,0,0,1,208,160Z\"/></g>", "leaf": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49c.57,15.92,5.21,32,13.79,47.85l-19.51,19.5a8,8,0,0,0,11.32,11.32l19.5-19.51C81,210.73,97.09,215.37,113,215.94q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07ZM153.75,189.5c-22.75,13.78-49.68,14-76.71.77l88.63-88.62a8,8,0,0,0-11.32-11.32L65.73,179c-13.19-27-13-54,.77-76.71,22.09-36.47,74.6-56.44,141.31-54.06C210.2,114.89,190.22,167.41,153.75,189.5Z\"/></g>", "glow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z\"/></g>", "hd": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Zm-48,48a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,224Zm-3.56-110.66-48-32A8,8,0,0,0,104,88v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,137.05V103l25.58,17Z\"/></g>", "type": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M87.24,52.59a8,8,0,0,0-14.48,0l-64,136a8,8,0,1,0,14.48,6.81L39.9,160h80.2l16.66,35.4a8,8,0,1,0,14.48-6.81ZM47.43,144,80,74.79,112.57,144ZM200,96c-12.76,0-22.73,3.47-29.63,10.32a8,8,0,0,0,11.26,11.36c3.8-3.77,10-5.68,18.37-5.68,13.23,0,24,9,24,20v3.22A42.76,42.76,0,0,0,200,128c-22.06,0-40,16.15-40,36s17.94,36,40,36a42.73,42.73,0,0,0,24-7.25,8,8,0,0,0,16-.75V132C240,112.15,222.06,96,200,96Zm0,88c-13.23,0-24-9-24-20s10.77-20,24-20,24,9,24,20S213.23,184,200,184Z\"/></g>", "audio": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M56,96v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0ZM88,24a8,8,0,0,0-8,8V224a8,8,0,0,0,16,0V32A8,8,0,0,0,88,24Zm40,32a8,8,0,0,0-8,8V192a8,8,0,0,0,16,0V64A8,8,0,0,0,128,56Zm40,32a8,8,0,0,0-8,8v64a8,8,0,0,0,16,0V96A8,8,0,0,0,168,88Zm40-16a8,8,0,0,0-8,8v96a8,8,0,0,0,16,0V80A8,8,0,0,0,208,72Z\"/></g>"};
-const I=({n})=>html`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:ICON[n]}}></svg>`;
-const Ten=({d})=>html`<span class="pv-ten" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" style=${{width:"100%",height:"100%"}} dangerouslySetInnerHTML=${{__html:ICON[d<0?"back":"fwd"]}}></svg><em>۱۰</em></span>`;
-
-const FILM={kind:"film",slug:"dune-part-two",fa:"تلماسه: بخش دوم",sub:"فیلم · ۲۰۲۴",still:"v-dune.jpg",fr:"f-dune-",dur:9960,at:4032,intro:[24,118],credits:9620,
- recap:{h:"تا اینجای فیلم دیدید",ago:12,text:"پل و مادرش جسیکا میان فرمن‌های سیچ تابر پذیرفته شده‌اند. جسیکا آب حیات را نوشیده و مادر روحانی شده است و حالا پیشگویی را در جنوب پخش می‌کند. پل کنار چانی شیوه‌ی زندگی در صحرا را یاد می‌گیرد و در حمله به برداشت‌کننده‌های ادویه‌ی هارکونن‌ها می‌جنگد. استیلگار هر نشانه‌ای را دلیل آمدن «لسان‌الغیب» می‌داند، اما چانی و خود پل به این پیشگویی شک دارند و پل از رؤیای جنگی که در جنوب می‌بیند می‌ترسد."},
- audio:[["انگلیسی","صدای اصلی فیلم","5.1"],["دوبله‌ی فارسی","دوبله‌ی رول‌وانا","Stereo"]],
- line:{fa:"پیشگویی می‌گوید Lisan al-Gaib از جنوب می‌آید.",en:"The prophecy says the Lisan al-Gaib will come from the south."}};
-const SERIES={kind:"series",slug:"severance-s2e5",fa:"جدایی",sub:"فصل ۲ · قسمت ۵ · دره‌ی وو",still:"v-severance.jpg",fr:"f-severance-",dur:3120,at:1420,intro:[96,168],credits:3040,
- next:{n:6,fa:"آتیلا",img:"n-severance-2-6.jpg",min:54},
- recap:{h:"در قسمت‌های قبل دیدید",ago:9,text:"مارک به طبقه‌ی جداشده برمی‌گردد و می‌فهمد پنج ماه گذشته و همکاران تازه‌ای جای دیلن، ایروینگ و هلی را گرفته‌اند. با شرط او تیم قدیمی برمی‌گردد. هلی چیزی از آن شب نمی‌گوید، شبی که بیرون فهمیدند او هلنا اگان است. ایروینگ دنبال برت می‌گردد و دیلن برای اولین بار همسرش را در اتاق ملاقات می‌بیند. در سفر تیمی به دریاچه‌ی یخ‌زده، مارک می‌فهمد هلی‌ای که آن روزها کنارش بود در واقع هلنا بوده است."},
- audio:[["انگلیسی","صدای اصلی سریال","5.1"],["دوبله‌ی فارسی","دوبله‌ی رول‌وانا","Stereo"]],
- line:{fa:"هرچه در بخش اتفاق می‌افتد، همان‌جا می‌ماند.",en:"What happens on the severed floor stays there."}};
-
-const STATES=[["first","اولین پخش"],["playing","در حال پخش، با کنترل‌ها"],["hidden","کنترل‌ها پنهان"],["resume","ادامه یا از اول"],["recap","آنچه دیدید"],["quality","منوی کیفیت"],["quality-low","کیفیت، کم‌مصرف روشن"],["subs","منوی زیرنویس، سبک، همگام‌سازی"],["audio","منوی صدا"],["skip","رد کردن تیتراژ"],["next","تیتراژ پایانی، قسمت بعد"],["still","هنوز تماشا می‌کنید؟"],["scrub","جابه‌جایی روی نوار، با تصویر"],["scrub-none","جابه‌جایی، بدون تصویر"],["buffer","بافر شدن"],["switch","تعویض خودکار کیفیت"],["error","خطا، تلاش دوباره"],["share","اشتراک‌گذاری"],["keys","میان‌برهای صفحه‌کلید"],["guest","مهمان"],["nosub","بدون اشتراک"]];
-const QS=[["1080p","Full HD"],["720p","HD"],["480p","SD"]];
-
-const useH=(box,onH)=>useEffect(()=>{if(!box.current||!onH)return;const o=new ResizeObserver(()=>onH(box.current.offsetHeight));o.observe(box.current);return()=>{o.disconnect();onH(0)}},[]);
-function Quality({low,cur,close,onH}){
- const box=useRef(null);
- useH(box,onH);
- const [q,setQ]=useState("auto");
- const [glow,setGlow]=useState(true);
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- const now=cur||(low?"480p":"1080p");
- return html`<${motion.div} className="pv-scrim soft" key="qs" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}></${motion.div}>
- <${motion.div} key="qm" ref=${box} className="pv-sheet" role="dialog" aria-modal="true" aria-labelledby="q-h" initial=${{opacity:0,y:16}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,y:10,transition:{duration:.18,ease:[.4,0,1,1]}}}>
-  <div class="pv-mh"><h3 id="q-h">کیفیت</h3><button ref=${ref} class="pv-ib" aria-label="بستن" onClick=${close}><${I} n="x"/></button></div>
-  ${low&&html`<div class="pv-note"><${I} n="leaf"/><div><b>کم‌مصرف روشن است</b>کیفیت خودکار تا <span class="lat">480p</span> می‌ماند و نور پیرامون خاموش است. کیفیت بالاتر را خودتان می‌توانید انتخاب کنید.</div></div>`}
-  <div role="radiogroup" aria-labelledby="q-h">
-   <button class="pv-opt" role="radio" aria-checked=${q==="auto"} onClick=${()=>setQ("auto")}><span class="ck">${q==="auto"&&html`<${I} n="check"/>`}</span><span class="lb"><span>خودکار</span><small>${low?html`کم‌مصرف · تا <span class="lat">480p</span>`:"با سرعت اینترنت شما"}</small></span><span class="end">الان <span class="lat">${now}</span></span></button>
-   ${QS.map(([k,s])=>html`<button key=${k} class="pv-opt" role="radio" aria-checked=${q===k} onClick=${()=>setQ(k)}><span class="ck">${q===k&&html`<${I} n="check"/>`}</span><span class="lb"><span class="lat">${k}</span></span><span class="end lat">${s}</span></button>`)}
-  </div>
-  <div class="pv-hr"></div>
-  <button class="pv-opt" role="switch" aria-checked=${!low&&glow} aria-disabled=${low} onClick=${()=>!low&&setGlow(g=>!g)}><span class="ck" style=${{color:"var(--ink-2)"}}><${I} n="glow"/></span><span class="lb"><span>نور پیرامون</span><small>${low?"در کم‌مصرف خاموش است":"رنگ تصویر در حاشیه‌ی صفحه"}</small></span><span class=${"pv-tg"+(!low&&glow?" on":"")} aria-hidden="true"></span></button>
- </${motion.div}>`;
+const $=s=>document.querySelector(s),root=$("#pp"),layer=$("#layer");
+const FA="۰۱۲۳۴۵۶۷۸۹",fa=s=>String(s).replace(/\d/g,d=>FA[d]);
+const ic=n=>`<svg class="i" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const fmt=x=>{x=Math.max(0,Math.round(x));const h=Math.floor(x/3600),m=Math.floor(x%3600/60),s=x%60,p=n=>String(n).padStart(2,"0");return fa(h?`${h}:${p(m)}:${p(s)}`:`${m}:${p(s)}`)};
+const K={
+film:{ttl:"تلماسه: بخش دوم",meta:"۲۰۲۴ · ۲ ساعت و ۴۶ دقیقه",dur:9960,t:3862,pic:"media/v-dune.jpg",th:"media/f-dune-",fa:"اگر قرار است بجنگیم، کنار هم می‌جنگیم.",en:"If we fight, we fight together.",intro:[0,96],slug:"dune-part-two",
+recapH:"تا اینجای فیلم دیدید",recap:"پل و مادرش جسیکا پس از نابودی خاندان آتریدیز به فرمن‌ها پناه برده‌اند. استیلگار پل را همان ناجی موعود می‌داند، اما چانی به این پیشگویی بدگمان است و پل را فقط یک جنگجوی تازه‌کار می‌بیند. پل در صحرا کنار فرمن‌ها می‌جنگد، راه رفتن روی شن را یاد می‌گیرد و کم‌کم به چانی نزدیک می‌شود. جسیکا آب حیات را می‌نوشد و مادر روحانی قبیله می‌شود؛ دختری که در شکم دارد هم با او بیدار می‌شود. در آن سو، رابان هارکونن برای بازگرداندن برداشت ادویه، فرمن‌ها را بی‌رحمانه سرکوب می‌کند.",recapM:"از روی زیرنویس، تا ۱:۰۴:۲۲ · آخرین تماشا ۱۲ روز پیش"},
+series:{ttl:"جدایی",meta:"فصل ۲ · قسمت ۶ · آتیلا",dur:3120,t:1270,pic:"media/v-severance.jpg",th:"media/f-severance-",fa:"مارک، پرونده‌ی Cold Harbor تقریباً تمام شده.",en:"Mark, Cold Harbor is almost done.",intro:[60,150],slug:"severance/s2/e6",
+recapH:"در قسمت‌های قبل دیدید",recap:"مارک، هلی، ارونگ و دیلن پس از شبی که درونی‌هایشان بیرون بیدار شدند، دوباره به بخش پالایش داده‌های ماکرو برگشته‌اند. مارک فهمیده خانم کیسی همان همسرش جماست و زنده است، و حالا می‌خواهد پرونده‌ی Cold Harbor را زودتر تمام کند تا راهی به او پیدا کند. هلی پنهان می‌کند که بیرون از لومون، وارث خانواده‌ی ایگن است. ارونگ از بخش کنار گذاشته شده و دیلن میان وفاداری به گروه و همسرش در بیرون مانده است. میلچیک هم زیر فشار مدیران تازه، سخت‌گیرتر شده است.",recapM:"از روی زیرنویس قسمت‌های ۱ تا ۵ · آخرین تماشا ۹ روز پیش",
+next:{t:"قسمت ۷ · چیخای باردو",d:"۴۹ دقیقه",img:"media/n-severance-2-7.jpg"}}};
+const STATES=[["first","اولین پخش"],["resume","ادامه + از اول"],["recap","آنچه دیدید"],["playing","در حال پخش"],["hidden","کنترل‌ها پنهان"],["quality","منوی کیفیت"],["quality-low","کیفیت، کم‌مصرف روشن"],["subs","زیرنویس، سبک، همگام‌سازی"],["audio","منوی صدا"],["skip","رد کردن تیتراژ"],["next","قسمت بعد / پایان"],["still","هنوز تماشا می‌کنید؟"],["scrub","جابه‌جایی با تصویر"],["scrub-none","جابه‌جایی بدون تصویر"],["buffer","بافر"],["switch","تعویض خودکار کیفیت"],["error","خطا و تلاش دوباره"],["share","اشتراک‌گذاری"],["keys","میان‌برها (دسکتاپ)"],["guest","مهمان"],["nosub","بدون اشتراک"]];
+const q=new URLSearchParams(location.search);
+let state=q.get("state")||"playing",kind=q.get("kind")==="series"?"series":"film";
+if(state==="still")kind="series";
+const rm=q.get("rm")==="1";if(rm)root.classList.add("rm");
+const D=K[kind];
+const S={t:D.t,dur:D.dur,playing:true,ui:"on",menu:null,panel:null,buffer:false,scrub:null,sp:0,subs:{lang:"fa",size:1,color:0,box:false,sync:0},ql:"auto",now:"1080p",low:false,glow:true,audio:0,vol:70,muted:false,fs:false,shareAt:true,copied:false,cd:10,skipF:0,sub:true,toast:null};
+const COL=[["سفید","#F2EFF8"],["زرد","#F5D547"],["فیروزه‌ای","#7FE3E8"]],SIZE=[["کوچک",.84],["متوسط",1],["بزرگ",1.22]];
+const LANG=[["off","خاموش"],["fa","فارسی"],["en","English"],["both","فارسی + English"]];
+const AUD=[["صدای اصلی","انگلیسی · 5.1"],["دوبله‌ی فارسی","فارسی · استریو"]];
+const QL=["auto","1080p","720p","480p"];
+function setup(){
+const s=state;
+if(s==="first"){S.t=4;S.sub=false}
+if(s==="hidden")S.ui="off";
+if(s==="resume"){S.playing=false;S.panel="resume";S.t=D.t}
+if(s==="recap"){S.playing=false;S.panel="recap";if(kind==="series")S.t=0}
+if(s==="quality")S.menu="quality";
+if(s==="quality-low"){S.menu="quality";S.low=true;S.now="480p"}
+if(s==="subs"){S.menu="subs";S.subs.lang="both";S.subs.sync=.5}
+if(s==="audio")S.menu="audio";
+if(s==="skip"){S.ui="off";S.t=D.intro[0]+38;S.sub=false}
+if(s==="next"){S.panel="next";S.t=D.dur-(kind==="series"?18:240);S.sub=false;if(kind==="film")S.playing=false}
+if(s==="still"){S.playing=false;S.panel="still";S.t=0;S.sub=false}
+if(s==="scrub"||s==="scrub-none"){S.scrub=s==="scrub"?"img":"noimg";S.sp=Math.min(.86,D.t/D.dur+.2)}
+if(s==="buffer"){S.buffer=true;S.ui="off"}
+if(s==="switch"){S.toast="switch";S.now="720p"}
+if(s==="error"){S.playing=false;S.panel="error"}
+if(s==="share")S.menu="share";
+if(s==="keys"){S.panel="keys";S.playing=false}
+if(s==="guest"||s==="nosub"){S.playing=false;S.panel=s;S.sub=false}
 }
-
-function Audio({t,close,onH}){
- const box=useRef(null);
- useH(box,onH);
- const [a,setA]=useState(0);
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- return html`<${motion.div} className="pv-scrim soft" key="as" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}></${motion.div}>
- <${motion.div} key="am" ref=${box} className="pv-sheet" role="dialog" aria-modal="true" aria-labelledby="a-h" initial=${{opacity:0,y:16}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,y:10,transition:{duration:.18,ease:[.4,0,1,1]}}}>
-  <div class="pv-mh"><h3 id="a-h">صدا</h3><button ref=${ref} class="pv-ib" aria-label="بستن" onClick=${close}><${I} n="x"/></button></div>
-  <div role="radiogroup" aria-labelledby="a-h">
-   ${t.audio.map(([l,s,e],i)=>html`<button key=${i} class="pv-opt" role="radio" aria-checked=${a===i} onClick=${()=>setA(i)}><span class="ck">${a===i&&html`<${I} n="check"/>`}</span><span class="lb"><span>${l}</span><small>${s}</small></span><span class="end lat">${e}</span></button>`)}
-  </div>
- </${motion.div}>`;
+const PANEL_KIND={resume:"side",recap:"side",next:"side",still:"center",error:"center",keys:"center",guest:"center",nosub:"center"};
+function panelHTML(){
+const p=S.panel,pct=(D.t/D.dur*100).toFixed(1)+"%";
+if(p==="resume")return `<section class="pp-panel side" role="dialog" aria-labelledby="ph"><div class="pp-eyebrow">ادامه‌ی تماشا</div><h2 class="pp-h" id="ph">${kind==="film"?"از همان‌جا که ماندید":"قسمت ۶ را نیمه دیدید"}</h2><div class="pp-mini" style="--p:${pct}"></div><div class="pp-meta">${fmt(D.t)} از ${fmt(D.dur)} · ${fa(Math.round((D.dur-D.t)/60))} دقیقه مانده</div><div class="pp-acts"><button class="pp-pri" data-act="resume">${ic("play-fill")}<span>ادامه از ${fmt(D.t)}</span></button><button class="pp-glassbtn pp-sec" data-act="startover">${ic("arrow-counter-clockwise")}<span>از اول</span></button></div></section>`;
+if(p==="recap")return `<section class="pp-panel side" role="dialog" aria-labelledby="ph"><h2 class="pp-h" id="ph" style="margin:0">${D.recapH}</h2><p class="pp-p">${D.recap}</p><div class="pp-meta">${D.recapM}</div><div class="pp-acts">${kind==="film"?`<button class="pp-pri" data-act="resume">${ic("play-fill")}<span>ادامه از ${fmt(D.t)}</span></button><button class="pp-glassbtn pp-sec" data-act="startover">${ic("arrow-counter-clockwise")}<span>از اول</span></button>`:`<button class="pp-pri" data-act="resume">${ic("play-fill")}<span>پخش قسمت ۶</span></button>`}</div></section>`;
+if(p==="next"&&kind==="series")return `<section class="pp-panel side" role="dialog" aria-labelledby="ph" id="nextCard"><div class="pp-eyebrow" id="ph">قسمت بعد</div><div class="pp-thumbrow" style="margin-top:8px"><img src="${D.next.img}" alt=""><span><b>${D.next.t}</b><small>${D.next.d}</small></span></div><div class="pp-acts"><button class="pp-pri pp-cd" data-act="playnext" id="cdBtn" style="--cd:${(10-S.cd)*10}%">${ic("play-fill")}<span>پخش در <span class="pp-roll" id="cdN">${fa(S.cd)}</span></span></button><button class="pp-glassbtn pp-sec" data-act="credits">دیدن تیتراژ</button></div></section>`;
+if(p==="next")return `<section class="pp-panel side" role="dialog" aria-labelledby="ph"><div class="pp-eyebrow">پایان فیلم</div><h2 class="pp-h" id="ph">تمام شد</h2><p class="pp-p">دفعه‌ی بعد که «${D.ttl}» را باز کنید، از اول پخش می‌شود.</p><div class="pp-acts"><button class="pp-pri" data-act="back">${ic("caret-right")}<span>بازگشت به صفحه‌ی فیلم</span></button><button class="pp-glassbtn pp-sec" data-act="credits">دیدن تیتراژ</button></div></section>`;
+if(p==="still")return `<section class="pp-panel center" role="alertdialog" aria-labelledby="ph" aria-describedby="pd"><h2 class="pp-h" id="ph" style="margin:0">هنوز تماشا می‌کنید؟</h2><p class="pp-p" id="pd">سه قسمت پشت سر هم بدون هیچ لمسی پخش شد. قسمت بعد را نگه داشتیم تا چیزی از دستتان نرود.</p><div class="pp-thumbrow"><img src="${D.next.img}" alt=""><span><b>${D.next.t}</b><small>${D.next.d}</small></span></div><div class="pp-acts"><button class="pp-pri" data-act="playnext">${ic("play-fill")}<span>ادامه‌ی تماشا</span></button><button class="pp-glassbtn pp-sec" data-act="back">نه، بس است</button></div></section>`;
+if(p==="error")return `<section class="pp-panel center" role="alertdialog" aria-labelledby="ph" aria-describedby="pd"><div class="pp-icon">${ic("warning-circle")}</div><h2 class="pp-h" id="ph" style="margin:0">${kind==="film"?"این فیلم":"این قسمت"} الان پخش نمی‌شود</h2><p class="pp-p" id="pd">کیفیت پایین‌تر را هم امتحان کردیم و نشد. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید؛ پخش از ${fmt(S.t)} ادامه پیدا می‌کند.</p><div class="pp-acts"><button class="pp-pri" data-act="retry">${ic("arrow-clockwise")}<span>تلاش دوباره</span></button><button class="pp-glassbtn pp-sec" data-act="back">بازگشت</button></div></section>`;
+if(p==="keys")return `<section class="pp-panel center" role="dialog" aria-labelledby="ph"><div class="pp-mh"><h2 id="ph">میان‌برهای صفحه‌کلید</h2><button class="pp-ib" data-act="close" aria-label="بستن">${ic("x")}</button></div><div class="pp-keys"><span><kbd>Space</kbd><kbd>K</kbd></span><span>پخش و توقف</span><span><kbd>←</kbd><kbd>→</kbd></span><span>۱۰ ثانیه عقب و جلو</span><span><kbd>↑</kbd><kbd>↓</kbd></span><span>بلندی صدا</span><span><kbd>M</kbd></span><span>بی‌صدا</span><span><kbd>F</kbd></span><span>تمام‌صفحه</span><span><kbd>C</kbd></span><span>زیرنویس روشن و خاموش</span><span><kbd>Esc</kbd></span><span>بستن منو</span><span><kbd>?</kbd></span><span>همین راهنما</span></div></section>`;
+if(p==="guest")return `<section class="pp-panel center" role="dialog" aria-labelledby="ph" aria-describedby="pd"><div class="pp-icon">${ic("lock-simple")}</div><h2 class="pp-h" id="ph" style="margin:0">برای تماشا وارد شوید</h2><p class="pp-p" id="pd">تماشای آنلاین «${D.ttl}» برای کاربران واردشده است: با اشتراک فعال، یا در حالت رایگان. بعد از ورود، پخش از ${fmt(D.t)} شروع می‌شود.</p><div class="pp-acts"><button class="pp-pri" data-act="login"><span>ورود</span></button><button class="pp-glassbtn pp-sec" data-act="plans">دیدن اشتراک‌ها</button></div></section>`;
+if(p==="nosub")return `<section class="pp-panel center" role="dialog" aria-labelledby="ph" aria-describedby="pd"><div class="pp-icon">${ic("crown-simple")}</div><h2 class="pp-h" id="ph" style="margin:0">اشتراک فعالی ندارید</h2><p class="pp-p" id="pd">برای تماشای «${D.ttl}» یک اشتراک بخرید. بعد از خرید، پخش از همین لحظه (${fmt(D.t)}) شروع می‌شود.</p><div class="pp-acts"><button class="pp-pri" data-act="plans"><span>خرید اشتراک</span></button><button class="pp-glassbtn pp-sec" data-act="back">بازگشت</button></div></section>`;
+return "";
 }
-
-const LANGS=[["off","خاموش"],["fa","فارسی"],["en","English"],["both","هر دو"]];
-const SIZES=[["کوچک",13,.85],["متوسط",16,1],["بزرگ",20,1.2]];
-const COLS=[["سفید","#FFFFFF"],["زرد","#FFE45C"],["فیروزه‌ای","#8FE8F0"]];
-const sec=v=>(v>0?"+":v<0?"−":"")+fa(Math.abs(v).toFixed(1)).replace(".","٫");
-function Subs({sub,set,close,onH}){
- const ref=useRef(null),box=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- useH(box,onH);
- const u=(k,v)=>set(x=>({...x,[k]:v}));
- const sy=sub.sync;
- return html`<${motion.div} className="pv-scrim soft" key="ss" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}></${motion.div}>
- <${motion.div} key="sm" ref=${box} className="pv-sheet" role="dialog" aria-modal="true" aria-labelledby="s-h" initial=${{opacity:0,y:16}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,y:10,transition:{duration:.18,ease:[.4,0,1,1]}}}>
-  <div class="pv-mh"><h3 id="s-h">زیرنویس</h3><button ref=${ref} class="pv-ib" aria-label="بستن" onClick=${close}><${I} n="x"/></button></div>
-  <div class="pv-seg" role="radiogroup" aria-labelledby="s-h">${LANGS.map(([k,l])=>html`<button key=${k} role="radio" aria-checked=${sub.lang===k} onClick=${()=>u("lang",k)}><b class=${k==="en"?"lat":""}>${l}</b>${k==="both"&&html`<span>فارسی پایین</span>`}</button>`)}</div>
-  <h4 class="pv-h4" id="s-sz">اندازه</h4>
-  <div class="pv-seg" role="radiogroup" aria-labelledby="s-sz">${SIZES.map(([l,px],i)=>html`<button key=${i} role="radio" aria-checked=${sub.size===i} aria-label=${l} onClick=${()=>u("size",i)}><b style=${{fontSize:px}}>آ</b><span>${l}</span></button>`)}</div>
-  <h4 class="pv-h4" id="s-c">رنگ</h4>
-  <div class="pv-sw" role="radiogroup" aria-labelledby="s-c">${COLS.map(([l,c],i)=>html`<button key=${i} role="radio" aria-checked=${sub.col===i} onClick=${()=>u("col",i)}><i style=${{background:c}}></i>${l}</button>`)}</div>
-  <div style=${{height:8}}></div>
-  <button class="pv-opt" role="switch" aria-checked=${sub.box} onClick=${()=>u("box",!sub.box)}><span class="lb"><span>زمینه‌ی تیره</span><small>برای خواندن روی صحنه‌های روشن</small></span><span class=${"pv-tg"+(sub.box?" on":"")} aria-hidden="true"></span></button>
-  <div class="pv-hr"></div>
-  <h4 class="pv-h4" id="s-y">همگام‌سازی با صدا</h4>
-  <div class="pv-step" role="group" aria-labelledby="s-y" dir="ltr">
-   <button class="pv-ib" aria-label="زیرنویس نیم ثانیه زودتر" disabled=${sy<=-10} onClick=${()=>u("sync",Math.max(-10,sy-.5))}>−</button>
-   <div class="v" dir="rtl" aria-live="polite"><b><${AnimatePresence} mode="popLayout" initial=${false}><${motion.span} key=${sy} className="num" dir="ltr" initial=${{opacity:0,y:sy>sub.prev?10:-10}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:sy>sub.prev?-10:10}} transition=${{duration:.22,ease:[.22,1,.36,1]}}>${sec(sy)} ثانیه</${motion.span}></${AnimatePresence}></b><small>${sy===0?"هم‌زمان با صدا":sy<0?"زیرنویس زودتر می‌آید":"زیرنویس دیرتر می‌آید"} · گام نیم‌ثانیه تا ۱۰</small></div>
-   <button class="pv-ib" aria-label="زیرنویس نیم ثانیه دیرتر" disabled=${sy>=10} onClick=${()=>u("sync",Math.min(10,sy+.5))}>+</button>
-  </div>
- </${motion.div}>`;
+const opt=(set,val,on,label,small,lat)=>`<button class="pp-opt" role="radio" aria-checked="${on}" data-act="set" data-k="${set}" data-v="${val}"><span><span${lat?' class="lat"':""}>${label}</span>${small?`<small>${small}</small>`:""}</span><svg class="i ck" aria-hidden="true"><use href="#i-check"/></svg></button>`;
+const mh=(t)=>`<div class="pp-grab"></div><div class="pp-mh"><h2 id="mh">${t}</h2><button class="pp-ib" data-act="close" aria-label="بستن">${ic("x")}</button></div>`;
+function menuHTML(){
+const m=S.menu;if(!m)return "";
+let h="";
+if(m==="quality"){
+h=mh("کیفیت و تصویر")+(S.low?`<div class="pp-note">${ic("info")}<span>حالت کم‌مصرف روشن است: کیفیت خودکار تا <span class="lat">480p</span> بالا می‌رود و نور پیرامون خاموش است. انتخاب دستی کیفیت بالاتر هم ممکن است.</span></div>`:"");
+h+=`<div role="radiogroup" aria-labelledby="mh">`+QL.map(v=>v==="auto"?opt("ql","auto",S.ql==="auto","خودکار",S.low?`تا 480p · الان ${S.now}`:`الان ${S.now}، بر اساس سرعت اتصال`):opt("ql",v,S.ql===v,v,"",true)).join("")+`</div>`;
+const gOn=S.glow&&!S.low;
+h+=`<div class="pp-line" style="margin-top:6px;padding-inline:14px"><span>نور پیرامون<small>${S.low?"در حالت کم‌مصرف خاموش است":"رنگ تصویر در حاشیه‌های صفحه"}</small></span><button class="pp-tg" role="switch" aria-label="نور پیرامون" aria-checked="${gOn}" ${S.low?'aria-disabled="true"':""} data-act="glow"></button></div>`;
 }
-
-function Recap({t,at,go}){
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- const film=t.kind==="film";
- return html`<${motion.div} className="pv-dlg side" role="dialog" aria-modal="true" aria-labelledby="rc-h" initial=${{opacity:0}} animate=${{opacity:1,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-  <${motion.div} className="pv-card pv-recap" initial=${{y:12}} animate=${{y:0,transition:{duration:.4,ease:[.22,1,.36,1]}}} exit=${{y:-6,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-   <span class="kick">آنچه دیدید</span>
-   <h2 id="rc-h">${t.recap.h}</h2>
-   <p>${t.recap.text}</p>
-   <span class="src">خلاصه از روی زیرنویس‌ها · آخرین تماشا ${fa(t.recap.ago)} روز پیش</span>
-   <div class="ac">
-    <button ref=${ref} class="pv-cta" onClick=${()=>go(film?at:0)}><${I} n="play"/><span>${film?html`ادامه از <span class="num" dir="ltr">${clock(at)}</span>`:"پخش قسمت "+fa(5)}</span></button>
-    ${film&&html`<button class="pv-gb" onClick=${()=>go(0)}><${I} n="refresh"/>از اول</button>`}
-   </div>
-  </${motion.div}>
- </${motion.div}>`;
+if(m==="subs"){
+h=mh("زیرنویس")+`<div class="pp-grid2" role="radiogroup" aria-label="زبان زیرنویس">`+LANG.map(([v,l])=>opt("lang",v,S.subs.lang===v,l,"",v==="en")).join("")+`</div>`;
+h+=`<div class="pp-label" id="szl">اندازه</div><div class="pp-seg" role="radiogroup" aria-labelledby="szl">`+SIZE.map(([l,k],i)=>`<button role="radio" aria-checked="${S.subs.size===i}" data-act="set" data-k="size" data-v="${i}" style="font-size:${13*k}px">${l}</button>`).join("")+`</div>`;
+h+=`<div class="pp-label" id="cll">رنگ</div><div class="pp-seg" role="radiogroup" aria-labelledby="cll">`+COL.map(([l,c],i)=>`<button role="radio" aria-checked="${S.subs.color===i}" data-act="set" data-k="color" data-v="${i}"><span class="sw" style="background:${c}"></span>${l}</button>`).join("")+`</div>`;
+h+=`<div class="pp-line"><span>زمینه‌ی تیره پشت متن</span><button class="pp-tg" role="switch" aria-label="زمینه‌ی تیره پشت زیرنویس" aria-checked="${S.subs.box}" data-act="box"></button></div>`;
+const sy=S.subs.sync,syt=sy===0?"هم‌زمان":`${fa(Math.abs(sy).toFixed(1).replace(".","٫"))} ثانیه ${sy>0?"دیرتر":"زودتر"}`;
+h+=`<div class="pp-line" style="border-top:1px solid rgba(242,239,248,.1)"><span>همگام‌سازی<small>گام نیم ثانیه، تا ۱۰ ثانیه</small></span><span class="pp-step"><button class="pp-ib" data-act="sync" data-v="-0.5" aria-label="زیرنویس نیم ثانیه زودتر">${ic("minus")}</button><output aria-live="polite">${syt}</output><button class="pp-ib" data-act="sync" data-v="0.5" aria-label="زیرنویس نیم ثانیه دیرتر">${ic("plus")}</button></span></div>`;
 }
-
-function Resume({t,at,go}){
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- return html`<${motion.div} className="pv-dlg" role="dialog" aria-modal="true" aria-labelledby="rs-h" initial=${{opacity:0}} animate=${{opacity:1,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-  <${motion.div} className="pv-card" initial=${{y:12}} animate=${{y:0,transition:{duration:.4,ease:[.22,1,.36,1]}}} exit=${{y:-6,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-   <span class="kick">${t.kind==="series"?t.sub:"از جایی که ماندید"}</span>
-   <h2 id="rs-h">${t.kind==="series"?"ادامه‌ی این قسمت؟":"ادامه‌ی "+t.fa+"؟"}</h2>
-   <p>تا <span class="num" dir="ltr">${clock(at)}</span> دیدید؛ <span class="num" dir="ltr">${clock(t.dur-at)}</span> مانده.</p>
-   <div class="pg" aria-hidden="true"><i style=${{width:at/t.dur*100+"%"}}></i></div>
-   <div class="ac">
-    <button ref=${ref} class="pv-cta" onClick=${()=>go(at)}><${I} n="play"/><span>ادامه‌ی پخش</span></button>
-    <button class="pv-gb" onClick=${()=>go(0)}><${I} n="refresh"/>از اول</button>
-   </div>
-  </${motion.div}>
- </${motion.div}>`;
+if(m==="audio"){h=mh("صدا")+`<div role="radiogroup" aria-labelledby="mh">`+AUD.map(([l,s],i)=>opt("audio",i,S.audio===i,l,s)).join("")+`</div>`}
+if(m==="share"){
+const link=`rollvana.tv/w/${D.slug}${S.shareAt?`?t=${Math.round(S.t)}`:""}`;
+h=mh("اشتراک‌گذاری")+`<div class="pp-line"><span>از همین لحظه<small>${S.shareAt?`پیوند از ${fmt(S.t)} باز می‌شود`:"پیوند از اول باز می‌شود"}</small></span><button class="pp-tg" role="switch" aria-label="اشتراک از همین لحظه" aria-checked="${S.shareAt}" data-act="shareat"></button></div><div class="pp-field" aria-label="پیوند"><span>${link}</span></div><div class="pp-share"><button class="pp-glassbtn" data-act="tg">${ic("telegram-logo")}<span>تلگرام</span></button><button class="pp-glassbtn" data-act="copy" id="copyBtn"><span class="pp-morph"><svg class="i" aria-hidden="true" ${S.copied?"data-off":""}><use href="#i-link-simple"/></svg><svg class="i" aria-hidden="true" ${S.copied?"":"data-off"}><use href="#i-check"/></svg></span><span aria-live="polite">${S.copied?"کپی شد":"کپی پیوند"}</span></button></div>`;
 }
-
-function Still({t,go}){
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- const n=t.next;
- return html`<${motion.div} className="pv-dlg" role="dialog" aria-modal="true" aria-labelledby="sw-h" aria-describedby="sw-p" initial=${{opacity:0}} animate=${{opacity:1,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-  <${motion.div} className="pv-card" initial=${{y:12}} animate=${{y:0,transition:{duration:.4,ease:[.22,1,.36,1]}}} exit=${{y:-6,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-   <span class="kick">پخش خودکار متوقف شد</span>
-   <h2 id="sw-h">هنوز تماشا می‌کنید؟</h2>
-   <p id="sw-p">${fa(3)} قسمت پشت سر هم بی‌آنکه چیزی لمس شود پخش شد. قسمت بعد منتظر شماست.</p>
-   <div class="th"><img src=${PM(n.img)} alt=""/><div><small>قسمت بعد، ${fa(n.min)} دقیقه</small><b>قسمت ${fa(n.n)}: ${n.fa}</b></div></div>
-   <div class="ac">
-    <button ref=${ref} class="pv-cta" onClick=${go}><${I} n="play"/><span>ادامه‌ی تماشا</span></button>
-    <a class="pv-gb" href="../title/rollvana-title.html">بس است</a>
-   </div>
-  </${motion.div}>
- </${motion.div}>`;
+return `<section class="pp-menu" role="dialog" aria-labelledby="mh" id="menu">${h}</section>`;
 }
-
-function Next({t,cancel,play}){
- const [cd,setCd]=useState(10);
- const [hold,setHold]=useState(false);
- const ref=useRef(null);
- useEffect(()=>{if(hold)return;if(cd<=0){play();return}const id=setTimeout(()=>setCd(c=>c-1),1000);return()=>clearTimeout(id)},[cd,hold]);
- const n=t.next;
- return html`<${motion.div} className="pv-next" role="region" aria-label="قسمت بعد" onMouseEnter=${()=>setHold(true)} onMouseLeave=${()=>setHold(false)} onFocus=${()=>setHold(true)} onBlur=${()=>setHold(false)} initial=${{opacity:0,y:12}} animate=${{opacity:1,y:0,transition:{duration:.4,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-  <div class="th"><img src=${PM(n.img)} alt=""/><div><small>قسمت بعد، ${fa(n.min)} دقیقه</small><b>قسمت ${fa(n.n)}: ${n.fa}</b></div></div>
-  <div class="ac">
-   <button ref=${ref} class="pv-cta" onClick=${play} aria-label=${"پخش قسمت "+fa(n.n)}><i class="pv-cd" style=${{width:(10-cd)*10+"%",transition:hold?"none":"width 1s linear"}}></i><${I} n="play"/><span>${html`پخش در <span class="pv-cdn"><${AnimatePresence} mode="popLayout" initial=${false}><${motion.span} key=${cd} initial=${{opacity:0,y:-8}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:8}} transition=${{duration:.22,ease:[.22,1,.36,1]}}>${fa(cd)}</${motion.span}></${AnimatePresence}></span>`}</span></button>
-   <button class="pv-gb" onClick=${cancel}>دیدن تیتراژ</button>
-  </div>
- </${motion.div}>`;
+function toastHTML(){return S.toast==="switch"?`<div class="pp-toast" role="status">${ic("info")}<span>اتصال کند شد؛ پخش با <span class="lat">${S.now}</span> ادامه دارد</span><button class="pp-glassbtn" data-act="menu" data-v="quality">کیفیت</button></div>`:""}
+let lastLayer="";
+function render(){
+root.dataset.ui=S.ui;
+S.panel?root.dataset.panel=PANEL_KIND[S.panel]:delete root.dataset.panel;
+S.menu?root.dataset.menu=S.menu:delete root.dataset.menu;
+S.buffer?root.dataset.buffer="":delete root.dataset.buffer;
+S.scrub?root.dataset.scrub=S.scrub:delete root.dataset.scrub;
+root.dataset.dim=["error","guest","nosub"].includes(S.panel)?"deep":(S.panel?"on":"off");
+root.dataset.glow=S.glow&&!S.low?"on":"off";
+root.dataset.subs=(S.sub&&S.subs.lang!=="off")?"on":"off";
+root.dataset.subbox=S.subs.box?"on":"off";
+root.style.setProperty("--sub-c",COL[S.subs.color][1]);root.style.setProperty("--sub-s",SIZE[S.subs.size][1]);
+$("#subFa").hidden=!["fa","both"].includes(S.subs.lang);$("#subEn").hidden=!["en","both"].includes(S.subs.lang);
+$("#ttl").textContent=D.ttl;$("#meta").textContent=D.meta;$("#back").setAttribute("aria-label",`بازگشت به صفحه‌ی ${D.ttl}`);
+const p=(S.scrub?S.sp:S.t/S.dur)*100,b=Math.min(100,(S.t+(S.buffer?0:90))/S.dur*100);
+const sk=$("#seek");sk.style.setProperty("--p",p+"%");sk.style.setProperty("--b",(S.scrub?Math.max(b,0):b)+"%");
+sk.setAttribute("aria-valuemax",S.dur);sk.setAttribute("aria-valuenow",Math.round(S.t));sk.setAttribute("aria-valuetext",`${fmt(S.t)} از ${fmt(S.dur)}`);
+$("#tEl").textContent=fmt(S.scrub?S.sp*S.dur:S.t);$("#tRem").textContent="−"+fmt(S.dur-(S.scrub?S.sp*S.dur:S.t));
+if(S.scrub){$("#tipT").textContent=fmt(S.sp*S.dur);const n=Math.min(15,Math.floor(S.sp*16)),src=D.th+n+".jpg";if(!$("#tipImg").src.endsWith(src))$("#tipImg").src=src}
+for(const el of document.querySelectorAll("[data-act=play]")){const [a,c]=el.querySelectorAll(".pp-morph svg");a.toggleAttribute("data-off",!S.playing);c.toggleAttribute("data-off",S.playing);el.setAttribute("aria-label",S.playing?"توقف":"پخش")}
+const mu=$("#bMute").querySelectorAll(".pp-morph svg");mu[0].toggleAttribute("data-off",S.muted);mu[1].toggleAttribute("data-off",!S.muted);$("#bMute").setAttribute("aria-label",S.muted?"صدادار":"بی‌صدا");
+$("#vbar").style.setProperty("--v",(S.muted?0:S.vol)+"%");
+const fs=$("#bFs").querySelectorAll(".pp-morph svg");fs[0].toggleAttribute("data-off",S.fs);fs[1].toggleAttribute("data-off",!S.fs);$("#bFs").setAttribute("aria-label",S.fs?"خروج از تمام‌صفحه":"تمام‌صفحه");
+for(const el of document.querySelectorAll("[data-act=menu]"))el.setAttribute("aria-expanded",S.menu===el.dataset.v);
+const inIntro=S.t>=D.intro[0]&&S.t<D.intro[1]&&!S.panel&&!S.menu;$("#skip").hidden=!inIntro;$("#skip").style.setProperty("--f",((S.t-D.intro[0])/(D.intro[1]-D.intro[0])*100)+"%");
+const L=panelHTML()+menuHTML()+toastHTML();
+if(L!==lastLayer){layer.innerHTML=L;lastLayer=L;const dlg=layer.querySelector(".pp-panel,.pp-menu");if(dlg){dlg.tabIndex=-1;dlg.focus({preventScroll:true})}}
 }
-
-function Card({id,kick,h,p,cta,ci,onCta,alt,altHref,onAlt}){
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- return html`<${motion.div} className="pv-dlg" role="dialog" aria-modal="true" aria-labelledby=${id+"-h"} aria-describedby=${id+"-p"} initial=${{opacity:0}} animate=${{opacity:1,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-  <${motion.div} className="pv-card" initial=${{y:12}} animate=${{y:0,transition:{duration:.4,ease:[.22,1,.36,1]}}} exit=${{y:-6,transition:{duration:.2,ease:[.4,0,1,1]}}}>
-   <span class="kick">${kick}</span>
-   <h2 id=${id+"-h"}>${h}</h2>
-   <p id=${id+"-p"}>${p}</p>
-   <div class="ac">
-    <button ref=${ref} class="pv-cta" onClick=${onCta}>${ci&&html`<${I} n=${ci}/>`}<span>${cta}</span></button>
-    ${altHref?html`<a class="pv-gb" href=${altHref}>${alt}</a>`:html`<button class="pv-gb" onClick=${onAlt}>${alt}</button>`}
-   </div>
-  </${motion.div}>
- </${motion.div}>`;
-}
-
-function Share({t,at,close,onH}){
- const box=useRef(null);
- useH(box,onH);
- const [cp,setCp]=useState(false);
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- useEffect(()=>{if(!cp)return;const id=setTimeout(()=>setCp(false),2400);return()=>clearTimeout(id)},[cp]);
- const s=Math.floor(at);
- return html`<${motion.div} className="pv-scrim soft" key="shs" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}></${motion.div}>
- <${motion.div} key="shm" ref=${box} className="pv-sheet" role="dialog" aria-modal="true" aria-labelledby="sh-h" initial=${{opacity:0,y:16}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,y:10,transition:{duration:.18,ease:[.4,0,1,1]}}}>
-  <div class="pv-mh"><h3 id="sh-h">اشتراک‌گذاری این لحظه</h3><button class="pv-ib" aria-label="بستن" onClick=${close}><${I} n="x"/></button></div>
-  <p class="pv-sec" style=${{margin:0}}>پیوند از <span class="num" dir="ltr">${clock(s)}</span> باز می‌شود.</p>
-  <div class="pv-link"><span>rollvana.tv/w/${t.slug}?t=</span><b>${s}</b></div>
-  <button ref=${ref} class="pv-opt"><span class="ck"><${I} n="tgm"/></span><span class="lb"><span>تلگرام</span><small>فرستادن برای یک گفت‌وگو یا کانال</small></span></button>
-  <button class="pv-opt" aria-live="polite" onClick=${()=>setCp(true)}><span class="ck" style=${{color:"var(--ink-1)"}}><${AnimatePresence} mode="popLayout" initial=${false}><${motion.span} key=${cp?"ok":"cp"} style=${{display:"grid"}} initial=${{opacity:0,scale:.6}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.6}} transition=${{duration:.16,ease:[.22,1,.36,1]}}><${I} n=${cp?"check":"copy"}/></${motion.span}></${AnimatePresence}></span><span class="lb"><span><${AnimatePresence} mode="popLayout" initial=${false}><${motion.span} key=${cp?"ok":"cp"} style=${{display:"inline-block"}} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}>${cp?"پیوند کپی شد":"کپی پیوند"}</${motion.span}></${AnimatePresence}></span></span></button>
- </${motion.div}>`;
-}
-
-const KEYS=[["Space","پخش یا توقف"],["?","همین فهرست"],["→","۱۰ ثانیه جلو"],["←","۱۰ ثانیه عقب"],["↑ ↓","بلندی صدا"],["M","بی‌صدا"],["F","تمام‌صفحه"],["C","زیرنویس"]];
-function Keys({close,onH}){
- const box=useRef(null);
- useH(box,onH);
- const ref=useRef(null);
- useEffect(()=>{ref.current&&ref.current.focus({focusVisible:false})},[]);
- return html`<${motion.div} className="pv-scrim soft" key="ks" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}></${motion.div}>
- <${motion.div} key="km" ref=${box} className="pv-sheet" role="dialog" aria-modal="true" aria-labelledby="k-h" initial=${{opacity:0,y:16}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,y:10,transition:{duration:.18,ease:[.4,0,1,1]}}}>
-  <div class="pv-mh"><h3 id="k-h">میان‌برهای صفحه‌کلید</h3><button ref=${ref} class="pv-ib" aria-label="بستن" onClick=${close}><${I} n="x"/></button></div>
-  <dl class="pv-keys">${KEYS.map(([k,l])=>html`<div key=${k}><dt><span class="pv-kbd">${k}</span></dt><dd>${l}</dd></div>`)}</dl>
- </${motion.div}>`;
-}
-
-function Player({t,state,setState,rm}){
- const SHOW=x=>x==="playing"||x==="first"||x==="share"||x==="keys"||x.startsWith("quality")||x==="subs"||x==="audio"||x.startsWith("scrub");
- const SC=x=>x.startsWith("scrub");
- const [on,setOn]=useState(SHOW(state));
- const OV=x=>x==="resume"||x==="recap"||x==="still"||x==="error"||x==="guest"||x==="nosub"?x:null;
- const MN=x=>x.startsWith("quality")||x==="subs"||x==="audio"||x==="share"||x==="keys"?x:null;
- const [ask,setAsk]=useState(OV(state));
- const [menu,setMenu]=useState(MN(state));
- const [play,setPlay]=useState(!OV(state)&&state!=="buffer"&&state!=="switch");
- const [fq,setFq]=useState(state==="switch"?1:0);
- const [hold,setHold]=useState(false);
- const [rt,setRt]=useState(false);
- const [fl,setFl]=useState(null);
- const buf=state==="buffer"||fq===1||rt;
- const AT=x=>x==="still"?t.dur:x==="next"?t.credits+6:x==="skip"?t.intro[0]+Math.round((t.intro[1]-t.intro[0])*.35):x==="first"?0:x==="recap"&&t.kind==="series"?0:t.at;
- const [at,setAt]=useState(AT(state));
- const low=state==="quality-low";
- const [sub,setSub0]=useState({lang:"both",size:1,col:0,box:false,sync:0,prev:0});
- const setSub=f=>setSub0(x=>{const n=f(x);return {...n,prev:x.sync}});
- const [sh,setSh]=useState(0);
- const [stay,setStay]=useState(false);
- const [ep,setEp]=useState(null);
- const [sp,setSp]=useState(SC(state)?.62:null);
- const [drag,setDrag]=useState(SC(state));
- const sk=useRef(null);
- const [sw,setSw]=useState(0);
- useEffect(()=>{const ro=new ResizeObserver(([e])=>setSw(e.contentRect.width));sk.current&&ro.observe(sk.current);return()=>ro.disconnect()},[]);
- const noPrev=state==="scrub-none";
- const frac=e=>{const r=sk.current.getBoundingClientRect();return Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))};
- const side=typeof matchMedia!=="undefined"&&matchMedia("(min-width:1024px), (max-height:500px) and (orientation:landscape)").matches;
- const SB=SIZES[sub.size][2];
- useEffect(()=>{setRt(false);setFl(null);setStay(false);setEp(null);if(state==="skip"||state==="next"){setOn(false)}else setOn(SHOW(state));setAsk(OV(state));setMenu(MN(state));setPlay(!OV(state)&&state!=="buffer"&&state!=="switch");setFq(state==="switch"?1:0);setAt(AT(state));setSp(SC(state)?.62:null);setDrag(SC(state))},[state,t]);
- useEffect(()=>{if(fq!==1)return;const id=setTimeout(()=>{setFq(2);setPlay(true)},1400);return()=>clearTimeout(id)},[fq]);
- useEffect(()=>{if(fq!==2||hold||menu)return;const id=setTimeout(()=>setFq(3),8000);return()=>clearTimeout(id)},[fq,hold,menu]);
- const go=s=>{setAt(s);setAsk(null);setPlay(true);setOn(true)};
- useEffect(()=>{if(!rt)return;const id=setTimeout(()=>{setRt(false);setPlay(true)},1400);return()=>clearTimeout(id)},[rt]);
- useEffect(()=>{if(!fl)return;const id=setTimeout(()=>setFl(null),700);return()=>clearTimeout(id)},[fl]);
- useEffect(()=>{const k=e=>{if(ask||e.target.closest&&e.target.closest("input,textarea"))return;const K=e.key;let f=null;if(K===" "||K==="k"){if(e.target.closest("button,a"))return;e.preventDefault();setPlay(!play);f=play?"توقف":"پخش"}else if(K==="ArrowLeft"&&!e.target.closest(".pv-seek")){setAt(a=>Math.max(0,a-10));f="−۱۰ ثانیه"}else if(K==="ArrowRight"&&!e.target.closest(".pv-seek")){setAt(a=>Math.min(t.dur,a+10));f="+۱۰ ثانیه"}else if(K==="m"){f="بی‌صدا"}else if(K==="c"){setMenu(m=>m==="subs"?null:"subs");setOn(true)}else if(K==="?"){setMenu("keys");setOn(true)}else if(K==="Escape"){setMenu(null)}if(f)setFl({k:Date.now(),f})};addEventListener("keydown",k);return()=>removeEventListener("keydown",k)},[ask,t,play]);
- useEffect(()=>{if(!play)return;const id=setInterval(()=>setAt(a=>Math.min(t.dur,a+1)),1000);return()=>clearInterval(id)},[play,t]);
-  const p=at/t.dur;
- const dp=drag&&sp!=null?sp:p;
- const fi=sp==null?0:Math.min(15,Math.floor(sp*16));
- const inIntro=at>=t.intro[0]&&at<t.intro[1]&&!ask;
- const inCred=at>=t.credits&&!ask&&!ep;
- const nextEp=()=>{setEp(t.next.n);setAt(0);setOn(true);setStay(false)};
- const tap=e=>{if(ask||menu||e.target.closest("button,a,.pv-seek"))return;setOn(o=>!o)};
- return html`<main class=${"pv"+(rm?" rm":"")+(ask==="guest"||ask==="nosub"||ask==="error"?" dim2":ask?" dim":"")+(menu==="subs"?" so":"")+(on?"":" idle")+(sp!=null?" scrub":"")+(buf?" buf":"")} onClick=${tap} aria-label="پخش‌کننده">
-  ${!low&&html`<img class="pv-glow" src=${PM(t.still)} alt=""/>`}
-  <div class="pv-pic"><img src=${PM(t.still)} alt=${"نمایی از "+t.fa+" (جایگزین ویدیو)"}/></div>
-  ${!ask&&!inCred&&sp==null&&sub.lang!=="off"&&html`<div class=${"pv-sub"+(sub.box?" box":"")} style=${{bottom:menu&&!side&&sh?sh+16+"px":menu&&menu!=="subs"&&side&&sh?"calc(var(--ui-h) + "+(sh+20)+"px)":(inIntro||fq===2)&&!menu?(on?"calc(var(--ui-h) + 64px)":"calc(var(--s-6) + 56px)"):on?"calc(var(--ui-h) + 12px)":"7%","--sub-c":COLS[sub.col][1],"--sub-s":"calc("+(side&&innerWidth>=1024?30:innerHeight<=500?17:20)+"px * "+SB+")"}}>${sub.lang!=="fa"&&html`<span class="en" lang="en">${t.line.en}</span>`}${sub.lang!=="en"&&html`<span>${t.line.fa}</span>`}</div>`}
-  ${ask&&html`<div class="pv-ui"><div class="pv-shade t"></div><div class="pv-top"><a class="pv-ib" href="../title/rollvana-title.html" aria-label="بازگشت به صفحه‌ی عنوان"><${I} n="right"/></a><div class="pv-ttl"><b>${t.fa}</b><small>${t.sub}</small></div></div></div>`}
-  <${AnimatePresence}>${ask==="resume"&&html`<${Resume} key="rs" t=${t} at=${at} go=${go}/>`}${ask==="recap"&&html`<${Recap} key="rc" t=${t} at=${at} go=${go}/>`}${ask==="error"&&html`<${Card} key="er" id="er" kick="پخش متوقف شد" h="این ویدیو الان بار نمی‌شود" p=${html`کیفیت پایین‌تر را هم خودکار امتحان کردیم. اتصال اینترنت را بررسی کنید و دوباره تلاش کنید؛ پخش از <span class="num" dir="ltr">${clock(at)}</span> ادامه پیدا می‌کند.`} cta="تلاش دوباره" ci="refresh" onCta=${()=>{setAsk(null);setOn(true);setRt(true)}} alt="بازگشت" altHref="../title/rollvana-title.html"/>`}${ask==="guest"&&html`<${Card} key="gu" id="gu" kick=${t.fa} h="برای تماشا وارد شوید" p="تماشا در رول‌وانا با اشتراک است. وارد حساب‌تان شوید تا پخش از همین لحظه‌ی پیوند شروع شود." cta="ورود" onCta=${()=>{}} alt="دیدن اشتراک‌ها" altHref="#plans"/>`}${ask==="nosub"&&html`<${Card} key="ns" id="ns" kick=${t.fa} h="برای تماشا اشتراک لازم است" p=${html`اشتراک شما فعال نیست. با خرید اشتراک، پخش از <span class="num" dir="ltr">${clock(at)}</span> شروع می‌شود.`} cta="خرید اشتراک" onCta=${()=>{}} alt="بازگشت" altHref="../title/rollvana-title.html"/>`}${ask==="still"&&t.next&&html`<${Still} key="sw" t=${t} go=${()=>{setAsk(null);setPlay(true);nextEp()}}/>`}</${AnimatePresence}>
-  <div class=${"pv-ui"+(on&&!ask?"":" hide")} aria-hidden=${!on||ask}>
-   <div class="pv-shade t"></div><div class="pv-shade b"></div>
-   <div class="pv-top">
-    <a class="pv-ib" href="../title/rollvana-title.html" aria-label="بازگشت به صفحه‌ی عنوان"><${I} n="right"/></a>
-    <div class="pv-ttl"><b>${t.fa}</b><small>${ep?"فصل ۲ · قسمت "+fa(ep)+" · "+t.next.fa:t.sub}</small></div>
-    <button class="pv-ib" aria-label="اشتراک‌گذاری این لحظه" aria-haspopup="dialog" aria-expanded=${menu==="share"} onClick=${()=>setMenu("share")}><${I} n="share"/></button>
-    <button class="pv-ib" aria-label="کیفیت و تنظیمات" aria-haspopup="dialog" aria-expanded=${!!menu&&menu.startsWith("quality")} onClick=${()=>setMenu("quality")}><${I} n="gear"/></button>
-   </div>
-   <div class="pv-mid">
-    <button class="pv-ib" style=${{width:52,height:52}} aria-label="۱۰ ثانیه عقب" onClick=${()=>setAt(a=>Math.max(0,a-10))}><${Ten} d=${-1}/></button>
-    <button class="pv-play" aria-label=${play?"توقف":"پخش"} onClick=${()=>setPlay(v=>!v)}>
-     <${AnimatePresence} mode="popLayout" initial=${false}>
-      <${motion.span} key=${play?"pa":"pl"} style=${{display:"grid"}} initial=${{opacity:0,scale:.6}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.6}} transition=${{duration:.16,ease:[.22,1,.36,1]}}><${I} n=${play?"pause":"play"}/></${motion.span}>
-     </${AnimatePresence}>
-    </button>
-    <button class="pv-ib" style=${{width:52,height:52}} aria-label="۱۰ ثانیه جلو" onClick=${()=>setAt(a=>Math.min(t.dur,a+10))}><${Ten} d=${1}/></button>
-   </div>
-   <div class="pv-bot">
-    <div class="pv-bar">
-     <span class="pv-time">${clock(at)}</span>
-     <div class=${"pv-seek"+(drag?" on":"")} ref=${sk} role="slider" aria-label="جای پخش" aria-valuemin="0" aria-valuemax=${t.dur} aria-valuenow=${Math.round(dp*t.dur)} aria-valuetext=${clock(dp*t.dur)} tabindex="0" onKeyDown=${e=>{if(e.key==="ArrowRight")setAt(a=>Math.min(t.dur,a+10));if(e.key==="ArrowLeft")setAt(a=>Math.max(0,a-10))}} onPointerDown=${e=>{e.currentTarget.setPointerCapture(e.pointerId);setDrag(true);setSp(frac(e))}} onPointerMove=${e=>{if(drag||e.pointerType==="mouse")setSp(frac(e))}} onPointerUp=${e=>{if(!drag)return;setAt(Math.round(sp*t.dur));setDrag(false);if(e.pointerType!=="mouse")setSp(null)}} onPointerLeave=${()=>{if(!drag)setSp(null)}}>
-      <div class="pv-trk"><div class="pv-buf" style=${{width:Math.min(100,p*100+(buf?.4:9))+"%"}}></div><div class="pv-fill" style=${{width:dp*100+"%"}}></div><div class="pv-knob" style=${{left:dp*100+"%"}}></div></div>
-      <${AnimatePresence}>${sp!=null&&html`<${motion.div} key="tip" className="pv-tip" style=${{left:Math.min(Math.max(sp*sw,noPrev?36:90),sw-(noPrev?36:90))+"px",x:"-50%"}} initial=${{opacity:0,y:6}} animate=${{opacity:1,y:0,transition:{duration:.16,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.12,ease:[.4,0,1,1]}}}>${!noPrev&&html`<div class="fr"><${AnimatePresence} initial=${false}><${motion.img} key=${fi} src=${PM(t.fr+fi+".jpg")} alt="" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.16}}/></${AnimatePresence}></div>`}<span class="tt">${clock(sp*t.dur)}</span></${motion.div}>`}</${AnimatePresence}>
-     </div>
-     <span class="pv-time end">-${clock(t.dur-at)}</span>
-    </div>
-    <div class="pv-row">
-     <div class="pv-tr">
-      <button class="pv-ib" aria-label=${play?"توقف":"پخش"} onClick=${()=>setPlay(v=>!v)}><${I} n=${play?"pause":"play"}/></button>
-      <button class="pv-ib" aria-label="۱۰ ثانیه عقب" onClick=${()=>setAt(a=>Math.max(0,a-10))}><${Ten} d=${-1}/></button>
-      <button class="pv-ib" aria-label="۱۰ ثانیه جلو" onClick=${()=>setAt(a=>Math.min(t.dur,a+10))}><${Ten} d=${1}/></button>
-     </div>
-     <div class="pv-vol"><button class="pv-ib" aria-label="صدا"><${I} n="vol"/></button><i></i></div>
-     <span class="sp"></span>
-     <button class="pv-ib" aria-label="زیرنویس" aria-haspopup="dialog" aria-expanded=${menu==="subs"} onClick=${()=>setMenu("subs")}><${I} n="cc"/></button>
-     ${t.audio.length>1&&html`<button class="pv-ib" aria-label="صدا" aria-haspopup="dialog" aria-expanded=${menu==="audio"} onClick=${()=>setMenu("audio")}><${I} n="audio"/></button>`}
-     <button class="pv-ib pv-dk" aria-label="میان‌برهای صفحه‌کلید" aria-haspopup="dialog" aria-expanded=${menu==="keys"} onClick=${()=>setMenu("keys")}><${I} n="keys"/></button>
-     <button class="pv-ib" aria-label="تمام‌صفحه"><${I} n="max"/></button>
-    </div>
-   </div>
-  </div>
-  <${AnimatePresence}>${fl&&html`<${motion.div} key=${fl.k} className="pv-flash" role="status" initial=${{opacity:0,scale:.96}} animate=${{opacity:1,scale:1,transition:{duration:.16,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.24,ease:[.4,0,1,1]}}}>${fl.f}</${motion.div}>`}</${AnimatePresence}>
- <${AnimatePresence}>${buf&&!ask&&html`<${motion.div} key="rg" className="pv-ring" role="status" aria-label="در حال بارگذاری" initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.2,duration:.24,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.16,ease:[.4,0,1,1]}}}/>`}</${AnimatePresence}>
-  <${AnimatePresence}>${inIntro&&!menu&&html`<${motion.button} key="sk" className="pv-gb pv-skip" onClick=${()=>setAt(t.intro[1])} initial=${{opacity:0,y:8}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}><i style=${{width:(at-t.intro[0])/(t.intro[1]-t.intro[0])*100+"%",transition:"width 1s linear"}}></i><span>رد کردن تیتراژ</span><${I} n="skip"/></${motion.button}>`}</${AnimatePresence}>
-  <${AnimatePresence}>${inCred&&!stay&&!menu&&(t.next?html`<${Next} key="nx" t=${t} cancel=${()=>setStay(true)} play=${nextEp}/>`:html`<${motion.div} key="fe" className="pv-toast" role="status" initial=${{opacity:0,y:8}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}><${I} n="check"/><span>تمام شد؛ بار بعد از اول پخش می‌شود</span><a class="pv-gb" href="../title/rollvana-title.html">بازگشت</a></${motion.div}>`)}</${AnimatePresence}>
-  <${AnimatePresence}>${fq===2&&!menu&&!ask&&html`<${motion.div} key="fq" className="pv-toast" role="status" onPointerEnter=${()=>setHold(true)} onPointerLeave=${()=>setHold(false)} onFocus=${()=>setHold(true)} onBlur=${()=>setHold(false)} initial=${{opacity:0,y:8}} animate=${{opacity:1,y:0,transition:{duration:.32,ease:[.22,1,.36,1]}}} exit=${{opacity:0,transition:{duration:.2,ease:[.4,0,1,1]}}}><${I} n="wifi"/><span>اتصال کند شد؛ پخش با <bdi class="lat">720p</bdi></span><button class="pv-gb" onClick=${()=>{setOn(true);setMenu("quality")}}>کیفیت</button></${motion.div}>`}</${AnimatePresence}>
-  <${AnimatePresence}>${menu&&menu.startsWith("quality")&&html`<${Quality} key="q" low=${low} cur=${fq>=2?"720p":null} close=${()=>setMenu(null)} onH=${setSh}/>`}${menu==="subs"&&html`<${Subs} key="s" sub=${sub} set=${setSub} close=${()=>setMenu(null)} onH=${setSh}/>`}${menu==="audio"&&html`<${Audio} key="a" t=${t} close=${()=>setMenu(null)} onH=${setSh}/>`}${menu==="share"&&html`<${Share} key="sh" t=${t} at=${at} close=${()=>setMenu(null)} onH=${setSh}/>`}${menu==="keys"&&html`<${Keys} key="k" close=${()=>setMenu(null)} onH=${setSh}/>`}</${AnimatePresence}>
- </main>`;
-}
-
-function App(){
- const [kind,setKind]=useState(Q.get("kind")==="series"?"series":"film");
- const [rm,setRm]=useState(Q.get("rm")==="1");
- const [state,setState]=useState(STATES.some(s=>s[0]===Q.get("state"))?Q.get("state"):"playing");
- const ek=state==="still"?"series":kind;
- const t=ek==="series"?SERIES:FILM;
- useEffect(()=>{const u=new URLSearchParams({kind,state});if(rm)u.set("rm","1");history.replaceState(null,"","?"+u)},[kind,state,rm]);
- return html`<${MotionConfig} reducedMotion=${rm?"always":"user"}>
-  <${Player} t=${t} state=${state} setState=${setState} rm=${rm}/>
-  <section class="review" aria-label="حالت‌های طرح">
-   <h2>حالت‌های طرح</h2>
-   <div class="grp">عنوان<div class="row">${[["film","فیلم"],["series","قسمت سریال"]].map(([k,l])=>html`<button key=${k} aria-pressed=${ek===k} disabled=${state==="still"&&k==="film"} onClick=${()=>setKind(k)}>${l}</button>`)}</div></div>
-   <div class="grp">حرکت<div class="row">${[[false,"عادی"],[true,"کاهش حرکت"]].map(([k,l])=>html`<button key=${l} aria-pressed=${rm===k} onClick=${()=>setRm(k)}>${l}</button>`)}</div></div>
-   <div class="grp">حالت<div class="row">${STATES.map(([k,l])=>html`<button key=${k} aria-pressed=${state===k} onClick=${()=>{setState(k);scrollTo(0,0)}}>${l}</button>`)}</div></div>
-  </section>
- </${MotionConfig}>`;
-}
-ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
+$("#pic").src=D.pic;$("#glowImg").src=D.pic;$("#subFa").textContent=D.fa;$("#subEn").textContent=D.en;
+setup();render();
+let idle=0;
+const wake=()=>{if(S.ui==="off"&&!S.buffer){S.ui="on";render()}clearTimeout(idle);idle=setTimeout(()=>{if(S.playing&&!S.menu&&!S.panel&&!S.scrub&&!$("#dock").matches(":focus-within")){S.ui="off";render()}},3000)};
+let started=false;
+root.addEventListener("pointermove",e=>{if(e.pointerType==="mouse"){started=true;wake()}});
+setInterval(()=>{if(S.playing&&!S.buffer&&!S.scrub){S.t=Math.min(S.dur,S.t+1);if(S.panel==="next"||S.toast||S.menu||state==="playing"||started)render()}},1000);
+function flash(v){const f=v<0?$("#flashB"):$("#flashF");f.classList.remove("on");void f.offsetWidth;f.classList.add("on")}
+function jump(v){S.t=Math.max(0,Math.min(S.dur,S.t+v));flash(v);render()}
+let cdT=0,cdHold=false;
+function startCd(){clearInterval(cdT);cdT=setInterval(()=>{if(cdHold||S.panel!=="next")return;S.cd--;if(S.cd<=0){clearInterval(cdT);goNext();return}const n=$("#cdN");if(n){n.textContent=fa(S.cd);n.classList.remove("on");void n.offsetWidth;n.classList.add("on");$("#cdBtn").style.setProperty("--cd",(10-S.cd)*10+"%");lastLayer=layer.innerHTML}},1000)}
+layer.addEventListener("pointerover",e=>{if(e.target.closest("#nextCard"))cdHold=true});
+layer.addEventListener("pointerout",e=>{if(e.target.closest("#nextCard")&&!e.relatedTarget?.closest?.("#nextCard"))cdHold=false});
+layer.addEventListener("focusin",e=>{if(e.target.closest("#nextCard"))cdHold=true});
+layer.addEventListener("focusout",()=>{cdHold=false});
+function goNext(){if(kind!=="series")return;D.ttl="جدایی";D.meta="فصل ۲ · قسمت ۷ · چیخای باردو";D.pic=D.next.img;$("#pic").src=D.pic;$("#glowImg").src=D.pic;S.panel=null;S.t=0;S.dur=2940;S.playing=true;S.sub=false;render()}
+root.addEventListener("click",e=>{
+const a=e.target.closest("[data-act]");
+if(!a){if(e.target.closest(".pp-stage")&&!S.panel&&!S.menu){if(e.pointerType==="touch"||matchMedia("(pointer:coarse)").matches){S.ui=S.ui==="on"?"off":"on";render()}else{S.playing=!S.playing;render()}}return}
+const v=a.dataset.v,k=a.dataset.k;started=true;
+switch(a.dataset.act){
+case "play":S.playing=!S.playing;wake();break;
+case "jump":jump(+v);wake();return;
+case "mute":S.muted=!S.muted;break;
+case "fs":S.fs=!S.fs;if(S.fs)document.documentElement.requestFullscreen?.().catch(()=>{});else if(document.fullscreenElement)document.exitFullscreen();break;
+case "menu":S.menu=S.menu===v?null:v;S.toast=null;break;
+case "close":S.menu=null;if(S.panel==="keys"){S.panel=null;S.playing=true}break;
+case "keys":S.panel="keys";S.playing=false;break;
+case "set":if(k==="ql"){S.ql=v;if(v!=="auto")S.now=v}else if(k==="lang")S.subs.lang=v;else if(k==="size")S.subs.size=+v;else if(k==="color")S.subs.color=+v;else if(k==="audio")S.audio=+v;break;
+case "glow":if(!S.low)S.glow=!S.glow;break;
+case "box":S.subs.box=!S.subs.box;break;
+case "sync":S.subs.sync=Math.max(-10,Math.min(10,S.subs.sync+ +v));break;
+case "shareat":S.shareAt=!S.shareAt;break;
+case "copy":S.copied=true;navigator.clipboard?.writeText("https://"+layer.querySelector(".pp-field span").textContent).catch(()=>{});setTimeout(()=>{S.copied=false;render()},2400);break;
+case "resume":S.panel=null;S.playing=true;S.sub=true;break;
+case "startover":S.panel=null;S.t=0;S.playing=true;break;
+case "playnext":goNext();return;
+case "credits":S.panel=null;S.playing=true;break;
+case "skipintro":S.t=D.intro[1];break;
+case "retry":S.panel=null;S.buffer=true;S.playing=true;render();setTimeout(()=>{S.buffer=false;S.ui="on";render()},1400);return;
+default:break}
+render()});
+const seek=$("#seek");
+function spAt(e){const r=seek.getBoundingClientRect();return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))}
+seek.addEventListener("pointerdown",e=>{seek.setPointerCapture(e.pointerId);S.scrub=state==="scrub-none"?"noimg":"img";S.sp=spAt(e);render()});
+seek.addEventListener("pointermove",e=>{if(S.scrub&&seek.hasPointerCapture(e.pointerId)){S.sp=spAt(e);render()}else if(e.pointerType==="mouse"&&!S.scrub){S.sp=spAt(e);S.scrub=state==="scrub-none"?"noimg":"img";S.hover=true;render()}});
+seek.addEventListener("pointerleave",()=>{if(S.hover){S.hover=false;S.scrub=null;render()}});
+seek.addEventListener("pointerup",e=>{if(S.scrub){S.t=S.sp*S.dur;S.scrub=null;S.hover=false;render()}});
+document.addEventListener("keydown",e=>{
+if(e.metaKey||e.ctrlKey||e.altKey)return;
+const k=e.key.toLowerCase(),onBtn=e.target.closest&&e.target.closest("button");
+if(k==="escape"){if(S.menu||S.panel==="keys"){S.menu=null;if(S.panel==="keys"){S.panel=null;S.playing=true}render()}return}
+if(S.panel&&S.panel!=="keys")return;
+const act={" ":()=>{S.playing=!S.playing},k:()=>{S.playing=!S.playing},arrowleft:()=>jump(-10),arrowright:()=>jump(10),arrowup:()=>{S.vol=Math.min(100,S.vol+10);S.muted=false},arrowdown:()=>{S.vol=Math.max(0,S.vol-10)},m:()=>{S.muted=!S.muted},f:()=>{S.fs=!S.fs},c:()=>{S.subs.lang=S.subs.lang==="off"?"fa":"off"},"?":()=>{S.panel="keys";S.playing=false}}[k];
+if(!act||(onBtn&&(k===" "||k==="enter")))return;
+e.preventDefault();act();started=true;wake();render()});
+if(S.panel==="next"&&kind==="series")startCd();
+const link=(p)=>{const u=new URLSearchParams({state,kind,...p});if(rm&&!("rm" in p))u.set("rm","1");if(u.get("rm")==="0")u.delete("rm");return "?"+u};
+$("#rvKind").innerHTML=[["film","فیلم"],["series","قسمت سریال"]].map(([v,l])=>`<a href="${link({kind:v})}" aria-current="${kind===v}">${l}</a>`).join("");
+$("#rvState").innerHTML=STATES.map(([v,l])=>`<a href="${link({state:v})}" aria-current="${state===v}">${l}</a>`).join("");
+$("#rvRm").innerHTML=`<a href="${link({rm:"0"})}" aria-current="${!rm}">حرکت عادی</a><a href="${link({rm:"1"})}" aria-current="${rm}">کاهش حرکت</a>`;
 </script>
-</body>
-</html>
+</body></html>
