@@ -287,7 +287,11 @@ function renderPanel(){
     const k=(a,b)=>'<div>'+a.map(x=>'<kbd>'+x+'</kbd>').join('')+'</div><span>'+b+'</span>';
     h=head('میان‌برهای صفحه‌کلید')+'<div class="pl-keys">'+k(['Space','K'],'پخش و توقف')+k(['←','J'],'۱۳ ثانیه عقب')+k(['→','L'],'۸ ثانیه جلو')+k(['↑','↓'],'بلندی صدا')+k(['M'],'بی‌صدا')+k(['F'],'تمام‌صفحه')+k(['C'],'زیرنویس روشن و خاموش')+k(['Esc'],'بستن منو')+'</div>';
   }
-  p.innerHTML=h;p.hidden=false;
+  const ob=p.querySelector('.pl-pb'),st=ob&&p.dataset.for===S.panel?ob.scrollTop:0;
+  p.innerHTML=h;p.hidden=false;p.dataset.for=S.panel;
+  const hd=p.querySelector('.pl-ph'),bd=document.createElement('div');bd.className='pl-pb';
+  while(hd.nextSibling)bd.appendChild(hd.nextSibling);
+  p.appendChild(bd);bd.scrollTop=st;panelFit();
   if(keep){const [k,v,a]=keep.split('|');const el=[...p.querySelectorAll('button')].find(b=>(b.dataset.k+'|'+b.dataset.v+'|'+b.dataset.act)===keep);if(el)el.focus()}
 }
 
@@ -313,7 +317,12 @@ function recapFit(){
   const u=()=>{const m=Math.max(0,p.scrollHeight-p.clientHeight),t=p.scrollTop,f=parseFloat(getComputedStyle(p).lineHeight)*1.6;c.classList.toggle('scroll',m>2);c.classList.toggle('end',m-t<=2);p.style.setProperty('--ft',Math.min(f,t)+'px');p.style.setProperty('--fb',Math.min(f,m-t)+'px')};
   p.onscroll=u;u();
 }
-addEventListener('resize',()=>{if(S.card==='recap')recapFit()});
+function panelFit(){
+  const p=$('panel'),b=p.querySelector('.pl-pb');if(!b)return;
+  const u=()=>{const m=Math.max(0,b.scrollHeight-b.clientHeight),t=b.scrollTop,f=44;p.classList.toggle('scroll',m>2);b.style.setProperty('--ft',Math.min(f,t)+'px');b.style.setProperty('--fb',Math.min(f,m-t)+'px')};
+  b.onscroll=u;u();
+}
+addEventListener('resize',()=>{if(S.card==='recap')recapFit();if(S.panel)panelFit()});
 
 function renderDlg(){
   const d=$('dlg');
