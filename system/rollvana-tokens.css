@@ -41,6 +41,18 @@
 --t-small:500 12px/1.4 var(--f-ui);
 --t-micro:500 11px/1.3 var(--f-ui);
 
+--film:#000;
+--scrim-top:linear-gradient(180deg,rgba(0,0,0,.74),rgba(0,0,0,.4) 48%,rgba(0,0,0,0));
+--scrim-bot:linear-gradient(0deg,rgba(0,0,0,.84),rgba(0,0,0,.46) 50%,rgba(0,0,0,0));
+--veil:rgba(7,6,12,.6);
+--panel:rgba(13,11,21,.95);
+--glass-n:rgba(242,239,248,.14);
+--glass-edge:rgba(242,239,248,.3);
+--glass-fx:blur(20px) saturate(0) contrast(.3) brightness(.4);
+--s1:rgba(242,239,248,.035);--s2:rgba(242,239,248,.08);--s3:rgba(242,239,248,.14);
+--sub-white:#FFFFFF;--sub-yellow:#FFE45C;--sub-cyan:#7FE6FF;
+--tg:#2AABEE;
+
 --d-1:160ms;--d-2:320ms;--d-3:600ms;--d-4:1100ms;
 --e-out:cubic-bezier(.22,1,.36,1);
 --e-in:cubic-bezier(.4,0,1,1);

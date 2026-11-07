@@ -1,6 +1,8 @@
 <!doctype html>
 <html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
+<link rel="stylesheet" href="rollvana-tokens.css">
+<link rel="stylesheet" href="rollvana-player.css">
 <title>Rollvana Design System</title>
 
 <style>
@@ -1005,5 +1007,31 @@ td{color:var(--ink-2)}
       <tr><td>تصویر</td><td>دیزالو ساده، بدون morph</td><td>لوگوی فیلم</td></tr>
     </table></div>
   </section>
+  <section>
+    <h2>پخش‌کننده</h2>
+    <span class="sub-h">همین کلاس‌ها (rollvana-player.css) در صفحه‌ی پخش استفاده شده‌اند. فیلم تنها نور صفحه است؛ کنترل‌ها شیشه‌ی خنثی‌اند و بنفش فقط برای پیشرفت، انتخاب، فوکوس و کار اصلی.</span>
+    <div class="board">
+      <div class="st"><small>پخش و توقف · شکل عوض می‌کند</small><div class="pl" style="height:150px;width:320px;border-radius:16px"><div class="pl-mid"><button class="pl-jump back"><span><i data-ic="arrow-counter-clockwise"></i><b>۱۳</b></span></button><button class="pl-play is-on"><span><i data-ic="play-fill" class="pl-ic-play"></i><i data-ic="pause-fill" class="pl-ic-pause"></i></span></button><button class="pl-jump fwd"><span><i data-ic="arrow-clockwise"></i><b>۸</b></span></button></div></div></div>
+      <div class="st"><small>متوقف · جهش ۱۳ ثانیه زده شد</small><div class="pl" style="height:150px;width:320px;border-radius:16px"><div class="pl-mid"><button class="pl-jump back is-hit"><span><i data-ic="arrow-counter-clockwise"></i><b>۱۳</b></span><em class="pl-flash">۱۳ ثانیه عقب</em></button><button class="pl-play"><span><i data-ic="play-fill" class="pl-ic-play"></i><i data-ic="pause-fill" class="pl-ic-pause"></i></span></button><button class="pl-jump fwd"><span><i data-ic="arrow-clockwise"></i><b>۸</b></span></button></div></div></div>
+    </div>
+    <div class="board">
+      <div class="st" style="flex:1;min-width:300px"><small>نوار زمان · چپ به راست، حتی در راست‌چین</small><div class="pl" style="height:64px;border-radius:16px"><div class="pl-seekrow" style="padding:10px"><span class="pl-time">۱:۱۲:۳۴</span><div class="pl-seek"><div class="pl-track"><i class="pl-buf" style="width:48%"></i><i class="pl-fill" style="width:44%"></i></div><i class="pl-knob" style="left:44%"></i></div><span class="pl-time rem">−۱:۳۳:۲۶</span></div></div></div>
+      <div class="st" style="flex:1;min-width:300px"><small>جابه‌جایی · ضخیم‌تر، با فریم و زمان</small><div class="pl" style="height:200px;border-radius:16px;--ar:1.91"><div class="pl-seekrow" style="position:absolute;bottom:10px;inset-inline:10px"><span class="pl-time">۱:۱۲:۳۴</span><div class="pl-seek is-scrub"><div class="pl-track"><i class="pl-buf" style="width:48%"></i><i class="pl-fill" style="width:62%"></i></div><i class="pl-knob" style="left:62%"></i><div class="pl-prev" style="left:62%"><img src="../playback/media/thumb/d-8.jpg" alt=""><b>۱:۴۲:۵۵</b></div></div><span class="pl-time rem">−۱:۳۳:۲۶</span></div></div></div>
+    </div>
+    <div class="board">
+      <div class="st"><small>دکمه‌ها: اصلی · شیشه · آرام · متنی</small><div class="pl" style="container-type:normal;height:auto;padding:16px;border-radius:16px;display:flex;gap:8px;flex-wrap:wrap"><button class="pl-btn lit"><i data-ic="play-fill"></i>ادامه‌ی تماشا</button><button class="pl-btn glass"><i data-ic="fast-forward"></i>رد کردن تیتراژ</button><button class="pl-btn quiet">لغو</button><button class="pl-btn text">رد کردن</button></div></div>
+      <div class="st"><small>شمارش · پر شدن در ۱۰ ثانیه</small><div class="pl" style="container-type:normal;height:auto;padding:16px;border-radius:16px"><button class="pl-btn count" style="--p:.4;width:240px"><i></i><i data-ic="play-fill"></i><span>پخش در ۶ ثانیه</span></button></div></div>
+    </div>
+    <div class="board">
+      <div class="st"><small>گزینه‌ها · انتخاب‌شده با تیک بنفش</small><div class="pl" style="container-type:normal;height:auto;padding:12px;border-radius:16px;width:340px"><div class="pl-opts"><button class="pl-opt" aria-checked="true"><span>خودکار<small>بر اساس سرعت اینترنت شما · الان 1080p</small></span><i data-ic="check" class="ck"></i></button><button class="pl-opt" aria-checked="false"><span>720p</span><em>HD</em><i data-ic="check" class="ck"></i></button></div></div></div>
+      <div class="st"><small>انتخاب‌گرها و کلید</small><div class="pl" style="container-type:normal;height:auto;padding:12px;border-radius:16px;width:340px;display:flex;flex-direction:column;gap:12px"><div class="pl-chips"><button class="pl-chip">خاموش</button><button class="pl-chip" aria-pressed="true">دوزبانه</button></div><div class="pl-sty"><div class="pl-sw"><button aria-pressed="true"><i style="--c:var(--sub-white)"></i></button><button><i style="--c:var(--sub-yellow)"></i></button><button><i style="--c:var(--sub-cyan)"></i></button></div><button class="pl-tog" role="switch" aria-checked="true"><i></i>کادر تیره</button></div></div></div>
+    </div>
+    <div class="board">
+      <div class="st" style="flex:1;min-width:300px"><small>اعلان کوتاه و ادامه از جای قبلی</small><div class="pl" style="height:150px;border-radius:16px"><div class="pl-toast" style="top:16px"><i data-ic="check-circle" class="ok"></i><span>پخش با 1080p ممکن نشد؛ با 720p ادامه می‌دهیم.</span></div><div class="pl-float start" style="bottom:16px"><div class="pl-resume"><span>ادامه از <b>۱:۱۲:۳۴</b></span><button class="pl-btn quiet"><i data-ic="arrow-counter-clockwise"></i>از اول</button></div></div></div></div>
+      <div class="st" style="flex:1;min-width:300px"><small>زیرنویس دوزبانه · فارسی پایین</small><div class="pl" style="height:150px;border-radius:16px"><div class="pl-subs" style="--sb:20px;--sz:18px"><div class="pl-line en">This is the Lisan al-Gaib, as it was foretold.</div><div class="pl-line">این همان <bdi>Lisan al-Gaib</bdi> است.</div></div></div></div>
+    </div>
+  </section>
 </div>
+<script src="rollvana-player-icons.js"></script>
+<script>plHydrate()</script>
 </body></html>
