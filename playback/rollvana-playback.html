@@ -190,7 +190,7 @@ $('vid').addEventListener('ended',()=>{const v=$('vid');v.currentTime=0;v.play()
 
 function ico(n,c){return plIcon(n,c)}
 function subLabel(){return{off:'خاموش',fa:'فارسی',en:'انگلیسی',dual:'دوزبانه'}[S.sub.lang]}
-function qLabel(){return S.q==='auto'?'خودکار · '+S.qnow:S.q}
+function qLabel(){const b=v=>'<bdi dir="ltr">'+v+'</bdi>';return S.q==='auto'?'خودکار · '+b(S.qnow):b(S.q)}
 function shiftLabel(){const v=S.sub.shift;if(!v)return'هم‌زمان با تصویر';return fa(String(Math.abs(v)).replace('.','٫'))+' ثانیه '+(v>0?'دیرتر':'زودتر')}
 
 function render(){
@@ -206,7 +206,7 @@ function render(){
   $('spin').hidden=!S.buffer;$('spinl').hidden=!(S.buffer&&S.rm);
   $('mid').hidden=S.buffer;
   renderTime(false);
-  $('vsubs').textContent=subLabel();$('vq').textContent=qLabel();
+  $('vsubs').textContent=subLabel();$('vq').innerHTML=qLabel();
   $('baudio').hidden=!T.dub;$('vaudio').textContent=S.audio==='orig'?'اصلی':'دوبله';
   $('bsubs').setAttribute('aria-expanded',S.panel==='subs');$('baudio').setAttribute('aria-expanded',S.panel==='audio');$('bq').setAttribute('aria-expanded',S.panel==='quality');
   $('bmute').innerHTML=ico(S.muted||!S.vol?'speaker-x':S.vol<.5?'speaker-low':'speaker-high');
@@ -297,7 +297,7 @@ function renderCard(){
   if(!S.card){c.hidden=true;c.innerHTML='';return}
   if(S.card==='recap'){
     c.classList.add('pl-recap');c.setAttribute('aria-label','آنچه دیدید');
-    c.innerHTML='<div class="pl-ph"><h3>'+ico('clock-counter-clockwise')+T.recapH+'</h3><button class="pl-btn text" data-act="skiprecap">رد کردن</button></div><div class="src">'+T.recapSrc+'</div><p>'+T.recap+'</p><button class="pl-btn lit" data-act="play">'+ico('play-fill')+'ادامه‌ی تماشا از <span dir="ltr">'+clock(T.resume,T.dur>=3600)+'</span></button>';
+    c.innerHTML='<div class="pl-ph"><h3>'+ico('clock-counter-clockwise')+T.recapH+'</h3><button class="pl-btn text" data-act="skiprecap">رد کردن</button></div><div class="src">'+T.recapSrc+'</div><p tabindex="0">'+T.recap+'</p><div class="more" aria-hidden="true">بقیه‌ی متن پایین‌تر است</div><button class="pl-btn lit" data-act="play">'+ico('play-fill')+'ادامه‌ی تماشا از <span dir="ltr">'+clock(T.resume,T.dur>=3600)+'</span></button>';
   }
   if(S.card==='next'){
     c.classList.add('pl-next');c.setAttribute('aria-label','قسمت بعد');
@@ -305,7 +305,15 @@ function renderCard(){
     c.innerHTML='<div class="hd"><img src="'+T.next.img+'" alt=""><div><small>قسمت بعد</small><b>'+T.next.t+'</b></div></div><div class="acts"><button class="pl-btn count" data-act="playnext" style="--p:'+p+'"><i></i>'+ico('play-fill')+'<span>'+(S.count>0?'پخش در '+fa(S.count)+' ثانیه':'پخش')+'</span></button><button class="pl-btn quiet" data-act="cancelnext">لغو</button></div>';
   }
   c.hidden=false;
+  if(S.card==='recap')recapFit();
 }
+
+function recapFit(){
+  const c=$('card'),p=c.querySelector('p');if(!p)return;
+  const u=()=>{const m=Math.max(0,p.scrollHeight-p.clientHeight),t=p.scrollTop,f=parseFloat(getComputedStyle(p).lineHeight)*1.6;c.classList.toggle('scroll',m>2);c.classList.toggle('end',m-t<=2);p.style.setProperty('--ft',Math.min(f,t)+'px');p.style.setProperty('--fb',Math.min(f,m-t)+'px')};
+  p.onscroll=u;u();
+}
+addEventListener('resize',()=>{if(S.card==='recap')recapFit()});
 
 function renderDlg(){
   const d=$('dlg');

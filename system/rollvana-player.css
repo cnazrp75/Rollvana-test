@@ -147,6 +147,10 @@
 .pl-recap .src{font:var(--t-small);line-height:1.7;color:var(--ink-3);margin:0 0 12px}
 .pl-recap p{margin:0 0 16px;font:400 15px/1.95 var(--f-ui);color:var(--ink-1);overflow:auto;text-wrap:pretty}
 .pl-recap .pl-btn{flex:none}
+.pl-recap .more{display:none;flex:none;margin:-8px 0 12px;font:var(--t-small);line-height:1.7;color:var(--ink-3);transition:opacity var(--d-1) var(--e-out)}
+.pl-recap.scroll .more{display:block}
+.pl-recap.scroll.end .more{opacity:0}
+.pl-recap.scroll p{--g:linear-gradient(to bottom,transparent,#000 var(--ft,0px),#000 calc(100% - var(--fb,0px)),transparent);-webkit-mask-image:var(--g);mask-image:var(--g);scrollbar-width:thin;scrollbar-color:var(--ink-3) transparent}
 .pl-next{left:12px;bottom:112px;width:min(360px,calc(100% - 24px));padding:12px;display:flex;flex-direction:column;gap:12px}
 .pl[data-ui=off] .pl-next{bottom:24px}
 .pl-next .hd{display:flex;gap:12px;align-items:center}
