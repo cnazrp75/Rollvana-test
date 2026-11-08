@@ -1,493 +1,429 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Rollvana · پخش آنلاین</title>
-<link rel="icon" type="image/svg+xml" href="../brand/rollvana-favicon-32.svg">
-<link rel="stylesheet" href="../system/legacy/rollvana-tokens.css">
-<link rel="stylesheet" href="../system/legacy/rollvana-player.css">
-<style>
-@font-face{font-family:IRANYekanX;src:url(media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:block}
-html,body{margin:0;background:var(--film);color:var(--ink-1);font-family:var(--f-ui)}
-*{box-sizing:border-box}
-.rv{background:var(--night-0);padding:40px 20px 64px;direction:rtl;font:var(--t-body);border-top:1px solid var(--line-1)}
-.rv-in{max-width:980px;margin:0 auto}
-.rv h2{font:var(--t-h2);margin:0 0 6px}
-.rv p{margin:0 0 20px;color:var(--ink-2);font:400 14px/1.8 var(--f-ui)}
-.rv h3{font:600 13px/1.4 var(--f-ui);color:var(--ink-2);margin:22px 0 10px}
-.rv-b{display:flex;flex-wrap:wrap;gap:8px}
-.rv-b button{height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--s2);box-shadow:inset 0 0 0 1px var(--line-1);color:var(--ink-1);font:500 14px/1 var(--f-ui);cursor:pointer}
-.rv-b button:hover{background:var(--s3)}
-.rv-b button[aria-pressed=true]{background:var(--light-lo);color:var(--light-hi);box-shadow:inset 0 0 0 1px rgba(169,139,255,.55);font-weight:700}
-.rv-b button:focus-visible{outline:none;box-shadow:var(--ring)}
-.rv small{display:block;margin-top:28px;color:var(--ink-3);font:500 12px/1.8 var(--f-ui)}
-</style>
-</head>
-<body>
-<main class="pl" id="pl" data-ui="on" aria-label="پخش‌کننده">
-  <div class="pl-pic" id="pic"><img id="frame" alt=""><video id="vid" playsinline preload="none"></video></div>
-  <div class="pl-hit" id="hit"></div>
-  <div class="pl-subs" id="subs" aria-live="off"></div>
-  <div class="pl-scrim t pl-ui"></div>
-  <div class="pl-scrim b pl-ui"></div>
-  <div class="pl-veil" id="veil" hidden></div>
-  <div class="pl-spin" id="spin" role="status" aria-label="در حال بارگذاری" hidden></div>
-  <div class="pl-spin-l" id="spinl" hidden>در حال بارگذاری</div>
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
+<title>پخش آنلاین | Rollvana</title>
+<link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-player.css">
+</head><body>
+<div id="app"></div>
+<script src="../home/media/vendor/react.production.min.js"></script>
+<script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../home/media/vendor/framer-motion.js"></script>
+<script src="../home/media/vendor/htm.umd.js"></script>
+<script src="../system/rollvana-motion.js"></script>
+<script src="../system/rollvana-player-icons.js"></script>
+<script>
+const {useState,useEffect,useRef,useLayoutEffect}=React;
+const {motion,AnimatePresence,useReducedMotion,useMotionValue,useTransform,MotionConfig}=Motion;
+const html=htm.bind(React.createElement);
+const Q=new URLSearchParams(location.search);
+const {fa,EASE,EASE_IN,EASE_LEAVE,SPR,SNAP,MARK,PANEL,SHEET,PRESS,AnimChars,Words,Cross,Count,Fill}=RVM;
+const I=({n,c})=>html`<svg class=${"i "+(c||"")} viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RVP_ICONS[n]||""}}></svg>`;
+const pad=n=>String(n).padStart(2,"0");
+const clock=(s,long)=>{s=Math.max(0,Math.round(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return fa(long||h?h+":"+pad(m)+":"+pad(x):m+":"+pad(x))};
+const faDec=s=>{s=String(s);if(s.endsWith(".0"))s=s.slice(0,-2);return fa(s).replace(".","٫")};
 
-  <header class="pl-top pl-ui">
-    <a class="pl-ib pl-tip" id="back" href="../title/rollvana-title.html" data-tip="برگشت" aria-label="برگشت به صفحه‌ی فیلم"><i data-ic="arrow-right"></i></a>
-    <div class="pl-title"><b id="ttl"></b><small id="meta"></small></div>
-    <button class="pl-ib pl-tip pl-desk" id="bkeys" data-tip="میان‌برها (?)" aria-label="میان‌برهای صفحه‌کلید"><i data-ic="keyboard"></i></button>
-    <button class="pl-ib pl-tip" id="bshare" data-tip="اشتراک از همین لحظه" aria-label="اشتراک از همین لحظه"><i data-ic="share-network"></i></button>
-  </header>
+const TITLES={
+  film:{kind:"film",ar:1600/836,title:"تلماسه: بخش دوم",meta:"فیلم · ۲۰۲۴",backTo:"برگشت به صفحه‌ی فیلم",
+    dur:9960,resume:4354,video:"media/dune-part-two.mp4",vstart:{first:3,main:9},thumb:"media/thumb/d-",tn:13,dub:true,
+    frames:{start:"media/dune-2.jpg",main:"media/dune-10.jpg",wide:"media/dune-5.jpg",worm:"media/dune-16.jpg",army:"media/dune-20.jpg",fire:"media/dune-14.jpg",sky:"media/dune-22.jpg"},
+    sub:{fa:"این همان Lisan al-Gaib است؛ همان که وعده‌اش را داده بودند.",en:"This is the Lisan al-Gaib, as it was foretold."},
+    link:"rollvana.tv/watch/dune-part-two",
+    recapSrc:"ساخته‌شده از زیرنویس فیلم، فقط تا جایی که دیده‌اید · آخرین تماشا ۱۲ روز پیش",
+    recapH:"آنچه تا اینجا دیدید",
+    recap:"پل و مادرش جسیکا پس از نابودی خاندان آتریدیز به فِرِمن‌های سیچ تَبر پناه برده‌اند. پل کنار چانی راه‌ورسم صحرا را یاد می‌گیرد و در حمله به برداشت‌کننده‌های ادویه‌ی هارکونن‌ها کنار فِرِمن‌ها می‌جنگد. جسیکا با نوشیدن آب حیات، مادر روحانی قبیله می‌شود و با دختری که در شکم دارد حرف می‌زند. استیلگار مطمئن است پل همان «لسان‌الغیب» موعود است، اما چانی و جوان‌های شمال این پیشگویی را ابزار فریب می‌دانند. پل برای اینکه یک فِرِمن واقعی شود، باید سوار کرم شنی شود."},
+  ep:{kind:"ep",ar:1600/666,title:"جدایی",meta:"فصل ۲ · قسمت ۳ · چه کسی زنده است؟",backTo:"برگشت به صفحه‌ی سریال",
+    dur:2940,resume:1503,video:"media/severance.mp4",vstart:{first:1,main:8},thumb:"media/thumb/s-",tn:11,dub:false,
+    frames:{start:"media/sev-1.jpg",main:"media/sev-8.jpg",wide:"media/sev-4.jpg",worm:"media/sev-18.jpg",army:"media/sev-20.jpg",fire:"media/sev-14.jpg",sky:"media/sev-12.jpg"},
+    sub:{fa:"به Lumon خوش آمدید. لطفاً از همه‌ی حقایق به یک اندازه لذت ببرید.",en:"Welcome to Lumon. Please enjoy each fact equally."},
+    link:"rollvana.tv/watch/severance/s2e3",
+    intro:[190,262],credits:2862,
+    next:{t:"فصل ۲ · قسمت ۴ · دره‌ی اندوه",img:"media/sev-12.jpg"},
+    recapSrc:"ساخته‌شده از زیرنویس قسمت‌های ۱ و ۲ · آخرین تماشا ۹ روز پیش",
+    recapH:"آنچه در قسمت‌های قبل دیدید",
+    recap:"مارک پس از پنج ماه به طبقه‌ی جداشده‌ی لومن برمی‌گردد و هلی، اروینگ و دیلن را دوباره کنار خودش می‌بیند. آن‌ها می‌فهمند شورش‌شان بیرون از شرکت خبرساز شده و لومن قول داده شرایط را بهتر کند. میلچیک حالا مدیر طبقه است و دستیار تازه‌ای به نام خانم هوانگ دارد. بیرون از شرکت، مارک می‌فهمد همسرش جما، که فکر می‌کرد مرده، زنده است و جایی در لومن نگه داشته می‌شود؛ او تصمیم می‌گیرد برای پیدا کردنش در کار بماند."}
+};
+const LONG="سرزمین‌های دوردست و قلعه‌ی فراموش‌شده‌ی پادشاه بی‌تاج: بخش نخست";
+const STATES=[
+  ["first","اولین پخش"],["resume","ادامه، با «از اول»"],["again","تمام‌شده، از اول"],["recap","آنچه دیدید"],
+  ["playing","پخش با کنترل‌ها"],["hidden","کنترل‌ها پنهان"],["quality","منوی کیفیت"],["quality-low","کیفیت، کم‌مصرف روشن"],
+  ["subs","زیرنویس، ظاهر و هم‌زمانی"],["audio","زبان صدا"],["keys","میان‌برهای دسکتاپ"],["skip","رد کردن تیتراژ"],["next","قسمت بعد، شمارش"],
+  ["still","هنوز تماشا می‌کنید؟"],["scrub","جابه‌جایی با پیش‌نمایش"],["scrub-none","جابه‌جایی بدون پیش‌نمایش"],["buffer","بارگذاری"],
+  ["switch","تغییر خودکار کیفیت"],["error","خطا و تلاش دوباره"],["share","اشتراک از همین لحظه"],["guest","مهمان"],["nosub","بدون اشتراک"]
+];
+const EP_ONLY=["skip","next","still"],FILM_ONLY=["audio"];
+const BASE={t:0,playing:true,ui:"on",panel:null,card:null,dlg:null,float:null,toast:null,buffer:false,scrub:null,frame:"main",dim:false,q:"auto",qnow:"1080p",low:false,count:10,copied:false,live:false,jump:0,cardKey:0};
+function stateOf(id,k){
+  const T=TITLES[k];const S={...BASE,t:T.resume};
+  const st={
+    first(){S.t=4;S.frame="start"},resume(){S.float="resume";S.frame="army"},again(){S.t=0;S.frame="start";S.toast="again"},
+    recap(){S.playing=false;S.card="recap";S.dim=true;S.ui="top"},playing(){},hidden(){S.ui="off";S.frame="worm"},
+    quality(){S.panel="quality";S.frame="wide"},"quality-low"(){S.panel="quality";S.low=true;S.qnow="480p";S.frame="wide"},
+    subs(){S.panel="subs"},audio(){S.panel="audio";S.frame="fire"},keys(){S.panel="keys";S.frame="army"},
+    skip(){S.t=212;S.ui="off";S.float="skip";S.frame="start"},next(){S.t=2866;S.ui="off";S.card="next";S.frame="fire"},
+    still(){S.playing=false;S.dlg="still";S.dim=true;S.ui="top";S.frame="fire"},
+    scrub(){S.scrub={r:.62,img:true};S.frame="army"},"scrub-none"(){S.scrub={r:.62,img:false};S.frame="army"},
+    buffer(){S.buffer=true;S.ui="off";S.frame="sky"},switch(){S.toast="switch";S.qnow="720p";S.frame="sky"},
+    error(){S.playing=false;S.dlg="error";S.dim=true;S.ui="top";S.frame="worm"},share(){S.playing=false;S.panel="share"},
+    guest(){S.playing=false;S.dlg="guest";S.dim=true;S.ui="top";S.frame="start"},nosub(){S.playing=false;S.dlg="nosub";S.dim=true;S.ui="top";S.frame="start"}
+  };
+  (st[id]||st.playing)();return S;
+}
 
-  <div class="pl-mid pl-ui" id="mid">
-    <button class="pl-jump back pl-tip" id="jb" data-tip="۱۳ ثانیه عقب (←)" aria-label="۱۳ ثانیه عقب"><span><i data-ic="arrow-counter-clockwise"></i><b>۱۳</b></span><em class="pl-flash">۱۳ ثانیه عقب</em></button>
-    <button class="pl-play pl-tip is-on" id="pp" data-tip="توقف (Space)" aria-label="توقف"><span><i data-ic="play-fill" class="pl-ic-play"></i><i data-ic="pause-fill" class="pl-ic-pause"></i></span></button>
-    <button class="pl-jump fwd pl-tip" id="jf" data-tip="۸ ثانیه جلو (→)" aria-label="۸ ثانیه جلو"><span><i data-ic="arrow-clockwise"></i><b>۸</b></span><em class="pl-flash">۸ ثانیه جلو</em></button>
-  </div>
+function useEdges(ref,deps,f=44){
+  const [m,setM]=useState({on:false,end:true});
+  useLayoutEffect(()=>{const b=ref.current;if(!b)return;
+    const u=()=>{const mx=Math.max(0,b.scrollHeight-b.clientHeight),t=b.scrollTop;const on=mx>2;b.classList.toggle("is-more",on);b.style.setProperty("--ft",Math.min(f,t)+"px");b.style.setProperty("--fb",Math.min(f,mx-t)+"px");setM(p=>p.on===on&&p.end===(mx-t<=2)?p:{on,end:mx-t<=2})};
+    u();b.addEventListener("scroll",u);addEventListener("resize",u);return()=>{b.removeEventListener("scroll",u);removeEventListener("resize",u)}},deps);
+  return m;
+}
 
-  <div class="pl-float start" id="fstart" hidden></div>
-  <div class="pl-float end" id="fend" hidden></div>
-  <div class="pl-toast" id="toast" role="status" hidden></div>
+function Seg({opts,value,onChange,label,cls}){
+  const n=opts.length,idx=Math.max(0,opts.findIndex(o=>o[0]===value));
+  const reduced=useReducedMotion();const pos=useMotionValue(idx);
+  const x=useTransform(pos,v=>(-v*100)+"%");
+  useEffect(()=>{if(reduced){pos.set(idx);return}const c=Motion.animate(pos,idx,SNAP);return()=>c.stop()},[idx,reduced]);
+  const refs=useRef([]);
+  const go=i=>{const j=(i+n)%n;refs.current[j]&&refs.current[j].focus();onChange(opts[j][0])};
+  const key=(e,i)=>{const m={ArrowLeft:1,ArrowDown:1,ArrowRight:-1,ArrowUp:-1}[e.key];if(m){e.preventDefault();go(i+m)}else if(e.key==="Home"){e.preventDefault();go(0)}else if(e.key==="End"){e.preventDefault();go(n-1)}};
+  return html`<div class=${"sgc "+(cls||"")} role="radiogroup" aria-label=${label}>
+    <${motion.span} class="sgc-th" aria-hidden="true" style=${{width:`calc((100% - 6px) / ${n})`,right:3,x}}/>
+    ${opts.map((o,i)=>html`<button key=${o[0]} type="button" role="radio" ref=${el=>refs.current[i]=el} aria-checked=${i===idx} tabindex=${i===idx?0:-1} aria-label=${o[2]||undefined}
+      onClick=${()=>onChange(o[0])} onKeyDown=${e=>key(e,i)}>${o[1]}</button>`)}
+  </div>`;
+}
+function FChip({on,label,onClick}){
+  const reduced=useReducedMotion();
+  return html`<${motion.button} type="button" class="fc" aria-pressed=${on} onClick=${onClick} whileTap=${PRESS}>
+    <${motion.span} class="ck" aria-hidden="true" initial=${false} animate=${{width:on?20:0,opacity:on?1:0}} transition=${reduced?{duration:0}:SNAP}>
+      <svg viewBox="0 0 24 24"><${motion.path} d="M4 12.5 9.5 18 20 6.5" initial=${false} animate=${{pathLength:on?1:0}} transition=${reduced?{duration:0}:{duration:.3,ease:EASE,delay:on?.05:0}}/></svg>
+    </${motion.span}>${label}</${motion.button}>`;
+}
+function Swap({k,children,rm}){
+  return html`<span class="pl-swap"><${AnimatePresence} initial=${false} mode="popLayout">
+    <${motion.span} key=${k} initial=${rm?{opacity:0}:{opacity:0,y:8,filter:"blur(4px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}}
+      exit=${rm?{opacity:0}:{opacity:0,y:-8,filter:"blur(4px)",transition:{duration:.16,ease:EASE_IN}}} transition=${{duration:.3,ease:EASE}}>${children}</${motion.span}>
+  </${AnimatePresence}></span>`;
+}
+function Glyph({k,n,rm,cls}){
+  return html`<${AnimatePresence} initial=${false} mode="popLayout">
+    <${motion.span} key=${k} class=${cls} style=${{display:"inline-grid"}} initial=${rm?{opacity:0}:{opacity:0,scale:.5,rotate:-45}} animate=${{opacity:1,scale:1,rotate:0}}
+      exit=${rm?{opacity:0}:{opacity:0,scale:.5,rotate:45}} transition=${SNAP}><${I} n=${n}/></${motion.span}>
+  </${AnimatePresence}>`;
+}
+function Clock({text,rm,cls,label}){return rm?html`<span class=${cls} aria-label=${label}>${text}</span>`:html`<span class=${cls} aria-label=${label}><${AnimChars} text=${text} dur=${380} blur=${4}/></span>`}
 
-  <footer class="pl-bot pl-ui" id="bot">
-    <div class="pl-seekrow">
-      <span class="pl-time" id="tcur"></span>
-      <div class="pl-seek" id="seek" role="slider" tabindex="0" aria-label="زمان فیلم" aria-valuemin="0">
-        <div class="pl-track"><i class="pl-buf" id="buf"></i><i class="pl-fill" id="fill"></i></div>
-        <i class="pl-knob" id="knob"></i>
-        <div class="pl-prev" id="prev" hidden><img id="previmg" alt=""><b id="prevt"></b></div>
-      </div>
-      <span class="pl-time rem" id="trem"></span>
-    </div>
-    <div class="pl-row">
-      <div class="pl-grp">
-        <button class="pl-tb pl-tip" id="bsubs" data-tip="زیرنویس (C)" aria-label="زیرنویس" aria-expanded="false"><i data-ic="subtitles"></i><span>زیرنویس</span><em id="vsubs"></em></button>
-        <button class="pl-tb pl-tip" id="baudio" data-tip="زبان صدا" aria-label="زبان صدا" aria-expanded="false"><i data-ic="waveform"></i><span>صدا</span><em id="vaudio"></em></button>
-        <button class="pl-tb pl-tip" id="bq" data-tip="کیفیت" aria-label="کیفیت" aria-expanded="false"><i data-ic="high-definition"></i><span>کیفیت</span><em id="vq"></em></button>
-      </div>
-      <div class="pl-grp">
-        <div class="pl-vol">
-          <button class="pl-ib pl-tip" id="bmute" data-tip="بی‌صدا (M)" aria-label="بی‌صدا"><i data-ic="speaker-high"></i></button>
-          <div class="pl-vbar" id="vbar" role="slider" tabindex="0" aria-label="بلندی صدا" aria-valuemin="0" aria-valuemax="100"><i><b id="vfill"></b><u id="vknob"></u></i></div>
+function Call({f,...p}){return f(p)}
+function App(){
+  const rm0=Q.get("rm")==="1";
+  const [k,setK]=useState(Q.get("k")==="ep"?"ep":"film");
+  const [sid,setSid]=useState(Q.get("s")||"playing");
+  const [long,setLong]=useState(Q.get("long")==="1");
+  const [rm,setRm]=useState(rm0||matchMedia("(prefers-reduced-motion:reduce)").matches);
+  const [S,setS]=useState(()=>stateOf(Q.get("s")||"playing",Q.get("k")==="ep"?"ep":"film"));
+  const [sub,setSub]=useState({lang:Q.get("s")==="subs"?"dual":"fa",size:1,color:"white",box:false,shift:0});
+  const [audio,setAudio]=useState("orig");const [vready,setVready]=useState(false);
+  const [vol,setVol]=useState(.8);const [muted,setMuted]=useState(false);
+  const [fs,setFs]=useState(false);
+  const [vp,setVp]=useState({W:innerWidth,H:innerHeight});
+  const [hit,setHit]=useState({d:0,n:0,key:0});
+  const [hover,setHover]=useState(null);
+  const [barH,setBarH]=useState(110);
+  const T=TITLES[k];
+  const root=useRef(),vid=useRef(),bar=useRef(),seek=useRef(),panelRef=useRef(),subsRef=useRef();
+  const timers=useRef({});
+  const Sref=useRef(S);Sref.current=S;
+  const up=p=>setS(s=>({...s,...(typeof p==="function"?p(s):p)}));
+  const long_=T.dur>=3600;
+
+  function go(id,kk){
+    const kn=EP_ONLY.includes(id)?"ep":FILM_ONLY.includes(id)?"film":(kk||k);
+    clearInterval(timers.current.count);clearTimeout(timers.current.hide);clearTimeout(timers.current.toast);
+    setK(kn);setSid(id);setS(stateOf(id,kn));setSub(s=>({...s,lang:id==="subs"?"dual":s.lang==="off"?"fa":s.lang}));
+    const q=new URLSearchParams(location.search);q.set("s",id);q.set("k",kn);history.replaceState(null,"","?"+q);
+    if(vid.current)vid.current.pause();
+  }
+  useEffect(()=>{const f=()=>setVp({W:innerWidth,H:innerHeight});addEventListener("resize",f);return()=>removeEventListener("resize",f)},[]);
+  useEffect(()=>{const f=()=>setFs(!!document.fullscreenElement);document.addEventListener("fullscreenchange",f);return()=>document.removeEventListener("fullscreenchange",f)},[]);
+  useLayoutEffect(()=>{if(!bar.current)return;const ro=new ResizeObserver(()=>bar.current&&setBarH(bar.current.offsetHeight));ro.observe(bar.current);return()=>ro.disconnect()},[S.ui]);
+  useEffect(()=>{if(S.card!=="next")return;clearInterval(timers.current.count);
+    timers.current.count=setInterval(()=>setS(s=>{if(s.card!=="next"){clearInterval(timers.current.count);return s}if(s.count<=1){clearInterval(timers.current.count);setTimeout(goNext,0);return{...s,count:0}}return{...s,count:s.count-1}}),1000);
+    return()=>clearInterval(timers.current.count)},[S.card,S.cardKey]);
+  useEffect(()=>{const t=setInterval(()=>{const s=Sref.current;if(s.playing&&!s.buffer&&!s.scrub&&s.live){
+      const nt=Math.min(T.dur,s.t+.25);let fl=s.float;
+      if(T.intro){const inI=nt>=T.intro[0]&&nt<T.intro[1];fl=inI?"skip":(fl==="skip"?null:fl)}
+      up({t:nt,float:fl})}},250);return()=>clearInterval(t)},[k]);
+
+  function wake(){
+    const s=Sref.current;if(s.ui==="top")return;
+    if(s.ui==="off")up({ui:"on"});
+    clearTimeout(timers.current.hide);
+    timers.current.hide=setTimeout(()=>{const s=Sref.current;if(s.playing&&!s.panel&&!s.scrub&&s.live)up({ui:"off"})},2500);
+  }
+  function startVideo(){const v=vid.current;if(!v)return;if(!v.src.endsWith(T.video)){v.src=T.video;v.currentTime=T.vstart[Sref.current.frame==="start"?"first":"main"]}v.muted=muted;v.volume=vol;const p=v.play();if(p&&p.catch)p.catch(()=>{})}
+  function play(on){
+    up(s=>({playing:on,live:true,card:s.card==="recap"?null:s.card,dlg:on?null:s.dlg,dim:on?false:(!!s.dlg),ui:s.ui==="top"||s.ui==="off"?"on":s.ui}));
+    on?startVideo():vid.current&&vid.current.pause();
+    setTimeout(wake,0);
+  }
+  function jump(d){
+    up(s=>({t:Math.max(0,Math.min(T.dur,s.t+d)),live:true,jump:s.jump+1}));
+    setHit(h=>({d,n:h.d===d&&Date.now()-h.at<900?h.n+Math.abs(d):Math.abs(d),key:h.key+1,at:Date.now()}));
+    clearTimeout(timers.current.flash);timers.current.flash=setTimeout(()=>setHit(h=>({...h,d:0})),800);
+    const v=vid.current;if(v&&v.src&&Sref.current.playing)try{v.currentTime=Math.max(0,v.currentTime+d/4)}catch(e){}
+    wake();
+  }
+  function openPanel(n){up(s=>({panel:s.panel===n?null:n,live:true,ui:s.ui==="off"?"on":s.ui}));clearTimeout(timers.current.hide);
+    setTimeout(()=>{const p=panelRef.current;const f=p&&(p.querySelector("[aria-checked=true],[aria-pressed=true]")||p.querySelector("button"));if(f)f.focus({preventScroll:true})},60)}
+  function closePanel(){up({panel:null});wake()}
+  function goNext(){clearInterval(timers.current.count);TITLES.ep.meta="فصل ۲ · قسمت ۴ · دره‌ی اندوه";up({card:null,t:0,frame:"start",float:null,jump:Sref.current.jump+1});play(true)}
+  function toggleFs(){const p=root.current;(document.fullscreenElement?document.exitFullscreen():p.requestFullscreen&&p.requestFullscreen({navigationUI:"hide"}))?.catch?.(()=>{})}
+  function act(a){
+    if(a==="skiprecap"||a==="play"){up({card:null,dlg:null,dim:false,ui:"on"});play(true)}
+    if(a==="retry"){up({dlg:null,dim:false,ui:"off",buffer:true});setTimeout(()=>{up({buffer:false,ui:"on"});play(true)},1400)}
+    if(a==="restart"){up(s=>({t:0,float:null,jump:s.jump+1}))}
+    if(a==="skipintro"){up(s=>({t:T.intro[1],float:null,jump:s.jump+1}))}
+    if(a==="playnext")goNext();
+    if(a==="cancelnext"){clearInterval(timers.current.count);up({card:null,ui:"on"})}
+    if(a==="copy"){up({copied:true});if(navigator.clipboard)navigator.clipboard.writeText("https://"+T.link+"?t="+Math.round(Sref.current.t)).catch(()=>{});setTimeout(()=>up({copied:false}),2000)}
+    if(a==="tg")window.open("https://t.me/share/url?url="+encodeURIComponent("https://"+T.link+"?t="+Math.round(Sref.current.t)),"_blank");
+  }
+  function onHit(){
+    const s=Sref.current;
+    if(s.ui==="off"){up({ui:"on"});wake();return}
+    if(s.panel){up({panel:null});wake();return}
+    if(s.ui==="top")return;
+    if(matchMedia("(pointer:fine)").matches){play(!s.playing);return}
+    up({ui:"off"});
+  }
+  useEffect(()=>{const f=e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey)return;if(e.target.closest&&e.target.closest(".pl-rv"))return;
+    const kk=e.key.toLowerCase(),inBtn=e.target.tagName==="BUTTON"||e.target.tagName==="A";const s=Sref.current;
+    const A={" ":()=>play(!s.playing),k:()=>play(!s.playing),arrowleft:()=>jump(-13),j:()=>jump(-13),arrowright:()=>jump(8),l:()=>jump(8),
+      arrowup:()=>{setVol(v=>Math.min(1,v+.1));setMuted(false)},arrowdown:()=>setVol(v=>Math.max(0,v-.1)),
+      m:()=>setMuted(m=>!m),f:toggleFs,c:()=>setSub(x=>({...x,lang:x.lang==="off"?"fa":"off"})),"?":()=>openPanel("keys"),escape:()=>{if(s.panel)closePanel()}};
+    if(!A[kk])return;if(inBtn&&(kk===" "||kk==="enter"))return;
+    if(e.target.closest&&e.target.closest(".pl-sheet")&&kk.startsWith("arrow"))return;
+    if(e.target.getAttribute&&e.target.getAttribute("role")==="slider"&&kk.startsWith("arrow"))return;
+    e.preventDefault();A[kk]();if(kk!=="escape")wake()};
+    document.addEventListener("keydown",f);return()=>document.removeEventListener("keydown",f)},[k,vol,muted]);
+  useEffect(()=>{if(vid.current){vid.current.muted=muted;vid.current.volume=vol}},[vol,muted]);
+  useEffect(()=>{if(S.toast){clearTimeout(timers.current.toast);if(Sref.current.live)timers.current.toast=setTimeout(()=>up({toast:null}),4000)}},[S.toast]);
+
+  const prog=useMotionValue(S.t/T.dur);
+  const lastJump=useRef(S.jump);
+  useEffect(()=>{const v=S.scrub?S.scrub.r:S.t/T.dur;
+    if(S.jump!==lastJump.current&&!rm){lastJump.current=S.jump;const c=Motion.animate(prog,v,SPR);return()=>c.stop()}
+    lastJump.current=S.jump;prog.set(v)},[S.t,S.scrub&&S.scrub.r,S.jump,k]);
+  const knobX=useTransform(prog,v=>v*100+"%");
+  const bufX=useTransform(prog,v=>Math.min(1,v+.035));
+  const vv=muted?0:vol;
+  const vmv=useMotionValue(vv);useEffect(()=>{if(rm){vmv.set(vv);return}const c=Motion.animate(vmv,vv,SNAP);return()=>c.stop()},[vv]);
+  const vKnob=useTransform(vmv,v=>v*100+"%");
+
+  const seekAt=e=>{const r=seek.current.getBoundingClientRect();return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))};
+  const sk={
+    onPointerDown:e=>{seek.current.setPointerCapture(e.pointerId);up({scrub:{r:seekAt(e),img:true,drag:true},live:true});clearTimeout(timers.current.hide)},
+    onPointerMove:e=>{const s=Sref.current;if(s.scrub&&s.scrub.drag){up({scrub:{...s.scrub,r:seekAt(e)}});return}if(e.pointerType==="mouse"&&!s.scrub)setHover(seekAt(e))},
+    onPointerLeave:()=>setHover(null),
+    onPointerUp:()=>{const s=Sref.current;if(s.scrub&&s.scrub.drag){up({t:s.scrub.r*T.dur,scrub:null});wake()}},
+    onKeyDown:e=>{const m={ArrowLeft:-13,ArrowRight:8,ArrowDown:-13,ArrowUp:8}[e.key];if(m){e.preventDefault();e.stopPropagation();jump(m)}}
+  };
+  const vbAt=e=>{const r=e.currentTarget.getBoundingClientRect();setVol(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)));setMuted(false)};
+
+  const W=vp.W,H=vp.H,phoneSheet=W<700&&H>520,big=W>=700||H<=520;
+  const above=S.ui==="on"?barH+10:16;
+  const subsOn=sub.lang!=="off"&&!S.dim&&!S.buffer&&sid!=="skip"&&S.card!=="next"&&!S.scrub;
+  const [sb,setSb]=useState(120);const [sx,setSx]=useState(null);
+  useLayoutEffect(()=>{if(!subsOn||!subsRef.current)return;
+    const sh=subsRef.current.offsetHeight,picH=Math.min(H,W/T.ar),gap=(H-picH)/2,portrait=H>W*1.15;
+    let b=portrait?Math.max(gap-12-sh,0):gap+picH*.07;
+    if(S.ui==="on")b=Math.max(b,barH+10);
+    if(S.float)b=Math.max(b,(S.ui==="on"?barH:0)+76);
+    let x=null;const p=panelRef.current;
+    if(S.panel&&p){if(phoneSheet)b=Math.max(b,p.offsetHeight+12);else{const r=p.getBoundingClientRect();const free=r.left-24;if(free>200)x={left:12,width:free-12}}}
+    setSb(b);setSx(p0=>(p0&&x&&p0.left===x.left&&p0.width===x.width)||(!p0&&!x)?p0:x)});
+  const sizes=big?(W>=1024?[22,28,35]:[17,21,26]):[14,16,19];
+  const subColor={white:"var(--sub-white)",yellow:"var(--sub-yellow)",cyan:"var(--sub-cyan)"}[sub.color];
+
+  const qLabel=S.q==="auto"?"خودکار · ":"";const qName=S.q==="auto"?S.qnow:S.q;
+  const subLabel={off:"خاموش",fa:"فارسی",en:"انگلیسی",dual:"دوزبانه"}[sub.lang];
+  const title=long?LONG:T.title;
+  const cur=clock(S.scrub?S.scrub.r*T.dur:S.t,long_),rem="−"+clock(T.dur-(S.scrub?S.scrub.r*T.dur:S.t),long_);
+  const pv=S.scrub?S.scrub.r:hover;const pvImg=S.scrub?S.scrub.img:true;
+  const pvLeft=(()=>{if(pv==null||!seek.current)return 0;const w=seek.current.clientWidth,pw=W>=1024?224:168,off=seek.current.offsetLeft,row=seek.current.parentElement.clientWidth;const lo=pw/2-off+4,hi=row-off-pw/2-4;return Math.max(lo,Math.min(hi,pv*w))})();
+  const ease={duration:.32,ease:EASE};
+  const fadeUp=(y)=>({initial:rm?{opacity:0}:{opacity:0,y},animate:{opacity:1,y:0,transition:rm?{duration:.15}:{...SPR,opacity:ease}},exit:rm?{opacity:0,transition:{duration:.12}}:{opacity:0,y,transition:{duration:.2,ease:EASE_LEAVE}}});
+  const pIn=phoneSheet?{initial:{y:"100%"},animate:{y:0,transition:SHEET},exit:{y:"100%",transition:{duration:.24,ease:EASE_LEAVE}}}:
+    {initial:{opacity:0,scale:.96,y:10},animate:{opacity:1,scale:1,y:0,transition:{...PANEL,opacity:{duration:.2,ease:EASE}}},exit:{opacity:0,scale:.97,y:6,transition:{duration:.16,ease:EASE_LEAVE}}};
+  const cardIn={initial:{opacity:0,y:24,scale:.98},animate:{opacity:1,y:0,scale:1,transition:{...PANEL,opacity:{duration:.25,ease:EASE}}},exit:{opacity:0,y:16,scale:.98,transition:{duration:.2,ease:EASE_LEAVE}}};
+  const recapEdges=useEdges({get current(){return root.current&&root.current.querySelector(".pl-rt")}},[S.card,W,H,k]);
+  const bodyRef=useRef();useEdges(bodyRef,[S.panel,W,H,sub,S.low]);
+
+  function Opt({kk,v,label,small,cur,extra,on}){
+    return html`<${motion.button} type="button" class="pl-opt" role="menuitemradio" aria-checked=${cur===v} onClick=${on} whileTap=${{scale:.98}}>
+      <span>${label}${small?html`<small>${small}</small>`:null}</span>${extra||null}
+      <span class="pl-ck">${cur===v?html`<${motion.span} layoutId=${"ck-"+kk} transition=${MARK} style=${{display:"grid"}}><${I} n="check"/></${motion.span}>`:null}</span>
+    </${motion.button}>`;
+  }
+  function Panel(){
+    const p=S.panel;let h=null,label="";
+    if(p==="quality"){label="کیفیت";const now=html`<bdi dir="ltr">${S.qnow}</bdi>`;
+      h=html`${S.low?html`<div class="nt pl-nt"><${I} n="sliders-horizontal"/><span><b>حالت کم‌مصرف روشن است.</b> کیفیت خودکار تا <bdi dir="ltr">480p</bdi> بالا می‌رود؛ اگر کیفیت بالاتری بخواهید، خودتان انتخاب کنید.</span></div>`:null}
+      <div class="pl-opts" role="menu" aria-label="کیفیت">
+        <${Call} f=${Opt} kk="q" v="auto" label="خودکار" small=${html`${S.low?"تا ":"بر اساس سرعت اینترنت شما · الان "}${S.low?html`<bdi dir="ltr">480p</bdi>، برای مصرف کمتر اینترنت · الان `:null}${now}`} cur=${S.q} on=${()=>up({q:"auto"})}/>
+        <${Call} f=${Opt} kk="q" v="1080p" label=${html`<bdi dir="ltr">1080p</bdi>`} extra=${html`<em>Full HD</em>`} cur=${S.q} on=${()=>up({q:"1080p",qnow:"1080p"})}/>
+        <${Call} f=${Opt} kk="q" v="720p" label=${html`<bdi dir="ltr">720p</bdi>`} extra=${html`<em>HD</em>`} cur=${S.q} on=${()=>up({q:"720p",qnow:"720p"})}/>
+        <${Call} f=${Opt} kk="q" v="480p" label=${html`<bdi dir="ltr">480p</bdi>`} cur=${S.q} on=${()=>up({q:"480p",qnow:"480p"})}/>
+      </div>`}
+    if(p==="audio"){label="زبان صدا";
+      h=html`<div class="pl-opts" role="menu" aria-label="زبان صدا"><${Call} f=${Opt} kk="a" v="orig" label="انگلیسی" small="صدای اصلی فیلم" cur=${audio} on=${()=>setAudio("orig")}/><${Call} f=${Opt} kk="a" v="dub" label="فارسی" small="دوبله" cur=${audio} on=${()=>setAudio("dub")}/></div>`}
+    if(p==="subs"){label="زیرنویس";const sh=sub.shift,set=x=>setSub(s=>({...s,...x}));
+      h=html`<div class="pl-sl">زبان</div>
+        <div class="fcs" role="group" aria-label="زبان زیرنویس">${[["off","خاموش"],["fa","فارسی"],["en","انگلیسی"],["dual","دوزبانه"]].map(x=>html`<${FChip} key=${x[0]} on=${sub.lang===x[0]} label=${x[1]} onClick=${()=>set({lang:x[0]})}/>`)}</div>
+        <div class="pl-sl">اندازه</div>
+        <${Seg} label="اندازه‌ی زیرنویس" value=${sub.size} onChange=${v=>set({size:v})} opts=${[[0,"کوچک"],[1,"متوسط"],[2,"بزرگ"]]}/>
+        <div class="pl-sl">رنگ و زمینه</div>
+        <div class="pl-sty"><div class="pl-sw" role="radiogroup" aria-label="رنگ زیرنویس">${[["white","سفید","var(--sub-white)"],["yellow","زرد","var(--sub-yellow)"],["cyan","فیروزه‌ای","var(--sub-cyan)"]].map(x=>html`<button key=${x[0]} type="button" role="radio" aria-checked=${sub.color===x[0]} aria-label=${x[1]} title=${x[1]} onClick=${()=>set({color:x[0]})}><i style=${{"--c":x[2]}}></i>${sub.color===x[0]?html`<${motion.span} class="pl-swr" layoutId="swr" transition=${MARK}/>`:null}</button>`)}</div>
+          <button type="button" class="pl-tog" role="switch" aria-checked=${sub.box} onClick=${()=>set({box:!sub.box})}><i><${motion.b} initial=${false} animate=${{x:sub.box?-16:0}} transition=${SNAP}/></i>کادر تیره پشت متن</button></div>
+        <div class="pl-sl">هم‌زمانی<em>گام‌های نیم‌ثانیه، تا ۱۰ ثانیه</em></div>
+        <div class="pl-sync">
+          <${motion.button} type="button" class="ib" aria-label="زیرنویس نیم ثانیه زودتر" disabled=${sh<=-10} onClick=${()=>set({shift:Math.max(-10,sh-.5)})} whileTap=${PRESS}><${I} n="minus"/></${motion.button}>
+          <output aria-live="polite"><${Swap} k=${sh===0?"z":"n"} rm=${rm}>${sh===0?"هم‌زمان با تصویر":html`<span class="sv"><${Count} v=${Math.abs(sh)} dec=${1} fmt=${faDec}/> ثانیه <${Words} text=${sh>0?"دیرتر":"زودتر"} k=${sh>0?"d":"z"} reduced=${rm}/></span>`}</${Swap}>
+            <small><${Swap} k=${sh===0?"q":"a"} rm=${rm}>${sh?"همین حالا روی فیلم اعمال شد":"زیرنویس جلوتر یا عقب‌تر از صداست؟"}</${Swap}></small></output>
+          <${motion.button} type="button" class="ib" aria-label="زیرنویس نیم ثانیه دیرتر" disabled=${sh>=10} onClick=${()=>set({shift:Math.min(10,sh+.5)})} whileTap=${PRESS}><${I} n="plus"/></${motion.button}>
         </div>
-        <button class="pl-ib pl-tip" id="bfs" data-tip="تمام‌صفحه (F)" aria-label="تمام‌صفحه"><i data-ic="corners-out"></i></button>
+        <p class="pl-hint">این تنظیم‌ها برای فیلم‌ها و قسمت‌های بعدی هم می‌ماند.</p>`}
+    if(p==="share"){label="اشتراک از همین لحظه";const sec=Math.round(S.t);
+      h=html`<p class="pl-lead">کسی که لینک را باز کند، ${T.kind==="ep"?"قسمت":"فیلم"} را از <b>${clock(S.t,long_)}</b> می‌بیند.</p>
+        <div class="pl-link"><${I} n="link-simple"/><code>${T.link}<em>?t=${sec}</em></code></div>
+        <div class="pl-acts"><${motion.button} type="button" class="cta" onClick=${()=>act("tg")} whileTap=${PRESS}><${I} n="telegram-logo"/>ارسال در تلگرام</${motion.button}>
+          <${motion.button} type="button" class="ghost" onClick=${()=>act("copy")} whileTap=${PRESS} aria-live="polite"><${Swap} k=${S.copied?"c":"l"} rm=${rm}>${S.copied?html`<${I} n="check"/>کپی شد`:html`<${I} n="link-simple"/>کپی لینک`}</${Swap}></${motion.button}></div>`}
+    if(p==="keys"){label="میان‌برهای صفحه‌کلید";const r=(a,b)=>html`<div>${a.map(x=>html`<kbd>${x}</kbd>`)}</div><span>${b}</span>`;
+      h=html`<div class="pl-keys">${r(["Space","K"],"پخش و توقف")}${r(["←","J"],"۱۳ ثانیه عقب")}${r(["→","L"],"۸ ثانیه جلو")}${r(["↑","↓"],"بلندی صدا")}${r(["M"],"بی‌صدا")}${r(["F"],"تمام‌صفحه")}${r(["C"],"زیرنویس روشن و خاموش")}${r(["Esc"],"بستن منو")}</div>`}
+    return html`<${motion.section} key=${"p"} ref=${panelRef} class="sheet pl-sheet" role="dialog" aria-modal="false" aria-label=${label} style=${{transformOrigin:"100% 100%"}} ...${rm?{initial:{opacity:0},animate:{opacity:1,transition:{duration:.15}},exit:{opacity:0,transition:{duration:.12}}}:pIn}>
+      <div class="pl-ph"><h3>${label}</h3><${motion.button} type="button" class="ib" aria-label="بستن" onClick=${closePanel} whileTap=${PRESS}><${I} n="x"/></${motion.button}></div>
+      <div class="pl-pb" ref=${bodyRef}>${h}</div>
+    </${motion.section}>`;
+  }
+  function Dlg(){
+    const at=html`<b dir="ltr">${clock(T.resume,long_)}</b>`,w=T.kind==="ep"?"قسمت":"فیلم";
+    const D={
+      still:["play-fill","","هنوز تماشا می‌کنید؟",html`سه قسمت پشت سر هم پخش شد. پخش را نگه داشتیم تا قسمت‌ها بی‌آنکه ببینید رد نشوند.`,[["cta","play","play-fill","ادامه‌ی تماشا"],["ghost","back",null,"برگشت به صفحه‌ی سریال"]]],
+      error:["warning-circle","err","پخش ممکن نشد",html`فایل این ${w} از سرور رول‌وانا بارگذاری نشد. کیفیت‌های <bdi dir="ltr">720p</bdi> و <bdi dir="ltr">480p</bdi> را هم امتحان کردیم. اینترنت‌تان را بررسی کنید و دوباره تلاش کنید.`,[["cta","retry","arrow-clockwise","دوباره تلاش کن"],["ghost","back",null,T.backTo]]],
+      guest:["user-circle","lit","برای تماشا وارد شوید",html`این لینک ${w} را از ${at} پخش می‌کند. تماشای آنلاین برای کاربرانی است که وارد حساب شده‌اند و اشتراک فعال دارند.`,[["cta","login","user-circle","ورود یا ثبت‌نام"],["ghost","plans",null,"دیدن اشتراک‌ها"]]],
+      nosub:["crown-simple","lit","برای تماشا اشتراک لازم است",html`حساب شما اشتراک فعال ندارد. بعد از خرید اشتراک، ${w} از همین لحظه، ${at}، پخش می‌شود.`,[["cta","plans","crown-simple","خرید اشتراک"],["ghost","back",null,T.backTo]]]
+    }[S.dlg];
+    const href={back:"../title/rollvana-title.html",login:"../account/rollvana-login.html",plans:"#plans"};
+    return html`<${motion.section} key=${"d"+S.dlg} class="pl-dlg" role="alertdialog" aria-label=${D[2]} ...${rm?{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0}}:cardIn}>
+      <div class="emp"><span class=${"eg "+D[1]}><${I} n=${D[0]}/></span><h2>${D[2]}</h2><p>${D[3]}</p>
+      <div class="pl-acts">${D[4].map(b=>href[b[1]]?html`<${motion.a} key=${b[1]} class=${b[0]} href=${href[b[1]]} whileTap=${PRESS}>${b[2]?html`<${I} n=${b[2]}/>`:null}${b[3]}</${motion.a}>`:html`<${motion.button} key=${b[1]} type="button" class=${b[0]} onClick=${()=>act(b[1])} whileTap=${PRESS}>${b[2]?html`<${I} n=${b[2]}/>`:null}${b[3]}</${motion.button}>`)}</div></div>
+    </${motion.section}>`;
+  }
+  const flashN=hit.d?fa(hit.n):"";
+  return html`<${MotionConfig} reducedMotion=${rm?"always":"user"}>
+  <main class="pl" ref=${root} aria-label="پخش‌کننده" data-idle=${S.ui==="off"&&S.playing&&S.live} style=${{"--ar":T.ar,"--above":above+"px"}} onPointerMove=${e=>{if(e.pointerType==="mouse")wake()}}>
+    <div class="pl-pic"><${Cross} k=${k+S.frame} reduced=${rm}><img src=${T.frames[S.frame]} alt=""/></${Cross}>
+      <${motion.video} ref=${vid} playsInline preload="none" onPlaying=${()=>setVready(true)} onEmptied=${()=>setVready(false)} initial=${{opacity:0}} animate=${{opacity:vready&&S.live&&S.playing?1:0}} transition=${{duration:.45,ease:EASE}}/></div>
+    <div class="pl-hit" onClick=${onHit}></div>
+    <${AnimatePresence}>${S.ui!=="off"?html`<${motion.div} key="st" class="pl-scrim t" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${ease}/>`:null}</${AnimatePresence}>
+    <${AnimatePresence}>${S.ui==="on"||S.panel||S.card==="next"||S.float?html`<${motion.div} key="sb" class="pl-scrim b" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${ease}/>`:null}</${AnimatePresence}>
+    <${AnimatePresence}>${subsOn?html`<${motion.div} key="subs" ref=${subsRef} class=${"pl-subs"+(sub.box?" box":"")} aria-live="off" style=${{"--sz":sizes[sub.size]+"px","--sc":subColor,translate:"-50% 0",...(sx?{left:sx.left,width:sx.width,translate:"0 0"}:{})}}
+      initial=${{opacity:0,bottom:sb}} animate=${{opacity:1,bottom:sb,transition:{bottom:rm?{duration:0}:SPR,opacity:ease}}} exit=${{opacity:0}}>
+      ${sub.lang!=="fa"?html`<div><span class="pl-line en">${T.sub.en}</span></div>`:null}
+      ${sub.lang==="fa"||sub.lang==="dual"?html`<div><span class="pl-line">${T.sub.fa.split(/([A-Za-z][A-Za-z\- ]*[A-Za-z])/).map((x,i)=>i%2?html`<bdi key=${i}>${x}</bdi>`:x)}</span></div>`:null}
+    </${motion.div}>`:null}</${AnimatePresence}>
+    <${AnimatePresence}>${S.dim?html`<${motion.div} key="veil" class="pl-veil" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.3,ease:EASE}}/>`:null}</${AnimatePresence}>
+    <${AnimatePresence}>${S.buffer?html`<${motion.div} key="spin" class="pl-spin" role="status" aria-label="در حال بارگذاری" initial=${{opacity:0,scale:.55,rotate:-40}} animate=${{opacity:1,scale:1,rotate:0}} exit=${{opacity:0,scale:.55,transition:{duration:.16,ease:EASE_LEAVE}}} transition=${SNAP}>
+      <${motion.svg} class="sf-sp pl-sp" viewBox="0 0 24 24" animate=${rm?{}:{rotate:360}} transition=${{duration:.8,ease:"linear",repeat:Infinity}}><circle class="tr" cx="12" cy="12" r="9"/><path class="ar" d="M12 3a9 9 0 0 1 9 9"/></${motion.svg}>
+      ${rm?html`<small>در حال بارگذاری</small>`:null}</${motion.div}>`:null}</${AnimatePresence}>
+
+    <${AnimatePresence}>${S.ui!=="off"?html`<${motion.header} key="top" class="pl-top" ...${fadeUp(-10)}>
+      <${motion.a} class="ib" href="../title/rollvana-title.html" aria-label=${T.backTo} title="برگشت" whileTap=${PRESS}><${I} n="arrow-right"/></${motion.a}>
+      <div class="pl-ttl"><b title=${title}>${title}</b><small>${T.meta}</small></div>
+      <${motion.button} type="button" class="ib pl-desk" aria-label="میان‌برهای صفحه‌کلید" title="میان‌برها (?)" aria-expanded=${S.panel==="keys"} onClick=${()=>openPanel("keys")} whileTap=${PRESS}><${I} n="keyboard"/></${motion.button}>
+      <${motion.button} type="button" class="ib" aria-label="اشتراک از همین لحظه" title="اشتراک از همین لحظه" aria-expanded=${S.panel==="share"} onClick=${()=>openPanel("share")} whileTap=${PRESS}><${I} n="share-network"/></${motion.button}>
+    </${motion.header}>`:null}</${AnimatePresence}>
+
+    <${AnimatePresence}>${S.ui==="on"&&!S.buffer&&!S.panel?html`<${motion.div} key="mid" class="pl-mid" initial=${{opacity:0,scale:.92}} animate=${{opacity:1,scale:1,transition:{...SPR,opacity:ease}}} exit=${{opacity:0,scale:.94,transition:{duration:.2,ease:EASE_LEAVE}}}>
+      ${[[-13,"back","arrow-counter-clockwise","۱۳","۱۳ ثانیه عقب (←)"],[0],[8,"fwd","arrow-clockwise","۸","۸ ثانیه جلو (→)"]].map(j=>j[0]===0?html`
+        <${motion.button} key="pp" type="button" class="pl-play" aria-label=${S.playing?"توقف":"پخش"} title=${S.playing?"توقف (Space)":"پخش (Space)"} onClick=${()=>play(!S.playing)} whileTap=${PRESS} transition=${SPR}>
+          <span><${Glyph} k=${S.playing?"pa":"pl"} n=${S.playing?"pause-fill":"play-fill"} rm=${rm} cls=${S.playing?"":"is-play"}/></span></${motion.button}>`:html`
+        <${motion.button} key=${j[1]} type="button" class=${"pl-jump "+j[1]} aria-label=${j[4].replace(/ \(.*\)/,"")} title=${j[4]} onClick=${()=>jump(j[0])} whileTap=${PRESS}>
+          <span><${motion.span} style=${{display:"grid"}} animate=${{rotate:hit.d===j[0]?(j[0]<0?-38:38):0}} transition=${SPR}><${I} n=${j[2]}/></${motion.span}><b>${j[3]}</b></span>
+          <${AnimatePresence}>${hit.d===j[0]?html`<${motion.em} key="f" class="pl-flash" initial=${{opacity:0,y:-4,filter:"blur(4px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}} exit=${{opacity:0,y:4,filter:"blur(4px)",transition:{duration:.2,ease:EASE_LEAVE}}} transition=${{duration:.22,ease:EASE}}><${Count} v=${hit.n} fmt=${fa}/> ثانیه ${j[0]<0?"عقب":"جلو"}</${motion.em}>`:null}</${AnimatePresence}>
+        </${motion.button}>`)}
+    </${motion.div}>`:null}</${AnimatePresence}>
+
+    <${AnimatePresence}>${S.float==="resume"?html`<${motion.div} key="fr" class="pl-float start" ...${fadeUp(12)} style=${{bottom:above}}>
+      <div class="pl-resume"><span>ادامه از <b dir="ltr">${clock(T.resume,long_)}</b></span><${motion.button} type="button" class="pl-glass" onClick=${()=>act("restart")} whileTap=${PRESS}><${I} n="arrow-counter-clockwise"/>از اول</${motion.button}></div></${motion.div}>`:null}
+      ${S.float==="skip"?html`<${motion.div} key="fs" class="pl-float end" initial=${{opacity:0,x:-18,scale:.94}} animate=${{opacity:1,x:0,scale:1,bottom:above}} exit=${{opacity:0,scale:.9,transition:{duration:.18,ease:EASE_LEAVE}}} transition=${{...SNAP,bottom:SPR}}>
+      <${motion.button} type="button" class="pl-glass" onClick=${()=>act("skipintro")} whileTap=${PRESS}><${I} n="fast-forward"/>رد کردن تیتراژ</${motion.button}></${motion.div}>`:null}</${AnimatePresence}>
+
+    <${AnimatePresence}>${S.toast?html`<${motion.div} key=${"t"+S.toast} class="pl-toast" role="status" ...${fadeUp(-10)}>
+      ${S.toast==="switch"?html`<${I} n="check-circle"/><span>پخش با <bdi dir="ltr">1080p</bdi> ممکن نشد؛ با <bdi dir="ltr">720p</bdi> ادامه می‌دهیم.</span>`:html`<${I} n="arrow-counter-clockwise"/><span>این ${T.kind==="ep"?"قسمت":"فیلم"} را تا آخر دیده بودید؛ از اول پخش می‌شود.</span>`}
+    </${motion.div}>`:null}</${AnimatePresence}>
+
+    <${AnimatePresence}>${S.ui==="on"?html`<${motion.footer} key="bot" ref=${bar} class="pl-bot" ...${fadeUp(12)}>
+      <div class="pl-seekrow">
+        <${Clock} cls="pl-time" text=${cur} rm=${rm} label=${"گذشته "+cur}/>
+        <div class=${"pl-seek"+(S.scrub?" is-scrub":"")} ref=${seek} role="slider" tabindex="0" aria-label=${"زمان "+(T.kind==="ep"?"قسمت":"فیلم")} aria-valuemin="0" aria-valuemax=${T.dur} aria-valuenow=${Math.round(S.t)} aria-valuetext=${clock(S.t,long_)+" از "+clock(T.dur,long_)} ...${sk}>
+          <div class="pl-track"><${motion.i} class="pl-buf" style=${{scaleX:bufX}}/><${motion.i} class="pl-fill" style=${{scaleX:prog}}/></div>
+          <${motion.i} class="pl-knob" style=${{left:knobX}} animate=${{scale:S.scrub?1.45:1}} transition=${SNAP}/>
+          <${AnimatePresence}>${pv!=null?html`<${motion.div} key="pv" class="pl-prev" style=${{left:pvLeft,x:"-50%"}} initial=${{opacity:0,scale:.9,y:6}} animate=${{opacity:1,scale:1,y:0}} exit=${{opacity:0,scale:.94,y:4,transition:{duration:.14,ease:EASE_LEAVE}}} transition=${SNAP}>
+            ${pvImg?html`<img src=${T.thumb+Math.min(T.tn-1,Math.floor(pv*T.tn))+".jpg"} alt=""/>`:null}<b>${clock(pv*T.dur,long_)}</b></${motion.div}>`:null}</${AnimatePresence}>
+        </div>
+        <span class="pl-time rem" aria-label=${"مانده "+rem}>${rem}</span>
       </div>
-    </div>
-  </footer>
+      <div class="pl-row">
+        <div class="pl-grp">
+          <${motion.button} type="button" class="tb pl-tb" aria-label=${"زیرنویس: "+subLabel} title="زیرنویس (C)" aria-expanded=${S.panel==="subs"} onClick=${()=>openPanel("subs")} whileTap=${PRESS}><${I} n="subtitles"/><span>زیرنویس</span><span class="tbl"><${Swap} k=${subLabel} rm=${rm}>${subLabel}</${Swap}></span></${motion.button}>
+          ${T.dub?html`<${motion.button} type="button" class="tb pl-tb" aria-label=${"زبان صدا: "+(audio==="orig"?"اصلی":"دوبله")} title="زبان صدا" aria-expanded=${S.panel==="audio"} onClick=${()=>openPanel("audio")} whileTap=${PRESS}><${I} n="waveform"/><span>صدا</span><span class="tbl"><${Swap} k=${audio} rm=${rm}>${audio==="orig"?"اصلی":"دوبله"}</${Swap}></span></${motion.button}>`:null}
+          <${motion.button} type="button" class="tb pl-tb" aria-label=${"کیفیت: "+qLabel+qName} title="کیفیت" aria-expanded=${S.panel==="quality"} onClick=${()=>openPanel("quality")} whileTap=${PRESS}><${I} n="high-definition"/><span>کیفیت</span><span class="tbl">${qLabel}<bdi dir="ltr">${rm?qName:html`<${AnimChars} text=${qName} dur=${420} blur=${4}/>`}</bdi></span></${motion.button}>
+        </div>
+        <div class="pl-grp">
+          <div class="pl-vol">
+            <${motion.button} type="button" class="ib" aria-label=${muted?"صدا را وصل کن":"بی‌صدا"} title="بی‌صدا (M)" onClick=${()=>setMuted(m=>!m)} whileTap=${PRESS}><${Glyph} k=${muted||!vol?"x":vol<.5?"l":"h"} n=${muted||!vol?"speaker-x":vol<.5?"speaker-low":"speaker-high"} rm=${rm}/></${motion.button}>
+            <div class="pl-vbar" role="slider" tabindex="0" aria-label="بلندی صدا" aria-valuemin="0" aria-valuemax="100" aria-valuenow=${Math.round(vv*100)} aria-valuetext=${fa(Math.round(vv*100))+" درصد"}
+              onPointerDown=${e=>{e.currentTarget.setPointerCapture(e.pointerId);vbAt(e)}} onPointerMove=${e=>{if(e.buttons)vbAt(e)}}
+              onKeyDown=${e=>{const m={ArrowLeft:-.1,ArrowDown:-.1,ArrowRight:.1,ArrowUp:.1}[e.key];if(m){e.preventDefault();e.stopPropagation();setVol(v=>Math.max(0,Math.min(1,v+m)));setMuted(false)}}}>
+              <i><${motion.b} style=${{scaleX:vmv}}/><${motion.u} style=${{left:vKnob}}/></i></div>
+          </div>
+          <${motion.button} type="button" class="ib" aria-label=${fs?"خروج از تمام‌صفحه":"تمام‌صفحه"} title="تمام‌صفحه (F)" onClick=${toggleFs} whileTap=${PRESS}><${Glyph} k=${fs?"in":"out"} n=${fs?"corners-in":"corners-out"} rm=${rm}/></${motion.button}>
+        </div>
+      </div>
+    </${motion.footer}>`:null}</${AnimatePresence}>
 
-  <section class="pl-panel" id="panel" role="dialog" aria-modal="false" hidden></section>
-  <section class="pl-card" id="card" hidden></section>
-  <section class="pl-dlg" id="dlg" role="alertdialog" hidden></section>
-</main>
+    <${AnimatePresence}>${S.card==="recap"?html`<${motion.section} key="recap" class="pl-card pl-recap" aria-label="آنچه دیدید" ...${cardIn}>
+      <div class="pl-rh"><h3><${I} n="clock-counter-clockwise"/>${T.recapH}</h3><${motion.button} type="button" class="pl-txt" onClick=${()=>act("skiprecap")} whileTap=${PRESS}>رد کردن</${motion.button}></div>
+      <div class="pl-src">${T.recapSrc}</div>
+      <p class="pl-rt" tabindex="0">${T.recap}</p>
+      <${AnimatePresence}>${recapEdges.on&&!recapEdges.end?html`<${motion.div} key="m" class="pl-more" aria-hidden="true" initial=${{opacity:0,y:-4}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:4}} transition=${{duration:.2,ease:EASE}}>ادامه‌ی متن پایین‌تر است</${motion.div}>`:null}</${AnimatePresence}>
+      <${motion.button} type="button" class="cta" onClick=${()=>act("play")} whileTap=${PRESS}><${I} n="play-fill"/>ادامه‌ی تماشا از <bdi dir="ltr">${clock(T.resume,long_)}</bdi></${motion.button}>
+    </${motion.section}>`:null}
+    ${S.card==="next"?html`<${motion.section} key=${"next"+S.cardKey} class="pl-card pl-next" aria-label="قسمت بعد" ...${cardIn} style=${{bottom:above}}>
+      <div class="hd"><img src=${T.next.img} alt=""/><div><small>قسمت بعد</small><b>${T.next.t}</b></div></div>
+      <div class="row"><${motion.button} type="button" class="cta" onClick=${()=>act("playnext")} whileTap=${PRESS}><${I} n="play-fill"/>${S.count>0?html`<span>پخش در ${rm?fa(S.count):html`<${AnimChars} text=${fa(S.count)} dir=${-1} dur=${420} blur=${4}/>`} ثانیه</span>`:"پخش"}</${motion.button}>
+        <${motion.button} type="button" class="ghost" onClick=${()=>act("cancelnext")} whileTap=${PRESS}>لغو</${motion.button}></div>
+      <div class="go-t" aria-hidden="true"><${Fill} cls="go-f" run=${true} dur=${10000} reduced=${rm} k=${S.cardKey}/></div>
+    </${motion.section}>`:null}</${AnimatePresence}>
 
-<section class="rv" id="review">
-  <div class="rv-in">
+    <${AnimatePresence}>${S.panel?html`<${Call} f=${Panel} key="panel"/>`:null}</${AnimatePresence}>
+    <${AnimatePresence}>${S.dlg?html`<${Call} f=${Dlg} key=${"dlg"+S.dlg}/>`:null}</${AnimatePresence}>
+  </main>
+  <section class="review pl-rv" aria-label="حالت‌های پخش‌کننده">
     <h2>حالت‌های پخش‌کننده</h2>
     <p>برای بازبینی: هر حالت را انتخاب کنید؛ صفحه به بالا برمی‌گردد. پخش‌کننده کل صفحه را می‌گیرد و این بخش فقط زیر آن، برای بازبینی است.</p>
     <h3>عنوان</h3>
-    <div class="rv-b" id="rvk"></div>
+    <div>${[["film","فیلم: تلماسه، بخش دوم"],["ep","قسمت سریال: جدایی"]].map(x=>html`<button key=${x[0]} type="button" aria-pressed=${k===x[0]} onClick=${()=>{const id=EP_ONLY.includes(sid)&&x[0]==="film"||FILM_ONLY.includes(sid)&&x[0]==="ep"?"playing":sid;go(id,x[0]);scrollTo({top:0})}}>${x[1]}</button>`)}</div>
     <h3>حالت</h3>
-    <div class="rv-b" id="rvs"></div>
+    <div>${STATES.map(x=>html`<button key=${x[0]} type="button" aria-pressed=${sid===x[0]} onClick=${()=>{go(x[0]);scrollTo({top:0})}}>${x[1]}${EP_ONLY.includes(x[0])?" · سریال":FILM_ONLY.includes(x[0])?" · فیلم دوبله‌دار":""}</button>`)}</div>
     <h3>آزمون محتوا و حرکت</h3>
-    <div class="rv-b" id="rvx"></div>
+    <div><button type="button" aria-pressed=${long} onClick=${()=>{setLong(!long);const q=new URLSearchParams(location.search);!long?q.set("long","1"):q.delete("long");history.replaceState(null,"","?"+q)}}>عنوان خیلی بلند</button>
+      <button type="button" aria-pressed=${rm} onClick=${()=>{setRm(!rm);const q=new URLSearchParams(location.search);!rm?q.set("rm","1"):q.delete("rm");history.replaceState(null,"","?"+q)}}>کاهش حرکت</button></div>
     <small>تصویرها و ویدیو جایگزین‌اند: فریم‌ها و تیزر رسمی «تلماسه: بخش دوم» (Warner Bros.) و «جدایی» (Apple TV+)، فقط برای این ماکت. زیرنویس‌ها و خلاصه‌ها متن نمونه‌اند.</small>
-  </div>
-</section>
-
-<script src="../system/legacy/rollvana-player-icons.js"></script>
-<script>
-const FA='۰۱۲۳۴۵۶۷۸۹';
-const fa=s=>String(s).replace(/\d/g,d=>FA[d]);
-const pad=n=>String(n).padStart(2,'0');
-const clock=(s,long)=>{s=Math.max(0,Math.round(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return fa(long||h?h+':'+pad(m)+':'+pad(x):m+':'+pad(x))};
-const $=id=>document.getElementById(id);
-
-const TITLES={
-  film:{kind:'film',ar:1600/836,title:'تلماسه: بخش دوم',meta:'فیلم · ۲۰۲۴',backTo:'برگشت به صفحه‌ی فیلم',
-    dur:9960,resume:4354,video:'media/dune-part-two.mp4',vstart:{first:3,main:9},thumb:'media/thumb/d-',tn:13,dub:true,
-    frames:{start:'media/dune-2.jpg',main:'media/dune-10.jpg',wide:'media/dune-5.jpg',worm:'media/dune-16.jpg',army:'media/dune-20.jpg',fire:'media/dune-14.jpg',sky:'media/dune-22.jpg'},
-    sub:{fa:'این همان Lisan al-Gaib است؛ همان که وعده‌اش را داده بودند.',en:'This is the Lisan al-Gaib, as it was foretold.'},
-    link:'rollvana.tv/watch/dune-part-two',
-    recapSrc:'ساخته‌شده از زیرنویس فیلم، فقط تا جایی که دیده‌اید · آخرین تماشا ۱۲ روز پیش',
-    recapH:'آنچه تا اینجا دیدید',
-    recap:'پل و مادرش جسیکا پس از نابودی خاندان آتریدیز به فِرِمن‌های سیچ تَبر پناه برده‌اند. پل کنار چانی راه‌ورسم صحرا را یاد می‌گیرد و در حمله به برداشت‌کننده‌های ادویه‌ی هارکونن‌ها کنار فِرِمن‌ها می‌جنگد. جسیکا با نوشیدن آب حیات، مادر روحانی قبیله می‌شود و با دختری که در شکم دارد حرف می‌زند. استیلگار مطمئن است پل همان «لسان‌الغیب» موعود است، اما چانی و جوان‌های شمال این پیشگویی را ابزار فریب می‌دانند. پل برای اینکه یک فِرِمن واقعی شود، باید سوار کرم شنی شود.'},
-  ep:{kind:'ep',ar:1600/666,title:'جدایی',meta:'فصل ۲ · قسمت ۳ · چه کسی زنده است؟',backTo:'برگشت به صفحه‌ی سریال',
-    dur:2940,resume:1503,video:'media/severance.mp4',vstart:{first:1,main:8},thumb:'media/thumb/s-',tn:11,dub:false,
-    frames:{start:'media/sev-1.jpg',main:'media/sev-8.jpg',wide:'media/sev-4.jpg',worm:'media/sev-18.jpg',army:'media/sev-20.jpg',fire:'media/sev-14.jpg',sky:'media/sev-12.jpg'},
-    sub:{fa:'به Lumon خوش آمدید. لطفاً از همه‌ی حقایق به یک اندازه لذت ببرید.',en:'Welcome to Lumon. Please enjoy each fact equally.'},
-    link:'rollvana.tv/watch/severance/s2e3',
-    intro:[190,262],credits:2862,
-    next:{t:'فصل ۲ · قسمت ۴ · دره‌ی اندوه',img:'media/sev-12.jpg'},
-    recapSrc:'ساخته‌شده از زیرنویس قسمت‌های ۱ و ۲ · آخرین تماشا ۹ روز پیش',
-    recapH:'آنچه در قسمت‌های قبل دیدید',
-    recap:'مارک پس از پنج ماه به طبقه‌ی جداشده‌ی لومن برمی‌گردد و هلی، اروینگ و دیلن را دوباره کنار خودش می‌بیند. آن‌ها می‌فهمند شورش‌شان بیرون از شرکت خبرساز شده و لومن قول داده شرایط را بهتر کند. میلچیک حالا مدیر طبقه است و دستیار تازه‌ای به نام خانم هوانگ دارد. بیرون از شرکت، مارک می‌فهمد همسرش جما، که فکر می‌کرد مرده، زنده است و جایی در لومن نگه داشته می‌شود؛ او تصمیم می‌گیرد برای پیدا کردنش در کار بماند.'}
-};
-const LONG='سرزمین‌های دوردست و قلعه‌ی فراموش‌شده‌ی پادشاه بی‌تاج: بخش نخست';
-
-const STATES=[
-  ['first','اولین پخش'],['resume','ادامه، با «از اول»'],['again','تمام‌شده، از اول'],['recap','آنچه دیدید'],
-  ['playing','پخش با کنترل‌ها'],['hidden','کنترل‌ها پنهان'],['quality','منوی کیفیت'],['quality-low','کیفیت، کم‌مصرف روشن'],
-  ['subs','زیرنویس، ظاهر و هم‌زمانی'],['audio','زبان صدا'],['keys','میان‌برهای دسکتاپ'],['skip','رد کردن تیتراژ'],['next','قسمت بعد، شمارش'],
-  ['still','هنوز تماشا می‌کنید؟'],['scrub','جابه‌جایی با پیش‌نمایش'],['scrub-none','جابه‌جایی بدون پیش‌نمایش'],['buffer','بارگذاری'],
-  ['switch','تغییر خودکار کیفیت'],['error','خطا و تلاش دوباره'],['share','اشتراک از همین لحظه'],['guest','مهمان'],['nosub','بدون اشتراک']
-];
-const EP_ONLY=['skip','next','still'],FILM_ONLY=['audio'];
-
-const S={k:'film',s:'playing',long:false,rm:false,t:0,playing:true,ui:'on',panel:null,card:null,dlg:null,float:null,toast:null,
-  buffer:false,scrub:null,frame:'main',dim:false,q:'auto',qnow:'1080p',low:false,muted:false,vol:.8,audio:'orig',
-  sub:{lang:'fa',size:1,color:'white',box:false,shift:0},count:10,copied:false,live:false};
-let T=TITLES.film,hideT=0,tickT=0,countT=0,toastT=0,flashT={};
-
-function setState(id,push){
-  const q=new URLSearchParams(location.search);
-  if(EP_ONLY.includes(id))S.k='ep';
-  if(FILM_ONLY.includes(id))S.k='film';
-  T=TITLES[S.k];S.s=id;
-  Object.assign(S,{t:T.resume,playing:true,ui:'on',panel:null,card:null,dlg:null,float:null,toast:null,buffer:false,scrub:null,frame:'main',dim:false,q:'auto',qnow:'1080p',low:false,count:10,copied:false,live:false});
-  S.sub.lang=S.sub.lang==='off'?'fa':S.sub.lang;
-  clearInterval(countT);clearTimeout(hideT);clearTimeout(toastT);
-  const st={
-    first(){S.t=4;S.frame='start'},
-    resume(){S.float='resume';S.frame='army'},
-    again(){S.t=0;S.frame='start';S.toast='again'},
-    recap(){S.playing=false;S.card='recap';S.dim=true;S.ui='top'},
-    playing(){},
-    hidden(){S.ui='off';S.frame='worm'},
-    quality(){S.panel='quality';S.frame='wide'},
-    'quality-low'(){S.panel='quality';S.low=true;S.qnow='480p';S.frame='wide'},
-    subs(){S.panel='subs';S.sub.lang='dual'},
-    audio(){S.panel='audio';S.frame='fire'},
-    keys(){S.panel='keys';S.frame='army'},
-    skip(){S.t=212;S.ui='off';S.float='skip';S.frame='start'},
-    next(){S.t=2866;S.ui='off';S.card='next';S.frame='fire';startCount()},
-    still(){S.playing=false;S.dlg='still';S.dim=true;S.ui='top';S.frame='fire'},
-    scrub(){S.scrub={r:.62,img:true};S.frame='army'},
-    'scrub-none'(){S.scrub={r:.62,img:false};S.frame='army'},
-    buffer(){S.buffer=true;S.ui='off';S.frame='sky'},
-    switch(){S.toast='switch';S.qnow='720p';S.frame='sky'},
-    error(){S.playing=false;S.dlg='error';S.dim=true;S.ui='top';S.frame='worm'},
-    share(){S.playing=false;S.panel='share'},
-    guest(){S.playing=false;S.dlg='guest';S.dim=true;S.ui='top';S.frame='start'},
-    nosub(){S.playing=false;S.dlg='nosub';S.dim=true;S.ui='top';S.frame='start'}
-  };
-  (st[id]||st.playing)();
-  if(push!==false){q.set('s',id);q.set('k',S.k);S.long?q.set('long','1'):q.delete('long');S.rm?q.set('rm','1'):q.delete('rm');history.replaceState(null,'','?'+q)}
-  stopVideo();render();
+  </section>
+  </${MotionConfig}>`;
 }
-
-function stopVideo(){const v=$('vid');v.pause();$('pic').classList.remove('is-live')}
-function startVideo(){
-  const v=$('vid');
-  if(!v.src.endsWith(T.video)){v.src=T.video;v.currentTime=T.vstart[S.frame==='start'?'first':'main']}
-  v.muted=S.muted;v.volume=S.vol;
-  const p=v.play();if(p&&p.catch)p.catch(()=>{});
-}
-$('vid').addEventListener('playing',()=>$('pic').classList.add('is-live'));
-$('vid').addEventListener('ended',()=>{const v=$('vid');v.currentTime=0;v.play().catch(()=>{})});
-
-function ico(n,c){return plIcon(n,c)}
-function subLabel(){return{off:'خاموش',fa:'فارسی',en:'انگلیسی',dual:'دوزبانه'}[S.sub.lang]}
-function qLabel(){const b=v=>'<bdi dir="ltr">'+v+'</bdi>';return S.q==='auto'?'خودکار · '+b(S.qnow):b(S.q)}
-function shiftLabel(){const v=S.sub.shift;if(!v)return'هم‌زمان با تصویر';return fa(String(Math.abs(v)).replace('.','٫'))+' ثانیه '+(v>0?'دیرتر':'زودتر')}
-
-function render(){
-  const pl=$('pl');
-  pl.dataset.ui=S.ui;pl.classList.toggle('rm',S.rm);pl.classList.toggle('pl-dim',S.dim);pl.classList.toggle('is-scrub',!!S.scrub);pl.classList.toggle('is-menu',!!S.panel);
-  pl.style.setProperty('--ar',T.ar);
-  $('frame').src=T.frames[S.frame];
-  $('ttl').textContent=S.long?LONG:T.title;
-  $('meta').textContent=T.meta;
-  $('back').setAttribute('aria-label',T.backTo);
-  const pp=$('pp');pp.classList.toggle('is-on',S.playing);pp.setAttribute('aria-label',S.playing?'توقف':'پخش');pp.dataset.tip=S.playing?'توقف (Space)':'پخش (Space)';
-  $('veil').hidden=!S.dim;
-  $('spin').hidden=!S.buffer;$('spinl').hidden=!(S.buffer&&S.rm);
-  $('mid').hidden=S.buffer;
-  renderTime(false);
-  $('vsubs').textContent=subLabel();$('vq').innerHTML=qLabel();
-  $('baudio').hidden=!T.dub;$('vaudio').textContent=S.audio==='orig'?'اصلی':'دوبله';
-  $('bsubs').setAttribute('aria-expanded',S.panel==='subs');$('baudio').setAttribute('aria-expanded',S.panel==='audio');$('bq').setAttribute('aria-expanded',S.panel==='quality');
-  $('bmute').innerHTML=ico(S.muted||!S.vol?'speaker-x':S.vol<.5?'speaker-low':'speaker-high');
-  $('bmute').setAttribute('aria-label',S.muted?'صدا را وصل کن':'بی‌صدا');
-  $('vfill').style.width=(S.muted?0:S.vol*100)+'%';$('vknob').style.left=(S.muted?0:S.vol*100)+'%';$('vbar').setAttribute('aria-valuenow',Math.round(S.muted?0:S.vol*100));
-  $('bfs').innerHTML=ico(document.fullscreenElement?'corners-in':'corners-out');
-  renderScrub();renderPanel();renderCard();renderDlg();renderFloat();renderToast();renderSubs();renderReview();
-}
-
-let lastCur='';
-function renderTime(roll){
-  const long=T.dur>=3600,cur=clock(S.t,long),rem='−'+clock(T.dur-S.t,long);
-  const el=$('tcur');
-  if(cur!==lastCur){
-    el.innerHTML=[...cur].map((c,i)=>'<span'+(roll&&lastCur[i]!==c?' class="roll"':'')+'>'+c+'</span>').join('');
-    lastCur=cur;
-  }
-  $('trem').textContent=rem;
-  const r=S.scrub?S.scrub.r:S.t/T.dur;
-  $('fill').style.width=r*100+'%';$('knob').style.left=r*100+'%';
-  $('buf').style.width=Math.min(1,S.t/T.dur+.035)*100+'%';
-  const sk=$('seek');sk.setAttribute('aria-valuemax',T.dur);sk.setAttribute('aria-valuenow',Math.round(S.t));sk.setAttribute('aria-valuetext',clock(S.t,long)+' از '+clock(T.dur,long));
-}
-
-function renderScrub(){
-  const pv=$('prev'),sk=$('seek');
-  sk.classList.toggle('is-scrub',!!S.scrub);
-  if(!S.scrub){pv.hidden=true;return}
-  pv.hidden=false;
-  const r=S.scrub.r,long=T.dur>=3600;
-  $('prevt').textContent=clock(r*T.dur,long);
-  const im=$('previmg');im.hidden=!S.scrub.img;
-  if(S.scrub.img)im.src=T.thumb+Math.min(T.tn-1,Math.floor(r*T.tn))+'.jpg';
-  requestAnimationFrame(()=>{
-    const w=sk.clientWidth,pw=pv.offsetWidth||60,x=Math.max(pw/2-sk.offsetLeft+8,Math.min(w-pw/2+(sk.offsetParent.clientWidth-sk.offsetLeft-w)-8,r*w));
-    pv.style.left=x+'px';
-  });
-}
-
-function opt(k,v,label,small,cur,extra){return '<button class="pl-opt" role="menuitemradio" data-k="'+k+'" data-v="'+v+'" aria-checked="'+(cur===v)+'"><span>'+label+(small?'<small>'+small+'</small>':'')+'</span>'+(extra||'')+ico('check','ck')+'</button>'}
-function head(h,closeLabel){return '<div class="pl-ph"><h3>'+h+'</h3><button class="pl-ib" data-act="close" aria-label="'+(closeLabel||'بستن')+'">'+ico('x')+'</button></div>'}
-
-function renderPanel(){
-  const p=$('panel'),keep=document.activeElement&&p.contains(document.activeElement)?document.activeElement.dataset.k+'|'+document.activeElement.dataset.v+'|'+document.activeElement.dataset.act:null;
-  if(!S.panel){p.hidden=true;p.innerHTML='';return}
-  let h='';
-  if(S.panel==='quality'){
-    p.setAttribute('aria-label','کیفیت');
-    h=head('کیفیت');
-    if(S.low)h+='<div class="pl-note">'+ico('sliders-horizontal')+'<span><b>حالت کم‌مصرف روشن است.</b> کیفیت خودکار تا 480p بالا می‌رود؛ اگر کیفیت بالاتری بخواهید، خودتان انتخاب کنید.</span></div>';
-    h+='<div class="pl-opts" role="menu">'+opt('q','auto','خودکار',S.low?'تا 480p، برای مصرف کمتر اینترنت · الان '+S.qnow:'بر اساس سرعت اینترنت شما · الان '+S.qnow,S.q)+
-      opt('q','1080p','<span dir="ltr">1080p</span>','',S.q,'<em>Full HD</em>')+opt('q','720p','<span dir="ltr">720p</span>','',S.q,'<em>HD</em>')+opt('q','480p','<span dir="ltr">480p</span>','',S.q,'')+'</div>';
-  }
-  if(S.panel==='audio'){
-    p.setAttribute('aria-label','زبان صدا');
-    h=head('زبان صدا')+'<div class="pl-opts" role="menu">'+opt('audio','orig','انگلیسی','صدای اصلی فیلم',S.audio)+opt('audio','dub','فارسی','دوبله',S.audio)+'</div>';
-  }
-  if(S.panel==='subs'){
-    p.setAttribute('aria-label','زیرنویس');
-    const c=v=>'<button data-k="lang" data-v="'+v[0]+'" class="pl-chip" aria-pressed="'+(S.sub.lang===v[0])+'">'+v[1]+'</button>';
-    h=head('زیرنویس')+'<div class="pl-chips" role="group" aria-label="زبان زیرنویس">'+[['off','خاموش'],['fa','فارسی'],['en','انگلیسی'],['dual','دوزبانه']].map(c).join('')+'</div>';
-    h+='<div class="pl-sl">اندازه</div><div class="pl-seg" role="group" aria-label="اندازه‌ی زیرنویس">'+['کوچک','متوسط','بزرگ'].map((l,i)=>'<button data-k="size" data-v="'+i+'" class="a'+(i+1)+'" aria-pressed="'+(S.sub.size===i)+'" aria-label="'+l+'">'+l+'</button>').join('')+'</div>';
-    h+='<div class="pl-sl">رنگ و زمینه</div><div class="pl-sty"><div class="pl-sw" role="group" aria-label="رنگ زیرنویس">'+[['white','سفید','var(--sub-white)'],['yellow','زرد','var(--sub-yellow)'],['cyan','فیروزه‌ای','var(--sub-cyan)']].map(x=>'<button data-k="color" data-v="'+x[0]+'" aria-pressed="'+(S.sub.color===x[0])+'" aria-label="'+x[1]+'"><i style="--c:'+x[2]+'"></i></button>').join('')+'</div>'+
-      '<button class="pl-tog" role="switch" data-k="box" aria-checked="'+S.sub.box+'"><i></i>کادر تیره پشت متن</button></div>';
-    h+='<div class="pl-sl">هم‌زمانی<em>گام‌های نیم‌ثانیه، تا ۱۰ ثانیه</em></div><div class="pl-sync"><button class="pl-ib" data-act="sh-" aria-label="زیرنویس نیم ثانیه زودتر"'+(S.sub.shift<=-10?' disabled':'')+'>'+ico('minus')+'</button><output aria-live="polite">'+shiftLabel()+'<small>'+(S.sub.shift?'<span>همین حالا روی فیلم اعمال شد</span>':'زیرنویس جلوتر یا عقب‌تر از صداست؟')+'</small></output><button class="pl-ib" data-act="sh+" aria-label="زیرنویس نیم ثانیه دیرتر"'+(S.sub.shift>=10?' disabled':'')+'>'+ico('plus')+'</button></div>';
-    h+='<p class="pl-hint">این تنظیم‌ها برای فیلم‌ها و قسمت‌های بعدی هم می‌ماند.</p>';
-  }
-  if(S.panel==='share'){
-    p.setAttribute('aria-label','اشتراک');
-    const sec=Math.round(S.t);
-    h=head('اشتراک از همین لحظه')+'<p class="pl-hint" style="margin:0 4px 12px;color:var(--ink-2);font-size:14px">کسی که لینک را باز کند، فیلم را از <b style="color:var(--ink-1)" dir="ltr">'+clock(S.t,T.dur>=3600)+'</b> می‌بیند.</p>'+
-      '<div class="pl-link">'+ico('link-simple')+'<code>'+T.link+'<em>?t='+sec+'</em></code></div>'+
-      '<div class="pl-share"><div class="acts"><button class="pl-btn lit" data-act="tg">'+ico('telegram-logo')+'ارسال در تلگرام</button>'+
-      '<button class="pl-btn quiet" data-act="copy" aria-live="polite"><span class="swap"><span style="opacity:'+(S.copied?0:1)+'">'+ico('link-simple')+'کپی لینک</span><span style="opacity:'+(S.copied?1:0)+'">'+ico('check')+'کپی شد</span></span></button></div></div>';
-  }
-  if(S.panel==='keys'){
-    p.setAttribute('aria-label','میان‌برها');
-    const k=(a,b)=>'<div>'+a.map(x=>'<kbd>'+x+'</kbd>').join('')+'</div><span>'+b+'</span>';
-    h=head('میان‌برهای صفحه‌کلید')+'<div class="pl-keys">'+k(['Space','K'],'پخش و توقف')+k(['←','J'],'۱۳ ثانیه عقب')+k(['→','L'],'۸ ثانیه جلو')+k(['↑','↓'],'بلندی صدا')+k(['M'],'بی‌صدا')+k(['F'],'تمام‌صفحه')+k(['C'],'زیرنویس روشن و خاموش')+k(['Esc'],'بستن منو')+'</div>';
-  }
-  const ob=p.querySelector('.pl-pb'),st=ob&&p.dataset.for===S.panel?ob.scrollTop:0;
-  p.innerHTML=h;p.hidden=false;p.dataset.for=S.panel;
-  const hd=p.querySelector('.pl-ph'),bd=document.createElement('div');bd.className='pl-pb';
-  while(hd.nextSibling)bd.appendChild(hd.nextSibling);
-  p.appendChild(bd);bd.scrollTop=st;panelFit();
-  if(keep){const [k,v,a]=keep.split('|');const el=[...p.querySelectorAll('button')].find(b=>(b.dataset.k+'|'+b.dataset.v+'|'+b.dataset.act)===keep);if(el)el.focus()}
-}
-
-function renderCard(){
-  const c=$('card');
-  c.className='pl-card';
-  if(!S.card){c.hidden=true;c.innerHTML='';return}
-  if(S.card==='recap'){
-    c.classList.add('pl-recap');c.setAttribute('aria-label','آنچه دیدید');
-    c.innerHTML='<div class="pl-ph"><h3>'+ico('clock-counter-clockwise')+T.recapH+'</h3><button class="pl-btn text" data-act="skiprecap">رد کردن</button></div><div class="src">'+T.recapSrc+'</div><p tabindex="0">'+T.recap+'</p><div class="more" aria-hidden="true">بقیه‌ی متن پایین‌تر است</div><button class="pl-btn lit" data-act="play">'+ico('play-fill')+'ادامه‌ی تماشا از <span dir="ltr">'+clock(T.resume,T.dur>=3600)+'</span></button>';
-  }
-  if(S.card==='next'){
-    c.classList.add('pl-next');c.setAttribute('aria-label','قسمت بعد');
-    const p=(10-S.count)/10;
-    c.innerHTML='<div class="hd"><img src="'+T.next.img+'" alt=""><div><small>قسمت بعد</small><b>'+T.next.t+'</b></div></div><div class="acts"><button class="pl-btn count" data-act="playnext" style="--p:'+p+'"><i></i>'+ico('play-fill')+'<span>'+(S.count>0?'پخش در '+fa(S.count)+' ثانیه':'پخش')+'</span></button><button class="pl-btn quiet" data-act="cancelnext">لغو</button></div>';
-  }
-  c.hidden=false;
-  if(S.card==='recap')recapFit();
-}
-
-function recapFit(){
-  const c=$('card'),p=c.querySelector('p');if(!p)return;
-  const u=()=>{const m=Math.max(0,p.scrollHeight-p.clientHeight),t=p.scrollTop,f=parseFloat(getComputedStyle(p).lineHeight)*1.6;c.classList.toggle('scroll',m>2);c.classList.toggle('end',m-t<=2);p.style.setProperty('--ft',Math.min(f,t)+'px');p.style.setProperty('--fb',Math.min(f,m-t)+'px')};
-  p.onscroll=u;u();
-}
-function panelFit(){
-  const p=$('panel'),b=p.querySelector('.pl-pb');if(!b)return;
-  const u=()=>{const m=Math.max(0,b.scrollHeight-b.clientHeight),t=b.scrollTop,f=44;p.classList.toggle('scroll',m>2);b.style.setProperty('--ft',Math.min(f,t)+'px');b.style.setProperty('--fb',Math.min(f,m-t)+'px')};
-  b.onscroll=u;u();
-}
-addEventListener('resize',()=>{if(S.card==='recap')recapFit();if(S.panel)panelFit()});
-
-function renderDlg(){
-  const d=$('dlg');
-  if(!S.dlg){d.hidden=true;d.innerHTML='';return}
-  const at='<b dir="ltr">'+clock(T.resume,T.dur>=3600)+'</b>';
-  const D={
-    still:[ico('play-fill'),'هنوز تماشا می‌کنید؟','سه قسمت پشت سر هم پخش شد. پخش را نگه داشتیم تا قسمت‌ها بی‌آنکه ببینید رد نشوند.','<button class="pl-btn lit" data-act="play">'+ico('play-fill')+'ادامه‌ی تماشا</button><a class="pl-btn quiet" href="../title/rollvana-title.html">برگشت به صفحه‌ی سریال</a>'],
-    error:[ico('warning-circle','err'),'پخش ممکن نشد','فایل این '+(T.kind==='ep'?'قسمت':'فیلم')+' از سرور رولوانا بارگذاری نشد. کیفیت‌های 720p و 480p را هم امتحان کردیم. اینترنت‌تان را بررسی کنید و دوباره تلاش کنید.','<button class="pl-btn lit" data-act="retry">'+ico('arrow-clockwise')+'دوباره تلاش کن</button><a class="pl-btn quiet" href="../title/rollvana-title.html">'+T.backTo+'</a>'],
-    guest:[ico('user-circle'),'برای تماشا وارد شوید','این لینک '+(T.kind==='ep'?'قسمت':'فیلم')+' را از '+at+' پخش می‌کند. تماشای آنلاین برای کاربرانی است که وارد حساب شده‌اند و اشتراک فعال دارند.','<a class="pl-btn lit" href="#login">'+ico('user-circle')+'ورود یا ثبت‌نام</a><a class="pl-btn quiet" href="#plans">دیدن اشتراک‌ها</a>'],
-    nosub:[ico('crown-simple'),'برای تماشا اشتراک لازم است','حساب شما اشتراک فعال ندارد. بعد از خرید اشتراک، '+(T.kind==='ep'?'قسمت':'فیلم')+' از همین لحظه، '+at+'، پخش می‌شود.','<a class="pl-btn lit" href="#plans">'+ico('crown-simple')+'خرید اشتراک</a><a class="pl-btn quiet" href="../title/rollvana-title.html">'+T.backTo+'</a>']
-  }[S.dlg];
-  d.innerHTML=D[0]+'<h2>'+D[1]+'</h2><p>'+D[2]+'</p><div class="acts">'+D[3]+'</div>';
-  d.setAttribute('aria-label',D[1]);d.hidden=false;
-}
-
-function renderFloat(){
-  const a=$('fstart'),b=$('fend');
-  a.hidden=S.float!=='resume';b.hidden=S.float!=='skip';
-  if(S.float==='resume')a.innerHTML='<div class="pl-resume"><span>ادامه از <b dir="ltr">'+clock(T.resume,T.dur>=3600)+'</b></span><button class="pl-btn quiet" data-act="restart">'+ico('arrow-counter-clockwise')+'از اول</button></div>';
-  if(S.float==='skip')b.innerHTML='<button class="pl-btn glass pl-skipintro" data-act="skipintro">'+ico('fast-forward')+'رد کردن تیتراژ</button>';
-}
-
-function renderToast(){
-  const t=$('toast');
-  if(!S.toast){t.hidden=true;return}
-  t.innerHTML={switch:ico('check-circle','ok')+'<span>پخش با 1080p ممکن نشد؛ با 720p ادامه می‌دهیم.</span>',again:ico('arrow-counter-clockwise')+'<span>این '+(T.kind==='ep'?'قسمت':'فیلم')+' را تا آخر دیده بودید؛ از اول پخش می‌شود.</span>'}[S.toast];
-  t.hidden=false;
-}
-
-function renderSubs(){
-  const s=$('subs'),pl=$('pl');
-  const show=S.sub.lang!=='off'&&!S.dim&&!S.buffer&&S.s!=='skip'&&S.card!=='next'&&!S.scrub;
-  s.hidden=!show;if(!show)return;
-  const fa_='<div class="pl-line fa">'+T.sub.fa.replace(/([A-Za-z][A-Za-z\- ]*[A-Za-z])/g,'<bdi>$1</bdi>')+'</div>',en='<div class="pl-line en">'+T.sub.en+'</div>';
-  s.innerHTML=S.sub.lang==='fa'?fa_:S.sub.lang==='en'?en:en+fa_;
-  s.classList.toggle('box',S.sub.box);
-  const W=pl.clientWidth,H=pl.clientHeight,big=W>=700||H<=520;
-  const sizes=big?(W>=1024?[22,28,35]:[17,21,26]):[14,16,19];
-  s.style.setProperty('--sz',sizes[S.sub.size]+'px');
-  s.style.setProperty('--sc',{white:'var(--sub-white)',yellow:'var(--sub-yellow)',cyan:'var(--sub-cyan)'}[S.sub.color]);
-  const picH=Math.min(H,W/T.ar),gap=(H-picH)/2;
-  const portrait=H>W*1.15;
-  let b=portrait?Math.max(gap-12-s.offsetHeight,0):gap+picH*.07;
-  if(S.ui==='on')b=Math.max(b,$('bot').offsetHeight+10);
-  if(S.float)b=Math.max(b,(S.ui==='on'?$('bot').offsetHeight:0)+76);
-  const p=$('panel');
-  s.style.left='';s.style.width='';
-  if(!p.hidden&&W<700&&H>520)b=Math.max(b,p.offsetHeight+12);
-  else if(!p.hidden){const r=p.getBoundingClientRect(),pr=r.right-pl.getBoundingClientRect().left;s.style.left=(pr+W)/2+'px';s.style.width=(W-pr-48)+'px'}
-  s.style.setProperty('--sb',b+'px');
-}
-
-function renderReview(){
-  $('rvk').innerHTML=[['film','فیلم: تلماسه، بخش دوم'],['ep','قسمت سریال: جدایی']].map(x=>'<button data-rk="'+x[0]+'" aria-pressed="'+(S.k===x[0])+'">'+x[1]+'</button>').join('');
-  $('rvs').innerHTML=STATES.map(x=>'<button data-rs="'+x[0]+'" aria-pressed="'+(S.s===x[0])+'">'+x[1]+(EP_ONLY.includes(x[0])?' · سریال':FILM_ONLY.includes(x[0])?' · فیلم دوبله‌دار':'')+'</button>').join('');
-  $('rvx').innerHTML='<button data-rx="long" aria-pressed="'+S.long+'">عنوان خیلی بلند</button><button data-rx="rm" aria-pressed="'+S.rm+'">کاهش حرکت</button>';
-}
-
-function wake(){
-  if(S.ui==='top')return;
-  if(S.ui==='off'){S.ui='on';render()}
-  clearTimeout(hideT);
-  if(S.playing&&!S.panel&&S.live)hideT=setTimeout(()=>{if(S.playing&&!S.panel&&!S.scrub){S.ui='off';render()}},3000);
-}
-function play(on){
-  S.playing=on;S.live=true;S.card=S.card==='recap'?null:S.card;S.dlg=on?null:S.dlg;S.dim=!!S.dlg||S.card==='recap';
-  if(S.ui==='top')S.ui='on';
-  on?startVideo():stopVideo();
-  render();wake();
-}
-function jump(d){
-  S.t=Math.max(0,Math.min(T.dur,S.t+d));S.live=true;renderTime(true);
-  const b=d<0?$('jb'):$('jf');b.classList.remove('is-hit');void b.offsetWidth;b.classList.add('is-hit');
-  clearTimeout(flashT[d]);flashT[d]=setTimeout(()=>b.classList.remove('is-hit'),700);
-  if(S.playing){const v=$('vid');if(v.src)try{v.currentTime=Math.max(0,v.currentTime+d/4)}catch(e){}}
-  wake();
-}
-function openPanel(n){S.panel=S.panel===n?null:n;S.live=true;if(S.ui==='off')S.ui='on';clearTimeout(hideT);render();const f=$('panel').querySelector('[aria-checked=true],[aria-pressed=true],button');if(f&&S.panel)f.focus({preventScroll:true})}
-function startCount(){
-  clearInterval(countT);S.count=10;
-  countT=setInterval(()=>{S.count--;if(S.count<=0){clearInterval(countT);goNext();return}renderCard()},1000);
-}
-function goNext(){clearInterval(countT);S.card=null;S.t=0;S.frame='start';S.float=null;TITLES.ep.meta='فصل ۲ · قسمت ۴ · دره‌ی اندوه';play(true)}
-function toast(n,ms){S.toast=n;renderToast();clearTimeout(toastT);toastT=setTimeout(()=>{S.toast=null;renderToast()},ms||4000)}
-
-setInterval(()=>{if(S.playing&&!S.buffer&&!S.scrub&&S.live){S.t=Math.min(T.dur,S.t+.25);renderTime(false);
-  if(T.intro){const inI=S.t>=T.intro[0]&&S.t<T.intro[1];if(inI!==(S.float==='skip')){S.float=inI?'skip':null;renderFloat()}}}},250);
-
-document.addEventListener('click',e=>{
-  const b=e.target.closest('[data-act],[data-k],[data-rk],[data-rs],[data-rx]');
-  if(e.target.closest('#hit')){
-    if(S.ui==='off'){S.ui='on';render();wake();return}
-    if(matchMedia('(pointer:fine)').matches){play(!S.playing);return}
-    if(S.panel){S.panel=null;render();return}
-    S.ui='off';render();return;
-  }
-  if(!b)return;
-  const d=b.dataset;
-  if(d.rk){S.k=d.rk;setState(EP_ONLY.includes(S.s)&&d.rk==='film'||FILM_ONLY.includes(S.s)&&d.rk==='ep'?'playing':S.s);scrollTo({top:0});return}
-  if(d.rs){setState(d.rs);scrollTo({top:0});return}
-  if(d.rx){S[d.rx]=!S[d.rx];setState(S.s);return}
-  if(d.k){
-    if(d.k==='q'){S.q=d.v;if(d.v!=='auto')S.qnow=d.v;}
-    else if(d.k==='audio')S.audio=d.v;
-    else if(d.k==='lang')S.sub.lang=d.v;
-    else if(d.k==='size')S.sub.size=+d.v;
-    else if(d.k==='color')S.sub.color=d.v;
-    else if(d.k==='box')S.sub.box=!S.sub.box;
-    render();return;
-  }
-  const a=d.act;
-  if(a==='close'){S.panel=null;render();wake();return}
-  if(a==='sh-'||a==='sh+'){S.sub.shift=Math.max(-10,Math.min(10,S.sub.shift+(a==='sh+'?.5:-.5)));render();return}
-  if(a==='copy'){S.copied=true;renderPanel();if(navigator.clipboard)navigator.clipboard.writeText('https://'+T.link+'?t='+Math.round(S.t)).catch(()=>{});setTimeout(()=>{S.copied=false;if(S.panel==='share')renderPanel()},2000);return}
-  if(a==='tg'){window.open('https://t.me/share/url?url='+encodeURIComponent('https://'+T.link+'?t='+Math.round(S.t)),'_blank');return}
-  if(a==='play'||a==='skiprecap'){S.card=null;S.dlg=null;S.dim=false;S.ui='on';play(true);return}
-  if(a==='retry'){S.dlg=null;S.dim=false;S.ui='off';S.buffer=true;render();setTimeout(()=>{S.buffer=false;S.ui='on';play(true)},1400);return}
-  if(a==='restart'){S.t=0;S.float=null;renderTime(true);render();return}
-  if(a==='skipintro'){S.t=T.intro[1];S.float=null;renderTime(true);render();return}
-  if(a==='playnext'){goNext();return}
-  if(a==='cancelnext'){clearInterval(countT);S.card=null;S.ui='on';render();return}
-});
-$('pp').onclick=()=>play(!S.playing);
-$('jb').onclick=()=>jump(-13);
-$('jf').onclick=()=>jump(8);
-$('bsubs').onclick=()=>openPanel('subs');
-$('baudio').onclick=()=>openPanel('audio');
-$('bq').onclick=()=>openPanel('quality');
-$('bshare').onclick=()=>openPanel('share');
-$('bkeys').onclick=()=>openPanel('keys');
-$('bmute').onclick=()=>{S.muted=!S.muted;$('vid').muted=S.muted;render()};
-$('bfs').onclick=()=>{const p=$('pl');(document.fullscreenElement?document.exitFullscreen():p.requestFullscreen&&p.requestFullscreen({navigationUI:'hide'}))?.catch?.(()=>{})};
-document.addEventListener('fullscreenchange',()=>{$('bfs').innerHTML=ico(document.fullscreenElement?'corners-in':'corners-out');$('bfs').setAttribute('aria-label',document.fullscreenElement?'خروج از تمام‌صفحه':'تمام‌صفحه')});
-$('pl').addEventListener('pointermove',e=>{if(e.pointerType==='mouse')wake()});
-
-function seekAt(e){const r=$('seek').getBoundingClientRect();return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))}
-$('seek').addEventListener('pointerdown',e=>{$('seek').setPointerCapture(e.pointerId);S.scrub={r:seekAt(e),img:true,drag:true};S.live=true;clearTimeout(hideT);render()});
-$('seek').addEventListener('pointermove',e=>{
-  if(S.scrub&&S.scrub.drag){S.scrub.r=seekAt(e);renderTime(false);renderScrub();return}
-  if(e.pointerType==='mouse'&&!S.scrub){const pv=$('prev'),r=seekAt(e);pv.hidden=false;$('prevt').textContent=clock(r*T.dur,T.dur>=3600);$('previmg').hidden=false;$('previmg').src=T.thumb+Math.min(T.tn-1,Math.floor(r*T.tn))+'.jpg';const w=$('seek').clientWidth;pv.style.left=Math.max(130,Math.min(w-130,r*w))+'px'}
-});
-$('seek').addEventListener('pointerleave',()=>{if(!S.scrub)$('prev').hidden=true});
-$('seek').addEventListener('pointerup',()=>{if(S.scrub&&S.scrub.drag){S.t=S.scrub.r*T.dur;S.scrub=null;renderTime(true);render();wake()}});
-$('vbar').addEventListener('pointerdown',e=>{const r=e.currentTarget.getBoundingClientRect();S.vol=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));S.muted=false;$('vid').volume=S.vol;render()});
-
-document.addEventListener('keydown',e=>{
-  if(e.metaKey||e.ctrlKey||e.altKey)return;
-  if(e.target.closest('#review'))return;
-  const k=e.key.toLowerCase(),inBtn=e.target.tagName==='BUTTON'||e.target.tagName==='A';
-  const A={' ':()=>play(!S.playing),k:()=>play(!S.playing),arrowleft:()=>jump(-13),j:()=>jump(-13),arrowright:()=>jump(8),l:()=>jump(8),
-    arrowup:()=>{S.vol=Math.min(1,S.vol+.1);S.muted=false;render()},arrowdown:()=>{S.vol=Math.max(0,S.vol-.1);render()},
-    m:()=>$('bmute').click(),f:()=>$('bfs').click(),c:()=>{S.sub.lang=S.sub.lang==='off'?'fa':'off';render()},'?':()=>openPanel('keys'),
-    escape:()=>{if(S.panel){S.panel=null;render()}}};
-  if(!A[k])return;
-  if(inBtn&&(k===' '||k==='enter'))return;
-  if(e.target.closest('.pl-panel')&&k.startsWith('arrow'))return;
-  e.preventDefault();A[k]();if(k!=='escape')wake();
-});
-addEventListener('resize',()=>{renderSubs();renderScrub()});
-
-plHydrate();
-const q=new URLSearchParams(location.search);
-S.k=q.get('k')==='ep'?'ep':'film';S.long=q.get('long')==='1';S.rm=q.get('rm')==='1'||matchMedia('(prefers-reduced-motion:reduce)').matches;
-setState(q.get('s')||'playing',false);
-document.fonts&&document.fonts.ready.then(()=>{renderSubs();renderScrub()});
+ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
 </script>
-</body>
-</html>
+</body></html>

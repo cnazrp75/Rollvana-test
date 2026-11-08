@@ -88,3 +88,14 @@ color-scheme:dark;
 
 
 }
+:root{
+--film:#000;
+--scrim-top:linear-gradient(180deg,rgba(0,0,0,.74),rgba(0,0,0,.4) 48%,rgba(0,0,0,0));
+--scrim-bot:linear-gradient(0deg,rgba(0,0,0,.86),rgba(0,0,0,.5) 50%,rgba(0,0,0,0));
+--veil:rgba(7,6,12,.62);
+--panel:color-mix(in oklab,var(--night-1) 95%,transparent);
+--track:var(--fill-240);--track-buf:var(--fill-300);
+--sub-white:#FFFFFF;--sub-yellow:#FFE45C;--sub-cyan:#7FE6FF;
+--sub-shadow:0 0 2px #000,0 1px 3px rgba(0,0,0,.9),0 0 14px rgba(0,0,0,.55);
+--sub-box:rgba(0,0,0,.74);
+}
