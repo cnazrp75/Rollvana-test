@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<title>ورود | Rollvana</title>
+<link rel="icon" type="image/svg+xml" href="../brand/rollvana-favicon-32.svg">
+<link rel="stylesheet" href="../system/rollvana-tokens.css">
+<link rel="stylesheet" href="../system/rollvana-catalog.css">
+<link rel="stylesheet" href="../system/rollvana-login.css">
+</head>
+<body>
+<div id="app"></div>
+<script>
+const ICONS={"home": "<path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/>", "film": "<path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/>", "tv": "<path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/>", "search": "<path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/>", "menu": "<path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/>", "x": "<path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/>", "check": "<path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/>", "info": "<path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/>", "arrow-right": "<path fill=\"currentColor\" d=\"m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32\"/>", "chat-circle-text": "<path fill=\"currentColor\" d=\"M168 112a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-8 24H96a8 8 0 0 0 0 16h64a8 8 0 0 0 0-16m72-8a104 104 0 0 1-152.88 91.82l-34.05 11.35a16 16 0 0 1-20.24-20.24l11.35-34.05A104 104 0 1 1 232 128m-16 0a88 88 0 1 0-164.19 44.06a8 8 0 0 1 .66 6.54L40 216l37.4-12.47a7.9 7.9 0 0 1 2.53-.42a8 8 0 0 1 4 1.08A88 88 0 0 0 216 128\"/>", "clock-countdown": "<path fill=\"currentColor\" d=\"M232 136.66A104.12 104.12 0 1 1 119.34 24a8 8 0 0 1 1.32 16A88.12 88.12 0 1 0 216 135.34a8 8 0 0 1 16 1.32M120 72v56a8 8 0 0 0 8 8h56a8 8 0 0 0 0-16h-48V72a8 8 0 0 0-16 0m40-24a12 12 0 1 0-12-12a12 12 0 0 0 12 12m36 24a12 12 0 1 0-12-12a12 12 0 0 0 12 12m24 36a12 12 0 1 0-12-12a12 12 0 0 0 12 12\"/>", "warning-circle": "<path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m-8-80V80a8 8 0 0 1 16 0v56a8 8 0 0 1-16 0m20 36a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/>", "check-circle": "<path fill=\"currentColor\" d=\"M173.66 98.34a8 8 0 0 1 0 11.32l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 0M232 128A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88\"/>", "arrow-clockwise": "<path fill=\"currentColor\" d=\"M240 56v48a8 8 0 0 1-8 8h-48a8 8 0 0 1 0-16h27.4l-26.59-24.36l-.25-.24a80 80 0 1 0-1.67 114.78a8 8 0 0 1 11 11.63A95.44 95.44 0 0 1 128 224h-1.32a96 96 0 1 1 69.07-164L224 85.8V56a8 8 0 1 1 16 0\"/>", "lock-simple": "<path fill=\"currentColor\" d=\"M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160z\"/>", "pencil-simple": "<path fill=\"currentColor\" d=\"m227.31 73.37l-44.68-44.69a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h44.69a15.86 15.86 0 0 0 11.31-4.69L227.31 96a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.68L147.31 64l24-24L216 84.68Z\"/>"};
+const WM="M223 -334 445 0H588L350 -334ZM78 -700V0H196V-700ZM148 -598H289Q330 -598 360 -584Q390 -570 407 -544Q424 -518 424 -480Q424 -443 407 -416.5Q390 -390 360 -376.5Q330 -363 289 -363H148V-265H294Q371 -265 427 -292Q483 -319 514.5 -368Q546 -417 546 -483Q546 -549 514.5 -597.5Q483 -646 427 -673Q371 -700 294 -700H148Z M1208 -780V0H1317V-780Z M1444 -780V0H1553V-780Z M1610 -460 1849 42 2087 -460H1969L1849 -163L1729 -460Z M2213 -143Q2213 -165 2223.5 -180Q2234 -195 2255 -203.5Q2276 -212 2310 -212Q2349 -212 2384 -202Q2419 -192 2450 -170V-225Q2441 -236 2419 -249.5Q2397 -263 2363.5 -273Q2330 -283 2284 -283Q2198 -283 2151 -243.5Q2104 -204 2104 -137Q2104 -90 2126 -57Q2148 -24 2185 -7Q2222 10 2265 10Q2305 10 2343.5 -4.5Q2382 -19 2407.5 -49Q2433 -79 2433 -123L2417 -183Q2417 -148 2401 -123Q2385 -98 2358.5 -84.5Q2332 -71 2299 -71Q2274 -71 2254.5 -79Q2235 -87 2224 -103.5Q2213 -120 2213 -143ZM2179 -340Q2190 -347 2210 -357.5Q2230 -368 2258.5 -375.5Q2287 -383 2319 -383Q2340 -383 2358 -379Q2376 -375 2389.5 -366Q2403 -357 2410 -343Q2417 -329 2417 -307V0H2523V-328Q2523 -374 2498.5 -406Q2474 -438 2430 -454.5Q2386 -471 2330 -471Q2265 -471 2216 -453Q2167 -435 2135 -416Z M2935 -280V0H3046V-293Q3046 -375 3005 -422.5Q2964 -470 2886 -470Q2839 -470 2804.5 -450Q2770 -430 2748 -389V-460H2639V0H2748V-280Q2748 -311 2760.5 -334.5Q2773 -358 2796 -370.5Q2819 -383 2850 -383Q2893 -383 2914 -357Q2935 -331 2935 -280Z M3242 -143Q3242 -165 3252.5 -180Q3263 -195 3284 -203.5Q3305 -212 3339 -212Q3378 -212 3413 -202Q3448 -192 3479 -170V-225Q3470 -236 3448 -249.5Q3426 -263 3392.5 -273Q3359 -283 3313 -283Q3227 -283 3180 -243.5Q3133 -204 3133 -137Q3133 -90 3155 -57Q3177 -24 3214 -7Q3251 10 3294 10Q3334 10 3372.5 -4.5Q3411 -19 3436.5 -49Q3462 -79 3462 -123L3446 -183Q3446 -148 3430 -123Q3414 -98 3387.5 -84.5Q3361 -71 3328 -71Q3303 -71 3283.5 -79Q3264 -87 3253 -103.5Q3242 -120 3242 -143ZM3208 -340Q3219 -347 3239 -357.5Q3259 -368 3287.5 -375.5Q3316 -383 3348 -383Q3369 -383 3387 -379Q3405 -375 3418.5 -366Q3432 -357 3439 -343Q3446 -329 3446 -307V0H3552V-328Q3552 -374 3527.5 -406Q3503 -438 3459 -454.5Q3415 -471 3359 -471Q3294 -471 3245 -453Q3196 -435 3164 -416Z";
+const ic=n=>'<svg class="i" viewBox="0 0 256 256" aria-hidden="true" focusable="false">'+ICONS[n]+'</svg>';
+const FAD='۰۱۲۳۴۵۶۷۸۹';
+const fa=n=>String(n).replace(/\d/g,d=>FAD[d]);
+const en=s=>String(s).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const RM=matchMedia('(prefers-reduced-motion: reduce)');
+const $=s=>document.querySelector(s);
+
+function norm(raw){
+let s=en(raw).replace(/[\s\-–().]/g,'');
+if(s.startsWith('+98'))s='0'+s.slice(3);
+else if(s.startsWith('0098'))s='0'+s.slice(4);
+else if(s.startsWith('98')&&s.length===12)s='0'+s.slice(2);
+else if(/^9\d{9}$/.test(s))s='0'+s;
+return /^09\d{9}$/.test(s)?s:null;
+}
+const fmt=n=>fa(n.slice(0,4)+' '+n.slice(4,7)+' '+n.slice(7));
+const clock=t=>fa(Math.floor(t/60)+':'+String(t%60).padStart(2,'0'));
+
+const NEXT={film:{href:'/title/dune-part-two',img:'../home/media/p-dune-part-two.jpg',title:'تلماسه: بخش دوم',meta:'فیلم · '+fa(2024)},home:null};
+const RIGHT={6:'482917',5:'48291'};
+const S={step:'num',raw:'',err:false,sending:false,fail:false,failNext:false,len:6,code:'',cst:'idle',msg:null,tries:5,v:120,r:60,lock:600,expired:false,next:'film',fresh:true,frozen:false,resending:false};
+
+function tmHTML(str){return '<span class="tm">'+[...str].map(c=>'<span><b>'+c+'</b></span>').join('')+'</span>'}
+function tmSet(el,str){
+if(!el)return;
+const cs=[...str],sp=el.children;
+if(sp.length!==cs.length){el.innerHTML=cs.map(c=>'<span><b>'+c+'</b></span>').join('');return}
+cs.forEach((c,i)=>{const b=sp[i].firstElementChild;if(b.textContent!==c){const nb=document.createElement('b');nb.textContent=c;if(!RM.matches)nb.className='roll';sp[i].replaceChildren(nb)}});
+}
+
+function helpNum(){
+const n=norm(S.raw);
+if(S.err)return['err',ic('warning-circle')+'<span>شمارهٔ موبایل ایران با ۰۹ شروع می‌شود و ۱۱ رقم دارد؛ مثل ۰۹۱۲ ۳۴۵ ۶۷۸۹.</span>'];
+if(n)return['ok','<span>کد به <bdi dir="ltr">'+fmt(n)+'</bdi> پیامک می‌شود.</span>'];
+return['','<span>ارقام فارسی یا انگلیسی، با ۰۹ یا <bdi dir="ltr">+۹۸</bdi></span>'];
+}
+function ctaNum(){
+if(S.sending)return'<span class="sp" aria-hidden="true"></span><span>در حال فرستادن کد…</span>';
+return '<span>'+(S.fail?'تلاش دوباره':'دریافت کد ورود')+'</span>';
+}
+function numHTML(){
+const h=helpNum(),ok=!!norm(S.raw)&&!S.err;
+return '<div class="lg-st" data-k="num"><h1 id="lgt">ورود یا ثبت‌نام</h1><p class="lg-lead">شمارهٔ موبایل خود را بنویسید تا کد ورود برایتان پیامک شود. حسابی ندارید؟ با همین کد ساخته می‌شود.</p>'+
+'<form id="nf" novalidate action="/login"><label class="lg-fl" for="ph">شمارهٔ موبایل</label>'+
+'<div class="pf" id="pf" data-st="'+(S.err?'err':'')+'"><input id="ph" name="mobile" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="۰۹۱۲ ۳۴۵ ۶۷۸۹" value="'+esc(S.raw)+'" aria-describedby="phh" aria-invalid="'+S.err+'"'+(S.sending?' readonly':'')+'><span class="pf-ok" id="pfok"'+(ok?'':' hidden')+'>'+ic('check-circle')+'</span></div>'+
+'<p class="lg-h" id="phh" data-st="'+h[0]+'" aria-live="polite">'+h[1]+'</p>'+
+(S.fail?'<div class="lg-nt" role="alert">'+ic('warning-circle')+'<div><b>پیامک فرستاده نشد</b>مشکل از سمت ماست، نه از شمارهٔ شما. چند لحظهٔ دیگر دوباره امتحان کنید.</div></div>':'')+
+'<button class="cta lg-cta" id="ncta" type="submit" aria-busy="'+S.sending+'">'+ctaNum()+'</button></form></div>';
+}
+
+function cellsHTML(){
+let h='';
+for(let i=0;i<S.len;i++){const d=S.code[i];h+='<span'+(d?' class="on"':'')+'>'+(d?'<b>'+fa(d)+'</b>':'')+'</span>'}
+return h;
+}
+function vHTML(){
+if(S.expired)return '';
+return ic('clock-countdown')+'<span>اعتبار کد</span>'+tmHTML(clock(S.v));
+}
+function rsHTML(){
+if(S.expired)return '';
+if(S.resending)return '<button class="rs" type="button" aria-disabled="true"><span>در حال فرستادن…</span></button>';
+if(S.r>0)return '<button class="rs" type="button" data-act="resend" aria-disabled="true" aria-label="ارسال دوباره، '+clock(S.r)+' دیگر">'+tmHTML(clock(S.r))+'<span>تا ارسال دوباره</span></button>';
+return '<button class="rs" type="button" data-act="resend">'+ic('arrow-clockwise')+'<span>ارسال دوباره کد</span></button>';
+}
+function msgHTML(){
+const m=S.msg;if(!m)return '';
+return (m[0]==='err'?ic('warning-circle'):ic('info'))+'<span>'+m[1]+'</span>';
+}
+function ctaCode(){
+if(S.cst==='busy')return'<span class="sp" aria-hidden="true"></span><span>در حال بررسی کد…</span>';
+if(S.expired)return S.resending?'<span class="sp" aria-hidden="true"></span><span>در حال فرستادن کد…</span>':'<span>دریافت کد تازه</span>';
+return '<span>ورود</span>';
+}
+function codeHTML(){
+const n=norm(S.raw)||'09123456789';
+return '<div class="lg-st" data-k="code"><h1 id="lgt">کد ورود را بنویسید</h1><p class="lg-lead">کد '+fa(S.len)+' رقمی به <bdi dir="ltr">'+fmt(n)+'</bdi> پیامک شد.<button class="lg-ed" type="button" data-act="edit">'+ic('pencil-simple')+'ویرایش شماره</button></p>'+
+'<form id="cf" novalidate><label class="vh" for="otp">کد ورود '+fa(S.len)+' رقمی</label>'+
+'<div class="otp" id="ot" data-st="'+(S.expired?'off':S.cst)+'"><div class="otp-c" id="oc" aria-hidden="true">'+cellsHTML()+'</div><input id="otp" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="'+(S.len*2)+'" spellcheck="false" value="'+S.code+'" aria-describedby="om vv" aria-invalid="'+(S.cst==='err')+'"'+(S.expired||S.cst==='busy'?' readonly':'')+(S.expired?' aria-disabled="true"':'')+'><span class="otp-r" id="or"></span></div>'+
+'<p class="otp-msg" id="om" data-st="'+(S.msg?S.msg[0]:'')+'" aria-live="polite">'+msgHTML()+'</p>'+
+'<div class="otp-m"><span class="otp-v" id="vv">'+vHTML()+'</span><span id="rsw">'+rsHTML()+'</span></div>'+
+'<button class="cta lg-cta" id="ccta" type="submit" aria-busy="'+(S.cst==='busy'||S.resending)+'"'+(!S.expired&&(S.code.length<S.len||S.cst==='err')&&S.cst!=='busy'?' disabled':'')+'>'+ctaCode()+'</button></form></div>';
+}
+function lockHTML(){
+const n=norm(S.raw)||'09123456789';
+return '<div class="lg-st" data-k="lock"><div class="lk"><span class="lk-ic">'+ic('clock-countdown')+'</span><h1 id="lgt" tabindex="-1">چند دقیقه صبر کنید</h1>'+
+'<span id="lkt" role="timer" aria-label="زمان باقی‌مانده">'+tmHTML(clock(S.lock))+'</span><small>تا ورود دوباره با <bdi dir="ltr">'+fmt(n)+'</bdi></small>'+
+'<p class="lk-p">کد '+fa(5)+' بار نادرست وارد شد. برای امنیت حساب، تا پایان این زمان کدی برای این شماره پذیرفته نمی‌شود.</p>'+
+'<button class="ghostb" type="button" data-act="edit">ورود با شمارهٔ دیگر</button></div></div>';
+}
+function okHTML(){
+const nx=NEXT[S.next];
+return '<div class="lg-st" data-k="ok"><div class="ok"><span class="ok-ic">'+ic('check')+'</span><h1 id="lgt" tabindex="-1">'+(S.fresh?'حساب شما ساخته شد':'خوش برگشتید')+'</h1>'+
+'<p class="lg-lead">'+(S.fresh?'از این به بعد با همین شماره وارد می‌شوید. ':'')+(nx?'برمی‌گردید به همان صفحه‌ای که در آن بودید.':'به صفحهٔ اصلی می‌روید.')+'</p>'+
+'<div class="ok-go">'+(nx?'<img src="'+nx.img+'" alt="">':'<span class="hm">'+ic('home')+'</span>')+'<div><small>در حال رفتن به</small><strong>'+(nx?nx.title:'صفحهٔ اصلی')+'</strong>'+(nx?'<em>'+nx.meta+'</em>':'')+'</div></div>'+
+'<div class="ok-ln" aria-hidden="true"><i></i></div><p class="ok-fb">اگر صفحه باز نشد، <a href="'+(nx?nx.href:'/')+'">اینجا را بزنید</a></p></div></div>';
+}
+function stepHTML(){return S.step==='num'?numHTML():S.step==='code'?codeHTML():S.step==='lock'?lockHTML():okHTML()}
+
+function headerHTML(){
+return '<header class="hdr"><div class="hdr-bg"></div><a class="wm" href="/" aria-label="Rollvana"><svg viewBox="-40 -820 3689 870" aria-hidden="true"><path fill="currentColor" d="'+WM+'"/><circle cx="867" cy="-230" r="190" fill="none" stroke="currentColor" stroke-width="100"/><circle cx="912" cy="-275" r="50" fill="var(--light)"/></svg></a>'+
+'<nav class="nav" aria-label="ناوبری اصلی"><a href="/">خانه</a><a href="/films">فیلم‌ها</a><a href="/series">سریال‌ها</a><a href="#">منو</a></nav><div class="acts"></div></header>'+
+'<nav class="tabs" aria-label="ناوبری اصلی"><a class="tab" href="/">'+ic('home')+'<span class="tl">خانه</span></a><a class="tab" href="/films">'+ic('film')+'<span class="tl">فیلم‌ها</span></a><a class="tab" href="/series">'+ic('tv')+'<span class="tl">سریال‌ها</span></a><a class="tab" href="/search">'+ic('search')+'<span class="tl">جستجو</span></a><a class="tab" href="#">'+ic('menu')+'<span class="tl">منو</span></a></nav>';
+}
+
+const STATES=[['empty','شماره، خالی'],['fa','ارقام فارسی'],['plus','با ‎+98'],['bad','شمارهٔ نادرست'],['sending','در حال فرستادن'],['code','کد و زمان‌ها'],['resend','ارسال دوباره آزاد'],['wrong','کد نادرست'],['lock','پنجمین خطا، ۱۰ دقیقه'],['expired','کد منقضی'],['smsfail','پیامک نرفت'],['verify','در حال بررسی'],['ok','حساب تازه، بازگشت'],['okhome','ورود دوباره، بی next']];
+const q0=new URLSearchParams(location.search);
+let cur=q0.get('s')||'empty';
+if(q0.get('len')==='5')S.len=5;
+function reviewHTML(){
+const ch=(act,v,l,on)=>'<button class="chip" type="button" data-act="'+act+'" data-v="'+v+'" aria-pressed="'+on+'">'+l+'</button>';
+return '<section class="rvp" aria-labelledby="rvh"><h2 id="rvh">حالت‌های بازبینی</h2><p>این بخش فقط برای بازبینی طرح است و در سایت نیست. صفحه زنده است: هر شماره‌ای بنویسید. کد درست در این نمونه <bdi dir="ltr">'+fa(RIGHT[S.len])+'</bdi> است؛ هر کد دیگری نادرست حساب می‌شود.</p><div class="rw" role="group" aria-label="حالت">'+STATES.map(s=>ch('state',s[0],s[1],cur===s[0])).join('')+'</div>'+
+'<div class="rw" role="group" aria-label="طول کد">'+ch('len','6','کد '+fa(6)+' رقمی',S.len===6)+ch('len','5','کد '+fa(5)+' رقمی',S.len===5)+'</div>'+
+'<code>/login?next=/title/dune-part-two</code></section>';
+}
+
+function preset(s){
+cur=s;
+Object.assign(S,{step:'num',raw:'',err:false,sending:false,fail:false,failNext:false,code:'',cst:'idle',msg:null,tries:5,v:120,r:60,lock:600,expired:false,next:'film',fresh:true,frozen:false,resending:false});
+const R=RIGHT[S.len];
+if(s==='fa')S.raw='۰۹۱۲۳۴۵۶۷۸۹';
+if(s==='plus')S.raw='+98 912 345 6789';
+if(s==='bad'){S.raw='۰۹۱۲ ۳۴۵ ۶۷';S.err=true}
+if(s==='sending'){S.raw='09123456789';S.sending=true;S.frozen=true}
+if(s==='smsfail'){S.raw='09123456789';S.fail=true}
+if(['code','resend','wrong','expired','verify'].includes(s)){S.step='code';S.raw='09123456789';S.v=107;S.r=47}
+if(s==='resend'){S.v=58;S.r=0}
+if(s==='wrong'){S.v=81;S.r=21;S.code=R.split('').reverse().join('');S.cst='err';S.tries=3;S.msg=['err',triesMsg()]}
+if(s==='expired'){S.v=0;S.r=0;S.expired=true;S.msg=['info','اعتبار این کد تمام شد. کد تازه بگیرید؛ کد قبلی دیگر کار نمی‌کند.']}
+if(s==='verify'){S.v=72;S.r=12;S.code=R;S.cst='busy';S.frozen=true}
+if(s==='lock'){S.step='lock';S.raw='09123456789';S.lock=598;S.tries=0}
+if(s==='ok'){S.step='ok';S.raw='09123456789'}
+if(s==='okhome'){S.step='ok';S.raw='09123456789';S.fresh=false;S.next='home'}
+}
+function triesMsg(){
+if(S.tries===1)return 'کد درست نیست. این آخرین فرصت است؛ پس از آن باید '+fa(10)+' دقیقه صبر کنید.';
+return 'کد درست نیست. <b class="num">'+fa(S.tries)+'</b> بار دیگر می‌توانید امتحان کنید.';
+}
+
+function renderAll(){
+$('#app').innerHTML=headerHTML()+'<main class="page lg-page" id="page"><div class="lg"><div class="lg-card" id="card">'+stepHTML()+'</div></div></main><div class="page" style="min-height:0;padding-top:0" id="rv">'+reviewHTML()+'</div>';
+after();
+}
+function after(){
+if(S.step==='num'){const i=$('#ph');i.focus({preventScroll:true});const n=i.value.length;i.setSelectionRange(n,n)}
+if(S.step==='code'){const i=$('#otp');if(!S.expired){i.focus({preventScroll:true});if(S.cst==='err')i.select()}ring()}
+if(S.step==='lock'||S.step==='ok'){const h=$('#lgt');h&&h.focus({preventScroll:true})}
+}
+function go(step,back){
+S.step=step;
+const card=$('#card'),old=card.querySelector('.lg-st:not(.ghost)');
+card.querySelectorAll('.ghost').forEach(g=>g.remove());
+const t=document.createElement('div');t.innerHTML=stepHTML();const nw=t.firstElementChild;
+if(old&&!RM.matches){old.classList.add('ghost');if(back)old.classList.add('back');setTimeout(()=>old.remove(),200);nw.classList.add('fresh');if(back)nw.classList.add('back')}else if(old)old.remove();
+card.appendChild(nw);
+$('#rv').innerHTML=reviewHTML();
+after();
+}
+function refresh(sel,html){const e=$(sel);if(e)e.innerHTML=html}
+
+function ring(){
+const r=$('#or'),oc=$('#oc');if(!r||!oc)return;
+const i=Math.min(S.code.length,S.len-1),c=oc.children[i];if(!c)return;
+r.style.width=c.offsetWidth+'px';r.style.transform='translateX('+c.offsetLeft+'px)';
+oc.querySelectorAll('i').forEach(x=>x.remove());
+if(S.code.length<S.len&&document.activeElement&&document.activeElement.id==='otp'&&S.cst!=='busy')c.appendChild(document.createElement('i'));
+}
+function paintCells(prev){
+const oc=$('#oc');if(!oc)return;
+for(let i=0;i<S.len;i++){const c=oc.children[i],d=S.code[i]||'',p=prev[i]||'';if(d===p&&c.querySelector('b'))continue;c.classList.toggle('on',!!d);c.innerHTML=d?'<b>'+fa(d)+'</b>':''}
+ring();
+}
+function setCst(st){S.cst=st;const o=$('#ot');if(o)o.dataset.st=S.expired?'off':st;const i=$('#otp');if(i){i.setAttribute('aria-invalid',st==='err');i.readOnly=st==='busy'||S.expired}}
+function setMsg(m){S.msg=m;const e=$('#om');if(!e)return;e.dataset.st=m?m[0]:'';e.innerHTML=msgHTML()}
+function codeCta(){const b=$('#ccta');if(!b)return;b.innerHTML=ctaCode();b.setAttribute('aria-busy',S.cst==='busy'||S.resending);b.disabled=!S.expired&&(S.code.length<S.len||S.cst==='err')&&S.cst!=='busy'}
+
+function onPhone(v){
+S.raw=v;cur='';
+const n=norm(v);
+if(S.err&&n)S.err=false;
+const pf=$('#pf');pf.dataset.st=S.err?'err':'';
+$('#ph').setAttribute('aria-invalid',S.err);
+$('#pfok').hidden=!n;
+const h=helpNum(),hp=$('#phh');
+if(hp.dataset.st!==h[0]||hp.innerHTML!==h[1]){hp.dataset.st=h[0];hp.innerHTML=h[1]}
+}
+function submitNum(){
+if(S.sending)return;
+const n=norm(S.raw);
+if(!n){S.err=true;onPhone(S.raw);$('#ph').focus();return}
+S.sending=true;S.fail=false;cur='';
+const f=$('.lg-nt');f&&f.remove();
+$('#ph').readOnly=true;const b=$('#ncta');b.setAttribute('aria-busy','true');b.innerHTML=ctaNum();
+setTimeout(()=>{
+S.sending=false;
+if(S.failNext){S.failNext=false;S.fail=true;go('num');return}
+Object.assign(S,{code:'',cst:'idle',msg:null,v:120,r:60,expired:false});
+go('code');
+},1100);
+}
+function onCode(inp){
+const prev=S.code;
+const v=en(inp.value).replace(/\D/g,'').slice(0,S.len);
+if(inp.value!==v)inp.value=v;
+S.code=v;cur='';
+if(S.cst==='err'){setCst('idle');setMsg(null)}
+if(S.msg&&S.msg[0]==='info')setMsg(null);
+paintCells(prev);codeCta();
+if(v.length===S.len)verify();
+}
+function verify(){
+if(S.cst==='busy'||S.expired)return;
+setCst('busy');codeCta();ring();
+setTimeout(()=>{
+if(S.code===RIGHT[S.len]){setCst('done');go('ok');return}
+S.tries--;
+if(S.tries<=0){S.lock=600;go('lock');return}
+setCst('err');setMsg(['err',triesMsg()]);codeCta();
+const i=$('#otp');i.focus();i.select();ring();
+},900);
+}
+function resend(){
+if(S.resending)return;
+S.resending=true;cur='';
+refresh('#rsw',rsHTML());codeCta();
+setTimeout(()=>{
+S.resending=false;
+Object.assign(S,{v:120,r:60,expired:false,code:''});
+const wasExp=$('#ot')&&$('#ot').dataset.st==='off';
+if(wasExp){go('code');setMsg(['info','کد تازه فرستاده شد.']);return}
+setCst('idle');paintCells('xxxxxx');refresh('#vv',vHTML());refresh('#rsw',rsHTML());
+const i=$('#otp');i.value='';i.focus();setMsg(['info','کد تازه فرستاده شد. کد قبلی دیگر کار نمی‌کند.']);codeCta();ring();
+},900);
+}
+
+setInterval(()=>{
+if(S.step==='code'&&!S.frozen&&!S.expired){
+if(S.v>0){S.v--;tmSet($('#vv .tm'),clock(S.v))}
+if(S.r>0){S.r--;if(S.r===0)refresh('#rsw',rsHTML());else tmSet($('#rsw .tm'),clock(S.r))}
+if(S.v===0&&S.cst!=='busy'){S.expired=true;S.code='';setMsg(['info','اعتبار این کد تمام شد. کد تازه بگیرید؛ کد قبلی دیگر کار نمی‌کند.']);go('code')}
+}
+if(S.step==='lock'){if(S.lock>0){S.lock--;tmSet($('#lkt .tm'),clock(S.lock))}if(S.lock===0){S.tries=5;go('num',true)}}
+},1000);
+
+document.addEventListener('click',e=>{
+const a0=e.target.closest('a[href]');if(a0)e.preventDefault();
+const t=e.target.closest('[data-act]');if(!t)return;
+const a=t.dataset.act,v=t.dataset.v;
+if(a==='state'){preset(v);renderAll();window.scrollTo({top:0});return}
+if(a==='len'){S.len=+v;const c=cur;preset(c||'empty');renderAll();return}
+if(a==='edit'){cur='';Object.assign(S,{err:false,sending:false,fail:false,code:'',cst:'idle',msg:null,expired:false});go('num',true);return}
+if(a==='resend'){if(t.getAttribute('aria-disabled')==='true')return;resend();return}
+});
+document.addEventListener('submit',e=>{
+e.preventDefault();
+if(e.target.id==='nf')submitNum();
+if(e.target.id==='cf'){if(S.expired)resend();else if(S.code.length===S.len)verify()}
+});
+document.addEventListener('input',e=>{if(e.target.id==='ph')onPhone(e.target.value);if(e.target.id==='otp')onCode(e.target)});
+document.addEventListener('focusout',e=>{if(e.target.id==='ph'&&S.raw.trim()&&!norm(S.raw)&&!S.sending&&S.step==='num'){S.err=true;onPhone(S.raw)}if(e.target.id==='otp')setTimeout(ring,0)});
+document.addEventListener('focusin',e=>{if(e.target.id==='otp'){const i=e.target,n=i.value.length;if(S.cst!=='err')i.setSelectionRange(n,n);ring()}});
+document.addEventListener('keyup',e=>{if(e.target.id==='otp')ring()});
+addEventListener('resize',ring);
+
+preset(cur);
+renderAll();
+document.fonts&&document.fonts.ready.then(ring);
+</script>
+</body>
+</html>
