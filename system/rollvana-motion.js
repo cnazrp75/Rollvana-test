@@ -45,7 +45,7 @@ function Words({text,k,dir=1,reduced,stagger=.035,delay=0}){
         initial=${reduced?{opacity:0}:{opacity:0,y:10*dir,filter:"blur(6px)"}}
         animate=${{opacity:1,y:0,filter:"blur(0px)",transition:{duration:reduced?.2:.5,delay:reduced?0:delay+.12+j*stagger,ease:EASE}}}
         exit=${reduced?{opacity:0,transition:{duration:.15}}:{opacity:0,y:-10*dir,filter:"blur(8px)",transition:{duration:.3,delay:j*stagger*.6,ease:EASE_IN}}}
-      >${x}${j<w.length-1?" ":""}</${motion.span}>`)}
+      >${x[0]==="*"?html`<b><bdi dir="ltr">${x.slice(1).replace(/\u00a0/g," ")}</bdi></b>`:x}${j<w.length-1?" ":""}</${motion.span}>`)}
     </${motion.span}>
   </${AnimatePresence}>`;
 }
