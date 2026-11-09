@@ -225,14 +225,14 @@ function App(){
     onPointerDown:e=>{seek.current.setPointerCapture(e.pointerId);up({scrub:{r:seekAt(e),img:true,drag:true},live:true});clearTimeout(timers.current.hide)},
     onPointerMove:e=>{const s=Sref.current;if(s.scrub&&s.scrub.drag){up({scrub:{...s.scrub,r:seekAt(e)}});return}if(e.pointerType==="mouse"&&!s.scrub)setHover(seekAt(e))},
     onPointerLeave:()=>setHover(null),
-    onPointerUp:()=>{const s=Sref.current;if(s.scrub&&s.scrub.drag){up({t:s.scrub.r*T.dur,scrub:null});wake()}},
+    onPointerUp:()=>{const s=Sref.current;if(s.scrub&&s.scrub.drag){setHover(null);up({t:s.scrub.r*T.dur,scrub:null});wake()}},
     onKeyDown:e=>{const m={ArrowLeft:-13,ArrowRight:8,ArrowDown:-13,ArrowUp:8}[e.key];if(m){e.preventDefault();e.stopPropagation();jump(m)}}
   };
   const vbAt=e=>{const r=e.currentTarget.getBoundingClientRect();setVol(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)));setMuted(false)};
 
   const W=vp.W,H=vp.H,phoneSheet=W<700&&H>520,big=W>=700||H<=520;
   const above=S.ui==="on"?barH+10:16;
-  const subsOn=sub.lang!=="off"&&!S.dim&&!S.buffer&&sid!=="skip"&&S.card!=="next"&&!S.scrub;
+  const subsOn=sub.lang!=="off"&&!S.dim&&!S.buffer&&sid!=="skip"&&S.card!=="next"&&!S.scrub&&!(hover!=null&&vp.H<=520);
   const [sb,setSb]=useState(120);const [sx,setSx]=useState(null);
   useLayoutEffect(()=>{if(!subsOn||!subsRef.current)return;
     const sh=subsRef.current.offsetHeight,picH=Math.min(H,W/T.ar),gap=(H-picH)/2,portrait=H>W*1.15;
@@ -249,7 +249,7 @@ function App(){
   const subLabel={off:"خاموش",fa:"فارسی",en:"انگلیسی",dual:"دوزبانه"}[sub.lang];
   const title=long?LONG:T.title;
   const cur=clock(S.scrub?S.scrub.r*T.dur:S.t,long_),rem="−"+clock(T.dur-(S.scrub?S.scrub.r*T.dur:S.t),long_);
-  const pv=S.scrub?S.scrub.r:hover;const pvImg=S.scrub?S.scrub.img:true;
+  const pv=S.scrub?S.scrub.r:hover;const pvImg=S.scrub?S.scrub.img:true;const pvOver=pv!=null&&(!!S.scrub||vp.H<=520);
   const pvLeft=(()=>{if(pv==null||!seek.current)return 0;const w=seek.current.clientWidth,pw=W>=1024?224:168,off=seek.current.offsetLeft,row=seek.current.parentElement.clientWidth;const lo=pw/2-off+4,hi=row-off-pw/2-4;return Math.max(lo,Math.min(hi,pv*w))})();
   const ease={duration:.32,ease:EASE};
   const fadeUp=(y)=>({initial:rm?{opacity:0}:{opacity:0,y},animate:{opacity:1,y:0,transition:rm?{duration:.15}:{...SPR,opacity:ease}},exit:rm?{opacity:0,transition:{duration:.12}}:{opacity:0,y,transition:{duration:.2,ease:EASE_LEAVE}}});
@@ -344,7 +344,7 @@ function App(){
       <${motion.button} type="button" class="ib" aria-label="اشتراک از همین لحظه" title="اشتراک از همین لحظه" aria-expanded=${S.panel==="share"} onClick=${()=>openPanel("share")} whileTap=${PRESS}><${I} n="share-network"/></${motion.button}>
     </${motion.header}>`:null}</${AnimatePresence}>
 
-    <${AnimatePresence}>${S.ui==="on"&&!S.buffer&&!S.panel?html`<${motion.div} key="mid" class="pl-mid" initial=${{opacity:0,scale:.92}} animate=${{opacity:1,scale:1,transition:{...SPR,opacity:ease}}} exit=${{opacity:0,scale:.94,transition:{duration:.2,ease:EASE_LEAVE}}}>
+    <${AnimatePresence}>${S.ui==="on"&&!S.buffer&&!S.panel&&!pvOver?html`<${motion.div} key="mid" class="pl-mid" initial=${{opacity:0,scale:.92}} animate=${{opacity:1,scale:1,transition:{...SPR,opacity:ease}}} exit=${{opacity:0,scale:.94,transition:{duration:.2,ease:EASE_LEAVE}}}>
       ${[[-13,"back","arrow-counter-clockwise","۱۳","۱۳ ثانیه عقب (←)"],[0],[8,"fwd","arrow-clockwise","۸","۸ ثانیه جلو (→)"]].map(j=>j[0]===0?html`
         <${motion.button} key="pp" type="button" class="pl-play" aria-label=${S.playing?"توقف":"پخش"} title=${S.playing?"توقف (Space)":"پخش (Space)"} onClick=${()=>play(!S.playing)} whileTap=${PRESS} transition=${SPR}>
           <span><${Glyph} k=${S.playing?"pa":"pl"} n=${S.playing?"pause-fill":"play-fill"} rm=${rm} cls=${S.playing?"":"is-play"}/></span></${motion.button}>`:html`
