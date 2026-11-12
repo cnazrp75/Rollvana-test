@@ -188,4 +188,5 @@ color-scheme:dark;
 --glass-dark:rgba(8,7,23,.56);
 --part-aux:rgba(240,189,125,.5);
 --part-aux-buf:rgba(240,189,125,.72);
+--err-on-ink:#B0182F;
 }
