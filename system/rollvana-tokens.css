@@ -183,3 +183,9 @@ color-scheme:dark;
 --gap-in:12px;--gap-head:16px;--gap-out:40px;--gap-tail:24px;
 }
 @media (min-width:1024px){:root{--gap-head:24px;--gap-out:64px}}
+:root{
+--dim:rgba(0,0,0,.4);
+--glass-dark:rgba(8,7,23,.56);
+--part-aux:rgba(240,189,125,.5);
+--part-aux-buf:rgba(240,189,125,.72);
+}
