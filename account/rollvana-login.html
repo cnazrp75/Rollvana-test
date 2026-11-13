@@ -181,11 +181,12 @@ const CUR=-1;
 const NAVH=["../home/home-v3.html","../catalog/rollvana-archive.html","../catalog/rollvana-archive.html?k=series","../search/rollvana-search.html"];
 const H="../home/media/";
 const {Fill}=RVM;
-const K={v:120,r:60,tries:5,lock:600,send:1100,check:900,go:900};
+const K={v:120,r:60,tries:5,lock:600,send:1100,check:900,go:900,rate:1060};
 const LEN=Q.get("len")==="5"?5:6;
 const RIGHT={6:"482917",5:"48291"};
 const FAIL="09120000000";
 const BLOCKED="09121111111";
+const RATE="09122222222";
 const NX={href:"../title/rollvana-title.html?kind=film",route:"/title/dune-part-two",img:H+"p-dune-part-two.jpg",fa:"تلماسه: بخش دوم",en:"Dune: Part Two",y:2024};
 const HOME="../home/home-v3.html";
 const NB="\u00a0";
@@ -203,12 +204,14 @@ const clock=t=>fa(Math.floor(t/60)+":"+String(t%60).padStart(2,"0"));
 const spoken=t=>{const m=Math.floor(t/60),x=t%60;return (m?fa(m)+" دقیقه"+(x?" و ":""):"")+(x||!m?fa(x)+" ثانیه":"")};
 const NEWC="کد تازه فرستاده شد. کد قبلی دیگر کار نمی‌کند.";
 const EXP="اعتبار این کد تمام شد. کد تازه بگیرید؛ کد قبلی دیگر کار نمی‌کند.";
+const OLDC="کد قبلی هنوز کار می‌کند؛ اگر رسیده، همان را بنویسید.";
+const EXPW="اعتبار این کد تمام شد.";
 const triesMsg=t=>t===1?["err","کد درست نیست. این آخرین فرصت است؛ اگر این بار هم درست نباشد، باید "+fa(K.lock/60)+" دقیقه صبر کنید."]:["err","کد درست نیست. *"+fa(t)+" بار دیگر می‌توانید امتحان کنید."];
-const STATES=[["empty","شماره، خالی"],["fa","ارقام فارسی"],["plus","با ‎+98"],["bad","شماره‌ی نادرست"],["sending","در حال فرستادن"],["smsfail","پیامک نرفت"],["code","کد و زمان‌ها"],["resend","ارسال دوباره آزاد"],["wrong","کد نادرست"],["last","چهارمین خطا"],["lock","پنجمین خطا، ۱۰ دقیقه"],["expired","کد منقضی"],["verify","در حال بررسی"],["blocked","حساب مسدود"],["ok","حساب تازه، بازگشت"],["okhome","ورود دوباره، بی next"]];
+const STATES=[["empty","شماره، خالی"],["fa","ارقام فارسی"],["plus","با ‎+98"],["bad","شماره‌ی نادرست"],["sending","در حال فرستادن"],["smsfail","پیامک نرفت"],["code","کد و زمان‌ها"],["resend","ارسال دوباره آزاد"],["wrong","کد نادرست"],["last","چهارمین خطا"],["lock","پنجمین خطا، ۱۰ دقیقه"],["toomany","کمی بعد، از مرحله‌ی شماره"],["toomanycode","کمی بعد، از ارسال دوباره"],["toomanylast","کمی بعد، ثانیه‌های آخر"],["toomany0","کمی بعد، رسیدن به صفر"],["expired","کد منقضی"],["verify","در حال بررسی"],["blocked","حساب مسدود"],["ok","حساب تازه، بازگشت"],["okhome","ورود دوباره، بی next"]];
 const S0=STATES.some(x=>x[0]===Q.get("s"))?Q.get("s"):"empty";
 function preset(k){
   const R=RIGHT[LEN];
-  const s={step:"num",dir:1,raw:"",err:false,sending:false,fail:false,code:"",cst:"idle",msg:null,tries:K.tries,v:K.v,r:K.r,lock:K.lock,expired:false,resending:false,fresh:true,next:true,frozen:false,live:false,sel:false};
+  const s={step:"num",dir:1,raw:"",err:false,sending:false,fail:false,code:"",cst:"idle",msg:null,tries:K.tries,v:K.v,r:K.r,lock:K.lock,expired:false,resending:false,fresh:true,next:true,frozen:false,live:false,sel:false,tm:null,rated:false};
   if(k==="fa")s.raw="۰۹۱۲۳۴۵۶۷۸۹";
   if(k==="plus")s.raw="+98 912 345 6789";
   if(k==="bad"){s.raw="۰۹۱۲ ۳۴۵ ۶۷";s.err=true}
@@ -222,6 +225,10 @@ function preset(k){
   if(k==="verify"){s.v=72;s.r=12;s.code=R;s.cst="busy";s.frozen=true}
   if(k==="lock"){s.step="lock";s.raw="09123456789";s.lock=598;s.tries=0}
   if(k==="blocked"){s.step="blocked";s.raw=BLOCKED}
+  if(k==="toomany"){s.raw="09123456789";s.tm=K.rate}
+  if(k==="toomanycode"){s.step="code";s.raw="09123456789";s.v=72;s.r=0;s.tm=1012;s.msg=["info",OLDC]}
+  if(k==="toomanylast"){s.raw="09123456789";s.tm=6}
+  if(k==="toomany0"){s.raw="09123456789";s.tm=0}
   if(k==="ok"){s.step="ok";s.raw="09123456789";s.code=R}
   if(k==="okhome"){s.step="ok";s.raw="09123456789";s.fresh=false;s.next=false}
   return s;
@@ -255,7 +262,18 @@ function NumStep({s,act,inRef,reduced}){
     <${AnimatePresence} initial=${false}>${s.fail&&html`<${motion.div} key="nt" class="lg-nt" role="alert" ...${settle(reduced)}>
       <${I} n="warning-circle"/><div><b>پیامک فرستاده نشد</b>مشکل از سمت ماست، نه از شماره‌ی شما. چند لحظه‌ی دیگر دوباره امتحان کنید.</div>
     </${motion.div}>`}</${AnimatePresence}>
+    <${AnimatePresence} initial=${false}>${s.tm!=null&&html`<${Wait} key="wt" s=${s} reduced=${reduced}/>`}</${AnimatePresence}>
   </${React.Fragment}>`;
+}
+function Wait({s,reduced}){
+  const done=s.tm===0;
+  const line=done?"حالا می‌توانید دوباره کد بخواهید.":"کمی بعد دوباره کد بخواهید.";
+  const pop=reduced?{initial:{opacity:0},animate:{opacity:1},exit:{opacity:0,transition:{duration:.1}},transition:{duration:.12}}:{initial:{opacity:0,scale:.5},animate:{opacity:1,scale:1},exit:{opacity:0,scale:.5,transition:{duration:.14,ease:EASE_LEAVE}},transition:SNAP};
+  return html`<${motion.div} class=${"lg-nt is-wait"+(done?" is-done":"")} ...${settle(reduced)}>
+    <span class="nt-g" aria-hidden="true"><${AnimatePresence} initial=${false} mode="popLayout"><${motion.span} key=${done?"d":"w"} style=${{display:"inline-flex"}} ...${pop}><${I} n=${done?"check-circle":"clock-countdown"}/></${motion.span}></${AnimatePresence}></span>
+    <div class="nt-x" role="status" aria-live="polite"><b><${Words} text=${line} k=${line} reduced=${reduced}/></b><${AnimatePresence} initial=${false}>${!done&&html`<${motion.span} key="ok" class="nt-s" exit=${reduced?{opacity:0,transition:{duration:.1}}:{opacity:0,y:-4,filter:"blur(4px)",transition:{duration:.16,ease:EASE_LEAVE}}}>شماره‌ی شما مشکلی ندارد.</${motion.span}>`}</${AnimatePresence}></div>
+    <${AnimatePresence} initial=${false} mode="popLayout">${!done&&html`<${motion.span} key="t" class="nt-t" role="timer" exit=${reduced?{opacity:0,transition:{duration:.1}}:{opacity:0,scale:.6,filter:"blur(4px)",transition:{duration:.18,ease:EASE_LEAVE}}}><${AnimChars} text=${clock(s.tm)} label=${spoken(s.tm)+" مانده تا درخواست دوباره"}/></${motion.span}>`}</${AnimatePresence}>
+  </${motion.div}>`;
 }
 function Cells({s,focus,reduced}){
   const at=Math.min(s.code.length,LEN-1);
@@ -270,7 +288,7 @@ function Cells({s,focus,reduced}){
 }
 function CodeStep({s,act,codeRef,reduced}){
   const [focus,setFocus]=useState(false);
-  const rk=s.resending?"busy":s.r>0?"wait":"go";
+  const rk=s.tm>0?"none":s.resending?"busy":s.r>0?"wait":"go";
   return html`<${React.Fragment}>
     <${motion.button} type="button" class="lg-ed" onClick=${act.edit} whileTap=${PRESS}><${I} n="pencil-simple"/>ویرایش شماره</${motion.button}>
     <div class=${"otp"+(s.cst==="err"?" is-err":"")+(s.expired?" is-off":"")+(s.cst==="busy"?" is-busy":"")+(s.sel?" is-sel":"")}>
@@ -287,11 +305,13 @@ function CodeStep({s,act,codeRef,reduced}){
     <${AnimatePresence} initial=${false}>${!s.expired&&html`<${motion.div} key="m" class="otp-m" exit=${{opacity:0,transition:{duration:.14}}}>
       <span class="otp-v" id="vv"><${I} n="clock-countdown"/>اعتبار کد <${AnimChars} text=${clock(s.v)} label=${spoken(s.v)}/></span>
       <span class="rsw"><${Cross} k=${rk} reduced=${reduced} blur=${6} dur=${.3}>
-        ${rk==="busy"?html`<span class="rs" aria-disabled="true">در حال فرستادن…</span>`
+        ${rk==="none"?html`<span></span>`
+        :rk==="busy"?html`<span class="rs" aria-disabled="true">در حال فرستادن…</span>`
         :rk==="wait"?html`<span class="rs" aria-disabled="true" role="timer" aria-label=${"ارسال دوباره، "+spoken(s.r)+" دیگر"}><${AnimChars} text=${clock(s.r)}/> تا ارسال دوباره</span>`
         :html`<${motion.button} type="button" class="rs" onClick=${act.resend} whileTap=${PRESS}><${I} n="arrow-clockwise"/>ارسال دوباره‌ی کد</${motion.button}>`}
       </${Cross}></span>
     </${motion.div}>`}</${AnimatePresence}>
+    <${AnimatePresence} initial=${false}>${s.tm!=null&&html`<${Wait} key="wt" s=${s} reduced=${reduced}/>`}</${AnimatePresence}>
   </${React.Fragment}>`;
 }
 function Form({s,act,inRef,codeRef,reduced}){
@@ -301,7 +321,7 @@ function Form({s,act,inRef,codeRef,reduced}){
   const lead=code?"کد "+fa(LEN)+" رقمی به *"+fmt(n,NB)+" پیامک شد.":"شماره‌ی موبایلتان را بنویسید تا کد ورود پیامک شود. حساب ندارید؟ با همین کد ساخته می‌شود.";
   const busy=code?(s.cst==="busy"||s.resending):s.sending;
   const label=code?(s.cst==="busy"?"در حال بررسی کد…":s.expired?(s.resending?"در حال فرستادن کد…":"دریافت کد تازه"):"ورود"):(s.sending?"در حال فرستادن کد…":s.fail?"تلاش دوباره":"دریافت کد ورود");
-  const off=code&&!s.expired&&s.cst!=="busy"&&(s.code.length<LEN||s.cst==="err");
+  const off=(code&&!s.expired&&s.cst!=="busy"&&(s.code.length<LEN||s.cst==="err"))||(s.tm>0&&(!code||s.expired));
   return html`<form class="lg-f" noValidate action="/login" onSubmit=${e=>{e.preventDefault();act.submit()}} aria-labelledby="lgt">
     <div class="lg-hd">
       <h1 class="lg-h1" id="lgt"><${Words} text=${title} k=${title} reduced=${reduced}/></h1>
@@ -354,7 +374,7 @@ function Ok({s,reduced}){
 function LoginReview({s}){
   const nav=p=>{const u=new URL(location.href);Object.entries(p).forEach(([k,v])=>v==null?u.searchParams.delete(k):u.searchParams.set(k,v));location.href=u};
   return html`<section class="review" aria-label="حالت‌های طرح">
-    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: هر شماره‌ای بنویسید؛ کد درست در این نمونه <bdi dir="ltr">${fa(RIGHT[LEN])}</bdi> است و هر کد دیگری نادرست حساب می‌شود. شماره‌ی <bdi dir="ltr">${fmt(FAIL)}</bdi> خطای سامانه‌ی پیامک را نشان می‌دهد و شماره‌ی <bdi dir="ltr">${fmt(BLOCKED)}</bdi> پس از کد درست، حساب مسدود را.</span>
+    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: هر شماره‌ای بنویسید؛ کد درست در این نمونه <bdi dir="ltr">${fa(RIGHT[LEN])}</bdi> است و هر کد دیگری نادرست حساب می‌شود. شماره‌ی <bdi dir="ltr">${fmt(FAIL)}</bdi> خطای سامانه‌ی پیامک را نشان می‌دهد و شماره‌ی <bdi dir="ltr">${fmt(BLOCKED)}</bdi> پس از کد درست، حساب مسدود را و شماره‌ی <bdi dir="ltr">${fmt(RATE)}</bdi> بار اول «کمی بعد دوباره کد بخواهید» را.</span>
     <div class="grp"><span>حالت</span><div>${STATES.map(([k,l])=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${S0===k} onClick=${()=>nav({s:k})}>${l}</${motion.button}>`)}</div></div>
     <div class="grp"><span>طول کد (بسته به سامانه‌ی پیامک)</span><div>${[6,5].map(n=>html`<${motion.button} key=${n} whileTap=${{scale:.95}} aria-pressed=${LEN===n} onClick=${()=>nav({len:n===5?"5":null})}>کد ${fa(n)} رقمی</${motion.button}>`)}</div></div>
     <div class="grp"><span>نشانی این صفحه</span><code dir="ltr">${s.next?"/login?next="+NX.route:"/login"}</code></div>
@@ -370,11 +390,13 @@ function App(){
   useEffect(()=>()=>tm.current.forEach(clearTimeout),[]);
   useEffect(()=>{const t=setInterval(()=>up(o=>{
     if(o.frozen)return o;
+    const w=o.tm>0?{tm:o.tm-1}:null;
     if(o.step==="code"&&!o.expired){
       const v=Math.max(o.v-1,0),r=Math.max(o.r-1,0);
-      if(v===0&&o.cst!=="busy")return {v:0,r:0,expired:true,code:"",cst:"idle",sel:false,msg:["info",EXP]};
-      return {v,r};
+      if(v===0&&o.cst!=="busy")return {...w,v:0,r:0,expired:true,code:"",cst:"idle",sel:false,msg:["info",o.tm>0?EXPW:EXP]};
+      return {...w,v,r};
     }
+    if(w)return w;
     if(o.step==="lock"){if(o.lock>1)return {lock:o.lock-1};return {lock:0,step:"num",dir:-1,tries:K.tries,err:false,code:"",cst:"idle",msg:null}}
     return o;
   }),1000);return()=>clearInterval(t)},[]);
@@ -397,12 +419,13 @@ function App(){
   };
   const resend=()=>{
     up({resending:true,live:true});
-    later(()=>{up({resending:false,v:K.v,r:K.r,expired:false,code:"",cst:"idle",sel:false,msg:["info",NEWC]});requestAnimationFrame(()=>{const i=codeRef.current;i&&i.focus({preventScroll:true})})},K.check);
+    if(norm(s.raw)===RATE&&!s.rated){later(()=>up(o=>({resending:false,rated:true,tm:K.rate,msg:o.expired?["info",EXPW]:["info",OLDC]})),K.check);later(()=>requestAnimationFrame(()=>{const i=codeRef.current;i&&!s.expired&&i.focus({preventScroll:true})}),K.check+40);return}
+    later(()=>{up({tm:null,resending:false,v:K.v,r:K.r,expired:false,code:"",cst:"idle",sel:false,msg:["info",NEWC]});requestAnimationFrame(()=>{const i=codeRef.current;i&&i.focus({preventScroll:true})})},K.check);
   };
   const act={
     phone:v=>up(o=>({raw:v,live:true,err:o.err&&!norm(v)})),
     blur:()=>up(o=>o.step==="num"&&!o.sending&&o.raw.trim()&&!norm(o.raw)?{err:true}:o),
-    edit:()=>up({step:"num",dir:-1,err:false,sending:false,fail:false,code:"",cst:"idle",msg:null,expired:false,sel:false,resending:false,v:K.v,r:K.r,tries:K.tries,live:true,frozen:false}),
+    edit:()=>up({tm:null,step:"num",dir:-1,err:false,sending:false,fail:false,code:"",cst:"idle",msg:null,expired:false,sel:false,resending:false,v:K.v,r:K.r,tries:K.tries,live:true,frozen:false}),
     another:()=>up({raw:"",step:"num",dir:-1,err:false,sending:false,fail:false,code:"",cst:"idle",msg:null,expired:false,sel:false,resending:false,v:K.v,r:K.r,tries:K.tries,live:true,frozen:false}),
     code:v=>{
       const d=en(v).replace(/\D/g,"").slice(0,LEN);
@@ -410,17 +433,18 @@ function App(){
       up(o=>({code:d,live:true,frozen:false,sel:false,cst:o.cst==="err"?"idle":o.cst,msg:o.msg&&o.msg[1]!==EXP&&d.length?null:o.msg}));
       if(d.length===LEN)verify(d);
     },
-    resend:()=>{if(!s.resending)resend()},
+    resend:()=>{if(!s.resending&&!(s.tm>0))resend()},
     submit:()=>{
       if(s.step==="num"){
-        if(s.sending)return;
+        if(s.sending||s.tm>0)return;
         const n=norm(s.raw);
         if(!n){up({err:true,live:true});inRef.current&&inRef.current.focus();return}
         up({sending:true,fail:false,live:true,frozen:false});
-        later(()=>up(n===FAIL?{sending:false,fail:true}:{sending:false,step:"code",dir:1,code:"",cst:"idle",msg:null,v:K.v,r:K.r,expired:false,tries:K.tries,sel:false}),K.send);
+        if(n===RATE&&!s.rated)later(()=>requestAnimationFrame(()=>inRef.current&&inRef.current.focus({preventScroll:true})),K.send+40);
+        later(()=>up(o=>n===RATE&&!o.rated?{sending:false,rated:true,tm:K.rate}:n===FAIL?{sending:false,fail:true}:{sending:false,tm:null,step:"code",dir:1,code:"",cst:"idle",msg:null,v:K.v,r:K.r,expired:false,tries:K.tries,sel:false}),K.send);
         return;
       }
-      if(s.expired){if(!s.resending)resend();return}
+      if(s.expired){if(!s.resending&&!(s.tm>0))resend();return}
       if(s.code.length===LEN&&s.cst!=="busy"&&s.cst!=="err")verify(s.code);
     }
   };
