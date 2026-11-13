@@ -1,0 +1,478 @@
+<!doctype html>
+<html dir="rtl" lang="fa"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
+<title>خرید اشتراک | Rollvana</title>
+<link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-account.css"><link rel="stylesheet" href="../system/rollvana-subscription.css">
+</head><body>
+<div id="app"></div>
+<script src="../home/media/vendor/react.production.min.js"></script>
+<script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../home/media/vendor/framer-motion.js"></script>
+<script src="../home/media/vendor/htm.umd.js"></script>
+<script src="../system/rollvana-motion.js"></script>
+<script>
+const {useState,useEffect,useRef,useCallback,useLayoutEffect,useMemo}=React;
+const {motion,AnimatePresence,useReducedMotion,useMotionValue,useTransform,useDragControls,LayoutGroup}=Motion;
+const html=htm.bind(React.createElement);
+const Q=new URLSearchParams(location.search);
+const {EASE,EASE_IN,EASE_LEAVE,ITEM,SPR,SOFT,SNAP,MARK,PANEL,SHEET,PRESS,Slot,AnimChars,Words,Fade,Cross,Count}=RVM;
+const ICON={
+home:'<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+film:'<path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+tv:'<path d="M7 21h10"/><rect width="20" height="14" x="2" y="3" rx="2"/>',
+search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+menu:'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',
+bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+left:'<path d="m15 18-6-6 6-6"/>',
+right:'<path d="m9 18 6-6-6-6"/>',
+arrow:'<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
+play:'<path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/>',
+info:'<circle cx="12" cy="12" r="9.5"/><path d="M12 16.5v-5"/><path d="M12 7.6h.01"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+list:'<path d="M5 3h14v18l-7-4.5L5 21z"/>',
+card:'<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/>',
+gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68 1.65 1.65 0 0 0 10 3.17V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+out:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17-5-5 5-5"/><path d="M21 12H11"/>'
+};
+Object.assign(ICON,{
+spark:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+news:'<path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/>',
+pen:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+x:'<path d="M18 6 6 18M6 6l12 12"/>',
+clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+crown:'<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/>'});
+const I=({n,c})=>html`<svg class=${"i "+(c||"")} viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:ICON[n]}}></svg>`;
+const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const faN=n=>fa(String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"٬"));
+const pad2=n=>fa(String(n).padStart(2,"0"));
+function useDesk(){const q=()=>innerWidth>=1024;const [d,s]=useState(q());useEffect(()=>{const f=()=>s(q());addEventListener("resize",f);return()=>removeEventListener("resize",f)},[]);return d}
+function Img({src,cls,style,alt=""}){
+  const [ok,set]=useState(false);
+  const r=useRef();
+  useEffect(()=>{if(r.current&&r.current.complete&&r.current.naturalWidth)set(true)},[src]);
+  return html`<${motion.img} ref=${r} src=${src} alt=${alt} class=${cls} style=${style} loading="lazy" onLoad=${()=>set(true)}
+    initial=${false} animate=${ok?{opacity:1,filter:"blur(0px)",scale:1}:{opacity:0,filter:"blur(12px)",scale:1.04}}
+    transition=${{duration:.7,ease:EASE}}/>`;
+}
+function Header({user,desk,bell}){
+  useEffect(()=>{const f=e=>{if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();const q=document.getElementById("q");q&&q.focus()}};addEventListener("keydown",f);return()=>removeEventListener("keydown",f)},[]);
+  const [sc,setSc]=useState(false);
+  const [hov,setHov]=useState(null);
+  const reduced=useReducedMotion();
+  const [hide,setHide]=useState(false);
+  useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
+  const NAV=["خانه","فیلم‌ها","سریال‌ها"];
+  return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
+    <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:1}} transition=${{duration:.35}}/>
+    <a class="wm" href="../home/home-v3.html" aria-label="Rollvana"><svg viewBox="-40 -820 3689 870" aria-hidden="true"><path d="M223 -334 445 0H588L350 -334ZM78 -700V0H196V-700ZM148 -598H289Q330 -598 360 -584Q390 -570 407 -544Q424 -518 424 -480Q424 -443 407 -416.5Q390 -390 360 -376.5Q330 -363 289 -363H148V-265H294Q371 -265 427 -292Q483 -319 514.5 -368Q546 -417 546 -483Q546 -549 514.5 -597.5Q483 -646 427 -673Q371 -700 294 -700H148Z M1208 -780V0H1317V-780Z M1444 -780V0H1553V-780Z M1610 -460 1849 42 2087 -460H1969L1849 -163L1729 -460Z M2213 -143Q2213 -165 2223.5 -180Q2234 -195 2255 -203.5Q2276 -212 2310 -212Q2349 -212 2384 -202Q2419 -192 2450 -170V-225Q2441 -236 2419 -249.5Q2397 -263 2363.5 -273Q2330 -283 2284 -283Q2198 -283 2151 -243.5Q2104 -204 2104 -137Q2104 -90 2126 -57Q2148 -24 2185 -7Q2222 10 2265 10Q2305 10 2343.5 -4.5Q2382 -19 2407.5 -49Q2433 -79 2433 -123L2417 -183Q2417 -148 2401 -123Q2385 -98 2358.5 -84.5Q2332 -71 2299 -71Q2274 -71 2254.5 -79Q2235 -87 2224 -103.5Q2213 -120 2213 -143ZM2179 -340Q2190 -347 2210 -357.5Q2230 -368 2258.5 -375.5Q2287 -383 2319 -383Q2340 -383 2358 -379Q2376 -375 2389.5 -366Q2403 -357 2410 -343Q2417 -329 2417 -307V0H2523V-328Q2523 -374 2498.5 -406Q2474 -438 2430 -454.5Q2386 -471 2330 -471Q2265 -471 2216 -453Q2167 -435 2135 -416Z M2935 -280V0H3046V-293Q3046 -375 3005 -422.5Q2964 -470 2886 -470Q2839 -470 2804.5 -450Q2770 -430 2748 -389V-460H2639V0H2748V-280Q2748 -311 2760.5 -334.5Q2773 -358 2796 -370.5Q2819 -383 2850 -383Q2893 -383 2914 -357Q2935 -331 2935 -280Z M3242 -143Q3242 -165 3252.5 -180Q3263 -195 3284 -203.5Q3305 -212 3339 -212Q3378 -212 3413 -202Q3448 -192 3479 -170V-225Q3470 -236 3448 -249.5Q3426 -263 3392.5 -273Q3359 -283 3313 -283Q3227 -283 3180 -243.5Q3133 -204 3133 -137Q3133 -90 3155 -57Q3177 -24 3214 -7Q3251 10 3294 10Q3334 10 3372.5 -4.5Q3411 -19 3436.5 -49Q3462 -79 3462 -123L3446 -183Q3446 -148 3430 -123Q3414 -98 3387.5 -84.5Q3361 -71 3328 -71Q3303 -71 3283.5 -79Q3264 -87 3253 -103.5Q3242 -120 3242 -143ZM3208 -340Q3219 -347 3239 -357.5Q3259 -368 3287.5 -375.5Q3316 -383 3348 -383Q3369 -383 3387 -379Q3405 -375 3418.5 -366Q3432 -357 3439 -343Q3446 -329 3446 -307V0H3552V-328Q3552 -374 3527.5 -406Q3503 -438 3459 -454.5Q3415 -471 3359 -471Q3294 -471 3245 -453Q3196 -435 3164 -416Z" fill="currentColor"/><circle cx="867" cy="-230" r="190" fill="none" stroke="currentColor" stroke-width="100"/><circle cx="912" cy="-275" r="50" fill="var(--light)"/></svg></a>
+    ${desk&&html`<nav class="nav" aria-label="ناوبری اصلی" onMouseLeave=${()=>setHov(null)}>
+      ${NAV.map((l,k)=>html`<a href=${NAVH[k]} aria-current=${k===CUR?"page":undefined} onMouseEnter=${()=>setHov(k)} onFocus=${()=>setHov(k)}>
+        ${hov===k&&html`<${motion.span} class="hov" layoutId="navhov" transition=${SPR}/>`}
+        ${l}
+        ${k===CUR&&html`<span class="sel"></span>`}
+      </a>`)}
+    <${MoreNav}/>
+    </nav>`}
+    <div class="hl">
+      ${user&&bell}
+    </div>
+  </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
+}
+function Account(){
+  const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
+  useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
+    addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
+  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  return html`<div class="acct" ref=${ref}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
+        initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
+      <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
+      ${L.map(([n,l])=>html`<a href="#" role="menuitem"><${I} n=${n}/>${l}</a>`)}
+      <hr/><a href="#" role="menuitem"><${I} n="out"/>خروج</a>
+    </${motion.div}>`}</${AnimatePresence}>
+  </div>`;
+}
+function Tabs(){
+  const [sel,setSel]=useState(CUR);const [hide,setHide]=useState(false);const reduced=useReducedMotion();
+  useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;if(y>200&&y>last+6)setHide(true);else if(y<last-6||y<200)setHide(false);last=y};addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[]);
+  const T=[["home","خانه"],["film","فیلم‌ها"],["tv","سریال‌ها"],["search","جستجو"]];
+  const [mo,setMo]=useState(false);useEffect(()=>{const f=e=>setMo(e.detail);addEventListener("rv-menu-state",f);return()=>removeEventListener("rv-menu-state",f)},[]);
+  return html`<${motion.nav} class="tabs" aria-label="ناوبری اصلی" style=${{x:"-50%"}} initial=${false}
+      animate=${hide?{y:90,opacity:reduced?0:1}:{y:0,opacity:1}} transition=${{duration:.35,ease:EASE}}>${T.map(([n,l],k)=>html`<${motion.a} href=${NAVH[k]} class="tab" aria-current=${k===sel?"page":undefined}
+      onClick=${e=>{if(k===sel){e.preventDefault();scrollTo({top:0,behavior:"smooth"})}}} whileTap=${{scale:.9}}>
+    <${I} n=${n}/><span class="tl">${l}</span>${k===sel&&!mo&&html`<${motion.i} class="mark" layoutId="tabmark" transition=${SPR}/>`}</${motion.a}>`)}<${motion.button} class="tab" aria-expanded=${mo} onClick=${()=>dispatchEvent(new Event("rv-menu"))} whileTap=${{scale:.9}}><${I} n="grid"/><span class="tl">منو</span>${mo&&html`<${motion.i} class="mark" layoutId="tabmark" transition=${SPR}/>`}</${motion.button}></${motion.nav}>`;
+}
+Object.assign(ICON,{
+grid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
+chev:'<path d="m6 9 6 6 6-6"/>',
+tgm:'<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>',
+x2:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'
+});
+const MSEC=[["خانه","home"],["همه‌ی فیلم‌ها","film"],["همه‌ی سریال‌ها","tv"],["۲۵۰ فیلم برتر","top"],["۲۵۰ سریال برتر","top"],["مجموعه‌ها","stack"],["هنرمندان","user"],["فیلم‌دوست‌ها","users"],["تقویم پخش","cal"],["چی ببینم؟","spark"]];
+Object.assign(ICON,{top:'<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',stack:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M6 5h12M9 2.5h6"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>'});
+const MOODS=["حال خوب","هیجان","فکر کردن","ترس","گریه","با خانواده","کوتاه و سریع"];
+const MGEN={"فیلم":["اکشن","علمی‌تخیلی","درام","کمدی","ترسناک","انیمیشن","جنایی","عاشقانه","مستند"],"سریال":["درام","جنایی","علمی‌تخیلی","کمدی","فانتزی","انیمه","مینی‌سریال"]};
+const TG=[["@Rollvana","کانال رول‌وانا"]];
+function MenuBody({user,close}){
+  const [g,setG]=useState(null);
+  return html`<div class="mb">
+    ${user?html`<a href="#page" class="mu" aria-current="page"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44}}><${I} n="user"/></span><span><b><bdi dir="ltr">${phf(PHONE)}</bdi></b><small>${muLine()}</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+      :null}
+    <div class="mcol">
+      <h3>بخش‌ها</h3>
+      <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
+    </div>
+    <div class="mcol">
+      <h3>حال‌وهوا</h3>
+      <div class="mood2">${MOODS.map(m=>html`<a href="#" key=${m}>${m}</a>`)}</div>
+      <h3>ژانرها</h3>
+      ${Object.entries(MGEN).map(([k,list])=>html`<div class="mgen" key=${k}>
+        <button aria-expanded=${g===k} onClick=${()=>setG(x=>x===k?null:k)}>ژانرهای ${k}<svg class="i" viewBox="0 0 24 24" style=${{transform:g===k?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.chev}}></svg></button>
+        <${AnimatePresence} initial=${false}>${g===k&&html`<${motion.div} class="mgl" initial=${{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${{height:0,opacity:0}} transition=${{duration:.3,ease:EASE}}><div>${list.map(x=>html`<a href="#" key=${x}>${x}</a>`)}</div></${motion.div}>`}</${AnimatePresence}>
+      </div>`)}
+    </div>
+    <div class="mcol">
+      <h3>تلگرام</h3>
+      <div class="mtg">${TG.map(([h,l])=>html`<a href=${"https://t.me/"+h.slice(1)} key=${h} target="_blank" rel="noopener"><span class="tgi"><${I} n="tgm"/></span><span><b>${l}</b><small><bdi dir="ltr">${h}</bdi> · تلگرام</small></span></a>`)}</div>
+    </div>
+  </div>`;
+}
+function AppMenu({user,desk}){
+  const [open,setOpen]=useState(false);const reduced=useReducedMotion();const ref=useRef();
+  useEffect(()=>{const o=()=>setOpen(v=>!v);addEventListener("rv-menu",o);return()=>removeEventListener("rv-menu",o)},[]);
+  useEffect(()=>{if(!open)return;
+    const k=e=>{if(e.key==="Escape")setOpen(false)};addEventListener("keydown",k);
+    history.pushState({rvmenu:1},"");const pop=()=>setOpen(false);addEventListener("popstate",pop);
+    if(!desk)document.body.style.overflow="hidden";
+    return()=>{removeEventListener("keydown",k);removeEventListener("popstate",pop);document.body.style.overflow="";if(history.state&&history.state.rvmenu)history.back()}},[open,desk]);
+  useEffect(()=>{dispatchEvent(new CustomEvent("rv-menu-state",{detail:open}))},[open]);
+  const close=()=>setOpen(false);
+  return html`<${AnimatePresence}>${open&&html`<${React.Fragment} key="m">
+    <${motion.div} class=${"scrim"+(desk?" lite":"")} onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
+    ${desk?html`<${motion.div} class="mega" role="dialog" aria-label="همه‌ی بخش‌ها" ref=${ref}
+        initial=${reduced?{opacity:0}:{opacity:0,y:-10,scale:.985}} animate=${{opacity:1,y:0,scale:1}} exit=${reduced?{opacity:0}:{opacity:0,y:-6,transition:{duration:.15}}} transition=${{duration:.28,ease:EASE}}>
+        <${MenuBody} user=${user} close=${close}/></${motion.div}>`
+    :html`<${motion.div} class="sheet msheet" role="dialog" aria-modal="true" aria-label="همه‌ی بخش‌ها"
+        initial=${reduced?{opacity:0}:{y:"100%"}} animate=${{y:0}} exit=${reduced?{opacity:0}:{y:"100%"}} transition=${{type:"spring",stiffness:300,damping:34}}
+        drag="y" dragConstraints=${{top:0,bottom:0}} dragElastic=${{top:0,bottom:.6}} onDragEnd=${(e,i)=>{if(i.offset.y>120||i.velocity.y>600)close()}}>
+        <div class="grab"><i></i></div><button class="x" onClick=${close} aria-label="بستن"><${I} n="x2"/></button>
+        <${MenuBody} user=${user} close=${close}/></${motion.div}>`}
+  </${React.Fragment}>`}</${AnimatePresence}>`;
+}
+function MoreNav(){
+  const [open,setOpen]=useState(false);
+  useEffect(()=>{const f=e=>setOpen(e.detail);addEventListener("rv-menu-state",f);return()=>removeEventListener("rv-menu-state",f)},[]);
+  return html`<button class=${"more3"+(open?" on":"")} aria-expanded=${open} aria-haspopup="dialog" onClick=${()=>dispatchEvent(new Event("rv-menu"))}><svg class="i mi" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.menu}}></svg>منو<svg class="i" viewBox="0 0 24 24" style=${{transform:open?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.chev}}></svg></button>`;
+}
+const PHOSPHOR={"arrow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/></g>", "bell": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/></g>", "cal": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160z\"/></g>", "card": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 16v24H32V64Zm0 128H32v-88h192zm-16-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8m-64 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></g>", "chev": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "clock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8\"/></g>", "copy": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/></g>", "crown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.9 73.6a15.85 15.85 0 0 0-18.9 3.79l-33.67 36.29l-35.8-80.29a1 1 0 0 1 0-.1a16 16 0 0 0-29.06 0a1 1 0 0 1 0 .1l-35.8 80.29L44 77.39a16 16 0 0 0-27.75 13.42c0 .11 0 .21.07.32L39 195a16 16 0 0 0 15.72 13h146.57A16 16 0 0 0 217 195l22.68-103.87c0-.11 0-.21.07-.32a15.85 15.85 0 0 0-8.85-17.21m-29.55 118.08l-.06.32H54.71l-.06-.32L32 88l.14.16l42 45.24a8 8 0 0 0 13.18-2.18L128 40l40.69 91.25a8 8 0 0 0 13.18 2.18l42-45.24l.13-.19Z\"/></g>", "dl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/></g>", "down": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "eyeoff": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M53.92 34.62a8 8 0 1 0-11.84 10.76l19.24 21.17C25 88.84 9.38 123.2 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208a127.1 127.1 0 0 0 52.07-10.83l22 24.21a8 8 0 1 0 11.84-10.76Zm47.33 75.84l41.67 45.85a32 32 0 0 1-41.67-45.85M128 192c-30.78 0-57.67-11.19-79.93-33.25A133.2 133.2 0 0 1 25 128c4.69-8.79 19.66-33.39 47.35-49.38l18 19.75a48 48 0 0 0 63.66 70l14.73 16.2A112 112 0 0 1 128 192m6-95.43a8 8 0 0 1 3-15.72a48.16 48.16 0 0 1 38.77 42.64a8 8 0 0 1-7.22 8.71a6 6 0 0 1-.75 0a8 8 0 0 1-8-7.26A32.09 32.09 0 0 0 134 96.57m113.28 34.69c-.42.94-10.55 23.37-33.36 43.8a8 8 0 1 1-10.67-11.92a132.8 132.8 0 0 0 27.8-35.14a133.2 133.2 0 0 0-23.12-30.77C185.67 75.19 158.78 64 128 64a118.4 118.4 0 0 0-19.36 1.57A8 8 0 1 1 106 49.79A134 134 0 0 1 128 48c34.88 0 66.57 13.26 91.66 38.35c18.83 18.83 27.3 37.62 27.65 38.41a8 8 0 0 1 0 6.5Z\"/></g>", "film": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "flag": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M42.76 50A8 8 0 0 0 40 56v168a8 8 0 0 0 16 0v-44.23c26.79-21.16 49.87-9.75 76.45 3.41c16.4 8.11 34.06 16.85 53 16.85c13.93 0 28.54-4.75 43.82-18a8 8 0 0 0 2.76-6V56a8 8 0 0 0-13.27-6c-28 24.23-51.72 12.49-79.21-1.12C111.07 34.76 78.78 18.79 42.76 50M216 172.25c-26.79 21.16-49.87 9.74-76.45-3.41c-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16 49.87-9.75 76.45 3.4c25 12.35 52.82 26.13 83.55 8.4Z\"/></g>", "frown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.08 64a8 8 0 1 1-13.84 8c-7.47-12.91-19.21-20-33.08-20s-25.61 7.1-33.08 20a8 8 0 1 1-13.84-8c10.29-17.79 27.39-28 46.92-28s36.63 10.2 46.92 28\"/></g>", "gear": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></g>", "grid": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "heart": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/></g>", "home": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/></g>", "info": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/></g>", "left": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/></g>", "list": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16m0 177.57l-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z\"/></g>", "lock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160zm-68-56a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "meh": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m48-56a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8m-96-52a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "menu": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "news": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M88 112a8 8 0 0 1 8-8h80a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m8 40h80a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16m136-88v120a24 24 0 0 1-24 24H32a24 24 0 0 1-24-23.89V88a8 8 0 0 1 16 0v96a8 8 0 0 0 16 0V64a16 16 0 0 1 16-16h160a16 16 0 0 1 16 16m-16 0H56v120a23.8 23.8 0 0 1-1.37 8H208a8 8 0 0 0 8-8Z\"/></g>", "out": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M120 216a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h64a8 8 0 0 1 0 16H56v160h56a8 8 0 0 1 8 8m109.66-93.66l-40-40a8 8 0 0 0-11.32 11.32L204.69 120H112a8 8 0 0 0 0 16h92.69l-26.35 26.34a8 8 0 0 0 11.32 11.32l40-40a8 8 0 0 0 0-11.32\"/></g>", "pen": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m227.32 73.37l-44.69-44.68a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h168a8 8 0 0 0 0-16H115.32l112-112a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.69L147.32 64l24-24L216 84.69Z\"/></g>", "play": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128\"/></g>", "plus": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/></g>", "reply": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 109.66l-48 48a8 8 0 0 1-11.32-11.32L204.69 112H128a88.1 88.1 0 0 0-88 88a8 8 0 0 1-16 0A104.11 104.11 0 0 1 128 96h76.69l-34.35-34.34a8 8 0 0 1 11.32-11.32l48 48a8 8 0 0 1 0 11.32\"/></g>", "right": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/></g>", "search": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/></g>", "share": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/></g>", "smile": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.07 48c-10.29 17.79-27.4 28-46.93 28s-36.63-10.2-46.92-28a8 8 0 1 1 13.84-8c7.47 12.91 19.21 20 33.08 20s25.61-7.1 33.07-20a8 8 0 0 1 13.86 8\"/></g>", "spark": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sparkles": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "stack": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.91 172a8 8 0 0 1-2.91 10.91l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 36 169.09l92 53.65l92-53.65a8 8 0 0 1 10.91 2.91M220 121.09l-92 53.65l-92-53.65a8 8 0 0 0-8 13.82l96 56a8 8 0 0 0 8.06 0l96-56a8 8 0 1 0-8.06-13.82M24 80a8 8 0 0 1 4-6.91l96-56a8 8 0 0 1 8.06 0l96 56a8 8 0 0 1 0 13.82l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 24 80m23.88 0L128 126.74L208.12 80L128 33.26Z\"/></g>", "tg": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "tgm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "thumbdown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m239.82 157l-12-96A24 24 0 0 0 204 40H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h43.06l37.78 75.58A8 8 0 0 0 120 240a40 40 0 0 0 40-40v-16h56a24 24 0 0 0 23.82-27M72 144H32V56h40Zm150 21.29a7.88 7.88 0 0 1-6 2.71h-64a8 8 0 0 0-8 8v24a24 24 0 0 1-19.29 23.54L88 150.11V56h116a8 8 0 0 1 7.94 7l12 96a7.87 7.87 0 0 1-1.94 6.29\"/></g>", "thumbup": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9\"/></g>", "top": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5\"/></g>", "trailer": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 216h-48.64A103.95 103.95 0 1 0 128 232h104a8 8 0 0 0 0-16M40 128a88 88 0 1 1 88 88a88.1 88.1 0 0 1-88-88m88-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m24 104a24 24 0 1 0-24 24a24 24 0 0 0 24-24m-32 0a8 8 0 1 1 8 8a8 8 0 0 1-8-8m56-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m-96-16a24 24 0 1 0 24 24a24 24 0 0 0-24-24m0 32a8 8 0 1 1 8-8a8 8 0 0 1-8 8\"/></g>", "tv": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "user": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0\"/></g>", "users": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07\"/></g>", "x": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "x2": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "sCont": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M136 80v43.47l36.12 21.67a8 8 0 0 1-8.24 13.72l-40-24A8 8 0 0 1 120 128V80a8 8 0 0 1 16 0m-8-48a95.44 95.44 0 0 0-67.92 28.15C52.81 67.51 46.35 74.59 40 82V64a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16H49c7.15-8.42 14.27-16.35 22.39-24.57a80 80 0 1 1 1.66 114.75a8 8 0 1 0-11 11.64A96 96 0 1 0 128 32\"/></g>", "sTaste": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sPick": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.1 8.1 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96M56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72m112 131.06l-36.43-18.21a8 8 0 0 0-7.16 0L88 227.06v-52.69a87.89 87.89 0 0 0 80 0ZM128 152a56 56 0 1 0-56-56a56.06 56.06 0 0 0 56 56m0-96a40 40 0 1 1-40 40a40 40 0 0 1 40-40\"/></g>", "sFilm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "sSeries": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z\"/></g>", "sReview": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M248 92.68a15.86 15.86 0 0 0-4.69-11.31l-68.68-68.69a16 16 0 0 0-22.63 0l-28.43 28.43l-58 21.77a16.06 16.06 0 0 0-10.22 12.35L32.11 214.68A8 8 0 0 0 40 224a8.4 8.4 0 0 0 1.32-.11l139.44-23.24a16 16 0 0 0 12.35-10.17l21.77-58L243.31 104A15.87 15.87 0 0 0 248 92.68m-69.87 92.19L63.32 204l47.37-47.37a28 28 0 1 0-11.32-11.32L52 192.7L71.13 77.86L126 57.29L198.7 130ZM112 132a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96-15.32L139.31 48l24-24L232 92.68Z\"/></g>", "sNews": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 40H40a16 16 0 0 0-16 16v160a8 8 0 0 0 11.58 7.15L64 208.94l28.42 14.21a8 8 0 0 0 7.16 0L128 208.94l28.42 14.21a8 8 0 0 0 7.16 0L192 208.94l28.42 14.21A8 8 0 0 0 232 216V56a16 16 0 0 0-16-16m0 163.06l-20.42-10.22a8 8 0 0 0-7.16 0L160 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L96 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L40 203.06V56h176ZM136 112a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m0 32a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-72 24h48a8 8 0 0 0 8-8V96a8 8 0 0 0-8-8H64a8 8 0 0 0-8 8v64a8 8 0 0 0 8 8m8-64h32v48H72Z\"/></g>", "cEps": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M32 64a8 8 0 0 1 8-8h176a8 8 0 0 1 0 16H40a8 8 0 0 1-8-8m8 72h120a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m72 48H40a8 8 0 0 0 0 16h72a8 8 0 0 0 0-16m135.66-57.7a8 8 0 0 1-10 5.36L208 122.75V192a32.05 32.05 0 1 1-16-27.69V112a8 8 0 0 1 10.3-7.66l40 12a8 8 0 0 1 5.36 9.96M192 192a16 16 0 1 0-16 16a16 16 0 0 0 16-16\"/></g>", "cDl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16m0 16v104h-28.7a15.86 15.86 0 0 0-11.3 4.69L148.69 176h-41.38L88 156.69A15.86 15.86 0 0 0 76.69 152H48V48Zm0 160H48v-40h28.69L96 187.31a15.86 15.86 0 0 0 11.31 4.69h41.38a15.86 15.86 0 0 0 11.31-4.69L179.31 168H208zM90.34 125.66a8 8 0 0 1 11.32-11.32L120 132.69V72a8 8 0 0 1 16 0v60.69l18.34-18.35a8 8 0 0 1 11.32 11.32l-32 32a8 8 0 0 1-11.32 0Z\"/></g>", "cAbout": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 48h-72a40 40 0 0 0-32 16a40 40 0 0 0-32-16H24a8 8 0 0 0-8 8v144a8 8 0 0 0 8 8h72a24 24 0 0 1 24 24a8 8 0 0 0 16 0a24 24 0 0 1 24-24h72a8 8 0 0 0 8-8V56a8 8 0 0 0-8-8M96 192H32V64h64a24 24 0 0 1 24 24v112a39.8 39.8 0 0 0-24-8m128 0h-64a39.8 39.8 0 0 0-24 8V88a24 24 0 0 1 24-24h64ZM160 88h40a8 8 0 0 1 0 16h-40a8 8 0 0 1 0-16m48 40a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8m0 32a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8\"/></g>", "cCmt": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232.07 186.76a80 80 0 0 0-62.5-114.17a80 80 0 1 0-145.64 66.17l-7.27 24.71a16 16 0 0 0 19.87 19.87l24.71-7.27a80.4 80.4 0 0 0 25.18 7.35a80 80 0 0 0 108.34 40.65l24.71 7.27a16 16 0 0 0 19.87-19.86ZM62 159.5a8.3 8.3 0 0 0-2.26.32L32 168l8.17-27.76a8 8 0 0 0-.63-6A64 64 0 1 1 65.8 160.5a8 8 0 0 0-3.8-1m153.79 28.73L224 216l-27.76-8.17a8 8 0 0 0-6 .63a64.05 64.05 0 0 1-85.87-24.88a79.93 79.93 0 0 0 70.33-93.87a64 64 0 0 1 41.75 92.48a8 8 0 0 0-.63 6.04Z\"/></g>", "cMore": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 88H48a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16m0 112H48v-96h160zM48 64a8 8 0 0 1 8-8h144a8 8 0 0 1 0 16H56a8 8 0 0 1-8-8m16-32a8 8 0 0 1 8-8h112a8 8 0 0 1 0 16H72a8 8 0 0 1-8-8\"/></g>"};
+Object.assign(ICON,PHOSPHOR);
+Object.assign(ICON,{
+vGrid:'<rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/>',
+vRows:'<rect x="4" y="4.5" width="5" height="6" rx="1.3"/><rect x="4" y="13.5" width="5" height="6" rx="1.3"/><path d="M12.5 6.2h7.5M12.5 9.2h4.5M12.5 15.2h7.5M12.5 18.2h4.5"/>',
+sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+sortd:'<path d="M7 4v16M3.5 16.5 7 20l3.5-3.5M17 20V4M13.5 7.5 17 4l3.5 3.5"/>'
+});
+const LGI={"arrow-clockwise": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4L184.81,71.64l-.25-.24a80,80,0,1,0-1.67,114.78,8,8,0,0,1,11,11.63A95.44,95.44,0,0,1,128,224h-1.32A96,96,0,1,1,195.75,60L224,85.8V56a8,8,0,1,1,16,0Z\"/></g>", "chat-circle-text": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M168,112a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,112Zm-8,24H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm72-8A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z\"/></g>", "check-circle": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z\"/></g>", "clock-countdown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232,136.66A104.12,104.12,0,1,1,119.34,24,8,8,0,0,1,120.66,40,88.12,88.12,0,1,0,216,135.34,8,8,0,0,1,232,136.66ZM120,72v56a8,8,0,0,0,8,8h56a8,8,0,0,0,0-16H136V72a8,8,0,0,0-16,0Zm40-24a12,12,0,1,0-12-12A12,12,0,0,0,160,48Zm36,24a12,12,0,1,0-12-12A12,12,0,0,0,196,72Zm24,36a12,12,0,1,0-12-12A12,12,0,0,0,220,108Z\"/></g>", "device-mobile": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16ZM72,64H184V192H72Zm8-32h96a8,8,0,0,1,8,8v8H72V40A8,8,0,0,1,80,32Zm96,192H80a8,8,0,0,1-8-8v-8H184v8A8,8,0,0,1,176,224Z\"/></g>", "house": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z\"/></g>", "pencil-simple": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z\"/></g>", "warning-circle": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z\"/></g>"};
+Object.assign(ICON,LGI);
+const ACI={"desktop": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24h72v16H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16H136V200h72a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40ZM48,56H208a8,8,0,0,1,8,8v80H40V64A8,8,0,0,1,48,56ZM208,184H48a8,8,0,0,1-8-8V160H216v16A8,8,0,0,1,208,184Z\"/></g>", "laptop": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232,168h-8V72a24,24,0,0,0-24-24H56A24,24,0,0,0,32,72v96H24a8,8,0,0,0-8,8v16a24,24,0,0,0,24,24H216a24,24,0,0,0,24-24V176A8,8,0,0,0,232,168ZM48,72a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8v96H48ZM224,192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8v-8H224ZM152,88a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,88Z\"/></g>", "device-tablet": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M192,24H64A24,24,0,0,0,40,48V208a24,24,0,0,0,24,24H192a24,24,0,0,0,24-24V48A24,24,0,0,0,192,24ZM56,72H200V184H56Zm8-32H192a8,8,0,0,1,8,8v8H56V48A8,8,0,0,1,64,40ZM192,216H64a8,8,0,0,1-8-8v-8H200v8A8,8,0,0,1,192,216Z\"/></g>", "x-circle": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z\"/></g>", "minus-circle": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176,128a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h80A8,8,0,0,1,176,128Zm56,0A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z\"/></g>", "checks": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M149.61,85.71l-89.6,88a8,8,0,0,1-11.22,0L10.39,136a8,8,0,1,1,11.22-11.41L54.4,156.79l84-82.5a8,8,0,1,1,11.22,11.42Zm96.1-11.32a8,8,0,0,0-11.32-.1l-84,82.5-18.83-18.5a8,8,0,0,0-11.21,11.42l24.43,24a8,8,0,0,0,11.22,0l89.6-88A8,8,0,0,0,245.71,74.39Z\"/></g>", "receipt": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z\"/></g>", "megaphone-simple": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.54,86.66l-176.06-54A16,16,0,0,0,32,48V192a16,16,0,0,0,16,16,16,16,0,0,0,4.52-.65L136,181.73V192a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16v-29.9l28.54-8.75A16.09,16.09,0,0,0,240,138V102A16.09,16.09,0,0,0,228.54,86.66ZM136,165,48,192V48l88,27Zm48,27H152V176.82L184,167Zm40-54-.11,0L152,160.08V79.92l71.89,22,.11,0v36Z\"/></g>", "subtitles": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,144H32V64H224V192ZM48,136a8,8,0,0,1,8-8H72a8,8,0,0,1,0,16H56A8,8,0,0,1,48,136Zm160,0a8,8,0,0,1-8,8H104a8,8,0,0,1,0-16h96A8,8,0,0,1,208,136Zm-48,32a8,8,0,0,1-8,8H56a8,8,0,0,1,0-16h96A8,8,0,0,1,160,168Zm48,0a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16h16A8,8,0,0,1,208,168Z\"/></g>", "cell-signal-low": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M88,152v48a8,8,0,0,1-16,0V152a8,8,0,0,1,16,0ZM40,184a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-8A8,8,0,0,0,40,184Z\"/></g>", "skip-forward": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M200,32a8,8,0,0,0-8,8v69.23L72.43,34.45A15.95,15.95,0,0,0,48,47.88V208.12a16,16,0,0,0,24.43,13.43L192,146.77V216a8,8,0,0,0,16,0V40A8,8,0,0,0,200,32ZM64,207.93V48.05l127.84,80Z\"/></g>", "user-circle": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z\"/></g>"};
+Object.assign(ICON,ACI);
+const CUR=-1;
+const NAVH=["../home/home-v3.html","../catalog/rollvana-archive.html","../catalog/rollvana-archive.html?k=series","../search/rollvana-search.html"];
+const {Fill,TALLY,DIGIT,stagger,Flip}=RVM;
+const TODAY=238,CUREND=262;
+const MONTHS=["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"];
+const ML=[31,31,31,31,31,31,30,30,30,30,30,29];
+function jd(doy){let y=1405;while(doy>365){doy-=365;y++}let m=0;while(doy>ML[m]){doy-=ML[m];m++}return {d:doy,m,y}}
+const jds=(doy,yr=true)=>{const j=jd(doy);return fa(j.d)+" "+MONTHS[j.m]+(yr?" "+fa(j.y):"")};
+const P={w1:["هفتگی",7,39000],m1:["یک‌ماهه",30,129000],m2:["دوماهه",60,239000],m3:["سه‌ماهه",90,349000],m4:["چهارماهه",120,449000],m6:["شش‌ماهه",180,649000],m9:["نه‌ماهه",270,899000],y1:["یک‌ساله",365,1190000],st:["طرح دانشجویی پاییز ۱۴۰۵ با تماشای آنلاین و دانلود همه‌ی فیلم‌ها و سریال‌ها",120,399000]};
+const mk=ids=>ids.map(id=>({id,n:P[id][0],d:P[id][1],p:P[id][2]})).sort((a,b)=>a.d-b.d);
+const SETS={three:mk(["y1","m1","m3"]),one:mk(["m3"]),eight:mk(["y1","m6","w1","m3","m9","m1","m4","m2"]),long:mk(["m1","st","y1"]),none:[]};
+const CODES={PAYIZ30:{t:"pct",v:30},RV50K:{t:"amt",v:50000},YALDA25:{e:"expired"},NOROOZ20:{e:"inactive"},TELEGRAM40:{e:"used"}};
+const REJ={unknown:"SALE99",expired:"YALDA25",inactive:"NOROOZ20",used:"TELEGRAM40"};
+const WHY={unknown:"این کد پیدا نشد. حروف و عددهایش را دوباره نگاه کنید.",expired:"مهلت استفاده از این کد تمام شده است.",inactive:"این کد فعلاً فعال نیست.",used:"ظرفیت این کد پر شده و دیگر نمی‌شود از آن استفاده کرد."};
+const STATES=[["guest","مهمان"],["guestgo","مهمان یک طرح را زد"],["back","برگشت پس از ورود، با طرح"],["nosub","عضو بی‌اشتراک"],["active","عضو با اشتراک فعال (تمدید)"],["activesum","تمدید: خلاصه و تاریخ پایان تازه"],["one","یک طرح"],["eight","هشت طرح"],["long","نام بلند طرح"],["none","هیچ طرح فعالی نیست"],["chosen","طرح انتخاب‌شده"],["codeempty","کد تخفیف، خالی"],["checking","در حال بررسی کد"],["pct","کد درصدی اعمال شد"],["amt","کد مبلغی اعمال شد"],["unknown","رد: کد ناشناخته"],["expired","رد: منقضی"],["inactive","رد: غیرفعال"],["used","رد: ظرفیت تمام"],["gateway","رفتن به درگاه"],["paid","نتیجه: پرداخت شد"],["failed","نتیجه: ناموفق"],["cancelled","نتیجه: لغو شد"],["confirming","نتیجه: در حال تأیید"]];
+const S0=STATES.some(x=>x[0]===Q.get("s"))?Q.get("s"):"nosub";
+const RQ=["err","no"].includes(Q.get("r"))?Q.get("r"):"ok";
+const LOGIN="../account/rollvana-login.html?s=empty";
+const FROM="../title/rollvana-title.html?kind=film";
+const toman=x=>faN(Math.round(+x/100)*100);
+const disc=(p,ap)=>!ap?0:ap.t==="pct"?Math.round(p*ap.v/10000)*100:Math.min(ap.v,p);
+function preset(s){
+  const o={guest:false,sub:"none",set:"three",sel:null,code:{open:false,val:"",st:"idle"},view:"plans",res:"ok",back:false};
+  const PCT={open:true,val:"PAYIZ30",st:"ok",ap:CODES.PAYIZ30};
+  if(s==="guest")o.guest=true;
+  if(s==="guestgo"){o.guest=true;o.view="guestgo";o.sel="m3"}
+  if(s==="back"){o.sel="m3";o.back=true}
+  if(s==="active"||s==="activesum"){o.sub="active";o.sel="m3"}
+  if(s==="one"){o.set="one";o.sel="m3"}
+  if(s==="eight")o.set="eight";
+  if(s==="long"){o.set="long";o.sel="st"}
+  if(s==="none")o.set="none";
+  if(["chosen","codeempty","checking","pct","amt","unknown","expired","inactive","used","gateway","paid","failed","cancelled","confirming"].includes(s))o.sel="m3";
+  if(s==="codeempty")o.code={open:true,val:"",st:"idle"};
+  if(s==="checking")o.code={open:true,val:"PAYIZ30",st:"busy"};
+  if(s==="pct")o.code=PCT;
+  if(s==="amt")o.code={open:true,val:"RV50K",st:"ok",ap:CODES.RV50K};
+  if(REJ[s])o.code={open:true,val:REJ[s],st:"err",err:s};
+  if(s==="gateway"){o.view="gateway";o.code=PCT}
+  if(s==="paid"){o.view="result";o.res="ok";o.code=PCT}
+  if(s==="failed"){o.view="result";o.res="err";o.code=PCT}
+  if(s==="cancelled"){o.view="result";o.res="no";o.code=PCT}
+  if(s==="confirming"){o.view="result";o.res="wait";o.code=PCT}
+  return o;
+}
+function Spin({reduced,cls}){
+  return html`<${motion.svg} class=${cls||"lg-sp"} viewBox="0 0 24 24" aria-hidden="true" animate=${reduced?{}:{rotate:360}} transition=${{duration:.8,ease:"linear",repeat:Infinity}}><circle class="tr" cx="12" cy="12" r="9"/><path class="ar" d="M12 3a9 9 0 0 1 9 9"/></${motion.svg}>`;
+}
+function DateRoll({doy,reduced}){
+  const j=jd(doy);
+  return html`<span class="sbd" role="text" aria-label=${jds(doy)}><span aria-hidden="true"><${AnimChars} text=${fa(j.d)}/></span><span aria-hidden="true"><${Flip} v=${MONTHS[j.m]} reduced=${reduced}/></span><span aria-hidden="true"><${AnimChars} text=${fa(j.y)}/></span></span>`;
+}
+function Head(){
+  return html`<header class="sbh">
+    <h1 id="h1" tabindex="-1">خرید اشتراک</h1>
+    <p class="sbh-u">با اشتراک، هر فیلم و سریالی را آنلاین ببینید یا دانلود کنید.</p>
+    <p class="sbh-f">گشتن در سایت، صفحه‌ی فیلم‌ها و سریال‌ها، جستجو و تریلرها بدون اشتراک هم باز است.</p>
+  </header>`;
+}
+function Now(){
+  return html`<section class="sbn" aria-label="اشتراک فعلی">
+    <div class="sbn-d"><b>${fa(CUREND-TODAY)}</b><small>روز مانده</small></div>
+    <div class="sbn-a"><b>اشتراک سه‌ماهه‌ی شما فعال است</b><span>تا <b>${jds(CUREND)}</b>. طرحی که حالا بخرید، روزهایش را بعد از این تاریخ اضافه می‌کند.</span></div>
+  </section>`;
+}
+function Plans({list,sel,onPick,reduced}){
+  const refs=useRef([]);
+  const idx=list.findIndex(p=>p.id===sel);
+  const n=list.length;
+  const key=(e,i)=>{const m={ArrowLeft:1,ArrowDown:1,ArrowRight:-1,ArrowUp:-1}[e.key];if(m){e.preventDefault();const j=(i+m+n)%n;refs.current[j]&&refs.current[j].focus();onPick(list[j].id,true)}};
+  const long=list.some(p=>p.n.length>40);
+  return html`<section class="sbx" aria-labelledby="plh">
+    <div class="sbx-h"><h2 id="plh">طرح‌های اشتراک</h2><small>${fa(n)} طرح</small></div>
+    <${LayoutGroup}><div class=${"pl"+(long?" long":"")} role="radiogroup" aria-labelledby="plh">
+      ${list.map((p,i)=>html`<${motion.button} type="button" role="radio" key=${p.id} class="pl-i" aria-checked=${p.id===sel} tabindex=${(idx<0?i===0:i===idx)?0:-1}
+          aria-label=${p.n+"، "+fa(p.d)+" روز، "+faN(p.p)+" تومان"} ref=${el=>refs.current[i]=el} onClick=${()=>onPick(p.id)} onKeyDown=${e=>key(e,i)} whileTap=${reduced?undefined:{scale:.985}} transition=${SPR}>
+        ${p.id===sel&&html`<${motion.span} class="pl-m" layoutId="plmark" aria-hidden="true" transition=${reduced?{duration:0}:MARK}/>`}
+        <span class="pl-r" aria-hidden="true"><${AnimatePresence} initial=${false}>${p.id===sel&&html`<${motion.b} key="d" initial=${{scale:0}} animate=${{scale:1}} exit=${{scale:0,transition:{duration:.12,ease:EASE_IN}}} transition=${reduced?{duration:0}:SNAP}/>`}</${AnimatePresence}></span>
+        <span class="pl-a" aria-hidden="true"><span class="pl-n">${p.n}</span><span class="pl-d">${fa(p.d)} روز</span></span>
+        <span class="pl-p" aria-hidden="true"><b>${faN(p.p)}</b><small>تومان</small></span>
+      </${motion.button}>`)}
+    </div></${LayoutGroup}>
+  </section>`;
+}
+function NoPlans(){
+  return html`<div class="emp sbz" role="status">
+    <span class="eg"><${I} n="crown"/></span>
+    <h2>فعلاً طرح اشتراکی برای خرید نیست</h2>
+    <p>طرح‌های تازه همین‌جا می‌آیند. تا آن موقع می‌توانید بگردید، جستجو کنید و تریلرها را ببینید.</p>
+    <${motion.a} class="acg" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی<${I} n="left"/></${motion.a}>
+  </div>`;
+}
+function Code({c,act,reduced}){
+  const inp=useRef();
+  useEffect(()=>{if(c.open&&c.focus&&c.st==="idle"){const t=setTimeout(()=>inp.current&&inp.current.focus({preventScroll:true}),60);return()=>clearTimeout(t)}},[c.open,c.focus,c.st]);
+  const ok=c.st==="ok",busy=c.st==="busy",err=c.st==="err";
+  const hint=err?["e"+c.err,WHY[c.err]]:busy?["b","در حال بررسی کد…"]:ok?["o",c.ap.t==="pct"?fa(c.ap.v)+"٪ از قیمت طرح کم شد.":faN(c.ap.v)+" تومان از قیمت طرح کم شد."]:["i","برای هر پرداخت یک کد."];
+  return html`<div class="sbc">
+    <${AnimatePresence} initial=${false} mode="popLayout">
+      ${!c.open?html`<${motion.button} key="o" type="button" class="sbc-o" aria-expanded="false" aria-controls="code" onClick=${act.openCode} whileTap=${PRESS}
+          exit=${reduced?{opacity:0}:{opacity:0,y:-6,filter:"blur(6px)",transition:{duration:.18,ease:EASE_IN}}}><${I} n="plus"/>کد تخفیف دارید؟</${motion.button}>`
+      :html`<${motion.div} key="w" class="sbc-w" id="code" initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} style=${{overflow:"hidden"}}
+          transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>
+        <label class="sbc-l" for="ci">کد تخفیف</label>
+        <div class=${ok?"sbc-a":"sf sbc-f"+(err?" is-err":"")}>
+          <${Cross} k=${ok?"a":"f"} reduced=${reduced} dur=${.32}>
+            ${ok?html`<span class="sbc-q ap"><${I} n="check-circle"/><span><code>${c.val}</code><small>${c.ap.t==="pct"?fa(c.ap.v)+"٪ تخفیف":faN(c.ap.v)+" تومان تخفیف"}</small></span>
+                <${motion.button} type="button" class="sbc-x" onClick=${act.remove} whileTap=${PRESS} aria-label=${"برداشتن کد "+c.val}>برداشتن</${motion.button}></span>`
+            :html`<span class="sbc-q"><input id="ci" ref=${inp} value=${c.val} onInput=${e=>act.type(e.target.value)} onKeyDown=${e=>{if(e.key==="Enter"){e.preventDefault();act.apply()}}}
+                  placeholder="کد را اینجا بنویسید" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" readonly=${busy}
+                  aria-invalid=${err} aria-describedby="ch"/>
+                <${motion.button} type="button" class="sbc-b" onClick=${act.apply} aria-disabled=${!c.val||busy} aria-busy=${busy} whileTap=${c.val&&!busy?PRESS:undefined}>
+                  <${Cross} k=${busy?"s":"t"} reduced=${reduced} dur=${.28}>${busy?html`<${Spin} reduced=${reduced} cls="sf-sp"/>`:html`<span>اعمال</span>`}</${Cross}>
+                </${motion.button}></span>`}
+          </${Cross}>
+        </div>
+        <p id="ch" class=${"sf-h sbc-h"+(err?" is-err":"")+(ok?" is-ok":"")}><span class="sbc-hg" aria-hidden="true"><${AnimatePresence} initial=${false}>${err&&html`<${motion.span} key="w" initial=${reduced?{opacity:0}:{scale:.5,opacity:0}} animate=${{scale:1,opacity:1}} exit=${reduced?{opacity:0}:{scale:.5,opacity:0,transition:{duration:.15,ease:EASE_IN}}} transition=${reduced?{duration:.15}:SNAP}><${I} n="warning-circle"/></${motion.span}>`}</${AnimatePresence}></span><span><${Words} text=${hint[1]} k=${hint[0]} reduced=${reduced} stagger=${.02}/></span></p>
+      </${motion.div}>`}
+    </${AnimatePresence}>
+  </div>`;
+}
+function Lines({plan,dv,total,ap,reduced}){
+  return html`<div class="sbl">
+    <div class="sbl-r"><span>قیمت طرح</span><b><${Count} v=${plan.p} fmt=${toman}/> <small>تومان</small></b></div>
+    <${AnimatePresence} initial=${false}>${dv>0&&html`<${motion.div} key="d" class="sbl-o"
+        initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${reduced?{opacity:0}:{height:0,opacity:0,transition:{duration:.22,ease:EASE_IN}}}
+        transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>
+      <div class="sbl-r d"><span>تخفیف${ap&&ap.t==="pct"?" ("+fa(ap.v)+"٪)":""}</span><b><${Count} v=${dv} fmt=${toman}/> <small>تومان</small></b></div>
+    </${motion.div}>`}</${AnimatePresence}>
+    <div class="sbl-t"><span>مبلغ پرداخت</span><b><${Count} v=${total} fmt=${toman}/><small>تومان</small></b></div>
+  </div>`;
+}
+function EndDate({plan,end,active,reduced}){
+  return html`<div class="sbe"><${I} n="cal"/><span>
+    <span class="sbe-u">اشتراک شما تا <b><${DateRoll} doy=${end} reduced=${reduced}/></b></span>
+    <small>${active?html`<${Count} v=${plan.d} fmt=${fa}/> روز بعد از پایان اشتراک فعلی، <b>${jds(CUREND,false)}</b>، اضافه می‌شود.`:html`از امروز، <b>${jds(TODAY,false)}</b>، به مدت <${Count} v=${plan.d} fmt=${fa}/> روز.`}</small>
+  </span></div>`;
+}
+function PayBtn({plan,total,act,reduced}){
+  return html`<${motion.button} type="button" class="cta lg-cta" onClick=${act.pay} disabled=${!plan} whileTap=${plan&&!reduced?{scale:.97}:undefined}>
+    <span class="lg-cl"><${Cross} k=${plan?"pay":"pick"} reduced=${reduced} dur=${.3}>${plan?html`<span>پرداخت <${Count} v=${total} fmt=${toman}/> تومان</span>`:html`<span>یک طرح را انتخاب کنید</span>`}</${Cross}></span>
+  </${motion.button}>`;
+}
+function Card({st,act,plan,dv,total,end,ap,reduced}){
+  if(st.guest)return html`<div class="sbs-c">
+    <div class="sbs-k">خرید اشتراک</div>
+    <div class="sbs-n">اول وارد شوید</div>
+    <p class="sbs-g">هر طرحی را بزنید به صفحه‌ی ورود می‌روید و پس از ورود، با همان طرح به همین‌جا برمی‌گردید.</p>
+    <${motion.a} class="cta lg-cta" href=${LOGIN} whileTap=${{scale:.97}}>ورود به حساب</${motion.a}>
+  </div>`;
+  if(!plan)return html`<div class="sbs-c">
+    <div class="sbs-k">طرح انتخاب‌شده</div>
+    <div class="sbs-n is-none">هنوز طرحی انتخاب نکرده‌اید</div>
+    <p class="sbs-g">از فهرست طرح‌ها یکی را بزنید؛ قیمت، کد تخفیف و تاریخ پایان اشتراک همین‌جا می‌آید.</p>
+    <${PayBtn} plan=${null} total=${0} act=${act} reduced=${reduced}/>
+  </div>`;
+  return html`<div class="sbs-c">
+    <div class="sbs-k">طرح انتخاب‌شده</div>
+    <div class="sbs-n"><${Words} text=${plan.n} k=${plan.id} reduced=${reduced} stagger=${.02}/></div>
+    <${Code} c=${st.code} act=${act} reduced=${reduced}/>
+    <${Lines} plan=${plan} dv=${dv} total=${total} ap=${ap} reduced=${reduced}/>
+    <${EndDate} plan=${plan} end=${end} active=${st.sub==="active"} reduced=${reduced}/>
+    <p class="sbs-g">پرداخت در درگاه بانکی انجام می‌شود و پس از آن به همین‌جا برمی‌گردید.</p>
+    <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced}/>
+  </div>`;
+}
+function GuestGo({plan,reduced}){
+  return html`<div class="go lg-go acgo sbo" role="status">
+    <span class="go-p lg-hm"><${I} n="lock"/></span>
+    <span class="go-k">برای خرید، اول وارد شوید</span>
+    <h2 id="h1" tabindex="-1">رفتن به صفحه‌ی ورود</h2>
+    <span class="go-k">پس از ورود، با طرح <b>«${plan.n}»</b> به همین صفحه برمی‌گردید.</span>
+    <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${900} reduced=${reduced} k="g" cls="go-f"/></span>
+    <a class="go-l" href=${LOGIN}>اگر صفحه‌ی ورود باز نشد، اینجا را بزنید</a>
+  </div>`;
+}
+function Gateway({plan,total,reduced}){
+  return html`<div class="go sbo" role="status">
+    <span class="go-p lg-hm"><${I} n="lock"/></span>
+    <span class="go-k">در حال رفتن به درگاه پرداخت</span>
+    <h2 id="h1" tabindex="-1">${faN(total)} تومان</h2>
+    <span class="go-k">اشتراک <b>${plan.n}</b>، ${fa(plan.d)} روز</span>
+    <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${1600} reduced=${reduced} k="p" cls="go-f"/></span>
+    <a class="go-l" href="#">اگر درگاه باز نشد، اینجا را بزنید</a>
+  </div>`;
+}
+const RK={ok:["پرداخت شد","اشتراک شما فعال است"],err:["ناموفق","پرداخت انجام نشد"],no:["لغو شد","پرداخت را لغو کردید"],wait:["در انتظار تأیید","پرداخت در حال تأیید است"]};
+function Glyph({r,reduced}){
+  const draw=(d,i=0)=>html`<${motion.path} class="ck" d=${d} initial=${reduced?false:{pathLength:0}} animate=${{pathLength:1}} transition=${{duration:.45,delay:.12+i*.12,ease:EASE}}/>`;
+  if(r==="wait")return html`<${Spin} reduced=${reduced}/>`;
+  return html`<svg viewBox="0 0 24 24" aria-hidden="true">${r==="ok"?draw("M5 12.5l4.6 4.6L19 7.6"):r==="err"?[draw("M7 7l10 10"),draw("M17 7L7 17",1)]:draw("M6.5 12h11")}</svg>`;
+}
+function Result({st,act,plan,total,end,reduced}){
+  const r=st.res;
+  return html`<div class="lg-in sbr" role="status" aria-live="polite">
+    <${motion.div} class=${"sbr-g "+r} initial=${reduced?false:{scale:.84}} animate=${{scale:1}} transition=${{type:"spring",stiffness:300,damping:15}}>
+      <${Cross} k=${r} reduced=${reduced} dur=${.32}><${Glyph} r=${r} reduced=${reduced}/></${Cross}>
+    </${motion.div}>
+    <span class=${"sbr-k "+r}><${Words} text=${RK[r][0]} k=${"k"+r} reduced=${reduced}/></span>
+    <h1 id="h1" tabindex="-1"><${Words} text=${RK[r][1]} k=${"h"+r} reduced=${reduced}/></h1>
+    <${Fade} k=${r} reduced=${reduced} delay=${.2} cls="sbr-b">
+      ${r==="ok"&&html`<${React.Fragment}>
+        <div class="sbr-u"><small>اشتراک فعال تا</small><b>${jds(end)}</b></div>
+        <p class="sbr-x">از همین حالا همه‌ی فیلم‌ها و سریال‌ها را آنلاین ببینید یا دانلود کنید.</p>
+        <div class="acl sbr-l">
+          <div class="acy"><span class="acy-a"><b>طرح</b></span><span class="acy-b"><b>${plan.n}</b></span></div>
+          <div class="acy"><span class="acy-a"><b>مبلغ پرداخت‌شده</b></span><span class="acy-b"><b>${faN(total)} <small>تومان</small></b></span></div>
+          <div class="acy"><span class="acy-a"><b>کد پیگیری</b></span><span class="acy-b"><b><bdi>${fa("274910385")}</bdi></b></span></div>
+        </div>
+        <div class="sbr-a">
+          <${motion.a} class="cta lg-cta" href=${FROM} whileTap=${{scale:.97}}>ادامه‌ی تماشای «تلماسه: بخش دوم»</${motion.a}>
+          <${motion.a} class="acg" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی</${motion.a}>
+        </div>
+      </${React.Fragment}>`}
+      ${(r==="err"||r==="no")&&html`<${React.Fragment}>
+        <p class="sbr-x">${r==="err"?"اشتراک شما تغییری نکرد.":"اشتراک شما تغییری نکرد. هر وقت خواستید، دوباره امتحان کنید."}</p>
+        ${r==="err"&&html`<div class="sbr-m"><small>پیام درگاه پرداخت</small><q>موجودی حساب کافی نیست</q></div>`}
+        <div class="acl sbr-l">
+          <div class="acy"><span class="acy-a"><b>طرح</b></span><span class="acy-b"><b>${plan.n}</b></span></div>
+          <div class="acy"><span class="acy-a"><b>مبلغ</b></span><span class="acy-b"><b>${faN(total)} <small>تومان</small></b></span></div>
+        </div>
+        <div class="sbr-a">
+          <${motion.button} type="button" class="cta lg-cta" onClick=${act.retry} whileTap=${{scale:.97}}>تلاش دوباره</${motion.button}>
+          <${motion.button} type="button" class="acg" onClick=${act.plans} whileTap=${PRESS}>برگشت به طرح‌ها</${motion.button}>
+        </div>
+      </${React.Fragment}>`}
+      ${r==="wait"&&html`<p class="sbr-x">چند ثانیه صبر کنید؛ نتیجه همین‌جا می‌آید. لطفاً این صفحه را نبندید.</p>`}
+    </${Fade}>
+  </div>`;
+}
+function Review(){
+  const nav=p=>{const u=new URL(location.href);Object.entries(p).forEach(([k,v])=>v==null?u.searchParams.delete(k):u.searchParams.set(k,v));location.href=u};
+  return html`<section class="review" aria-label="حالت‌های طرح">
+    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: طرح را بزنید، کد تخفیف بنویسید (PAYIZ30 درصدی، RV50K مبلغی، YALDA25 منقضی، NOROOZ20 غیرفعال، TELEGRAM40 ظرفیت تمام، هر کد دیگر ناشناخته) و پرداخت را بزنید. امروز ۲۲ آبان ۱۴۰۵ فرض شده؛ طرح‌ها، مبلغ‌ها و کدها نمونه‌اند.</span>
+    <div class="grp"><span>حالت</span><div>${STATES.map(([k,l])=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${S0===k} onClick=${()=>nav({s:k})}>${l}</${motion.button}>`)}</div></div>
+    <div class="grp"><span>نتیجه‌ی درگاه وقتی در صفحه‌ی زنده «پرداخت» را می‌زنید</span><div>${[["ok","موفق (پس از تأیید)"],["err","ناموفق (پس از تأیید)"],["no","لغو"]].map(([k,l])=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${RQ===k} onClick=${()=>nav({r:k==="ok"?null:k})}>${l}</${motion.button}>`)}</div></div>
+    <div class="grp"><span>نشانی‌ها</span><code dir="ltr">/subscribe</code><code dir="ltr">/subscribe?plan=m3</code><code dir="ltr">/subscribe/result?payment=…</code><code dir="ltr">${"guest → /login?next=/subscribe?plan=m3"}</code></div>
+    <a class="syslink" href="../system/rollvana-design-system.html#subscription">سیستم طراحی، بخش خرید اشتراک ←</a>
+  </section>`;
+}
+function App(){
+  const desk=useDesk();const reduced=useReducedMotion();
+  const [st,set]=useState(()=>preset(S0));
+  const up=p=>set(o=>{const x=typeof p==="function"?p(o):p;return x===o?o:{...o,...x}});
+  const tm=useRef([]);const later=(f,ms)=>tm.current.push(setTimeout(f,ms));
+  useEffect(()=>()=>tm.current.forEach(clearTimeout),[]);
+  const [say,setSay]=useState("");
+  const first=useRef(true);
+  useEffect(()=>{if(innerWidth<1024&&["activesum","codeempty","checking","pct","amt","unknown","expired","inactive","used"].includes(S0)){const c=document.querySelector(".sbs-c");c&&c.scrollIntoView({block:"center"})}},[]);
+  useEffect(()=>{if(first.current){first.current=false;return}requestAnimationFrame(()=>{const h=document.getElementById("h1");h&&h.focus({preventScroll:true})})},[st.view]);
+  useEffect(()=>{if(st.view==="result"&&st.res==="wait"){const t=setTimeout(()=>{up({res:RQ==="err"?"err":"ok"});setSay(RQ==="err"?"پرداخت انجام نشد":"پرداخت شد، اشتراک فعال است")},3200);return()=>clearTimeout(t)}},[st.view,st.res]);
+  const list=SETS[st.set];const plan=list.find(p=>p.id===st.sel)||null;
+  const ap=st.code.st==="ok"?st.code.ap:null;
+  const dv=plan?disc(plan.p,ap):0;const total=plan?plan.p-dv:0;
+  const end=plan?(st.sub==="active"?Math.max(TODAY,CUREND):TODAY)+plan.d:null;
+  const top=()=>scrollTo({top:0,behavior:"auto"});
+  const act={
+    pick:(id,kb)=>{if(st.guest){if(kb)return;up({sel:id,view:"guestgo"});top();return}up({sel:id,back:false});setSay("طرح "+P[id][0]+" انتخاب شد")},
+    openCode:()=>up(o=>({code:{...o.code,open:true,focus:true}})),
+    type:v=>up(o=>({code:{...o.code,val:v.toUpperCase().replace(/\s/g,""),st:o.code.st==="busy"?"busy":"idle",err:null,focus:false}})),
+    apply:()=>{const v=st.code.val;if(!v||st.code.st==="busy")return;up(o=>({code:{...o.code,st:"busy"}}));
+      later(()=>{const c=CODES[v];if(c&&!c.e){up(o=>({code:{...o.code,st:"ok",ap:c}}));setSay("کد تخفیف اعمال شد")}else{const e=c?c.e:"unknown";up(o=>({code:{...o.code,st:"err",err:e}}));setSay(WHY[e])}},900)},
+    remove:()=>{up({code:{open:true,val:"",st:"idle",focus:true}});setSay("کد تخفیف برداشته شد")},
+    pay:()=>{if(!plan)return;up({view:"gateway"});top();later(()=>up({view:"result",res:RQ==="no"?"no":"wait"}),1900)},
+    retry:()=>{up({view:"plans",res:"ok"});top()},
+    plans:()=>{up({view:"plans",res:"ok",code:{open:false,val:"",st:"idle"}});top()}
+  };
+  const card=html`<${Card} st=${st} act=${act} plan=${plan} dv=${dv} total=${total} end=${end} ap=${ap} reduced=${reduced}/>`;
+  let body;
+  if(st.view==="plans")body=html`<${Fade} k="plans" cls="sbp-in" reduced=${reduced}>
+      <${Head}/>
+      ${st.back&&html`<div class="sbk ok" role="status"><${I} n="check-circle"/><span>وارد شدید. طرح <b>«${plan.n}»</b> را برایتان نگه داشتیم.</span></div>`}
+      ${st.guest&&html`<div class="sbk gu"><${I} n="lock"/><span>برای خرید، اول وارد شوید. هر طرحی را بزنید، پس از ورود با همان طرح به اینجا برمی‌گردید.</span></div>`}
+      ${!st.guest&&st.sub==="active"&&html`<${Now}/>`}
+      ${list.length?html`<${Plans} list=${list} sel=${st.guest?null:st.sel} onPick=${act.pick} reduced=${reduced}/>`:html`<${NoPlans}/>`}
+      ${list.length>0&&(desk?html`<aside class="sbs" aria-label="خلاصه‌ی خرید">${card}</aside>`
+        :html`<${AnimatePresence} initial=${false}>${plan&&!st.guest&&html`<${motion.section} key="s" class="sbs" aria-label="خلاصه‌ی خرید" style=${{overflow:"hidden"}}
+            initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} exit=${{height:0,opacity:0}}
+            transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>${card}</${motion.section}>`}</${AnimatePresence}>`)}
+    </${Fade}>`;
+  else if(st.view==="guestgo")body=html`<${Fade} k="gg" cls="lg-in" reduced=${reduced}><${GuestGo} plan=${plan} reduced=${reduced}/></${Fade}>`;
+  else if(st.view==="gateway")body=html`<${Fade} k="gw" cls="lg-in" reduced=${reduced}><${Gateway} plan=${plan} total=${total} reduced=${reduced}/></${Fade}>`;
+  else body=html`<${Fade} k="rs" reduced=${reduced}><${Result} st=${st} act=${act} plan=${plan} total=${total} end=${end} reduced=${reduced}/></${Fade}>`;
+  const bar=!desk&&st.view==="plans"&&plan&&!st.guest&&list.length>0;
+  return html`<${React.Fragment}>
+    <${Header} user=${!st.guest} desk=${desk}/>
+    <main class="sbp" id="page">${body}</main>
+    <div class="sbv"><${Review}/></div>
+    <p class="acsr" role="status" aria-live="polite">${say}</p>
+    <${AnimatePresence} initial=${false}>${bar&&html`<${motion.div} key="bar" class="sbbar"
+        initial=${reduced?{opacity:0}:{y:"110%"}} animate=${{y:"0%",opacity:1}} exit=${reduced?{opacity:0}:{y:"110%",transition:{duration:.22,ease:EASE_IN}}} transition=${reduced?{duration:.15}:PANEL}>
+      <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced}/>
+    </${motion.div}>`}</${AnimatePresence}>
+  </${React.Fragment}>`;
+}
+ReactDOM.createRoot(document.getElementById("app")).render(html`<${App}/>`);
+</script>
+</body></html>
