@@ -882,6 +882,18 @@ function Review2({st,set}){
 const TITLE_ASSETS=[FILM,SERIES_T].flatMap(t=>[M("b-"+t.s+".jpg"),M("l-"+t.s+".png")]).concat([1,2].flatMap(s=>SEV_EP[s].map((_,k)=>M("e-sev-"+s+"-"+(k+1)+".jpg")))).concat([0,1,2,3,4,5,6,7].flatMap(k=>[M("c-dune-"+k+".jpg"),M("c-sev-"+k+".jpg")]));
 const T_READY=Promise.race([Promise.all(TITLE_ASSETS.map(src=>new Promise(r=>{const i=new Image();i.onload=()=>(i.decode?i.decode().catch(()=>{}):Promise.resolve()).then(r);i.onerror=r;i.src=src}))),new Promise(r=>setTimeout(r,10000))]);
 
+const FT_TG='<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>';
+const FT_IG='<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>';
+const FT_COLS=[["تماشا",["فیلم‌ها","سریال‌ها","۲۵۰ فیلم برتر","تقویم پخش"]],["رول‌وانا",["مجله‌ی رول‌وانا","فیلم‌بازها","خرید اشتراک","اپلیکیشن‌ها"]],["راهنما",["پرسش‌های رایج","تماس با ما","قوانین","حریم خصوصی"]]];
+function Footer(){
+  const Ic=d=>html`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:d}}></svg>`;
+  return html`<footer class="ft"><div class="fti">
+    <div class="ftb"><img src="../brand/rollvana-lockup-dark.svg" alt="Rollvana"/><p>حس خلسه‌ی تماشای فیلم و سریال؛ با دوبله و زیرنویس فارسی، هر جا که هستی.</p>
+      <div class="ftso"><a href="#" aria-label="رول‌وانا در تلگرام">${Ic(FT_TG)}</a><a href="#" aria-label="رول‌وانا در اینستاگرام">${Ic(FT_IG)}</a></div></div>
+    ${FT_COLS.map(([h,l])=>html`<nav class="ftc" key=${h} aria-label=${h}><h3>${h}</h3><ul>${l.map(x=>html`<li key=${x}><a href="#">${x}</a></li>`)}</ul></nav>`)}
+    <div class="ftl"><span>© ۱۴۰۵ رول‌وانا، همه‌ی حقوق محفوظ است</span></div>
+  </div></footer>`;
+}
 function App(){
   const desk=useDesk();const reduced=useReducedMotion();
   const qp=k=>{const v=Q.get(k);const m=v&&v.match(/^(\d+)-(\d+)$/);return m?[+m[1],+m[2]]:null};
@@ -924,8 +936,8 @@ function App(){
           ${t.music.length>0&&html`<${Chap} icon="cMusic" id="s-music" title="موسیقی"><${Music} t=${t}/></${Chap}>`}
           <${Chap} icon="cCmt" id="s-cmt" title="نظرها" ><${Comments} key=${t.s} t=${t} access=${st.access} vote=${vote} cerr=${st.cerr} rep=${rep}/></${Chap}>
           <${Chap} icon="cMore" id="s-more" title="مشابه" sub=${t.kind==="film"?"بقیه‌ی مجموعه و عنوان‌هایی در همین حال‌وهوا":"اگر "+t.en+" را دوست دارید"}>${t.kind==="film"&&html`<${Posters} title="مجموعه‌ی تلماسه" items=${t.franchise} cur=${t.s}/>`}<${Posters} title=${t.kind==="film"?"عنوان‌های مشابه":""} items=${t.similar}/><${ULists} t=${t}/></${Chap}>
-          </div></div><${Review2} st=${st} set=${setSt}/>
-        </div>`}
+          </div></div>
+        </div><${Footer}/><div class="body rvw"><${Review2} st=${st} set=${setSt}/></div>`}
       </${motion.div}>
     </${AnimatePresence}>
     <${AnimatePresence}>

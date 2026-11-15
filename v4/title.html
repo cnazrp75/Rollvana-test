@@ -1,0 +1,550 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rollvana Title</title><meta name="theme-color" content="#0A0A0C">
+<link rel="preload" href="../home/media/vendor/iranyekanx.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:IRANYekanX;src:url(../home/media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:swap}
+/* Rollvana v4 · one system for every page
+   Rules: one neutral canvas, one brand colour used only for state (active, progress, focus),
+   8pt spacing, large section gaps, one card per job. */
+:root{
+  --bg:#0A0A0C; --s1:#131317; --s2:#1A1A1F; --s3:#232329;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
+  --tx:#F3F3F6; --tx2:rgba(243,243,246,.66); --tx3:rgba(243,243,246,.42);
+  --brand:#9A86FF; --gold:#F2C46B; --pos:#5FD394; --neg:#EE7E7E;
+  --f:IRANYekanX,system-ui,sans-serif;
+  --wrap:1240px; --pad:40px; --gap:88px;
+  --r:12px; --r2:18px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (max-width:900px){:root{--pad:24px;--gap:64px}}
+@media (max-width:560px){:root{--pad:18px;--gap:52px}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color-scheme:dark;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:400 15px/1.8 var(--f);-webkit-font-smoothing:antialiased;font-feature-settings:"ss01";overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block;max-width:100%}
+svg.i{width:20px;height:20px;flex:none;fill:currentColor}
+.en{font-family:var(--f);direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:8px}
+
+/* ---------- header (same on every page) ---------- */
+.hd{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.hd.solid{background:rgba(10,10,12,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-color:var(--line)}
+.hd .wrap{height:72px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{height:20px;width:auto;fill:#fff}
+.logo .sym{height:24px}
+.nav{display:flex;gap:28px;font-size:14px;color:var(--tx2)}
+.nav a{position:relative;padding:6px 0;transition:color .2s}
+.nav a:hover{color:var(--tx)}
+.nav a.on{color:var(--tx)}
+.nav a.on::after{content:"";position:absolute;inset:auto 0 -2px;height:2px;border-radius:2px;background:var(--brand)}
+.hd .end{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+.ib{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--tx2);transition:background .2s,color .2s}
+.ib:hover{background:rgba(255,255,255,.08);color:var(--tx)}
+.av{width:32px;height:32px;border-radius:50%;background:var(--s3);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--tx2)}
+@media (max-width:900px){.nav{display:none}.hd .wrap{height:60px}}
+
+/* bottom bar on phones (same on every page) */
+.tb{display:none}
+@media (max-width:900px){
+  .tb{display:flex;position:fixed;inset:auto 0 0;z-index:50;background:rgba(10,10,12,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+  .tb a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--tx3)}
+  .tb a.on{color:var(--tx)}
+  .tb a.on svg{color:var(--brand)}
+  body{padding-bottom:72px}
+}
+
+/* ---------- buttons (same on every page) ---------- */
+.btn{height:48px;padding:0 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:700;white-space:nowrap;transition:transform .2s var(--ease),background .2s}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:#fff;color:#0A0A0C}
+.btn.pri:hover{background:#E6E6EC}
+.btn.sec{background:rgba(255,255,255,.1);color:var(--tx)}
+.btn.sec:hover{background:rgba(255,255,255,.16)}
+.btn.ic{width:48px;padding:0}
+.btn small{font-weight:500;opacity:.6;font-size:13px}
+.lnk{display:inline-flex;align-items:center;gap:4px;font-size:14px;color:var(--tx2);transition:color .2s}
+.lnk:hover{color:var(--tx)}
+.lnk svg{width:16px;height:16px}
+
+/* ---------- hero (same component on home and title) ---------- */
+.hero{position:relative;min-height:min(86vh,820px);display:flex;align-items:flex-end;isolation:isolate}
+.hero.sm{min-height:min(76vh,720px)}
+.hero .bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.hero .bg img{width:100%;height:100%;object-fit:cover;transition:opacity .9s var(--ease)}
+.hero .bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(to top,var(--bg) 2%,rgba(10,10,12,.72) 34%,rgba(10,10,12,.12) 70%,rgba(10,10,12,.5)),
+  linear-gradient(to left,rgba(10,10,12,.78),rgba(10,10,12,0) 62%)}
+.hero .wrap{width:100%;padding-bottom:56px}
+.hc{max-width:560px}
+.eyebrow{font-size:13px;color:var(--tx2);display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
+.hero h1{font-size:48px;line-height:1.2;font-weight:800;letter-spacing:-.01em;margin:12px 0 4px}
+.hero .en-t{font-size:14px;color:var(--tx3);display:block;text-align:right}
+.hero p.syn{margin-top:20px;color:var(--tx2);font-size:15px;line-height:1.9;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acts{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.score{display:inline-flex;align-items:center;gap:6px;color:var(--tx);font-weight:700}
+.score svg{width:16px;height:16px;color:var(--gold)}
+.tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--tx)}
+@media (max-width:560px){
+  .hero{min-height:78vh}.hero.sm{min-height:70vh}
+  .hero h1{font-size:32px}
+  .hero .wrap{padding-bottom:32px}
+  .acts .btn.pri{flex:1}
+}
+
+/* ---------- sections ---------- */
+.section{margin-top:var(--gap)}
+.sh{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:24px}
+.sh h2{font-size:22px;font-weight:800;letter-spacing:-.005em}
+.sh p{font-size:13px;color:var(--tx3);margin-top:2px}
+.row{display:grid;gap:24px 20px;grid-template-columns:repeat(6,minmax(0,1fr))}
+.row.w{grid-template-columns:repeat(4,minmax(0,1fr))}
+.row.w3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){
+  .row,.row.w,.row.w3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad);scrollbar-width:none}
+  .row::-webkit-scrollbar{display:none}
+  .row>*{flex:0 0 38%;scroll-snap-align:start}
+  .row.w>*,.row.w3>*{flex:0 0 72%}
+}
+@media (max-width:560px){.row>*{flex-basis:42%}.row.w>*,.row.w3>*{flex-basis:80%}}
+
+/* poster card · one style everywhere */
+.pc{display:block}
+.pc .im{aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;background:var(--s1);position:relative}
+.pc .im img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pc:hover .im img{transform:scale(1.04)}
+.pc h3{font-size:14px;font-weight:700;margin-top:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{font-size:12.5px;color:var(--tx3);display:flex;align-items:center;gap:8px;margin-top:2px;white-space:nowrap}
+.meta .score{font-weight:600;color:var(--tx2);gap:4px}
+.meta .score svg{width:13px;height:13px}
+.meta .new{color:var(--brand);font-weight:600}
+
+/* wide card · continue watching, episodes, articles */
+.wc{display:block}
+.wc .im{aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--s1);position:relative}
+.wc .im img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.wc:hover .im img{transform:scale(1.03)}
+.wc .pb{position:absolute;inset:auto 12px 12px;height:3px;border-radius:3px;background:rgba(255,255,255,.22);overflow:hidden}
+.wc .pb i{display:block;height:100%;background:var(--brand);border-radius:3px}
+.wc .pl{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .25s;background:rgba(0,0,0,.25)}
+.wc .pl span{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);color:#0A0A0C;display:grid;place-items:center}
+.wc:hover .pl{opacity:1}
+.wc h3{font-size:15px;font-weight:700;margin-top:12px;line-height:1.6}
+.wc .k{font-size:12px;color:var(--tx3)}
+
+/* ---------- tabs (title page; same underline as the nav) ---------- */
+.tabs{position:sticky;top:72px;z-index:40;background:rgba(10,10,12,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:32px;overflow-x:auto;scrollbar-width:none}
+.tabs button{position:relative;padding:18px 0;font-size:15px;font-weight:600;color:var(--tx3);white-space:nowrap;transition:color .2s}
+.tabs button:hover{color:var(--tx2)}
+.tabs button.on{color:var(--tx)}
+.tabs button.on::after{content:"";position:absolute;inset:auto 0 -1px;height:2px;border-radius:2px;background:var(--brand)}
+.tabs button sup{font-size:11px;color:var(--tx3);margin-inline-start:4px;top:-.3em}
+@media (max-width:900px){.tabs{top:60px}.tabs .wrap{gap:24px}}
+
+/* segmented control */
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--s1);gap:2px}
+.seg button{height:36px;padding:0 18px;border-radius:999px;font-size:14px;font-weight:600;color:var(--tx3);transition:background .2s,color .2s}
+.seg button.on{background:var(--s3);color:var(--tx)}
+
+/* plain lists */
+.dl{display:grid;grid-template-columns:auto 1fr;gap:14px 32px;font-size:14px}
+.dl dt{color:var(--tx3)}
+.dl dd{color:var(--tx)}
+
+/* ---------- footer (same on every page) ---------- */
+.ft{margin-top:calc(var(--gap) * 1.4);border-top:1px solid var(--line);padding:48px 0 56px;color:var(--tx3);font-size:13px}
+.ft .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center}
+.ft .logo svg{height:16px;fill:var(--tx2)}
+.ft nav{display:flex;gap:24px;flex-wrap:wrap}
+.ft nav a:hover{color:var(--tx)}
+.ft .cp{margin-inline-start:auto}
+@media (max-width:560px){.ft .cp{margin:0;width:100%}}
+
+.fade{animation:fade .5s var(--ease) both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* title only */
+.prog{width:220px;height:3px;border-radius:3px;background:rgba(255,255,255,.18);margin-top:20px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--brand)}
+.progk{font-size:12px;color:var(--tx3);margin-top:6px}
+.btn.sm{height:38px;padding:0 16px;font-size:13.5px}
+.btn.sm svg{width:16px;height:16px}
+.k{font-size:12.5px;color:var(--tx3)}
+.lbl{font-size:13px;font-weight:600;color:var(--tx3);margin-bottom:16px}
+.panel{padding-top:56px;min-height:420px}
+
+/* overview: story + people on the right, numbers + facts on the left */
+.ov{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:96px}
+.blk+.blk{margin-top:56px}
+.body{font-size:16px;line-height:2;color:var(--tx2);max-width:64ch}
+.recap{background:var(--s1);border-radius:var(--r2);padding:24px 28px}
+.recap .rh{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:8px}
+.recap .rh svg{width:18px;height:18px;color:var(--brand)}
+.recap .rh span{color:var(--tx3);font-size:12.5px;margin-inline-start:auto}
+.recap p{color:var(--tx2);font-size:14.5px;line-height:1.95}
+.cast{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 16px}
+.cast div{display:flex;flex-direction:column;align-items:center;text-align:center}
+.cast img{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--s1);margin-bottom:10px}
+.cast b{font-size:13.5px;font-weight:700;line-height:1.6}
+.cast span{font-size:12px;color:var(--tx3)}
+.rates{list-style:none}
+.rates li{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--tx2)}
+.rates li:first-child{padding-top:0}
+.rates b{margin-inline-start:auto;color:var(--tx);font-size:15px}
+.rates small{font-size:12px;color:var(--tx3);font-weight:500}
+@media (max-width:900px){
+  .ov{grid-template-columns:minmax(0,1fr);gap:56px}
+  .cast{display:flex;overflow-x:auto;gap:20px;margin:0 calc(var(--pad)*-1);padding:0 var(--pad);scrollbar-width:none}
+  .cast div{flex:0 0 84px}
+}
+
+/* episodes · same wide card as home's continue-watching */
+.eph{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.eps{list-style:none}
+.eps li{display:grid;grid-template-columns:260px minmax(0,1fr) auto;gap:28px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.eps li:first-child{padding-top:0}
+.eps .et h3{font-size:16px;font-weight:700;margin:2px 0 4px}
+.eps .et p{font-size:14px;color:var(--tx2);line-height:1.85;max-width:62ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px}
+.eps em{font-style:normal;color:var(--tx2)}
+.eps em.now{color:var(--brand)}
+@media (max-width:560px){
+  .eps li{grid-template-columns:128px minmax(0,1fr);gap:16px;align-items:start}
+  .eps li>.ib{display:none}
+  .eps .et p{display:none}
+  .eps .et h3{font-size:14.5px}
+}
+
+/* downloads · a plain table */
+.dlw{max-width:880px}
+.dls{list-style:none;border-top:1px solid var(--line)}
+.dls li{display:grid;grid-template-columns:88px 180px 1fr auto;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.dls b{font-size:16px;font-weight:800}
+.dls em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--brand);margin-inline-start:6px}
+.note{display:flex;align-items:center;gap:8px;margin-top:24px;font-size:13.5px;color:var(--tx3)}
+.note svg{width:18px;height:18px}
+@media (max-width:560px){
+  .dls li{grid-template-columns:64px 1fr auto;row-gap:0}
+  .dls li .k{grid-column:2;grid-row:2}
+  .dls li .btn{grid-row:1/3;grid-column:3}
+}
+
+/* comments · summary first, then the conversation */
+.cm{max-width:880px}
+.sum{display:grid;grid-template-columns:220px 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.big b{display:block;font-size:56px;font-weight:800;line-height:1.1}
+.big span{font-size:13px;color:var(--tx3)}
+.bar{display:flex;gap:3px;height:4px;margin-top:16px}
+.bar i{border-radius:4px}
+.tone>p{font-size:15.5px;line-height:1.95;color:var(--tx)}
+.pc2{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0 20px}
+.pc2 h4{font-size:13px;font-weight:600;color:var(--tx3);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pc2 h4 i{width:6px;height:6px;border-radius:50%}
+.pc2 ul{list-style:none;font-size:14px;color:var(--tx2);line-height:2.1}
+.tone .k{display:flex;align-items:center;gap:6px}
+.tone .k svg{width:14px;height:14px}
+.write{display:flex;align-items:center;gap:14px;padding:32px 0;border-bottom:1px solid var(--line)}
+.write input{flex:1;height:48px;border-radius:999px;border:1px solid var(--line2);background:transparent;padding:0 20px;font:inherit;font-size:14.5px;color:var(--tx);outline:0;transition:border-color .2s}
+.write input:focus{border-color:var(--brand)}
+.write input::placeholder{color:var(--tx3)}
+.cms{list-style:none}
+.cms>li{display:flex;gap:16px;padding:28px 0;border-bottom:1px solid var(--line)}
+.cms>li>div{flex:1;min-width:0}
+.ch{display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:14px}
+.ch .rt{margin-inline-start:auto;display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700}
+.ch .rt svg{width:14px;height:14px;color:var(--gold)}
+.ch small{color:var(--tx3);font-weight:500}
+.cms p{font-size:15px;line-height:1.95;color:var(--tx2)}
+.spo{position:relative;cursor:pointer}
+.spo span{filter:blur(6px);user-select:none;transition:filter .3s}
+.spo em{position:absolute;inset:0;display:flex;align-items:center;font-style:normal;font-size:13px;color:var(--tx)}
+.spo.open span{filter:none}.spo.open em{display:none}
+.ca{display:flex;align-items:center;gap:20px;margin-top:12px;font-size:13px;color:var(--tx3)}
+.ca button{display:inline-flex;align-items:center;gap:6px;color:var(--tx3);transition:color .2s}
+.ca button:hover{color:var(--tx)}
+.ca svg{width:16px;height:16px}
+@media (max-width:560px){
+  .sum{grid-template-columns:1fr;gap:24px}
+  .pc2{grid-template-columns:1fr;gap:16px}
+  .write .btn{display:none}
+}
+@media (max-width:560px){
+  .hero .acts .btn.pri{flex:1 1 100%}
+  .hero .acts .btn.sec:not(.ic){flex:1}
+  .prog{width:100%}
+}
+</style></head><body><script>const IC={"arrow":"<path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/>","bell":"<path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/>","cal":"<path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160z\"/>","check":"<path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/>","chev":"<path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/>","clock":"<path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8\"/>","copy":"<path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/>","dl":"<path fill=\"currentColor\" d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/>","film":"<path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/>","heart":"<path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/>","home":"<path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/>","info":"<path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/>","left":"<path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/>","list":"<path fill=\"currentColor\" d=\"M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16m0 177.57l-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z\"/>","play":"<path fill=\"currentColor\" d=\"M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128\"/>","plus":"<path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/>","reply":"<path fill=\"currentColor\" d=\"m229.66 109.66l-48 48a8 8 0 0 1-11.32-11.32L204.69 112H128a88.1 88.1 0 0 0-88 88a8 8 0 0 1-16 0A104.11 104.11 0 0 1 128 96h76.69l-34.35-34.34a8 8 0 0 1 11.32-11.32l48 48a8 8 0 0 1 0 11.32\"/>","right":"<path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/>","search":"<path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/>","share":"<path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/>","sparkles":"<path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/>","thumbdown":"<path fill=\"currentColor\" d=\"m239.82 157l-12-96A24 24 0 0 0 204 40H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h43.06l37.78 75.58A8 8 0 0 0 120 240a40 40 0 0 0 40-40v-16h56a24 24 0 0 0 23.82-27M72 144H32V56h40Zm150 21.29a7.88 7.88 0 0 1-6 2.71h-64a8 8 0 0 0-8 8v24a24 24 0 0 1-19.29 23.54L88 150.11V56h116a8 8 0 0 1 7.94 7l12 96a7.87 7.87 0 0 1-1.94 6.29\"/>","thumbup":"<path fill=\"currentColor\" d=\"M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9\"/>","tv":"<path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/>","user":"<path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0\"/>","users":"<path fill=\"currentColor\" d=\"M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07\"/>","x":"<path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/>","x2":"<path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/>","sound":"<path fill=\"currentColor\" d=\"M155.51 24.81a8 8 0 0 0-8.42.88L77.25 80H32a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h45.25l69.84 54.31A8 8 0 0 0 160 224V32a8 8 0 0 0-4.49-7.19M32 96h40v64H32Zm112 111.64l-56-43.55V91.91l56-43.55Zm54-106.08a40 40 0 0 1 0 52.88a8 8 0 0 1-12-10.58a24 24 0 0 0 0-31.72a8 8 0 0 1 12-10.58M248 128a79.9 79.9 0 0 1-20.37 53.34a8 8 0 0 1-11.92-10.67a64 64 0 0 0 0-85.33a8 8 0 1 1 11.92-10.67A79.83 79.83 0 0 1 248 128\"/>","cc":"<path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zm-105.08-40.29a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92m80 0a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92\"/>","spark":"<path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/>"};
+
+window.WORDMARK="<path d=\"M223 -334 445 0H588L350 -334ZM78 -700V0H196V-700ZM148 -598H289Q330 -598 360 -584Q390 -570 407 -544Q424 -518 424 -480Q424 -443 407 -416.5Q390 -390 360 -376.5Q330 -363 289 -363H148V-265H294Q371 -265 427 -292Q483 -319 514.5 -368Q546 -417 546 -483Q546 -549 514.5 -597.5Q483 -646 427 -673Q371 -700 294 -700H148Z M1208 -780V0H1317V-780Z M1444 -780V0H1553V-780Z M1610 -460 1849 42 2087 -460H1969L1849 -163L1729 -460Z M2213 -143Q2213 -165 2223.5 -180Q2234 -195 2255 -203.5Q2276 -212 2310 -212Q2349 -212 2384 -202Q2419 -192 2450 -170V-225Q2441 -236 2419 -249.5Q2397 -263 2363.5 -273Q2330 -283 2284 -283Q2198 -283 2151 -243.5Q2104 -204 2104 -137Q2104 -90 2126 -57Q2148 -24 2185 -7Q2222 10 2265 10Q2305 10 2343.5 -4.5Q2382 -19 2407.5 -49Q2433 -79 2433 -123L2417 -183Q2417 -148 2401 -123Q2385 -98 2358.5 -84.5Q2332 -71 2299 -71Q2274 -71 2254.5 -79Q2235 -87 2224 -103.5Q2213 -120 2213 -143ZM2179 -340Q2190 -347 2210 -357.5Q2230 -368 2258.5 -375.5Q2287 -383 2319 -383Q2340 -383 2358 -379Q2376 -375 2389.5 -366Q2403 -357 2410 -343Q2417 -329 2417 -307V0H2523V-328Q2523 -374 2498.5 -406Q2474 -438 2430 -454.5Q2386 -471 2330 -471Q2265 -471 2216 -453Q2167 -435 2135 -416Z M2935 -280V0H3046V-293Q3046 -375 3005 -422.5Q2964 -470 2886 -470Q2839 -470 2804.5 -450Q2770 -430 2748 -389V-460H2639V0H2748V-280Q2748 -311 2760.5 -334.5Q2773 -358 2796 -370.5Q2819 -383 2850 -383Q2893 -383 2914 -357Q2935 -331 2935 -280Z M3242 -143Q3242 -165 3252.5 -180Q3263 -195 3284 -203.5Q3305 -212 3339 -212Q3378 -212 3413 -202Q3448 -192 3479 -170V-225Q3470 -236 3448 -249.5Q3426 -263 3392.5 -273Q3359 -283 3313 -283Q3227 -283 3180 -243.5Q3133 -204 3133 -137Q3133 -90 3155 -57Q3177 -24 3214 -7Q3251 10 3294 10Q3334 10 3372.5 -4.5Q3411 -19 3436.5 -49Q3462 -79 3462 -123L3446 -183Q3446 -148 3430 -123Q3414 -98 3387.5 -84.5Q3361 -71 3328 -71Q3303 -71 3283.5 -79Q3264 -87 3253 -103.5Q3242 -120 3242 -143ZM3208 -340Q3219 -347 3239 -357.5Q3259 -368 3287.5 -375.5Q3316 -383 3348 -383Q3369 -383 3387 -379Q3405 -375 3418.5 -366Q3432 -357 3439 -343Q3446 -329 3446 -307V0H3552V-328Q3552 -374 3527.5 -406Q3503 -438 3459 -454.5Q3415 -471 3359 -471Q3294 -471 3245 -453Q3196 -435 3164 -416Z\"/><circle cx=\"867\" cy=\"-230\" r=\"190\" stroke=\"#FFFFFF\" stroke-width=\"100\"/><circle cx=\"912\" cy=\"-275\" r=\"50\"/>";window.MEDIA="../home/media/";
+const HERO=[
+{s:"dune-part-two",rt:"۱۶۶ دقیقه",cr:"Denis Villeneuve · Timothée Chalamet · Zendaya",kind:"فیلم",en:"Dune: Part Two",fa:"تلماسه: بخش دوم",y:2024,imdb:"8.5",g:"علمی‌تخیلی، ماجراجویی",b:"دوبله فارسی",acc:"#b8864a",pos:"38% 30%",syn:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندانی می‌رود که خانواده‌اش را نابود کرد؛ و میان عشق و سرنوشت کهکشان باید یکی را انتخاب کند."},
+{s:"blade-runner-2049",rt:"۱۶۴ دقیقه",cr:"Denis Villeneuve · Ryan Gosling · Harrison Ford",kind:"فیلم",en:"Blade Runner 2049",fa:"بلید رانر ۲۰۴۹",y:2017,imdb:"8.0",g:"علمی‌تخیلی، معمایی",b:"زیرنویس",acc:"#7a3fd0",pos:"32% 30%",syn:"کِی، بلید رانری تازه‌کار، رازی سی‌ساله را پیدا می‌کند که می‌تواند باقی‌مانده‌ی جامعه را به آشوب بکشد و او را به ریک دکارد می‌رساند."},
+{s:"oppenheimer",rt:"۱۸۰ دقیقه",cr:"Christopher Nolan · Cillian Murphy · Emily Blunt",kind:"فیلم",en:"Oppenheimer",fa:"اوپنهایمر",y:2023,imdb:"8.3",g:"زندگی‌نامه، درام",b:"دوبله فارسی",acc:"#d98a2a",pos:"47% 40%",syn:"داستان رابرت اوپنهایمر و پروژه‌ی منهتن؛ مردی که جهان را برای همیشه تغییر داد و بعد با بهای کارش روبه‌رو شد."},
+{s:"severance",rt:"۲ فصل",cr:"Dan Erickson · Adam Scott · Britt Lower",kind:"سریال",en:"Severance",fa:"جدایی",y:2022,imdb:"8.7",g:"معمایی، علمی‌تخیلی",b:"زیرنویس",acc:"#3f86c0",pos:"58% 30%",syn:"کارمندان شرکت لومن حافظه‌ی کار و زندگی‌شان را از هم جدا کرده‌اند؛ تا روزی که مارک می‌فهمد پشت این دیوارها چه می‌گذرد."},
+{s:"shogun",rt:"۱ فصل",cr:"Rachel Kondo · Justin Marks · Hiroyuki Sanada",kind:"سریال",en:"Shōgun",fa:"شوگون",y:2024,imdb:"8.6",g:"تاریخی، درام",b:"دوبله فارسی",acc:"#2a9a96",pos:"52% 28%",syn:"ژاپن، سال ۱۶۰۰. ارباب توراناگا در برابر دشمنانی که علیه او متحد شده‌اند، برای زنده ماندن می‌جنگد و یک دریانورد انگلیسی کلید بازی اوست."},
+{s:"the-last-of-us",rt:"۲ فصل",cr:"Craig Mazin · Pedro Pascal · Bella Ramsey",kind:"سریال",en:"The Last of Us",fa:"آخرین بازمانده از ما",y:2023,imdb:"8.6",g:"درام، ماجراجویی",b:"دوبله فارسی",acc:"#8a9a4a",pos:"56% 30%",syn:"بیست سال پس از فروپاشی تمدن، جوئل مأمور می‌شود الی، دختری چهارده‌ساله، را از دل آمریکایی ویران عبور دهد."},
+{s:"poor-things",rt:"۱۴۱ دقیقه",cr:"Yorgos Lanthimos · Emma Stone · Mark Ruffalo",kind:"فیلم",en:"Poor Things",fa:"موجودات بیچاره",y:2023,imdb:"7.8",g:"کمدی، فانتزی",b:"زیرنویس",acc:"#2aa8e0",pos:"60% 25%",syn:"بلا بکستر که دانشمندی عجیب او را به زندگی بازگردانده، از خانه می‌گریزد تا جهان را با چشمانی تازه کشف کند."},
+{s:"fallout",rt:"۲ فصل",cr:"Jonathan Nolan · Ella Purnell · Walton Goggins",kind:"سریال",en:"Fallout",fa:"فال‌اوت",y:2024,imdb:"8.3",g:"علمی‌تخیلی، اکشن",b:"دوبله فارسی",acc:"#c09040",pos:"50% 50%",syn:"دویست سال پس از آخرالزمان هسته‌ای، لوسی از پناهگاه امنش بیرون می‌آید و با دنیای بی‌رحم و عجیب بیرون روبه‌رو می‌شود."}
+];
+const LONG={...HERO[0],s:null,en:"The Extraordinary Adventures of Adèle Blanc-Sec",fa:"ماجراهای خارق‌العاده‌ی آدل بلان‌سک و مومیایی‌ها",acc:"#b8864a"};
+const C=(s,en,imdb,b,f)=>({s,en,imdb,b,f});
+const FILMS=[C("sinners","Sinners","7.6","دوبله","امروز"),C("one-battle-after-another","One Battle After Another","8.1","زیرنویس","امروز"),C("weapons","Weapons","7.5","دوبله","دیروز"),C("f1","F1","7.7","دوبله","دیروز"),C("frankenstein","Frankenstein","7.5","زیرنویس","۳ روز پیش"),C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning","7.2","دوبله","۴ روز پیش"),C("the-running-man","The Running Man","6.6","زیرنویس","۵ روز پیش"),C("oppenheimer","Oppenheimer","8.3","دوبله","یک هفته پیش")];
+const SERIES=[C("the-bear","The Bear","8.5","زیرنویس","فصل ۴ · قسمت ۲ تازه"),C("star-wars-andor","Andor","8.6","دوبله","فصل ۲ · قسمت ۱۲ تازه"),C("slow-horses","Slow Horses","8.3","زیرنویس","فصل ۵ · قسمت ۶ تازه"),C("the-penguin","The Penguin","8.6","دوبله","فصل ۱ · قسمت ۸ تازه"),C("the-white-lotus","The White Lotus","8.0","زیرنویس","فصل ۳ · قسمت ۸ تازه"),C("squid-game","Squid Game","8.0","دوبله","فصل ۳ · قسمت ۶ تازه"),C("house-of-the-dragon","House of the Dragon","8.3","دوبله","فصل ۲ · قسمت ۸ تازه"),C("wednesday","Wednesday","8.0","دوبله","فصل ۲ · قسمت ۸ تازه")];
+const PICKS=[C("past-lives","Past Lives","7.8","زیرنویس"),C("arrival","Arrival","7.9","دوبله"),C("interstellar","Interstellar","8.7","دوبله"),C("parasite","Parasite","8.5","زیرنویس"),C("whiplash","Whiplash","8.5","دوبله"),C("her","Her","8.0","زیرنویس"),C("prisoners","Prisoners","8.1","دوبله"),C("blade-runner-2049","Blade Runner 2049","8.0","زیرنویس")];
+const GENRES=[["اکشن","Action","fallout","50% 45%","#c09040",1240],["علمی‌تخیلی","Sci-Fi","blade-runner-2049","30% 30%","#7a3fd0",860],["درام","Drama","the-last-of-us","55% 30%","#8a9a4a",2310],["تاریخی","History","shogun","50% 25%","#2a9a96",640],["معمایی","Mystery","severance","60% 30%","#3f86c0",410],["ماجراجویی","Adventure","dune-part-two","40% 30%","#b8864a",980],["فانتزی","Fantasy","poor-things","60% 25%","#2aa8e0",520],["زندگی‌نامه","Biography","oppenheimer","47% 40%","#d98a2a",370]];
+
+const CMETA={"sinners":["ترسناک، درام",2025],"one-battle-after-another":["اکشن، درام",2025],"weapons":["ترسناک، معمایی",2025],"f1":["ورزشی، درام",2025],"frankenstein":["فانتزی، درام",2025],"mission-impossible-the-final-reckoning":["اکشن، ماجراجویی",2025],"the-running-man":["اکشن، علمی‌تخیلی",2025],"oppenheimer":["زندگی‌نامه، درام",2023],"the-bear":["کمدی، درام",2022],"star-wars-andor":["علمی‌تخیلی، ماجراجویی",2022],"slow-horses":["جنایی، هیجان‌انگیز",2022],"the-penguin":["جنایی، درام",2024],"the-white-lotus":["کمدی، درام",2021],"squid-game":["هیجان‌انگیز، درام",2021],"house-of-the-dragon":["فانتزی، درام",2022],"wednesday":["کمدی، فانتزی",2022],"past-lives":["عاشقانه، درام",2023],"arrival":["علمی‌تخیلی، درام",2016],"interstellar":["علمی‌تخیلی، ماجراجویی",2014],"parasite":["هیجان‌انگیز، کمدی",2019],"whiplash":["درام، موسیقی",2014],"her":["عاشقانه، علمی‌تخیلی",2013],"prisoners":["جنایی، معمایی",2013],"blade-runner-2049":["علمی‌تخیلی، معمایی",2017]};
+[...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CMETA[c.s];if(m){c.g=m[0];c.y=m[1]}});// full card data: Persian title, length (minutes for films, seasons for series), taste match for the taste row
+const CFA={"sinners":["گناهکاران","۱۳۷ دقیقه"],"one-battle-after-another":["نبردی پس از نبرد دیگر","۱۶۲ دقیقه"],"weapons":["سلاح‌ها","۱۲۸ دقیقه"],"f1":["اف وان","۱۵۵ دقیقه"],"frankenstein":["فرانکنشتاین","۱۴۹ دقیقه"],"mission-impossible-the-final-reckoning":["ماموریت غیرممکن: حساب‌رسی نهایی","۱۶۹ دقیقه"],"the-running-man":["مرد فراری","۱۳۳ دقیقه"],"oppenheimer":["اوپنهایمر","۱۸۰ دقیقه"],
+"the-bear":["خرس","۴ فصل"],"star-wars-andor":["اندور","۲ فصل"],"slow-horses":["اسب‌های کند","۵ فصل"],"the-penguin":["پنگوئن","۱ فصل"],"the-white-lotus":["نیلوفر سفید","۳ فصل"],"squid-game":["بازی مرکب","۳ فصل"],"house-of-the-dragon":["خاندان اژدها","۲ فصل"],"wednesday":["ونزدی","۲ فصل"],
+"past-lives":["زندگی‌های گذشته","۱۰۶ دقیقه"],"arrival":["ورود","۱۱۶ دقیقه"],"interstellar":["میان‌ستاره‌ای","۱۶۹ دقیقه"],"parasite":["انگل","۱۳۲ دقیقه"],"whiplash":["ویپلش","۱۰۶ دقیقه"],"her":["او","۱۲۶ دقیقه"],"prisoners":["زندانیان","۱۵۳ دقیقه"],"blade-runner-2049":["بلید رانر ۲۰۴۹","۱۶۴ دقیقه"]};
+[...FILMS,...SERIES,...PICKS].forEach(c=>{const m=CFA[c.s];if(m){c.fa=m[0];c.d=m[1]}delete c.f});
+[97,95,94,92,91,89,88,86].forEach((m,i)=>{if(PICKS[i])PICKS[i].m=m});
+// round 25: series as landscape cards with the new episode; more in continue watching; reviews and news
+const SNEW={"the-bear":"فصل ۴ · قسمت ۲","star-wars-andor":"فصل ۲ · قسمت ۱۲","slow-horses":"فصل ۵ · قسمت ۶","the-penguin":"فصل ۱ · قسمت ۸","the-white-lotus":"فصل ۳ · قسمت ۸","squid-game":"فصل ۳ · قسمت ۶","house-of-the-dragon":"فصل ۲ · قسمت ۸","wednesday":"فصل ۲ · قسمت ۸"};
+SERIES.forEach(c=>{c.ep=SNEW[c.s]});
+const REVIEWS=[
+ {s:"one-battle-after-another",img:"w-one-battle-after-another.jpg",t:"«نبردی پس از نبرد دیگر»: پل توماس اندرسون در اوج",by:"تحریریه‌ی رول‌وانا",d:"امروز",min:7,score:"۴٫۵"},
+ {s:"sinners",img:"w-sinners.jpg",t:"«گناهکاران»؛ ترسناکی که موسیقی‌اش را فراموش نمی‌کنید",by:"مریم ک.",d:"دیروز",min:5,score:"۴"},
+ {s:"frankenstein",img:"w-frankenstein.jpg",t:"فرانکنشتاینِ دل تورو: هیولا یا قربانی؟",by:"آرش م.",d:"۳ روز پیش",min:6,score:"۳٫۵"},
+ {s:"the-penguin",img:"w-the-penguin.jpg",t:"«پنگوئن» بهترین سریال کمیک‌بوکی این سال‌هاست؟",by:"تحریریه‌ی رول‌وانا",d:"۵ روز پیش",min:8,score:"۴"}];
+const NEWS=[
+ {img:"w-squid-game.jpg",t:"فصل آخر «بازی مرکب» با دوبله‌ی فارسی روی رول‌وانا",tag:"رول‌وانا",d:"۲ ساعت پیش"},
+ {img:"w-wednesday.jpg",t:"تاریخ پخش قسمت‌های تازه‌ی «ونزدی» اعلام شد",tag:"سریال",d:"امروز"},
+ {img:"w-f1.jpg",t:"«اف وان» پرفروش‌ترین فیلم ورزشی تاریخ شد",tag:"باکس‌آفیس",d:"دیروز"},
+ {img:"w-house-of-the-dragon.jpg",t:"فصل سوم «خاندان اژدها» تابستان سال بعد می‌آید",tag:"سریال",d:"۲ روز پیش"}];
+
+const BRAND2={"imdb-light": {"vb": "0 127 512 258", "body": "<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>"}, "rotten-tomatoes-light": {"vb": "0 0 512 512", "body": "<path fill=\"currentColor\" d=\"m401.2 113.7l-.7-1.9C391.3 87.2 332 61 276 72.9c2.7-10.2 10.6-16.8 24.4-20.5l8.1-2.2l-5.8-6C287.3 28.1 271 21 254.1 22.8c-19.5 2.2-36.6 16.9-47.7 32L182.5 0l-43.3 25.5l24.9 32.2c-37.8-9.5-72 3.8-97.6 38.6l-6.7 9.1l11.2-1.2c14.6-1.6 28.3-2.7 43.4-.3c-17.4 5.7-33.8 16.6-47.9 25.9c-9.2 6.1-17.1 11.3-22.6 13.2l-14.2 4.9l14.4 4.5c7.2 2.2 13.9 4.2 20.2 5.8c-92.2 101.5-40.4 220-11.7 259.6c132.2 157.4 348.1 95.1 419.7-22.2c17.4-29.6 79.8-188-71.1-281.9M72.1 138c19-12.6 42.7-28.2 65.3-28.3l27.7-.1l-26-9.5c-21.4-7.8-39.6-8.3-57.3-6.9c19.3-21.6 49.9-39.3 94.3-21.2l17 6.9L154 28.3l24-14.2l26.9 61.7l4.9-8.2c9.3-15.5 26.1-32.9 45.4-35c11.6-1.3 23.2 3 34.6 12.9c-15.6 6.4-23.9 17.7-24.7 33.6l-.3 6.8l6.6-1.8c45.4-12.5 94.4 4.3 113 21.6c-16.5-1.6-34.9 3.9-54.1 9.7c-29.9 9-60.9 18.3-88.6 2.5l-7.4-4.2v8.5c0 23-8 38.8-24.6 48.3c-11.3 6.5-25.1 9-37.3 10.2c.2-.4.4-.9.6-1.3c7.4-16.1 15.8-34.4.9-52.5l-3.6-4.3l-3.8 4.1c-24.7 26.5-44.2 37.6-107.5 19.7c4-2.4 8.4-5.3 13.1-8.4\"/>"}, "metacritic": {"vb": "0 0 24 24", "body": "<path fill=\"currentColor\" d=\"M11.99 0A12 12 0 1 0 24 12v-.014A12 12 0 0 0 11.99 0Zm-.055 2.564a9.399 9.399 0 0 1 9.407 9.389v.01a9.399 9.399 0 1 1-9.408-9.399Zm-1.61 17.198 2.046-2.046-3.94-3.94c-.165-.166-.345-.373-.442-.608-.221-.47-.318-1.203.221-1.742.664-.664 1.548-.387 2.406.47l3.788 3.788 2.046-2.046-3.954-3.954a2.48 2.48 0 0 1-.456-.622c-.263-.539-.25-1.216.235-1.7.677-.678 1.562-.429 2.544.553l3.677 3.677 2.046-2.046-3.982-3.982c-2.018-2.018-3.912-1.949-5.212-.65-.498.499-.802 1.024-.954 1.618a4.026 4.026 0 0 0-.055 1.686l-.027.028c-.996-.414-2.13-.166-3 .705-1.162 1.161-1.12 2.392-.982 3.11l-.042.043-1.009-.816-1.77 1.77a64.1 64.1 0 0 1 2.213 2.1z\"/>"}};
+const BRAND={"imdb": "M22.3781 0H1.6218C.7411.0583.0587.7437.0018 1.5953l-.001 20.783c.0585.8761.7125 1.543 1.5559 1.6191A.337.337 0 0 0 1.6016 24h20.7971a.4579.4579 0 0 0 .0437-.002c.8727-.0768 1.5568-.8271 1.5568-1.7085V1.7098c0-.8914-.696-1.6416-1.584-1.7078A.3294.3294 0 0 0 22.3781 0zm0 .496a1.2144 1.2144 0 0 1 1.1252 1.2139v20.5797c0 .6377-.4875 1.1602-1.1045 1.2145H1.6016c-.5967-.0543-1.0645-.5297-1.1053-1.1258V1.6284C.5371 1.0185 1.0184.5364 1.6217.496h20.7564zM4.7954 8.2603v7.3636H2.8899V8.2603h1.9055zm6.5367 0v7.3636H9.6707v-4.9704l-.6711 4.9704H7.813l-.6986-4.8618-.0066 4.8618h-1.668V8.2603h2.468c.0748.4476.1492.9694.2307 1.5734l.2712 1.8713.4407-3.4447h2.4817zm2.9772 1.3289c.0742.0404.122.108.1417.2034.0279.0953.0345.3118.0345.6442v2.8548c0 .4881-.0345.7867-.0955.8954-.0609.1152-.2304.1695-.5018.1695V9.5211c.204 0 .3457.0205.4211.0681zm-.0211 6.0347c.4543 0 .8006-.0265 1.0245-.0742.2304-.0477.4204-.1357.5694-.2648.1556-.1218.2642-.298.3251-.5219.0611-.2238.1021-.6648.1021-1.3224v-2.5832c0-.6986-.0271-1.1668-.0742-1.4039-.041-.237-.1431-.4543-.3126-.6437-.1695-.1973-.4198-.3324-.7456-.421-.3191-.0808-.8542-.1285-1.7694-.1285h-1.4244v7.3636h2.3051zm5.14-1.7827c0 .3523-.0199.5762-.0544.6708-.033.0947-.1894.1424-.3046.1424-.1086 0-.19-.0477-.2238-.1351-.041-.0887-.0609-.2986-.0609-.6238v-1.9469c0-.3324.0199-.5423.0543-.6237.0338-.0808.1086-.122.2171-.122.1153 0 .2709.0412.3114.1425.041.0947.0609.2986.0609.6032v1.8926zm-2.4747-5.5809v7.3636h1.7157l.1152-.4675c.1556.1894.3251.3324.5152.4271.1828.0881.4608.1357.678.1357.3047 0 .5629-.0748.7802-.237.2165-.1562.3589-.3462.4198-.5628.0543-.2173.0887-.543.0887-.9841v-2.0675c0-.4409-.0139-.7324-.0344-.8681-.0199-.1357-.0742-.2781-.1695-.4204-.1021-.1425-.2437-.251-.4272-.3325-.1834-.0742-.3999-.1152-.6576-.1152-.2172 0-.4952.0477-.6846.1285-.1835.0887-.353.2238-.5086.4007V8.2603h-1.8309z", "rottentomatoes": "M5.866 0L4.335 1.262l2.082 1.8c-2.629-.989-4.842 1.4-5.012 2.338 1.384-.323 2.24-.422 3.344-.335-7.042 4.634-4.978 13.148-1.434 16.094 5.784 4.612 13.77 3.202 17.91-1.316C27.26 13.363 22.993.65 10.86 2.766c.107-1.17.633-1.503 1.243-1.602-.89-1.493-3.67-.734-4.556 1.374C7.52 2.602 5.866 0 5.866 0zM4.422 7.217H6.9c2.673 0 2.898.012 3.55.202 1.06.307 1.868.973 2.313 1.904.05.106.092.206.13.305l7.623.008.027 2.912-2.745-.024v7.549l-2.982-.016v-7.522l-2.127.016a2.92 2.92 0 0 1-1.056 1.134c-.287.176-.3.19-.254.264.127.2 2.125 3.642 2.125 3.659l-3.39.019-2.013-3.376c-.034-.047-.122-.068-.344-.084l-.297-.02.037 3.48-3.075-.038zm3.016 2.288l.024.338c.014.186.024.729.024 1.206v.867l.582-.025c.32-.013.695-.049.833-.078.694-.146 1.048-.478 1.087-1.018.027-.378-.063-.636-.303-.87-.318-.309-.761-.416-1.733-.418Z", "metacritic": "M11.99 0A12 12 0 1 0 24 12v-.014A12 12 0 0 0 11.99 0Zm-.055 2.564a9.399 9.399 0 0 1 9.407 9.389v.01a9.399 9.399 0 1 1-9.408-9.399Zm-1.61 17.198 2.046-2.046-3.94-3.94c-.165-.166-.345-.373-.442-.608-.221-.47-.318-1.203.221-1.742.664-.664 1.548-.387 2.406.47l3.788 3.788 2.046-2.046-3.954-3.954a2.48 2.48 0 0 1-.456-.622c-.263-.539-.25-1.216.235-1.7.677-.678 1.562-.429 2.544.553l3.677 3.677 2.046-2.046-3.982-3.982c-2.018-2.018-3.912-1.949-5.212-.65-.498.499-.802 1.024-.954 1.618a4.026 4.026 0 0 0-.055 1.686l-.027.028c-.996-.414-2.13-.166-3 .705-1.162 1.161-1.12 2.392-.982 3.11l-.042.043-1.009-.816-1.77 1.77a64.1 64.1 0 0 1 2.213 2.1z"};
+// stand-in content (TMDB images); text written for the mockup
+const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"تلماسه: بخش دوم",y:"2024",rt:"۲ ساعت و ۴۶ دقیقه",g:["علمی‌تخیلی","ماجراجویی","درام"],
+  imdb:8.5,imdbVotes:680000,tomato:92,meta:79,age:"+۱۳",dir:"دنی ویلنوو",progress:{at:"۱:۰۷:۱۲",p:.41,left:"۹۹ دقیقه",leftLong:"۹۹ دقیقه مانده"},
+  recap:{upto:"تا دقیقه‌ی ۶۷",text:"پل و مادرش جسیکا به فرمن‌ها پناه برده‌اند. پل کنار چانی راه‌ورسم صحرا را یاد می‌گیرد و برای اولین بار سوار کرم شنی می‌شود و فرمن‌ها کم‌کم او را همان منجی موعود می‌بینند. جسیکا آب حیات را می‌نوشد و مادر مقدس قبیله می‌شود. در همین حال هارکونن‌ها فید-روتا را وارث خود معرفی می‌کنند و او در میدان مبارزه نشان می‌دهد چقدر بی‌رحم است."},
+  mood:[88,8,4],
+  syn:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندان هارکونن می‌رود؛ خاندانی که پدرش را کشت و خانواده‌اش را نابود کرد. هرچه به قدرت نزدیک‌تر می‌شود، رؤیاهای آینده روشن‌تر می‌شوند: جنگی مقدس که به نام او میلیون‌ها نفر را می‌کشد. پل باید میان عشق به چانی و سرنوشتی که برایش نوشته‌اند یکی را انتخاب کند.",
+  dub:true,subs:["فارسی","انگلیسی"],
+  cast:[["تیموتی شالامه","پل آتریدیز"],["زندیا","چانی"],["ربکا فرگوسن","جسیکا"],["جاش برولین","گرنی هلک"],["آستین باتلر","فید-روتا"],["فلورنس پیو","پرنسس ایرولان"],["دیو باتیستا","رابان"],["کریستوفر واکن","امپراتور"]],
+  dl:{dub:[["2160p","4K · HDR",19.6],["1080p","Full HD",4.6],["720p","HD",2.1],["480p","SD",0.95]],sub:[["2160p","4K · HDR",18.4],["1080p","Full HD",4.2],["720p","HD",1.9],["480p","SD",0.85]]},
+  review:{n:4210,date:"۸ آبان",tone:"بیشتر مخاطبان آن را از بهترین فیلم‌های علمی‌تخیلی سال‌های اخیر می‌دانند و آن را از بخش اول کامل‌تر می‌بینند.",
+    pos:["تصویربرداری و جلوه‌های بصری در اندازه‌ی سینما","موسیقی هانس زیمر","بازی آستین باتلر و ربکا فرگوسن"],
+    neg:["مدت طولانی فیلم","شتاب‌زدگی پرده‌ی آخر","شخصیت‌های فرعی کم‌عمق"]},
+  music:[["Beginnings Are Such Delicate Times","Hans Zimmer","۰:۰۲:۱۰","آغاز فیلم، صحرای آراکیس"],["Harvester Attack","Hans Zimmer","۰:۲۱:۴۰","حمله به برداشت‌کننده‌ی ادویه"],["Worm Ride","Hans Zimmer","۰:۵۸:۰۵","اولین سواری پل بر کرم شنی"],["Harkonnen Arena","Hans Zimmer","۱:۰۴:۳۰","مبارزه‌ی فید-روتا در میدان"],["Kiss the Ring","Hans Zimmer","۲:۲۸:۱۵","رویارویی پایانی"]],
+  rating:{avg:8.4,n:1230},votes:{up:1132,down:98},
+  similar:["dune-part-one","blade-runner-2049","interstellar","arrival","oppenheimer","poor-things"],
+  franchise:[["dune-part-one","تلماسه","2021"],["dune-part-two","تلماسه: بخش دوم","2024"]]};
+
+const SEV_EP={
+1:[["خبر خوب درباره‌ی جهنم","۱۷ فوریه‌ی ۲۰۲۲","۵۷","هلی در اتاق کنفرانس به هوش می‌آید و نمی‌داند کیست. مارک، رئیس تازه‌ی بخش، باید او را با قوانین لومن آشنا کند."],
+["نیم‌حلقه","۱۸ فوریه‌ی ۲۰۲۲","۵۳","هلی دنبال راه فرار است. مارک بیرون از کار با پیامی عجیب از همکاری قدیمی روبه‌رو می‌شود."],
+["تا ابد","۲۵ فوریه‌ی ۲۰۲۲","۴۷","بخش به بال پرستشگاه کی‌یر می‌رود. اروینگ چیزی را می‌بیند که نباید."],
+["خودِ تو","۴ مارس ۲۰۲۲","۵۱","هلی برای اولین بار پیامی از «خودِ بیرونی‌اش» می‌گیرد. مارک به حرف‌های پتی فکر می‌کند."],
+["بربریت تلخ اپتیک و طراحی","۱۱ مارس ۲۰۲۲","۵۴","دیلن برای پاداشی تازه هر کاری می‌کند. اروینگ و برت به هم نزدیک‌تر می‌شوند."],
+["قایم‌باشک","۱۸ مارس ۲۰۲۲","۵۴","هلی تهدیدی جدی می‌کند و لومن مجبور به واکنش می‌شود."],
+["جاز سرکش","۲۵ مارس ۲۰۲۲","۵۳","کارکنان راهی برای بیدار شدن در دنیای بیرون پیدا می‌کنند."],
+["شام چی داریم؟","۱ آوریل ۲۰۲۲","۴۰","نقشه آماده است؛ فقط یک شب برای اجرا وقت دارند."],
+["ما که هستیم","۸ آوریل ۲۰۲۲","۴۰","چهار همکار برای چند دقیقه در دنیای بیرون بیدارند و هر لحظه ممکن است همه‌چیز لو برود."]],
+2:[["سلام، خانم کوبل","۱۶ ژانویه‌ی ۲۰۲۵","۵۴","مارک به شرایطی تازه به کار برمی‌گردد. رازهایی از دنیای بیرون آشکار می‌شود."],
+["خداحافظ، خانم سلویگ","۲۳ ژانویه‌ی ۲۰۲۵","۴۹","مارک به معنای پیامی فکر می‌کند که به دستش رسیده."],
+["چه کسی زنده است؟","۳۰ ژانویه‌ی ۲۰۲۵","۴۸","بخش به رقابتی ناخواسته کشیده می‌شود. هلی رفتاری متفاوت دارد."],
+["دره‌ی وو","۶ فوریه‌ی ۲۰۲۵","۵۲","سفر کاری به یک دره‌ی برفی حقایقی را رو می‌کند که کسی منتظرش نبود."],
+["اسب تروا","۱۳ فوریه‌ی ۲۰۲۵","۵۲","مارک و هلی با پیامدهای سفر روبه‌رو می‌شوند. میلچیک زیر فشار است."],
+["آتیلا","۲۰ فوریه‌ی ۲۰۲۵","۵۴","شامی رسمی در خانه‌ی خانواده‌ی ایگان همه را در موقعیتی خطرناک قرار می‌دهد."],
+["چیخای باردو","۶ مارس ۲۰۲۵","۵۲","گذشته‌ی گما بالاخره روشن می‌شود."],
+["زاج شیرین","۱۳ مارس ۲۰۲۵","۵۵","کوبل به جایی برمی‌گردد که همه‌چیز از آن‌جا شروع شد."]]};
+const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"جداسازی",y:"2022",rt:"۲ فصل",g:["درام","معمایی","علمی‌تخیلی"],
+  imdb:8.7,imdbVotes:320000,tomato:96,meta:84,age:"+۱۶",dir:"بن استیلر",
+  syn:"کارمندان شرکت لومن با یک عمل جراحی، خاطرات کار را از زندگی شخصی‌شان جدا کرده‌اند: در دفتر هیچ‌چیز از بیرون به یاد نمی‌آورند و بیرون هیچ‌چیز از دفتر. مارک، که این کار را بعد از مرگ همسرش انتخاب کرده، کم‌کم می‌فهمد پشت این دیوارهای سفید چه می‌گذرد.",
+  dub:true,subs:["فارسی","انگلیسی"],
+  cast:[["آدام اسکات","مارک اسکات"],["بریت لوئر","هلی ریگز"],["ترامل تیلمن","سث میلچیک"],["زک چری","دیلن جورج"],["جن تولوک","کیسی"],["کریستوفر واکن","برت گودمن"],["جان تورتورو","اروینگ بیلی"],["پاتریشیا آرکت","هارمونی کوبل"]],
+  progress:{s:2,e:5,at:"۲۳:۴۰",p:.46,left:"۲۸ دقیقه",leftLong:"۲۸ دقیقه مانده"},
+  recap:{upto:"تا پایان فصل ۲، قسمت ۴",text:"مارک پس از شورش بخش به لومن برمی‌گردد و می‌فهمد همسرش، گما، شاید زنده باشد. همکاران تازه‌ای جای قبلی‌ها را گرفته‌اند و میلچیک حالا مدیر بخش است. هلی وانمود می‌کند همان هلیِ همیشگی است. در سفر کاری به دره‌ی وو، مارک و هلی به هم نزدیک می‌شوند، اما در پایان قسمت ۴ معلوم می‌شود کسی که کنار مارک بوده، هلنا ایگان، دختر خانواده‌ی صاحب لومن، است."},
+  mood:[91,6,3],
+  epReview:{s:2,e:4,n:1240,date:"۷ آبان",mood:[94,4,2],
+    tone:"بیشتر مخاطبان این قسمت را از بهترین قسمت‌های کل سریال می‌دانند؛ سفر به دره‌ی وو هم خنده‌دار است و هم در پایان تکان‌دهنده.",
+    pos:["پایان غافلگیرکننده","بازی بریت لوئر در دو نقش هلی و هلنا","فضای برفی، متفاوت با دفتر همیشگی"],
+    neg:["شروع کمی کند","چند شوخی که جا نمی‌افتد","سؤال‌هایی که باز هم بی‌جواب می‌ماند"]},lastWatched:{s:2,e:4},
+  next:{s:2,e:8,in:2*86400+5*3600+38*60+12},
+  trailers:{"1-1":1,"2-1":1,"2-4":1},
+  rating:{avg:8.8,n:2140},votes:{up:1985,down:155},
+  review:{n:6180,date:"۷ آبان",tone:"بیشتر مخاطبان آن را هوشمندترین و عجیب‌ترین سریال این سال‌ها می‌دانند و فصل دوم را تاریک‌تر اما جسورتر از فصل اول می‌بینند.",
+    pos:["فضای سرد و طراحی منحصربه‌فرد دفتر","بازی آدام اسکات و بریت لوئر","معماهایی که مخاطب را تا آخر نگه می‌دارد"],
+    neg:["ریتم کند چند قسمت میانی","پاسخ‌های کم به سؤال‌های اصلی","فاصله‌ی طولانی میان فصل‌ها"]},
+  music:[["Main Title Theme","Theodore Shapiro","ف۱ ق۱","تیتراژ آغاز"],["Defiant Jazz","Theodore Shapiro","ف۱ ق۷","رقص بخش ام‌دی‌آر"],["Kier, Chosen","Theodore Shapiro","ف۲ ق۴","سفر به دره‌ی وو"]],
+  dl:{dub:[["1080p","Full HD",1.6],["720p","HD",0.8],["480p","SD",0.38]],sub:[["1080p","Full HD",1.5],["720p","HD",0.75],["480p","SD",0.35]]},
+  similar:["the-last-of-us","fallout","shogun","slow-horses","the-bear","the-white-lotus"]};
+const COMMENTS=[
+  {id:1,n:"مهسا",t:"۲ ساعت پیش",r:9,likes:48,text:"صحنه‌ی سواری روی کرم شنی رو باید توی بزرگ‌ترین صفحه‌ای که دارید ببینید. موسیقی‌اش هنوز توی گوشمه.",replies:[{id:11,n:"آرش",t:"۱ ساعت پیش",likes:6,text:"دقیقاً. نسخه‌ی ۴K اینجا هم خیلی تمیزه."}]},
+  {id:2,n:"رضا",t:"دیروز",r:7,likes:21,spoiler:true,text:"آخرش که پل با امپراتور روبه‌رو می‌شه و چانی می‌ره، یعنی بخش سوم کاملاً یه جنگ دیگه‌ست."},
+  {id:3,n:"نگار",t:"۳ روز پیش",r:8,likes:15,text:"از قسمت اول بهتره، فقط کاش نیم ساعت کوتاه‌تر بود."}];
+
+/* Rollvana v4 · shared shell + components (used by home and title) */
+const M = window.MEDIA || "media/";
+const $ = (s, r = document) => r.querySelector(s);
+const FA = n => String(n).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]).replace(/\./g, "٫").replace(/,/g, "٬");
+const i = (k, cls = "i") => `<svg class="${cls}" viewBox="0 0 256 256" aria-hidden="true">${IC[k] || ""}</svg>`;
+const star = `<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1l-5.7 3.1 1.2-6.3-4.7-4.4 6.4-.8z"/></svg>`;
+const WORD = `<svg viewBox="-40 -820 3689 870" aria-label="Rollvana">${(window.WORDMARK || "")}</svg>`;
+const SYM = `<svg class="sym" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="190" fill="none" stroke="var(--brand)" stroke-width="100"/><circle cx="345" cy="255" r="50" fill="var(--brand)"/></svg>`;
+
+/* one lookup for every title on the site */
+const EXTRA = {"dune-part-one":["تلماسه","Dune",2021,"8.0","علمی‌تخیلی، ماجراجویی","فیلم"]};
+function T(s){
+  const h = HERO.find(x => x.s === s);
+  if (h) return {s, fa:h.fa, en:h.en, y:h.y, imdb:h.imdb, g:h.g, kind:h.kind, d:h.rt, b:h.b};
+  const c = [...FILMS, ...SERIES, ...PICKS].find(x => x.s === s);
+  if (c) return {s, fa:c.fa||c.en, en:c.en, y:c.y, imdb:c.imdb, g:c.g, kind:SERIES.includes(c)?"سریال":"فیلم", d:c.d, ep:c.ep};
+  const e = EXTRA[s]; if (e) return {s, fa:e[0], en:e[1], y:e[2], imdb:e[3], g:e[4], kind:e[5]};
+  return {s, fa:s, en:s};
+}
+/* every poster opens the same title page; the two fully written titles stand in for the rest */
+const href = s => { const t = T(s); return "title.html#" + (t.kind === "سریال" ? "severance" : "dune-part-two"); };
+const href2 = s => "title.html#" + (s === "severance" ? "severance" : "dune-part-two");
+
+function Poster(s, extra){
+  const t = T(s);
+  const sub = extra || `${t.y ? FA(t.y) : ""}${t.imdb ? `<span class="dot"></span><span class="score">${star}${FA(t.imdb)}</span>` : ""}`;
+  return `<a class="pc" href="${href(s)}"><div class="im"><img loading="lazy" src="${M}p-${s}.jpg" alt=""></div><h3>${t.fa}</h3><div class="meta">${sub}</div></a>`;
+}
+function Wide({img, title, k, p, play, url = "#"}){
+  return `<a class="wc" href="${url}"><div class="im"><img loading="lazy" src="${img}" alt="">${play ? `<div class="pl"><span>${i("play")}</span></div>` : ""}${p != null ? `<div class="pb"><i style="width:${p*100}%"></i></div>` : ""}</div><h3>${title}</h3>${k ? `<div class="k">${k}</div>` : ""}</a>`;
+}
+function Sec({title, sub, more, body, id, cls = ""}){
+  return `<section class="section wrap ${cls}"${id ? ` id="${id}"` : ""}><div class="sh"><div><h2>${title}</h2>${sub ? `<p>${sub}</p>` : ""}</div>${more ? `<a class="lnk" href="#">${more}${i("arrow")}</a>` : ""}</div>${body}</section>`;
+}
+
+function Shell(page){
+  const nav = [["home","خانه","home.html"],["film","فیلم‌ها","#"],["tv","سریال‌ها","#"],["list","فهرست من","#"]];
+  const on = k => (page === "home" && k === "home") ? " on" : "";
+  document.body.insertAdjacentHTML("afterbegin", `
+  <header class="hd" id="hd"><div class="wrap">
+    <a class="logo" href="home.html">${SYM}${WORD}</a>
+    <nav class="nav">${nav.map(([k,l,u]) => `<a class="${on(k).trim()}" href="${u}">${l}</a>`).join("")}</nav>
+    <div class="end"><button class="ib" aria-label="جستجو">${i("search")}</button><button class="ib" aria-label="اعلان‌ها">${i("bell")}</button><span class="av">س</span></div>
+  </div></header>`);
+  document.body.insertAdjacentHTML("beforeend", `
+  <footer class="ft"><div class="wrap">
+    <a class="logo" href="home.html">${WORD}</a>
+    <nav><a href="#">درباره‌ی ما</a><a href="#">پرسش‌های رایج</a><a href="#">تماس</a><a href="#">قوانین</a></nav>
+    <span class="cp">نمونه‌ها: <a class="lnk" href="title.html#dune-part-two">تلماسه</a> · <a class="lnk" href="title.html#severance">جداسازی</a></span>
+  </div></footer>
+  <nav class="tb">${[["home","خانه","home.html"],["search","جستجو","#"],["list","فهرست من","#"],["user","حساب","#"]].map(([k,l,u]) => `<a class="${page==="home"&&k==="home"?"on":""}" href="${u}">${i(k)}<span>${l}</span></a>`).join("")}</nav>`);
+  const hd = $("#hd"), f = () => hd.classList.toggle("solid", scrollY > 24);
+  addEventListener("scroll", f, {passive:true}); f();
+}
+
+/* Rollvana v4 · title page (film or series) built from the same parts as home */
+const gb = n => n >= 1 ? `${FA(n)} گیگابایت` : `${FA(Math.round(n * 1000))} مگابایت`;
+const votesK = n => `${FA(Math.round(n / 1000))} هزار رأی`;
+const logo = (k, c) => `<svg class="i" viewBox="0 0 24 24" style="color:${c}" aria-hidden="true"><path fill="currentColor" d="${BRAND[k]}"/></svg>`;
+let D, tab = "over", season = 2, dlKind = "dub";
+
+function hero(){
+  const p = D.progress, ser = D.kind === "series";
+  const resume = ser ? `ادامه · فصل ${FA(p.s)} قسمت ${FA(p.e)}` : `ادامه از ${p.at}`;
+  return `<section class="hero sm"><div class="bg"><img src="${M}b-${D.s}.jpg" alt="" style="object-position:50% 25%"></div>
+  <div class="wrap"><div class="hc fade">
+    <div class="eyebrow"><span>${ser ? "سریال" : "فیلم"}</span><span class="dot"></span><span>${FA(D.y)}</span><span class="dot"></span><span>${D.rt}</span><span class="dot"></span><span>${D.age}</span></div>
+    <h1>${D.fa}</h1><span class="en-t en">${D.en}</span>
+    <div class="eyebrow" style="margin-top:16px"><span class="score">${star}${FA(D.imdb)}</span><span>${votesK(D.imdbVotes)}</span><span class="dot"></span><span>${D.g.join("، ")}</span>${D.dub ? `<span class="tag">دوبله فارسی</span>` : ""}</div>
+    <div class="acts">
+      <a class="btn pri" href="#">${i("play")}${resume}</a>
+      <button class="btn sec" data-go="dl">${i("dl")}دانلود</button>
+      <button class="btn sec ic" aria-label="افزودن به فهرست">${i("plus")}</button>
+      <button class="btn sec ic" aria-label="اشتراک‌گذاری">${i("share")}</button>
+    </div>
+    <div class="prog"><i style="width:${p.p * 100}%"></i></div><div class="progk">${p.leftLong}</div>
+  </div></div></section>`;
+}
+
+function tabs(){
+  const t = [["over","مرور"], ...(D.kind === "series" ? [["eps","قسمت‌ها"]] : []), ["dl","دانلود"], ["cmt","نظرها", FA(D.review.n.toLocaleString("en"))]];
+  return `<div class="tabs" id="tabs"><div class="wrap">${t.map(([k,l,n]) => `<button class="${tab===k?"on":""}" data-tab="${k}">${l}${n ? `<sup>${n}</sup>` : ""}</button>`).join("")}</div></div>`;
+}
+
+function over(){
+  const r = D.recap;
+  return `<div class="ov">
+    <div class="main">
+      <div class="blk"><h3 class="lbl">داستان</h3><p class="body">${D.syn}</p></div>
+      <div class="blk recap"><div class="rh">${i("sparkles")}<b>یادت بیاید</b><span>${r.upto}</span></div><p>${r.text}</p></div>
+      <div class="blk"><h3 class="lbl">بازیگران</h3>
+        <div class="cast">${D.cast.map(([n, ro], k) => `<div><img loading="lazy" src="${M}c-${D.s === "severance" ? "sev" : "dune"}-${k}.jpg" alt=""><b>${n}</b><span>${ro}</span></div>`).join("")}</div></div>
+    </div>
+    <aside>
+      <div class="blk"><h3 class="lbl">امتیازها</h3>
+        <ul class="rates">
+          <li>${logo("imdb","#F5C518")}<span>IMDb</span><b>${FA(D.imdb)}<small>/۱۰</small></b></li>
+          <li>${logo("rottentomatoes","#FA6A4A")}<span>Rotten Tomatoes</span><b>${FA(D.tomato)}٪</b></li>
+          <li>${logo("metacritic","#66CC66")}<span>Metacritic</span><b>${FA(D.meta)}</b></li>
+          <li>${star.replace('class="i"','class="i" style="color:var(--brand)"')}<span>کاربران رول‌وانا</span><b>${FA(D.mood[0])}٪ <small>پسندیدند</small></b></li>
+        </ul></div>
+      <div class="blk"><h3 class="lbl">مشخصات</h3>
+        <dl class="dl"><dt>کارگردان</dt><dd>${D.dir}</dd><dt>ژانر</dt><dd>${D.g.join("، ")}</dd><dt>سال</dt><dd>${FA(D.y)}</dd><dt>${D.kind==="series"?"فصل‌ها":"مدت"}</dt><dd>${D.rt}</dd><dt>رده‌ی سنی</dt><dd>${D.age}</dd><dt>صدا</dt><dd>${D.dub ? "دوبله فارسی، انگلیسی" : "انگلیسی"}</dd><dt>زیرنویس</dt><dd>${D.subs.join("، ")}</dd></dl></div>
+    </aside></div>`;
+}
+
+function eps(){
+  const list = SEV_EP[season], p = D.progress;
+  const state = e => season < p.s || (season === p.s && e < p.e) ? 1 : (season === p.s && e === p.e ? p.p : null);
+  return `<div class="eph"><div class="seg">${Object.keys(SEV_EP).map(s => `<button class="${+s===season?"on":""}" data-season="${s}">فصل ${FA(s)}</button>`).join("")}</div>
+    <span class="k">قسمت ${FA(D.next.e)} · دو روز دیگر</span></div>
+  <ol class="eps">${list.map(([t, d, min, syn], k) => { const e = k + 1, st = state(e); return `<li>
+    <a class="wc" href="#"><div class="im"><img loading="lazy" src="${M}e-sev-${season}-${e}.jpg" alt=""><div class="pl"><span>${i("play")}</span></div>${st != null && st < 1 ? `<div class="pb"><i style="width:${st*100}%"></i></div>` : ""}</div></a>
+    <div class="et"><span class="k">قسمت ${FA(e)}${st === 1 ? ` · <em>دیده‌شده</em>` : st != null ? ` · <em class="now">در حال تماشا</em>` : ""}</span><h3>${t}</h3><p>${syn}</p><span class="k">${d} · ${FA(min)} دقیقه</span></div>
+    <button class="ib" aria-label="دانلود">${i("dl")}</button></li>`; }).join("")}</ol>`;
+}
+
+function dl(){
+  const rows = D.dl[dlKind], ser = D.kind === "series";
+  return `<div class="dlw">
+    <div class="eph"><div class="seg"><button class="${dlKind==="dub"?"on":""}" data-dl="dub">دوبله فارسی</button><button class="${dlKind==="sub"?"on":""}" data-dl="sub">زیرنویس فارسی</button></div>
+    ${ser ? `<span class="k">فصل ${FA(D.progress.s)} · قسمت ${FA(D.progress.e)}</span>` : ""}</div>
+    <ul class="dls">${rows.map(([q, l, s]) => `<li class="${q==="1080p"?"rec":""}"><b class="en">${q}</b><span>${l}${q==="1080p" ? ` <em>پیشنهادی</em>` : ""}</span><span class="k">${gb(s)} · MKV · ${dlKind==="dub"?"دو زبانه":"زیرنویس چسبیده"}</span><a class="btn ${q==="1080p"?"pri":"sec"} sm" href="#">${i("dl")}دانلود</a></li>`).join("")}</ul>
+    <p class="note">${i("info")}زیرنویس جداگانه (SRT) فارسی و انگلیسی <a class="lnk" href="#">دانلود</a></p></div>`;
+}
+
+function cmt(){
+  const R = D.review, [up, mid, dn] = D.mood;
+  return `<div class="cm">
+    <div class="sum">
+      <div class="big"><b>${FA(up)}٪</b><span>از ${FA(R.n.toLocaleString("en"))} نظر پسندیدند</span>
+        <div class="bar"><i style="width:${up}%;background:var(--pos)"></i><i style="width:${mid}%;background:var(--gold)"></i><i style="width:${dn}%;background:var(--neg)"></i></div></div>
+      <div class="tone"><p>${R.tone}</p>
+        <div class="pc2"><div><h4><i style="background:var(--pos)"></i>نقاط قوت</h4><ul>${R.pos.map(x => `<li>${x}</li>`).join("")}</ul></div>
+        <div><h4><i style="background:var(--neg)"></i>نقاط ضعف</h4><ul>${R.neg.map(x => `<li>${x}</li>`).join("")}</ul></div></div>
+        <span class="k">${i("sparkles")}خلاصه‌ی خودکار از نظرهای کاربران · ${R.date}</span></div>
+    </div>
+    <div class="write"><span class="av">س</span><input placeholder="نظرت درباره‌ی ${D.fa} چیست؟"><button class="btn sec sm">ارسال</button></div>
+    <ul class="cms">${COMMENTS.map(c => `<li><span class="av">${c.n[0]}</span><div>
+      <div class="ch"><b>${c.n}</b><span class="k">${c.t}</span><span class="rt">${star}${FA(c.r)}</span></div>
+      ${c.spoiler ? `<p class="spo" tabindex="0" onclick="this.classList.add('open')"><span>${c.text}</span><em>این نظر داستان را لو می‌دهد · نمایش</em></p>` : `<p>${c.text}</p>`}
+      <div class="ca"><button>${i("heart")}${FA(c.likes)}</button><button>${i("reply")}پاسخ</button>${c.replies ? `<span class="k">${FA(c.replies.length)} پاسخ</span>` : ""}</div></div></li>`).join("")}</ul>
+  </div>`;
+}
+
+function panel(){ return {over, eps, dl, cmt}[tab](); }
+
+function render(){
+  D = location.hash === "#severance" ? SERIES_T : FILM;
+  if (D.kind !== "series" && tab === "eps") tab = "over";
+  document.title = D.fa + " · رول‌وانا";
+  $("main").innerHTML = `${hero()}${tabs()}
+    <section class="wrap panel" id="panel">${panel()}</section>
+    ${Sec({title:"شاید دوست داشته باشی", more:"همه", body:`<div class="row">${D.similar.slice(0, 6).map(s => Poster(s)).join("")}</div>`})}`;
+}
+function swap(){ $("#panel").innerHTML = panel(); $("#panel").firstElementChild.classList.add("fade");
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab)); }
+
+document.body.insertAdjacentHTML("beforeend", "<main></main>");
+render(); Shell("title");
+addEventListener("hashchange", () => { tab = "over"; render(); scrollTo({top:0}); });
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-tab],[data-go],[data-season],[data-dl]"); if (!b) return;
+  if (b.dataset.tab || b.dataset.go){ tab = b.dataset.tab || b.dataset.go; swap();
+    const t = $("#tabs").getBoundingClientRect().top + scrollY - (innerWidth > 900 ? 72 : 60); if (scrollY > t || b.dataset.go) scrollTo({top:t, behavior:"smooth"}); }
+  if (b.dataset.season){ season = +b.dataset.season; swap(); }
+  if (b.dataset.dl){ dlKind = b.dataset.dl; swap(); }
+});
+</script></body></html>

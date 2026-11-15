@@ -340,7 +340,16 @@ function Card({c,k,reduced}){
     </${motion.div}>
   </${motion.a}>`;
 }
-function SkCard({wide}){return html`<div class=${"card"+(wide?" wide":"")}><div class="po sk"></div></div>`}
+function SkCard({wide}){return wide?html`<div class="epc"><div class="epi sk"></div><span class="ept"><span class="sk" style=${{width:"52%",height:15,margin:"3px 0"}}></span><span class="sk" style=${{width:"34%",height:12}}></span></span></div>`:html`<div class="card"><div class="po sk"></div></div>`}
+function EpCard({c}){
+  return html`<${motion.a} href="#" class="epc" initial="r" animate="r" whileHover="h" whileTap=${{scale:.98}} aria-label=${c.en+"، "+c.ep}>
+    <${motion.span} class="epi" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
+      <${motion.img} src=${M("w-"+c.s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}/>
+      <span class="ctr"><span class="bdg cbdg">${c.b}</span></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
+    </${motion.span}>
+    <span class="ept"><b dir="ltr">${c.en}</b><em class="num">${c.ep}</em><small><span class="num">${fa(c.y)}</span><i class="dot2"></i><span>${c.g}</span></small></span>
+  </${motion.a}>`;
+}
 
 function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌ی بیشتر"}){
   const ref=useRef();const reduced=useReducedMotion();
@@ -349,7 +358,8 @@ function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌�
   const upd=()=>{const el=ref.current;if(!el)return;const x=Math.abs(el.scrollLeft);setEdge({s:x<4,e:x+el.clientWidth>=el.scrollWidth-4})};
   if(!loading&&!items.length)return null;
   const by=d=>{const el=ref.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:"smooth"})};
-  return html`<section class=${"row"+(big?" big":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
+  const ep=items.some(c=>c&&c.ep);
+  return html`<section class=${"row"+(big?" big":"")+(ep?" erow":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
     <div class="rh"><h2>${icon&&html`<span class="rhi"><${I} n=${icon}/></span>`}<span>${title}${sub&&!loading&&html`<small>${sub}</small>`}</span></h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">${more}<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
     ${desk&&!loading&&html`<${AnimatePresence}>
       ${hov&&!edge.e&&html`<${motion.button} key="l" class="arr l" aria-label="بعدی" onClick=${()=>by(1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="left"/></${motion.button}>`}
@@ -360,7 +370,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌�
 >
           <${motion.img} src=${M("b-"+g[2]+".jpg")} style=${{objectPosition:g[3]}} alt="" variants=${{h:{scale:1.08}}} transition=${{duration:.8,ease:EASE}}/>
           <b>${g[0]}</b><small>${fa(g[5])} عنوان</small></${motion.a}>`)
-      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced}/>`)}</div>
+      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:c.ep?html`<${EpCard} key=${c.s} c=${c}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced}/>`)}</div>
   </section>`;
 }
 
@@ -419,7 +429,7 @@ function LoversBanner(){
   const P=["interstellar","past-lives","dune-part-two"];
   return html`<section class="row lvb" aria-label="جمع فیلم‌بازها"><${motion.a} href="#" class="lvc" whileHover="h" whileTap=${{scale:.985}} initial="r" animate="r">
     <span class="lvt">
-      <small>جمع فیلم‌بازها</small>
+      <small><img src="../brand/rollvana-symbol-dark.svg" alt=""/>جمع فیلم‌بازها</small>
       <b>آدم‌های هم‌سلیقه‌ات را پیدا کن</b>
       <span class="lvd">امتیازها و لیست‌های فیلم‌بازهای رول‌وانا را ببین و هرکدام را که دوست داشتی دنبال کن.</span>
       <span class="lvf"><span class="lva">${["ن","ا","س","ر"].map(x=>html`<i class="av3" key=${x}>${x}</i>`)}</span><span class="num">۱۲٬۴۸۰ فیلم‌باز</span></span>
@@ -434,6 +444,39 @@ function News({loading}){
     <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><em>${x.tag}</em><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div></section>`;
 }
 
+const RVK={"one-battle-after-another":"نقد فیلم","sinners":"نقد فیلم","frankenstein":"نقد فیلم","the-penguin":"نقد سریال"};
+function Journal(){
+  const [f,...rest]=REVIEWS;
+  const By=r=>html`<small class="jrby"><i class="av3">${r.by[0]}</i><b>${r.by}</b><i class="dot2"></i><span class="num">${fa(r.min)} دقیقه مطالعه</span></small>`;
+  const Lk=(l)=>html`<a href="#" class="jrl">${l}<${I} n="left"/></a>`;
+  return html`<section class="jr" aria-label="مجله‌ی رول‌وانا"><div class="jrin">
+    <header class="jrm"><span><span class="jrk">مجله‌ی رول‌وانا</span><b class="jrt" dir="ltr">Rollvana <i>Journal</i></b></span><p>نقد، خبر و هرچه پشت پرده‌ی فیلم‌ها می‌گذرد</p></header>
+    <div class="jrh"><h2>نقد و بررسی</h2>${Lk("آرشیو نقدها")}</div>
+    <div class="jrg">
+      <${motion.a} href="#" class="jrf" initial="r" animate="r" whileHover="h" whileTap=${{scale:.99}}>
+        <span class="jrfi"><${motion.img} src=${M(f.img)} alt="" variants=${{r:{scale:1},h:{scale:1.03}}} transition=${{duration:.7,ease:EASE}}/></span>
+        <span class="jrq">${RVK[f.s]}</span><h3>${f.t}</h3><p>${RVX[f.s]}</p>${By(f)}
+      </${motion.a}>
+      <div class="jrs">${rest.map(r=>html`<${motion.a} href="#" class="jri" key=${r.s} initial="r" animate="r" whileHover="h" whileTap=${{scale:.99}}>
+        <span class="jrii"><${motion.img} src=${M(r.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.7,ease:EASE}}/></span>
+        <span class="jrit"><span class="jrq">${RVK[r.s]}</span><b>${r.t}</b>${By(r)}</span></${motion.a}>`)}</div>
+    </div>
+    <div class="jrh"><h2>اخبار</h2>${Lk("آرشیو اخبار")}</div>
+    <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><em>${x.tag}</em><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div>
+  </div></section>`;
+}
+const FT_TG='<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>';
+const FT_IG='<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>';
+const FT_COLS=[["تماشا",["فیلم‌ها","سریال‌ها","۲۵۰ فیلم برتر","تقویم پخش"]],["رول‌وانا",["مجله‌ی رول‌وانا","فیلم‌بازها","خرید اشتراک","اپلیکیشن‌ها"]],["راهنما",["پرسش‌های رایج","تماس با ما","قوانین","حریم خصوصی"]]];
+function Footer(){
+  const Ic=d=>html`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:d}}></svg>`;
+  return html`<footer class="ft"><div class="fti">
+    <div class="ftb"><img src="../brand/rollvana-lockup-dark.svg" alt="Rollvana"/><p>حس خلسه‌ی تماشای فیلم و سریال؛ با دوبله و زیرنویس فارسی، هر جا که هستی.</p>
+      <div class="ftso"><a href="#" aria-label="رول‌وانا در تلگرام">${Ic(FT_TG)}</a><a href="#" aria-label="رول‌وانا در اینستاگرام">${Ic(FT_IG)}</a></div></div>
+    ${FT_COLS.map(([h,l])=>html`<nav class="ftc" key=${h} aria-label=${h}><h3>${h}</h3><ul>${l.map(x=>html`<li key=${x}><a href="#">${x}</a></li>`)}</ul></nav>`)}
+    <div class="ftl"><span>© ۱۴۰۵ رول‌وانا، همه‌ی حقوق محفوظ است</span></div>
+  </div></footer>`;
+}
 function Tabs(){
   const [sel,setSel]=useState(0);const [hide,setHide]=useState(false);const reduced=useReducedMotion();
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;if(y>200&&y>last+6)setHide(true);else if(y<last-6||y<200)setHide(false);last=y};addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[]);
@@ -492,13 +535,11 @@ function App(){
           <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
           ${!user&&!loading&&html`<${LoversBanner}/>`}
           <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${series} loading=${loading} desk=${desk}/>
-          ${!loading&&html`<section class="mag" aria-label="مجله‌ی رول‌وانا"><div class="magh"><span class="magk">مجله‌ی رول‌وانا</span><b class="magt" dir="ltr">Rollvana <i>Journal</i></b><small>نقد، خبر و هرچه پشت پرده‌ی فیلم‌ها می‌گذرد</small></div>
-            <${Reviews} loading=${loading}/>
-            <${News} loading=${loading}/>
-          </section>`}
+          ${!loading&&html`<${Journal}/>`}
           <${Row} title="مستندها" items=${[]} loading=${false}/>
-          <${Review} user=${user} setUser=${setUser} content=${content} setContent=${setContent}/>
         </main>
+        <${Footer}/>
+        <${Review} user=${user} setUser=${setUser} content=${content} setContent=${setContent}/>
       </${motion.div}>
     </${AnimatePresence}>
     ${!desk&&html`<${Tabs}/>`}
