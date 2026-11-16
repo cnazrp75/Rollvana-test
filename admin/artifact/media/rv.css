@@ -1,0 +1,54 @@
+@font-face{font-family:"IRANYekanX";src:url("iranyekanx.woff2") format("woff2-variations"),url("iranyekanx.woff2") format("woff2");font-weight:100 1000;font-display:swap}
+:root{
+--rv-night-0:#0B0918;--rv-night-1:#120F24;--rv-night-2:#1A1631;--rv-night-3:#241E42;
+--rv-dusk-0:#1C1545;--rv-dusk-1:#2B2163;--rv-dusk-2:#3B2A8C;
+--rv-violet:#A98BFF;--rv-violet-hi:#C9B6FF;--rv-violet-press:#9676FF;
+--rv-violet-soft:rgba(169,139,255,.16);--rv-violet-line:rgba(169,139,255,.34);
+--rv-on-violet:#140C2E;
+--rv-ink-1:#F3F0FA;--rv-ink-2:#C4BCDD;--rv-ink-3:#9890B5;
+--rv-line-1:rgba(201,182,255,.12);--rv-line-2:rgba(201,182,255,.24);
+--rv-gold:#F5C451;--rv-green:#5BD69A;--rv-red:#FF6B7A;
+--rv-glass:rgba(255,255,255,.14);--rv-glass-hover:rgba(255,255,255,.22);--rv-glass-edge:rgba(255,255,255,.30);
+--rv-font:"IRANYekanX",system-ui,sans-serif;
+--rv-r-card:12px;--rv-r-panel:20px;--rv-r-pill:999px;
+--rv-ring:0 0 0 2px var(--rv-night-0),0 0 0 4px var(--rv-violet-hi);
+--rv-ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--rv-night-0)}
+.rv{font-family:var(--rv-font);color:var(--rv-ink-1);background:var(--rv-night-0);font-weight:420;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01"}
+.rv h1,.rv h2,.rv h3,.rv h4,.rv p{margin:0}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.ltr{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.ico{width:20px;height:20px;flex:none;fill:currentColor;display:block}
+.rv button,.rv input,.rv a{font-family:inherit;color:inherit}
+.rv button{background:none;border:0;padding:0;cursor:pointer}
+.rv a{text-decoration:none}
+.rv button:focus-visible,.rv a:focus-visible,.rv input:focus-visible{outline:none;box-shadow:var(--rv-ring)}
+.btn-v{min-height:48px;padding:0 24px;border-radius:var(--rv-r-pill);background:var(--rv-violet)!important;color:var(--rv-on-violet)!important;font-weight:860;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background-color .2s var(--rv-ease)}
+.btn-v:hover{background:var(--rv-violet-hi)!important}
+.btn-v:active{background:var(--rv-violet-press)!important}
+.glass{background:var(--rv-glass)!important;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 1px var(--rv-glass-edge);transition:background-color .2s var(--rv-ease)}
+.glass:hover{background:var(--rv-glass-hover)!important}
+.glass:focus-visible{box-shadow:inset 0 0 0 1px var(--rv-glass-edge),var(--rv-ring)!important}
+.sec{display:flex;align-items:baseline;gap:12px;font-size:13px;font-weight:760;color:var(--rv-ink-3);letter-spacing:0}
+.sec b{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:8px;background:var(--rv-night-2);color:var(--rv-ink-2);font-weight:860;font-size:14px}
+.chip-pal{display:flex;flex-direction:column;gap:10px;min-width:0}
+.chip-pal i{display:block;height:72px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--rv-line-1)}
+.chip-pal strong{font-size:14px;font-weight:760;color:var(--rv-ink-1)}
+.chip-pal span{font-size:12.5px;color:var(--rv-ink-3);line-height:1.6}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:14px;font-weight:700;color:var(--rv-ink-2)}
+.inp{height:48px;width:100%;border-radius:12px;border:0;background:var(--rv-night-2);box-shadow:inset 0 0 0 1px var(--rv-line-2);padding:0 16px;font-size:15px;color:var(--rv-ink-1);font-family:var(--rv-font)}
+.inp:focus-visible{box-shadow:inset 0 0 0 1px var(--rv-line-2),var(--rv-ring)}
+.pw{position:relative}
+.pw .inp{padding-left:52px}
+.eye{position:absolute;left:2px;top:2px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--rv-ink-2)}
+.eye:hover{color:var(--rv-ink-1)}
+.spin{width:18px;height:18px;border-radius:50%;border:2px solid rgba(20,12,46,.25);border-top-color:var(--rv-on-violet);animation:spin .8s linear infinite}
+.err{border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.7;color:var(--rv-ink-1);background:rgba(255,107,122,.10);box-shadow:inset 0 0 0 1px rgba(255,107,122,.45);display:flex;gap:8px;align-items:center}
+.err em{font-style:normal;font-weight:860;color:var(--rv-red)}
+.dissolve{animation:dissolve .5s var(--rv-ease) both}
+@keyframes dissolve{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.dissolve,.spin{animation:none}.rv *{transition:none!important}}

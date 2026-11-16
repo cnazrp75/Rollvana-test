@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>جهت الف، اتاق پروجکشن، گوشی</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="media/rv.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"IRANYekanX";src:url("media/iranyekanx.woff2") format("woff2-variations"),url("media/iranyekanx.woff2") format("woff2");font-weight:100 1000;font-display:swap}
+body{margin:0;background:#0B0918}
+.lat{font-feature-settings:normal!important;direction:ltr;unicode-bidi:isolate}
+.ap-l1,.ap-l2r,.ap-l3,.b-t,.b-m,.c-act,.c-meta,.cp-act,.cp-meta,.c-insp-act{text-wrap:pretty}
+.fgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fgrid > button{width:100%;min-width:0;justify-content:center}
+.fgrid > button:first-child{grid-column:1 / -1}
+.ph{border-top:1px solid rgba(201,182,255,.24);border-bottom:1px solid rgba(201,182,255,.24);background:#0B0918;overflow:hidden}
+.ph-bar{height:60px;display:flex;align-items:center;gap:10px;padding:0 8px 0 16px;background:#120F24;border-bottom:1px solid rgba(201,182,255,.12)}
+.ph-bar h2{font-size:16px;font-weight:860;flex:1;min-width:0}
+.ibtn{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#F3F0FA!important;flex:none}
+.ibtn:hover{background:#1A1631}
+.ibtn .ico{width:24px;height:24px}
+.a-filter{height:44px;padding:0 12px 0 10px;border-radius:10px;background:#120F24;box-shadow:inset 0 0 0 1px rgba(201,182,255,.24);display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#F3F0FA!important;white-space:nowrap;flex:none}
+.a-filter .ico{width:16px;height:16px;color:#9890B5}
+.a-filter.on{background:#A98BFF;box-shadow:none;color:#140C2E!important}
+.a-filter.on .ico{color:#140C2E}
+.ap-item{display:flex;align-items:center;gap:0;min-height:64px;padding-block:10px;padding-inline:16px 4px;border-bottom:1px solid rgba(201,182,255,.12)}
+.ap-item.is-open{background:#120F24;border-bottom-color:transparent}
+.ap-item img{width:32px;height:48px;border-radius:6px;object-fit:cover;flex:none;display:block}
+.ap-glyph{width:32px;height:48px;flex:none;display:flex;align-items:center;justify-content:center;color:#9890B5}
+.ap-txt{flex:1;min-width:0;margin-inline:12px;display:flex;flex-direction:column;gap:3px}
+.ap-l1{font-size:14.5px;font-weight:520;line-height:1.6;color:#F3F0FA}
+.ap-l1 .rec{font-weight:760;white-space:nowrap}
+.ap-l2{font-size:12.5px;color:#9890B5;line-height:1.5}
+.ap-l2 b{font-weight:760;color:#C4BCDD}
+.ap-l2r{font-size:14px;line-height:1.6;color:#F3F0FA}
+.ap-l2r .k{font-size:12.5px;color:#9890B5;margin-inline-end:6px}
+.ap-l2r .rec{font-weight:760;white-space:nowrap}
+.ap-l2r .cd{font-size:12.5px;color:#9890B5;white-space:nowrap;margin:0 8px 0 0}
+.ap-l3{font-size:12.5px;color:#9890B5;line-height:1.5}
+.a-more{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#9890B5;flex:none}
+.a-more.is-open{color:#F3F0FA}
+.a-more.is-open .ico{transform:rotate(-90deg)}
+.a-more .ico{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.ap-det{background:#120F24;padding:0 16px 16px;border-bottom:1px solid rgba(201,182,255,.12)}
+.a-diff{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.a-side{border-radius:10px;background:#0B0918;box-shadow:inset 0 0 0 1px rgba(201,182,255,.12);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.a-side small{font-size:12.5px;font-weight:760;color:#9890B5}
+.a-pg{min-width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:760;color:#C4BCDD!important}
+.a-pg[aria-current]{background:#241E42;color:#F3F0FA!important;box-shadow:inset 0 0 0 1px rgba(201,182,255,.24)}
+.sh-item{position:relative;height:48px;display:flex;align-items:center;gap:12px;padding:0 12px;border-radius:8px;font-size:15px;font-weight:560;color:#C4BCDD!important}
+.sh-item .ico{color:#9890B5}
+.sh-item.is-cur{background:#1A1631;color:#F3F0FA!important;font-weight:760}
+.sh-item.is-cur .ico{color:#F3F0FA}
+.sh-item.is-cur::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:#A98BFF}
+.a-count{margin-inline-start:auto;min-width:26px;height:22px;padding:0 7px;border-radius:999px;font-size:12.5px;font-weight:860;color:#140C2E;display:inline-flex;align-items:center;justify-content:center}
+.a-count.red{background:#FF6B7A}.a-count.gold{background:#F5C451}
+.mono{width:40px;height:40px;border-radius:50%;background:#241E42;color:#F3F0FA;font-weight:860;font-size:16px;display:flex;align-items:center;justify-content:center;flex:none}
+.a-out{margin-inline-start:auto;height:44px;padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#C4BCDD!important}
+.a-wall{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:8px;align-content:center;opacity:.18;filter:saturate(.4)}
+.a-wall img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:8px;display:block}
+.cap{font-size:12.5px;font-weight:760;color:#9890B5;padding:0 16px}
+</style>
+</helmet>
+<div class="rv" dir="rtl" style="width: 390px; min-height: 5050px; background: #0B0918; display: flex; flex-direction: column">
+
+<section style="padding: 40px 16px 44px; display: flex; flex-direction: column; gap: 28px">
+<p class="sec"><b>الف</b>سرِ جهت</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<img src="media/rollvana-symbol-dark.svg" alt="" aria-hidden="true" style="width: 40px; height: 40px; display: block">
+<p style="font-size: 13px; font-weight: 760; color: #9890B5">جهت الف · محافظه‌کار، قوی‌ترین ابزار</p>
+<h1 style="font-size: 34px; line-height: 1.3; font-weight: 950">اتاق پروجکشن</h1>
+<p style="font-size: 18px; line-height: 1.8; font-weight: 520; color: #C4BCDD">«همه‌چیز در جریان است و من همه را یک‌جا می‌بینم.»</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px">
+<div class="chip-pal"><i style="background: #0B0918; height: 56px"></i><strong class="ltr lat" style="text-align: right">#0B0918</strong><span>اتاق · زمینه‌ی جدول</span></div>
+<div class="chip-pal"><i style="background: #120F24; height: 56px"></i><strong class="ltr lat" style="text-align: right">#120F24</strong><span>ناوبری، ردیف باز، کارت ورود</span></div>
+<div class="chip-pal"><i style="background: #A98BFF; height: 56px"></i><strong class="ltr lat" style="text-align: right">#A98BFF</strong><span>فقط جای فعلی، فیلتر فعال، فوکوس</span></div>
+<div class="chip-pal"><i style="background: #F3F0FA; height: 56px"></i><strong class="ltr lat" style="text-align: right">#F3F0FA</strong><span>ردیف‌ها؛ روشن‌ترین جوهر</span></div>
+<div class="chip-pal"><i style="background: #9890B5; height: 56px"></i><strong class="ltr lat" style="text-align: right">#9890B5</strong><span>برچسب، متا، «قبل»ِ خط‌خورده</span></div>
+<div class="chip-pal" style="grid-column: span 2"><i style="display: flex; overflow: hidden; height: 56px"><span style="flex: 1; background: #5BD69A"></span><span style="flex: 1; background: #F5C451"></span><span style="flex: 1; background: #FF6B7A"></span></i><strong class="ltr lat" style="text-align: right">#5BD69A · #F5C451 · #FF6B7A</strong><span>سبز «سالم / فعال»، طلایی «در انتظار»، قرمز «خراب / غیرفعال»؛ همیشه با کلمه، شمارنده با متن تیره</span></div>
+</div>
+<div style="border-radius: 16px; background: #120F24; box-shadow: inset 0 0 0 1px rgba(201,182,255,.12); padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 900; line-height: 1.4">تاریخچه‌ی تغییرات</span><span class="num" style="font-size: 12.5px; color: #9890B5">تیتر صفحه · گوشی ۲۲ · دسکتاپ ۲۸ · وزن ۹۰۰</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 14px"><span style="font-size: 14.5px; font-weight: 520"><span style="font-weight: 760">علی</span> زیرنویس فارسی را جایگزین کرد</span><span class="num" style="font-size: 12.5px; color: #9890B5">متن ردیف · ۱۴٫۵ · ۵۲۰ · نام ۷۶۰</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 14px"><span class="num" style="font-size: 12.5px; color: #9890B5">۱۵۰ تغییر · صفحه‌ی ۱ از ۳</span><span style="font-size: 12.5px; color: #9890B5">متا · ۱۲٫۵ · جوهر ۳</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 14px"><span class="num" style="font-size: 44px; font-weight: 900; line-height: 1.25">۱۴:۳۲ · ۱۵۰</span><span style="font-size: 12.5px; color: #9890B5">رقم‌های فارسی جدولی، هم‌تراز در ستون</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.9; color: #C4BCDD">
+<p><strong style="color: #F3F0FA; font-weight: 860">تصویر: </strong>پوستر فقط بندانگشتی ۳۲ × ۴۸ در ابتدای رکورد؛ جز آن هیچ تصویری نیست.</p>
+<p><strong style="color: #F3F0FA; font-weight: 860">دور ۲: </strong>همان اتاق بنفش‌شب و همان بنفش، فقط به اندازه‌ی یک نشانه: جای فعلی، فیلتر فعال، فوکوس.</p>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 14px">
+<p class="sec" style="padding: 0 16px"><b>ب</b>هیرو در اندازه‌ی واقعی · فهرست</p>
+<div class="ph">
+<header class="ph-bar">
+<img src="media/rollvana-symbol-dark.svg" alt="رول‌وانا" style="width: 30px; height: 30px; display: block; flex: none">
+<h2>تاریخچه‌ی تغییرات</h2>
+<a class="ibtn" href="#a-sheet" aria-label="منو"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.list}}"></path></svg></a>
+</header>
+<div style="padding: 20px 16px 14px; display: flex; flex-direction: column; gap: 4px">
+<h3 style="font-size: 22px; font-weight: 900; line-height: 1.4">تاریخچه‌ی تغییرات</h3>
+<p class="num" style="font-size: 12.5px; color: #9890B5">۱۵۰ تغییر · صفحه‌ی ۱ از ۳</p>
+</div>
+<div class="fgrid" style="padding: 0 16px 14px" role="group" aria-label="فیلترها">
+<button class="a-filter on num" type="button" aria-pressed="true"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.calendar}}"></path></svg>۱۸ تا ۲۵ آبان ۱۴۰۵</button>
+<button class="a-filter" type="button">همه‌ی ادمین‌ها<svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretdown}}"></path></svg></button>
+<button class="a-filter" type="button">همه‌ی رکوردها<svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretdown}}"></path></svg></button>
+</div>
+<div role="list" aria-label="تاریخچه‌ی تغییرات" style="border-top: 1px solid rgba(201,182,255,.24)">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+<div role="listitem">
+<div class="ap-item {{r.cls}}">
+<sc-if value="{{r.isTitle}}" hint-placeholder-val="{{true}}"><img src="{{r.poster}}" alt=""></sc-if>
+<sc-if value="{{r.noTitle}}" hint-placeholder-val="{{false}}"><span class="ap-glyph"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{r.gd}}"></path></svg></span></sc-if>
+<div class="ap-txt">
+<p class="ap-l1">{{r.a1}}<sc-if value="{{r.hasQ}}" hint-placeholder-val="{{false}}"><bdi class="lat" style="margin: 0 .3em">{{r.q}}</bdi></sc-if>{{r.a2}}</p>
+<p class="ap-l2r"><span class="k">{{r.kind}}</span> <span class="rec">{{r.rec}}</span> <bdi class="cd num" dir="ltr">{{r.code}}</bdi></p>
+<p class="ap-l3 num">{{r.who}} · {{r.day}} {{r.clock}}</p>
+</div>
+<button class="a-more {{r.cls}}" type="button" aria-expanded="{{r.exp}}" aria-label="جزئیات" onClick="{{r.toggle}}"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretleft}}"></path></svg></button>
+</div>
+<sc-if value="{{r.showDiff}}" hint-placeholder-val="{{false}}">
+<div class="ap-det"><div class="a-diff dissolve">
+<div class="a-side"><small>قبل · نام فارسی</small><span style="font-size: 16px; font-weight: 700; color: #9890B5; text-decoration: line-through">گذشته‌ها</span></div>
+<div class="a-side" style="box-shadow: inset 0 0 0 1px rgba(201,182,255,.24)"><small>بعد · نام فارسی</small><span style="font-size: 16px; font-weight: 860; color: #F3F0FA">زندگی‌های گذشته</span></div>
+</div></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<nav aria-label="صفحه‌ها" style="display: flex; align-items: center; justify-content: center; gap: 4px; padding: 20px 16px 28px">
+<a class="a-pg num" href="#" aria-current="page">۱</a>
+<a class="a-pg num" href="#">۲</a>
+<a class="a-pg num" href="#">۳</a>
+<a class="a-pg glass" href="#" style="padding: 0 16px 0 12px; gap: 6px; border-radius: 999px; margin-inline-start: 8px">بعدی<svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 16px; height: 16px"><path d="{{ic.caretleft}}"></path></svg></a>
+</nav>
+</div>
+</section>
+
+<section id="a-sheet" style="display: flex; flex-direction: column; gap: 14px; padding-top: 48px">
+<p class="sec" style="padding: 0 16px"><b>ب</b>ناوبری باز · برگه از بالا</p>
+<div class="ph" style="position: relative; background: #0B0918">
+<div style="position: relative; z-index: 1; background: #120F24; border-radius: 0 0 24px 24px; box-shadow: 0 1px 0 rgba(201,182,255,.24), 0 24px 48px rgba(11,9,24,.7)">
+<div class="ph-bar" style="background: transparent">
+<img src="media/rollvana-lockup-dark.svg" alt="رول‌وانا" style="height: 22px; width: auto; display: block; flex: none">
+<span style="flex: 1"></span>
+<button class="ibtn" type="button" aria-label="بستن"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.x}}"></path></svg></button>
+</div>
+<nav aria-label="ناوبری پنل" style="padding: 8px 12px 4px; display: flex; flex-direction: column">
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; padding-bottom: 8px">
+<p style="font-size: 12.5px; font-weight: 760; color: #9890B5; padding: 10px 12px 4px">{{g.label}}</p>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="4">
+<a class="sh-item {{it.cls}}" href="#" aria-current="{{it.ac}}"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{it.d}}"></path></svg><span>{{it.t}}</span><sc-if value="{{it.has}}" hint-placeholder-val="{{false}}"><span class="a-count num {{it.tone}}" aria-label="{{it.aria}}">{{it.count}}</span></sc-if></a>
+</sc-for>
+</div>
+</sc-for>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 24px 16px; border-top: 1px solid rgba(201,182,255,.12)">
+<span class="mono" aria-hidden="true">ع</span>
+<span style="font-size: 15px; font-weight: 760">علی</span>
+<button class="a-out" type="button"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 18px; height: 18px"><path d="{{ic.signout}}"></path></svg>خروج</button>
+</div>
+<div style="display: flex; justify-content: center; padding-bottom: 10px"><span style="width: 40px; height: 4px; border-radius: 4px; background: rgba(201,182,255,.24)"></span></div>
+</div>
+<div aria-hidden="true" style="opacity: .22; margin-top: -8px">
+<sc-for list="{{rowsPeek}}" as="r" hint-placeholder-count="2">
+<div class="ap-item"><img src="{{r.poster}}" alt=""><div class="ap-txt"><p class="ap-l1">{{r.a1}}<sc-if value="{{r.hasQ}}" hint-placeholder-val="{{false}}"><bdi class="lat" style="margin: 0 .3em">{{r.q}}</bdi></sc-if>{{r.a2}}</p><p class="ap-l2r"><span class="k">{{r.kind}}</span> <span class="rec">{{r.rec}}</span> <bdi class="cd num" dir="ltr">{{r.code}}</bdi></p><p class="ap-l3 num">{{r.who}} · {{r.day}} {{r.clock}}</p></div></div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="padding: 56px 0 0; display: flex; flex-direction: column; gap: 14px">
+<p class="sec" style="padding: 0 16px"><b>ج</b>ورود · روی دیوار ۲۰ پوستر</p>
+<div style="position: relative; min-height: 700px; overflow: hidden; background: #0B0918; border-top: 1px solid rgba(201,182,255,.12); border-bottom: 1px solid rgba(201,182,255,.12); display: flex; align-items: center; justify-content: center; padding: 24px 16px">
+<div class="a-wall" aria-hidden="true">
+<sc-for list="{{wall}}" as="w" hint-placeholder-count="20"><img src="{{w}}" alt=""></sc-for>
+</div>
+<form onSubmit="{{submit}}" style="position: relative; width: 100%; border-radius: 20px; background: #120F24; box-shadow: 0 0 0 1px rgba(201,182,255,.24), 0 24px 64px rgba(11,9,24,.6); padding: 24px 20px; display: flex; flex-direction: column; gap: 18px">
+<img src="media/rollvana-symbol-dark.svg" alt="" aria-hidden="true" style="width: 32px; height: 32px; display: block">
+<h3 style="font-size: 20px; font-weight: 900">ورود به پنل رول‌وانا</h3>
+<sc-if value="{{isError}}" hint-placeholder-val="{{false}}"><p class="err dissolve" role="alert"><em>خطا</em>نام کاربری یا رمز عبور درست نیست.</p></sc-if>
+<div class="field"><label for="ap-u">نام کاربری</label><input id="ap-u" class="inp" type="text" autocomplete="username" dir="ltr"></div>
+<div class="field"><label for="ap-p">رمز عبور</label><div class="pw"><input id="ap-p" class="inp" type="{{pwType}}" autocomplete="current-password" dir="ltr"><button class="eye" type="button" aria-label="نمایش رمز" aria-pressed="{{pwPressed}}" onClick="{{togglePw}}"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{eyeD}}"></path></svg></button></div></div>
+<button class="btn-v" type="submit" style="width: 100%; margin-top: 4px" aria-busy="{{busy}}">
+<sc-if value="{{isSigning}}" hint-placeholder-val="{{false}}"><span class="spin" aria-hidden="true"></span>در حال ورود</sc-if>
+<sc-if value="{{notSigning}}" hint-placeholder-val="{{true}}">ورود</sc-if>
+</button>
+</form>
+</div>
+</section>
+
+<section style="padding: 44px 16px 56px">
+<div style="border-top: 1px solid rgba(201,182,255,.24); padding-top: 24px; display: flex; flex-direction: column; gap: 12px">
+<p class="sec"><b>د</b>چرا این جهت</p>
+<p style="font-size: 16px; line-height: 1.95; font-weight: 520; color: #C4BCDD"><strong style="color: #F3F0FA; font-weight: 860">بهترین در کار هرروزه:</strong> همه‌چیز در یک نگاه و سریع‌ترین اسکن روی گوشی. <strong style="color: #F3F0FA; font-weight: 860">هزینه:</strong> کمترین حس سینما؛ برند فقط یک نشانه است و پنل در خطر شبیه‌شدن به یک ابزار معمولی است.</p>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":5050}}'>
+class Component extends DCLogic {
+componentWillUnmount() { clearTimeout(this._t); }
+renderVals() {
+const I = {"squares":"M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z","plugs":"M149.66,138.34a8,8,0,0,0-11.32,0L120,156.69,99.31,136l18.35-18.34a8,8,0,0,0-11.32-11.32L88,124.69,69.66,106.34a8,8,0,0,0-11.32,11.32L64.69,124,41.37,147.31a32,32,0,0,0,0,45.26l5.38,5.37-28.41,28.4a8,8,0,0,0,11.32,11.32l28.4-28.41,5.37,5.38a32,32,0,0,0,45.26,0L132,191.31l6.34,6.35a8,8,0,0,0,11.32-11.32L131.31,168l18.35-18.34A8,8,0,0,0,149.66,138.34Zm-52.29,65a16,16,0,0,1-22.62,0L52.69,181.25a16,16,0,0,1,0-22.62L76,135.31,120.69,180Zm140.29-185a8,8,0,0,0-11.32,0l-28.4,28.41-5.37-5.38a32.05,32.05,0,0,0-45.26,0L124,64.69l-6.34-6.35a8,8,0,0,0-11.32,11.32l80,80a8,8,0,0,0,11.32-11.32L191.31,132l23.32-23.31a32,32,0,0,0,0-45.26l-5.38-5.37,28.41-28.4A8,8,0,0,0,237.66,18.34Zm-34.35,79L180,120.69,135.31,76l23.32-23.31a16,16,0,0,1,22.62,0l22.06,22A16,16,0,0,1,203.31,97.37Z","queue":"M32,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H40A8,8,0,0,1,32,64Zm104,56H40a8,8,0,0,0,0,16h96a8,8,0,0,0,0-16Zm0,64H40a8,8,0,0,0,0,16h96a8,8,0,0,0,0-16Zm112-24a8,8,0,0,1-3.76,6.78l-64,40A8,8,0,0,1,168,200V120a8,8,0,0,1,12.24-6.78l64,40A8,8,0,0,1,248,160Zm-23.09,0L184,134.43v51.14Z","tray":"M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,16V152h-28.7A15.86,15.86,0,0,0,168,156.69L148.69,176H107.31L88,156.69A15.86,15.86,0,0,0,76.69,152H48V48Zm0,160H48V168H76.69L96,187.31A15.86,15.86,0,0,0,107.31,192h41.38A15.86,15.86,0,0,0,160,187.31L179.31,168H208v40ZM90.34,125.66a8,8,0,0,1,11.32-11.32L120,132.69V72a8,8,0,0,1,16,0v60.69l18.34-18.35a8,8,0,0,1,11.32,11.32l-32,32a8,8,0,0,1-11.32,0Z","film":"M216,104H102.09L210,75.51a8,8,0,0,0,5.68-9.84l-8.16-30a15.93,15.93,0,0,0-19.42-11.13L35.81,64.74a15.75,15.75,0,0,0-9.7,7.4,15.51,15.51,0,0,0-1.55,12L32,111.56c0,.14,0,.29,0,.44v88a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V112A8,8,0,0,0,216,104ZM192.16,40l6,22.07-22.62,6L147.42,51.83Zm-66.69,17.6,28.12,16.24-36.94,9.75L88.53,67.37Zm-79.4,44.62-6-22.08,26.5-7L94.69,89.4ZM208,200H48V120H208v80Z","users":"M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z","chart":"M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z","mega":"M248,120a48.05,48.05,0,0,0-48-48H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48.07,48.07,0,0,0,248,120ZM48,199.93V40h0c42.81,35.91,86.63,45,104,47.24v65.48C134.65,155,90.84,164.07,48,199.93Zm131,8,0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z","gift":"M216,72H180.92c.39-.33.79-.65,1.17-1A29.53,29.53,0,0,0,192,49.57,32.62,32.62,0,0,0,158.44,16,29.53,29.53,0,0,0,137,25.91a54.94,54.94,0,0,0-9,14.48,54.94,54.94,0,0,0-9-14.48A29.53,29.53,0,0,0,97.56,16,32.62,32.62,0,0,0,64,49.57,29.53,29.53,0,0,0,73.91,71c.38.33.78.65,1.17,1H40A16,16,0,0,0,24,88v32a16,16,0,0,0,16,16v64a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V136a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM149,36.51a13.69,13.69,0,0,1,10-4.5h.49A16.62,16.62,0,0,1,176,49.08a13.69,13.69,0,0,1-4.5,10c-9.49,8.4-25.24,11.36-35,12.4C137.7,60.89,141,45.5,149,36.51Zm-64.09.36A16.63,16.63,0,0,1,96.59,32h.49a13.69,13.69,0,0,1,10,4.5c8.39,9.48,11.35,25.2,12.39,34.92-9.72-1-25.44-4-34.92-12.39a13.69,13.69,0,0,1-4.5-10A16.6,16.6,0,0,1,84.87,36.87ZM40,88h80v32H40Zm16,48h64v64H56Zm144,64H136V136h64Zm16-80H136V88h80v32Z","globe":"M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm88,104a87.61,87.61,0,0,1-3.33,24H174.16a157.44,157.44,0,0,0,0-48h38.51A87.61,87.61,0,0,1,216,128ZM102,168H154a115.11,115.11,0,0,1-26,45A115.27,115.27,0,0,1,102,168Zm-3.9-16a140.84,140.84,0,0,1,0-48h59.88a140.84,140.84,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.84a157.44,157.44,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154,88H102a115.11,115.11,0,0,1,26-45A115.27,115.27,0,0,1,154,88Zm52.33,0H170.71a135.28,135.28,0,0,0-22.3-45.6A88.29,88.29,0,0,1,206.37,88ZM107.59,42.4A135.28,135.28,0,0,0,85.29,88H49.63A88.29,88.29,0,0,1,107.59,42.4ZM49.63,168H85.29a135.28,135.28,0,0,0,22.3,45.6A88.29,88.29,0,0,1,49.63,168Zm98.78,45.6a135.28,135.28,0,0,0,22.3-45.6h35.66A88.29,88.29,0,0,1,148.41,213.6Z","usergear":"M144,157.68a68,68,0,1,0-71.9,0c-20.65,6.76-39.23,19.39-54.17,37.17a8,8,0,1,0,12.24,10.3C50.25,181.19,77.91,168,108,168s57.75,13.19,77.87,37.15a8,8,0,0,0,12.26-10.3C183.18,177.07,164.6,164.44,144,157.68ZM56,100a52,52,0,1,1,52,52A52.06,52.06,0,0,1,56,100Zm196.25,43.07-4.66-2.69a23.6,23.6,0,0,0,0-8.76l4.66-2.69a8,8,0,1,0-8-13.86l-4.67,2.7a23.92,23.92,0,0,0-7.58-4.39V108a8,8,0,0,0-16,0v5.38a23.92,23.92,0,0,0-7.58,4.39l-4.67-2.7a8,8,0,1,0-8,13.86l4.66,2.69a23.6,23.6,0,0,0,0,8.76l-4.66,2.69a8,8,0,0,0,8,13.86l4.67-2.7a23.92,23.92,0,0,0,7.58,4.39V164a8,8,0,0,0,16,0v-5.38a23.92,23.92,0,0,0,7.58-4.39l4.67,2.7a7.92,7.92,0,0,0,4,1.07,8,8,0,0,0,4-14.93ZM216,136a8,8,0,1,1,8,8A8,8,0,0,1,216,136Z","clock":"M136,80v43.47l36.12,21.67a8,8,0,0,1-8.24,13.72l-40-24A8,8,0,0,1,120,128V80a8,8,0,0,1,16,0Zm-8-48A95.44,95.44,0,0,0,60.08,60.15C52.81,67.51,46.35,74.59,40,82V64a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16H49c7.15-8.42,14.27-16.35,22.39-24.57a80,80,0,1,1,1.66,114.75,8,8,0,1,0-11,11.64A96,96,0,1,0,128,32Z","signout":"M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z","list":"M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z","x":"M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z","eye":"M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z","eyeslash":"M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.42.94-10.55,23.37-33.36,43.8a8,8,0,1,1-10.67-11.92A132.77,132.77,0,0,0,231.05,128a133.15,133.15,0,0,0-23.12-30.77C185.67,75.19,158.78,64,128,64a118.37,118.37,0,0,0-19.36,1.57A8,8,0,1,1,106,49.79,134,134,0,0,1,128,48c34.88,0,66.57,13.26,91.66,38.35,18.83,18.83,27.3,37.62,27.65,38.41A8,8,0,0,1,247.31,131.26Z","caretdown":"M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z","caretleft":"M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z","calendar":"M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z","user":"M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z","dots":"M128,96a32,32,0,1,0,32,32A32,32,0,0,0,128,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,128,144ZM48,96a32,32,0,1,0,32,32A32,32,0,0,0,48,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,48,144ZM208,96a32,32,0,1,0,32,32A32,32,0,0,0,208,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,208,144Z","arrowleft":"M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z","funnel":"M230.6,49.53A15.81,15.81,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17l67.74-72.32.08-.09A15.8,15.8,0,0,0,230.6,49.53ZM40,56h0Zm106.18,74.58A8,8,0,0,0,144,136v58.66L112,216V136a8,8,0,0,0-2.16-5.47L40,56H216Z"};
+const s = this.state || {};
+const open = s.open === undefined ? 5 : s.open;
+const sign = s.sign || 'idle';
+const pw = !!s.pw;
+const CUR = 'تاریخچه‌ی تغییرات';
+const nav = [
+{ label: 'موتور محتوا', items: [['نمای کلی', 'squares'], ['منابع', 'plugs', '۲', 'red', '۲ منبع خراب'], ['صف', 'queue'], ['واردشده‌ها', 'tray', '۱۲', 'gold', '۱۲ مورد بررسی‌نشده']] },
+{ label: 'سایت', items: [['محتوا', 'film'], ['کاربران و اشتراک', 'users'], ['گزارش‌ها', 'chart'], ['اعلان', 'mega'], ['حالت رایگان', 'gift'], ['دامنه‌ها', 'globe']] },
+{ label: 'مدیریت', items: [['کاربران ادمین', 'usergear'], [CUR, 'clock']] }
+].map(g => ({ label: g.label, items: g.items.map(x => ({ t: x[0], d: I[x[1]], count: x[2] || '', has: !!x[2], tone: x[3] || '', aria: x[4] || undefined, cls: x[0] === CUR ? 'is-cur' : '', ac: x[0] === CUR ? 'page' : undefined })) }));
+const base = [
+{ id: 1, day: 'امروز', clock: '۱۴:۳۲', who: 'علی', act: 'زیرنویس فارسی را جایگزین کرد', kind: 'عنوان', rec: 'تلماسه: بخش دوم', code: '#۴۸۱۲', poster: 'media/p-dune-part-two.jpg' },
+{ id: 2, day: 'امروز', clock: '۱۴:۰۵', who: 'سارا', act: 'لینک 1080p را غیرفعال کرد', kind: 'قسمت', rec: 'جداسازی، فصل ۲ قسمت ۵', code: '#۹۳۱۰', poster: 'media/p-severance.jpg' },
+{ id: 3, day: 'امروز', clock: '۱۳:۴۸', who: 'علی', act: 'حالت رایگان را روشن کرد', kind: 'تنظیم', rec: 'حالت رایگان، ۱ تا ۳ آذر', code: '', g: 'gift' },
+{ id: 4, day: 'امروز', clock: '۱۲:۲۰', who: 'علی', act: 'کاربر ادمین ساخت', kind: 'کاربر ادمین', rec: 'sara', code: '', g: 'usergear' },
+{ id: 5, day: 'امروز', clock: '۱۱:۵۷', who: 'سارا', act: 'نام فارسی را ویرایش کرد', kind: 'عنوان', rec: 'زندگی‌های گذشته', code: '#۲۲۰۴', poster: 'media/p-past-lives.jpg', diff: true },
+{ id: 6, day: 'دیروز', clock: '۲۳:۱۰', who: 'علی', act: 'دامنه‌ی تازه ثبت کرد', kind: 'دامنه', rec: 'دامنه‌ی دوم', code: '', g: 'globe' },
+{ id: 7, day: 'دیروز', clock: '۱۹:۴۴', who: 'سارا', act: 'پوستر را عوض کرد', kind: 'عنوان', rec: 'سینرز', code: '#۵۱۱۷', poster: 'media/p-sinners.jpg' }
+];
+const sq = (t) => { const m = t.match(/^(.*?)\s*([0-9]+p)\s*(.*)$/); return m ? { a1: m[1], q: m[2], a2: m[3], hasQ: true } : { a1: t, q: '', a2: '', hasQ: false }; };
+const rows = base.map(r => {
+const o = open === r.id;
+return Object.assign({}, r, sq(r.act), { isTitle: !!r.poster, noTitle: !r.poster, gd: r.g ? I[r.g] : '', cls: o ? 'is-open' : '', exp: r.diff ? String(o) : undefined, showDiff: o && !!r.diff, toggle: r.diff ? () => this.setState({ open: o ? 0 : r.id }) : undefined });
+});
+const P = ['dune-part-two', 'severance', 'past-lives', 'sinners', 'oppenheimer', 'a-separation', 'arrival', 'anora', 'inception', 'interstellar', 'weapons', 'past-lives', 'sinners', 'dune-part-two', 'anora', 'oppenheimer', 'severance', 'arrival', 'weapons', 'a-separation'];
+return {
+ic: I, nav, rows, rowsPeek: rows.slice(0, 2),
+wall: P.map(p => 'media/p-' + p + '.jpg'),
+pwType: pw ? 'text' : 'password', pwPressed: String(pw), eyeD: pw ? I.eyeslash : I.eye,
+togglePw: () => this.setState({ pw: !pw }),
+isSigning: sign === 'signing', notSigning: sign !== 'signing', isError: sign === 'error', busy: String(sign === 'signing'),
+submit: (e) => { if (e && e.preventDefault) e.preventDefault(); if (sign === 'signing') return; this.setState({ sign: 'signing' }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ sign: 'error' }), 1400); }
+};
+}
+}
+</script>
+</body>
+</html>

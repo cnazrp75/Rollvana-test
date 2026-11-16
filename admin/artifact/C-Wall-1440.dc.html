@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>جهت ج، دیوار پرده، دسکتاپ</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="media/rv.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:"IRANYekanX";src:url("media/iranyekanx.woff2") format("woff2-variations"),url("media/iranyekanx.woff2") format("woff2");font-weight:100 1000;font-display:swap}
+body{margin:0;background:#0B0918}
+.lat{font-feature-settings:normal!important;direction:ltr;unicode-bidi:isolate}
+.ap-l1,.ap-l2r,.ap-l3,.b-t,.b-m,.c-act,.c-meta,.cp-act,.cp-meta,.c-insp-act{text-wrap:pretty}
+.fgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fgrid > button{width:100%;min-width:0;justify-content:center}
+.fgrid > button:first-child{grid-column:1 / -1}
+.c-rail{width:88px;flex:none;align-self:stretch;background:#0B0918;box-shadow:inset 1px 0 0 rgba(201,182,255,.12);display:flex;flex-direction:column;align-items:center;padding:0 4px 28px;overflow:visible}
+.c-brand{height:84px;display:flex;align-items:center;justify-content:center}
+.c-grp{flex:none;display:flex;flex-direction:column;align-items:stretch;gap:2px;width:100%}
+.c-sep{width:32px;height:1px;background:rgba(201,182,255,.12);margin:10px auto}
+.c-it{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 2px 8px;border-radius:14px;font-size:12px;line-height:1.45;font-weight:600;color:#C4BCDD!important;text-align:center;transition:background-color .2s cubic-bezier(.22,1,.36,1)}
+.c-it:hover{background:#120F24;color:#F3F0FA!important}
+.c-icw{position:relative;width:48px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#9890B5}
+.c-it.is-cur{color:#F3F0FA!important;font-weight:800}
+.c-it.is-cur .c-icw{background:rgba(169,139,255,.16);color:#C9B6FF}
+.c-dot{position:absolute;top:-5px;left:-2px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;font-size:12px;font-weight:860;color:#140C2E;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #0B0918}
+.c-dot.red{background:#FF6B7A}.c-dot.gold{background:#F5C451}
+.c-user{margin-top:auto;flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:20px;border-top:1px solid rgba(201,182,255,.12);width:72px}
+.mono{width:40px;height:40px;border-radius:50%;background:#241E42;color:#F3F0FA;font-weight:860;font-size:16px;display:flex;align-items:center;justify-content:center;flex:none}
+.c-out{flex:none;width:72px;min-height:52px;padding:4px 0!important;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;line-height:1.4;font-weight:700;color:#C4BCDD!important}
+.c-out:hover{background:#120F24;color:#F3F0FA!important}
+.rv .c-pill{height:44px;padding-block:0;padding-inline:16px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:#F3F0FA!important;white-space:nowrap}
+.c-pill .ico{width:16px;height:16px;color:#C4BCDD}
+.c-list{display:flex;flex-direction:column}
+.c-item{border-bottom:1px solid rgba(201,182,255,.12)}
+.c-row{position:relative;display:flex;align-items:center;gap:20px;padding:16px 16px;border-radius:18px;isolation:isolate}
+.c-row::before{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(300px 150px at 100% 50%,var(--f),transparent 72%);opacity:.18;z-index:-1;pointer-events:none}
+.f-dune{--f:#D29A5C}.f-sev{--f:#6FB3C8}.f-def{--f:#A98BFF}.f-none{--f:transparent}
+.c-item.is-open{background:#120F24;border-radius:18px;border-bottom-color:transparent}
+.c-still{position:relative;width:160px;height:90px;flex:none}
+.c-still img{width:160px;height:90px;border-radius:12px;object-fit:cover;display:block}
+.c-still.fail::after{content:"";position:absolute;left:8px;right:8px;bottom:-8px;height:2px;border-radius:2px;background:#FF6B7A}
+.c-tile{width:160px;height:90px;border-radius:12px;background:#1A1631;display:flex;align-items:center;justify-content:center;color:#C4BCDD}
+.c-tile .ico{width:32px;height:32px}
+.c-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.c-name{font-size:17px;font-weight:860;line-height:1.5;color:#F3F0FA;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.c-name .nm{white-space:nowrap}
+.c-act{font-size:15px;font-weight:520;line-height:1.6;color:#C4BCDD}
+.c-meta{font-size:13px;color:#9890B5;line-height:1.6}
+.c-meta b{font-weight:760;color:#C4BCDD}
+.c-state{font-size:13px;font-weight:860}
+.c-state.red{color:#FF6B7A}.c-state.gold{color:#F5C451}
+.c-row.wait .c-still,.c-row.wait .nm,.c-row.wait .c-act{opacity:.6}
+.c-more{width:44px;height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#C4BCDD;flex:none}
+.c-more:hover{background:#241E42;color:#F3F0FA}
+.c-more.is-open .ico{transform:rotate(-90deg)}
+.c-more .ico{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.c-det{padding:0 16px 20px 16px}
+.c-diff{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:12px;margin-inline-start:180px;max-width:720px}
+.c-side{border-radius:14px;background:#0B0918;box-shadow:inset 0 0 0 1px rgba(201,182,255,.12);padding:12px 18px;display:flex;flex-direction:column;gap:4px}
+.c-side small{font-size:13px;font-weight:760;color:#9890B5}
+.c-pg{min-width:44px;height:44px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:760;color:#C4BCDD!important}
+.c-pg[aria-current]{color:#F3F0FA!important}
+.c-split{display:grid;grid-template-columns:720px minmax(0,1fr);gap:40px;align-items:start}
+.c-item.is-sel{background:#1A1631;border-radius:18px;border-bottom-color:transparent;box-shadow:inset 0 0 0 2px #C9B6FF}
+.c-item.is-sel .c-more{color:#F3F0FA}
+.c-insp{display:flex;flex-direction:column;gap:24px;min-width:0}
+.c-insp-media{position:relative;width:100%;aspect-ratio:16 / 9;border-radius:16px;overflow:hidden;background:#1A1631;box-shadow:inset 0 0 0 1px rgba(201,182,255,.12)}
+.c-insp-media img{width:100%;height:100%;object-fit:cover;display:block}
+.c-insp-tile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#C4BCDD}
+.c-insp-tile .ico{width:56px;height:56px}
+.c-insp-head{display:flex;flex-direction:column;gap:6px}
+.c-insp-name{font-size:28px;font-weight:900;line-height:1.4;color:#F3F0FA}
+.c-insp-kind{font-size:14px;color:#9890B5;line-height:1.6}
+.c-insp-field{border-radius:16px;background:#120F24;box-shadow:inset 0 0 0 1px rgba(201,182,255,.12);padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.c-insp-field small{font-size:13px;font-weight:760;color:#9890B5}
+.c-insp-diff{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px}
+.c-insp-act{font-size:16px;font-weight:520;line-height:1.7;color:#C4BCDD}
+.c-insp-meta{font-size:14px;color:#9890B5;line-height:1.6}
+.c-insp-meta b{font-weight:760;color:#C4BCDD}
+.duo{position:absolute;inset:0;background:#1C1545;overflow:hidden;isolation:isolate}
+.duo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08)}
+.duo::before{content:"";position:absolute;inset:0;background:#C9B6FF;mix-blend-mode:multiply;z-index:1}
+.duo::after{content:"";position:absolute;inset:0;background:#1C1545;mix-blend-mode:lighten;z-index:2}
+</style>
+</helmet>
+<div class="rv" dir="rtl" style="width: 1440px; min-height: 3700px; background: #0B0918; display: flex; flex-direction: column">
+
+<section style="padding: 72px 64px 56px; display: flex; flex-direction: column; gap: 40px">
+<p class="sec"><b>الف</b>سرِ جهت</p>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 14px; font-weight: 760; color: #9890B5">جهت ج · واگرا، تصویر اول</p>
+<h1 style="font-size: 56px; line-height: 1.25; font-weight: 950">دیوار پرده</h1>
+<p style="font-size: 24px; line-height: 1.7; font-weight: 520; color: #C4BCDD">«سایت را همان‌طور می‌بینم که تماشاگر می‌بیند و هر خرابی را فوری.»</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, 160px); gap: 12px; flex: none">
+<img src="media/b-dune-part-two.jpg" alt="" aria-hidden="true" style="width: 160px; height: 90px; border-radius: 12px; object-fit: cover; display: block">
+<img src="media/b-severance.jpg" alt="" aria-hidden="true" style="width: 160px; height: 90px; border-radius: 12px; object-fit: cover; display: block">
+<img src="media/w-sinners.jpg" alt="" aria-hidden="true" style="width: 160px; height: 90px; border-radius: 12px; object-fit: cover; display: block">
+<span style="width: 160px; height: 90px; border-radius: 12px; background: #1A1631; display: flex; align-items: center; justify-content: center; color: #C4BCDD"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 32px; height: 32px"><path d="{{ic.gift}}"></path></svg></span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px">
+<div class="chip-pal"><i style="background: #0B0918"></i><strong class="ltr lat" style="text-align: right">#0B0918</strong><span>اتاق · تصویرها روی آن روشن‌اند</span></div>
+<div class="chip-pal"><i style="background: #1A1631"></i><strong class="ltr lat" style="text-align: right">#1A1631</strong><span>کاشی نشانه‌ی ۱۶:۹ برای تنظیم، ادمین و دامنه</span></div>
+<div class="chip-pal"><i style="background: #A98BFF"></i><strong class="ltr lat" style="text-align: right">#A98BFF</strong><span>نور جای فعلی در ریل و دکمه‌ی اکشن</span></div>
+<div class="chip-pal"><i style="display: flex; overflow: hidden"><span style="flex: 1; background: #D29A5C"></span><span style="flex: 1; background: #6FB3C8"></span></i><strong class="ltr lat" style="text-align: right">#D29A5C · #6FB3C8</strong><span>رنگ خود فیلم؛ فقط نور کم‌رنگ ابتدای ردیف، هرگز روی متن</span></div>
+<div class="chip-pal"><i style="background: linear-gradient(90deg, #C9B6FF, #1C1545)"></i><strong class="ltr lat" style="text-align: right">#1C1545 → #C9B6FF</strong><span>دوتون بنفش · پشت درِ ورود</span></div>
+<div class="chip-pal"><i style="display: flex; overflow: hidden"><span style="flex: 1; background: #5BD69A"></span><span style="flex: 1; background: #F5C451"></span><span style="flex: 1; background: #FF6B7A"></span></i><strong class="ltr lat" style="text-align: right">#5BD69A · #F5C451 · #FF6B7A</strong><span>وضعیت به‌صورت نور: سالم روشن، «در انتظار» ۶۰٪، «غیرفعال» با خط قرمز</span></div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px">
+<div style="border-radius: 20px; background: #120F24; box-shadow: inset 0 0 0 1px rgba(201,182,255,.12); padding: 28px 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px"><span style="font-size: 34px; font-weight: 950; line-height: 1.3">تاریخچه‌ی تغییرات</span><span class="num" style="font-size: 13px; color: #9890B5">تیتر صفحه · ۳۴ · وزن ۹۵۰ · گوشی ۲۶</span></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 18px"><span style="font-size: 17px; font-weight: 860">تلماسه: بخش دوم</span><span class="num" style="font-size: 13px; color: #9890B5">نام رکورد · ۱۷ · ۸۶۰ · گوشی ۱۵٫۵</span></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 18px"><span style="font-size: 15px; font-weight: 520; color: #C4BCDD">زیرنویس فارسی را جایگزین کرد</span><span class="num" style="font-size: 13px; color: #9890B5">اکشن · ۱۵ · ۵۲۰ · جوهر ۲</span></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; border-top: 1px solid rgba(201,182,255,.12); padding-top: 18px"><span class="num" style="font-size: 13px; color: #9890B5">علی · امروز ۱۴:۳۲</span><span class="num" style="font-size: 13px; color: #9890B5">متا · ۱۳ · جوهر ۳</span></div>
+</div>
+<div style="position: relative; border-radius: 20px; overflow: hidden; min-height: 260px">
+<div class="duo" aria-hidden="true"><img src="media/b-dune-part-two.jpg" alt=""></div>
+<div style="position: absolute; inset: auto 16px 16px 16px; z-index: 3; padding: 16px 20px; border-radius: 14px; display: flex; flex-direction: column; gap: 4px; background: rgba(11,9,24,.86)">
+<span class="num" style="font-size: 64px; font-weight: 950; line-height: 1.2; color: #FFFFFF">۱۴:۳۲ · ۱۵۰</span>
+<span style="font-size: 13px; color: #C4BCDD">رقم‌های فارسی جدولی؛ روی تصویر هم خوانا</span>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; font-size: 16px; line-height: 1.9; color: #C4BCDD">
+<p><strong style="color: #F3F0FA; font-weight: 860">تصویر: </strong>هر ردیفِ عنوان با قاب ۱۶:۹ خود فیلم شروع می‌شود و رنگ فیلم فقط نوری کم‌رنگ پشت آن است؛ تنظیم و ادمین کاشی نشانه‌ی هم‌اندازه دارند.</p>
+<p><strong style="color: #F3F0FA; font-weight: 860">دور ۲: </strong>همان قاب‌های عریض و نور فیلمِ صفحه‌ی عنوان دور ۲، و همان درِ ورود سایت، این بار از پشت پرده.</p>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<p class="sec" style="padding: 0 64px"><b>ب</b>هیرو در اندازه‌ی واقعی · دسکتاپ ۱۴۴۰</p>
+<div style="display: flex; align-items: stretch; min-height: 1240px; border-top: 1px solid rgba(201,182,255,.24); border-bottom: 1px solid rgba(201,182,255,.24)">
+<nav class="c-rail" aria-label="ناوبری پنل">
+<div class="c-brand"><img src="media/rollvana-symbol-dark.svg" alt="رول‌وانا" style="width: 40px; height: 40px; display: block"></div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="3">
+<div class="c-grp" role="group" aria-label="{{g.label}}">
+<span class="{{g.sep}}" aria-hidden="true"></span>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="4">
+<a class="c-it {{it.cls}}" href="#" aria-current="{{it.ac}}"><span class="c-icw"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 22px; height: 22px"><path d="{{it.d}}"></path></svg><sc-if value="{{it.has}}" hint-placeholder-val="{{false}}"><span class="c-dot num {{it.tone}}" aria-label="{{it.aria}}">{{it.count}}</span></sc-if></span><span>{{it.t}}</span></a>
+</sc-for>
+</div>
+</sc-for>
+<div class="c-user">
+<span class="mono" aria-hidden="true">ع</span>
+<span style="font-size: 14px; font-weight: 760; line-height: 1.5">علی</span>
+<button class="c-out" type="button"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 18px; height: 18px"><path d="{{ic.signout}}"></path></svg>خروج</button>
+</div>
+</nav>
+<main style="flex: 1; min-width: 0; padding: 48px 56px 48px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 34px; font-weight: 950; line-height: 1.3">تاریخچه‌ی تغییرات</h2>
+<p class="num" style="font-size: 14px; color: #C4BCDD">۱۵۰ تغییر · صفحه‌ی ۱ از ۳</p>
+</div>
+<div style="display: flex; gap: 10px; align-items: center" role="group" aria-label="فیلترها">
+<button class="c-pill glass" type="button">همه‌ی ادمین‌ها<svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretdown}}"></path></svg></button>
+<button class="c-pill glass" type="button">همه‌ی رکوردها<svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretdown}}"></path></svg></button>
+<button class="c-pill glass num" type="button" aria-pressed="true"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.calendar}}"></path></svg>۱۸ تا ۲۵ آبان ۱۴۰۵<svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretdown}}"></path></svg></button>
+</div>
+</div>
+<div class="c-split">
+<div style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<div class="c-list" role="list" aria-label="تاریخچه‌ی تغییرات">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+<div class="c-item {{r.ocls}}" role="listitem">
+<div class="c-row {{r.fcls}} {{r.scls}}">
+<sc-if value="{{r.isTitle}}" hint-placeholder-val="{{true}}"><span class="c-still {{r.failCls}}"><img src="{{r.still}}" alt="" style="object-position: {{r.pos}}"></span></sc-if>
+<sc-if value="{{r.noTitle}}" hint-placeholder-val="{{false}}"><span class="c-tile"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{r.gd}}"></path></svg></span></sc-if>
+<div class="c-txt">
+<p class="c-name"><span class="nm">{{r.rec}}</span><sc-if value="{{r.hasState}}" hint-placeholder-val="{{false}}"><span class="c-state {{r.tone}}">{{r.state}}</span></sc-if></p>
+<p class="c-act">{{r.a1}}<sc-if value="{{r.hasQ}}" hint-placeholder-val="{{false}}"><bdi class="lat" style="margin: 0 .3em">{{r.q}}</bdi></sc-if>{{r.a2}}</p>
+<p class="c-meta num">{{r.kind}} <bdi dir="ltr">{{r.code}}</bdi> · <b>{{r.who}}</b> · {{r.day}} {{r.clock}}</p>
+</div>
+<button class="c-more" type="button" aria-pressed="{{r.pr}}" aria-label="نمایش در جزئیات" onClick="{{r.toggle}}"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{ic.caretleft}}"></path></svg></button>
+</div>
+</div>
+</sc-for>
+</div>
+<nav aria-label="صفحه‌ها" style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 6px">
+<a class="c-pg num glass" href="#" aria-current="page">۱</a>
+<a class="c-pg num" href="#">۲</a>
+<a class="c-pg num" href="#">۳</a>
+</div>
+<a class="btn-v" href="#">بعدی<svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="width: 18px; height: 18px"><path d="{{ic.caretleft}}"></path></svg></a>
+</nav>
+</div>
+<aside class="c-insp dissolve" aria-label="جزئیات تغییر" aria-live="polite">
+<div class="c-insp-media">
+<sc-if value="{{sel.isTitle}}" hint-placeholder-val="{{true}}"><img src="{{sel.still}}" alt="{{sel.rec}}" style="object-position: {{sel.pos}}"></sc-if>
+<sc-if value="{{sel.noTitle}}" hint-placeholder-val="{{false}}"><span class="c-insp-tile"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{sel.gd}}"></path></svg></span></sc-if>
+</div>
+<div class="c-insp-head">
+<h3 class="c-insp-name">{{sel.rec}}</h3>
+<p class="c-insp-kind num">{{sel.kind}}<sc-if value="{{sel.hasCode}}" hint-placeholder-val="{{true}}"><span style="margin: 0 8px">·</span><bdi dir="ltr">{{sel.code}}</bdi></sc-if></p>
+</div>
+<sc-if value="{{sel.hasDiff}}" hint-placeholder-val="{{true}}">
+<div class="c-insp-field">
+<small>نام فارسی</small>
+<div class="c-insp-diff">
+<span style="font-size: 18px; font-weight: 700; color: #9890B5; text-decoration: line-through">گذشته‌ها</span>
+<svg class="ico" viewBox="0 0 256 256" aria-hidden="true" style="color: #9890B5"><path d="{{ic.arrowleft}}"></path></svg>
+<span style="font-size: 20px; font-weight: 860; color: #F3F0FA">زندگی‌های گذشته</span>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{sel.noDiff}}" hint-placeholder-val="{{false}}">
+<p class="c-insp-act">{{sel.a1}}<sc-if value="{{sel.hasQ}}" hint-placeholder-val="{{false}}"><bdi class="lat" style="margin: 0 .3em">{{sel.q}}</bdi></sc-if>{{sel.a2}}</p>
+</sc-if>
+<p class="c-insp-meta num"><b>{{sel.who}}</b> · {{sel.day}} {{sel.clock}}</p>
+</aside>
+</div>
+</main>
+</div>
+</section>
+
+<section style="padding: 72px 0 0; display: flex; flex-direction: column; gap: 20px">
+<p class="sec" style="padding: 0 64px"><b>ج</b>ورود · تلماسه در دوتون بنفش، پنل شب ۰ با ۸۶٪</p>
+<div style="position: relative; min-height: 880px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 72px 24px">
+<div class="duo" aria-hidden="true"><img src="media/b-dune-part-two.jpg" alt="" style="object-position: 50% 40%"></div>
+<form onSubmit="{{submit}}" style="position: relative; z-index: 3; width: 420px; border-radius: 24px; background: rgba(11,9,24,.86); box-shadow: 0 0 0 1px rgba(201,182,255,.24), 0 32px 80px rgba(11,9,24,.55); padding: 32px; display: flex; flex-direction: column; gap: 20px">
+<img src="media/rollvana-symbol-dark.svg" alt="" aria-hidden="true" style="width: 36px; height: 36px; display: block">
+<h3 style="font-size: 24px; font-weight: 900">ورود به پنل رول‌وانا</h3>
+<sc-if value="{{isError}}" hint-placeholder-val="{{false}}"><p class="err dissolve" role="alert"><em>خطا</em>نام کاربری یا رمز عبور درست نیست.</p></sc-if>
+<div class="field"><label for="c-u">نام کاربری</label><input id="c-u" class="inp" type="text" autocomplete="username" dir="ltr"></div>
+<div class="field"><label for="c-p">رمز عبور</label><div class="pw"><input id="c-p" class="inp" type="{{pwType}}" autocomplete="current-password" dir="ltr"><button class="eye" type="button" aria-label="نمایش رمز" aria-pressed="{{pwPressed}}" onClick="{{togglePw}}"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="{{eyeD}}"></path></svg></button></div></div>
+<button class="btn-v" type="submit" style="width: 100%; margin-top: 4px" aria-busy="{{busy}}">
+<sc-if value="{{isSigning}}" hint-placeholder-val="{{false}}"><span class="spin" aria-hidden="true"></span>در حال ورود</sc-if>
+<sc-if value="{{notSigning}}" hint-placeholder-val="{{true}}">ورود</sc-if>
+</button>
+</form>
+<div style="position: relative; z-index: 3; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; padding: 12px 16px; border-radius: 16px; background: rgba(11,9,24,.86)">
+<span style="font-size: 13px; font-weight: 760; color: #C4BCDD">دکمه در سه حالت:</span>
+<span class="btn-v" style="min-height: 44px; font-size: 14px">ورود</span>
+<span class="btn-v" style="min-height: 44px; font-size: 14px"><span class="spin" aria-hidden="true" style="animation: none"></span>در حال ورود</span>
+<span class="err" style="padding: 10px 14px; font-size: 13px"><em>خطا</em>نام کاربری یا رمز عبور درست نیست.</span>
+</div>
+</div>
+</section>
+
+<section style="padding: 64px 64px 80px">
+<div style="border-top: 1px solid rgba(201,182,255,.24); padding-top: 32px; display: flex; flex-direction: column; gap: 14px">
+<p class="sec"><b>د</b>چرا این جهت</p>
+<p style="font-size: 20px; line-height: 1.9; font-weight: 520; color: #C4BCDD; max-width: 1160px"><strong style="color: #F3F0FA; font-weight: 860">بهترین در:</strong> دیدن سایت همان‌طور که تماشاگر می‌بیند؛ هر خرابی با تصویر خودش فوراً پیدا می‌شود و پنل بیش از همه سینماست. <strong style="color: #F3F0FA; font-weight: 860">هزینه:</strong> کمترین تراکم؛ هر ردیف دو برابر الف جا می‌گیرد، ریل باریک برچسب‌های بلند را دوخطی می‌کند و تصویرها روی گوشی بار و جای بیشتری می‌خواهند.</p>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3700}}'>
+class Component extends DCLogic {
+componentWillUnmount() { clearTimeout(this._t); }
+renderVals() {
+const I = {"squares":"M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z","plugs":"M149.66,138.34a8,8,0,0,0-11.32,0L120,156.69,99.31,136l18.35-18.34a8,8,0,0,0-11.32-11.32L88,124.69,69.66,106.34a8,8,0,0,0-11.32,11.32L64.69,124,41.37,147.31a32,32,0,0,0,0,45.26l5.38,5.37-28.41,28.4a8,8,0,0,0,11.32,11.32l28.4-28.41,5.37,5.38a32,32,0,0,0,45.26,0L132,191.31l6.34,6.35a8,8,0,0,0,11.32-11.32L131.31,168l18.35-18.34A8,8,0,0,0,149.66,138.34Zm-52.29,65a16,16,0,0,1-22.62,0L52.69,181.25a16,16,0,0,1,0-22.62L76,135.31,120.69,180Zm140.29-185a8,8,0,0,0-11.32,0l-28.4,28.41-5.37-5.38a32.05,32.05,0,0,0-45.26,0L124,64.69l-6.34-6.35a8,8,0,0,0-11.32,11.32l80,80a8,8,0,0,0,11.32-11.32L191.31,132l23.32-23.31a32,32,0,0,0,0-45.26l-5.38-5.37,28.41-28.4A8,8,0,0,0,237.66,18.34Zm-34.35,79L180,120.69,135.31,76l23.32-23.31a16,16,0,0,1,22.62,0l22.06,22A16,16,0,0,1,203.31,97.37Z","queue":"M32,64a8,8,0,0,1,8-8H216a8,8,0,0,1,0,16H40A8,8,0,0,1,32,64Zm104,56H40a8,8,0,0,0,0,16h96a8,8,0,0,0,0-16Zm0,64H40a8,8,0,0,0,0,16h96a8,8,0,0,0,0-16Zm112-24a8,8,0,0,1-3.76,6.78l-64,40A8,8,0,0,1,168,200V120a8,8,0,0,1,12.24-6.78l64,40A8,8,0,0,1,248,160Zm-23.09,0L184,134.43v51.14Z","tray":"M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,16V152h-28.7A15.86,15.86,0,0,0,168,156.69L148.69,176H107.31L88,156.69A15.86,15.86,0,0,0,76.69,152H48V48Zm0,160H48V168H76.69L96,187.31A15.86,15.86,0,0,0,107.31,192h41.38A15.86,15.86,0,0,0,160,187.31L179.31,168H208v40ZM90.34,125.66a8,8,0,0,1,11.32-11.32L120,132.69V72a8,8,0,0,1,16,0v60.69l18.34-18.35a8,8,0,0,1,11.32,11.32l-32,32a8,8,0,0,1-11.32,0Z","film":"M216,104H102.09L210,75.51a8,8,0,0,0,5.68-9.84l-8.16-30a15.93,15.93,0,0,0-19.42-11.13L35.81,64.74a15.75,15.75,0,0,0-9.7,7.4,15.51,15.51,0,0,0-1.55,12L32,111.56c0,.14,0,.29,0,.44v88a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V112A8,8,0,0,0,216,104ZM192.16,40l6,22.07-22.62,6L147.42,51.83Zm-66.69,17.6,28.12,16.24-36.94,9.75L88.53,67.37Zm-79.4,44.62-6-22.08,26.5-7L94.69,89.4ZM208,200H48V120H208v80Z","users":"M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z","chart":"M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0v94.37L90.73,98a8,8,0,0,1,10.07-.38l58.81,44.11L218.73,90a8,8,0,1,1,10.54,12l-64,56a8,8,0,0,1-10.07.38L96.39,114.29,40,163.63V200H224A8,8,0,0,1,232,208Z","mega":"M248,120a48.05,48.05,0,0,0-48-48H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48.07,48.07,0,0,0,248,120ZM48,199.93V40h0c42.81,35.91,86.63,45,104,47.24v65.48C134.65,155,90.84,164.07,48,199.93Zm131,8,0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z","gift":"M216,72H180.92c.39-.33.79-.65,1.17-1A29.53,29.53,0,0,0,192,49.57,32.62,32.62,0,0,0,158.44,16,29.53,29.53,0,0,0,137,25.91a54.94,54.94,0,0,0-9,14.48,54.94,54.94,0,0,0-9-14.48A29.53,29.53,0,0,0,97.56,16,32.62,32.62,0,0,0,64,49.57,29.53,29.53,0,0,0,73.91,71c.38.33.78.65,1.17,1H40A16,16,0,0,0,24,88v32a16,16,0,0,0,16,16v64a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V136a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM149,36.51a13.69,13.69,0,0,1,10-4.5h.49A16.62,16.62,0,0,1,176,49.08a13.69,13.69,0,0,1-4.5,10c-9.49,8.4-25.24,11.36-35,12.4C137.7,60.89,141,45.5,149,36.51Zm-64.09.36A16.63,16.63,0,0,1,96.59,32h.49a13.69,13.69,0,0,1,10,4.5c8.39,9.48,11.35,25.2,12.39,34.92-9.72-1-25.44-4-34.92-12.39a13.69,13.69,0,0,1-4.5-10A16.6,16.6,0,0,1,84.87,36.87ZM40,88h80v32H40Zm16,48h64v64H56Zm144,64H136V136h64Zm16-80H136V88h80v32Z","globe":"M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm88,104a87.61,87.61,0,0,1-3.33,24H174.16a157.44,157.44,0,0,0,0-48h38.51A87.61,87.61,0,0,1,216,128ZM102,168H154a115.11,115.11,0,0,1-26,45A115.27,115.27,0,0,1,102,168Zm-3.9-16a140.84,140.84,0,0,1,0-48h59.88a140.84,140.84,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.84a157.44,157.44,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154,88H102a115.11,115.11,0,0,1,26-45A115.27,115.27,0,0,1,154,88Zm52.33,0H170.71a135.28,135.28,0,0,0-22.3-45.6A88.29,88.29,0,0,1,206.37,88ZM107.59,42.4A135.28,135.28,0,0,0,85.29,88H49.63A88.29,88.29,0,0,1,107.59,42.4ZM49.63,168H85.29a135.28,135.28,0,0,0,22.3,45.6A88.29,88.29,0,0,1,49.63,168Zm98.78,45.6a135.28,135.28,0,0,0,22.3-45.6h35.66A88.29,88.29,0,0,1,148.41,213.6Z","usergear":"M144,157.68a68,68,0,1,0-71.9,0c-20.65,6.76-39.23,19.39-54.17,37.17a8,8,0,1,0,12.24,10.3C50.25,181.19,77.91,168,108,168s57.75,13.19,77.87,37.15a8,8,0,0,0,12.26-10.3C183.18,177.07,164.6,164.44,144,157.68ZM56,100a52,52,0,1,1,52,52A52.06,52.06,0,0,1,56,100Zm196.25,43.07-4.66-2.69a23.6,23.6,0,0,0,0-8.76l4.66-2.69a8,8,0,1,0-8-13.86l-4.67,2.7a23.92,23.92,0,0,0-7.58-4.39V108a8,8,0,0,0-16,0v5.38a23.92,23.92,0,0,0-7.58,4.39l-4.67-2.7a8,8,0,1,0-8,13.86l4.66,2.69a23.6,23.6,0,0,0,0,8.76l-4.66,2.69a8,8,0,0,0,8,13.86l4.67-2.7a23.92,23.92,0,0,0,7.58,4.39V164a8,8,0,0,0,16,0v-5.38a23.92,23.92,0,0,0,7.58-4.39l4.67,2.7a7.92,7.92,0,0,0,4,1.07,8,8,0,0,0,4-14.93ZM216,136a8,8,0,1,1,8,8A8,8,0,0,1,216,136Z","clock":"M136,80v43.47l36.12,21.67a8,8,0,0,1-8.24,13.72l-40-24A8,8,0,0,1,120,128V80a8,8,0,0,1,16,0Zm-8-48A95.44,95.44,0,0,0,60.08,60.15C52.81,67.51,46.35,74.59,40,82V64a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16H49c7.15-8.42,14.27-16.35,22.39-24.57a80,80,0,1,1,1.66,114.75,8,8,0,1,0-11,11.64A96,96,0,1,0,128,32Z","signout":"M120,216a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H56V208h56A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z","list":"M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z","x":"M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z","eye":"M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z","eyeslash":"M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.42.94-10.55,23.37-33.36,43.8a8,8,0,1,1-10.67-11.92A132.77,132.77,0,0,0,231.05,128a133.15,133.15,0,0,0-23.12-30.77C185.67,75.19,158.78,64,128,64a118.37,118.37,0,0,0-19.36,1.57A8,8,0,1,1,106,49.79,134,134,0,0,1,128,48c34.88,0,66.57,13.26,91.66,38.35,18.83,18.83,27.3,37.62,27.65,38.41A8,8,0,0,1,247.31,131.26Z","caretdown":"M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z","caretleft":"M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z","calendar":"M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z","user":"M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z","dots":"M128,96a32,32,0,1,0,32,32A32,32,0,0,0,128,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,128,144ZM48,96a32,32,0,1,0,32,32A32,32,0,0,0,48,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,48,144ZM208,96a32,32,0,1,0,32,32A32,32,0,0,0,208,96Zm0,48a16,16,0,1,1,16-16A16,16,0,0,1,208,144Z","arrowleft":"M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z","funnel":"M230.6,49.53A15.81,15.81,0,0,0,216,40H40A16,16,0,0,0,28.19,66.76l.08.09L96,139.17V216a16,16,0,0,0,24.87,13.32l32-21.34A16,16,0,0,0,160,194.66V139.17l67.74-72.32.08-.09A15.8,15.8,0,0,0,230.6,49.53ZM40,56h0Zm106.18,74.58A8,8,0,0,0,144,136v58.66L112,216V136a8,8,0,0,0-2.16-5.47L40,56H216Z"};
+const s = this.state || {};
+const selId = s.sel === undefined ? 5 : s.sel;
+const sign = s.sign || 'idle';
+const pw = !!s.pw;
+const CUR = 'تاریخچه‌ی تغییرات';
+const nav = [
+{ label: 'موتور محتوا', items: [['نمای کلی', 'squares'], ['منابع', 'plugs', '۲', 'red', '۲ منبع خراب'], ['صف', 'queue'], ['واردشده‌ها', 'tray', '۱۲', 'gold', '۱۲ مورد بررسی‌نشده']] },
+{ label: 'سایت', items: [['محتوا', 'film'], ['کاربران و اشتراک', 'users'], ['گزارش‌ها', 'chart'], ['اعلان', 'mega'], ['حالت رایگان', 'gift'], ['دامنه‌ها', 'globe']] },
+{ label: 'مدیریت', items: [['کاربران ادمین', 'usergear'], [CUR, 'clock']] }
+].map((g, gi) => ({ label: g.label, sep: gi ? 'c-sep' : '', items: g.items.map(x => ({ t: x[0], d: I[x[1]], count: x[2] || '', has: !!x[2], tone: x[3] || '', aria: x[4] || undefined, cls: x[0] === CUR ? 'is-cur' : '', ac: x[0] === CUR ? 'page' : undefined })) }));
+const base = [
+{ id: 1, day: 'امروز', clock: '۱۴:۳۲', who: 'علی', act: 'زیرنویس فارسی را جایگزین کرد', kind: 'عنوان', rec: 'تلماسه: بخش دوم', code: '#۴۸۱۲', still: 'media/b-dune-part-two.jpg', pos: '50% 40%', f: 'f-dune' },
+{ id: 2, day: 'امروز', clock: '۱۴:۰۵', who: 'سارا', act: 'لینک 1080p را غیرفعال کرد', kind: 'قسمت', rec: 'جداسازی، فصل ۲ قسمت ۵', code: '#۹۳۱۰', still: 'media/b-severance.jpg', pos: '50% 40%', f: 'f-sev', state: 'غیرفعال', tone: 'red' },
+{ id: 3, day: 'امروز', clock: '۱۳:۴۸', who: 'علی', act: 'حالت رایگان را روشن کرد', kind: 'تنظیم', rec: 'حالت رایگان، ۱ تا ۳ آذر', code: '', g: 'gift' },
+{ id: 4, day: 'امروز', clock: '۱۲:۲۰', who: 'علی', act: 'کاربر ادمین ساخت', kind: 'کاربر ادمین', rec: 'sara', code: '', g: 'usergear' },
+{ id: 5, day: 'امروز', clock: '۱۱:۵۷', who: 'سارا', act: 'نام فارسی را ویرایش کرد', kind: 'عنوان', rec: 'زندگی‌های گذشته', code: '#۲۲۰۴', still: 'media/p-past-lives.jpg', pos: '50% 24%', f: 'f-def', diff: true },
+{ id: 6, day: 'دیروز', clock: '۲۳:۱۰', who: 'علی', act: 'دامنه‌ی تازه ثبت کرد', kind: 'دامنه', rec: 'دامنه‌ی دوم', code: '', g: 'globe' },
+{ id: 7, day: 'دیروز', clock: '۱۹:۴۴', who: 'سارا', act: 'پوستر را عوض کرد', kind: 'عنوان', rec: 'سینرز', code: '#۵۱۱۷', still: 'media/w-sinners.jpg', pos: '50% 50%', f: 'f-def', state: 'در انتظار', tone: 'gold', wait: true }
+];
+const sq = (t) => { const m = t.match(/^(.*?)\s*([0-9]+p)\s*(.*)$/); return m ? { a1: m[1], q: m[2], a2: m[3], hasQ: true } : { a1: t, q: '', a2: '', hasQ: false }; };
+const rows = base.map(r => {
+const o = selId === r.id;
+return Object.assign({}, r, sq(r.act), { isTitle: !!r.still, noTitle: !r.still, gd: r.g ? I[r.g] : '', fcls: r.f || 'f-none', scls: r.wait ? 'wait' : '', failCls: r.tone === 'red' ? 'fail' : '', hasState: !!r.state, ocls: o ? 'is-sel' : '', pr: String(o), hasCode: !!r.code, hasDiff: !!r.diff, noDiff: !r.diff, toggle: () => this.setState({ sel: r.id }) });
+});
+return {
+ic: I, nav, rows, sel: rows.find(r => r.id === selId) || rows[4],
+pwType: pw ? 'text' : 'password', pwPressed: String(pw), eyeD: pw ? I.eyeslash : I.eye,
+togglePw: () => this.setState({ pw: !pw }),
+isSigning: sign === 'signing', notSigning: sign !== 'signing', isError: sign === 'error', busy: String(sign === 'signing'),
+submit: (e) => { if (e && e.preventDefault) e.preventDefault(); if (sign === 'signing') return; this.setState({ sign: 'signing' }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ sign: 'error' }), 1400); }
+};
+}
+}
+</script>
+</body>
+</html>
