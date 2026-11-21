@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>Rollvana Title</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-title.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 </head><body>
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -86,7 +88,7 @@ const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"
   mood:[88,8,4],
   syn:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندان هارکونن می‌رود؛ خاندانی که پدرش را کشت و خانواده‌اش را نابود کرد. هرچه به قدرت نزدیک‌تر می‌شود، رؤیاهای آینده روشن‌تر می‌شوند: جنگی مقدس که به نام او میلیون‌ها نفر را می‌کشد. پل باید میان عشق به چانی و سرنوشتی که برایش نوشته‌اند یکی را انتخاب کند.",
   dub:true,subs:["فارسی","انگلیسی"],
-  cast:[["تیموتی شالامه","پل آتریدیز"],["زندیا","چانی"],["ربکا فرگوسن","جسیکا"],["جاش برولین","گرنی هلک"],["آستین باتلر","فید-روتا"],["فلورنس پیو","پرنسس ایرولان"],["دیو باتیستا","رابان"],["کریستوفر واکن","امپراتور"]],
+  cast:[["تیموتی شالامه","پل آتریدیز"],["زندیا","چانی"],["ربکا فرگوسن","جسیکا"],["خاویر باردم","استیلگار"],["جاش برولین","گرنی هلک"],["آستین باتلر","فید-روتا"],["فلورنس پیو","پرنسس ایرولان"],["دیو باتیستا","رابان"]],
   dl:{dub:[["2160p","4K · HDR",19.6],["1080p","Full HD",4.6],["720p","HD",2.1],["480p","SD",0.95]],sub:[["2160p","4K · HDR",18.4],["1080p","Full HD",4.2],["720p","HD",1.9],["480p","SD",0.85]]},
   review:{n:4210,date:"۸ آبان",tone:"بیشتر بینندگان تصویر و موسیقی فیلم را ستوده‌اند و آن را از بخش اول کامل‌تر دانسته‌اند.",
     pos:["تصویربرداری و جلوه‌های بصری در اندازه‌ی سینما","موسیقی هانس زیمر","بازی آستین باتلر و ربکا فرگوسن"],
@@ -94,8 +96,9 @@ const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"
   music:[["Beginnings Are Such Delicate Times","Hans Zimmer","۰:۰۲:۱۰","آغاز فیلم، صحرای آراکیس"],["Harvester Attack","Hans Zimmer","۰:۲۱:۴۰","حمله به برداشت‌کننده‌ی ادویه"],["Worm Ride","Hans Zimmer","۰:۵۸:۰۵","اولین سواری پل بر کرم شنی"],["Harkonnen Arena","Hans Zimmer","۱:۰۴:۳۰","مبارزه‌ی فید-روتا در میدان"],["Kiss the Ring","Hans Zimmer","۲:۲۸:۱۵","رویارویی پایانی"]],
   rating:{avg:8.4,n:1230},votes:{up:1132,down:98},
   trs:[["تریلر رسمی ۲","۲:۵۸","b-dune-part-two.jpg"],["تریلر رسمی ۱","۳:۰۳","c-dune-0.jpg"],["تیزر","۱:۲۷","c-dune-4.jpg"],["پشت صحنه: ساختن آراکیس","۵:۴۰","c-dune-1.jpg"]],
+  tag:"زنده باد جنگجویان.",tweet:{x:"نیم ساعت آخر تلماسه رو باید توی سینما دید. وقتی پل روی کرم شنی می‌ایسته، سالن یه لحظه نفس نمی‌کشه.",n:"مهسا",d:"۳ روز پیش",l:2840,c:248},
   facts:[["کارگردان","دنی ویلنوو"],["نویسندگان","دنی ویلنوو، جان اسپیتس"],["بر اساس","رمان «تلماسه» نوشته‌ی فرانک هربرت"],["فیلم‌برداری","گرگ فریزر"],["موسیقی","هانس زیمر"],["کشور","آمریکا، کانادا"],["زبان اصلی","انگلیسی"],["اکران","۱۰ اسفند ۱۴۰۲"],["مدت","۲ ساعت و ۴۶ دقیقه"],["رده‌ی سنی","+۱۳"],["استودیو","لجندری پیکچرز، برادران وارنر"],["بودجه","۱۹۰ میلیون دلار"],["فروش جهانی","۷۱۴ میلیون دلار"],["جوایز","برنده‌ی ۲ اسکار: صدا و جلوه‌های ویژه"]],
-  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["dune-part-two","interstellar","arrival","blade-runner-2049","her"]},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["dune-part-two","oppenheimer","f1","sinners","mission-impossible-the-final-reckoning"]},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:490,p:["dune-part-one","dune-part-two","poor-things","frankenstein","star-wars-andor"]}],
+  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["dune-part-two","interstellar","arrival","blade-runner-2049","her"],q:"اگه فقط وقت یه علمی‌تخیلی داری، همین رو ببین."},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["oppenheimer","f1","dune-part-two","sinners","mission-impossible-the-final-reckoning"],q:"صدای کرم شنی باید کف اتاق رو بلرزونه."},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:490,p:["dune-part-one","dune-part-two","poor-things","frankenstein","star-wars-andor"],q:"آراکیس رو باور می‌کنی، انگار واقعاً یه جایی هست."}],
   similar:["dune-part-one","blade-runner-2049","interstellar","arrival","oppenheimer","poor-things"],
   franchise:[["dune-part-one","تلماسه","2021"],["dune-part-two","تلماسه: بخش دوم","2024"]]};
 
@@ -133,8 +136,9 @@ const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"ج�
   trailers:{"1-1":["تیزر قسمت ۱","۱:۰۸"],"1-5":["تیزر قسمت ۵","۰:۵۲"],"2-1":["تیزر قسمت ۱","۱:۰۴"],"2-3":["تیزر قسمت ۳","۰:۵۸"],"2-6":["تیزر قسمت ۶","۱:۰۱"],"2-7":["تیزر قسمت ۷","۰:۴۹"]},
   rating:{avg:8.8,n:2140},votes:{up:1985,down:155},
   trs:[["تریلر فصل ۲","۲:۲۱","b-severance.jpg"],["تیزر فصل ۲","۱:۰۴","e-sev-2-1.jpg"],["تریلر فصل ۱","۲:۱۰","e-sev-1-1.jpg"]],
+  tag:"کار و زندگی، جدا از هم.",tweet:{x:"Severance تنها سریالیه که بعد از هر قسمت ده دقیقه به دیوار نگاه می‌کنم. اون راهروهای سفید از هر هیولایی ترسناک‌ترن.",n:"آرش",d:"هفته‌ی پیش",l:1930,c:176},
   facts:[["سازنده","دن اریکسون"],["کارگردان‌ها","بن استیلر، آئوفه مک‌آردل"],["موسیقی","تئودور شاپیرو"],["شبکه","اپل تی‌وی پلاس"],["کشور","آمریکا"],["زبان اصلی","انگلیسی"],["شروع پخش","۲۸ بهمن ۱۴۰۰"],["فصل‌ها","۲ فصل، ۱۹ قسمت"],["هر قسمت","حدود ۵۰ دقیقه"],["رده‌ی سنی","+۱۶"],["جوایز","برنده‌ی جوایز امی، از جمله بهترین بازیگر زن نقش اول"]],
-  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses","the-penguin","the-white-lotus"]},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:730,p:["severance","the-last-of-us","shogun","prisoners","wednesday"]},{n:"بهترین‌های اپل",u:"نگار",c:9,f:320,p:["severance","slow-horses","star-wars-andor","the-bear","squid-game"]}],
+  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses","the-penguin","the-white-lotus"],q:"قسمت آخر فصل اول رو نمی‌شه وسطش ول کرد."},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:730,p:["prisoners","severance","the-last-of-us","shogun","wednesday"],q:"هر جوابی که می‌ده دو تا سؤال تازه می‌سازه."},{n:"بهترین‌های اپل",u:"نگار",c:9,f:320,p:["slow-horses","the-bear","squid-game","severance","star-wars-andor"],q:"دلیل اصلی‌ای که اشتراک اپل می‌ارزه."}],
   review:{n:6180,date:"۷ آبان",tone:"بیشتر بینندگان ایده و فضای سرد سریال را ستوده‌اند و فصل دوم را تاریک‌تر اما جسورتر از فصل اول دانسته‌اند.",
     pos:["فضای سرد و طراحی منحصربه‌فرد دفتر","بازی آدام اسکات و بریت لوئر","معماهایی که مخاطب را تا آخر نگه می‌دارد"],
     neg:["ریتم کند چند قسمت میانی","پاسخ‌های کم به سؤال‌های اصلی","فاصله‌ی طولانی میان فصل‌ها"]},
@@ -142,14 +146,17 @@ const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"ج�
   dl:{dub:[["1080p","Full HD",1.6],["720p","HD",0.8],["480p","SD",0.38]],sub:[["1080p","Full HD",1.5],["720p","HD",0.75],["480p","SD",0.35]]},
   similar:["the-last-of-us","fallout","shogun","slow-horses","the-bear","the-white-lotus"]};
 const COMMENTS=[
-  {id:1,n:"مهسا",t:"۲ ساعت پیش",likes:48,text:"صحنه‌ی سواری روی کرم شنی رو باید توی بزرگ‌ترین صفحه‌ای که دارید ببینید. موسیقی‌اش هنوز توی گوشمه.",replies:[{id:11,n:"آرش",t:"۱ ساعت پیش",likes:6,text:"دقیقاً. نسخه‌ی 4K اینجا هم خیلی تمیزه."}]},
-  {id:2,n:"رضا",t:"دیروز",likes:21,spoiler:true,text:"آخرش که پل با امپراتور روبه‌رو می‌شه و چانی می‌ره، یعنی بخش سوم کاملاً یه جنگ دیگه‌ست."},
-  {id:3,n:"نگار",t:"۳ روز پیش",likes:15,text:"از قسمت اول بهتره، فقط کاش نیم ساعت کوتاه‌تر بود."}];
+  {id:1,v:1,n:"مهسا",t:"۲ ساعت پیش",likes:48,text:"صحنه‌ی سواری روی کرم شنی رو باید توی بزرگ‌ترین صفحه‌ای که دارید ببینید. موسیقی‌اش هنوز توی گوشمه.",replies:[{id:11,n:"آرش",t:"۱ ساعت پیش",likes:6,text:"دقیقاً. نسخه‌ی 4K اینجا هم خیلی تمیزه."}]},
+  {id:2,v:1,n:"رضا",t:"دیروز",likes:21,spoiler:true,text:"آخرش که پل با امپراتور روبه‌رو می‌شه و چانی می‌ره، یعنی بخش سوم کاملاً یه جنگ دیگه‌ست."},
+  {id:3,v:1,n:"نگار",t:"۳ روز پیش",likes:15,text:"از قسمت اول بهتره، فقط کاش نیم ساعت کوتاه‌تر بود."},
+  {id:4,v:-1,n:"سروش",t:"۴ روز پیش",likes:19,text:"تصویرش خیره‌کننده‌ست ولی شخصیت‌ها سردن. تا آخر فیلم با هیچ‌کدوم نتونستم همراه بشم.",replies:[{id:41,n:"ترانه",t:"۳ روز پیش",likes:3,text:"به نظرم این سردی عمدیه؛ قراره از پل بترسی، نه اینکه دوستش داشته باشی."}]},
+  {id:5,v:-1,n:"هومن",t:"هفته‌ی پیش",likes:7,text:"بدون دیدن قسمت اول هیچی ازش نمی‌فهمید. فیلم مستقلی نیست."}];
 const COMMENTS_S=[
-  {id:1,n:"سارا",t:"۳ ساعت پیش",likes:62,text:"ایده‌ی جدا کردن خودِ درونی از خودِ بیرونی هنوز ترسناک‌ترین ایده‌ای است که این چند سال توی یه سریال دیدم. آدم از خودش می‌پرسه اگه جای مارک بودم، من هم این کار رو می‌کردم؟",replies:[{id:11,n:"کیان",t:"۲ ساعت پیش",likes:9,text:"قسمت اول رو که دیدم تا صبح خوابم نبرد. اون راهروهای سفید لومن آدم رو خفه می‌کنه."}]},
-  {id:2,n:"پویا",t:"دیروز",likes:34,spoiler:true,text:"آخر فصل ۲ که مارکِ درونی به‌جای گما هلی رو انتخاب می‌کنه و برمی‌گرده توی لومن، یعنی فصل سوم دعوای دو تا مارک با همه."},
-  {id:3,n:"الهام",t:"۲ روز پیش",likes:27,text:"بازی بریت لوئر توی نقش هلی عالیه؛ از یه نگاهش می‌فهمی هلیِ درونی جلوته یا اون یکی.",replies:[{id:31,n:"نیما",t:"۲ روز پیش",likes:4,text:"آدام اسکات هم همین‌طور. مارکِ بیرونی خسته و غمگینه، مارکِ درونی انگار تازه به دنیا اومده."}]},
-  {id:4,n:"بهراد",t:"۴ روز پیش",likes:12,text:"فصل دوم یه کم کند شروع شد، ولی از قسمت دره‌ی وو به بعد دیگه نمی‌شه ولش کرد. فقط کاش این بار سه سال منتظر فصل بعد نمونیم."}];
+  {id:1,v:1,n:"سارا",t:"۳ ساعت پیش",likes:62,text:"ایده‌ی جدا کردن خودِ درونی از خودِ بیرونی هنوز ترسناک‌ترین ایده‌ای است که این چند سال توی یه سریال دیدم. آدم از خودش می‌پرسه اگه جای مارک بودم، من هم این کار رو می‌کردم؟",replies:[{id:11,n:"کیان",t:"۲ ساعت پیش",likes:9,text:"قسمت اول رو که دیدم تا صبح خوابم نبرد. اون راهروهای سفید لومن آدم رو خفه می‌کنه."}]},
+  {id:2,v:1,n:"پویا",t:"دیروز",likes:34,spoiler:true,text:"آخر فصل ۲ که مارکِ درونی به‌جای گما هلی رو انتخاب می‌کنه و برمی‌گرده توی لومن، یعنی فصل سوم دعوای دو تا مارک با همه."},
+  {id:3,v:1,n:"الهام",t:"۲ روز پیش",likes:27,text:"بازی بریت لوئر توی نقش هلی عالیه؛ از یه نگاهش می‌فهمی هلیِ درونی جلوته یا اون یکی.",replies:[{id:31,n:"نیما",t:"۲ روز پیش",likes:4,text:"آدام اسکات هم همین‌طور. مارکِ بیرونی خسته و غمگینه، مارکِ درونی انگار تازه به دنیا اومده."}]},
+  {id:4,v:1,n:"بهراد",t:"۴ روز پیش",likes:12,text:"فصل دوم یه کم کند شروع شد، ولی از قسمت دره‌ی وو به بعد دیگه نمی‌شه ولش کرد. فقط کاش این بار سه سال منتظر فصل بعد نمونیم."},
+  {id:5,v:-1,n:"هانیه",t:"۵ روز پیش",likes:18,text:"خیلی‌ها عاشقشن ولی برای من زیادی کند بود. نصف فصل اول تقریباً هیچ اتفاقی نمی‌افته."}];
 
 
 function useDesk(){const q=()=>innerWidth>=1024;const [d,s]=useState(q());useEffect(()=>{const f=()=>s(q());addEventListener("resize",f);return()=>removeEventListener("resize",f)},[]);return d}
@@ -185,7 +192,7 @@ function Header({user,desk,logo,alt}){
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
   return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
     <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:sc?1:0}} transition=${{duration:.35}}/>
-    ${logo&&html`<div class="hlogo" key=${logo}><${motion.img} src=${logo} alt=${alt} initial=${{opacity:0,y:-6}} animate=${{opacity:1,y:0}} transition=${{duration:.5,ease:EASE}}/></div>`}
+    ${logo&&html`<div class="hlogo" key=${logo}><${motion.img} src=${logo} alt=${alt} initial=${{opacity:0,y:-6}} animate=${{opacity:past?1:0,y:past?0:-6}} transition=${{duration:.35,ease:EASE}}/></div>`}
     <a class="wm" href="../home/home-v3.html" aria-label="Rollvana"><svg viewBox="-185.15 -1070.84 5639.51 1330" aria-hidden="true"><g transform="translate(-205.54 -1261.62) scale(14.24)"><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="var(--logo-petal,#6A55C2)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="var(--light)"/></g><path transform="translate(1622.2 0)" d="M76 -700V0H210V-259H275.74L445 0H604L409.94 -274.01Q426.49 -279.32 441.5 -286.5Q499 -314 530.5 -364Q562 -414 562 -479Q562 -546 530.5 -595.5Q499 -645 441.5 -672.5Q384 -700 304 -700ZM635 -230Q635 -159 668 -105Q701 -51 758.5 -20.5Q816 10 887 10Q960 10 1017 -20.5Q1074 -51 1107 -105Q1140 -159 1140 -230Q1140 -302 1107 -356Q1074 -410 1017 -440Q960 -470 887 -470Q816 -470 758.5 -440Q701 -410 668 -356Q635 -302 635 -230ZM2242 -334Q2252 -341 2273 -351Q2294 -361 2322.5 -368.5Q2351 -376 2383 -376Q2404 -376 2421.5 -372Q2439 -368 2451.5 -359Q2464 -350 2470.5 -336Q2477 -322 2477 -302V-250.59Q2455.24 -263.21 2422.5 -272.5Q2389 -282 2344 -282Q2258 -282 2210.5 -242.5Q2163 -203 2163 -137Q2163 -90 2185.5 -57Q2208 -24 2245 -7Q2282 10 2325 10Q2367 10 2405 -5Q2443 -20 2468 -50Q2473 -56 2477 -62.56V0H2595V-326Q2595 -373 2569.5 -405.5Q2549.16 -431.42 2516.43 -447.48Q2470.77 -418.04 2437 -369V-469.69Q2417.38 -472 2396 -472Q2331 -472 2280 -454Q2229 -436 2196 -417ZM3294 -334Q3304 -341 3325 -351Q3346 -361 3374.5 -368.5Q3403 -376 3435 -376Q3456 -376 3473.5 -372Q3491 -368 3503.5 -359Q3516 -350 3522.5 -336Q3529 -322 3529 -302V-250.59Q3507.24 -263.21 3474.5 -272.5Q3441 -282 3396 -282Q3310 -282 3262.5 -242.5Q3215 -203 3215 -137Q3215 -90 3237.5 -57Q3260 -24 3297 -7Q3334 10 3377 10Q3419 10 3457 -5Q3495 -20 3520 -50Q3525 -56 3529 -62.56V0H3647V-326Q3647 -373 3621.5 -405.5Q3601.16 -431.42 3568.43 -447.48Q3522.77 -418.04 3489 -369V-469.69Q3469.38 -472 3448 -472Q3383 -472 3332 -454Q3281 -436 3248 -417ZM3006 -280V0H3130V-294Q3130 -376 3089.5 -423Q3049 -470 2969 -470Q2921 -470 2886.5 -449.5Q2852 -429 2830 -390V-460H2709V0H2830V-280Q2830 -310 2842 -332Q2854 -354 2875.5 -366Q2897 -378 2926 -378Q2967 -378 2986.5 -353Q3006 -328 3006 -280ZM1476 1H1597V-580C1597 -808 1535.29 -937.2 1494.15 -960C1486.89 -937.2 1476 -808 1476 -580ZM1231 1H1352V-580C1352 -808 1341.11 -937.2 1333.85 -960C1292.71 -937.2 1231 -808 1231 -580ZM1653 -460 1900 46 2147 -460H2016L1900 -175L1784 -460ZM759 -230Q759 -271 776 -302Q793 -333 822 -350Q851 -367 887 -367Q924 -367 953 -350Q982 -333 999 -302Q1016 -271 1016 -230Q1016 -189 999 -158.5Q982 -128 953 -111Q924 -94 887 -94Q851 -94 822 -111Q793 -128 776 -158.5Q759 -189 759 -230ZM210 -366V-586H297Q336 -586 364.5 -573Q393 -560 409 -535.5Q425 -511 425 -476Q425 -441 409 -416.5Q393 -392 364.5 -379Q336 -366 297 -366ZM2285 -143Q2285 -163 2294.5 -177.5Q2304 -192 2324 -200Q2344 -208 2376 -208Q2414 -208 2448 -198Q2463.09 -193.56 2477 -186.96V-184Q2477 -150 2462 -125.5Q2447 -101 2421.5 -88.5Q2396 -76 2366 -76Q2343 -76 2324.5 -83.5Q2306 -91 2295.5 -106.5Q2285 -122 2285 -143ZM3337 -143Q3337 -163 3346.5 -177.5Q3356 -192 3376 -200Q3396 -208 3428 -208Q3466 -208 3500 -198Q3515.09 -193.56 3529 -186.96V-184Q3529 -150 3514 -125.5Q3499 -101 3473.5 -88.5Q3448 -76 3418 -76Q3395 -76 3376.5 -83.5Q3358 -91 3347.5 -106.5Q3337 -122 3337 -143Z" fill="currentColor"/></svg></a>
     ${desk&&html`<nav class="nav" aria-label="ناوبری اصلی" onMouseLeave=${()=>setHov(null)}>
       ${NAV.map((l,k)=>html`<a href="#" aria-current=${k===0?"page":undefined} onMouseEnter=${()=>setHov(k)} onFocus=${()=>setHov(k)}>
@@ -200,7 +207,7 @@ function Header({user,desk,logo,alt}){
       <${I} n="search"/><input id="q" placeholder="جستجوی فیلم، سریال یا بازیگر" aria-label="جستجو"/><kbd>/</kbd>
     </${motion.label}>`}
     <div class="hl">
-      ${user&&html`<${motion.button} class="ib bell" aria-label="اعلان‌ها، ۲ مورد تازه" whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><i class="dot"></i></${motion.button}>`}
+      ${user&&html`<${motion.button} class="ib bell" aria-label=${RVC.bellLabel(RVC.N0)} whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><${RVC.Count}/></${motion.button}>`}
       <${AnimatePresence} mode="popLayout" initial=${false}>
         ${!user&&html`<${motion.a} key="sub" class="sub" href="#" whileTap=${{scale:.96}} initial=${{opacity:0,width:0,paddingLeft:0,paddingRight:0}} animate=${{opacity:1,width:"auto",paddingLeft:14,paddingRight:14}} exit=${{opacity:0,width:0,paddingLeft:0,paddingRight:0,marginLeft:0,marginRight:0}} transition=${SOFT} style=${{overflow:"hidden"}}>خرید اشتراک</${motion.a}>`}
         ${user?html`<${Account} key="av"/>`
@@ -214,9 +221,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -266,9 +273,9 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
-      :html`<div class="mg"><p>با حساب رول‌وانا لیست تماشا، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+      :html`<div class="mg"><p>با حساب رول‌وانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
     <div class="mcol">
       <h3>بخش‌ها</h3>
       <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
@@ -345,9 +352,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();const sp=React.useContext(Spoil);
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}>س</${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${RVC.Avatar}/></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -439,11 +446,19 @@ function EpTrailer({t,s,e,onClose}){
 }
 function Trailers({t}){
   const [cur,setCur]=useState(0);const [go,setGo]=useState(false);
-  return html`<div class="trs">
-    <div class="trv">${go?html`<video key=${cur} src=${M("t-"+t.s+".mp4")} controls autoPlay playsInline poster=${M(t.trs[cur][2])}></video>`:html`<button class="trp" onClick=${()=>setGo(true)} aria-label=${"پخش "+t.trs[cur][0]}><img src=${M(t.trs[cur][2])} alt=""/><span class="trpi"><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span><span class="trpt"><b>${t.trs[cur][0]}</b><small class="num">${t.trs[cur][1]}</small></span></button>`}</div>
-    <ol class="tml trl">${t.trs.map(([n,d,img],k)=>html`<li key=${k}><button aria-current=${k===cur} onClick=${()=>{setCur(k);setGo(true)}}><span class="tmi"><img src=${M(img)} alt=""/>${k===cur&&go?html`<i class="now">در حال پخش</i>`:html`<svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg>`}</span><span class="tmt"><b>${n}</b><small class="num">${d}</small></span></button></li>`)}</ol>
+  const n=t.trs.length;const kind=x=>x.includes("تیزر")?"تیزر":x.includes("پشت صحنه")?"پشت صحنه":"تریلر";
+  const fr=k=>M("tf-"+t.s+"-"+k+".jpg");
+  const pick=k=>{setCur(k);setGo(true)};
+  const end=()=>{if(cur<n-1)pick(cur+1);else{setGo(false);setCur(0)}};
+  return html`<div class="tv9">
+    <div class="tv9s">${go?html`<video key=${cur} src=${M("t-"+t.s+".mp4")} controls autoPlay playsInline poster=${fr(cur)} onEnded=${end}></video>`
+      :html`<button class="tv9p" onClick=${()=>pick(cur)} aria-label=${"پخش "+t.trs[cur][0]}><img src=${fr(cur)} alt=""/><span class="tv9g"><svg viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span><span class="tv9c"><small>${fa(cur+1)} از ${fa(n)}</small><b>${t.trs[cur][0]}</b><i class="num">${t.trs[cur][1]}</i></span></button>`}</div>
+    <div class="tv9t" style=${{"--n":n}}>${t.trs.map(([nm,d],k)=>html`<button key=${k} aria-current=${k===cur} onClick=${()=>pick(k)}>
+      <span class="tv9i"><img src=${fr(k)} alt="" loading="lazy"/></span>
+      <span class="tv9n"><b>${nm}</b><small class="num">${go&&k===cur?"در حال پخش":d}</small></span></button>`)}</div>
   </div>`;
 }
+
 function Recap({t}){
   const [open,set]=useState(false);
   return html`<${motion.div} class="recap" layout transition=${SOFT}><div class="rin">
@@ -481,47 +496,49 @@ function Top({t,access,free,prog,desk,reduced,toast,onRate,vote}){
   const [muted,setMuted]=useState(true);const [paused,setPaused]=useState(false);const [inList,setInList]=useState(false);const [saved,setSaved]=useState(false);
   const why=free?null:access==="guest"?"دیدن این صفحه رایگان است؛ تماشا و دانلود برای اعضاست.":access==="nosub"?"تماشا و دانلود با اشتراک فعال است.":null;
   const freeln=free?(access==="guest"?"تماشای رایگان؛ فقط وارد شوید":"تماشا و دانلود رایگان است، تا ۳۰ دی"):null;
+  const keep=html`<${motion.button} class=${"rb"+(inList?" on":"")} aria-pressed=${inList} data-l="لیست من" title=${inList?"در لیست من":"افزودن به لیست"} aria-label=${inList?"در لیست من":"افزودن به لیست"} whileTap=${{scale:.9}} onClick=${()=>{setInList(v=>!v);toast(inList?"از لیست برداشته شد":"به لیست اضافه شد")}}>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><${motion.path} initial=${false} animate=${{d:inList?"M5 12.5 L9.5 17 L19 7.5":"M12 5 L12 19 M5 12 L19 12"}} transition=${{duration:.3,ease:EASE}}/></svg></${motion.button}>
+        <${motion.button} class=${"rb"+(saved?" on":"")} aria-pressed=${saved} data-l="نشان" title="نشان کردن" aria-label=${saved?"نشان‌شده":"نشان کردن"} whileTap=${{scale:.9}} onClick=${()=>{setSaved(v=>!v);toast(saved?"نشان برداشته شد":"نشان شد")}}>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" fill=${saved?"currentColor":"none"}/></svg></${motion.button}>`;
+  const mute=html`<${IconToggle} on=${!muted} onClick=${()=>setMuted(m=>!m)} label="پخش صدای تریلر" onLabel="قطع صدای تریلر"
+        paths=${[["M4 9.5h3.5L12 6v12l-4.5-3.5H4z","M4 9.5h3.5L12 6v12l-4.5-3.5H4z"],["M16 9.5l5 5","M16 9a4 4 0 0 1 0 6"],["M21 9.5l-5 5","M18.5 6.5a7.5 7.5 0 0 1 0 11"]]}/>`;
   return html`<section class="top">
     <${Trailer} t=${t} desk=${desk} muted=${muted} paused=${paused}/>
+    ${!desk&&t.trs.length>0&&html`<button class="tpz" aria-label=${paused?"پخش تریلر":"توقف تریلر"} onClick=${()=>setPaused(p=>!p)}></button>`}
     <div class="grade"></div>
-    ${t.trs.length>0&&html`<div class="tctl">
+    ${desk&&t.trs.length>0&&html`<div class="tctl">
       <${IconToggle} on=${!muted} onClick=${()=>setMuted(m=>!m)} label="پخش صدای تریلر" onLabel="قطع صدای تریلر"
         paths=${[["M4 9.5h3.5L12 6v12l-4.5-3.5H4z","M4 9.5h3.5L12 6v12l-4.5-3.5H4z"],["M16 9.5l5 5","M16 9a4 4 0 0 1 0 6"],["M21 9.5l-5 5","M18.5 6.5a7.5 7.5 0 0 1 0 11"]]}/>
       <${IconToggle} on=${paused} onClick=${()=>setPaused(p=>!p)} label="توقف تریلر" onLabel="پخش تریلر"
         paths=${[["M7 5h3.5v14H7z","M7 4.5l6 3.75v7.5L7 19.5z"],["M13.5 5H17v14h-3.5z","M13 8.25l6 3.75v0l-6 3.75z"]]}/>
     </div>`}
     <${motion.div} class="tc" variants=${INFO} initial="hide" animate="show" custom=${reduced}>
-      <${motion.p} class="gline" variants=${ITEM} custom=${reduced}><span class="klab">${t.kind==="film"?"فیلم":"سریال"}</span><span class="kg">${t.g.join("، ")}</span></${motion.p}>
-      <${motion.h1} variants=${ITEM} custom=${reduced}>${t.fa}</${motion.h1}>
-      <${motion.p} class="en2" dir="ltr" variants=${ITEM} custom=${reduced}>${t.en}</${motion.p}>
-      <${motion.div} class="tmeta" variants=${ITEM} custom=${reduced}>
-        <span>${fa(t.y)}</span><i class="sep"></i><span>${t.rt}</span><i class="sep"></i><span class="age">${t.age}</span>
-        ${t.dub&&html`<span class="bdg dub">دوبله فارسی</span>`}
-      </${motion.div}>
-      <${motion.div} class="scores2" variants=${ITEM} custom=${reduced}>
-        ${t.imdb!=null&&html`<span class="sc2 imdb2" aria-label=${"امتیاز IMDb "+t.imdb+" از 10"}><svg class="bi imdb3" viewBox=${BRAND2["imdb-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["imdb-light"].body}}></svg><span class="sv num" dir="ltr"><b>${t.imdb.toFixed(1)}</b><small>/10</small></span>${t.imdbVotes&&html`<small class="num">${nf(t.imdbVotes)} رأی</small>`}</span>`}
+      <${motion.div} class="thead" variants=${ITEM} custom=${reduced}><h1 class="tl"><img src=${M("l-"+t.s+".png")} alt=${t.en}/><span class="tn"><b>${t.fa}</b><i class="kin">${t.kind==="film"?"فیلم":"سریال"} · ${fa(t.y)} · ${t.g.join("، ")}</i></span></h1></${motion.div}>
+      <${motion.div} class="minfo" variants=${ITEM} custom=${reduced}>
+      <div class="scores2">
+        ${t.imdb!=null&&html`<span class="sc2 imdb2" aria-label=${"امتیاز IMDb "+t.imdb+" از 10"}><svg class="bi imdb3" viewBox=${BRAND2["imdb-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["imdb-light"].body}}></svg><span class="sv num" dir="ltr"><b>${t.imdb.toFixed(1)}</b><small>/10</small></span></span>`}
         ${t.tomato!=null&&html`<span class="sc2 rt2" aria-label=${"Rotten Tomatoes "+t.tomato+"%"}><svg class="bi" viewBox=${BRAND2["rotten-tomatoes-light"].vb} aria-hidden="true" dangerouslySetInnerHTML=${{__html:BRAND2["rotten-tomatoes-light"].body}}></svg><b class="num" dir="ltr">${t.tomato}%</b></span>`}
         ${t.meta!=null&&html`<span class="sc2 mc4" aria-label=${"Metascore "+t.meta}><svg class="bi mcl" viewBox="0 0 88 88" aria-hidden="true" dangerouslySetInnerHTML=${{__html:MC_MARK}}></svg><b class="num" dir="ltr">${t.meta}</b></span>`}
+      </div>
+        <div class="tmeta"><span>${t.rt}</span><span class="age">${t.age}</span>${t.dub&&html`<span class="bdg dub">دوبله فارسی</span>`}</div>
       </${motion.div}>
+      <div class="acts">
       <${motion.div} class="row1" variants=${ITEM} custom=${reduced}>
         <${MainBtn} t=${t} access=${access} prog=${prog} reduced=${reduced}/>
-        <${motion.button} class=${"rb"+(inList?" on":"")} aria-pressed=${inList} title=${inList?"در لیست من":"افزودن به لیست"} aria-label=${inList?"در لیست من":"افزودن به لیست"} whileTap=${{scale:.9}} onClick=${()=>{setInList(v=>!v);toast(inList?"از لیست برداشته شد":"به لیست اضافه شد")}}>
-          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><${motion.path} initial=${false} animate=${{d:inList?"M5 12.5 L9.5 17 L19 7.5":"M12 5 L12 19 M5 12 L19 12"}} transition=${{duration:.3,ease:EASE}}/></svg><span class="rbl">لیست</span></${motion.button}>
-        <${motion.button} class=${"rb"+(saved?" on":"")} aria-pressed=${saved} title="نشان کردن" aria-label=${saved?"نشان‌شده":"نشان کردن"} whileTap=${{scale:.9}} onClick=${()=>{setSaved(v=>!v);toast(saved?"نشان برداشته شد":"نشان شد")}}>
-          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" fill=${saved?"currentColor":"none"}/></svg><span class="rbl">نشان</span></${motion.button}>
+        ${desk&&keep}
       </${motion.div}>
-      <${motion.div} class="row2" variants=${ITEM} custom=${reduced}>
+      <${motion.div} class=${"row2"+(desk?"":" hcir")} variants=${ITEM} custom=${reduced}>
         <${Vote} v=${vote} access=${access}/>
-        <span class="row2sp"></span>
-        <${motion.button} class="pill3 ic" aria-label="اشتراک‌گذاری" title="اشتراک‌گذاری" whileTap=${{scale:.95}} onClick=${()=>toast("لینک صفحه کپی شد")}><${I} n="share"/></${motion.button}>
+        ${!desk&&html`${keep}<span class="hcw" data-l=${muted?"صدا":"بی‌صدا"}>${mute}</span>`}
       </${motion.div}>
+      </div>
       ${why&&html`<${motion.p} class="why" variants=${ITEM} custom=${reduced}>${why}</${motion.p}>`}
       ${freeln&&html`<${motion.p} class="why freeln" variants=${ITEM} custom=${reduced}>${freeln}</${motion.p}>`}
     </${motion.div}>
   </section>`;
 }
 function Story({t}){
-  return html`<div class="sec story"><p>${t.syn}</p></div>`;
+  return html`<div class="sec story">${t.tag&&html`<p class="tagl"><span class="tq9" aria-hidden="true">«</span>${t.tag.replace(/\.$/,"")}<span class="tq9" aria-hidden="true">»</span></p>`}<p>${t.syn}</p></div>`;
 }
 function Audience({t,prog}){
   const ep=t.kind==="series"&&prog&&t.epReview;
@@ -532,12 +549,10 @@ function Audience({t,prog}){
   const [more,setMore]=useState(false);
   const seg=[["pos",p,"راضی","smile"],["mid",m,"بینابین","meh"],["neg",n,"ناراضی","frown"]];
   return html`<section class="sec aud"><div class="audc">
-    <div class="sh"><span class="aichip"><${I} n="sparkles"/>خلاصه با هوش مصنوعی</span><span class=${"vchip v-"+vk}><i></i>${verdict}</span></div>
-    <h3 class="auh">نظر مخاطبان و منتقدان</h3>
+    <div class="sh"><h3 class="auh">نظر مخاطبان و منتقدان</h3><span class="aichip"><${I} n="sparkles"/>خلاصه با هوش مصنوعی</span></div>
     ${ep&&html`<div class="scope"><${Seg} items=${[["ep","قسمت "+fa(t.epReview.e)+"، "+name],["all","کل سریال"]]} val=${scope} set=${setScope} id="scope"/></div>`}
     <${AnimatePresence} mode="wait" initial=${false}>
     <${motion.div} key=${scope} class="audb" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0,transition:{duration:.15}}} transition=${{duration:.3,ease:EASE}}>
-      <div class="astat"><b class="num"><${Count} v=${p} fmt=${fa}/>٪</b><span>از مخاطبان راضی‌اند<small class="num">بر پایه‌ی <${Count} v=${r.n} fmt=${x=>fa(Math.round(x).toLocaleString("en").replace(/,/g,"٬"))}/> نظر</small></span></div>
       <div class="segbar" role="progressbar" aria-label=${seg.map(x=>x[2]+" "+fa(x[1])+"٪").join("، ")}>
         ${seg.map(([k,v],i)=>html`<${motion.i} key=${k} class=${"s-"+k} initial=${{width:"0%"}} animate=${{width:v+"%"}} transition=${{duration:.8,ease:"easeInOut",delay:i*.1}}/>`)}
       </div>
@@ -548,7 +563,7 @@ function Audience({t,prog}){
         <div class="pro"><h4>تعریف کرده‌اند</h4><ul>${r.pos.map(x=>html`<li key=${x}><${I} n="check"/>${x}</li>`)}</ul></div>
         <div class="con"><h4>ایراد گرفته‌اند</h4><ul>${r.neg.map(x=>html`<li key=${x}><${I} n="x"/>${x}</li>`)}</ul></div>
       </div>
-      <p class="src">منبع: IMDb و Rotten Tomatoes · به‌روز ${r.date} · بدون اسپویل</p>
+      <p class="src num">بر پایه‌ی ${fa(r.n.toLocaleString("en").replace(/,/g,"٬"))} نظر از IMDb و Rotten Tomatoes · به‌روز ${r.date}</p>
     </${motion.div}></${AnimatePresence}>
   </div></section>`;
 }
@@ -579,24 +594,35 @@ function Spy({sections}){
 }
 
 function Chap({id,title,sub,cls,icon,children}){
-  return html`<section id=${id} class=${"chap anchor"+(cls?" "+cls:"")} aria-labelledby=${id+"-h"}><header class="chh">${icon&&html`<span class="chi"><${I} n=${icon}/></span>`}<h2 id=${id+"-h"}>${title}</h2></header><div class="chb">${children}</div></section>`;
+  return html`<section id=${id} class=${"chap anchor"+(cls?" "+cls:"")} aria-labelledby=${id+"-h"}><header class="chh">${icon&&html`<span class="chi"><${I} n=${icon}/></span>`}<h2 id=${id+"-h"}>${String(title).split(" و ").map((q,k)=>html`${k?" و ":""}<mark key=${k}>${q}</mark>`)}</h2></header><div class="chb">${children}</div></section>`;
 }
 
-function About({t}){
-  const [open,set]=useState(false);const ref=useRef();const [h,setH]=useState({c:84,f:84});
-  useLayoutEffect(()=>{const el=ref.current;if(el)setH({c:Math.min(el.scrollHeight,84),f:el.scrollHeight})},[t]);
-  return html`<section class="sec"><h2>مشخصات</h2>
-    <dl class="facts facts2">
-      ${(t.facts||[]).map(([k,v])=>html`<div key=${k}><dt>${k}</dt><dd>${v}</dd></div>`)}
-      <div><dt>صدا</dt><dd><span class="chips">${t.dub&&html`<span class="chip"><${I} n="check"/>دوبله فارسی</span>`}<span class="chip"><${I} n="check"/>صدای اصلی</span></span></dd></div>
-      <div><dt>زیرنویس</dt><dd><span class="chips">${t.subs.map(s=>html`<span class="chip"><${I} n="check"/>${s}</span>`)}</span></dd></div>
-    </dl>
+const TWT={"dune-part-two":[
+  ["داستان",58,[["پل از اون پسر مردد قسمت اول رسید به کسی که [خودت هم ازش می‌ترسی]. پایانش قهرمانی نیست، هشداره.","کیان","دیروز",1480],["چانی تنها کسیه که تا آخر فیلم سر حرفش می‌مونه.","نگار","۵ روز پیش",912],["نصف دوم کتاب رو بهتر از این نمی‌شد جمع کرد.","حسام","هفته‌ی پیش",431]]],
+  ["بازی‌ها",38,[["آستین باتلر توی ده دقیقه‌ی اول حضورش [کل فیلم رو مال خودش می‌کنه].","ترانه","۶ روز پیش",1284],["شالامه بالاخره اون پلی شد که کتاب می‌گفت.","حامد","دیروز",702],["ربکا فرگوسن بی‌سروصدا بهترین بازی فیلمه.","شیدا","هفته‌ی پیش",455]]],
+  ["موسیقی",41,[["زیمر این بار [با صدا شن ساخته]. با هدفون ببینید، پشیمون نمی‌شید.","سامان","هفته‌ی پیش",1620],["تم چانی هنوز توی سرمه.","الهه","۲ روز پیش",540],["صدای فیلم خودش یه شخصیته.","پویا","۴ روز پیش",377]]],
+  ["تصویر",64,[["نیم ساعت آخر تلماسه رو باید توی سینما دید. وقتی پل روی کرم شنی می‌ایسته، [سالن یه لحظه نفس نمی‌کشه].","مهسا","۳ روز پیش",2840],["سکانس سیاه‌وسفید گیدی پرایم رو باید قاب گرفت زد به دیوار.","بهراد","۴ روز پیش",1105],["گرگ فریزر با نور بیابون جادو کرده.","سروش","هفته‌ی پیش",296]]]],
+"severance":[
+  ["داستان",44,[["هر قسمت یه سؤال جواب می‌ده و [دو تا سؤال تازه می‌ذاره جلوت]. و عجیبه که کلافه نمی‌شی.","سپهر","۲ روز پیش",1340],["ایده‌اش ساده‌ست ولی هر چی جلوتر می‌ری ترسناک‌تر می‌شه.","لیلا","۳ روز پیش",610],["پایان فصل اول رو ایستاده دیدم.","امید","دیروز",344]]],
+  ["بازی‌ها",27,[["آدام اسکات دو تا آدم رو بازی می‌کنه و [با یه پلک زدن می‌فهمی کدومه].","مانی","۴ روز پیش",980],["میلچیک ترسناک‌ترین لبخند تلویزیونه.","یاسمن","دیروز",455],["جان تورتورو و کریستوفر واکن کنار هم طلا هستن.","رضا","۶ روز پیش",301]]],
+  ["موسیقی",33,[["تیتراژ این سریال رو [حتی یک بار هم رد نکردم].","غزل","۵ روز پیش",1210],["موسیقی تیتراژ دو روزه ولم نمی‌کنه.","نیما","۲ روز پیش",498],["اون پیانوی سرد دقیقاً صدای خود لومونه.","هستی","هفته‌ی پیش",270]]],
+  ["تصویر",52,[["Severance تنها سریالیه که بعد از هر قسمت ده دقیقه به دیوار نگاه می‌کنم. اون راهروهای سفید [از هر هیولایی ترسناک‌ترن].","آرش","هفته‌ی پیش",1930],["هیچ‌وقت فکر نمی‌کردم یه دفتر کار این‌قدر دلهره داشته باشه.","مریم","۳ روز پیش",587],["طراحی صحنه خودش نصف داستانه.","داوود","دیروز",322]]]]};
+function BestTweet({t}){
+  const w=t.tweet;if(!w)return null;const T=TWT[t.s]||[];const [cur,setCur]=useState(0);
+  if(!T.length)return null;const tw=T[cur][2];
+  const Tx=x=>x.split(/[\[\]]/).map((q,k)=>k%2?html`<mark key=${k}>${q}</mark>`:q);
+  const U=([x,n,d,l],k)=>html`<span class="btwu"><i class=${"btwa a"+k}>${n[0]}</i><b>${n}</b><small>${d}</small><span class="btwl num"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.4C19 15.6 12 20 12 20Z"/></svg>${fa(l)}</span></span>`;
+  return html`<section class="btw" aria-label=${"توییت‌ها درباره‌ی "+t.fa}>
+    <div class="btwh"><span class="btwm"><b>رولوانا</b><em>توییت</em></span><span class="btwk">${fa(w.c)} توییت درباره‌ی ${t.fa}</span></div>
+    <div class="tqc">
+      <div class="tqt" role="tablist">${T.map(([n,c],k)=>html`<button key=${k} role="tab" aria-selected=${k===cur} onClick=${()=>setCur(k)}><b>${n}</b><i class="num">${fa(c)}</i></button>`)}</div>
+      <${AnimatePresence} mode="wait" initial=${false}><${motion.div} key=${cur} class="tqb" initial=${{opacity:0,y:6}} animate=${{opacity:1,y:0}} exit=${{opacity:0}} transition=${{duration:.2,ease:EASE}}>
+        <a href="../tweet/rollvana-tweet.html" class="tqm"><span class="tqx">${Tx(tw[0][0])}</span>${U(tw[0],0)}</a>
+        <div class="tqr">${tw.slice(1).map((x,k)=>html`<a href="../tweet/rollvana-tweet.html" class="tqs" key=${k}><span class="tqx">${Tx(x[0])}</span>${U(x,k+1)}</a>`)}</div>
+      </${motion.div}></${AnimatePresence}>
+    </div>
+    <a href="../tweet/rollvana-tweet.html" class="btwg">همه‌ی توییت‌های این ${t.kind==="film"?"فیلم":"سریال"}<${I} n="left"/></a>
   </section>`;
-}
-
-function Cast({t}){
-  const key=t.kind==="film"?"dune":"sev";
-  return html`<section class="sec"><h2>بازیگران</h2><div class="cast">${t.cast.map(([n,r],k)=>html`<a href="#" class="person" key=${k}><div class="ph"><${Img} src=${M("c-"+key+"-"+k+".jpg")} alt=""/></div><b>${n}</b><small>${r}</small></a>`)}</div></section>`;
 }
 
 function Seg({items,val,set,id}){
@@ -605,47 +631,91 @@ function Seg({items,val,set,id}){
 function Size({v}){return html`<${Count} v=${v} dec=${2} fmt=${x=>gb(Number(x))}/>`}
 
 const DLSPEC={"2160p":["4K","HEVC 10-bit","HDR · Dolby Vision"],"1080p":["Full HD","HEVC 10-bit","SDR"],"720p":["HD","x264","SDR"],"480p":["SD","x264","SDR"]};
+const FIT={"2160p":"برای تلویزیون 4K","1080p":"برای لپ‌تاپ و تلویزیون","720p":"برای گوشی و تبلت","480p":"کم‌حجم، برای اینترنت ضعیف"};
 function Downloads({t,access,title="دانلود",note}){
-  const lock=access!=="sub";const src=t.kind==="film"?"BluRay":"WEB-DL";const [dub,setDub]=useState(false);
-  const rec=t.dl.sub.some(r=>r[0]==="1080p")?"1080p":t.dl.sub[0][0];
-  const List=({v})=>html`<ul class="qgrid">${t.dl[v].map(([q,,sz])=>{const [tag,codec,hdr]=DLSPEC[q]||[q,"",""];const r=q===rec&&v==="sub";return html`<li key=${v+q} class=${"qt"+(r?" rec":"")}>
-      <div class="qh"><b>${q}</b><span class="qtag">${tag}</span>${r&&html`<em>پیشنهادی</em>`}</div>
-      <small dir="ltr">${codec}${hdr!=="SDR"?" · "+hdr:""}</small>
-      <div class="qf"><span class="num qs"><${Size} v=${sz}/></span>
-      <${motion.a} href=${lock?undefined:"#"} class="qdl" aria-label=${"دانلود "+q+(v==="dub"?" دوبله":"")} aria-disabled=${lock} tabIndex=${lock?-1:0} whileTap=${{scale:.94}}><${I} n="dl"/>دانلود</${motion.a}></div>
-    </li>`})}</ul>`;
-  return html`<section class="sec dl6">${title&&html`<h2>${title}${note&&html`<small>${note}</small>`}</h2>`}
-    <div class="dll">
-      <p class="fh">صدای اصلی با زیرنویس فارسی<span>${fa(t.dl.sub.length)} کیفیت</span></p>
-      <${List} v="sub"/>
-      <button class="fh fmore" aria-expanded=${dub} onClick=${()=>setDub(d=>!d)}>دوبله‌ی فارسی<span>${fa(t.dl.dub.length)} کیفیت</span><${I} n="chev"/></button>
-      <${AnimatePresence} initial=${false}>${dub&&html`<${motion.div} key="dub" class="fdub" initial=${{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${{height:0,opacity:0}} transition=${{duration:.25,ease:EASE}}><${List} v="dub"/></${motion.div}>`}</${AnimatePresence}>
-      ${lock&&html`<div class="lock"><${I} n="lock"/><p>${access==="guest"?"برای دانلود اول وارد حساب‌تان شوید.":"دانلود با اشتراک فعال است."}</p><a href="#" class="cta">${access==="guest"?"ورود":"خرید اشتراک"}</a></div>`}
+  const lock=access!=="sub";const v="sub";const [open,setOpen]=useState(null);const desk=useDesk();
+  useEffect(()=>{if(!open)return;const c=e=>{if(!e.target.closest(".dqm,.dqg,.sheet"))setOpen(null)};const k=e=>{if(e.key==="Escape")setOpen(null)};addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
+  const rec=t.dl.sub.some(r=>r[0]==="1080p")?"1080p":t.dl.sub[0][0];const rows=t.dl[v];
+  return html`<section class="sec dl7 dlf">${title&&html`<h2>${title}${note&&html`<small>${note}</small>`}</h2>`}
+    <div class="dq7w">
+    <ul class="dq7">${rows.map(([q,,sz])=>{const [tag,codec,hdr]=DLSPEC[q]||[q,"",""];const r=q===rec;return html`<li key=${v+q} class=${r?"rec":""}>
+      <span class="dfi" data-q=${q} aria-hidden="true"></span>
+      <span class="dft"><b>${FIT[q]||tag}</b>${r&&html`<em>پیشنهادی</em>`}</span>
+      <span class="dfm"><i dir="ltr">${q}</i><span class="num"><${Size} v=${sz}/></span><small dir="ltr">${codec}${hdr!=="SDR"?" · "+hdr:""}</small></span>
+      <span class="dqgw"><${motion.button} class="dqg" aria-label=${"دانلود "+q} aria-haspopup="menu" aria-expanded=${open===q} disabled=${lock} whileTap=${{scale:.94}} onClick=${()=>setOpen(o=>o===q?null:q)}><${I} n="dl"/><span>دانلود</span></${motion.button}>
+      <${AnimatePresence}>${open===q&&html`<${Pop} desk=${desk} onClose=${()=>setOpen(null)} title=${"دانلود "+q} sub=${FIT[q]||""}>
+        <a href="#" role="menuitem" onClick=${e=>{e.preventDefault();setOpen(null)}}><b>زبان اصلی + زیرنویس</b><small class="num"><${Size} v=${sz}/></small></a>
+        ${(t.dl.dub||[]).some(x=>x[0]===q)&&html`<a href="#" role="menuitem" onClick=${e=>{e.preventDefault();setOpen(null)}}><b>دوبله‌ی فارسی</b><small class="num"><${Size} v=${(t.dl.dub.find(x=>x[0]===q)||[])[2]}/></small></a>`}
+      </${Pop}>`}</${AnimatePresence}></span>
+    </li>`})}</ul>
+    ${lock&&html`<div class="lock"><${I} n="lock"/><p>${access==="guest"?"برای دانلود اول وارد حساب‌تان شوید.":"دانلود با اشتراک فعال است."}</p><a href="#" class="cta">${access==="guest"?"ورود":"خرید اشتراک"}</a></div>`}
     </div>
     <p class="dlfoot">زیرنویس جدا (SRT): <a href="#">فارسی</a> · <a href="#">انگلیسی</a><span>لینک مستقیم و قابل ادامه</span></p>
   </section>`;
 }
 
+function Cast({t}){
+  const key=t.kind==="film"?"dune":"sev";
+  return html`<section class="sec ccl"><div class="cclg">${t.cast.map(([n,r],k)=>html`<a href="#" key=${k}><img src=${M("c-"+key+"-"+k+".jpg")} alt="" loading="lazy"/><span><b>${n}</b><small>${r}</small></span><${I} n="chev"/></a>`)}</div></section>`;
+}
+
+function About({t}){
+  const [open,set]=useState(false);const all=t.facts||[];
+  const dir=all.find(f=>f[0]==="کارگردان")||all.find(f=>f[0]==="سازنده")||all[0];
+  const F={"dune-part-two":[["prisoners","زندانیان","۲۰۱۳"],["arrival","ورود","۲۰۱۶"],["blade-runner-2049","بلید رانر ۲۰۴۹","۲۰۱۷"],["dune-part-one","تلماسه: بخش اول","۲۰۲۱"]]}[t.s]||[];
+  const crew=all.filter(f=>f!==dir&&["نویسندگان","کارگردان‌ها","فیلم‌برداری","موسیقی"].includes(f[0]));
+  const aw=all.find(f=>f[0]==="جوایز");const rest=all.filter(f=>f!==dir&&!crew.includes(f)&&f!==aw);
+  return html`<section class="sec cr8 dfw">
+    <div class=${"df"+(F.length?"":" df0")}>
+      <a href="#" class="dfh dfl"><img src=${M("d-"+(t.kind==="film"?"dune":"sev")+".jpg")} alt="" loading="lazy"/><span class="dft2"><small>${dir[0]}</small><b>${dir[1]}</b>${F.length>0&&html`<span>${fa(F.length)} فیلم دیگر از او در رولوانا</span>`}</span><${I} n="chev"/></a>
+      ${F.length>0&&html`<div class="dfp">${F.map(([sl,n,y])=>html`<a href="#" key=${sl}><img src=${M("p-"+sl+".jpg")} alt="" loading="lazy"/><b>${n}</b><small class="num">${y}</small></a>`)}</div>`}
+    </div>
+    <p class="cr8b">${crew.map(([k,v])=>html`<span key=${k}><i>${k}</i>${v.split("، ").map((n,j)=>html`<a href="#" key=${j}>${n}</a>`)}</span>`)}</p>
+    ${aw&&html`<p class="cr8a"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6L2.5 9.5l6.6-.9z"/></svg><span>${aw[1]}</span></p>`}
+    <${AnimatePresence} initial=${false}>${open&&html`<${motion.div} key="r" class="ab7r" initial=${{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${{height:0,opacity:0}} transition=${{duration:.28,ease:EASE}}>
+      <dl class="cr8r">${rest.map(([k,v])=>html`<div key=${k}><dt>${k}</dt><dd>${v}</dd></div>`)}</dl></${motion.div}>`}</${AnimatePresence}>
+    <button class="ab7m" aria-expanded=${open} onClick=${()=>set(o=>!o)}>${open?"کمتر":"همه‌ی مشخصات"}<${I} n="chev"/></button>
+  </section>`;
+}
+
 function SeriesDl({t,access,onSeason}){
-  const [s,setS]=useState(t.progress?t.progress.s:1);const [e,setE]=useState(t.progress?t.progress.e:1);
-  const eps=SEV_EP[s];const ep=Math.min(e,eps.length);const chips=useRef();
-  useLayoutEffect(()=>{const el=chips.current;const b=el&&el.querySelector("[aria-pressed=true]");if(!b)return;const r=b.getBoundingClientRect(),R=el.getBoundingClientRect();if(r.left<R.left||r.right>R.right)el.scrollLeft+=r.left-R.left-(R.width-r.width)/2},[s,ep]);
-  return html`<section class="sec sdl">
-    <div class="sdlh"><${Seg} items=${[[1,"فصل ۱"],[2,"فصل ۲"]]} val=${s} set=${v=>{setS(v);setE(1)}} id="dlseason"/>
-      <${motion.button} class="seasondl" whileTap=${{scale:.96}} onClick=${()=>onSeason(s)}><${I} n="dl"/>کل فصل ${fa(s)}</${motion.button}></div>
-    <div class="epchips" role="group" aria-label="قسمت" ref=${chips}>${eps.map((x,k)=>html`<button key=${k} aria-pressed=${ep===k+1} onClick=${()=>setE(k+1)}>${ep===k+1&&html`<${motion.i} layoutId="epchip" transition=${SPR}/>`}<span class="num">قسمت ${fa(k+1)}</span></button>`)}</div>
-    <p class="sdlname">فصل ${fa(s)}، قسمت ${fa(ep)}: <b>${eps[ep-1][0]}</b></p>
-    <${Downloads} t=${t} access=${access} title=""/>
+  const [s,setS]=useState(t.progress?t.progress.s:1);const [open,setOpen]=useState(null);const desk=useDesk();const lock=access!=="sub";
+  const cur=t.progress&&t.progress.s===s?t.progress.e:0;const rows=t.dl.sub.filter(r=>r[0]!=="2160p");const dsz=q=>((t.dl.dub||[]).find(x=>x[0]===q)||[])[2];
+  useEffect(()=>{if(!open)return;const c=e=>{if(!e.target.closest(".dqm,.qs button,.sheet"))setOpen(null)};const k=e=>{if(e.key==="Escape")setOpen(null)};addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
+  return html`<section class="sec sdl sdl3">
+    <div class="sdlh">
+      <${Seg} items=${Object.keys(SEV_EP).map(k=>[+k,"فصل "+fa(+k)])} val=${s} set=${setS} id="dlseason"/>
+      <${motion.button} class="seasondl" whileTap=${{scale:.96}} onClick=${()=>onSeason(s)}><${I} n="dl"/>کل فصل ${fa(s)}</${motion.button}>
+    </div>
+    <div class="dq7w">
+    <ol class="epdl">${SEV_EP[s].map((x,k)=>html`<li key=${s+"-"+k} class=${cur===k+1?"cur":""}>
+      <span class="num n">${fa(k+1)}</span>
+      <span class="ent"><b>${x[0]}</b><small class="num">${x[2]} دقیقه${cur===k+1?" · در حال تماشا":""}</small></span>
+      <span class="qs"><span class="qw"><button class="edl1" disabled=${lock} aria-haspopup="menu" aria-expanded=${open===s+"-"+k} aria-label=${"دانلود قسمت "+fa(k+1)} onClick=${()=>setOpen(o=>o===s+"-"+k?null:s+"-"+k)}><${I} n="dl"/></button>
+        <${AnimatePresence}>${open===s+"-"+k&&html`<${Pop} desk=${desk} cls="dqm2" onClose=${()=>setOpen(null)} title=${"قسمت "+fa(k+1)+": "+x[0]} sub="کیفیت و زبان را انتخاب کنید">
+          ${rows.map(([q,,sz])=>html`<div class="dqr" key=${q}><span class="dqq"><span class="dfi" data-q=${q} aria-hidden="true"></span><i dir="ltr">${q}</i></span>
+            <a href="#" role="menuitem" onClick=${e=>{e.preventDefault();setOpen(null)}}>زیرنویس<small class="num">${gb(sz)}</small></a>
+            ${dsz(q)&&html`<a href="#" role="menuitem" onClick=${e=>{e.preventDefault();setOpen(null)}}>دوبله<small class="num">${gb(dsz(q))}</small></a>`}</div>`)}
+        </${Pop}>`}</${AnimatePresence}></span></span>
+    </li>`)}</ol>
+    ${lock&&html`<div class="lock"><${I} n="lock"/><p>${access==="guest"?"برای دانلود اول وارد حساب‌تان شوید.":"دانلود با اشتراک فعال است."}</p><a href="#" class="cta">${access==="guest"?"ورود":"خرید اشتراک"}</a></div>`}
+    </div>
+    <p class="dlfoot">زیرنویس جدا (SRT): <a href="#">فارسی</a> · <a href="#">انگلیسی</a><span>لینک مستقیم و قابل ادامه</span></p>
   </section>`;
 }
 
 function Music({t}){
-  const [all,setAll]=useState(false);const list=all?t.music:t.music.slice(0,3);
-  return html`<section class="sec"><h2>موسیقی ${t.kind==="film"?"فیلم":"سریال"}<small>${fa(t.music.length)} قطعه</small></h2>
-    <div>${list.map(([n,a,at,sc],k)=>html`<div class="trk" key=${k}><span class="no num">${fa(k+1)}</span>
-      <div class="tt"><b>${n}</b><small>${a} · ${at} · ${sc}</small></div>
-      <${motion.a} class="tg" href=${"https://dl.rollvana.com/music/"+encodeURIComponent(n)+".mp3"} download whileTap=${{scale:.92}} aria-label=${"دانلود "+n}><${I} n="dl"/></${motion.a}></div>`)}</div>
-    ${t.music.length>3&&html`<button class="more2" aria-expanded=${all} onClick=${()=>setAll(a=>!a)}>${all?"کمتر":"همه‌ی "+fa(t.music.length)+" قطعه"}<svg class="i" viewBox="0 0 24 24" style=${{transform:all?"rotate(180deg)":"none"}} dangerouslySetInnerHTML=${{__html:ICON.down}}></svg></button>`}</section>`;
+  const [a,setA]=useState(0);const en=x=>String(x).replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+  const m=en(t.rt).match(/(\d+)\D+(\d+)/);const tot=t.kind==="film"&&m?(+m[1]*60+ +m[2])*60:0;
+  const pos=at=>{const x=en(at).split(":").map(Number);return x.length===3&&tot?(x[0]*3600+x[1]*60+x[2])/tot*100:0};
+  return html`<section class="sec mu8">
+    <div class="mu8h"><div class="mu8c"><i class="mu8d"></i><img src=${M("p5-"+t.s+".jpg")} alt=""/></div>
+      <div class="mu8t"><small>موسیقی متن</small><b dir="ltr">${t.music[0][1]}</b><span class="num">${fa(t.music.length)} قطعه</span></div></div>
+    ${tot>0&&html`<div class="mu8l" aria-hidden="true">${t.music.map((x,k)=>html`<i key=${k} class=${k===a?"on":""} style=${{insetInlineStart:pos(x[2])+"%"}}></i>`)}<span>شروع فیلم</span><span>پایان</span></div>`}
+    <ol class="mu8o">${t.music.map(([n,ar,at,sc],k)=>html`<li key=${k} class=${k===a?"on":""}>
+      <button class="mu8r" aria-pressed=${k===a} onClick=${()=>setA(k)}><span class="num mu8a">${at}</span><span class="mu8x"><b dir="ltr">${n}</b><small>${sc}</small></span></button>
+      <${motion.a} class="mu8g" href=${"https://dl.rollvana.com/music/"+encodeURIComponent(n)+".mp3"} download whileTap=${{scale:.92}} aria-label=${"دانلود "+n}><${I} n="dl"/></${motion.a}></li>`)}</ol>
+  </section>`;
 }
 
 function Rating({t,access}){
@@ -664,7 +734,7 @@ function Comment({c,reply,rep:rp}){
   return html`<${motion.div} class="cmt" layout="position" transition=${SOFT}>
     <span class="av2">${c.n[0]}</span>
     <div class="bd">
-      <div class="hd"><b>${c.n}</b><small>${c.t}</small></div>
+      <div class="hd"><b>${c.n}</b><small>${c.t}</small>${c.v?html`<em class=${"cvt "+(c.v>0?"p":"n")}>${c.v>0?"پسندید":"نپسندید"}</em>`:null}</div>
       ${c.spoiler?html`<div class="spo" onClick=${()=>setShown(true)} role="button" tabIndex="0" aria-label="نمایش نظر اسپویل‌دار">
           <p class=${shown?"":"hid"}>${c.text}</p>
           <${AnimatePresence}>${!shown&&html`<${motion.div} class="veil" exit=${{opacity:0}}><span>داستان را لو می‌دهد · نمایش</span></${motion.div}>`}</${AnimatePresence}>
@@ -687,22 +757,26 @@ const CERR={empty:"نظر خالی است؛ چیزی بنویسید.",long:"نظ
 const LONGTXT=Array(12).fill("دو بار دیدمش و هر بار چیز تازه‌ای در آن پیدا کردم؛ از قاب‌بندی‌ها تا صدایی که زیر پوست آدم می‌رود. ").join("");
 function Comments({t,access,vote,cerr,rep}){
   const [sort,setSort]=useState("new");const [txt,setTxt]=useState(cerr==="long"?LONGTXT:"");const [sp,setSp]=useState(false);const [fx,setFx]=useState(false);
-  const [err,setErr]=useState(cerr==="empty"||cerr==="long"?cerr:null);const [mine,setMine]=useState([]);
+  const [err,setErr]=useState(cerr==="empty"||cerr==="long"?cerr:null);const [mine,setMine]=useState([]);const [flt,setFlt]=useState(0);
   useEffect(()=>{setErr(cerr==="empty"||cerr==="long"?cerr:null);setTxt(cerr==="long"?LONGTXT:"")},[cerr]);
   const base=[...mine,...cmtsOf(t)];
-  const list=sort==="new"?base:[...base].sort((a,b)=>b.likes-a.likes);
+  const srt=sort==="new"?base:[...base].sort((a,b)=>b.likes-a.likes);const list=flt?srt.filter(c=>c.v===flt):srt;
+  const best=d=>[...base].filter(c=>c.v===d&&!c.spoiler).sort((a,b)=>b.likes-a.likes)[0];const cnt=d=>base.filter(c=>c.v===d).length;
+  const Side=(d,pc)=>{const c=best(d);return html`<div class=${"cm9s "+(d>0?"p":"n")}><small><i></i><b class="num">${fa(pc)}٪</b>${d>0?"پسندیدند":"نپسندیدند"}</small>${c?html`<p>${c.text}</p><span>${c.n}<i class="num"><${I} n="thumbup"/>${fa(c.likes)}</i></span>`:html`<p class="none">هنوز کسی از این طرف چیزی ننوشته.</p>`}</div>`};
   const total=base.reduce((n,c)=>n+1+(c.replies?c.replies.length:0),0);
   const len=txt.trim().length,bad=len>CMAX;
-  const send=()=>{if(!len){setErr("empty");return}if(bad){setErr("long");return}setErr(null);setMine(m=>[{id:"m"+Date.now(),n:"سینا",t:"همین حالا",likes:0,spoiler:sp,text:txt.trim()},...m]);setTxt("");setSp(false)};
-  return html`<section class="sec cmts">
-    <div class="rate2"><${Vote} v=${vote} access=${access} big=${true}/><span class="vbar2" aria-hidden="true"><${motion.i} class="vp" initial=${{width:0}} whileInView=${{width:vote.pct+"%"}} viewport=${{once:true}} transition=${{duration:.9,ease:EASE}}/><${motion.i} class="vn" initial=${{width:0}} whileInView=${{width:(100-vote.pct)+"%"}} viewport=${{once:true}} transition=${{duration:.9,ease:EASE,delay:.1}}/></span><span class="vleg"><span><i class="vp"></i>${fa(vote.pct)}٪ پسندیدند</span><span><i class="vn"></i>${fa(100-vote.pct)}٪ نپسندیدند</span></span></div>
+  const send=()=>{if(!len){setErr("empty");return}if(bad){setErr("long");return}setErr(null);setMine(m=>[{id:"m"+Date.now(),n:"سینا",t:"همین حالا",likes:0,v:vote.mine||0,spoiler:sp,text:txt.trim()},...m]);setTxt("");setSp(false)};
+  return html`<section class="sec cmts cm9">
+    <div class="cm9a"><div class="cm9t"><${Vote} v=${vote} access=${access} big=${true}/><span class="vbar2" aria-hidden="true"><${motion.i} class="vp" initial=${{width:0}} whileInView=${{width:vote.pct+"%"}} viewport=${{once:true}} transition=${{duration:.9,ease:EASE}}/><${motion.i} class="vn" initial=${{width:0}} whileInView=${{width:(100-vote.pct)+"%"}} viewport=${{once:true}} transition=${{duration:.9,ease:EASE,delay:.1}}/></span>
+      <div class="cm9d">${Side(1,vote.pct)}${Side(-1,100-vote.pct)}</div></div>
     ${access==="guest"?html`<div class="guest"><span>برای امتیاز دادن و نوشتن نظر وارد شوید.</span><a href="#">ورود</a></div>`
       :html`<div class=${"write"+(fx||txt||err?" on":"")+(err?" err":"")}><textarea placeholder="نظرتان را بنویسید…" aria-label="نظر شما" aria-invalid=${!!err} aria-describedby=${err?"cerr":undefined} value=${txt} onFocus=${()=>setFx(true)} onBlur=${()=>setFx(false)} onInput=${e=>{setTxt(e.target.value);if(err)setErr(null)}}></textarea>
         <${AnimatePresence} initial=${false}>${err&&html`<${motion.p} key=${err} id="cerr" class="ferr" role="alert" initial=${{opacity:0,y:-4}} animate=${{opacity:1,y:0}} exit=${{opacity:0}} transition=${{duration:.25,ease:EASE}}><${I} n="info"/>${CERR[err]}</${motion.p}>`}</${AnimatePresence}>
         <div class="bar"><label><span class="sw2" aria-checked=${sp} role="checkbox" tabIndex="0" onClick=${()=>setSp(s=>!s)}><${motion.i} initial=${false} animate=${{x:sp?-16:0}} transition=${SPR}/></span>داستان را لو می‌دهد</label>
-          <span class="sendw">${len>800&&html`<span class=${"num ccount"+(bad?" over":"")}>${nf(len)} از ۱٬۰۰۰</span>`}<${motion.button} class="send" whileTap=${{scale:.96}} onMouseDown=${e=>e.preventDefault()} onClick=${send}>ارسال</${motion.button}></span></div></div>`}
-    <div class="sorts"><h3>نظر کاربران<small>${fa(total)} نظر</small></h3><span class="sort2" role="group" aria-label="مرتب‌سازی">${[["new","جدیدترین"],["top","محبوب‌ترین"]].map(([k,l])=>html`<button key=${k} aria-pressed=${sort===k} onClick=${()=>setSort(k)}>${l}</button>`)}</span></div>
-    <${Motion.LayoutGroup}><div>${list.map(c=>html`<${Comment} key=${c.id} c=${c} rep=${access==="guest"?null:rep}/>`)}</div></${Motion.LayoutGroup}>
+          <span class="sendw">${len>800&&html`<span class=${"num ccount"+(bad?" over":"")}>${nf(len)} از ۱٬۰۰۰</span>`}<${motion.button} class="send" whileTap=${{scale:.96}} onMouseDown=${e=>e.preventDefault()} onClick=${send}>ارسال</${motion.button}></span></div></div>`}</div>
+    <div class="cm9m"><div class="sorts"><h3>نظر کاربران<small>${fa(total)} نظر</small></h3><span class="sort2" role="group" aria-label="مرتب‌سازی">${[["new","جدیدترین"],["top","محبوب‌ترین"]].map(([k,l])=>html`<button key=${k} aria-pressed=${sort===k} onClick=${()=>setSort(k)}>${l}</button>`)}</span></div>
+    <div class="cm9f" role="group" aria-label="فیلتر نظرها">${[[0,"همه",null],[1,"پسندیدند",cnt(1)],[-1,"نپسندیدند",cnt(-1)]].map(([k,l,n])=>html`<button key=${k} aria-pressed=${flt===k} onClick=${()=>setFlt(k)}>${l}${n!=null&&html`<i class="num">${fa(n)}</i>`}</button>`)}</div>
+    <${Motion.LayoutGroup}><div>${list.map(c=>html`<${Comment} key=${c.id} c=${c} rep=${access==="guest"?null:rep}/>`)}</div></${Motion.LayoutGroup}></div>
   </section>`;
 }
 const RREASONS=["اسپویل بدون علامت","توهین یا آزار","تبلیغ یا هرزنامه","بی‌ربط به این عنوان","دلیل دیگر"];
@@ -731,16 +805,35 @@ function ReportSheet({t,id,step,onSend,onClose}){
 }
 
 function ULists({t}){
-  return html`<section class="sec wide"><h2>در لیست‌های کاربران<small>${fa(t.lists.length)} لیست</small></h2><div class="ulrow">${t.lists.map((l,k)=>html`<${motion.a} href="#" key=${k} class="ulm" whileHover="h" whileTap=${{scale:.98}} initial="r" animate="r">
-    <span class="ulg">${l.p.slice(0,5).map((s,j)=>html`<span key=${s} class=${"ulp"+(j===0?" lead":"")}><${motion.img} src=${M("p-"+s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:j===0?1.04:1}}} transition=${{duration:.6,ease:EASE}}/>${j===4&&l.c>5&&html`<i class="ulmore num">+${fa(l.c-4)}</i>`}</span>`)}</span>
-    <b>${l.n}</b>
-    <small class="ulmeta"><span class="num">${fa(l.c)} عنوان</span><i class="dot2"></i><span class="num">${nf(l.f)} دنبال‌کننده</span></small>
-    <small class="ulby"><i class="av3">${l.u[0]}</i>${l.u}</small></${motion.a}>`)}</div></section>`;
+  return html`<section class="sec wide"><h2>در لیست‌های کاربران<small>${fa(t.lists.length)} لیست</small></h2><div class="ul9s">${t.lists.map((l,k)=>{const r=l.p.indexOf(t.s)+1;return html`<${motion.a} href="#" key=${k} class="ul9" whileHover=${{y:-4}} whileTap=${{scale:.98}} transition=${SPR}>
+    <span class="ul9h"><b>${l.n}</b><small><i class="av3">${l.u[0]}</i><span>${l.u}</span><i class="dot2"></i><span class="num">${fa(l.c)} عنوان</span><i class="dot2"></i><span class="num">${nf(l.f)} دنبال‌کننده</span></small></span>
+    <span class="ul9g">${l.p.slice(0,5).map((x,n)=>html`<span key=${x} class=${"ul9p"+(x===t.s?" me":"")}><span class="ul9i"><${Img} src=${M("p-"+x+".jpg")}/></span><i class="num">${fa(n+1)}</i></span>`)}</span>
+    ${r>0&&html`<span class="ul9q"><em class="num">شماره‌ی ${fa(r)} از ${fa(l.c)}</em>${l.q&&html`<span>«${l.q}»</span>`}</span>`}</${motion.a}>`})}</div></section>`;
 }
+const KSTAR=html`<svg class="st" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg>`;
+const RV_SVG='<defs><linearGradient id="rvS" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="52"><stop offset="0" stop-color="#6450BE"/><stop offset="1" stop-color="#7360CC"/></linearGradient><linearGradient id="rvM" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="16"><stop offset="0" stop-color="#6C4FDB"/><stop offset="1" stop-color="#9B7DF8"/></linearGradient></defs><g><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="url(#rvS)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="url(#rvM)"/></g>';
+function kcRv(c){if(c.rv)return c.rv;const v=parseFloat(c.imdb);if(!v)return 0;let h=0;for(const ch of c.s)h=(h*31+ch.charCodeAt(0))%97;return Math.min(99,Math.round(v*10+(h%9)-2))}
+const KC={
+"dune-part-one":{syn:"پل آتریدیز با خانواده‌اش به آراکیس می‌رود، خطرناک‌ترین سیاره‌ی کهکشان، و آنجا گرفتار توطئه‌ای می‌شود که آینده‌اش را عوض می‌کند.",en:"Dune: Part One",y:2021,g:"علمی‌تخیلی، ماجراجویی",imdb:"8.0",b:"دوبله، زیرنویس"},
+"dune-part-two":{syn:"پل همراه چانی و فرمن‌ها برای انتقام خانواده‌اش می‌جنگد و میان عشق و سرنوشتی که از آن می‌ترسد گیر می‌افتد.",en:"Dune: Part Two",y:2024,g:"علمی‌تخیلی، ماجراجویی",imdb:"8.5",b:"دوبله، زیرنویس"},
+"blade-runner-2049":{syn:"شکارچی تازه‌کاری رازی را کشف می‌کند که می‌تواند جامعه را به هم بریزد و ردش او را به ریک دکارد، که سی سال ناپدید بوده، می‌رساند.",en:"Blade Runner 2049",y:2017,g:"علمی‌تخیلی، معمایی",imdb:"8.0",b:"زیرنویس",why:"از همین کارگردان"},
+"interstellar":{syn:"زمین رو به نابودی است و گروهی فضانورد از کرم‌چاله‌ای می‌گذرند تا خانه‌ی تازه‌ای برای بشر پیدا کنند.",en:"Interstellar",y:2014,g:"علمی‌تخیلی، درام",imdb:"8.7",b:"دوبله، زیرنویس",why:"موسیقی از هانس زیمر"},
+"arrival":{syn:"زبان‌شناسی مأمور می‌شود با موجوداتی فضایی که به زمین آمده‌اند حرف بزند، پیش از آنکه جهان وارد جنگ شود.",en:"Arrival",y:2016,g:"علمی‌تخیلی، درام",imdb:"7.9",b:"زیرنویس",why:"از همین کارگردان"},
+"oppenheimer":{syn:"داستان رابرت اوپنهایمر و ساخت بمب اتم؛ مردی که جهان را نجات داد و شاید نابودش کرد.",en:"Oppenheimer",y:2023,g:"زندگی‌نامه، درام",imdb:"8.3",b:"دوبله",why:"ساخته‌شده برای پرده‌ی بزرگ"},
+"poor-things":{syn:"بلا، زنی که دانشمندی عجیب او را دوباره زنده کرده، از خانه فرار می‌کند تا دنیا و خودش را کشف کند.",en:"Poor Things",y:2023,g:"کمدی، فانتزی",imdb:"7.8",b:"زیرنویس",why:"دنیایی که جای دیگری ندیده‌اید"},
+"the-last-of-us":{syn:"بیست سال بعد از فروپاشی تمدن، جوئل مأمور می‌شود الی نوجوان را از میان آمریکای ویران‌شده عبور دهد.",en:"The Last of Us",y:2023,g:"درام، ماجراجویی",imdb:"8.6",b:"دوبله",why:"درام پرتعلیق"},
+"fallout":{syn:"دویست سال بعد از جنگ هسته‌ای، دختری از پناهگاه زیرزمینی بیرون می‌آید و با دنیای وحشی بیرون روبه‌رو می‌شود.",en:"Fallout",y:2024,g:"علمی‌تخیلی، اکشن",imdb:"8.3",b:"دوبله",why:"زندگی پشت درهای بسته"},
+"shogun":{syn:"ژاپن سال ۱۶۰۰؛ دریانوردی انگلیسی در میان جنگ قدرت اربابان گرفتار می‌شود و به ابزار لرد توراناگا بدل می‌شود.",en:"Shōgun",y:2024,g:"تاریخی، درام",imdb:"8.6",b:"دوبله",why:"بازی قدرت"},
+"slow-horses":{syn:"گروهی از مأموران اخراجی MI5 زیر دست رئیسی بدعنق، ناخواسته وسط پرونده‌های خطرناک می‌افتند.",en:"Slow Horses",y:2022,g:"جاسوسی، درام",imdb:"8.3",b:"زیرنویس",why:"از همین شبکه"},
+"the-bear":{syn:"آشپزی جوان از دنیای رستوران‌های لوکس به شیکاگو برمی‌گردد تا ساندویچ‌فروشی آشفته‌ی خانوادگی را سرپا کند.",en:"The Bear",y:2022,g:"درام، کمدی",imdb:"8.5",b:"زیرنویس",why:"محل کاری که نفس را می‌بُرد"}};
 function Posters({title,items,cur}){
-  return html`<section class="sec wide">${title&&html`<h2>${title}</h2>`}<div class="posters">${items.map(x=>{const [s,n,y]=Array.isArray(x)?x:[x];return html`<${motion.a} href="#" class="pst" key=${s} aria-current=${s===cur?"page":undefined} whileHover=${{y:-4}} whileTap=${{scale:.97}} transition=${SPR}>
-    <div class="po"><${Img} src=${M("p-"+s+".jpg")}/>${s===cur&&html`<span class="here">همین فیلم</span>`}</div>
-    ${n&&html`<b>${n}</b><small class="num">${fa(y)}</small>`}</${motion.a}>`})}</div></section>`;
+  const L=items.map(x=>Array.isArray(x)?x[0]:x).filter(k=>KC[k]&&(cur||k!=="dune-part-one")).slice(0,5);
+  return html`<section class=${"sec wide"+(cur?" kfr":"")}>${title&&html`<h2>${title}</h2>`}<div class="posters kcs">${L.map(k=>{const c={s:k,...KC[k]};const me=k===cur;const duo=/دوبله/.test(c.b)&&/زیرنویس/.test(c.b);const rv=kcRv(c);
+    const In=html`<div class="kcp"><${Img} src=${M("p-"+k+".jpg")}/>
+        <span class="kcl"><span class="kcsc" aria-label=${"امتیاز IMDb "+c.imdb+" از 10"}><bdi dir="ltr">${KSTAR}<b>${c.imdb}</b><small>/10</small></bdi></span><span class="kcsc" aria-label=${"امتیاز رولوانا "+rv+" درصد"}><bdi dir="ltr"><svg class="st" viewBox="14 15 92 92" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RV_SVG}}></svg><b>${rv}</b><small>%</small></bdi></span></span>
+        <span class="kcb">${duo?html`دوبله<i></i>زیرنویس`:c.b}</span>${c.syn&&!me&&html`<div class="ov"><p class="csyn">${c.syn}</p></div>`}</div>
+      <span class="kct"><b dir="ltr">${c.en}</b>${(me||c.why)&&html`<em>${me?"همین فیلم":c.why}</em>`}<small><span class="num">${fa(c.y)}</span><i></i><span>${c.g}</span></small></span>`;
+    return me?html`<div class="kc me" key=${k} aria-current="page">${In}</div>`:html`<${motion.a} href="#" class="kc" key=${k} whileHover=${{y:-6}} whileTap=${{scale:.97}} transition=${SPR}>${In}</${motion.a}>`})}</div></section>`;
 }
 
 function epState(t,s,e,prog){
@@ -785,13 +878,11 @@ function Episodes({t,prog,onOpen,onSeason,onTrailer,access}){
             <span class="eno num">قسمت ${fa(e)}</span>
             ${st.w&&html`<span class="done" aria-label="دیده شده"><${I} n="check"/></span>`}
             ${tr&&html`<button class="etr" aria-label=${"تریلر قسمت "+fa(e)} aria-haspopup="dialog" onClick=${ev=>{ev.stopPropagation();onTrailer(s,e)}} onKeyDown=${ev=>ev.stopPropagation()}><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.cTr}}></svg>تریلر</button>`}
-            ${st.cur&&html`<span class="eplay" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.play}}></svg></span>`}
             ${st.p>0&&html`<span class="epg"><i style=${{transform:"scaleX("+st.p+")"}}></i></span>`}
           </div>
           <div class="etx">
             <b>${n}</b>
-            <small class="num">${st.cur?t.progress.leftLong:fa(rt)+" دقیقه"} · ${d}</small>
-            <p class=${hide?"hid":""} onClick=${hide?show:undefined}>${syn}</p>
+            <small class="num">${st.cur?html`<em class="enx">ادامه · ${t.progress.leftLong}</em>`:fa(rt)+" دقیقه · "+d}</small>
           </div>
         </${motion.div}>`})}
       ${s===t.next.s&&html`<div class="epc up"><div class="ecv"><span class="eno num">قسمت ${fa(t.next.e)}</span><span class="soon">به‌زودی</span></div><div class="etx"><b>قسمت ${fa(t.next.e)}</b><small>پخش در <${Countdown} sec=${t.next.in}/></small></div></div>`}
@@ -799,13 +890,18 @@ function Episodes({t,prog,onOpen,onSeason,onTrailer,access}){
   </section>`;
 }
 
-function Sheet({onClose,children,label}){
+function Pop({desk,onClose,title,sub,cls,children}){
+  if(desk)return html`<${motion.div} class=${"dqm "+(cls||"")} role="menu" initial=${{opacity:0,y:-4,scale:.96}} animate=${{opacity:1,y:0,scale:1}} exit=${{opacity:0,y:-4,scale:.96}} transition=${{duration:.16}}>${children}</${motion.div}>`;
+  return html`<${Sheet} onClose=${onClose} label=${title}><div class=${"in dqs "+(cls||"")} role="menu"><h3>${title}</h3>${sub&&html`<p>${sub}</p>`}<div class="dqsl">${children}</div></div></${Sheet}>`;
+}
+
+function Sheet({onClose,children,label,modal}){
   const reduced=useReducedMotion();const desk=useDesk();
   useEffect(()=>{const k=e=>{if(e.key==="Escape")onClose()};addEventListener("keydown",k);document.body.style.overflow="hidden";return()=>{removeEventListener("keydown",k);document.body.style.overflow=""}},[]);
   return html`<${React.Fragment}>
     <${motion.div} class="scrim" onClick=${onClose} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
-    <${motion.div} class="sheet" role="dialog" aria-modal="true" aria-label=${label}
-      initial=${reduced?{opacity:0}:desk?{x:"100%"}:{y:"100%"}} animate=${desk?{x:0}:{y:0}} exit=${reduced?{opacity:0}:desk?{x:"100%"}:{y:"100%"}} transition=${{type:"spring",stiffness:300,damping:34}}
+    <${motion.div} role="dialog" aria-modal="true" aria-label=${label}
+      class=${"sheet"+(desk?" modal":"")} initial=${reduced?{opacity:0}:desk?{opacity:0,scale:.96}:{y:"100%"}} animate=${desk?{opacity:1,scale:1}:{y:0}} exit=${reduced?{opacity:0}:desk?{opacity:0,scale:.96}:{y:"100%"}} transition=${{type:"spring",stiffness:300,damping:34}}
       drag=${desk?false:"y"} dragConstraints=${{top:0,bottom:0}} dragElastic=${{top:0,bottom:.6}} onDragEnd=${(e,i)=>{if(i.offset.y>120||i.velocity.y>600)onClose()}}>
       <div class="grab"><i></i></div>
       <button class="x" onClick=${onClose} aria-label="بستن"><${I} n="x"/></button>
@@ -814,26 +910,33 @@ function Sheet({onClose,children,label}){
   </${React.Fragment}>`;
 }
 function EpisodeSheet({t,s,e,access,prog,onClose,onGo}){
-  const [n,d,rt,syn]=SEV_EP[s][e-1];const L=SEV_EP[s].length;const sp=React.useContext(Spoil);
+  const [n,d,rt,syn]=SEV_EP[s][e-1];const sp=React.useContext(Spoil);const [dl,setDl]=useState(false);
   const k=s+"-"+e,hide=sp.on&&prog&&(s>t.lastWatched.s||(s===t.lastWatched.s&&e>t.lastWatched.e))&&!(s===t.progress.s&&e===t.progress.e)&&!sp.rev[k];
-  const show=()=>sp.reveal(k);
-  const T={...t,dl:t.dl};
-  return html`<${Sheet} onClose=${onClose} label=${"قسمت "+fa(e)}>
-    <${AnimatePresence} mode="wait" initial=${false}><${motion.div} key=${s+"-"+e} initial=${{opacity:0,y:10}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:-6}} transition=${{duration:.25,ease:EASE}}>
-    <div class="ehero"><div class=${"ehimg"+(hide?" hid":"")}><${Img} src=${M("e-sev-"+s+"-"+e+".jpg")}/></div>
-      <${AnimatePresence} initial=${false}>${hide&&html`<${motion.button} key="g" class="sgv" onClick=${show} aria-label="نمایش تصویر و خلاصه‌ی این قسمت" exit=${{opacity:0,scale:.96}} transition=${{duration:.3,ease:EASE}}><${I} n="eyeoff"/>نمایش</${motion.button}>`}</${AnimatePresence}>
-      <div class="ehc"><span class="kchip">فصل ${fa(s)}، قسمت ${fa(e)}</span><h3>${n}</h3><small class="num">${fa(rt)} دقیقه · ${d}</small></div></div>
-    <div class="in">
-      <div class="eact"><a href="#" class="play"><${I} n="play"/>${access==="guest"?"ورود برای تماشا":access==="nosub"?"خرید اشتراک برای تماشا":"تماشای این قسمت"}</a>
-        <button class="enav" disabled=${e<=1} onClick=${()=>onGo(s,e-1)} aria-label="قسمت قبل"><${I} n="right"/></button>
-        <button class="enav" disabled=${e>=L} onClick=${()=>onGo(s,e+1)} aria-label="قسمت بعد"><${I} n="left"/></button></div>
+  const show=()=>sp.reveal(k);const lock=access!=="sub";
+  const rows=t.dl.sub.filter(r=>r[0]!=="2160p");const dsz=q=>((t.dl.dub||[]).find(x=>x[0]===q)||[])[2];
+  const mus=t.music.filter(x=>x[2]==="ف"+fa(s)+" ق"+fa(e));
+  const cur=prog&&t.progress.s===s&&t.progress.e===e;
+  return html`<${Sheet} onClose=${onClose} label=${"قسمت "+fa(e)+": "+n}>
+    <div class="in ep2">
+      <div class="ep2h"><small class="num">فصل ${fa(s)} · قسمت ${fa(e)}</small><h3>${n}</h3><small class="num">${fa(rt)} دقیقه · ${d}</small></div>
+      <div class="ep2c"><div class=${"ehimg"+(hide?" hid":"")}><${Img} src=${M("e-sev-"+s+"-"+e+".jpg")}/></div>
+        <${AnimatePresence} initial=${false}>${hide&&html`<${motion.button} key="g" class="sgv" onClick=${show} aria-label="نمایش تصویر و خلاصه‌ی این قسمت" exit=${{opacity:0,scale:.96}} transition=${{duration:.3,ease:EASE}}><${I} n="eyeoff"/>نمایش</${motion.button}>`}</${AnimatePresence}>
+        ${cur&&html`<span class="ep2bar"><i style=${{transform:"scaleX("+(t.progress.p||.5)+")"}}></i></span>`}</div>
       ${hide?html`<p class="full hid" role="button" tabIndex="0" aria-label="نمایش خلاصه‌ی این قسمت" onClick=${show} onKeyDown=${ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();show()}}}>${syn}</p>`:html`<p class="full">${syn}</p>`}
+      <div class="ep2a">
+        <a href="#" class="ep2p"><${I} n="play"/>${access==="guest"?"ورود برای تماشا":access==="nosub"?"خرید اشتراک":cur?"ادامه‌ی تماشا":"تماشا"}</a>
+        <button class="ep2d" aria-expanded=${dl} disabled=${lock} onClick=${()=>setDl(x=>!x)}><${I} n="dl"/>دانلود<${I} n="chev"/></button>
+      </div>
+      <${AnimatePresence} initial=${false}>${dl&&html`<${motion.div} class="ep2dl dqm2" initial=${{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${{height:0,opacity:0}} transition=${{duration:.25,ease:EASE}}>
+        ${rows.map(([q,,sz])=>html`<div class="dqr" key=${q}><span class="dqq"><span class="dfi" data-q=${q} aria-hidden="true"></span><i dir="ltr">${q}</i></span>
+          <a href="#">زیرنویس<small class="num">${gb(sz)}</small></a>
+          ${dsz(q)&&html`<a href="#">دوبله<small class="num">${gb(dsz(q))}</small></a>`}</div>`)}
+      </${motion.div}>`}</${AnimatePresence}>
+      ${mus.length>0&&html`<div class="ep2m"><h4>موسیقی این قسمت</h4>${mus.map(([mn,ar,,sc])=>html`<div class="ep2mr" key=${mn}><span class="ep2mi"><${I} n="cMusic"/></span><span class="ep2mt"><b dir="ltr">${mn}</b><small>${sc} · <span dir="ltr">${ar}</span></small></span><a class="ep2mg" href=${"https://dl.rollvana.com/music/"+encodeURIComponent(mn)+".mp3"} download aria-label=${"دانلود "+mn}><${I} n="dl"/></a></div>`)}</div>`}
     </div>
-    <${Downloads} t=${T} access=${access} title="دانلود این قسمت"/>
-    ${(()=>{const m=t.music.filter(x=>x[2]==="ف"+fa(s)+" ق"+fa(e));return m.length?html`<${Music} t=${{...t,music:m}}/>`:null})()}
-    </${motion.div}></${AnimatePresence}>
   </${Sheet}>`;
 }
+
 function SeasonSheet({t,s,access,onClose}){
   const [q,setQ]=useState("1080p");const [ver,setVer]=useState("dub");const [copied,setCopied]=useState(false);
   const eps=SEV_EP[s];
@@ -845,8 +948,8 @@ function SeasonSheet({t,s,access,onClose}){
     <div class="in" style=${{paddingTop:8}}>
       <h3><em>${t.fa}</em>دانلود کل فصل ${fa(s)}</h3>
       <div class="meta2">${fa(eps.length)} قسمت · مجموع حدود <${Size} v=${size}/></div>
-      <h4>نسخه</h4><${Seg} items=${[["dub","دوبله فارسی"],["sub","زیرنویس فارسی"]]} val=${ver} set=${setVer} id="sver"/>
-      <h4>کیفیت</h4><div class="qs">${t.dl[ver].map(([k])=>html`<button key=${k} aria-pressed=${q===k} onClick=${()=>setQ(k)}>${k}</button>`)}</div>
+      <h4>زبان</h4><div class="svr">${[["sub","زبان اصلی + زیرنویس"],["dub","دوبله‌ی فارسی"]].map(([k,l])=>html`<button key=${k} aria-pressed=${ver===k} onClick=${()=>{setVer(k);if(!t.dl[k].some(r=>r[0]===q))setQ(t.dl[k][0][0])}}>${l}</button>`)}</div>
+      <h4>کیفیت</h4><div class="sqs">${t.dl[ver].map(([k,,sz])=>html`<button key=${k} aria-pressed=${q===k} onClick=${()=>setQ(k)}><span class="dfi" data-q=${k} aria-hidden="true"></span><span class="sqt"><b dir="ltr">${k}</b><small>${FIT[k]||""}</small></span><small class="num sqz"><${Size} v=${sz*eps.length}/></small></button>`)}</div>
       ${lock?html`<div class="guest" style=${{marginTop:22}}><span>${access==="guest"?"برای دانلود اول وارد شوید.":"دانلود با اشتراک فعال است."}</span><a href="#">${access==="guest"?"ورود":"خرید اشتراک"}</a></div>`
       :html`<h4>لینک‌ها برای IDM <small style=${{fontWeight:400,color:"var(--ink-3)"}}>· هر خط یک لینک</small></h4>
       <div class="links" tabIndex="0" aria-label="لیست لینک‌ها">${links}</div>
@@ -909,7 +1012,7 @@ function App(){
   const T0=st.kind==="film"?FILM:SERIES_T;
   const t=React.useMemo(()=>({...T0,trs:st.trailer?T0.trs:[],imdb:st.imdb?T0.imdb:null,tomato:st.rt?T0.tomato:null,music:st.music?T0.music:[],few:st.reviews==="few"}),[T0,st.trailer,st.imdb,st.rt,st.music,st.reviews]);
   const acc=st.free&&st.access==="nosub"?"sub":st.access;const prog=!!st.prog&&acc==="sub";
-  const SECS=[...(t.kind==="series"?[["s-eps","قسمت‌ها","cEps"]]:[]),["s-dl","دانلود","cDl"],...(t.trs.length?[["s-tr","تریلرها","cTr"]]:[]),["s-about","درباره","cAbout"],...(t.music.length?[["s-music","موسیقی","cMusic"]]:[]),["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]];
+  const SECS=[...(t.kind==="series"?[["s-eps","قسمت‌ها","cEps"]]:[]),["s-dl","دانلود","cDl"],...(t.trs.length?[["s-tr","تریلرها","cTr"]]:[]),["s-about","بازیگران و عوامل","cAbout"],...(t.music.length?[["s-music","موسیقی","cMusic"]]:[]),["s-cmt","نظرها","cCmt"],["s-more","مشابه","cMore"]];
   const rep={open:id=>setSt(s=>({...s,report:"pick",repId:id})),done:st.done};
   const vote=useVote(t);
   useEffect(()=>{RVM.accent(t.acc)},[t.acc]);
@@ -922,18 +1025,24 @@ function App(){
                 <${Top} vote=${vote} t=${t} access=${acc} free=${!!st.free} prog=${prog} desk=${desk} reduced=${reduced} toast=${say} onRate=${()=>dispatchEvent(new CustomEvent("rv-spy",{detail:"s-cmt"}))}/>
         <div class="amb3" aria-hidden="true" style=${{backgroundImage:"url("+M("b-"+t.s+".jpg")+")"}}></div>
         <div class="body">
-          <${Story} t=${t}/>
+          ${!desk&&html`<${Story} t=${t}/>
           ${(t.kind==="series"&&t.next)&&html`<div class="sec lead">
             ${t.kind==="series"&&t.next&&html`<div class="nextep"><span class="lbl">قسمت بعد<b>فصل ${fa(t.next.s)}، قسمت ${fa(t.next.e)}</b></span><${Countdown} sec=${t.next.in}/></div>`}
           </div>`}
-          ${!t.few&&html`<${Audience} key=${t.s+prog} t=${t} prog=${prog}/>`}
+          ${!t.few&&html`<${Audience} key=${t.s+prog} t=${t} prog=${prog}/>`}`}
           <div class="split"><${Spy} sections=${SECS}/><div class="chaps">
+          ${desk&&html`<div class="intro"><${Story} t=${t}/>
+          ${(t.kind==="series"&&t.next)&&html`<div class="sec lead">
+            ${t.kind==="series"&&t.next&&html`<div class="nextep"><span class="lbl">قسمت بعد<b>فصل ${fa(t.next.s)}، قسمت ${fa(t.next.e)}</b></span><${Countdown} sec=${t.next.in}/></div>`}
+          </div>`}
+          ${!t.few&&html`<${Audience} key=${t.s+prog} t=${t} prog=${prog}/>`}</div>`}
           ${t.kind==="series"&&html`<${Chap} icon="cEps" id="s-eps" title="قسمت‌ها" sub="هر قسمت جدا، یا کل فصل یک‌جا"><${Episodes} t=${t} prog=${prog} access=${acc} onOpen=${(s,e)=>setEp([s,e])} onSeason=${s=>setSeason(s)} onTrailer=${(s,e)=>setSt(x=>({...x,eptr:[s,e]}))}/></${Chap}>`}
           ${t.kind==="series"&&html`<${Chap} id="s-dl" title="دانلود" sub="یک قسمت یا کل فصل، دوبله یا زیرنویس" icon="cDl"><${SeriesDl} t=${t} access=${acc} onSeason=${s=>setSeason(s)}/></${Chap}>`}
           ${t.kind==="film"&&html`<${Chap} icon="cDl" id="s-dl" title="دانلود" sub="دوبله یا زیرنویس، در چهار کیفیت"><${Downloads} t=${t} access=${acc} title=""/></${Chap}>`}
           ${t.trs.length>0&&html`<${Chap} icon="cTr" id="s-tr" title="تریلرها"><${Trailers} key=${t.s} t=${t}/></${Chap}>`}
-          <${Chap} icon="cAbout" id="s-about" title="درباره" sub=${t.music.length?"داستان، عوامل، بازیگران و موسیقی":"داستان، عوامل و بازیگران"} cls="about"><${About} t=${t}/><${Cast} t=${t}/></${Chap}>
+          <${Chap} icon="cAbout" id="s-about" title="بازیگران و عوامل" sub=${t.music.length?"داستان، عوامل، بازیگران و موسیقی":"داستان، عوامل و بازیگران"} cls="about"><${Cast} t=${t}/><${About} t=${t}/></${Chap}>
           ${t.music.length>0&&html`<${Chap} icon="cMusic" id="s-music" title="موسیقی"><${Music} t=${t}/></${Chap}>`}
+          <${BestTweet} t=${t}/>
           <${Chap} icon="cCmt" id="s-cmt" title="نظرها" ><${Comments} key=${t.s} t=${t} access=${st.access} vote=${vote} cerr=${st.cerr} rep=${rep}/></${Chap}>
           <${Chap} icon="cMore" id="s-more" title="مشابه" sub=${t.kind==="film"?"بقیه‌ی مجموعه و عنوان‌هایی در همین حال‌وهوا":"اگر "+t.en+" را دوست دارید"}>${t.kind==="film"&&html`<${Posters} title="مجموعه‌ی تلماسه" items=${t.franchise} cur=${t.s}/>`}<${Posters} title=${t.kind==="film"?"عنوان‌های مشابه":""} items=${t.similar}/><${ULists} t=${t}/></${Chap}>
           </div></div>

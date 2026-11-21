@@ -4,16 +4,16 @@
 @font-face{font-family:"Instrument Serif";font-style:italic;src:url(../home/media/vendor/instrument-serif-italic.woff2) format("woff2");font-display:block}
 @property --acc{syntax:"<color>";inherits:true;initial-value:#b8864a}
 :root{
---night-0:#080717;
---night-1:#110C1C;
---night-2:#201222;
---night-3:#2F1A25;
+--night-0:#070708;
+--night-1:#141416;
+--night-2:#1B1B1E;
+--night-3:#26262A;
 --ink-1:#F2EFF8;
 --ink-2:rgba(246,238,228,.74);
---ink-3:rgba(208,200,238,.66);
---ink-4:rgba(208,200,238,.34);
---line-1:rgba(205,190,255,.10);
---line-2:rgba(205,190,255,.22);
+--ink-3:rgba(226,224,232,.64);
+--ink-4:rgba(226,224,232,.34);
+--line-1:rgba(255,255,255,.08);
+--line-2:rgba(255,255,255,.17);
 --light:#A98BFF;
 --light-top:#C3ADFF;
 --light-hi:#CDBBFF;
@@ -25,9 +25,9 @@
 --ok:#5BD69A;--warn:#F2C14E;--err:#FF6B7A;
 
 --acc:#b8864a;
---plum:#120A26;
---page:color-mix(in oklab,var(--acc) 6%,var(--plum));
---page-up:color-mix(in oklab,var(--acc) 8%,var(--night-2));
+--plum:#0E0E10;
+--page:#0E0E10;
+--page-up:#17171A;
 
 --lit-0:none;
 --lit-1:0 0 0 1px var(--light-lo),0 6px 18px -10px var(--light-glow);
@@ -65,12 +65,12 @@ color-scheme:dark;
 --f:var(--f-ui);--f-serif:var(--f-mark);
 --pad:20px;
 }
-:root{--v:#A98BFF;--v-2:#8B6BF2;--v-soft:rgba(169,139,255,.14);--v-line:rgba(169,139,255,.28);--gold:#F5C451;--gold-soft:rgba(245,196,81,.14);--surf:#181022;--surf-2:#241528}
+:root{--v:#A98BFF;--v-2:#8B6BF2;--v-soft:rgba(169,139,255,.14);--v-line:rgba(169,139,255,.28);--gold:#F5C451;--gold-soft:rgba(245,196,81,.14);--surf:#161618;--surf-2:#1F1F22}
 :root{--hl:color-mix(in oklab,var(--acc,#A98BFF) 62%,#fff)}
 :root{
 --paper:#F8F2E9;--on-paper:#120E1C;
 --c-imdb:#F5C518;--c-good:#4ADE80;--c-mid:#FACC15;--c-bad:#F87171;--c-rt:#FA320A;--c-mc:#66CC33;--c-tg:#2AABEE;
---fill-015:rgba(255,206,172,.015);--fill-020:rgba(255,206,172,.02);--fill-025:rgba(255,206,172,.025);--fill-030:rgba(255,206,172,.03);--fill-035:rgba(255,206,172,.035);--fill-040:rgba(255,206,172,.04);--fill-050:rgba(255,206,172,.05);--fill-060:rgba(255,206,172,.06);--fill-070:rgba(255,206,172,.07);--fill-080:rgba(255,206,172,.08);--fill-090:rgba(255,206,172,.09);--fill-100:rgba(255,206,172,.1);--fill-100:rgba(255,206,172,.10);--fill-120:rgba(255,206,172,.12);--fill-140:rgba(255,206,172,.14);--fill-150:rgba(255,206,172,.15);--fill-160:rgba(255,206,172,.16);--fill-180:rgba(255,206,172,.18);--fill-200:rgba(255,206,172,.2);--fill-220:rgba(255,206,172,.22);--fill-240:rgba(255,206,172,.24);--fill-250:rgba(255,206,172,.25);--fill-260:rgba(255,206,172,.26);--fill-280:rgba(255,206,172,.28);--fill-300:rgba(255,206,172,.3);--fill-340:rgba(242,239,248,.34);--fill-350:rgba(242,239,248,.35);--fill-400:rgba(242,239,248,.4);--fill-450:rgba(242,239,248,.45);--fill-500:rgba(242,239,248,.5);--fill-550:rgba(242,239,248,.55);--fill-600:rgba(242,239,248,.6);--fill-620:rgba(242,239,248,.62);--fill-650:rgba(242,239,248,.65);--fill-700:rgba(242,239,248,.7);--fill-720:rgba(242,239,248,.72);--fill-750:rgba(242,239,248,.75);--fill-780:rgba(242,239,248,.78);--fill-800:rgba(242,239,248,.8);--fill-850:rgba(242,239,248,.85);--fill-860:rgba(242,239,248,.86);--fill-900:rgba(242,239,248,.9);
+--fill-015:rgba(255,255,255,.015);--fill-020:rgba(255,255,255,.02);--fill-025:rgba(255,255,255,.025);--fill-030:rgba(255,255,255,.03);--fill-035:rgba(255,255,255,.035);--fill-040:rgba(255,255,255,.04);--fill-050:rgba(255,255,255,.05);--fill-060:rgba(255,255,255,.06);--fill-070:rgba(255,255,255,.07);--fill-080:rgba(255,255,255,.08);--fill-090:rgba(255,255,255,.09);--fill-100:rgba(255,255,255,.1);--fill-100:rgba(255,255,255,.10);--fill-120:rgba(255,255,255,.12);--fill-140:rgba(255,255,255,.14);--fill-150:rgba(255,255,255,.15);--fill-160:rgba(255,255,255,.16);--fill-180:rgba(255,255,255,.18);--fill-200:rgba(255,255,255,.2);--fill-220:rgba(255,255,255,.22);--fill-240:rgba(255,255,255,.24);--fill-250:rgba(255,255,255,.25);--fill-260:rgba(255,255,255,.26);--fill-280:rgba(255,255,255,.28);--fill-300:rgba(255,255,255,.3);--fill-340:rgba(242,239,248,.34);--fill-350:rgba(242,239,248,.35);--fill-400:rgba(242,239,248,.4);--fill-450:rgba(242,239,248,.45);--fill-500:rgba(242,239,248,.5);--fill-550:rgba(242,239,248,.55);--fill-600:rgba(242,239,248,.6);--fill-620:rgba(242,239,248,.62);--fill-650:rgba(242,239,248,.65);--fill-700:rgba(242,239,248,.7);--fill-720:rgba(242,239,248,.72);--fill-750:rgba(242,239,248,.75);--fill-780:rgba(242,239,248,.78);--fill-800:rgba(242,239,248,.8);--fill-850:rgba(242,239,248,.85);--fill-860:rgba(242,239,248,.86);--fill-900:rgba(242,239,248,.9);
 --glass-fx:blur(20px) saturate(0) contrast(.3) brightness(.4);--glass-n:var(--fill-140);--glass-n-hover:var(--fill-220);--glass-edge:var(--fill-300);
 --r-2:2px;--r-3:3px;--r-4:4px;--r-5:5px;--r-6:6px;--r-7:7px;--r-8:8px;--r-10:10px;--r-11:11px;--r-12:12px;--r-14:14px;--r-15:15px;--r-16:16px;--r-18:18px;--r-20:20px;--r-21:21px;--r-22:22px;--r-24:24px;--r-26:26px;--r-28:28px;--r-32:32px;
 --fs-9-5:9.5px;--fs-10:10px;--fs-10-5:10.5px;--fs-11:11px;--fs-11-5:11.5px;--fs-12:12px;--fs-12-5:12.5px;--fs-13:13px;--fs-13-5:13.5px;--fs-14:14px;--fs-14-5:14.5px;--fs-15:15px;--fs-15-5:15.5px;--fs-16:16px;--fs-16-5:16.5px;--fs-17:17px;--fs-18:18px;--fs-19:19px;--fs-20:20px;--fs-22:22px;--fs-23:23px;--fs-24:24px;--fs-26:26px;--fs-28:28px;--fs-30:30px;--fs-32:32px;--fs-34:34px;--fs-36:36px;--fs-40:40px;--fs-44:44px;--fs-60:60px;--fs-64:64px;--fs-120:120px;
@@ -95,7 +95,7 @@ color-scheme:dark;
 --film:#000;
 --scrim-top:linear-gradient(180deg,rgba(0,0,0,.74),rgba(0,0,0,.4) 48%,rgba(0,0,0,0));
 --scrim-bot:linear-gradient(0deg,rgba(0,0,0,.86),rgba(0,0,0,.5) 50%,rgba(0,0,0,0));
---veil:rgba(8,7,23,.62);
+--veil:rgba(7,7,8,.62);
 --panel:color-mix(in oklab,var(--night-1) 95%,transparent);
 --track:var(--fill-240);--track-buf:var(--fill-300);
 --sub-white:#FFFFFF;--sub-yellow:#FFE45C;--sub-cyan:#7FE6FF;
@@ -104,11 +104,11 @@ color-scheme:dark;
 }
 
 :root{
---surface-band:#1F0F0B;
---surface-band-end:#160909;
---surface-raised:#33212E;
+--surface-band:#121214;
+--surface-band-end:#0E0E10;
+--surface-raised:#232326;
 --shade:#050506;
---backdrop:#030207;
+--backdrop:#030303;
 --ink-warm:#F3EFE8;
 --paper-hover:#FFFFFF;
 --on-media:#FFFFFF;
@@ -188,19 +188,19 @@ color-scheme:dark;
 @media (min-width:1024px){:root{--gap-head:24px;--gap-out:64px}}
 :root{
 --dim:rgba(0,0,0,.4);
---glass-dark:rgba(8,7,23,.56);
+--glass-dark:rgba(7,7,8,.56);
 --part-aux:rgba(240,189,125,.5);
 --part-aux-buf:rgba(240,189,125,.72);
 --err-on-ink:#B0182F;
 }
 :root{
---velvet-0:#160C33;
---velvet-1:#24135A;
---velvet-2:#3A1F8F;
---velvet-ink-2:#D6CCF2;
---velvet-ink-3:#B4A6E6;
---velvet-line:rgba(214,204,242,.18);
---velvet-veil:rgba(214,204,242,.12);
+--velvet-0:#131315;
+--velvet-1:#1A1A1D;
+--velvet-2:#232327;
+--velvet-ink-2:#D9D7DE;
+--velvet-ink-3:#A9A7B0;
+--velvet-line:rgba(255,255,255,.14);
+--velvet-veil:rgba(255,255,255,.08);
 --paper-band:#F2EADF;
 --paper-raised:#E9DFD1;
 --paper-ink-1:#17111F;
@@ -217,3 +217,13 @@ color-scheme:dark;
 --gap-band:56px;
 }
 @media (min-width:1024px){:root{--gap-band:72px}}
+:root{
+--ph-side:20px;--ph-section:52px;--ph-head:16px;--ph-card-gap:14px;--ph-card-pad:12px;--ph-stack:12px;--ph-chip-gap:8px;--ph-chip-pad:12px;--ph-btn-pad:16px;--ph-btn-h:40px;--ph-lh-body:1.85;--ph-lh-head:1.45;
+}
+@media (max-width:599px){:root{
+--fs-12:11.5px;--fs-12-5:12px;--fs-13:12.5px;--fs-13-5:13px;--fs-14:13px;--fs-14-5:13.5px;--fs-15:13.5px;--fs-15-5:14px;--fs-16:14px;--fs-16-5:14.5px;--fs-17:15px;--fs-18:15.5px;--fs-19:16px;--fs-20:16.5px;--fs-22:18px;--fs-23:18.5px;--fs-24:19px;--fs-26:20px;--fs-28:21px;--fs-30:22px;--fs-32:23px;--fs-34:24px;--fs-36:26px;--fs-40:28px;--fs-44:30px;--fs-60:40px;--fs-64:42px;
+--size-caption:11px;--size-small:11.5px;--size-detail:12px;--size-label:12.5px;--size-control:13px;--size-body:13px;--size-lead:13.5px;--size-reading:14px;--size-prose:14px;--size-deck:15px;--size-subhead:15.5px;--size-intro:16px;--size-chapter:16.5px;--size-title:18px;--size-headline:18.5px;--size-feature:19px;--size-poster:20px;--size-showcase:21px;--size-hero:23px;--size-lede:24px;--size-banner:28px;--size-masthead:30px;--size-splash:34px;--size-billboard:40px;--size-marquee:42px;--size-cover-phone:26px;--size-section-phone:17px;
+--w-heavy:700;--w-bold:600;--w-semibold:520;--w-black:700;--fs-10:11px;--fs-11:11px;
+--pad:var(--ph-side);--gap-head:var(--ph-head);--gap-out:var(--ph-section);--gap-in:var(--ph-stack);--gap-band:var(--ph-section);
+}}
+@media (max-width:379px){:root{--ph-side:16px;--ph-section:44px;--ph-head:14px;--ph-card-gap:12px}}

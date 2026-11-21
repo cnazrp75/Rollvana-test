@@ -3,6 +3,7 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>Rollvana Player</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-title.css"><link rel="stylesheet" href="../system/rollvana-player.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 <style>
 html{scrollbar-width:none;background:var(--film)}
 html::-webkit-scrollbar{display:none}
@@ -19,6 +20,7 @@ body{background:var(--night-0);min-height:0}
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -30,11 +32,11 @@ const html=htm.bind(React.createElement);
 const {fa,EASE,EASE_LEAVE,SPR,SNAP,SHEET,PRESS,AnimChars,Cross}=RVM;
 const Q=new URLSearchParams(location.search);
 const S=Q.get("s")||"playing";
-const KIND=(Q.get("k")==="film"||S==="end"||S==="audio")?"film":"series";
-const LONG=Q.has("long"),LOW=Q.has("low"),RM=Q.has("rm");
+const KIND=(Q.get("k")==="film"||S==="end"||S==="credits")?"film":"series";
+const LONG=Q.has("long")||S==="eps-long",RM=Q.has("rm");
 const MD="media/standin-";
 const TITLES={
-series:{name:"جدایی",longName:"جدایی: روایت کارمندانی که خاطره‌ی کار و زندگی‌شان را از هم جدا کرده‌اند",ep:3,epName:"تا ابد",nextName:"تویی که هستی",season:1,dur:2952,parts:[["recap",0,88],["intro",88,176],["main",176,2800],["outro",2800,2952]],video:"../home/media/t-severance.mp4",loop:21,at:5.5,poster:MD+"sev-frame.jpg",ar:1920/800,scrub:MD+"sev-scrub-",frames:12,next:MD+"sev-next.jpg",dub:false,resume:1450,home:"صفحه‌ی سریال",link:"rollvana.tv/watch/severance/s1e3",
+series:{name:"جدایی",longName:"جدایی: روایت کارمندانی که خاطره‌ی کار و زندگی‌شان را از هم جدا کرده‌اند",ep:3,epName:"تا ابد",nextName:"تویی که هستی",season:1,dur:2952,parts:[["recap",0,88],["intro",88,176],["main",176,2800],["outro",2800,2952]],video:"../home/media/t-severance.mp4",loop:21,at:5.5,poster:MD+"sev-frame.jpg",ar:1920/800,scrub:MD+"sev-scrub-",frames:12,next:MD+"sev-next.jpg",dub:!Q.has("nodub"),resume:1450,home:"صفحه‌ی سریال",link:"rollvana.tv/watch/severance/s1e3",
 subs:[["مارک، امروز در Lumon چه گذشت؟","Mark, how was your day at Lumon?"],["هیچ‌چیز یادم نیست؛ قرار هم همین بود.","I don't remember a thing. That was the deal."],["پس چرا این‌قدر خسته‌ای؟","Then why are you so tired?"]],
 recapOf:"فصل ۱، قسمت‌های ۱ و ۲",
 recap:"مارک در شرکت لومن کار می‌کند؛ جایی که کارمندانش با یک جراحی، حافظه‌ی کار و زندگی‌شان را از هم جدا کرده‌اند. او پس از رفتن ناگهانی دوستش پیتی، سرپرست بخش پالایش داده‌های کلان شده و باید هلی، کارمند تازه‌وارد، را آموزش بدهد؛ هلی اما از همان روز اول می‌خواهد استعفا بدهد و هر بار با مانعی تازه روبه‌رو می‌شود. بیرون از شرکت، مارکِ سوگوار چیزی از روزهای کاری‌اش به یاد ندارد، تا اینکه مردی ناشناس سر راهش سبز می‌شود و می‌گوید همان پیتی است. پیتی نشانی‌ای به او می‌دهد و هشدار می‌دهد که لومن آن چیزی نیست که نشان می‌دهد.",
@@ -45,10 +47,19 @@ recapOf:"از آغاز فیلم تا ۱:۱۲:۱۵",
 recap:"پل آتریدیس و مادرش جسیکا پس از نابودی خاندانشان به فرمن‌های صحرانشین پناه برده‌اند. پل زیر نظر استیلگار راه و رسم صحرا را یاد می‌گیرد، به چانی نزدیک می‌شود و در حمله به دروگرهای ادویه‌ی هارکونن‌ها کنار فرمن‌ها می‌جنگد. جسیکا با نوشیدن آب حیات مادر روحانی قبیله می‌شود و باور به آمدن یک منجی را میان مردم جنوب دامن می‌زند؛ باوری که پل از آن می‌ترسد، چون در رؤیاهایش جنگی بزرگ را می‌بیند که به نام او آغاز می‌شود.",
 recapMore:" او تازه نخستین کرم شنی‌اش را رام کرده و نام فرمنی گرفته است."}};
 const T=TITLES[KIND];
+const RCT=T.recap+(LONG?T.recapMore||"":"");
 const NAME=LONG?T.longName:T.name;
 const SUBLINE=ep=>KIND==="film"?"۲۰۲۴ · ۲ ساعت و ۴۶ دقیقه":`فصل ${fa(T.season)} · قسمت ${fa(ep)} · ${ep===T.ep?T.epName:T.nextName}`;
-const PARTNAME={recap:"آنچه گذشت",intro:"تیتراژ آغاز",outro:"تیتراژ پایانی",main:KIND==="film"?"فیلم":"قسمت "+fa(T.ep)};
-const PARTS=S==="noparts"?[["main",0,T.dur]]:S==="short"?[["recap",0,10],["intro",10,95],["main",95,3440],["outro",3440,3600]]:T.parts;
+const PARTNAME={recap:"خلاصه‌ی هوشمند",intro:"تیتراژ آغاز",outro:"تیتراژ پایانی",main:KIND==="film"?"فیلم":"قسمت "+fa(T.ep)};
+const PARTS0=S==="noparts"?[["main",0,T.dur]]:S==="short"?[["recap",0,10],["intro",10,95],["main",95,3440],["outro",3440,3600]]:T.parts;
+const RCW=.16,RCH=1.5;
+const RCS=(()=>{let t=1;return RCT.split(/(?<=[.!؟؛])\s+/).filter(Boolean).flatMap(x=>{if(x.split(" ").length<=11)return [x];const o=[];x.split(/(?<=،)\s+/).forEach(c=>{const l=o[o.length-1];if(l&&(l+" "+c).split(" ").length<=11)o[o.length-1]=l+" "+c;else o.push(c)});return o}).flatMap(function f(x){const w=x.split(" ");if(w.length<=11)return [x];const m=w.length/2;let k=-1;w.forEach((q,i)=>{if(i>=4&&i<=w.length-4&&["و","که","تا","ولی","اما"].includes(q)&&(k<0||Math.abs(i-m)<Math.abs(k-m)))k=i});if(k<0)k=Math.round(m);return [...f(w.slice(0,k).join(" ")),...f(w.slice(k).join(" "))]}).map(x=>{const w=x.split(" ");const o={w,s:t,e:t+.4+w.length*RCW+(/[.!؟]$/.test(x)?RCH:.7)};t=o.e;return o})})();
+const RCLEN=Math.ceil(RCS[RCS.length-1].e)+1;
+const RCFILM=PARTS0===T.parts;
+const RCMID=KIND==="film"||Q.has("mid");
+const RC0=RCMID?T.resume:0;
+const PAFTER=!RCFILM||KIND==="film"?PARTS0:PARTS0.filter(p=>p[0]!=="recap").map(p=>p[0]==="intro"?["intro",0,p[2]]:p);
+let PARTS=!RCFILM?PARTS0:RCMID?PAFTER.flatMap(p=>RC0>p[1]&&RC0<p[2]?[[p[0],p[1],RC0],["recap",RC0,RC0+RCLEN],[p[0],RC0+RCLEN,p[2]]]:[p]):PARTS0.map(p=>p[0]==="recap"?["recap",0,RCLEN]:p[0]==="intro"?["intro",RCLEN,p[2]]:p);
 const DUR=S==="short"?3600:T.dur;
 const LONGT=DUR>=3600;
 const p2=n=>String(n).padStart(2,"0");
@@ -56,10 +67,16 @@ const fmt=t=>{t=Math.max(0,Math.round(t));const h=Math.floor(t/3600),m=Math.floo
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const pt=k=>PARTS.find(p=>p[0]===k);
 const QUAL=[["1080","1080p","حدود ۲٫۷ گیگ در ساعت"],["720","720p","حدود ۱٫۳ گیگ در ساعت"],["480","480p","حدود ۶۰۰ مگ در ساعت"]];
-const SUBC={white:["سفید","var(--sub-white)"],yellow:["زرد","var(--sub-yellow)"],cyan:["فیروزه‌ای","var(--sub-cyan)"]};
-const SIZES=[["s","کوچک"],["m","متوسط"],["l","بزرگ"]];
+const SUBC={white:["سفید","var(--sub-white)"],yellow:["زرد","var(--sub-yellow)"],cyan:["فیروزه‌ای","var(--sub-cyan)"],green:["سبز","var(--sub-green)"],red:["قرمز","var(--sub-red)"]};
+const SIZES=[["xs","خیلی کوچک"],["s","کوچک"],["m","متوسط"],["l","بزرگ"],["xl","خیلی بزرگ"]];
+const SUBBG=[["none","بی‌رنگ"],["dim","تیره‌ی کم‌رنگ"],["black","مشکی"]];
+const SPEEDS=[.5,.75,1,1.25,1.5];
+const spd=v=>fa(String(v)).replace(".","٫");
+const EPN={1:["خبر خوش درباره‌ی جهنم","نیم‌حلقه","تا ابد","تویی که هستی","ددمنشی هولناک نمایش و طراحی","قایم‌باشک","جاز سرکش","شام چی داریم؟","مایی که هستیم"],2:["سلام، خانم کوبل","خداحافظ، خانم سلویگ","چه کسی زنده است؟","دره‌ی اندوه","اسب تروا","آتیلا","چیخای باردو","ویتریول شیرین","ساعت‌های بعد از کار","بندر سرد"]};
+const EPD={1:[57,53,52,55,51,47,52,44,40],2:[59,49,52,57,47,55,40,46,50,76]};
+const EPLONG="ددمنشی هولناک نمایش و طراحی؛ وقتی دو بخش لومن برای نخستین بار رودررو می‌شوند";
 const LANG={off:"خاموش",fa:"فارسی",en:"انگلیسی",dual:"فارسی و انگلیسی"};
-const KEYS=[["پخش و توقف","Space"],["۱۳ ثانیه عقب","←"],["۸ ثانیه جلو","→"],["کم و زیاد کردن صدا","↑ ↓"],["بی‌صدا","M"],["تمام‌صفحه","F"],["زیرنویس","C"],["بستن منو","Esc"]];
+const KEYS=[["پخش و توقف","Space"],["سرعت پخش، کمتر و بیشتر","< >"],["۱۳ ثانیه عقب","←"],["۸ ثانیه جلو","→"],["کم و زیاد کردن صدا","↑ ↓"],["بی‌صدا","M"],["تمام‌صفحه","F"],["زیرنویس","C"],["بستن منو","Esc"]];
 const syncNum=v=>fa(Math.abs(v).toFixed(1)).replace(".","٫");
 const syncWord=v=>v===0?"هم‌زمان با صدا":v>0?"ثانیه دیرتر":"ثانیه زودتر";
 
@@ -99,7 +116,7 @@ function Swap({k,children,r,cls}){
 function Seek({time,buf,onSeek,force,noimg,r,mode,onBusy,onScrub}){
   const ref=useRef(null);const {w:W}=useBox(ref);
   const gap=PARTS.length>1?(mode==="desk"?4:3):0;
-  const L=useMemo(()=>lay(PARTS,DUR,W,gap,12),[W,gap]);
+  const L=useMemo(()=>lay(PARTS,DUR,W,gap,12),[W,gap,PARTS]);
   const [hov,setHov]=useState(null);const [drag,setDrag]=useState(null);const [forced,setForced]=useState(force||null);
   const at=drag??hov??(forced?forced.t:null);
   const dragging=drag!=null||!!(forced&&forced.drag&&hov==null);
@@ -155,6 +172,49 @@ function Countdown({left,run,r}){
   </div>`;
 }
 
+function Eps({st,set,close}){
+  const [sn,setSn]=useState(S==="eps-s2"?2:T.season||1);
+  const list=useRef(null);
+  const [edge,setEdge]=useState({a:true,b:false});
+  const mark=()=>{const el=list.current;if(!el)return;const x=Math.abs(el.scrollLeft);setEdge({a:x<6,b:x+el.clientWidth>=el.scrollWidth-6})};
+  const page=d=>{const el=list.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:"smooth"})};
+  const wheel=e=>{const el=list.current;if(el&&Math.abs(e.deltaY)>Math.abs(e.deltaX)){el.scrollLeft-=e.deltaY}};
+  useEffect(()=>{const t=setTimeout(mark,80);return()=>clearTimeout(t)},[sn]);
+  useEffect(()=>{const el=list.current&&list.current.querySelector("[aria-current=true]");if(el)el.scrollIntoView({block:"nearest",inline:"center"})},[sn]);
+  return html`<div class="epx-h"><div class="vp-eps-tabs" role="tablist" aria-label="فصل‌ها">${[1,2].map(n=>html`<button key=${n} role="tab" aria-selected=${sn===n} onClick=${()=>setSn(n)}>${sn===n&&html`<${motion.i} layoutId="snth" class="sg" transition=${{duration:.3,ease:EASE}}/>`}<span>فصل ${fa(n)}</span></button>`)}</div><span class="epx-n"></span><button class="ib" onClick=${close} aria-label="بستن"><${I} n="x"/></button></div>
+    <div class="epwrap" data-a=${edge.a} data-b=${edge.b}><${motion.div} key=${sn} class="vp-eps ep2" role="list" ref=${list} onScroll=${mark} onWheel=${wheel} initial=${{opacity:0,x:sn===1?28:-28}} animate=${{opacity:1,x:0}} transition=${{duration:.32,ease:EASE}}>${EPN[sn].map((nm,i)=>{const e=i+1;const cur=sn===(T.season||1)&&e===st.ep;const done=sn<(T.season||1)||(sn===(T.season||1)&&e<st.ep);const name=LONG&&sn===1&&e===5?EPLONG:nm;
+      return html`<button key=${sn+"-"+e} role="listitem" class="vp-ep-i" data-done=${done&&!cur} aria-current=${cur} aria-label=${"فصل "+fa(sn)+"، قسمت "+fa(e)+"، "+name+(cur?"، در حال پخش":"")} onClick=${()=>{set({ep:e,epS:sn});close()}}>
+        <span class="th"><img src=${"../home/media/e-sev-"+sn+"-"+e+".jpg"} alt="" loading="lazy"/>${cur&&html`<span class="pg"><i style=${{width:"49%"}}></i></span>`}</span>
+        <span class="tx"><b class="n">${fa(e)}</b><span class="nm">${name}</span><span class="mt">${cur?"در حال پخش":fa(EPD[sn][i])+" دقیقه"}</span></span>
+      </button>`})}</${motion.div}>
+    <button class="epnav pv" aria-label="قسمت‌های قبلی" onClick=${()=>page(-1)}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><button class="epnav nx" aria-label="قسمت‌های بعدی" onClick=${()=>page(1)}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>`;
+}
+function EpStrip({st,set,close,r}){
+  return html`<${motion.div} class="epx" data-f="true" role="dialog" aria-label="قسمت‌ها" initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.22}}>
+    <div class="epx-s" onClick=${close}></div>
+    <${motion.div} class="epx-c" initial=${r?false:{y:36}} animate=${{y:0}} exit=${r?{}:{y:36}} transition=${{duration:.34,ease:EASE}}><${Eps} st=${st} set=${set} close=${close}/></${motion.div}>
+  </${motion.div}>`;
+}
+function RecapFilm({time,running,speed,r,chrome}){
+  const [t,setT]=useState(time);const c=useRef(time);
+  useEffect(()=>{if(Math.abs(c.current-time)>1.5){c.current=time;setT(time)}},[time]);
+  useEffect(()=>{if(!running)return;let last=performance.now(),id;const f=n=>{c.current+=(n-last)/1000*speed;last=n;setT(Math.round(c.current*20)/20);id=requestAnimationFrame(f)};id=requestAnimationFrame(f);return()=>cancelAnimationFrame(id)},[running,speed]);
+  const u=t-RC0;let n=0;RCS.forEach((x,i)=>{if(u>=x.s)n=i});const cur=RCS[n];
+  return html`<div class="rcf" data-chrome=${chrome} aria-label="خلاصه‌ی هوشمند، آنچه دیدید">
+    <div class="rcf-in">
+      <${AnimatePresence} mode="wait" initial=${false}><${motion.p} key=${n} aria-live="polite" exit=${{opacity:0,y:-12,filter:"blur(8px)"}} transition=${{duration:.4,ease:EASE}}>${cur.w.map((w,i)=>html`<span key=${i} class=${r||u>=cur.s+.4+i*RCW?"on":""}>${w}</span>`)}</${motion.p}></${AnimatePresence}>
+    </div>
+  </div>`;
+}
+function RecapText({text,r}){
+  const parts=text.split(/(?<=[.!؟؛])\s+/).filter(Boolean);
+  const [n,setN]=useState(0);
+  const words=parts[n].split(" ");
+  useEffect(()=>{if(r||n>=parts.length-1)return;const t=setTimeout(()=>setN(n+1),(words.length*.17+2.4)*1000);return()=>clearTimeout(t)},[n,r]);
+  if(r)return html`<div class="rc-t all"><p>${text}</p></div>`;
+  return html`<div class="rc-t" aria-live="polite"><${AnimatePresence} mode="wait" initial=${false}><${motion.p} key=${n} exit=${{opacity:0,y:-14,filter:"blur(8px)"}} transition=${{duration:.45,ease:EASE}}>${words.map((w,i)=>html`<span key=${i} style=${{animationDelay:(.12+i*.17)+"s"}}>${w}</span>`)}</${motion.p}></${AnimatePresence}></div>
+    <div class="rc-seg" role="tablist" aria-label="بخش‌های خلاصه">${parts.map((_,i)=>html`<button key=${i} role="tab" aria-selected=${i===n} data-done=${i<n} aria-label=${"جمله‌ی "+fa(i+1)} onClick=${()=>setN(i)}></button>`)}</div>`;
+}
 function Menu({id,go,close,st,set,mode,r,maxH}){
   const inner=useRef(null);const [h,setH]=useState("auto");
   const prev=useRef(id);const depth=x=>x.includes("-")?1:0;
@@ -165,21 +225,20 @@ function Menu({id,go,close,st,set,mode,r,maxH}){
     <span class="ck"><${AnimatePresence} initial=${false}>${on&&!drill&&html`<${motion.span} key="c" initial=${r?{opacity:0}:{scale:.4,opacity:0}} animate=${{scale:1,opacity:1}} exit=${{opacity:0,transition:{duration:.1}}} transition=${SNAP}><${I} n="check"/></${motion.span}>`}</${AnimatePresence}></span>
     <span class="l"><span>${label}</span>${hint&&html`<span class="h">${hint}</span>`}</span>
     ${val&&html`<span class="v">${val}</span>`}${drill&&html`<${I} n="left" c="go"/>`}</button>`;
-  const autoNow=LOW?"480p":st.failed?"720p":"1080p";
+  const autoNow=st.failed?"720p":"1080p";
   const body={
-    quality:()=>html`${LOW&&html`<div class="vp-note"><${I} n="low"/><span>حالت کم‌مصرف روشن است؛ «خودکار» از <bdi dir="ltr">480p</bdi> بالاتر نمی‌رود.</span></div>`}
-      <${Row} on=${st.q==="auto"} onClick=${()=>set({q:"auto"})} label="خودکار" hint=${html`با سرعت اینترنت شما · الان <bdi dir="ltr">${autoNow}</bdi>`}/>
+    quality:()=>html`<${Row} on=${st.q==="auto"} onClick=${()=>set({q:"auto"})} label="خودکار" hint=${html`با سرعت اینترنت شما · الان <bdi dir="ltr">${autoNow}</bdi>`}/>
       ${QUAL.map(([k,l,hint])=>html`<${Row} key=${k} on=${st.q===k} onClick=${()=>set({q:k})} label=${html`<bdi dir="ltr">${l}</bdi>`} hint=${hint}/>`)}`,
     subs:()=>html`${Object.entries(LANG).map(([k,l])=>html`<${Row} key=${k} on=${st.lang===k} onClick=${()=>set({lang:k})} label=${l} hint=${k==="dual"?"دو خط؛ فارسی پایین":null}/>`)}
       <div class="vp-sep"></div>
-      <${Row} drill onClick=${()=>go("subs-style")} label="ظاهر" val=${SIZES.find(x=>x[0]===st.size)[1]+" · "+SUBC[st.color][0]+(st.box?" · با کادر":"")}/>
+      <${Row} drill onClick=${()=>go("subs-style")} label="ظاهر" val=${SIZES.find(x=>x[0]===st.size)[1]+" · "+SUBC[st.color][0]+" · "+SUBBG.find(x=>x[0]===st.bg)[1]}/>
       <${Row} drill onClick=${()=>go("subs-sync")} label="هماهنگی زمان" val=${st.sync===0?"هم‌زمان":syncNum(st.sync)+" "+syncWord(st.sync)}/>`,
-    "subs-style":()=>html`<div class="vp-set"><span>اندازه</span>
-        <div class="seg2" role="group" aria-label="اندازه‌ی زیرنویس">${SIZES.map(([k,l])=>html`<button key=${k} aria-pressed=${st.size===k} onClick=${()=>set({size:k})}>${st.size===k&&html`<${motion.span} class="ind" layoutId="subsize" transition=${SPR}/>`}${l}</button>`)}</div></div>
-      <div class="vp-set"><span>رنگ</span>
-        <div class="vp-swatches" role="radiogroup" aria-label="رنگ زیرنویس">${Object.entries(SUBC).map(([k,[l,c]])=>html`<button key=${k} class="vp-swatch" role="radio" aria-checked=${st.color===k} aria-label=${l} title=${l} onClick=${()=>set({color:k})}><i style=${{"--c":c}}></i></button>`)}</div></div>
-      <label class="vp-set"><span>کادر پشت متن</span>
-        <span class="sw2" role="switch" tabIndex="0" aria-checked=${st.box} onClick=${()=>set({box:!st.box})} onKeyDown=${e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();e.stopPropagation();set({box:!st.box})}}}><${motion.i} initial=${false} animate=${{x:st.box?-16:0}} transition=${SPR}/></span></label>`,
+    "subs-style":()=>html`<div class="vp-set col2"><span>اندازه<i>${SIZES.find(x=>x[0]===st.size)[1]}</i></span>
+        <div class="seg5 sz" role="radiogroup" aria-label="اندازه‌ی زیرنویس">${SIZES.map(([k,l],i)=>html`<button key=${k} role="radio" aria-checked=${st.size===k} aria-label=${l} onClick=${()=>set({size:k})}>${st.size===k&&html`<${motion.span} class="ind" layoutId="subsize" transition=${r?{duration:0}:SPR}/>`}<span class="aa" style=${{fontSize:[12,14.5,17,20,23][i]+"px"}}>آ</span></button>`)}</div></div>
+      <div class="vp-set swr"><span>رنگ<i>${SUBC[st.color][0]}</i></span>
+        <div class="vp-sws" role="radiogroup" aria-label="رنگ زیرنویس">${Object.entries(SUBC).map(([k,[l,c]])=>html`<button key=${k} role="radio" aria-checked=${st.color===k} aria-label=${l} onClick=${()=>set({color:k})} style=${{"--c":c}}><i></i></button>`)}</div></div>
+      <div class="vp-set col2"><span>پس‌زمینه</span>
+        <div class="seg5 three bgs" role="radiogroup" aria-label="پس‌زمینه‌ی زیرنویس">${SUBBG.map(([k,l])=>html`<button key=${k} role="radio" aria-checked=${st.bg===k} onClick=${()=>set({bg:k})}>${st.bg===k&&html`<${motion.span} class="ind" layoutId="subbg" transition=${r?{duration:0}:SPR}/>`}${l}</button>`)}</div></div>`,
     "subs-sync":()=>html`<div class="vp-set col">
         <div class="vp-step" role="group" aria-label="هماهنگی زمان زیرنویس">
           <${motion.button} whileTap=${r?undefined:{scale:.85}} transition=${{type:"spring",stiffness:500,damping:30}} disabled=${st.sync<=-10} onClick=${()=>set({sync:Math.max(-10,st.sync-.5)})} aria-label="نیم ثانیه زودتر"><${I} n="minus"/></${motion.button}>
@@ -189,15 +248,29 @@ function Menu({id,go,close,st,set,mode,r,maxH}){
         <span class="h">اگر زیرنویس زودتر از صدا می‌آید «+» را بزنید و اگر دیرتر می‌آید «−». هر بار نیم ثانیه، تا ۱۰ ثانیه؛ همان لحظه اعمال می‌شود.</span>
         ${st.sync!==0&&html`<button class="vp-reset" onClick=${()=>set({sync:0})}>برگرداندن به صفر</button>`}
       </div>`,
-    audio:()=>html`<${Row} on=${st.audio==="orig"} onClick=${()=>set({audio:"orig"})} label="زبان اصلی" hint="انگلیسی"/>
+    audio:()=>html`<${Row} on=${st.audio==="orig"} onClick=${()=>set({audio:"orig"})} label="زبان اصلی" hint="انگلیسی، با زیرنویس دلخواه"/>
       <${Row} on=${st.audio==="dub"} onClick=${()=>set({audio:"dub"})} label="دوبله‌ی فارسی"/>`,
+    speed:()=>html`${SPEEDS.map(v=>html`<${Row} key=${v} on=${st.speed===v} onClick=${()=>set({speed:v})} label=${html`<span class="vp-speed-n">${spd(v)}×</span>${v===1?" · عادی":""}`}/>`)}
+      <div class="vp-hint">صدای گوینده‌ها طبیعی می‌ماند؛ فقط تندتر یا کندتر.</div>`,
+    eps:()=>html`<${Eps} st=${st} set=${set} close=${close}/>`,
+    more:()=>html`${T.dub&&html`<${Row} drill onClick=${()=>go("more-audio")} label="زبان صدا" val=${st.audio==="dub"?"دوبله‌ی فارسی":"زبان اصلی"}/>`}
+      <${Row} drill onClick=${()=>go("more-speed")} label="سرعت پخش" val=${st.speed===1?"عادی":spd(st.speed)+"×"}/>`,
     keys:()=>html`<dl class="vp-keysl">${KEYS.map(([l,k])=>html`<div class="vp-row kb" key=${k}><dt class="l">${l}</dt><dd><kbd>${k}</kbd></dd></div>`)}</dl>`
   };
-  const title={quality:"کیفیت تصویر",subs:"زیرنویس","subs-style":"ظاهر زیرنویس","subs-sync":"هماهنگی زمان",audio:"صدا",keys:"میان‌برهای صفحه‌کلید"}[id];
+  body["more-audio"]=body.audio;body["more-speed"]=body.speed;body["more-quality"]=body.quality;
+  const title={more:"تنظیمات","more-audio":"زبان صدا","more-speed":"سرعت پخش","more-quality":"کیفیت تصویر",quality:"کیفیت تصویر",subs:"زیرنویس","subs-style":"ظاهر زیرنویس","subs-sync":"هماهنگی زمان",audio:"زبان صدا",speed:"سرعت پخش",eps:"قسمت‌ها",keys:"میان‌برهای صفحه‌کلید"}[id];
+  const mref=useRef(null);const edge=useRef(null);const [ax,setAx]=useState(null);const root0=id.split("-")[0];
+  useLayoutEffect(()=>{if(mode!=="desk"){setAx(null);return}
+    const f=()=>{const el=mref.current,b=document.querySelector("main.vp [aria-expanded=true]");if(!el||!b)return;
+      const P=el.offsetParent.getBoundingClientRect(),B=b.getBoundingClientRect(),w=el.offsetWidth;
+      if(edge.current==null)edge.current=parseFloat(getComputedStyle(el).right)||24;
+      const c=B.left+B.width/2-P.left,left=Math.min(Math.max(c-w/2,edge.current),P.width-w-edge.current);
+      setAx(p=>p&&Math.abs(p.left-left)<.5?p:{left,o:Math.min(Math.max((c-left)/w,0),1)})};
+    f();const bar=document.querySelector("main.vp [aria-expanded=true]");const ro=new ResizeObserver(f);if(bar){ro.observe(bar);[...bar.parentElement.children].forEach(x=>ro.observe(x))}if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f);addEventListener("resize",f);return()=>{ro.disconnect();removeEventListener("resize",f)}},[mode,root0]);
   const enter=r?{opacity:0}:mode==="port"?{y:"100%"}:mode==="land"?{x:"100%"}:{opacity:0,scale:.96,y:8};
   return html`<${React.Fragment}>
     <div class="vp-catch" onClick=${close}></div>
-    <${motion.div} class="vp-menu tinted" role=${id==="keys"||depth(id)?"dialog":"menu"} aria-label=${title} style=${{originX:1,originY:1}} initial=${enter} animate=${{opacity:1,scale:1,x:0,y:0,height:mode==="land"?"100%":h}} exit=${{...enter,transition:r?{duration:.12}:mode==="desk"?{duration:.15,ease:EASE}:{duration:.24,ease:EASE_LEAVE}}} transition=${mode==="desk"||r?{duration:r?.15:.22,ease:EASE}:{...SHEET,height:{duration:.22,ease:EASE}}}>
+    <${motion.div} class=${"vp-menu tinted"+(id==="eps"?" wide":"")} role=${id==="keys"||id==="eps"||depth(id)?"dialog":"menu"} aria-label=${title} ref=${mref} style=${ax&&mode==="desk"?{originX:ax.o,originY:1,left:ax.left,right:"auto"}:{originX:1,originY:1}} initial=${enter} animate=${{opacity:1,scale:1,x:0,y:0,height:mode==="land"?"100%":h}} exit=${{...enter,transition:r?{duration:.12}:mode==="desk"?{duration:.15,ease:EASE}:{duration:.24,ease:EASE_LEAVE}}} transition=${mode==="desk"||r?{duration:r?.15:.22,ease:EASE}:{...SHEET,height:{duration:.22,ease:EASE}}}>
       <div ref=${inner} class="vp-menu-in" style=${{maxHeight:maxH}}>
         <div class="vp-menu-h">
           ${depth(id)?html`<button class="ib" onClick=${()=>go(id.split("-")[0])} aria-label="بازگشت"><${I} n="right"/></button>`:null}
@@ -216,32 +289,34 @@ function Share({time,close,mode,r}){
   const [ok,setOk]=useState(false);const [t0]=useState(time);
   const url=T.link+"?t="+Math.round(t0);
   useEffect(()=>{if(!ok)return;const t=setTimeout(()=>setOk(false),2400);return()=>clearTimeout(t)},[ok]);
-  const side=mode!=="port";
+  const port=mode==="port";
+  const off=r?{opacity:0}:port?{y:"100%"}:{opacity:0,scale:.96,y:10};
   return html`<${React.Fragment}>
-    <${motion.div} class="scrim" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
-    <${motion.div} class="sheet" role="dialog" aria-modal="true" aria-label="هم‌رسانی"
-      initial=${r?{opacity:0}:side?{x:"100%"}:{y:"100%"}} animate=${{opacity:1,x:0,y:0}} exit=${r?{opacity:0}:side?{x:"100%"}:{y:"100%"}} transition=${{type:"spring",stiffness:300,damping:34}}
-      drag=${side?false:"y"} dragConstraints=${{top:0,bottom:0}} dragElastic=${{top:0,bottom:.6}} onDragEnd=${(e,i)=>{if(i.offset.y>120||i.velocity.y>600)close()}}>
-      <div class="grab"><i></i></div>
+    <${motion.div} class="scrim" onClick=${close} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.2}}/>
+    <div class="shr-w">
+    <${motion.div} class="shr" role="dialog" aria-modal="true" aria-label="هم‌رسانی"
+      initial=${off} animate=${{opacity:1,scale:1,y:0}} exit=${{...off,transition:{duration:.18,ease:EASE}}} transition=${{duration:.28,ease:EASE}}
+      drag=${port?"y":false} dragConstraints=${{top:0,bottom:0}} dragElastic=${{top:0,bottom:.6}} onDragEnd=${(e,i)=>{if(i.offset.y>120||i.velocity.y>600)close()}}>
       <button class="x" onClick=${close} aria-label="بستن"><${I} n="x"/></button>
-      <div class="vp-share">
-        <h2>هم‌رسانی از همین لحظه</h2>
-        <div class="vp-link"><bdi dir="ltr">${url}</bdi><small>هر کس این لینک را باز کند، پخش از ${fmt(t0)} شروع می‌شود.</small></div>
-        <div class="vp-ways">
-          <button class="vp-way"><span class="tgi"><${I} n="tg"/></span>فرستادن در تلگرام</button>
-          <button class="vp-way" onClick=${()=>{try{navigator.clipboard.writeText("https://"+url)}catch(e){}setOk(true)}}>
-            <span class="lk"><${AnimatePresence} initial=${false} mode="popLayout"><${motion.span} key=${ok?"c":"l"} initial=${r?{opacity:0}:{scale:.5,opacity:0}} animate=${{scale:1,opacity:1}} exit=${{opacity:0,transition:{duration:.1}}} transition=${SNAP}><${I} n=${ok?"check":"link"}/></${motion.span}></${AnimatePresence}></span>
-            <${Swap} k=${ok} r=${r} cls="w">${ok?"لینک کپی شد":"کپی لینک"}</${Swap}></button>
-        </div>
+      <div class="shr-pic"><img src=${T.poster} alt=""/><b><${I} n="play"/>از ${fmt(t0)}</b></div>
+      <div class="shr-b">
+        <div class="shr-t"><h2>${NAME}</h2><p>${SUBLINE(T.ep)}</p></div>
+        <button class="shr-copy" onClick=${()=>{try{navigator.clipboard.writeText("https://"+url)}catch(e){}setOk(true)}}>
+          <bdi dir="ltr">${url}</bdi>
+          <span class="go"><${I} n=${ok?"check":"link"}/><${Swap} k=${ok} r=${r} cls="w">${ok?"کپی شد":"کپی لینک"}</${Swap}></span></button>
+        <button class="shr-tg"><span class="tgi"><${I} n="tg"/></span>فرستادن در تلگرام</button>
       </div>
     </${motion.div}>
+    </div>
   </${React.Fragment}>`;
 }
 
-const PLAY0=["playing","parts","noparts","hidden","resume","skip-recap","skip-intro","next","end","quality","subs","subs-style","subs-sync","audio","keys","buffer","switch","hover","hover-noimg","drag","short","share"];
-const TIME0={first:0,recap:KIND==="film"?T.resume:0,"skip-recap":30,"skip-intro":(pt("intro")||[0,0])[1]+24,next:(pt("outro")||[0,DUR-20])[1]+4,still:(pt("outro")||[0,DUR-20])[1]+4,end:(pt("outro")||[0,DUR-20])[1]+3,guest:0,nosub:0};
-const MENU0={quality:"quality",subs:"subs","subs-style":"subs-style","subs-sync":"subs-sync",audio:"audio",keys:"keys"}[S]||null;
-const OVER0={recap:"recap",still:"still",error:"error",share:"share",guest:"guest",nosub:"nosub"}[S]||null;
+const PLAY0=[...(RCFILM?["recap"]:[]),"playing","parts","noparts","hidden","resume","skip-recap","skip-intro","next","credits","eps","eps-long","eps-s2","speed","dub","fs","quality","subs","subs-style","subs-sync","audio","keys","buffer","switch","hover","hover-noimg","drag","short","share"];
+const TIME0={first:0,recap:RC0,"skip-recap":RC0+12,"skip-intro":(pt("intro")||[0,0])[1]+24,next:(pt("outro")||[0,DUR-20])[1]+4,still:(pt("outro")||[0,DUR-20])[1]+4,end:DUR,credits:(pt("outro")||[0,DUR-20])[1]+40,guest:0,nosub:0};
+const T0=TIME0[S]??T.resume;
+if(RCFILM&&!(RCMID?["recap","skip-recap"].includes(S):PARTS.some(p=>p[0]==="recap"&&T0>=p[1]&&T0<p[2])))PARTS=PAFTER;
+const MENU0={quality:"quality",subs:"subs","subs-style":"subs-style","subs-sync":"subs-sync",audio:"audio",keys:"keys",speed:"speed",eps:"eps","eps-long":"eps","eps-s2":"eps"}[S]||null;
+const OVER0={recap:RCFILM?null:"recap",still:"still",error:"error",share:"share",guest:"guest",nosub:"nosub"}[S]||null;
 const FORCE0={hover:{t:DUR*.62},"hover-noimg":{t:(pt("outro")||[0,DUR*.9])[1]+60},drag:{t:DUR*.31,drag:true},short:{t:5}}[S]||null;
 
 function Player(){
@@ -249,8 +324,8 @@ function Player(){
   const root=useRef(null);const vid=useRef(null);const box=useBox(root);
   const [time,setTime]=useState(TIME0[S]??T.resume);
   const [playing,setPlaying]=useState(PLAY0.includes(S));
-  const [started,setStarted]=useState(!["first","recap","guest","nosub"].includes(S));
-  const [shown,setShown]=useState(!["hidden","skip-recap","skip-intro","next","end","recap"].includes(S));
+  const [started,setStarted]=useState(!["first",...(RCFILM?[]:["recap"]),"guest","nosub"].includes(S));
+  const [shown,setShown]=useState(!["hidden","skip-recap","skip-intro","next","credits",...(RCFILM?[]:["recap"])].includes(S));
   const [hold,setHold]=useState(true);
   const [busy,setBusy]=useState(false);
   const [menu,setMenu]=useState(MENU0);
@@ -260,14 +335,13 @@ function Player(){
   const [resumeCue,setResumeCue]=useState(S==="resume");
   const [cancelled,setCancelled]=useState(false);
   const [left,setLeft]=useState(10);
-  const [endClosed,setEndClosed]=useState(false);
   const [ep,setEp]=useState(T.ep);
   const [vol,setVol]=useState(.8);const [muted,setMuted]=useState(false);
   const [remain,setRemain]=useState(false);
-  const [full,setFull]=useState(false);
+  const [full,setFull]=useState(S==="fs");
   const [flash,setFlash]=useState(null);
   const [pulse,setPulse]=useState(0);
-  const [st,setSt]=useState({q:"auto",failed:S==="switch",lang:S.startsWith("subs")||LONG?"dual":"fa",size:"m",color:S==="subs-style"?"yellow":"white",box:false,sync:S==="subs-sync"?1.5:0,audio:"orig"});
+  const [st,setSt]=useState({q:"auto",failed:S==="switch",lang:S.startsWith("subs")||LONG?"dual":"fa",size:SIZES.some(x=>x[0]===Q.get("sz"))?Q.get("sz"):"m",color:SUBC[Q.get("c")]?Q.get("c"):S==="subs-style"?"yellow":"white",bg:SUBBG.some(x=>x[0]===Q.get("bg"))?Q.get("bg"):"none",sync:S==="subs-sync"?1.5:0,audio:S==="dub"?"dub":"orig",speed:S==="speed"?1.25:1,ep:T.ep});
   const set=p=>setSt(s=>({...s,...p}));
   const [line,setLine]=useState(0);
   const [scrubT,setScrubT]=useState(null);
@@ -277,8 +351,12 @@ function Player(){
   const part=PARTS.find(p=>time>=p[1]&&time<p[2])||PARTS[PARTS.length-1];
   const idle=useRef(0);
   const tShow=scrubT??time;const nowPart=PARTS.find(p=>tShow>=p[1]&&tShow<p[2])||PARTS[PARTS.length-1];
+  const [rcDone,setRcDone]=useState(PARTS===PAFTER);const wasRc=useRef(false);
+  useEffect(()=>{if(rcDone||!RCFILM)return;if(part[0]==="recap"){if(started)wasRc.current=true;return}if(!wasRc.current)return;const end=RC0+RCLEN;PARTS=PAFTER;setRcDone(true);if(time>=end&&time<=end+2)setTime(RC0)},[time,started]);
 
-  useEffect(()=>{if(!running)return;const i=setInterval(()=>setTime(t=>Math.min(DUR,t+1)),1000);return()=>clearInterval(i)},[running]);
+  useEffect(()=>{if(!running)return;const i=setInterval(()=>setTime(t=>{const n=Math.min(DUR,t+st.speed);if(n>=DUR)setPlaying(false);return n}),1000);return()=>clearInterval(i)},[running,st.speed]);
+  useEffect(()=>{const v=vid.current;if(v){v.playbackRate=st.speed;v.preservesPitch=true}},[st.speed]);
+  useEffect(()=>{if(time>=DUR&&KIND==="film"){setPlaying(false);setShown(true)}},[time]);
   useEffect(()=>{if(!running)return;const i=setInterval(()=>setLine(l=>(l+1)%T.subs.length),4200);return()=>clearInterval(i)},[running]);
   useEffect(()=>{const v=vid.current;if(!v)return;const seek=()=>{try{v.currentTime=T.at}catch(e){}};if(v.readyState>0)seek();else v.addEventListener("loadedmetadata",seek,{once:true});const lp=()=>{if(v.currentTime>T.loop)v.currentTime=0};v.addEventListener("timeupdate",lp);return()=>v.removeEventListener("timeupdate",lp)},[]);
   useEffect(()=>{const v=vid.current;if(!v)return;if(running){const p=v.play();if(p&&p.catch)p.catch(()=>{})}else v.pause()},[running]);
@@ -288,7 +366,7 @@ function Player(){
   useEffect(()=>{if(!flash)return;const t=setTimeout(()=>setFlash(null),900);return()=>clearTimeout(t)},[flash]);
   useEffect(()=>{const f=()=>setFull(!!document.fullscreenElement);document.addEventListener("fullscreenchange",f);return()=>document.removeEventListener("fullscreenchange",f)},[]);
 
-  const cue=blocked||!started?null:resumeCue?"resume":part[0]==="recap"?"recap":part[0]==="intro"?"intro":(part[0]==="outro"||(PARTS.length===1&&time>=DUR-20))?(KIND==="film"?(endClosed?null:"end"):"next"):null;
+  const cue=blocked||!started?null:resumeCue?"resume":part[0]==="recap"?"recap":part[0]==="intro"?"intro":(part[0]==="outro"||(PARTS.length===1&&time>=DUR-20))?(KIND==="film"?null:"next"):null;
   const counting=cue==="next"&&!cancelled&&running;
   useEffect(()=>{if(!counting)return;if(left<=0){setEp(e=>e+1);setTime(0);setLeft(10);setShown(false);return}const t=setTimeout(()=>setLeft(l=>l-1),1000);return()=>clearTimeout(t)},[counting,left]);
 
@@ -296,40 +374,70 @@ function Player(){
   const toggle=()=>{wake();if(!started)setStarted(true);setPlaying(p=>!p)};
   const seek=t=>{setTime(clamp(t,0,DUR));setResumeCue(false)};
   const jump=d=>{wake();seek(time+d);setFlash(f=>({d:f&&Math.sign(f.d)===Math.sign(d)?f.d+d:d,id:Date.now()}))};
-  const fs=()=>{try{if(document.fullscreenElement)document.exitFullscreen();else root.current.requestFullscreen()}catch(e){}};
+  const fs=()=>{try{if(document.fullscreenElement){document.exitFullscreen();if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}else{const p=root.current.requestFullscreen();const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock("landscape").catch(()=>{})};if(p&&p.then)p.then(lock).catch(()=>{});else lock()}}catch(e){}};
   const openMenu=m=>{wake();setMenu(x=>x&&x.split("-")[0]===m?null:m)};
-  const k=useRef({});k.current={toggle,jump,fs,menu,over,vol,muted};
+  const stepSpeed=d=>{wake();setSt(s=>{const i=SPEEDS.indexOf(s.speed);return {...s,speed:SPEEDS[clamp(i+d,0,SPEEDS.length-1)]}})};
+  const k=useRef({});k.current={toggle,jump,fs,menu,over,vol,muted,stepSpeed};
   useEffect(()=>{const f=e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const c=k.current;const key=e.key.length===1?e.key.toLowerCase():e.key;
-    const map={" ":()=>c.toggle(),k:()=>c.toggle(),ArrowLeft:()=>c.jump(-13),j:()=>c.jump(-13),ArrowRight:()=>c.jump(8),l:()=>c.jump(8),ArrowUp:()=>{setMuted(false);setVol(v=>clamp(v+.1))},ArrowDown:()=>setVol(v=>clamp(v-.1)),m:()=>setMuted(m=>!m),f:()=>c.fs(),c:()=>setSt(s=>({...s,lang:s.lang==="off"?"fa":"off"})),Escape:()=>{if(c.menu)setMenu(null);else if(c.over==="share")setOver(null)}};
+    const map={" ":()=>c.toggle(),k:()=>c.toggle(),ArrowLeft:()=>c.jump(-13),j:()=>c.jump(-13),ArrowRight:()=>c.jump(8),l:()=>c.jump(8),ArrowUp:()=>{setMuted(false);setVol(v=>clamp(v+.1))},ArrowDown:()=>setVol(v=>clamp(v-.1)),m:()=>setMuted(m=>!m),f:()=>c.fs(),"<":()=>c.stepSpeed(-1),">":()=>c.stepSpeed(1),c:()=>setSt(s=>({...s,lang:s.lang==="off"?"fa":"off"})),Escape:()=>{if(c.menu)setMenu(null);else if(c.over==="share")setOver(null)}};
     if(!map[key])return;if(key===" "&&e.target.closest&&e.target.closest("button,[role=switch],a"))return;if(c.over&&c.over!=="share"&&key!=="Escape")return;e.preventDefault();map[key]()};
     addEventListener("keydown",f);return()=>removeEventListener("keydown",f)},[]);
 
-  const pw=Math.min(box.w,box.h*T.ar),ph=pw/T.ar,below=(box.h-ph)/2;
+  const port=mode==="port";
+  const stageH=box.h;
+  const pw=Math.min(box.w,stageH*T.ar),ph=pw/T.ar,below=(stageH-ph)/2;
   const barH=mode==="desk"?124:mode==="land"?100:104;
-  const subMin={s:15,m:18,l:22}[st.size],subK={s:.04,m:.05,l:.062}[st.size];
+  const subMin={xs:12,s:14.5,m:17,l:20.5,xl:25}[st.size],subK={xs:.032,s:.04,m:.05,l:.062,xl:.078}[st.size];
   const subFs=clamp(ph*subK,subMin,56);
-  const under=below-barH>=subFs*3.6+24;
+  const under=menu!=="subs-style"&&below-barH>=subFs*3.6+24;
   const subPos=under?{top:below+ph+12}:{bottom:below+ph*.06};
-  const cueLift=shown&&!blocked?barH-(mode==="desk"?14:6):0;
+  const cueLift=shown&&!blocked?Math.max(0,barH-(mode==="desk"?14:6)):0;
   const cueBase=mode==="desk"?28:18;
-  const clear=Math.max(shown&&!blocked?barH+8:0,cue&&mode!=="desk"?cueBase+cueLift+cueBox.h+10:0);
+  const inRecap=RCFILM&&started&&!blocked&&part[0]==="recap";
+  const isSkip=cue==="recap"||cue==="intro";
+  const cueY=cueLift+(shown&&!blocked&&mode==="port"?22:0);
+  const clear=Math.max(shown&&!blocked?barH+8:0,cue&&mode!=="desk"?cueBase+cueY+cueBox.h+10:0);
   const subLift=under?0:Math.max(0,clear-(below+ph*.06));
   const subPad=mode==="land"&&menu?340:0;
-  const showSubs=started&&st.lang!=="off"&&!["guest","nosub","error","recap"].includes(over);
+  const showSubs=menu!=="eps"&&!inRecap&&started&&st.lang!=="off"&&!["guest","nosub","error","recap"].includes(over);
   const [fa_,en_]=T.subs[line];
-  const qNow=st.q==="auto"?(LOW?"480p":st.failed?"720p":"1080p"):st.q+"p";
+  const qNow=st.q==="auto"?(st.failed?"720p":"1080p"):st.q+"p";
   const chrome=shown&&!blocked&&over!=="recap";
+  const botOn=chrome;
   const bar=dir=>({initial:r?{opacity:0}:{opacity:0,y:dir*10},animate:{opacity:1,y:0,transition:{duration:r?.15:.3,ease:EASE}},exit:r?{opacity:0,transition:{duration:.1}}:{opacity:0,y:dir*10,transition:{duration:.2,ease:EASE_LEAVE}}});
   const shade={initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:r?.15:.3,ease:EASE}};
-  const cueM={initial:r?{opacity:0}:{opacity:0,y:14,scale:.96},animate:{opacity:1,y:0,scale:1,transition:SPR},exit:r?{opacity:0}:{opacity:0,y:8,scale:.98,transition:{duration:.18,ease:EASE_LEAVE}}};
+  const cueM={initial:{opacity:0},animate:{opacity:1,transition:{duration:.25,ease:EASE}},exit:{opacity:0,transition:{duration:.12}}};
   const veil={initial:{opacity:0},animate:{opacity:1},exit:{opacity:0},transition:{duration:r?.15:.28,ease:EASE}};
   const dlg={initial:r?{opacity:0}:{opacity:0,y:12,scale:.98},animate:{opacity:1,y:0,scale:1},transition:r?{duration:.15}:{...SPR,delay:.05}};
   const home="بازگشت به "+T.home;
 
-  return html`<main class="vp" id="player" ref=${root} data-idle=${!shown&&running&&!menu} style=${{"--ar":T.ar,"--sub-fs":subFs+"px","--sub-c":SUBC[st.color][1]}} onPointerMove=${e=>{if(e.pointerType==="mouse")wake()}}>
+  const botEl=html`<${AnimatePresence}>
+      ${botOn&&html`<${motion.footer} key="bot" class="vp-bot" ...${bar(1)}>
+        <div class="vp-times">
+          <span class="vp-now">${scrubT!=null?html`<span class="num">${fmt(scrubT)}</span>`:html`<${AnimChars} text=${fmt(time)} dur=${320} blur=${4} label=${"زمان "+fmt(time)}/>`}${PARTS.length>1&&html`<${Swap} k=${nowPart[0]} r=${r} cls="vp-partname">${PARTNAME[nowPart[0]]}</${Swap}>`}</span>
+          <button class="vp-total" onClick=${()=>setRemain(x=>!x)} aria-label=${remain?"نمایش زمان کل":"نمایش زمان مانده"}>${remain&&html`<span>مانده</span>`}<${AnimChars} text=${fmt(remain?DUR-time:DUR)} dur=${320} blur=${4}/></button>
+        </div>
+        <${Seek} time=${time} buf=${Math.min(DUR,time+(buffering?2:140))} onSeek=${seek} force=${FORCE0} noimg=${S==="hover-noimg"||Q.has("noimg")} r=${r} mode=${mode} onBusy=${setBusy} onScrub=${setScrubT}/>
+        <div class="vp-acts">
+          ${KIND==="series"&&html`<button class="vp-opt" aria-haspopup="dialog" aria-expanded=${menu==="eps"} onClick=${()=>openMenu("eps")}><${I} n="eps"/><span>قسمت‌ها</span></button>`}
+          <button class="vp-opt" aria-haspopup="menu" aria-expanded=${!!menu&&menu.startsWith("subs")} onClick=${()=>openMenu("subs")}><${I} n="subs"/><span>زیرنویس</span><span class="v">${LANG[st.lang]}</span></button>
+          ${T.dub&&mode==="desk"&&html`<button class="vp-opt" aria-haspopup="menu" aria-expanded=${menu==="audio"} onClick=${()=>openMenu("audio")} aria-label=${"زبان صدا: "+(st.audio==="dub"?"دوبله‌ی فارسی":"زبان اصلی")}><${I} n="audio"/><span>${st.audio==="dub"?"دوبله‌ی فارسی":"زبان اصلی"}</span></button>`}
+          ${mode==="desk"&&html`<button class="vp-opt" aria-haspopup="menu" aria-expanded=${menu==="speed"} onClick=${()=>openMenu("speed")} aria-label=${"سرعت پخش "+spd(st.speed)}><${I} n="speed"/><span>${st.speed===1?"سرعت":html`<span class="vp-speed-n">${spd(st.speed)}×</span>`}</span></button>`}
+          ${html`<button class="vp-opt" aria-haspopup="menu" aria-expanded=${menu==="quality"} onClick=${()=>openMenu("quality")}><${I} n="hd"/><span>کیفیت</span><span class="v">${st.q==="auto"?"خودکار · ":""}<bdi dir="ltr">${qNow}</bdi></span></button>`}
+          ${mode!=="desk"&&html`<button class="vp-opt" aria-haspopup="menu" aria-expanded=${!!menu&&menu.startsWith("more")} onClick=${()=>openMenu("more")}><${I} n="gear"/><span>تنظیمات</span></button>`}
+          <span class="sp"></span>
+          <button class="ib vp-keys" aria-haspopup="menu" aria-expanded=${menu==="keys"} onClick=${()=>openMenu("keys")} aria-label="میان‌برهای صفحه‌کلید" title="میان‌برهای صفحه‌کلید"><${I} n="keys"/></button>
+          <${Volume} vol=${vol} muted=${muted} setVol=${v=>{setVol(v);setMuted(false)}} toggle=${()=>setMuted(m=>!m)} r=${r}/>
+          <button class="ib" onClick=${fs} aria-label=${full?"خروج از تمام‌صفحه":"تمام‌صفحه"} title=${full?"خروج از تمام‌صفحه (F)":"تمام‌صفحه (F)"}><${I} n=${full?"unfull":"full"}/></button>
+        </div>
+      </${motion.footer}>`}
+    </${AnimatePresence}>`;
+  return html`<main class="vp" id="player" ref=${root} data-mode=${mode} data-idle=${!shown&&running&&!menu} style=${{"--sh":stageH+"px","--ar":T.ar,"--sub-fs":subFs+"px","--sub-c":SUBC[st.color][1]}} onPointerMove=${e=>{if(e.pointerType==="mouse")wake()}}>
+    <div class="vp-stage">
     <video class="vp-pic" ref=${vid} src=${T.video} poster=${T.poster} muted playsInline preload="auto" aria-label=${NAME}></video>
+    ${inRecap&&html`<${RecapFilm} time=${time} running=${running} speed=${st.speed} r=${r} chrome=${chrome}/>`}
     <div class="vp-tap" onClick=${e=>{if(e.nativeEvent.pointerType==="touch"){setHold(false);setShown(s=>!s)}else toggle()}}></div>
-    ${showSubs&&html`<${motion.div} class="vp-subs" data-box=${st.box} style=${{...subPos,paddingRight:subPad?subPad+16:undefined}} initial=${false} animate=${{y:-subLift}} transition=${r?{duration:0}:SPR} aria-live="off">
+    ${showSubs&&html`<${motion.div} class="vp-subs" data-bg=${st.bg} style=${{...subPos,paddingRight:subPad?subPad+16:undefined}} initial=${false} animate=${{y:-subLift,opacity:busy?0:1}} transition=${r?{duration:0}:{...SPR,opacity:{duration:.15}}} aria-live="off">
       ${(st.lang==="en"||st.lang==="dual")&&html`<span class="en" lang="en">${en_}</span>`}
       ${(st.lang==="fa"||st.lang==="dual")&&html`<span>${fa_}</span>`}
     </${motion.div}>`}
@@ -341,13 +449,13 @@ function Player(){
     <${AnimatePresence}>
       ${(chrome||!!over)&&html`<${motion.header} key="top" class="vp-top" ...${bar(-1)}>
         <a class="ib" href="../title/rollvana-title.html?kind=${KIND}" aria-label=${home} title=${home}><${I} n="back"/></a>
-        <div class="vp-ttl"><h1 class="vp-name">${NAME}</h1><p class="vp-ep">${SUBLINE(ep)}</p></div>
+        <div class="vp-ttl"><h1 class="vp-name">${NAME}</h1><p class="vp-ep">${SUBLINE(KIND==="film"?ep:st.ep)}</p></div>
         ${!blocked&&html`<button class="ib" onClick=${()=>{setMenu(null);setOver("share")}} aria-label="هم‌رسانی" title="هم‌رسانی"><${I} n="share"/></button>`}
       </${motion.header}>`}
     </${AnimatePresence}>
     <div class="vp-mid">
       <${AnimatePresence}>
-        ${chrome&&(!menu||mode==="desk")&&html`<${motion.div} key="tr" class="vp-trans" initial=${r?{opacity:0}:{opacity:0,scale:.92}} animate=${{opacity:1,scale:1,transition:r?{duration:.15}:SPR}} exit=${{opacity:0,scale:r?1:.96,transition:{duration:.16,ease:EASE_LEAVE}}}>
+        ${chrome&&(!menu||(mode==="desk"&&menu!=="eps"&&menu!=="subs-style"))&&html`<${motion.div} key="tr" class="vp-trans" initial=${r?{opacity:0}:{opacity:0,scale:.92}} animate=${{opacity:1,scale:1,transition:r?{duration:.15}:SPR}} exit=${{opacity:0,scale:r?1:.96,transition:{duration:.16,ease:EASE_LEAVE}}}>
           <${motion.button} class="vp-jump" whileTap=${r?undefined:PRESS} disabled=${!started||time<=0} onClick=${()=>jump(-13)} aria-label="۱۳ ثانیه عقب" title="۱۳ ثانیه عقب (←)">
             <${motion.span} class="arc" key=${flash&&flash.d<0?flash.id:"a"} initial=${r||!flash||flash.d>0?false:{rotate:-38}} animate=${{rotate:0}} transition=${SNAP}><${I} n="ccw"/></${motion.span}><b>${fa(13)}</b>
             <${AnimatePresence}>${flash&&flash.d<0&&html`<${motion.span} key="f" class="vp-flash" style=${{x:"-50%"}} initial=${r?{opacity:0}:{opacity:0,y:8}} animate=${{opacity:1,y:0}} exit=${r?{opacity:0}:{opacity:0,y:-8}} transition=${{duration:.25,ease:EASE}}><${AnimChars} text=${fa(-flash.d)} dur=${300} blur=${4}/> ثانیه عقب</${motion.span}>`}</${AnimatePresence}>
@@ -365,47 +473,28 @@ function Player(){
         </${motion.div}>`}
       </${AnimatePresence}>
     </div>
-    <${AnimatePresence}>
-      ${chrome&&html`<${motion.footer} key="bot" class="vp-bot" ...${bar(1)}>
-        <div class="vp-times">
-          <span class="vp-now">${scrubT!=null?html`<span class="num">${fmt(scrubT)}</span>`:html`<${AnimChars} text=${fmt(time)} dur=${320} blur=${4} label=${"زمان "+fmt(time)}/>`}${PARTS.length>1&&html`<${Swap} k=${nowPart[0]} r=${r} cls="vp-partname">${PARTNAME[nowPart[0]]}</${Swap}>`}</span>
-          <button class="vp-total" onClick=${()=>setRemain(x=>!x)} aria-label=${remain?"نمایش زمان کل":"نمایش زمان مانده"}>${remain&&html`<span>مانده</span>`}<${AnimChars} text=${fmt(remain?DUR-time:DUR)} dur=${320} blur=${4}/></button>
-        </div>
-        <${Seek} time=${time} buf=${Math.min(DUR,time+(buffering?2:140))} onSeek=${seek} force=${FORCE0} noimg=${S==="hover-noimg"||Q.has("noimg")} r=${r} mode=${mode} onBusy=${setBusy} onScrub=${setScrubT}/>
-        <div class="vp-acts">
-          <button class="vp-opt" aria-haspopup="menu" aria-expanded=${!!menu&&menu.startsWith("subs")} onClick=${()=>openMenu("subs")}><${I} n="subs"/><span>زیرنویس</span><span class="v">${LANG[st.lang]}</span></button>
-          <button class="vp-opt" aria-haspopup="menu" aria-expanded=${menu==="quality"} onClick=${()=>openMenu("quality")}><${I} n="hd"/><span>کیفیت</span><span class="v">${st.q==="auto"?"خودکار · ":""}<bdi dir="ltr">${qNow}</bdi></span></button>
-          ${T.dub&&html`<button class="vp-opt" aria-haspopup="menu" aria-expanded=${menu==="audio"} onClick=${()=>openMenu("audio")}><${I} n="audio"/><span>صدا</span><span class="v">${st.audio==="dub"?"دوبله":"زبان اصلی"}</span></button>`}
-          <span class="sp"></span>
-          <button class="ib vp-keys" aria-haspopup="menu" aria-expanded=${menu==="keys"} onClick=${()=>openMenu("keys")} aria-label="میان‌برهای صفحه‌کلید" title="میان‌برهای صفحه‌کلید"><${I} n="keys"/></button>
-          <${Volume} vol=${vol} muted=${muted} setVol=${v=>{setVol(v);setMuted(false)}} toggle=${()=>setMuted(m=>!m)} r=${r}/>
-          <button class="ib" onClick=${fs} aria-label=${full?"خروج از تمام‌صفحه":"تمام‌صفحه"} title=${full?"خروج از تمام‌صفحه (F)":"تمام‌صفحه (F)"}><${I} n=${full?"unfull":"full"}/></button>
-        </div>
-      </${motion.footer}>`}
-    </${AnimatePresence}>
-    <${motion.div} class="vp-cue" ref=${cueRef} initial=${false} animate=${{y:-cueLift}} transition=${r?{duration:0}:SPR}>
-      <${AnimatePresence} mode="popLayout">
+    <${motion.div} class="vp-cue" ref=${cueRef} initial=${false} animate=${{y:-cueY}} transition=${r?{duration:0}:SPR}>
+      <${AnimatePresence} mode="wait">
         ${cue==="resume"&&html`<${motion.div} key="resume" class="vp-resume" ...${cueM}><span>ادامه از <b>${fmt(T.resume)}</b></span><button onClick=${()=>{seek(0);wake()}}><${I} n="restart"/>از اول</button></${motion.div}>`}
-        ${cue==="recap"&&html`<${motion.button} key="recap" class="vp-skip" ...${cueM} whileTap=${r?undefined:PRESS} onClick=${()=>seek(part[2])}>رد کردن آنچه گذشت<${I} n="skip"/></${motion.button}>`}
+        ${cue==="recap"&&html`<${motion.button} key="recap" class="vp-skip" ...${cueM} whileTap=${r?undefined:PRESS} onClick=${()=>seek(part[2])}>رد کردن خلاصه‌ی هوشمند<${I} n="skip"/></${motion.button}>`}
         ${cue==="intro"&&html`<${motion.button} key="intro" class="vp-skip" ...${cueM} whileTap=${r?undefined:PRESS} onClick=${()=>seek(part[2])}>رد کردن تیتراژ<${I} n="skip"/></${motion.button}>`}
-        ${cue==="next"&&html`<${motion.div} key="next" class="vp-card" role="region" aria-label="قسمت بعد" ...${cueM}>
-          <div class="vp-card-pic"><img src=${T.next} alt=""/><${AnimatePresence}>${!cancelled&&html`<${motion.div} key="c" exit=${{opacity:0}} transition=${{duration:.2}}><${Countdown} left=${left} run=${counting} r=${r}/></${motion.div}>`}</${AnimatePresence}></div>
-          <div class="vp-card-b"><span class="vp-eyebrow">قسمت بعد · فصل ${fa(T.season)}، قسمت ${fa(ep+1)}</span><span class="vp-card-t">${LONG?"تویی که هستی؛ کتابی که نباید به طبقه‌ی جداشده‌ها می‌رسید و حالا دست‌به‌دست می‌چرخد":T.nextName}</span>
-            <div class="vp-card-a"><button class="cta vp-sm" onClick=${()=>setLeft(0)}><${I} n="play"/>پخش</button><button class="ghost vp-sm" onClick=${()=>cancelled?setTime(DUR):setCancelled(true)}><${Swap} k=${cancelled} r=${r}>${cancelled?"بستن":"لغو"}</${Swap}></button></div></div>
+        ${cue==="next"&&html`<${motion.div} key="nextb" class="nxc" role="region" aria-label="قسمت بعد" ...${cueM}>
+          <button class="nxb-x" onClick=${()=>cancelled?setTime(DUR):setCancelled(true)} aria-label=${cancelled?"بستن":"لغو پخش خودکار"}><${I} n="x"/></button>
+          <button class="nxc-go" onClick=${()=>setLeft(0)}><img src=${T.next} alt=""/><span class="tx"><small>قسمت بعد${!cancelled&&html` · <b>${fa(left)}</b> ثانیه`}</small><b class="t">${fa(ep+1)} · ${LONG?"تویی که هستی؛ کتابی که نباید به طبقه‌ی جداشده‌ها می‌رسید و حالا دست‌به‌دست می‌چرخد":T.nextName}</b></span><span class="pl">${!cancelled&&html`<svg class="rg" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22"/><${motion.circle} class="pg" cx="24" cy="24" r="22" initial=${{pathLength:1-left/10}} animate=${{pathLength:counting&&!r?1:1-left/10}} transition=${counting&&!r?{duration:left,ease:"linear"}:{duration:0}}/></svg>`}<${I} n="play"/></span></button>
         </${motion.div}>`}
-        ${cue==="end"&&html`<${motion.div} key="end" class="vp-card" role="region" aria-label="پایان فیلم" ...${cueM}>
-          <div class="vp-card-b"><span class="vp-eyebrow">پایان فیلم</span><span class="vp-card-t">${NAME}</span>
-            <div class="vp-card-a"><a class="cta vp-sm" href="../title/rollvana-title.html?kind=film">${home}</a><button class="ghost vp-sm" onClick=${()=>setEndClosed(true)}>دیدن تیتراژ</button></div></div>
-        </${motion.div}>`}
-      </${AnimatePresence}>
+        </${AnimatePresence}>
     </${motion.div}>
+    ${S==="fs"&&full&&html`<div class="vp-rotcue" role="status"><${I} n="full"/>تمام‌صفحه، افقی</div>`}
+    </div>
+    ${botEl}
     <${AnimatePresence}>
-      ${over==="recap"&&html`<${motion.section} key="recap" class="vp-recap" aria-label="آنچه دیدید" initial=${r?{opacity:0}:mode==="port"?{y:"100%"}:mode==="land"?{x:"100%"}:{opacity:0,y:16,scale:.98}} animate=${{opacity:1,x:0,y:0,scale:1}} exit=${r?{opacity:0}:mode==="port"?{y:"100%"}:mode==="land"?{x:"100%"}:{opacity:0,y:10}} transition=${r?{duration:.15}:SHEET}>
-        <div class="vp-recap-h"><${I} n="spark"/><div><h2>آنچه دیدید</h2><span class="vp-eyebrow">${T.recapOf}</span></div>
-          <button class="vp-recap-x" onClick=${()=>{setOver(null);setStarted(true);setPlaying(true);setHold(false)}}>رد کردن</button></div>
-        <p class="vp-recap-t">${T.recap}${LONG?T.recapMore:""}</p>
-        <div class="vp-recap-f"><small>خلاصه را هوش مصنوعی نوشته و چیزی از ادامه را لو نمی‌دهد.</small>
-          <button class="cta" onClick=${()=>{setOver(null);setStarted(true);setPlaying(true);setHold(false)}}><${I} n="play"/>${KIND==="film"?"ادامه از "+fmt(T.resume):"پخش قسمت "+fa(T.ep)}</button></div>
+      ${over==="recap"&&html`<${motion.section} key="recap" class="vp-recap rc2" data-rc="c" aria-label="آنچه دیدید" initial=${r?{opacity:0}:mode==="port"?{y:"100%"}:mode==="land"?{x:"100%"}:{opacity:0,y:16,scale:.98}} animate=${{opacity:1,x:0,y:0,scale:1}} exit=${r?{opacity:0}:mode==="port"?{y:"100%"}:mode==="land"?{x:"100%"}:{opacity:0,y:10}} transition=${r?{duration:.15}:SHEET}>
+        <div class="rc-bg" style=${{backgroundImage:"url("+T.poster+")"}}></div>
+        <div class="rc-in">
+          <header class="rc-h"><span class="rc-k"><${I} n="spark"/>خلاصه‌ی هوشمند رول‌وانا</span><h2>آنچه دیدید</h2><p>${T.recapOf} · بدون لو دادن ادامه</p></header>
+          <${RecapText} text=${RCT} r=${r}/>
+          <footer class="rc-f"><button class="cta" onClick=${()=>{setOver(null);setStarted(true);setPlaying(true);setHold(false)}}><${I} n="play"/>${KIND==="film"?"ادامه از "+fmt(T.resume):"پخش قسمت "+fa(T.ep)}</button><button class="ghost" onClick=${()=>{setOver(null);setStarted(true);setPlaying(true);setHold(false)}}>رد کردن</button></footer>
+        </div>
       </${motion.section}>`}
       ${blocked&&over!=="recap"&&html`<${motion.div} key=${over} class="vp-veil" role="alertdialog" aria-modal="true" aria-labelledby="vp-dlg-t" ...${veil}>
         <${motion.div} class="vp-dlg" ...${dlg}>
@@ -420,7 +509,8 @@ function Player(){
         </${motion.div}>
       </${motion.div}>`}
     </${AnimatePresence}>
-    <${AnimatePresence}>${menu&&html`<${Menu} key="menu" id=${menu} go=${setMenu} close=${()=>setMenu(null)} st=${st} set=${set} mode=${mode} r=${r} maxH=${mode==="port"?box.h*.74:mode==="land"?box.h:Math.min(540,box.h-200)}/>`}</${AnimatePresence}>
+    <${AnimatePresence}>${menu==="eps"&&html`<${EpStrip} key="epx" st=${st} set=${set} close=${()=>setMenu(null)} r=${r}/>`}</${AnimatePresence}>
+    <${AnimatePresence}>${menu&&menu!=="eps"&&html`<${Menu} key="menu" id=${menu} go=${setMenu} close=${()=>setMenu(null)} st=${st} set=${set} mode=${mode} r=${r} maxH=${mode==="port"?box.h*.74:mode==="land"?box.h:Math.min(540,box.h-200)}/>`}</${AnimatePresence}>
     <${AnimatePresence}>${over==="share"&&html`<${Share} key="share" time=${time} close=${()=>setOver(null)} mode=${mode} r=${r}/>`}</${AnimatePresence}>
     <div class="vp-toasts"><${AnimatePresence}>${toast&&html`<${motion.div} key="t" class="toast" role="status" initial=${r?{opacity:0}:{opacity:0,y:-12,scale:.98}} animate=${{opacity:1,y:0,scale:1}} exit=${r?{opacity:0}:{opacity:0,y:-8}} transition=${{duration:.28,ease:EASE}}><${I} n="hd"/><span>کیفیت <bdi dir="ltr">1080p</bdi> بار نشد؛ ادامه با <bdi dir="ltr">720p</bdi></span></${motion.div}>`}</${AnimatePresence}></div>
   </main>`;
@@ -430,13 +520,13 @@ const GROUPS=[
 ["شروع",[["first","اولین پخش"],["resume","ادامه با «از اول»"],["recap","آنچه دیدید"]]],
 ["پخش",[["playing","در حال پخش با کنترل‌ها"],["hidden","کنترل‌ها پنهان"],["buffer","بارگذاری"],["switch","تغییر خودکار کیفیت"],["error","خطا و تلاش دوباره"]]],
 ["نوار زمان",[["parts","با همه‌ی بخش‌ها"],["noparts","بدون بخش"],["hover","نشانگر روی بخش، با تصویر"],["hover-noimg","نشانگر روی بخش، بی‌تصویر"],["drag","کشیدن"],["short","بخش خیلی کوتاه"]]],
-["بخش‌ها",[["skip-recap","رد کردن آنچه گذشت"],["skip-intro","رد کردن تیتراژ"],["next","شمارش قسمت بعد"],["still","هنوز تماشا می‌کنید؟"],["end","کارت پایان فیلم"]]],
-["منوها",[["quality","کیفیت"],["quality&low","کیفیت، حالت کم‌مصرف"],["subs","زیرنویس"],["subs-style","ظاهر زیرنویس"],["subs-sync","هماهنگی زیرنویس"],["audio","صدا"],["keys","میان‌برها"],["share","هم‌رسانی"]]],
+["بخش‌ها",[["skip-recap","رد کردن آنچه گذشت"],["skip-intro","رد کردن تیتراژ"],["next","شمارش قسمت بعد"],["still","هنوز تماشا می‌کنید؟"],["credits","تیتراژ پایانی فیلم، بدون کارت"],["end","پایان فیلم، آخرین فریم"],["fs","تمام‌صفحه، گوشی افقی"]]],
+["منوها",[["eps","قسمت‌ها"],["eps-long","قسمت‌ها، نام بلند"],["eps-s2","قسمت‌ها، فصل ۲"],["speed","سرعت پخش"],["quality","کیفیت"],["subs","زیرنویس"],["subs-style","ظاهر زیرنویس"],["subs-sync","هماهنگی زیرنویس"],["audio","زبان صدا"],["dub","دوبله‌ی فارسی روشن"],["keys","میان‌برها"],["share","هم‌رسانی"]]],
 ["دسترسی",[["guest","مهمان"],["nosub","بدون اشتراک"]]]];
 function Review(){
-  const keep=(o)=>{const p=new URLSearchParams();Object.entries(o).forEach(([a,b])=>{if(b!==false&&b!=null)p.set(a,b===true?"1":b)});return "?"+p.toString().replace(/=1(&|$)/g,"$1").replace("%26low","&low")};
+  const keep=(o)=>{const p=new URLSearchParams();Object.entries(o).forEach(([a,b])=>{if(b!==false&&b!=null)p.set(a,b===true?"1":b)});return "?"+p.toString().replace(/=1(&|$)/g,"$1")};
   const base={k:KIND==="film"?"film":null,long:LONG||null,rm:RM||null};
-  const cur=S+(LOW?"&low":"");
+  const cur=S;
   return html`<section class="rv" aria-label="بازبینی">
     <h2>حالت‌های بازبینی</h2>
     <p>هر دکمه همین صفحه را در یک حالت باز می‌کند. کنترل‌ها و پیام‌ها تا اولین حرکت شما می‌مانند؛ بعد پخش‌کننده مثل واقعیت رفتار می‌کند و شمارش قسمت بعد از همان لحظه‌ی باز شدن می‌دود. برای گوشیِ افقی، پنجره را ۸۴۴ در ۳۹۰ کنید.</p>

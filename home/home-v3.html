@@ -3,11 +3,13 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>Rollvana Home</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"></div>
 <div id="app"></div>
 <script src="media/vendor/react.production.min.js"></script>
 <script src="media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="media/vendor/framer-motion.js"></script>
 <script src="../brand/rollvana-intro.js"></script>
 <script>(()=>{const b=document.getElementById("boot");
@@ -81,9 +83,9 @@ const HERO=[
 ];
 const LONG={...HERO[0],s:null,en:"The Assassination of Jesse James by the Coward Robert Ford",fa:"ترور جسی جیمز به دست رابرت فورد بزدل",acc:"#b8864a"};
 const C=(s,en,imdb,b,f)=>({s,en,imdb,b,f});
-const FILMS=[C("sinners","Sinners","7.6","دوبله","امروز"),C("one-battle-after-another","One Battle After Another","8.1","زیرنویس","امروز"),C("weapons","Weapons","7.5","دوبله","دیروز"),C("f1","F1","7.7","دوبله","دیروز"),C("frankenstein","Frankenstein","7.5","زیرنویس","۳ روز پیش"),C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning","7.2","دوبله","۴ روز پیش"),C("the-running-man","The Running Man","6.6","زیرنویس","۵ روز پیش"),C("oppenheimer","Oppenheimer","8.3","دوبله","یک هفته پیش")];
-const SERIES=[C("the-bear","The Bear","8.5","زیرنویس","فصل ۴ · قسمت ۲ تازه"),C("star-wars-andor","Andor","8.6","دوبله","فصل ۲ · قسمت ۱۲ تازه"),C("slow-horses","Slow Horses","8.3","زیرنویس","فصل ۵ · قسمت ۶ تازه"),C("the-penguin","The Penguin","8.6","دوبله","فصل ۱ · قسمت ۸ تازه"),C("the-white-lotus","The White Lotus","8.0","زیرنویس","فصل ۳ · قسمت ۸ تازه"),C("squid-game","Squid Game","8.0","دوبله","فصل ۳ · قسمت ۶ تازه"),C("house-of-the-dragon","House of the Dragon","8.3","دوبله","فصل ۲ · قسمت ۸ تازه"),C("wednesday","Wednesday","8.0","دوبله","فصل ۲ · قسمت ۸ تازه")];
-const PICKS=[C("past-lives","Past Lives","7.8","زیرنویس"),C("arrival","Arrival","7.9","دوبله"),C("interstellar","Interstellar","8.7","دوبله"),C("parasite","Parasite","8.5","زیرنویس"),C("whiplash","Whiplash","8.5","دوبله"),C("her","Her","8.0","زیرنویس"),C("prisoners","Prisoners","8.1","دوبله"),C("blade-runner-2049","Blade Runner 2049","8.0","زیرنویس")];
+const FILMS=[C("sinners","Sinners","7.6","دوبله","امروز"),C("one-battle-after-another","One Battle After Another","8.1","زیرنویس","امروز"),C("weapons","Weapons","7.5","دوبله","دیروز"),C("f1","F1","7.7","دوبله و زیرنویس","دیروز"),C("frankenstein","Frankenstein","7.5","زیرنویس","۳ روز پیش"),C("mission-impossible-the-final-reckoning","Mission: Impossible – The Final Reckoning","7.2","دوبله","۴ روز پیش"),C("the-running-man","The Running Man","6.6","زیرنویس","۵ روز پیش"),C("oppenheimer","Oppenheimer","8.3","دوبله","یک هفته پیش")];
+const SERIES=[C("the-bear","The Bear","8.5","زیرنویس","فصل ۴ · قسمت ۲ تازه"),C("star-wars-andor","Andor","8.6","دوبله و زیرنویس","فصل ۲ · قسمت ۱۲ تازه"),C("slow-horses","Slow Horses","8.3","زیرنویس","فصل ۵ · قسمت ۶ تازه"),C("the-penguin","The Penguin","8.6","دوبله","فصل ۱ · قسمت ۸ تازه"),C("the-white-lotus","The White Lotus","8.0","زیرنویس","فصل ۳ · قسمت ۸ تازه"),C("squid-game","Squid Game","8.0","دوبله","فصل ۳ · قسمت ۶ تازه"),C("house-of-the-dragon","House of the Dragon","8.3","دوبله","فصل ۲ · قسمت ۸ تازه"),C("wednesday","Wednesday","8.0","دوبله","فصل ۲ · قسمت ۸ تازه")];
+const PICKS=[C("past-lives","Past Lives","7.8","زیرنویس"),C("arrival","Arrival","7.9","دوبله"),C("interstellar","Interstellar","8.7","دوبله و زیرنویس"),C("parasite","Parasite","8.5","زیرنویس"),C("whiplash","Whiplash","8.5","دوبله"),C("her","Her","8.0","زیرنویس"),C("prisoners","Prisoners","8.1","دوبله"),C("blade-runner-2049","Blade Runner 2049","8.0","زیرنویس")];
 const GENRES=[["اکشن","Action","fallout","50% 45%","#c09040",1240],["علمی‌تخیلی","Sci-Fi","blade-runner-2049","30% 30%","#7a3fd0",860],["درام","Drama","the-last-of-us","55% 30%","#8a9a4a",2310],["تاریخی","History","shogun","50% 25%","#2a9a96",640],["معمایی","Mystery","severance","60% 30%","#3f86c0",410],["ماجراجویی","Adventure","dune-part-two","40% 30%","#b8864a",980],["فانتزی","Fantasy","poor-things","60% 25%","#2aa8e0",520],["زندگی‌نامه","Biography","oppenheimer","47% 40%","#d98a2a",370]];
 
 const CMETA={"sinners":["ترسناک، درام",2025],"one-battle-after-another":["اکشن، درام",2025],"weapons":["ترسناک، معمایی",2025],"f1":["ورزشی، درام",2025],"frankenstein":["فانتزی، درام",2025],"mission-impossible-the-final-reckoning":["اکشن، ماجراجویی",2025],"the-running-man":["اکشن، علمی‌تخیلی",2025],"oppenheimer":["زندگی‌نامه، درام",2023],"the-bear":["کمدی، درام",2022],"star-wars-andor":["علمی‌تخیلی، ماجراجویی",2022],"slow-horses":["جنایی، هیجان‌انگیز",2022],"the-penguin":["جنایی، درام",2024],"the-white-lotus":["کمدی، درام",2021],"squid-game":["هیجان‌انگیز، درام",2021],"house-of-the-dragon":["فانتزی، درام",2022],"wednesday":["کمدی، فانتزی",2022],"past-lives":["عاشقانه، درام",2023],"arrival":["علمی‌تخیلی، درام",2016],"interstellar":["علمی‌تخیلی، ماجراجویی",2014],"parasite":["هیجان‌انگیز، کمدی",2019],"whiplash":["درام، موسیقی",2014],"her":["عاشقانه، علمی‌تخیلی",2013],"prisoners":["جنایی، معمایی",2013],"blade-runner-2049":["علمی‌تخیلی، معمایی",2017]};
@@ -110,7 +112,7 @@ const CSYN={"sinners":"دو برادر دوقلو به شهر زادگاهشان
 
 
 const ASSETS=(()=>{const u=new Set();
-  [...HERO,LONG].forEach(h=>{u.add(M("b-"+(h.s||"dune-part-two")+".jpg"));if(h.s)u.add(M("l-"+h.s+".png"))});
+  [...HERO,LONG].forEach(h=>{u.add(M("b-"+(h.s||"dune-part-two")+".jpg"));if(h.s&&innerWidth<900)u.add(M("m-"+h.s+".jpg"));if(h.s)u.add(M("l-"+h.s+".png"))});
   [...FILMS,...SERIES,...PICKS,{s:"mission-impossible-the-final-reckoning"}].forEach(c=>u.add(M("p-"+c.s+".jpg")));
   GENRES.forEach(g=>u.add(M("b-"+g[2]+".jpg")));return [...u]})();
 const READY=Promise.race([
@@ -147,6 +149,7 @@ function Header({user,desk}){
   const [hov,setHov]=useState(null);
   const reduced=useReducedMotion();
   const [hide,setHide]=useState(false);
+  const [qf,setQf]=useState(false);
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
   return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
@@ -160,12 +163,12 @@ function Header({user,desk}){
       </a>`)}
     <${MoreNav}/>
     </nav>`}
-    ${desk&&html`<${motion.label} class="search" initial=${false} whileFocus=${{}} style=${{width:340}} animate=${{}}
-        onFocus=${e=>e.currentTarget.style.width="420px"} onBlur=${e=>e.currentTarget.style.width="340px"}>
+    ${desk&&html`<${motion.label} class="search" initial=${false} animate=${{width:qf?440:320}} transition=${reduced?{duration:0}:SOFT}
+        onFocus=${()=>setQf(true)} onBlur=${()=>setQf(false)}>
       <${I} n="search"/><input id="q" placeholder="جستجوی فیلم، سریال یا بازیگر" aria-label="جستجو"/><kbd>/</kbd>
     </${motion.label}>`}
     <div class="hl">
-      ${user&&html`<${motion.button} class="ib bell" aria-label="اعلان‌ها، ۲ مورد تازه" whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><i class="dot"></i></${motion.button}>`}
+      ${user&&html`<${motion.button} class="ib bell" aria-label=${RVC.bellLabel(RVC.N0)} whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><${RVC.Count}/></${motion.button}>`}
       <${AnimatePresence} mode="popLayout" initial=${false}>
         ${!user&&html`<${motion.a} key="sub" class="sub" href="#" whileTap=${{scale:.96}} initial=${{opacity:0,width:0,paddingLeft:0,paddingRight:0}} animate=${{opacity:1,width:"auto",paddingLeft:14,paddingRight:14}} exit=${{opacity:0,width:0,paddingLeft:0,paddingRight:0,marginLeft:0,marginRight:0}} transition=${SOFT} style=${{overflow:"hidden"}}>خرید اشتراک</${motion.a}>`}
         ${user?html`<${Account} key="av"/>`
@@ -179,9 +182,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -209,6 +212,13 @@ function Dots({i,n,run,dur,reduced,paused,toggle,to}){
 function Strip({items,i,to,run,dur,reduced,paused,toggle,desk}){
   const ol=useRef();
   useEffect(()=>{const el=ol.current;if(!el||desk)return;const li=el.children[i];if(!li)return;const a=li.getBoundingClientRect(),b=el.getBoundingClientRect();el.scrollBy({left:(a.left+a.width/2)-(b.left+b.width/2),behavior:reduced?"auto":"smooth"})},[i,desk]);
+  if(!desk)return html`<div class="strip4" role="group" aria-label=${"اسلاید "+fa(i+1)+" از "+fa(items.length)}>
+    <ol ref=${ol}>${items.map((it,k)=>html`<li key=${k}><${motion.button} class=${"t4"+(k===i?" on":"")} aria-current=${k===i} aria-label=${it.fa} onClick=${()=>to(k)} whileTap=${{scale:.95}}>
+      <img src=${M("p-"+(it.s||"dune-part-two")+".jpg")} alt="" loading="lazy"/>
+      <span class="t4t" dir="ltr">${it.en}</span>
+      <i class="thp">${k===i&&html`<${Fill} k=${"p"+i+run} run=${run} dur=${dur} reduced=${reduced}/>`}</i>
+    </${motion.button}></li>`)}</ol>
+  </div>`;
   return html`<div class="strip2" role="group" aria-label=${"اسلاید "+fa(i+1)+" از "+fa(items.length)}>
     <${motion.button} class="harr" aria-label=${"قبلی: "+items[(i-1+items.length)%items.length].fa} onClick=${()=>to((i-1+items.length)%items.length,-1)} whileTap=${{scale:.94}}><${I} n="right"/><span>قبلی</span></${motion.button}>
     <ol ref=${ol}>${items.map((it,k)=>html`<li key=${k}><button class=${"th"+(k===i?" on":"")+(k===(i+1)%items.length||k===(i-1+items.length)%items.length?" nb":"")} aria-current=${k===i} aria-label=${it.fa} onClick=${()=>to(k)}>
@@ -219,13 +229,13 @@ function Strip({items,i,to,run,dur,reduced,paused,toggle,desk}){
     <${motion.button} class="harr" aria-label=${"بعدی: "+items[(i+1)%items.length].fa} onClick=${()=>to((i+1)%items.length,1)} whileTap=${{scale:.94}}><${I} n="left"/><span>بعدی</span></${motion.button}>
   </div>`;
 }
-const LINE={hidden:{opacity:0,y:34,filter:"blur(12px)",clipPath:"inset(0 0 100% 0)"},
-  show:{opacity:1,y:0,filter:"blur(0px)",clipPath:"inset(0 0 -20% 0)",transition:{duration:.5,ease:EASE}},
-  exit:{opacity:0,y:-14,filter:"blur(8px)",transition:{duration:.42,ease:RVM.EASE_IN}}};
+const LINE={hidden:{opacity:0,y:22},
+  show:{opacity:1,y:0,transition:{duration:.5,ease:EASE}},
+  exit:{opacity:0,y:-6,transition:{duration:.18,ease:RVM.EASE_IN}}};
 const LINE_R={hidden:{opacity:0},show:{opacity:1,transition:{duration:.2}},exit:{opacity:0,transition:{duration:.2,ease:RVM.EASE_IN}}};
-const WORD={hidden:{opacity:0,y:12,filter:"blur(8px)"},show:{opacity:1,y:0,filter:"blur(0px)",transition:{duration:.4,ease:EASE}},exit:{opacity:0,transition:{duration:.18}}};
+const WORD={hidden:{opacity:0,y:8},show:{opacity:1,y:0,transition:{duration:.4,ease:EASE}},exit:{opacity:0,transition:{duration:.18}}};
 function Stage({k,reduced,children}){
-  return html`<${AnimatePresence} mode="popLayout" initial=${false}>
+  return html`<${AnimatePresence} mode="wait" initial=${false}>
     <${motion.div} key=${k} class="stage" initial="hidden" animate="show" exit="exit"
       variants=${{hidden:{},show:{transition:{staggerChildren:reduced?0:.06,delayChildren:0}},exit:{transition:{staggerChildren:reduced?0:.02,staggerDirection:-1}}}}>${children}</${motion.div}>
   </${AnimatePresence}>`;
@@ -234,7 +244,7 @@ function Line({cls,children,reduced,style}){return html`<${motion.div} class=${c
 function SynWords({text,reduced}){
   if(reduced)return html`<p>${text}</p>`;
   const w=text.split(" ");
-  return html`<${motion.p} variants=${{hidden:{},show:{transition:{staggerChildren:.005}},exit:{opacity:0,y:-10,filter:"blur(8px)",transition:{duration:.42,ease:RVM.EASE_IN}}}}>${w.map((x,j)=>html`<${motion.span} key=${j} class="w" variants=${WORD}>${x}${j<w.length-1?" ":""}</${motion.span}>`)}</${motion.p}>`;
+  return html`<${motion.p} variants=${{hidden:{},show:{transition:{staggerChildren:.005}},exit:{opacity:0,y:-8,transition:{duration:.36,ease:RVM.EASE_IN}}}}>${w.map((x,j)=>html`<span key=${j} class="w" style=${{"--j":j}}>${x}${j<w.length-1?" ":""}</span>`)}</${motion.p}>`;
 }
 function UpNext({items,i,to,desk,reduced}){
   const n=items.length,k=desk?4:3;const next=Array.from({length:k},(_,j)=>(i+1+j)%n);
@@ -255,11 +265,13 @@ function Hero({items,loading,desk}){
   const DUR=6000;
   const go=useCallback(d=>{setDir(d);setI(x=>(x+d+n)%n)},[n]);
   const to=(k,d)=>{setDir(d||(k>i?1:-1));setI(k)};
-  useEffect(()=>{if(!loading)RVM.accent(it.acc)},[i,loading]);
   const stop=paused||hold||hovering;
   useEffect(()=>{if(stop||loading)return;const t=setTimeout(()=>go(1),DUR);return()=>clearTimeout(t)},[i,stop,loading]);
   const dragX=useMotionValue(0);
-  const imgX=useTransform(dragX,v=>v*.25);
+  const imgX=useTransform(dragX,v=>v*(desk?.25:.6));
+  const swipeEnd=(e,info)=>{setHold(false);const ox=info.offset.x,vx=info.velocity.x;
+    if(Math.abs(ox)>Math.abs(info.offset.y)&&(Math.abs(ox)>36||Math.abs(vx)>280))go(ox>0?1:-1);
+    Motion.animate(dragX,0,reduced?{duration:0}:{type:"spring",stiffness:380,damping:34})};
   const cardW=118,full=cardW*1.5,half=full/2;
   const prevIt=useRef(it);
   const yrDir=Number(it.y)>=Number(prevIt.current.y)?1:-1;
@@ -278,34 +290,34 @@ function Hero({items,loading,desk}){
     </div>
     <div class="strip2" aria-hidden="true"><ol>${items.map((x,k)=>html`<li key=${k}><span class="th sk"></span></li>`)}</ol></div>
   </section>`;
-  return html`<section class="hero" aria-roledescription="carousel" aria-label="عنوان‌های منتخب" tabIndex="0"
-    style=${{"--stripH":full+"px","--cardW":cardW+"px"}}
+  return html`<${motion.section} class="hero" aria-roledescription="carousel" aria-label="عنوان‌های منتخب" tabIndex="0"
+    style=${{"--stripH":full+"px","--cardW":cardW+"px",touchAction:desk?"auto":"pan-y"}}
+    onPanStart=${desk?undefined:(e)=>{if(e.target.closest&&e.target.closest(".strip2"))return;setHold(true)}}
+    onPan=${desk?undefined:(e,info)=>{if(e.target.closest&&e.target.closest(".strip2"))return;if(Math.abs(info.offset.x)>Math.abs(info.offset.y))dragX.set(info.offset.x*.55)}}
+    onPanEnd=${desk?undefined:(e,info)=>{if(e.target.closest&&e.target.closest(".strip2")){setHold(false);return}swipeEnd(e,info)}}
     onPointerEnter=${()=>desk&&setHovering(true)} onPointerLeave=${()=>{setHovering(false);setHold(false)}}
     onPointerDown=${e=>{if(!e.target.closest("a,button"))setHold(true)}} onPointerUp=${()=>setHold(false)} onPointerCancel=${()=>setHold(false)}
     onKeyDown=${e=>{if(e.key==="ArrowLeft")go(1);if(e.key==="ArrowRight")go(-1)}}>
     <${motion.div} style=${{position:"absolute",inset:0,x:imgX,zIndex:-2}}>
       <${AnimatePresence} initial=${false} custom=${dir}>
         <${motion.div} class="bgl" key=${"bg"+i}
-          initial=${reduced?{opacity:0}:{opacity:0,scale:1.08,filter:"blur(18px) saturate(1.5) brightness(1.15)"}}
-          animate=${reduced?{opacity:1}:{opacity:1,scale:1,filter:"blur(0px) saturate(1) brightness(1)",transition:{duration:.85,ease:[0.22,1,0.36,1]}}}
-          exit=${reduced?{opacity:0}:{opacity:0,scale:1.03,filter:"blur(16px) saturate(1.2) brightness(.9)",transition:{duration:.7,ease:[0.4,0,0.2,1]}}}>
-          <${Drift} reduced=${reduced} class="kb" src=${M("b-"+(it.s||"dune-part-two")+".jpg")} alt="" style=${{objectPosition:desk?"50% 30%":it.pos}}/>
+          initial=${reduced?{opacity:0}:{opacity:0,scale:1.04}}
+          animate=${reduced?{opacity:1}:{opacity:1,scale:1,transition:{opacity:{duration:1,ease:[0.45,0,0.25,1]},scale:{duration:1.4,ease:[0.22,1,0.36,1]}}}}
+          exit=${reduced?{opacity:0}:{opacity:1,zIndex:0,transition:{duration:.9}}} style=${{zIndex:1}}>
+          <${Drift} reduced=${reduced} class="kb" src=${M((desk?"b-":"m-")+(it.s||"dune-part-two")+".jpg")} alt="" style=${{objectPosition:desk?"50% 30%":"50% 18%"}}/>
         </${motion.div}>
       </${AnimatePresence}>
     </${motion.div}>
     <div class="grade"></div>
-    <${motion.div} class="copy" style=${{x:dragX}} drag=${desk?false:"x"} dragConstraints=${{left:0,right:0}} dragElastic=${.18}
-      onDragStart=${()=>setHold(true)}
-      onDragEnd=${(e,info)=>{if(info.offset.x>50||info.velocity.x>400)go(1);else if(info.offset.x<-50||info.velocity.x<-400)go(-1)}}>
+    <${motion.div} class="copy" style=${{x:dragX}}>
       <${Stage} k=${i} reduced=${reduced}>
-        <${Line} cls="kick" reduced=${reduced}><span class="klab">${it.kind}</span><span class="kg">${it.g}</span></${Line}>
         <${Line} cls="logo2" reduced=${reduced}><a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}>
           ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}</a></${Line}>
-        <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span></${Line}>
+        <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span><span class="kick kin"><span class="klab">${it.kind}</span><span class="klab ky num">${fa(it.y)}</span><span class="kg">${it.g}</span></span></${Line}>
         <${Line} cls="meta" reduced=${reduced}>
           ${HeroScore({v:it.imdb})}
-          <i class="sep"></i><span class="num">${fa(it.y)}</span>
-          <span class="bdg">${it.b}</span>
+          <${HeroRv} c=${it}/>
+          <${Lang} b=${it.b}/>
         </${Line}>
         <div class="syn"><${SynWords} text=${it.syn} reduced=${reduced}/></div>
       </${Stage}>
@@ -314,7 +326,7 @@ function Hero({items,loading,desk}){
       </div>
     </${motion.div}>
     <${Strip} items=${items} i=${i} to=${to} run=${!stop} dur=${DUR} reduced=${reduced} paused=${paused} toggle=${()=>setPaused(p=>!p)} desk=${desk}/>
-  </section>`;
+  </${motion.section}>`;
 }
 
 const IMDB_SVG="<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>";
@@ -327,17 +339,37 @@ const votesOf=s=>VOTES[s]?faN(VOTES[s])+" رأی":null;
 function Score({v,s,full}){const vo=full&&votesOf(s);return html`<span class="scr" aria-label=${"امتیاز IMDb "+v+" از 10"+(vo?"، "+vo:"")}><bdi class="sx" dir="ltr">${STAR}<span class="sv"><b>${v}</b><small>/10</small></span></bdi>${vo&&html`<em class="num">${vo}</em>`}</span>`}
 function HeroScore({v}){return html`<span class="scr hsc" aria-label=${"امتیاز IMDb "+v+" از 10"}><bdi class="sx" dir="ltr"><svg class="imdbl" viewBox="0 127 512 258" aria-hidden="true" dangerouslySetInnerHTML=${{__html:IMDB_SVG}}></svg><span class="sv"><b>${v}</b><small>/10</small></span></bdi></span>`}
 const STAR=html`<svg class="st" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></svg>`;
+const HOVERLESS=matchMedia("(hover: none)");
+function useSum(id){
+  const [o,set]=useState(Q.get("sum")===id);const ref=useRef();
+  useEffect(()=>{const f=e=>{if(e.detail!==id)set(false)};addEventListener("rv-sum",f);return()=>removeEventListener("rv-sum",f)},[id]);
+  useEffect(()=>{if(!o)return;const c=e=>{if(ref.current&&!ref.current.contains(e.target))set(false)};const k=e=>{if(e.key==="Escape")set(false)};addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[o]);
+  const tap=e=>{if(!HOVERLESS.matches)return;e.preventDefault();set(v=>{if(!v)dispatchEvent(new CustomEvent("rv-sum",{detail:id}));return !v})};
+  return {o,ref,tap,close:()=>set(false)};
+}
+const noMenu=e=>e.preventDefault();
+function Lang({b}){return /دوبله/.test(b)&&/زیرنویس/.test(b)?html`<span class="bdg cbdg duo" aria-label="دوبله و زیرنویس فارسی">دوبله<i class="dot2"></i>زیرنویس</span>`:html`<span class="bdg cbdg">${b}</span>`}
+function Sum({c,s}){
+  const kind=c.ep||SERIES.some(x=>x.s===c.s)?"سریال":"فیلم";
+  return html`<span class="csum" aria-hidden=${!s.o}>
+    <button class="csx" aria-label="بستن خلاصه" tabIndex=${s.o?0:-1} onClick=${e=>{e.preventDefault();s.close()}}><${I} n="x"/></button>
+    <b dir="ltr">${c.en}</b><p>${c.syn}</p>
+    <a class="csgo" href=${PAGE[c.s]||"#"} tabIndex=${s.o?0:-1}>صفحه‌ی ${kind}<${I} n="left"/></a>
+  </span>`;
+}
+function rvPct(c){if(c.rv)return c.rv;const v=parseFloat(c.imdb);if(!v)return 0;let h=0;for(const ch of c.s)h=(h*31+ch.charCodeAt(0))%97;return Math.min(99,Math.round(v*10+(h%9)-2))}
+const RV_SVG='<defs><linearGradient id="rvS" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="52"><stop offset="0" stop-color="#6450BE"/><stop offset="1" stop-color="#7360CC"/></linearGradient><linearGradient id="rvM" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="16"><stop offset="0" stop-color="#6C4FDB"/><stop offset="1" stop-color="#9B7DF8"/></linearGradient></defs><g><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="url(#rvS)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="url(#rvM)"/></g>';
+function HeroRv({c}){const v=rvPct(c);return v?html`<span class="scr hsc hrv" aria-label=${"امتیاز رولوانا "+v+" درصد"}><bdi class="sx" dir="ltr"><svg class="rvh" viewBox="14 15 92 92" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RV_SVG}}></svg><span class="sv"><b>${v}</b><small>%</small></span></bdi></span>`:null}
+function RvScore({c}){const v=rvPct(c);return v?html`<span class="cscore"><span class="scr" aria-label=${"امتیاز رولوانا "+v+" درصد"}><bdi class="sx" dir="ltr"><svg class="st rvi" viewBox="14 15 92 92" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RV_SVG}}></svg><span class="sv"><b>${v}</b><small>%</small></span></bdi></span></span>`:null}
 function Card({c,k,reduced}){
-  return html`<${motion.a} href="#" class=${"card"+(c.ep?" wide":"")}
+  return html`<${motion.a} href=${PAGE[c.s]||"#"} class=${"card"+(c.ep?" wide":"")}
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M((c.ep?"w-":"p-")+c.s+".jpg")}/></${motion.div}>
-        <span class="ctr"><span class="bdg cbdg">${c.b}</span></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
-        <div class="ov">
-          ${c.m&&html`<div class="cmatch num">${fa(c.m)}٪ هم‌سلیقه با شما</div>`}
-          <div class="ct" dir="ltr">${c.en}</div>
-          ${c.ep&&html`<div class="cep num">${c.ep}</div>`}<div class="cg">${c.y&&html`<span class="cy num">${fa(c.y)}</span>`}${c.g&&html`<span class="cgg">${c.g}</span>`}</div>${c.syn&&html`<p class="csyn">${c.syn}</p>`}</div></div>
+        <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}<${RvScore} c=${c}/></span>
+        ${c.syn&&html`<div class="ov"><p class="csyn">${c.syn}</p></div>`}</div>
     </${motion.div}>
+    <span class="ept cbt"><b dir="ltr">${c.en}</b>${c.m&&html`<span class="cmt num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}${c.ep&&html`<em class="num">${c.ep}</em>`}${(c.y||c.g)&&html`<small>${c.y&&html`<span class="num">${fa(c.y)}</span>`}${c.y&&c.g&&html`<i class="dot2"></i>`}${c.g&&html`<span>${c.g}</span>`}</small>`}</span>
   </${motion.a}>`;
 }
 function SkCard({wide}){return wide?html`<div class="epc"><div class="epi sk"></div><span class="ept"><span class="sk" style=${{width:"52%",height:15,margin:"3px 0"}}></span><span class="sk" style=${{width:"34%",height:12}}></span></span></div>`:html`<div class="card"><div class="po sk"></div></div>`}
@@ -345,13 +377,14 @@ function EpCard({c}){
   return html`<${motion.a} href="#" class="epc" initial="r" animate="r" whileHover="h" whileTap=${{scale:.98}} aria-label=${c.en+"، "+c.ep}>
     <${motion.span} class="epi" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <${motion.img} src=${M("w-"+c.s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}/>
-      <span class="ctr"><span class="bdg cbdg">${c.b}</span></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
+      <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}<${RvScore} c=${c}/></span>
+      ${c.syn&&html`<span class="epov"><p class="csyn">${c.syn}</p></span>`}
     </${motion.span}>
     <span class="ept"><b dir="ltr">${c.en}</b><em class="num">${c.ep}</em><small><span class="num">${fa(c.y)}</span><i class="dot2"></i><span>${c.g}</span></small></span>
   </${motion.a}>`;
 }
 
-function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌ی بیشتر"}){
+function Row({title,sub,items,loading,genre,desk,big,icon,under,more="مشاهده‌ی بیشتر"}){
   const ref=useRef();const reduced=useReducedMotion();
   const [hov,setHov]=useState(false);
   const [edge,setEdge]=useState({s:true,e:false});
@@ -359,7 +392,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌�
   if(!loading&&!items.length)return null;
   const by=d=>{const el=ref.current;el.scrollBy({left:-d*el.clientWidth*.8,behavior:"smooth"})};
   const ep=items.some(c=>c&&c.ep);
-  return html`<section class=${"row"+(big?" big":"")+(ep?" erow":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
+  return html`<section class=${"row"+(big?" big":"")+(ep?" erow":"")+(under?" urow":"")} onMouseEnter=${()=>setHov(true)} onMouseLeave=${()=>setHov(false)}>
     <div class="rh"><h2>${icon&&html`<span class="rhi"><${I} n=${icon}/></span>`}<span>${title}${sub&&!loading&&html`<small>${sub}</small>`}</span></h2>${!loading&&html`<${motion.a} href="#" class="more" whileHover="h">${more}<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></${motion.a}>`}</div>
     ${desk&&!loading&&html`<${AnimatePresence}>
       ${hov&&!edge.e&&html`<${motion.button} key="l" class="arr l" aria-label="بعدی" onClick=${()=>by(1)} initial=${{opacity:0,scale:.85}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.85}} whileTap=${{scale:.92}} transition=${SPR}><${I} n="left"/></${motion.button}>`}
@@ -370,7 +403,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon,more="مشاهده‌�
 >
           <${motion.img} src=${M("b-"+g[2]+".jpg")} style=${{objectPosition:g[3]}} alt="" variants=${{h:{scale:1.08}}} transition=${{duration:.8,ease:EASE}}/>
           <b>${g[0]}</b><small>${fa(g[5])} عنوان</small></${motion.a}>`)
-      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:c.ep?html`<${EpCard} key=${c.s} c=${c}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced}/>`)}</div>
+      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:c.ep?html`<${EpCard} key=${c.s} c=${c}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced} under=${under}/>`)}</div>
   </section>`;
 }
 
@@ -424,46 +457,88 @@ function Reviews({loading}){
       <small class="rjcf"><i class="av3">${r.by[0]}</i><span>${r.by}</span><i class="dot2"></i><span class="num">${fa(r.min)} دقیقه مطالعه</span></small>
     </${motion.a}>`)}</div></section>`;
 }
-const LVW=()=>innerWidth>=1024;
 function LoversBanner(){
-  const P=["interstellar","past-lives","dune-part-two"];
-  return html`<section class="row lvb" aria-label="جمع فیلم‌بازها"><${motion.a} href="#" class="lvc" whileHover="h" whileTap=${{scale:.985}} initial="r" animate="r">
-    <span class="lvt">
-      <small><img src="../brand/rollvana-symbol-dark.svg" alt=""/>جمع فیلم‌بازها</small>
-      <b>آدم‌های هم‌سلیقه‌ات را پیدا کن</b>
-      <span class="lvd">امتیازها و لیست‌های فیلم‌بازهای رول‌وانا را ببین و هرکدام را که دوست داشتی دنبال کن.</span>
-      <span class="lvf"><span class="lva">${["ن","ا","س","ر"].map(x=>html`<i class="av3" key=${x}>${x}</i>`)}</span><span class="num">۱۲٬۴۸۰ فیلم‌باز</span></span>
+  const R=[
+    {r:92,d:46,it:[{a:"ن",c:0},{a:"ک",c:1},{a:"م",c:2},{a:"س",c:3}]},
+    {r:158,d:70,rev:1,it:[{p:"past-lives"},{t:"۹۲٪ هم‌سلیقه"},{p:"interstellar"},{a:"ر",c:2},{p:"parasite"},{t:"لیست تازه"},{p:"her"},{a:"ش",c:0}]},
+    {r:226,d:96,it:[{a:"آ",c:1},{p:"dune-part-two"},{a:"پ",c:3},{p:"severance"},{t:"۸۷٪ هم‌سلیقه"},{p:"whiplash"},{a:"ب",c:0},{p:"arrival"},{a:"ی",c:2},{p:"oppenheimer"}]}];
+  return html`<section class="row fbs" aria-label="جمع فیلم‌بازها"><${motion.a} href="#" class="fbx" whileTap=${{scale:.99}}>
+    <span class="orb" aria-hidden="true"><span class="orc">
+      ${R.map((g,j)=>html`<i key=${"l"+j} class=${"orl g"+j} style=${{width:g.r*2+"px",height:g.r*2+"px"}}></i>`)}
+      ${R.map((g,j)=>html`<span key=${j} class=${"orr g"+j+(g.rev?" rev":"")} style=${{animationDuration:g.d+"s"}}>${g.it.map((x,q)=>{const an=360/g.it.length*q+j*23;
+        return html`<span key=${q} class="ori" style=${{transform:"rotate("+an+"deg) translateX("+g.r+"px) rotate("+(-an)+"deg)"}}><span class="ork" style=${{animationDuration:g.d+"s"}}>
+          ${x.a?html`<i class=${"twa a"+x.c}>${x.a}</i>`:x.p?html`<img src=${M("p-"+x.p+".jpg")} alt="" loading="lazy" draggable="false"/>`:html`<em>${x.t}</em>`}</span></span>`})}</span>`)}
+      <span class="orh"><img src="../brand/rollvana-symbol-white.svg" alt=""/></span>
+    </span></span>
+    <span class="fbc">
+      <small>جمع فیلم‌بازها</small>
+      <b class="fbh">آدم‌های هم‌سلیقه‌ات را پیدا کن</b>
+      <span class="fbd">امتیازها و لیست‌هایشان را ببین و دنبال کن.</span>
+      <span class="fbgo">دیدن فیلم‌بازها<${I} n="left"/></span>
     </span>
-    <span class="lvart" aria-hidden="true">${P.map((s,j)=>html`<${motion.img} key=${s} src=${M("p-"+s+".jpg")} alt="" style=${{zIndex:3-j}} variants=${{r:{x:j*(LVW()?-62:-26),rotate:j*-5,y:j*4},h:{x:j*(LVW()?-74:-30),rotate:j*-8,y:j*6}}} transition=${SPR}/>`)}</span>
-    <span class="lvcta">دیدن فیلم‌بازها<${motion.span} variants=${{h:{x:-3}}} transition=${SPR} style=${{display:"inline-flex"}}><${I} n="left"/></${motion.span}></span>
+  </${motion.a}></section>`;
+}
+const TW=[
+    {n:"سارا",f:"Dune: Part Two",p:"b-dune-part-two",x:"صدای این فیلم را [فقط باید توی سالن شنید].",l:214},
+    {n:"امیر",f:"Severance",p:"b-severance",x:"هر قسمت که تمام می‌شود [ده دقیقه به دیوار زل می‌زنم].",l:186},
+    {n:"نگار",f:"Past Lives",p:"w-past-lives",x:"آرام‌ترین فیلمی که [دلم را شکست].",l:342},
+    {n:"کاوه",f:"Oppenheimer",p:"b-oppenheimer",x:"سه ساعت بود و [نفهمیدم کی گذشت].",l:97},
+    {n:"رضا",f:"Interstellar",p:"w-interstellar",x:"بار پنجم است می‌بینم و [هنوز همان‌جا بغض می‌کنم].",l:451}];
+const TW2=[
+    {n:"مهسا",f:"Arrival",p:"w-arrival",x:"فیلمی که بعدش [یک ساعت ساکت نشستم].",l:268},
+    {n:"پویا",f:"The Bear",p:"w-the-bear",x:"استرس این آشپزخانه [از هر فیلم ترسناکی بیشتر است].",l:153},
+    {n:"الهام",f:"Blade Runner 2049",p:"b-blade-runner-2049",x:"هر قابش را [می‌شود به دیوار زد].",l:389},
+    {n:"بهراد",f:"Shogun",p:"b-shogun",x:"صبر کنید، [قسمت سوم همه‌چیز عوض می‌شود].",l:122},
+    {n:"ترانه",f:"Slow Horses",p:"w-slow-horses",x:"بدخلق‌ترین جاسوس دنیا و [من عاشقش شدم].",l:205}];
+const TW_HEART=html`<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.4C19 15.6 12 20 12 20Z"/></svg>`;
+function TweetSection(){
+  const Mc=(w,k,j)=>html`<span class="tmc" key=${j}><img src=${M(w.p+".jpg")} alt="" draggable="false"/><span class="tvf" dir="ltr">${w.f}</span><span class="tvb"><span class="tvx">${w.x.split(/[\[\]]/).map((q,i)=>i%2?html`<mark key=${i}>${q}</mark>`:q)}</span><span class="tvu"><i class=${"twa a"+(k%4)}>${w.n[0]}</i><b>${w.n}</b><span class="tvl">${TW_HEART}<span class="num">${fa(w.l)}</span></span></span></span></span>`;
+  return html`<section class="row tws" aria-label="رولوانا توییت"><${motion.a} href="../tweet/rollvana-tweet.html" class="twx2 tvva" whileTap=${{scale:.99}}>
+    <span class="twst">
+      <span class="tmq" aria-hidden="true">
+        <span class="tmr">${[...TW,...TW].map((w,j)=>Mc(w,j%5,j))}</span>
+        <span class="tmr rev">${[...TW2,...TW2].map((w,j)=>Mc(w,(j+2)%5,j))}</span>
+      </span>
+      <span class="twhd">
+        <b class="twt"><span class="twm"><b class="twmb">رولوانا</b><em>توییت</em></span> جای حرف‌زدن درباره سینما، <mark>بدون اسپویل!</mark></b>
+      </span>
+    </span>
+    <span class="twgo mob">ورود به رولوانا توییت<${I} n="left"/></span>
   </${motion.a}></section>`;
 }
 function News({loading}){
   if(loading)return null;
   return html`<section class="row news"><div class="rh"><h2><span class="rhi"><${I} n="sNews"/></span><span>اخبار</span></h2><a href="#" class="more">آرشیو اخبار<${I} n="left"/></a></div>
-    <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><em>${x.tag}</em><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div></section>`;
+    <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div></section>`;
 }
 
 const RVK={"one-battle-after-another":"نقد فیلم","sinners":"نقد فیلم","frankenstein":"نقد فیلم","the-penguin":"نقد سریال"};
 function Journal(){
   const [f,...rest]=REVIEWS;
-  const By=r=>html`<small class="jrby"><i class="av3">${r.by[0]}</i><b>${r.by}</b><i class="dot2"></i><span class="num">${fa(r.min)} دقیقه مطالعه</span></small>`;
+  const Star=html`<svg class="jzst" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9Z"/></svg>`;
   const Lk=(l)=>html`<a href="#" class="jrl">${l}<${I} n="left"/></a>`;
-  return html`<section class="jr" aria-label="مجله‌ی رول‌وانا"><div class="jrin">
-    <header class="jrm"><span><span class="jrk">مجله‌ی رول‌وانا</span><b class="jrt" dir="ltr">Rollvana <i>Journal</i></b></span><p>نقد، خبر و هرچه پشت پرده‌ی فیلم‌ها می‌گذرد</p></header>
-    <div class="jrh"><h2>نقد و بررسی</h2>${Lk("آرشیو نقدها")}</div>
-    <div class="jrg">
-      <${motion.a} href="#" class="jrf" initial="r" animate="r" whileHover="h" whileTap=${{scale:.99}}>
-        <span class="jrfi"><${motion.img} src=${M(f.img)} alt="" variants=${{r:{scale:1},h:{scale:1.03}}} transition=${{duration:.7,ease:EASE}}/></span>
-        <span class="jrq">${RVK[f.s]}</span><h3>${f.t}</h3><p>${RVX[f.s]}</p>${By(f)}
-      </${motion.a}>
-      <div class="jrs">${rest.map(r=>html`<${motion.a} href="#" class="jri" key=${r.s} initial="r" animate="r" whileHover="h" whileTap=${{scale:.99}}>
-        <span class="jrii"><${motion.img} src=${M(r.img)} alt="" variants=${{r:{scale:1},h:{scale:1.05}}} transition=${{duration:.7,ease:EASE}}/></span>
-        <span class="jrit"><span class="jrq">${RVK[r.s]}</span><b>${r.t}</b>${By(r)}</span></${motion.a}>`)}</div>
-    </div>
-    <div class="jrh"><h2>اخبار</h2>${Lk("آرشیو اخبار")}</div>
-    <div class="nwl">${NEWS.map((x,k)=>html`<a href="#" class=${"nw"+(k===0?" top":"")} key=${k}><img src=${M(x.img)} alt=""/><span><em>${x.tag}</em><b>${x.t}</b><small>${x.d}</small></span></a>`)}</div>
-  </div></section>`;
+  return html`<section class="jr jz" aria-label="مجله‌ی رول‌وانا">
+    <${motion.a} href="#" class="jzc" whileTap=${{scale:.995}}>
+      <img class="jzci" src=${M(f.img)} alt=""/>
+      <span class="jzmh"><b class="jrt" dir="ltr">Rollvana <i>Journal</i></b><small>مجله‌ی رول‌وانا</small></span>
+      <span class="jzcb">
+        <span class="jzk"><em>نقد هفته</em></span>
+        <h3>${f.t}</h3>
+        <p>${RVX[f.s]}</p>
+        <small class="jzby num">${f.by}<i></i>${fa(f.min)} دقیقه مطالعه<i></i>${f.d}</small>
+      </span>
+    </${motion.a}>
+    <div class="jrin">
+      <div class="jrh"><h2>نقدهای دیگر</h2>${Lk("آرشیو نقدها")}</div>
+      <div class="jzr">${rest.map((r,k)=>html`<${motion.a} href="#" class="jzi" key=${r.s} whileTap=${{scale:.98}}>
+        <span class="jzii"><img src=${M(r.img)} alt=""/><b class="jzn" dir="ltr">0${k+2}</b></span>
+        <b class="jzit">${r.t}</b><small class="jzby num">${r.by}<i></i>${r.d}</small>
+      </${motion.a}>`)}</div>
+      <div class="jrh"><h2>تازه‌ترین خبرها</h2>${Lk("آرشیو اخبار")}</div>
+      <div class="jzw">${NEWS.map((x,k)=>html`<a href="#" class=${"jzwi"+(k===0?" on":"")} key=${k}>
+        <span class="jzwt"><small class="num"><em>${x.tag}</em>${x.d}</small><b>${x.t}</b></span>
+        <img src=${M(x.img)} alt=""/></a>`)}</div>
+    </div></section>`;
 }
 const FT_TG='<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>';
 const FT_IG='<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>';
@@ -531,10 +606,11 @@ function App(){
         <main>
           ${user&&html`<${ContinueRow} loading=${loading} desk=${desk} long=${long}/>`}
           ${user&&html`<${Row} title="پیشنهاد برای شما" more="همه‌ی پیشنهادها" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
-          ${user&&!loading&&html`<${LoversBanner}/>`}
+          ${user&&!loading&&html`<${TweetSection}/>`}
           <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
-          ${!user&&!loading&&html`<${LoversBanner}/>`}
+          ${!user&&!loading&&html`<${TweetSection}/>`}
           <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${series} loading=${loading} desk=${desk}/>
+          ${!loading&&html`<${LoversBanner}/>`}
           ${!loading&&html`<${Journal}/>`}
           <${Row} title="مستندها" items=${[]} loading=${false}/>
         </main>
@@ -559,9 +635,9 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
-      :html`<div class="mg"><p>با حساب رول‌وانا لیست تماشا، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+      :html`<div class="mg"><p>با حساب رول‌وانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
     <div class="mcol">
       <h3>بخش‌ها</h3>
       <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
