@@ -311,12 +311,13 @@ function Hero({items,loading,desk}){
     <div class="grade"></div>
     <${motion.div} class="copy" style=${{x:dragX}}>
       <${Stage} k=${i} reduced=${reduced}>
+        <${Line} cls="kick" reduced=${reduced}><span class="klab">${it.kind}</span><span class="kg">${it.g}</span></${Line}>
         <${Line} cls="logo2" reduced=${reduced}><a class="logo" href=${PAGE[it.s]||"#"} aria-label=${it.en} tabIndex="-1" style=${{display:"block"}}>
           ${it.s?html`<img src=${M("l-"+it.s+".png")} alt=${it.en}/>`:html`<h1 class="tEn">${it.en}</h1>`}</a></${Line}>
-        <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span><span class="kick kin"><span class="klab">${it.kind}</span><span class="klab ky num">${fa(it.y)}</span><span class="kg">${it.g}</span></span></${Line}>
+        <${Line} cls="tFa" reduced=${reduced}><span>${it.fa}</span></${Line}>
         <${Line} cls="meta" reduced=${reduced}>
           ${HeroScore({v:it.imdb})}
-          <${HeroRv} c=${it}/>
+          <i class="sep"></i><span class="num">${fa(it.y)}</span>
           <${Lang} b=${it.b}/>
         </${Line}>
         <div class="syn"><${SynWords} text=${it.syn} reduced=${reduced}/></div>
@@ -357,16 +358,12 @@ function Sum({c,s}){
     <a class="csgo" href=${PAGE[c.s]||"#"} tabIndex=${s.o?0:-1}>صفحه‌ی ${kind}<${I} n="left"/></a>
   </span>`;
 }
-function rvPct(c){if(c.rv)return c.rv;const v=parseFloat(c.imdb);if(!v)return 0;let h=0;for(const ch of c.s)h=(h*31+ch.charCodeAt(0))%97;return Math.min(99,Math.round(v*10+(h%9)-2))}
-const RV_SVG='<defs><linearGradient id="rvS" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="52"><stop offset="0" stop-color="#6450BE"/><stop offset="1" stop-color="#7360CC"/></linearGradient><linearGradient id="rvM" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="16"><stop offset="0" stop-color="#6C4FDB"/><stop offset="1" stop-color="#9B7DF8"/></linearGradient></defs><g><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="url(#rvS)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="url(#rvM)"/></g>';
-function HeroRv({c}){const v=rvPct(c);return v?html`<span class="scr hsc hrv" aria-label=${"امتیاز رولوانا "+v+" درصد"}><bdi class="sx" dir="ltr"><svg class="rvh" viewBox="14 15 92 92" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RV_SVG}}></svg><span class="sv"><b>${v}</b><small>%</small></span></bdi></span>`:null}
-function RvScore({c}){const v=rvPct(c);return v?html`<span class="cscore"><span class="scr" aria-label=${"امتیاز رولوانا "+v+" درصد"}><bdi class="sx" dir="ltr"><svg class="st rvi" viewBox="14 15 92 92" aria-hidden="true" dangerouslySetInnerHTML=${{__html:RV_SVG}}></svg><span class="sv"><b>${v}</b><small>%</small></span></bdi></span></span>`:null}
 function Card({c,k,reduced}){
   return html`<${motion.a} href=${PAGE[c.s]||"#"} class=${"card"+(c.ep?" wide":"")}
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M((c.ep?"w-":"p-")+c.s+".jpg")}/></${motion.div}>
-        <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}<${RvScore} c=${c}/></span>
+        <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
         ${c.syn&&html`<div class="ov"><p class="csyn">${c.syn}</p></div>`}</div>
     </${motion.div}>
     <span class="ept cbt"><b dir="ltr">${c.en}</b>${c.m&&html`<span class="cmt num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}${c.ep&&html`<em class="num">${c.ep}</em>`}${(c.y||c.g)&&html`<small>${c.y&&html`<span class="num">${fa(c.y)}</span>`}${c.y&&c.g&&html`<i class="dot2"></i>`}${c.g&&html`<span>${c.g}</span>`}</small>`}</span>
@@ -377,7 +374,7 @@ function EpCard({c}){
   return html`<${motion.a} href="#" class="epc" initial="r" animate="r" whileHover="h" whileTap=${{scale:.98}} aria-label=${c.en+"، "+c.ep}>
     <${motion.span} class="epi" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <${motion.img} src=${M("w-"+c.s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}/>
-      <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}<${RvScore} c=${c}/></span>
+      <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
       ${c.syn&&html`<span class="epov"><p class="csyn">${c.syn}</p></span>`}
     </${motion.span}>
     <span class="ept"><b dir="ltr">${c.en}</b><em class="num">${c.ep}</em><small><span class="num">${fa(c.y)}</span><i class="dot2"></i><span>${c.g}</span></small></span>
