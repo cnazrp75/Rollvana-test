@@ -4,6 +4,44 @@
 <title>Rollvana Home</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css">
 <link rel="stylesheet" href="../system/rollvana-chrome.css">
+<style>
+.hero .tFa{font-size:18px!important;font-weight:var(--w-heavy)!important;line-height:1.5}
+@media (min-width:1024px){.hero .tFa{font-size:26px!important}}
+@media (max-width:1023px) and (max-height:740px){.hero .tFa{font-size:17px!important}}
+.hero .meta .cbdg{height:auto!important;padding:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:0!important;font:inherit!important;color:inherit!important}
+.cbdg.duo .pl{font-style:normal;font-weight:var(--w-bold);opacity:.8}
+.row:not(.big):not(.erow) .sc{gap:14px!important}
+.row:not(.big):not(.erow) .card:not(.wide){width:calc((100vw - 44px)/2)!important}
+.row:not(.big):not(.erow) .card:not(.wide) .po{aspect-ratio:2/3!important;border-radius:11px}
+.erow .sc{gap:12px!important}
+.epc{width:71.5vw!important;gap:0!important}
+.epc .epi{aspect-ratio:auto!important;height:192px;border-radius:13px}
+.epov.in{opacity:1!important;display:flex!important;flex-direction:column;align-items:stretch;justify-content:flex-end;gap:0;padding:14px 14px 12px;background:linear-gradient(to top,color-mix(in srgb,var(--night-0) 92%,transparent) 0,color-mix(in srgb,var(--night-0) 70%,transparent) 32%,color-mix(in srgb,var(--night-0) 0%,transparent) 62%)}
+.epov.in .ept{position:static!important;inset:auto!important;margin:0!important;padding:0!important;gap:3px;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.epov.in .ept b{font-size:15px}
+.epov.in .ept em{font-size:12px}
+.epov.in .ept small{font-size:12px}
+.epc:hover .epov.in .csyn,.epc:focus-visible .epov.in .csyn{margin-top:8px}
+.row .card.cin .ov,.row .card.cin:not(:hover):not(:focus-visible) .ov{background:linear-gradient(to top,color-mix(in srgb,var(--night-0) 97%,transparent) 0,color-mix(in srgb,var(--night-0) 86%,transparent) 26%,color-mix(in srgb,var(--night-0) 55%,transparent) 44%,color-mix(in srgb,var(--night-0) 0%,transparent) 66%)!important;inset:0!important;display:flex;flex-direction:column;justify-content:flex-end;padding:12px!important}
+@media (max-width:1023px){.card.cin .po .ctr,.epc .ctr{top:8px!important;bottom:auto!important;right:8px!important}}
+.card .po .cbdg.duo,.epc .cbdg.duo{flex-direction:row;align-items:center;gap:4px;white-space:nowrap}
+.card .po .cbdg.duo .pl,.epc .cbdg.duo .pl{line-height:1}
+.card .po .ctl .sv small,.epc .ctl .sv small{font-size:.72em!important;color:var(--fill-500)!important;font-weight:var(--w-medium)!important}
+.card.cin .cbt{margin:0!important;text-shadow:0 1px 2px rgba(0,0,0,.85),0 0 14px rgba(0,0,0,.7)}
+@media (max-width:1023px){.row.big .sc{gap:14px!important}.row.big .card.cin{width:calc((100vw - 44px)/1.55)!important}.row.big .card.cin .po{aspect-ratio:2/3!important;width:100%!important;border-radius:12px}}
+.card.cin .ov .csyn{margin-top:0}
+.card.cin:hover .ov .csyn,.card.cin:focus-visible .ov .csyn{margin-top:8px}
+@media (min-width:1024px){
+.row:not(.big):not(.erow) .sc{gap:22px!important}
+.row:not(.big):not(.erow) .card:not(.wide){width:196px!important}
+.erow .sc{gap:20px!important}
+.epc{width:325px!important}
+.epc .epi{height:213px}
+.epov.in{padding:16px 16px 14px}
+.epov.in .ept b{font-size:19px}
+.card.cin .ov{padding:14px!important}
+}
+</style>
 </head><body>
 <div class="boot" id="boot" aria-hidden="true"></div>
 <div id="app"></div>
@@ -318,7 +356,7 @@ function Hero({items,loading,desk}){
         <${Line} cls="meta" reduced=${reduced}>
           ${HeroScore({v:it.imdb})}
           <i class="sep"></i><span class="num">${fa(it.y)}</span>
-          <${Lang} b=${it.b}/>
+          <i class="sep"></i><${Lang} b=${it.b}/>
         </${Line}>
         <div class="syn"><${SynWords} text=${it.syn} reduced=${reduced}/></div>
       </${Stage}>
@@ -349,7 +387,7 @@ function useSum(id){
   return {o,ref,tap,close:()=>set(false)};
 }
 const noMenu=e=>e.preventDefault();
-function Lang({b}){return /دوبله/.test(b)&&/زیرنویس/.test(b)?html`<span class="bdg cbdg duo" aria-label="دوبله و زیرنویس فارسی">دوبله<i class="dot2"></i>زیرنویس</span>`:html`<span class="bdg cbdg">${b}</span>`}
+function Lang({b}){return /دوبله/.test(b)&&/زیرنویس/.test(b)?html`<span class="bdg cbdg duo" aria-label="دوبله و زیرنویس فارسی"><span>دوبله</span><i class="pl">+</i><span>زیرنویس</span></span>`:html`<span class="bdg cbdg">${b}</span>`}
 function Sum({c,s}){
   const kind=c.ep||SERIES.some(x=>x.s===c.s)?"سریال":"فیلم";
   return html`<span class="csum" aria-hidden=${!s.o}>
@@ -358,15 +396,15 @@ function Sum({c,s}){
     <a class="csgo" href=${PAGE[c.s]||"#"} tabIndex=${s.o?0:-1}>صفحه‌ی ${kind}<${I} n="left"/></a>
   </span>`;
 }
-function Card({c,k,reduced}){
-  return html`<${motion.a} href=${PAGE[c.s]||"#"} class=${"card"+(c.ep?" wide":"")}
+function Card({c,k,reduced,inside}){
+  return html`<${motion.a} href=${PAGE[c.s]||"#"} class=${"card"+(c.ep?" wide":"")+(inside?" cin":"")}
     initial="r" animate="r" whileHover="h" whileTap=${{scale:.97}}>
     <${motion.div} class="pw" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${M((c.ep?"w-":"p-")+c.s+".jpg")}/></${motion.div}>
         <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
-        ${c.syn&&html`<div class="ov"><p class="csyn">${c.syn}</p></div>`}</div>
+        ${inside?html`<div class="ov"><span class="ept cbt"><b dir="ltr">${c.en}</b>${c.m&&html`<span class="cmt num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}${c.ep&&html`<em class="num">${c.ep}</em>`}${(c.y||c.g)&&html`<small>${c.y&&html`<span class="num">${fa(c.y)}</span>`}${c.y&&c.g&&html`<i class="dot2"></i>`}${c.g&&html`<span>${c.g}</span>`}</small>`}</span>${c.syn&&html`<p class="csyn">${c.syn}</p>`}</div>`:c.syn&&html`<div class="ov"><p class="csyn">${c.syn}</p></div>`}</div>
     </${motion.div}>
-    <span class="ept cbt"><b dir="ltr">${c.en}</b>${c.m&&html`<span class="cmt num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}${c.ep&&html`<em class="num">${c.ep}</em>`}${(c.y||c.g)&&html`<small>${c.y&&html`<span class="num">${fa(c.y)}</span>`}${c.y&&c.g&&html`<i class="dot2"></i>`}${c.g&&html`<span>${c.g}</span>`}</small>`}</span>
+    ${!inside&&html`<span class="ept cbt"><b dir="ltr">${c.en}</b>${c.m&&html`<span class="cmt num">${fa(c.m)}٪ هم‌سلیقه با شما</span>`}${c.ep&&html`<em class="num">${c.ep}</em>`}${(c.y||c.g)&&html`<small>${c.y&&html`<span class="num">${fa(c.y)}</span>`}${c.y&&c.g&&html`<i class="dot2"></i>`}${c.g&&html`<span>${c.g}</span>`}</small>`}</span>`}
   </${motion.a}>`;
 }
 function SkCard({wide}){return wide?html`<div class="epc"><div class="epi sk"></div><span class="ept"><span class="sk" style=${{width:"52%",height:15,margin:"3px 0"}}></span><span class="sk" style=${{width:"34%",height:12}}></span></span></div>`:html`<div class="card"><div class="po sk"></div></div>`}
@@ -375,9 +413,8 @@ function EpCard({c}){
     <${motion.span} class="epi" variants=${{r:{y:0},h:{y:-6}}} transition=${SPR}>
       <${motion.img} src=${M("w-"+c.s+".jpg")} alt="" variants=${{r:{scale:1},h:{scale:1.04}}} transition=${{duration:.6,ease:EASE}}/>
       <span class="ctr"><${Lang} b=${c.b}/></span><span class="ctl">${c.imdb&&html`<span class="cscore">${Score({v:c.imdb})}</span>`}</span>
-      ${c.syn&&html`<span class="epov"><p class="csyn">${c.syn}</p></span>`}
+      <span class="epov in"><span class="ept"><b dir="ltr">${c.en}</b><em class="num">${c.ep}</em><small><span class="num">${fa(c.y)}</span><i class="dot2"></i><span>${c.g}</span></small></span>${c.syn&&html`<p class="csyn">${c.syn}</p>`}</span>
     </${motion.span}>
-    <span class="ept"><b dir="ltr">${c.en}</b><em class="num">${c.ep}</em><small><span class="num">${fa(c.y)}</span><i class="dot2"></i><span>${c.g}</span></small></span>
   </${motion.a}>`;
 }
 
@@ -400,7 +437,7 @@ function Row({title,sub,items,loading,genre,desk,big,icon,under,more="مشاهد
 >
           <${motion.img} src=${M("b-"+g[2]+".jpg")} style=${{objectPosition:g[3]}} alt="" variants=${{h:{scale:1.08}}} transition=${{duration:.8,ease:EASE}}/>
           <b>${g[0]}</b><small>${fa(g[5])} عنوان</small></${motion.a}>`)
-      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:c.ep?html`<${EpCard} key=${c.s} c=${c}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced} under=${under}/>`)}</div>
+      :items.map((c,k)=>loading?html`<${SkCard} key=${k} wide=${!!c.ep}/>`:c.ep?html`<${EpCard} key=${c.s} c=${c}/>`:html`<${Card} key=${c.s} c=${c} k=${k} reduced=${reduced} under=${under} inside=${big}/>`)}</div>
   </section>`;
 }
 
