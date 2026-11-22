@@ -160,7 +160,7 @@ const html=htm.bind(React.createElement);
 const Q=new URLSearchParams(location.search);
 const M=s=>"media/"+s;
 const SUBBED=Q.get("sub")==="1";
-if(Q.get("c")==="gold"){
+if(Q.get("c")!=="purple"){
   document.documentElement.classList.add("gold");
   const sw=[[/169,\s*139,\s*255/g,"245, 196, 81"],[/139,\s*107,\s*242/g,"224, 168, 52"],[/150,\s*110,\s*255/g,"245, 186, 60"],[/#a98bff/gi,"#F5C451"],[/#8b6bf2/gi,"#E0A834"],[/#c3adff/gi,"#F8D57A"],[/#cdbbff/gi,"#FADF92"]];
   const fix=rules=>{for(const r of rules){if(r.cssRules)fix(r.cssRules);if(!r.style)continue;if(r.selectorText&&/wm|logo|brand|lockup|symbol|intro/i.test(r.selectorText))continue;for(let i=0;i<r.style.length;i++){const k=r.style[i];const v=r.style.getPropertyValue(k);let n=v;for(const[a,b]of sw)n=n.replace(a,b);if(n!==v)r.style.setProperty(k,n,r.style.getPropertyPriority(k))}}};
