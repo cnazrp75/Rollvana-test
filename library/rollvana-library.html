@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>کتابخانه‌ی من | Rollvana</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-account.css"><link rel="stylesheet" href="../system/rollvana-library.css">
-</head><body>
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
+</head><body class="axpage">
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -91,9 +93,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -136,9 +138,9 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="rollvana-library.html"><${I} n="list"/>لیست تماشا</a><a href="rollvana-library.html?tab=hi"><${I} n="cal"/>تاریخچه</a></div>`
-      :html`<div class="mg"><p>با حساب رول‌وانا لیست تماشا، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="rollvana-library.html"><${I} n="list"/>نشان‌شده</a><a href="rollvana-library.html?tab=hi"><${I} n="cal"/>تاریخچه</a></div>`
+      :html`<div class="mg"><p>با حساب رول‌وانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
     <div class="mcol">
       <h3>بخش‌ها</h3>
       <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
@@ -292,9 +294,9 @@ T("fallout","فال‌اوت","Fallout","series",1,M("p-fallout.jpg"),{imdb:"8.3
 T("penguin","پنگوئن","The Penguin","series",1,M("p-the-penguin.jpg"),{imdb:"8.6",g:"جنایی",b:"زیرنویس",y:2024}),
 T("slow-horses","اسب‌های کند","Slow Horses","series",5,M("p-slow-horses.jpg"),{imdb:"8.2",g:"جاسوسی",b:"زیرنویس",y:2022})];
 const CALL=[...CF,...CS];
-const STATES=[["wl","لیست تماشا، فیلم و سریال"],["wlfilm","فیلتر فیلم‌ها"],["wlseries","فیلتر سریال‌ها"],["wlnone","فیلتر بی‌نتیجه"],["wlempty","لیست تماشای خالی"],["wlrm","پس از برداشتن یک عنوان"],["wllong","لیست بلند، ۳۰۰ عنوان"],["names","نام‌های بلند، لیست"],
+const STATES=[["wl","نشان‌شده، فیلم و سریال"],["wlfilm","فیلتر فیلم‌ها"],["wlseries","فیلتر سریال‌ها"],["wlnone","فیلتر بی‌نتیجه"],["wlempty","نشان‌شده‌ی خالی"],["wlrm","پس از برداشتن یک عنوان"],["wllong","نشان‌شده‌ی بلند، ۳۰۰ عنوان"],["names","نام‌های بلند، نشان‌شده"],
 ["hi","تاریخچه، فیلم و قسمت"],["hiempty","تاریخچه‌ی خالی"],["hirm","پس از حذف یک مورد"],["hilong","تاریخچه‌ی بلند، ۵۰۰ مورد"],["hinames","نام‌های بلند، تاریخچه"],["guest","مهمان کتابخانه را باز می‌کند"]];
-const CSTATES=[["cardoff","کارت در لیست نیست"],["cardadd","افزوده شد"],["cardrm","برداشته شد"],["cardfail","ذخیره نشد"],["guestadd","مهمان «افزودن» را می‌زند"],["back","پس از ورود، افزوده شده"]];
+const CSTATES=[["cardoff","کارت نشان نشده"],["cardadd","نشان شد"],["cardrm","از نشان‌شده برداشته شد"],["cardfail","ذخیره نشد"],["guestadd","مهمان «نشان کردن» را می‌زند"],["back","پس از ورود، نشان شده"]];
 const ALLS=[...STATES,...CSTATES].map(x=>x[0]);
 const S0=ALLS.includes(Q.get("s"))?Q.get("s"):"wl";
 const FAIL0=Q.get("fail")==="1"||S0==="cardfail";
@@ -318,11 +320,11 @@ function useScale(trigger,reduced){
 }
 function WlBtn({on,t,onToggle,pop,reduced}){
   const s=useScale(pop,reduced);
-  const lab=on?"در لیست تماشا: "+t.fa+"؛ برای برداشتن بزنید":"افزودن «"+t.fa+"» به لیست تماشا";
-  return html`<${motion.button} type="button" class="wl" aria-pressed=${on} aria-label=${lab} title=${on?"در لیست من":"افزودن به لیست"} onClick=${onToggle}
-      variants=${{h:{y:reduced?0:-6}}} transition=${SPR} whileTap=${{scale:.88}}>
+  const lab=on?"«"+t.fa+"» نشان‌شده است؛ برای برداشتن بزنید":"نشان کردن «"+t.fa+"»";
+  return html`<${motion.button} type="button" class="wl" aria-pressed=${on} aria-label=${lab} title=${on?"برداشتن از نشان‌شده":"نشان کردن"} onClick=${onToggle}
+      whileTap=${{scale:.88}}>
     <${motion.span} class="wl-b" style=${{scale:s}}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><${motion.path} initial=${false} animate=${{d:on?"M5 12.5 L9.5 17 M9.5 17 L19 7.5":"M12 5 L12 19 M5 12 L19 12"}} transition=${{duration:reduced?0:.3,ease:EASE}}/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1v16l-6-4.2-6 4.2v-16a1 1 0 0 1 1-1z"/></svg>
     </${motion.span}>
   </${motion.button}>`;
 }
@@ -334,32 +336,33 @@ function WItem({t,i,onRm,reduced}){
   const en=enterOf(reduced,i);
   return html`<${motion.div} class="wlc" layout=${reduced?false:"position"} ...${en}
       exit=${reduced?{opacity:0,transition:{duration:.1}}:{opacity:0,scale:.9,filter:"blur(6px)",transition:{duration:.22,ease:EASE_LEAVE}}}
-      transition=${{layout:SPR}} whileHover="h">
-    <${motion.a} href=${TH[t.k]} class="card arc lbk" title=${t.en} whileTap=${{scale:.97}}>
-      <${motion.div} class="pw" variants=${{h:{y:reduced?0:-6}}} transition=${SPR}>
-        <div class="po"><${Img} src=${t.img}/>
-          <div class="ov"><div class="cf">${t.fa}</div><div class="ct" dir="ltr">${t.en}</div>
-            <div class="cg"><span class="cy">${kindL(t)}</span><span class="cgg num">${metaL(t)}</span></div></div>
-        </div>
-      </${motion.div}>
+      transition=${{layout:SPR}}>
+    <${motion.a} href=${TH[t.k]} class="axc" title=${t.en}>
+      <div class="axp"><${Img} src=${t.img}/></div>
+      <span class="axn">${t.fa}</span>
+      <span class="axm">${kindL(t)} · ${metaL(t)}</span>
     </${motion.a}>
     <${WlBtn} on=${true} t=${t} onToggle=${()=>onRm(t)} reduced=${reduced}/>
   </${motion.div}>`;
 }
+const savedMin=h=>Math.max(1,Math.round(h.left*h.pc/(100-h.pc)));
 function HRow({h,i,onRm,reduced}){
   const en=enterOf(reduced,i);const done=h.pc>=100;
   const when=dayHead(h.b);
-  const al=(h.k==="series"?h.fa+"، فصل "+fa(h.se)+" قسمت "+fa(h.ep):h.fa)+"، "+(done?"تمام شد":fa(h.pc)+" درصد دیده شده")+"، "+when[1]+" ساعت "+fa(h.t);
-  return html`<${motion.div} class="hr" layout=${reduced?false:"position"} ...${en}
+  const ser=h.k==="series";
+  const al=(ser?h.fa+"، فصل "+fa(h.se)+" قسمت "+fa(h.ep):h.fa)+"، "+(done?"تمام شد":fa(h.pc)+" درصد دیده شده")+"، "+when[1]+" ساعت "+fa(h.t);
+  const cl="ادامه‌ی تماشا: "+(ser?h.fa+"، فصل "+fa(h.se)+" قسمت "+fa(h.ep):h.fa)+"، از دقیقه‌ی "+fa(savedMin(h));
+  return html`<${motion.div} class=${"hr"+(done?" done":"")} layout=${reduced?false:"position"} ...${en}
       exit=${reduced?{opacity:0,transition:{duration:.1}}:{opacity:0,x:-32,filter:"blur(6px)",transition:{duration:.26,ease:EASE_IN}}} transition=${{layout:SPR}}>
     <a class="hr-a" href=${TH[h.k]} aria-label=${al}>
       <span class="hr-t"><${Img} src=${h.img}/>${!done&&html`<span class="hr-p" aria-hidden="true"><i style=${{transform:`scaleX(${h.pc/100})`}}></i></span>`}</span>
       <span class="hr-b">
         <span class="hr-h"><span class="hr-n">${h.fa}</span><span class="hr-tm num">${fa(h.t)}</span></span>
-        ${h.k==="series"?html`<span class="hr-e">فصل ${fa(h.se)}، قسمت ${fa(h.ep)}</span>`:html`<span class="hr-e en">${h.en}</span>`}
-        <span class="hr-s">${done?html`<span class="ok"><${I} n="check"/>تمام شد</span>`:html`<b>${fa(h.pc)}٪</b><span>${fa(h.left>=60?Math.floor(h.left/60)+" ساعت و "+(h.left%60):h.left)} دقیقه مانده</span>`}</span>
+        ${ser?html`<span class="hr-e">فصل ${fa(h.se)}، قسمت ${fa(h.ep)}</span>`:html`<span class="hr-e en">${h.en}</span>`}
+        <span class="hr-s">${done?html`<span class="ok"><${I} n="check"/>تمام شد</span>`:html`<span>${fa(h.left>=60?Math.floor(h.left/60)+" ساعت و "+(h.left%60):h.left)} دقیقه مانده</span>`}</span>
       </span>
     </a>
+    ${!done&&html`<a class="hr-c" href=${"../playback/rollvana-playback.html?k="+(ser?"series":"film")+"&t="+savedMin(h)} aria-label=${cl}><${I} n="play"/>ادامه‌ی تماشا</a>`}
     <${motion.button} type="button" class="hr-x" id=${"hx-"+h.id} aria-label=${"حذف «"+nameOf(h)+"» از تاریخچه"} title="حذف از تاریخچه" onClick=${()=>onRm(h)} whileTap=${{scale:.88}}><${I} n="x"/></${motion.button}>
   </${motion.div}>`;
 }
@@ -367,30 +370,30 @@ function Empty({icon,title,text,cta,href,onClick}){
   const reduced=useReducedMotion();
   return html`<${motion.div} class="emp" initial=${reduced?{opacity:0}:{opacity:0,y:8,filter:"blur(6px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}} transition=${{duration:.5,ease:EASE}}>
     <span class="eg"><${I} n=${icon}/></span><h2>${title}</h2><p>${text}</p>
-    ${href?html`<${motion.a} class="cta" href=${href} whileTap=${PRESS}>${cta}</${motion.a}>`:html`<${motion.button} type="button" class="cta" onClick=${onClick} whileTap=${PRESS}>${cta}</${motion.button}>`}
+    ${href?html`<${motion.a} class="axbtn" href=${href} whileTap=${PRESS}>${cta}</${motion.a}>`:html`<${motion.button} type="button" class="axbtn" onClick=${onClick} whileTap=${PRESS}>${cta}</${motion.button}>`}
   </${motion.div}>`;
 }
 function More({shown,total,step,unit,onMore}){
   if(shown>=total)return null;
   const n=Math.min(step,total-shown);
-  return html`<div class="nfmore"><${motion.button} type="button" class="acg" onClick=${onMore} whileTap=${PRESS}>نمایش ${fa(n)} ${unit} دیگر</${motion.button}><small><${Count} v=${Math.min(shown,total)} fmt=${grp}/> از ${grp(total)}</small></div>`;
+  return html`<div class="nfmore"><${motion.button} type="button" class="axbtn" onClick=${onMore} whileTap=${PRESS}>نمایش ${fa(n)} ${unit} دیگر</${motion.button}><small><${Count} v=${Math.min(shown,total)} fmt=${grp}/> از ${grp(total)}</small></div>`;
 }
 function Watchlist({wl,f,setF,shown,setShown,onRm,desk,reduced}){
   const nf=wl.filter(t=>t.k==="film").length,ns=wl.length-nf;
   const list=f==="all"?wl:wl.filter(t=>t.k===f);
   const vis=list.slice(0,shown);
-  if(!wl.length)return html`<${Empty} icon="list" title="لیست تماشایتان خالی است" text="هر فیلم یا سریالی را که می‌خواهید بعداً ببینید، با دکمه‌ی + روی کارتش این‌جا نگه دارید." cta="گشتن در فیلم‌ها" href="../catalog/rollvana-archive.html"/>`;
+  if(!wl.length)return html`<${Empty} icon="list" title="هنوز چیزی نشان نکرده‌اید" text="روی نشانه‌ی هر فیلم یا سریال بزنید تا این‌جا بماند." cta="گشتن در فیلم‌ها" href="../catalog/rollvana-archive.html"/>`;
   const opt=(k,l,n)=>[k,html`<span class="sx">${l}<small class="num"><${Count} v=${n} fmt=${grp}/></small></span>`];
   return html`<${React.Fragment}>
     <div class="lbtl">
       <${Seg} cls="lbf" label="نوع عنوان" value=${f} onChange=${setF} opts=${[opt("all","همه",wl.length),opt("film","فیلم‌ها",nf),opt("series","سریال‌ها",ns)]}/>
-      ${list.length>0&&html`<p class="am"><span><b><${Count} v=${list.length} fmt=${grp}/></b> عنوان</span><i class="dot2" aria-hidden="true"></i><span>آخرین افزوده اول</span></p>`}
+      ${list.length>0&&html`<p class="lbo">به ترتیب آخرین نشان‌شده</p>`}
     </div>
     ${list.length?html`<div class="lbg"><${LayoutGroup}><${motion.div} class="agrid">
       <${AnimatePresence} mode="popLayout" initial=${false}>${vis.map((t,i)=>html`<${WItem} key=${t.id} t=${t} i=${i} onRm=${onRm} reduced=${reduced}/>`)}</${AnimatePresence}>
     </${motion.div}></${LayoutGroup}>
     <${More} shown=${shown} total=${list.length} step=${24} unit="عنوان" onMore=${()=>setShown(n=>n+24)}/></div>`
-    :html`<${Empty} icon=${f==="film"?"film":"tv"} title=${f==="film"?"فیلمی در لیست تماشا ندارید":"سریالی در لیست تماشا ندارید"} text=${"با دکمه‌ی + روی کارت هر "+(f==="film"?"فیلم":"سریال")+"، آن را این‌جا نگه دارید."} cta="دیدن همه‌ی لیست" onClick=${()=>setF("all")}/>`}
+    :html`<${Empty} icon=${f==="film"?"film":"tv"} title=${f==="film"?"فیلمی نشان نکرده‌اید":"سریالی نشان نکرده‌اید"} text=${"روی نشانه‌ی هر "+(f==="film"?"فیلم":"سریال")+" بزنید تا این‌جا بماند."} cta="دیدن همه‌ی نشان‌شده‌ها" onClick=${()=>setF("all")}/>`}
   </${React.Fragment}>`;
 }
 function History({hi,shown,setShown,onRm,reduced}){
@@ -398,10 +401,9 @@ function History({hi,shown,setShown,onRm,reduced}){
   const vis=hi.slice(0,shown);const groups=[];
   vis.forEach((h,i)=>{const g=groups[groups.length-1];if(g&&g.b===h.b)g.items.push([h,i]);else groups.push({b:h.b,items:[[h,i]]})});
   return html`<div class="lbs">
-    <p class="am lbo"><span><b><${Count} v=${hi.length} fmt=${grp}/></b> مورد</span><i class="dot2" aria-hidden="true"></i><span>آخرین تماشا اول</span></p>
     <${LayoutGroup}><${AnimatePresence} mode="popLayout" initial=${false}>${groups.map(g=>{const [a,b]=dayHead(g.b);return html`<${motion.section} key=${"g"+g.b} class="hg" aria-label=${a+" "+b} layout=${reduced?false:"position"} transition=${{layout:SPR}}
         exit=${reduced?{opacity:0}:{opacity:0,filter:"blur(6px)",transition:{duration:.22,ease:EASE_IN}}}>
-      <h2 class="hg-h">${a}<small>${b}</small></h2>
+      <h2 class="hg-h">${a}<i class="dot2" aria-hidden="true"></i><small>${b}</small></h2>
       <${AnimatePresence} mode="popLayout" initial=${false}>${g.items.map(([h,i])=>html`<${HRow} key=${h.id} h=${h} i=${i} onRm=${onRm} reduced=${reduced}/>`)}</${AnimatePresence}>
     </${motion.section}>`})}</${AnimatePresence}></${LayoutGroup}>
     <${More} shown=${shown} total=${hi.length} step=${30} unit="مورد" onMore=${()=>setShown(n=>n+30)}/>
@@ -409,7 +411,7 @@ function History({hi,shown,setShown,onRm,reduced}){
 }
 function LibTabs({tab,setTab,nw,nh}){
   const refs=useRef({});const reduced=useReducedMotion();
-  const T2=[["wl","لیست تماشا",nw],["hi","تاریخچه",nh]];
+  const T2=[["wl","نشان‌شده",nw],["hi","تاریخچه",nh]];
   const key=e=>{const m={ArrowLeft:1,ArrowRight:-1}[e.key];if(!m)return;e.preventDefault();const i=T2.findIndex(x=>x[0]===tab);const j=(i+m+2)%2;setTab(T2[j][0]);refs.current[T2[j][0]].focus()};
   return html`<div class="lbt" role="tablist" aria-label="بخش‌های کتابخانه">
     ${T2.map(([k,l,n])=>html`<button key=${k} type="button" role="tab" id=${"tab-"+k} class="lbt-t" ref=${el=>refs.current[k]=el} aria-selected=${tab===k} aria-controls="lbp" tabindex=${tab===k?0:-1} onClick=${()=>setTab(k)} onKeyDown=${key}>
@@ -443,7 +445,7 @@ function Toast({t,close,reduced}){
 function Guest({reduced}){
   return html`<div class="go lg-go acgo" role="status">
     <span class="go-p lg-hm"><${I} n="lock"/></span>
-    <span class="go-k">لیست تماشا و تاریخچه مال حساب شماست</span>
+    <span class="go-k">نشان‌شده و تاریخچه مال حساب شماست</span>
     <h2>اول وارد شوید</h2>
     <span class="go-k">پس از ورود، به همین صفحه برمی‌گردید.</span>
     <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${900} reduced=${reduced} k="g" cls="go-f"/></span>
@@ -451,7 +453,7 @@ function Guest({reduced}){
   </div>`;
 }
 function HomeCard({t,on,pop,onToggle,reduced}){
-  return html`<${motion.div} class="wlc" initial="r" animate="r" whileHover="h">
+  return html`<${motion.div} class="wlc" initial="r" animate="r">
     <${motion.a} href=${TH[t.k]} class="card" title=${t.en} whileTap=${{scale:.97}}>
       <${motion.div} class="pw" variants=${{r:{y:0},h:{y:reduced?0:-6}}} transition=${SPR}>
         <div class="po"><${motion.div} style=${{width:"100%",height:"100%"}} variants=${{r:{scale:1},h:{scale:reduced?1:1.04}}} transition=${{duration:.6,ease:EASE}}><${Img} src=${t.img}/></${motion.div}>
@@ -472,9 +474,9 @@ function LibReview({s,fail}){
   const nav=p=>{const u=new URL(location.href);Object.entries(p).forEach(([k,v])=>v==null?u.searchParams.delete(k):u.searchParams.set(k,v));location.href=u};
   const B=(on,l,f,k)=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${on} onClick=${f}>${l}</${motion.button}>`;
   return html`<section class="review" aria-label="حالت‌های طرح">
-    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: فیلتر، برداشتن از لیست، حذف از تاریخچه با بازگرداندن، «نمایش بیشتر» و دکمه‌ی + روی کارت‌ها کار می‌کنند. اعلانِ حالت‌های آماده تا اولین لمس صفحه می‌ماند. تصویرها نمونه‌اند.</span>
+    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: فیلتر، برداشتن از نشان‌شده، حذف از تاریخچه با بازگرداندن، «نمایش بیشتر» و دکمه‌ی نشان روی کارت‌ها کار می‌کنند. اعلانِ حالت‌های آماده تا اولین لمس صفحه می‌ماند. تصویرها نمونه‌اند.</span>
     <div class="grp"><span>کتابخانه</span><div>${STATES.map(([k,l])=>B(s===k,l,()=>nav({s:k,tab:null}),k))}</div></div>
-    <div class="grp"><span>دکمه‌ی + روی کارت (نمونه‌ی ردیف صفحه‌ی اصلی؛ روی کارت‌های آرشیو و جستجو همین است)</span><div>${CSTATES.map(([k,l])=>B(s===k,l,()=>nav({s:k,tab:null}),k))}</div></div>
+    <div class="grp"><span>دکمه‌ی نشان روی کارت (نمونه‌ی ردیف صفحه‌ی اصلی؛ روی کارت‌های آرشیو و جستجو همین است)</span><div>${CSTATES.map(([k,l])=>B(s===k,l,()=>nav({s:k,tab:null}),k))}</div></div>
     <div class="grp"><span>ذخیره روی سرور</span><div>${[[false,"موفق"],[true,"ناموفق (تلاش دوباره موفق است)"]].map(([v,l])=>B(fail===v,l,()=>nav({fail:v?"1":null}),String(v)))}</div></div>
     <div class="grp"><span>نشانی‌ها</span><code dir="ltr">/library</code><code dir="ltr">/library?tab=history</code><code dir="ltr">guest → /login?next=/library</code><code dir="ltr">guest + → /login?next=/&add=inception</code></div>
     <a class="syslink" href="../system/rollvana-design-system.html#library">سیستم طراحی، بخش کتابخانه ←</a>
@@ -495,8 +497,8 @@ function App(){
   const close=()=>setToast(null);
   const rmW=(t,hold)=>{
     let idx=-1;setWl(o=>{idx=o.findIndex(x=>x.id===t.id);return o.filter(x=>x.id!==t.id)});
-    setSay("«"+t.fa+"» از لیست تماشا برداشته شد");
-    setToast({k:"w"+t.id+Date.now(),t:"«"+t.fa+"» از لیست برداشته شد",undo:true,hold,a:["بازگرداندن",()=>{setWl(o=>{const n=o.slice();n.splice(Math.max(0,idx),0,t);return n});setToast(null);setSay("«"+t.fa+"» به لیست برگشت")}]});
+    setSay("«"+t.fa+"» از نشان‌شده برداشته شد");
+    setToast({k:"w"+t.id+Date.now(),t:"«"+t.fa+"» از نشان‌شده برداشته شد",undo:true,hold,a:["بازگرداندن",()=>{setWl(o=>{const n=o.slice();n.splice(Math.max(0,idx),0,t);return n});setToast(null);setSay("«"+t.fa+"» دوباره نشان شد")}]});
   };
   const rmH=(h,hold)=>{
     let idx=-1,next=null;setHi(o=>{idx=o.findIndex(x=>x.id===h.id);next=o[idx+1]||o[idx-1]||null;return o.filter(x=>x.id!==h.id)});
@@ -506,16 +508,16 @@ function App(){
   };
   const goLib=()=>{location.href=LIBH};
   const toggle=(t,hold,force)=>{
-    if(!P0.user){setSay("برای افزودن به لیست، اول وارد شوید");setToast({k:"g"+t.id,t:"برای نگه داشتن «"+t.fa+"» اول وارد شوید",hold,a:["ورود",()=>{location.href=LOGIN}]});if(!hold)later(()=>{location.href=LOGIN},1600);return}
+    if(!P0.user){setSay("برای نشان کردن، اول وارد شوید");setToast({k:"g"+t.id,t:"برای نگه داشتن «"+t.fa+"» اول وارد شوید",hold,a:["ورود",()=>{location.href=LOGIN}]});if(!hold)later(()=>{location.href=LOGIN},1600);return}
     const was=cs.cl.includes(t.id);const on=!was;
     setCs(o=>({cl:on?[...o.cl,t.id]:o.cl.filter(x=>x!==t.id),pop:on?{...o.pop,[t.id]:(o.pop[t.id]||0)+1}:o.pop}));
-    if(on){setToast({k:"a"+t.id+Date.now(),t:"«"+t.fa+"» به لیست اضافه شد",hold,a:["دیدن لیست",goLib]});setSay("«"+t.fa+"» به لیست تماشا اضافه شد")}
-    else{setToast({k:"r"+t.id+Date.now(),t:"«"+t.fa+"» از لیست برداشته شد",undo:true,hold,a:["بازگرداندن",()=>{setToast(null);toggle(t,false,true)}]});setSay("«"+t.fa+"» از لیست تماشا برداشته شد")}
+    if(on){setToast({k:"a"+t.id+Date.now(),t:"«"+t.fa+"» نشان شد",hold,a:["دیدن نشان‌شده",goLib]});setSay("«"+t.fa+"» نشان شد")}
+    else{setToast({k:"r"+t.id+Date.now(),t:"«"+t.fa+"» از نشان‌شده برداشته شد",undo:true,hold,a:["بازگرداندن",()=>{setToast(null);toggle(t,false,true)}]});setSay("«"+t.fa+"» از نشان‌شده برداشته شد")}
     if(fail.current&&!force)later(()=>{
       fail.current=false;
       setCs(o=>({...o,cl:was?[...o.cl.filter(x=>x!==t.id),t.id]:o.cl.filter(x=>x!==t.id)}));
-      setSay("ذخیره نشد؛ «"+t.fa+"» "+(on?"به لیست اضافه نشد":"در لیست ماند"));
-      setToast({k:"f"+t.id+Date.now(),err:true,hold,t:on?"«"+t.fa+"» به لیست اضافه نشد":"«"+t.fa+"» از لیست برداشته نشد",a:["دوباره",()=>{setToast(null);toggle(t,false,true)}]});
+      setSay("ذخیره نشد؛ «"+t.fa+"» "+(on?"نشان نشد":"نشان‌شده ماند"));
+      setToast({k:"f"+t.id+Date.now(),err:true,hold,t:on?"«"+t.fa+"» نشان نشد":"«"+t.fa+"» از نشان‌شده برداشته نشد",a:["دوباره",()=>{setToast(null);toggle(t,false,true)}]});
     },700);
   };
   useEffect(()=>{const a=P0.auto;if(!a)return;
@@ -526,7 +528,7 @@ function App(){
       if(a==="rm")toggle(CF[2],true);
       if(a==="fail")toggle(CF[3],true);
       if(a==="gadd")toggle(CF[1],true);
-      if(a==="back"){setCs(o=>({cl:[...o.cl,CF[0].id],pop:{...o.pop,[CF[0].id]:1}}));setToast({k:"back",t:"وارد شدید و «"+CF[0].fa+"» به لیست اضافه شد",hold:true,a:["دیدن لیست",goLib]});setSay("وارد شدید. «"+CF[0].fa+"» به لیست تماشا اضافه شد")}
+      if(a==="back"){setCs(o=>({cl:[...o.cl,CF[0].id],pop:{...o.pop,[CF[0].id]:1}}));setToast({k:"back",t:"وارد شدید و «"+CF[0].fa+"» نشان شد",hold:true,a:["دیدن نشان‌شده",goLib]});setSay("وارد شدید. «"+CF[0].fa+"» نشان شد")}
     },500);return()=>clearTimeout(x)},[]);
   const bell=html`<${Bell} n=${3} reduced=${reduced}/>`;
   return html`<${React.Fragment}>

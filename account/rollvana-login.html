@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>ورود یا ثبت‌نام | Rollvana</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-account.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 </head><body>
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -54,7 +56,7 @@ function Img({src,cls,style,alt=""}){
     initial=${false} animate=${ok?{opacity:1,filter:"blur(0px)",scale:1}:{opacity:0,filter:"blur(12px)",scale:1.04}}
     transition=${{duration:.7,ease:EASE}}/>`;
 }
-function Header({user,desk}){
+function Header({user,desk,back}){
   useEffect(()=>{const f=e=>{if(e.key==="/"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();const q=document.getElementById("q");q&&q.focus()}};addEventListener("keydown",f);return()=>removeEventListener("keydown",f)},[]);
   const [sc,setSc]=useState(false);
   const [hov,setHov]=useState(null);
@@ -74,7 +76,8 @@ function Header({user,desk}){
     <${MoreNav}/>
     </nav>`}
     <div class="hl">
-      ${user&&html`<${motion.button} class="ib bell" aria-label="اعلان‌ها، ۲ مورد تازه" whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><i class="dot"></i></${motion.button}>`}
+      ${back&&html`<a class="login back" href="../home/home-v3.html"><span>بازگشت به سایت</span><${I} n="arrow"/></a>`}
+      ${user&&html`<${motion.button} class="ib bell" aria-label=${RVC.bellLabel(RVC.N0)} whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><${RVC.Count}/></${motion.button}>`}
     </div>
   </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
 }
@@ -82,9 +85,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -117,8 +120,8 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
       :null}
     <div class="mcol">
       <h3>بخش‌ها</h3>
@@ -450,7 +453,7 @@ function App(){
   };
   const form=s.step==="num"||s.step==="code";
   return html`<${React.Fragment}>
-    <${Header} user=${false} desk=${desk}/>
+    <${Header} user=${false} desk=${desk} back/>
     <main class="lgn" id="page">
       <div class="lg-in">
         <${AnimatePresence} initial=${false} mode="popLayout">

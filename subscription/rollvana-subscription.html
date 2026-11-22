@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>خرید اشتراک | Rollvana</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-account.css"><link rel="stylesheet" href="../system/rollvana-subscription.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 </head><body>
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -63,7 +65,7 @@ function Header({user,desk,bell}){
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
   return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
-    <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:1}} transition=${{duration:.35}}/>
+    <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:sc?1:0}} transition=${{duration:.35}}/>
     <a class="wm" href="../home/home-v3.html" aria-label="Rollvana"><svg viewBox="-185.15 -1070.84 5639.51 1330" aria-hidden="true"><g transform="translate(-205.54 -1261.62) scale(14.24)"><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="var(--logo-petal,#6A55C2)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="var(--light)"/></g><path transform="translate(1622.2 0)" d="M76 -700V0H210V-259H275.74L445 0H604L409.94 -274.01Q426.49 -279.32 441.5 -286.5Q499 -314 530.5 -364Q562 -414 562 -479Q562 -546 530.5 -595.5Q499 -645 441.5 -672.5Q384 -700 304 -700ZM635 -230Q635 -159 668 -105Q701 -51 758.5 -20.5Q816 10 887 10Q960 10 1017 -20.5Q1074 -51 1107 -105Q1140 -159 1140 -230Q1140 -302 1107 -356Q1074 -410 1017 -440Q960 -470 887 -470Q816 -470 758.5 -440Q701 -410 668 -356Q635 -302 635 -230ZM2242 -334Q2252 -341 2273 -351Q2294 -361 2322.5 -368.5Q2351 -376 2383 -376Q2404 -376 2421.5 -372Q2439 -368 2451.5 -359Q2464 -350 2470.5 -336Q2477 -322 2477 -302V-250.59Q2455.24 -263.21 2422.5 -272.5Q2389 -282 2344 -282Q2258 -282 2210.5 -242.5Q2163 -203 2163 -137Q2163 -90 2185.5 -57Q2208 -24 2245 -7Q2282 10 2325 10Q2367 10 2405 -5Q2443 -20 2468 -50Q2473 -56 2477 -62.56V0H2595V-326Q2595 -373 2569.5 -405.5Q2549.16 -431.42 2516.43 -447.48Q2470.77 -418.04 2437 -369V-469.69Q2417.38 -472 2396 -472Q2331 -472 2280 -454Q2229 -436 2196 -417ZM3294 -334Q3304 -341 3325 -351Q3346 -361 3374.5 -368.5Q3403 -376 3435 -376Q3456 -376 3473.5 -372Q3491 -368 3503.5 -359Q3516 -350 3522.5 -336Q3529 -322 3529 -302V-250.59Q3507.24 -263.21 3474.5 -272.5Q3441 -282 3396 -282Q3310 -282 3262.5 -242.5Q3215 -203 3215 -137Q3215 -90 3237.5 -57Q3260 -24 3297 -7Q3334 10 3377 10Q3419 10 3457 -5Q3495 -20 3520 -50Q3525 -56 3529 -62.56V0H3647V-326Q3647 -373 3621.5 -405.5Q3601.16 -431.42 3568.43 -447.48Q3522.77 -418.04 3489 -369V-469.69Q3469.38 -472 3448 -472Q3383 -472 3332 -454Q3281 -436 3248 -417ZM3006 -280V0H3130V-294Q3130 -376 3089.5 -423Q3049 -470 2969 -470Q2921 -470 2886.5 -449.5Q2852 -429 2830 -390V-460H2709V0H2830V-280Q2830 -310 2842 -332Q2854 -354 2875.5 -366Q2897 -378 2926 -378Q2967 -378 2986.5 -353Q3006 -328 3006 -280ZM1476 1H1597V-580C1597 -808 1535.29 -937.2 1494.15 -960C1486.89 -937.2 1476 -808 1476 -580ZM1231 1H1352V-580C1352 -808 1341.11 -937.2 1333.85 -960C1292.71 -937.2 1231 -808 1231 -580ZM1653 -460 1900 46 2147 -460H2016L1900 -175L1784 -460ZM759 -230Q759 -271 776 -302Q793 -333 822 -350Q851 -367 887 -367Q924 -367 953 -350Q982 -333 999 -302Q1016 -271 1016 -230Q1016 -189 999 -158.5Q982 -128 953 -111Q924 -94 887 -94Q851 -94 822 -111Q793 -128 776 -158.5Q759 -189 759 -230ZM210 -366V-586H297Q336 -586 364.5 -573Q393 -560 409 -535.5Q425 -511 425 -476Q425 -441 409 -416.5Q393 -392 364.5 -379Q336 -366 297 -366ZM2285 -143Q2285 -163 2294.5 -177.5Q2304 -192 2324 -200Q2344 -208 2376 -208Q2414 -208 2448 -198Q2463.09 -193.56 2477 -186.96V-184Q2477 -150 2462 -125.5Q2447 -101 2421.5 -88.5Q2396 -76 2366 -76Q2343 -76 2324.5 -83.5Q2306 -91 2295.5 -106.5Q2285 -122 2285 -143ZM3337 -143Q3337 -163 3346.5 -177.5Q3356 -192 3376 -200Q3396 -208 3428 -208Q3466 -208 3500 -198Q3515.09 -193.56 3529 -186.96V-184Q3529 -150 3514 -125.5Q3499 -101 3473.5 -88.5Q3448 -76 3418 -76Q3395 -76 3376.5 -83.5Q3358 -91 3347.5 -106.5Q3337 -122 3337 -143Z" fill="currentColor"/></svg></a>
     ${desk&&html`<nav class="nav" aria-label="ناوبری اصلی" onMouseLeave=${()=>setHov(null)}>
       ${NAV.map((l,k)=>html`<a href=${NAVH[k]} aria-current=${k===CUR?"page":undefined} onMouseEnter=${()=>setHov(k)} onFocus=${()=>setHov(k)}>
@@ -74,7 +76,8 @@ function Header({user,desk,bell}){
     <${MoreNav}/>
     </nav>`}
     <div class="hl">
-      ${user&&bell}
+      ${user&&html`<${motion.button} class="ib bell" aria-label=${RVC.bellLabel(RVC.N0)} whileTap=${{scale:.9}}><${I} n="bell"/><${RVC.Count}/></${motion.button}>`}
+      ${user?html`<${Account}/>`:html`<${React.Fragment}><a class="login" href=${LOGIN} style=${{borderRadius:10}}>ورود</a></${React.Fragment}>`}
     </div>
   </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
 }
@@ -82,9 +85,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -117,8 +120,8 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#page" class="mu" aria-current="page"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44}}><${I} n="user"/></span><span><b><bdi dir="ltr">${phf(PHONE)}</bdi></b><small>${muLine()}</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+    ${user?html`<a href=${ACCOUNT} class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
       :null}
     <div class="mcol">
       <h3>بخش‌ها</h3>
@@ -193,7 +196,9 @@ const CODES={PAYIZ30:{t:"pct",v:30},RV50K:{t:"amt",v:50000},YALDA25:{e:"expired"
 const REJ={unknown:"SALE99",expired:"YALDA25",inactive:"NOROOZ20",used:"TELEGRAM40"};
 const WHY={unknown:"این کد پیدا نشد. حروف و عددهایش را دوباره نگاه کنید.",expired:"مهلت استفاده از این کد تمام شده است.",inactive:"این کد فعلاً فعال نیست.",used:"ظرفیت این کد پر شده و دیگر نمی‌شود از آن استفاده کرد."};
 const STATES=[["guest","مهمان"],["guestgo","مهمان یک طرح را زد"],["back","برگشت پس از ورود، با طرح"],["nosub","عضو بی‌اشتراک"],["active","عضو با اشتراک فعال (تمدید)"],["activesum","تمدید: خلاصه و تاریخ پایان تازه"],["one","یک طرح"],["eight","هشت طرح"],["long","نام بلند طرح"],["none","هیچ طرح فعالی نیست"],["chosen","طرح انتخاب‌شده"],["codeempty","کد تخفیف، خالی"],["checking","در حال بررسی کد"],["pct","کد درصدی اعمال شد"],["amt","کد مبلغی اعمال شد"],["unknown","رد: کد ناشناخته"],["expired","رد: منقضی"],["inactive","رد: غیرفعال"],["used","رد: ظرفیت تمام"],["gateway","رفتن به درگاه"],["paid","نتیجه: پرداخت شد"],["failed","نتیجه: ناموفق"],["cancelled","نتیجه: لغو شد"],["confirming","نتیجه: در حال تأیید"]];
-const S0=STATES.some(x=>x[0]===Q.get("s"))?Q.get("s"):"nosub";
+const AL={paying:"gateway",success:"paid",failure:"failed",discount:"pct",invalid:"unknown",none:"none"};
+const S1=AL[Q.get("s")]||Q.get("s");
+const S0=STATES.some(x=>x[0]===S1)?S1:"nosub";
 const RQ=["err","no"].includes(Q.get("r"))?Q.get("r"):"ok";
 const LOGIN="../account/rollvana-login.html?s=empty";
 const FROM="../title/rollvana-title.html?kind=film";
@@ -223,189 +228,302 @@ function preset(s){
   if(s==="confirming"){o.view="result";o.res="wait";o.code=PCT}
   return o;
 }
-function Spin({reduced,cls}){
-  return html`<${motion.svg} class=${cls||"lg-sp"} viewBox="0 0 24 24" aria-hidden="true" animate=${reduced?{}:{rotate:360}} transition=${{duration:.8,ease:"linear",repeat:Infinity}}><circle class="tr" cx="12" cy="12" r="9"/><path class="ar" d="M12 3a9 9 0 0 1 9 9"/></${motion.svg}>`;
-}
 function DateRoll({doy,reduced}){
   const j=jd(doy);
   return html`<span class="sbd" role="text" aria-label=${jds(doy)}><span aria-hidden="true"><${AnimChars} text=${fa(j.d)}/></span><span aria-hidden="true"><${Flip} v=${MONTHS[j.m]} reduced=${reduced}/></span><span aria-hidden="true"><${AnimChars} text=${fa(j.y)}/></span></span>`;
 }
-function Head(){
-  return html`<header class="sbh">
-    <h1 id="h1" tabindex="-1">خرید اشتراک</h1>
-    <p class="sbh-u">با اشتراک، هر فیلم و سریالی را آنلاین ببینید یا دانلود کنید.</p>
-    <p class="sbh-f">گشتن در سایت، صفحه‌ی فیلم‌ها و سریال‌ها، جستجو و تریلرها بدون اشتراک هم باز است.</p>
-  </header>`;
-}
-function Now(){
-  return html`<section class="sbn" aria-label="اشتراک فعلی">
-    <div class="sbn-d"><b>${fa(CUREND-TODAY)}</b><small>روز مانده</small></div>
-    <div class="sbn-a"><b>اشتراک سه‌ماهه‌ی شما فعال است</b><span>تا <b>${jds(CUREND)}</b>. طرحی که حالا بخرید، روزهایش را بعد از این تاریخ اضافه می‌کند.</span></div>
+const HM="../home/media/";
+const BG=["b-fallout","b-severance","b-dune-part-two","b-poor-things"];
+const FAN=["p-dune-part-two","p-severance","p-shogun","p-oppenheimer","p-fallout"];
+const LOGOS=["l-dune-part-two","l-severance","l-fallout","l-shogun"];
+const BASEP=129000;
+const monthly=p=>Math.round(p.p/p.d*30/100)*100;
+const savePct=p=>{const m=monthly(p);const x=Math.round((1-m/BASEP)*100);return m<BASEP&&x>=1?x:0};
+const saveAmt=p=>Math.max(0,Math.round(BASEP/30*p.d/100)*100-p.p);
+const INC=["تماشای آنلاین","دانلود","دوبله و زیرنویس فارسی"];
+const CMP=[["گشتن در سایت، فیلم‌ها و سریال‌ها",1,1],["جستجو و تریلرها",1,1],["تماشای آنلاین",0,1],["دانلود فیلم‌ها و سریال‌ها",0,1],["دوبله و زیرنویس فارسی",0,1],["ادامه‌ی تماشا روی هر دستگاه",0,1]];
+const FAQ=[
+["اشتراک چطور فعال می‌شود؟","بعد از پرداخت موفق، اشتراک همان لحظه فعال می‌شود و مدتش از امروز شمرده می‌شود."],
+["اگر اشتراک فعال دارم و دوباره بخرم؟","روزهای طرح تازه بعد از پایان اشتراک فعلی شما اضافه می‌شود؛ چیزی از دست نمی‌رود."],
+["کد تخفیف را کجا بزنم؟","در همین صفحه، پس از انتخاب طرح، «کد تخفیف دارید؟» را بزنید. برای هر پرداخت یک کد می‌شود."],
+["پرداخت انجام نشد ولی پول کم شد؟","اگر پرداخت در درگاه موفق شده باشد، اشتراک شما فعال می‌شود. اگر نتیجه مشخص نیست، چند دقیقه صبر کنید و صفحه‌ی «حساب من» را ببینید."],
+["چند دستگاه هم‌زمان؟","تا ۲ دستگاه هم‌زمان می‌توانند با یک حساب وارد باشند."]
+];
+const STEPS=["انتخاب طرح","پرداخت در درگاه سِپ","فعال شدن اشتراک"];
+const ACCOUNT="../account/rollvana-account.html";
+Object.assign(ICON,{ck:'<path d="M5 12.5l4.6 4.6L19 7.6"/>',dash:'<path d="M8 12h8"/>',shield:'<path d="M12 3l7.5 3v5.5c0 4.6-3.1 8.2-7.5 9.5-4.4-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.4 2.4 4-4.4"/>',plus2:'<path d="M12 5v14M5 12h14"/>',receipt:'<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',play2:'<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3Z"/>',dl:'<path d="M12 4v11"/><path d="m7.5 11 4.5 4.5 4.5-4.5"/><path d="M5 19h14"/>',cc:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7.5 10.5h3M7.5 14h6"/>'});
+function Band(){
+  return html`<section class="sx-band" aria-labelledby="h1">
+    <div class="sx-strip" aria-hidden="true">${BG.map(b=>html`<img key=${b} src=${HM+b+".jpg"} alt=""/>`)}</div>
+    <div class="sx-scrim" aria-hidden="true"></div>
+    <div class="sx-bi">
+      <div class="sx-txt">
+        <div class="sx-kick"><img src="../brand/rollvana-symbol-white.svg" alt=""/>اشتراک رول‌وانا</div>
+        <h1 id="h1" tabindex="-1">هر فیلم و سریال، یک لمس تا تماشا</h1>
+        <p class="sx-lead">با اشتراک، هر فیلم و سریالی را آنلاین ببینید یا دانلود کنید.</p>
+        <p class="sx-free">گشتن در سایت، صفحه‌ی فیلم‌ها و سریال‌ها، جستجو و تریلرها بدون اشتراک هم باز است.</p>
+        <div class="sx-logos" aria-hidden="true">${LOGOS.map(l=>html`<img key=${l} src=${HM+l+".png"} alt=""/>`)}</div>
+      </div>
+      <div class="sx-fan" aria-hidden="true">${FAN.map(p=>html`<img key=${p} src=${HM+p+".jpg"} alt=""/>`)}</div>
+    </div>
   </section>`;
 }
-function Plans({list,sel,onPick,reduced}){
+function MiniBand({img}){
+  return html`<div class="sx-mini" aria-hidden="true"><img src=${HM+(img||"b-dune-part-two")+".jpg"} alt=""/><i></i></div>`;
+}
+function Steps({n,bad}){
+  return html`<ol class="sx-steps" aria-label="مراحل خرید">${STEPS.map((s,i)=>{
+    const st=i+1<n?"done":i+1===n?(bad?"bad":"now"):"next";
+    return html`<li key=${s} class=${"sx-st "+st} aria-current=${i+1===n?"step":undefined}><span class="sx-stn">${st==="done"?html`<${I} n="ck"/>`:st==="bad"?html`<${I} n="x"/>`:fa(i+1)}</span><span class="sx-sl">${s}</span></li>`})}</ol>`;
+}
+function Ring({left,total,size=64}){
+  const r=size/2-4,c=2*Math.PI*r,f=Math.max(0,Math.min(1,left/total));
+  return html`<span class="sx-ring" style=${{width:size,height:size}} role="img" aria-label=${fa(left)+" روز مانده"}>
+    <svg viewBox=${"0 0 "+size+" "+size} aria-hidden="true"><circle class="t" cx=${size/2} cy=${size/2} r=${r}/><circle class="a" cx=${size/2} cy=${size/2} r=${r} stroke-dasharray=${c} stroke-dashoffset=${c*(1-f)}/></svg>
+    <b>${fa(left)}</b></span>`;
+}
+function Now(){
+  return html`<section class="sx-now" aria-label="اشتراک فعلی">
+    <${Ring} left=${CUREND-TODAY} total=${90}/>
+    <div class="sx-now-t"><span class="sx-now-k">اشتراک فعلی شما</span><b>اشتراک سه‌ماهه‌ی شما فعال است، ${fa(CUREND-TODAY)} روز مانده</b>
+      <span>تا <b>${jds(CUREND)}</b>. طرحی که حالا بخرید، روزهایش را بعد از این تاریخ اضافه می‌کند.</span></div>
+  </section>`;
+}
+function Plans({list,sel,onPick,reduced,desk}){
   const refs=useRef([]);
   const idx=list.findIndex(p=>p.id===sel);
   const n=list.length;
   const key=(e,i)=>{const m={ArrowLeft:1,ArrowDown:1,ArrowRight:-1,ArrowUp:-1}[e.key];if(m){e.preventDefault();const j=(i+m+n)%n;refs.current[j]&&refs.current[j].focus();onPick(list[j].id,true)}};
-  const long=list.some(p=>p.n.length>40);
-  return html`<section class="sbx" aria-labelledby="plh">
-    <div class="sbx-h"><h2 id="plh">طرح‌های اشتراک</h2><small>${fa(n)} طرح</small></div>
-    <${LayoutGroup}><div class=${"pl"+(long?" long":"")} role="radiogroup" aria-labelledby="plh">
-      ${list.map((p,i)=>html`<${motion.button} type="button" role="radio" key=${p.id} class="pl-i" aria-checked=${p.id===sel} tabindex=${(idx<0?i===0:i===idx)?0:-1}
-          aria-label=${p.n+"، "+fa(p.d)+" روز، "+faN(p.p)+" تومان"} ref=${el=>refs.current[i]=el} onClick=${()=>onPick(p.id)} onKeyDown=${e=>key(e,i)} whileTap=${reduced?undefined:{scale:.985}} transition=${SPR}>
-        ${p.id===sel&&html`<${motion.span} class="pl-m" layoutId="plmark" aria-hidden="true" transition=${reduced?{duration:0}:MARK}/>`}
-        <span class="pl-r" aria-hidden="true"><${AnimatePresence} initial=${false}>${p.id===sel&&html`<${motion.b} key="d" initial=${{scale:0}} animate=${{scale:1}} exit=${{scale:0,transition:{duration:.12,ease:EASE_IN}}} transition=${reduced?{duration:0}:SNAP}/>`}</${AnimatePresence}></span>
-        <span class="pl-a" aria-hidden="true"><span class="pl-n">${p.n}</span><span class="pl-d">${fa(p.d)} روز</span></span>
-        <span class="pl-p" aria-hidden="true"><b>${faN(p.p)}</b><small>تومان</small></span>
-      </${motion.button}>`)}
+  const rec=n>=3&&list.some(p=>p.id==="m3")?"m3":null;
+  return html`<section class="sx-sec sx-plans" aria-labelledby="plh">
+    <div class="sx-sh"><h2 id="plh">طرح‌های اشتراک</h2><small>${fa(n)} طرح</small></div>
+    <${LayoutGroup}><div class=${"sx-pl"+(n===1?" one":"")} role="radiogroup" aria-labelledby="plh">
+      ${list.map((p,i)=>{
+        const on=p.id===sel,sv=savePct(p),isRec=p.id===rec;
+        return html`<${motion.button} type="button" role="radio" key=${p.id} class=${"sx-pc"+(on?" on":"")+(isRec?" rec":"")} aria-checked=${on} tabindex=${(idx<0?i===0:i===idx)?0:-1}
+          aria-label=${p.n+"، "+fa(p.d)+" روز، "+faN(p.p)+" تومان"+(sv?"، "+fa(sv)+" درصد ارزان‌تر در ماه":"")+(isRec?"، پیشنهادی":"")} ref=${el=>refs.current[i]=el} onClick=${()=>onPick(p.id)} onKeyDown=${e=>key(e,i)}
+          whileTap=${reduced?undefined:{scale:.985}} transition=${SPR}>
+          ${isRec&&html`<span class="sx-rec" aria-hidden="true">پیشنهادی</span>`}
+          ${on&&html`<${motion.span} class="sx-ring-m" layoutId="plmark" aria-hidden="true" transition=${reduced?{duration:0}:MARK}/>`}
+          <span class="sx-pr" aria-hidden="true"><${AnimatePresence} initial=${false}>${on&&html`<${motion.b} key="d" initial=${{scale:0}} animate=${{scale:1}} exit=${{scale:0,transition:{duration:.12,ease:EASE_IN}}} transition=${reduced?{duration:0}:SNAP}><${I} n="ck"/></${motion.b}>`}</${AnimatePresence}></span>
+          <span class="sx-pn" aria-hidden="true">${p.n}</span>
+          <span class="sx-pd" aria-hidden="true">${fa(p.d)} روز</span>
+          <span class="sx-pp" aria-hidden="true"><b>${faN(p.p)}</b><small>تومان</small></span>
+          <span class="sx-pm" aria-hidden="true">ماهی ≈ <b>${faN(monthly(p))}</b> تومان</span>
+          ${sv>0&&html`<span class="sx-bd" aria-hidden="true">${fa(sv)}٪ ارزان‌تر</span>`}
+          <ul class="sx-pi" aria-hidden="true">
+            ${INC.map(t=>html`<li key=${t}><${I} n="ck"/>${t}</li>`)}
+            ${sv>0&&desk&&html`<li class="sv"><${I} n="ck"/>${faN(saveAmt(p))} تومان کمتر از خرید ماهانه</li>`}
+          </ul>
+        </${motion.button}>`})}
     </div></${LayoutGroup}>
+    <p class="sx-all"><${I} n="ck"/>در همه‌ی طرح‌ها: ${INC.join("، ")}</p>
+    <p class="sx-fn">ماه = ۳۰ روز. قیمت ماهانه از تقسیم قیمت طرح بر تعداد روزها حساب شده و به نزدیک‌ترین صد تومان گرد شده است.</p>
   </section>`;
 }
 function NoPlans(){
-  return html`<div class="emp sbz" role="status">
-    <span class="eg"><${I} n="crown"/></span>
+  return html`<div class="sx-empty" role="status">
+    <span class="sx-eg"><${I} n="crown"/></span>
     <h2>فعلاً طرح اشتراکی برای خرید نیست</h2>
     <p>طرح‌های تازه همین‌جا می‌آیند. تا آن موقع می‌توانید بگردید، جستجو کنید و تریلرها را ببینید.</p>
-    <${motion.a} class="acg" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی<${I} n="left"/></${motion.a}>
+    <${motion.a} class="sx-btn" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی<${I} n="left"/></${motion.a}>
   </div>`;
+}
+function Cmp(){
+  return html`<section class="sx-sec sx-cmp" aria-labelledby="cph">
+    <div class="sx-sh"><h2 id="cph">چه چیزی باز می‌شود</h2></div>
+    <div class="sx-tb" role="table" aria-label="مقایسه‌ی بدون اشتراک و با اشتراک">
+      <div class="sx-tr h" role="row"><span role="columnheader"></span><span role="columnheader">بدون اشتراک</span><span role="columnheader" class="w">با اشتراک</span></div>
+      ${CMP.map(([t,a,b])=>html`<div class="sx-tr" role="row" key=${t}>
+        <span role="rowheader">${t}</span>
+        <span role="cell" class=${a?"y":"n"}><${I} n=${a?"ck":"dash"}/><i class="sr">${a?"دارد":"ندارد"}</i></span>
+        <span role="cell" class=${"w "+(b?"y":"n")}><${I} n=${b?"ck":"dash"}/><i class="sr">${b?"دارد":"ندارد"}</i></span>
+      </div>`)}
+    </div>
+  </section>`;
+}
+function Faq(){
+  const [open,setOpen]=useState(0);const reduced=useReducedMotion();
+  return html`<section class="sx-sec sx-faq" aria-labelledby="fqh">
+    <div class="sx-sh"><h2 id="fqh">پرسش‌های پرتکرار</h2></div>
+    <div class="sx-ac">${FAQ.map(([q,a],i)=>html`<div class=${"sx-qa"+(open===i?" on":"")} key=${q}>
+      <h3><button type="button" aria-expanded=${open===i} aria-controls=${"fa"+i} id=${"fq"+i} onClick=${()=>setOpen(o=>o===i?-1:i)}><span>${q}</span><${I} n=${open===i?"dash":"plus2"}/></button></h3>
+      <${AnimatePresence} initial=${false}>${open===i&&html`<${motion.div} key="a" id=${"fa"+i} role="region" aria-labelledby=${"fq"+i} class="sx-qb" style=${{overflow:"hidden"}}
+        initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${reduced?{opacity:0}:{height:0,opacity:0}} transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}><p>${a}</p></${motion.div}>`}</${AnimatePresence}>
+    </div>`)}</div>
+    <a class="sx-pay-link" href=${ACCOUNT+"#payments"}><${I} n="receipt"/>پرداخت‌های من<${I} n="left"/></a>
+  </section>`;
+}
+function Spin({reduced,cls}){
+  return html`<${motion.svg} class=${cls||"sx-sp"} viewBox="0 0 24 24" aria-hidden="true" animate=${reduced?{}:{rotate:360}} transition=${{duration:.8,ease:"linear",repeat:Infinity}}><circle class="tr" cx="12" cy="12" r="9"/><path class="ar" d="M12 3a9 9 0 0 1 9 9"/></${motion.svg}>`;
 }
 function Code({c,act,reduced}){
   const inp=useRef();
   useEffect(()=>{if(c.open&&c.focus&&c.st==="idle"){const t=setTimeout(()=>inp.current&&inp.current.focus({preventScroll:true}),60);return()=>clearTimeout(t)}},[c.open,c.focus,c.st]);
   const ok=c.st==="ok",busy=c.st==="busy",err=c.st==="err";
   const hint=err?["e"+c.err,WHY[c.err]]:busy?["b","در حال بررسی کد…"]:ok?["o",c.ap.t==="pct"?fa(c.ap.v)+"٪ از قیمت طرح کم شد.":faN(c.ap.v)+" تومان از قیمت طرح کم شد."]:["i","برای هر پرداخت یک کد."];
-  return html`<div class="sbc">
+  return html`<div class="sx-code">
     <${AnimatePresence} initial=${false} mode="popLayout">
-      ${!c.open?html`<${motion.button} key="o" type="button" class="sbc-o" aria-expanded="false" aria-controls="code" onClick=${act.openCode} whileTap=${PRESS}
-          exit=${reduced?{opacity:0}:{opacity:0,y:-6,filter:"blur(6px)",transition:{duration:.18,ease:EASE_IN}}}><${I} n="plus"/>کد تخفیف دارید؟</${motion.button}>`
-      :html`<${motion.div} key="w" class="sbc-w" id="code" initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} style=${{overflow:"hidden"}}
+      ${!c.open?html`<${motion.button} key="o" type="button" class="sx-open" aria-expanded="false" aria-controls="code" onClick=${act.openCode} whileTap=${PRESS}
+          exit=${reduced?{opacity:0}:{opacity:0,y:-6,filter:"blur(6px)",transition:{duration:.18,ease:EASE_IN}}}><${I} n="plus2"/>کد تخفیف دارید؟</${motion.button}>`
+      :html`<${motion.div} key="w" class="sx-cw" id="code" initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} style=${{overflow:"hidden"}}
           transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>
-        <label class="sbc-l" for="ci">کد تخفیف</label>
-        <div class=${ok?"sbc-a":"sf sbc-f"+(err?" is-err":"")}>
+        <label class="sx-cl" for="ci">کد تخفیف</label>
+        <div class=${"sx-cf"+(ok?" ok":"")+(err?" err":"")}>
           <${Cross} k=${ok?"a":"f"} reduced=${reduced} dur=${.32}>
-            ${ok?html`<span class="sbc-q ap"><${I} n="check-circle"/><span><code>${c.val}</code><small>${c.ap.t==="pct"?fa(c.ap.v)+"٪ تخفیف":faN(c.ap.v)+" تومان تخفیف"}</small></span>
-                <${motion.button} type="button" class="sbc-x" onClick=${act.remove} whileTap=${PRESS} aria-label=${"برداشتن کد "+c.val}>برداشتن</${motion.button}></span>`
-            :html`<span class="sbc-q"><input id="ci" ref=${inp} value=${c.val} onInput=${e=>act.type(e.target.value)} onKeyDown=${e=>{if(e.key==="Enter"){e.preventDefault();act.apply()}}}
+            ${ok?html`<span class="sx-cq ap"><${I} n="check-circle"/><span><code>${c.val}</code><small>${c.ap.t==="pct"?fa(c.ap.v)+"٪ تخفیف":faN(c.ap.v)+" تومان تخفیف"}</small></span>
+                <${motion.button} type="button" class="sx-rm" onClick=${act.remove} whileTap=${PRESS} aria-label=${"برداشتن کد "+c.val}>برداشتن</${motion.button}></span>`
+            :html`<span class="sx-cq"><input id="ci" ref=${inp} value=${c.val} onInput=${e=>act.type(e.target.value)} onKeyDown=${e=>{if(e.key==="Enter"){e.preventDefault();act.apply()}}}
                   placeholder="کد را اینجا بنویسید" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" readonly=${busy}
                   aria-invalid=${err} aria-describedby="ch"/>
-                <${motion.button} type="button" class="sbc-b" onClick=${act.apply} aria-disabled=${!c.val||busy} aria-busy=${busy} whileTap=${c.val&&!busy?PRESS:undefined}>
-                  <${Cross} k=${busy?"s":"t"} reduced=${reduced} dur=${.28}>${busy?html`<${Spin} reduced=${reduced} cls="sf-sp"/>`:html`<span>اعمال</span>`}</${Cross}>
+                <${motion.button} type="button" class="sx-ap" onClick=${act.apply} aria-disabled=${!c.val||busy} aria-busy=${busy} whileTap=${c.val&&!busy?PRESS:undefined}>
+                  <${Cross} k=${busy?"s":"t"} reduced=${reduced} dur=${.28}>${busy?html`<${Spin} reduced=${reduced} cls="sx-sp sm"/>`:html`<span>اعمال</span>`}</${Cross}>
                 </${motion.button}></span>`}
           </${Cross}>
         </div>
-        <p id="ch" class=${"sf-h sbc-h"+(err?" is-err":"")+(ok?" is-ok":"")}><span class="sbc-hg" aria-hidden="true"><${AnimatePresence} initial=${false}>${err&&html`<${motion.span} key="w" initial=${reduced?{opacity:0}:{scale:.5,opacity:0}} animate=${{scale:1,opacity:1}} exit=${reduced?{opacity:0}:{scale:.5,opacity:0,transition:{duration:.15,ease:EASE_IN}}} transition=${reduced?{duration:.15}:SNAP}><${I} n="warning-circle"/></${motion.span}>`}</${AnimatePresence}></span><span><${Words} text=${hint[1]} k=${hint[0]} reduced=${reduced} stagger=${.02}/></span></p>
+        <p id="ch" class=${"sx-ch"+(err?" err":"")+(ok?" ok":"")}><span class="sx-cg" aria-hidden="true"><${AnimatePresence} initial=${false}>${err&&html`<${motion.span} key="w" initial=${reduced?{opacity:0}:{scale:.5,opacity:0}} animate=${{scale:1,opacity:1}} exit=${{opacity:0,transition:{duration:.12}}} transition=${reduced?{duration:.15}:SNAP}><${I} n="warning-circle"/></${motion.span}>`}</${AnimatePresence}></span><span class="sx-ct"><${Words} text=${hint[1]} k=${hint[0]} reduced=${reduced} stagger=${.02}/></span></p>
       </${motion.div}>`}
     </${AnimatePresence}>
   </div>`;
 }
 function Lines({plan,dv,total,ap,reduced}){
-  return html`<div class="sbl">
-    <div class="sbl-r"><span>قیمت طرح</span><b><${Count} v=${plan.p} fmt=${toman}/> <small>تومان</small></b></div>
-    <${AnimatePresence} initial=${false}>${dv>0&&html`<${motion.div} key="d" class="sbl-o"
+  return html`<div class="sx-ln">
+    <div class="sx-lr"><span>قیمت طرح</span><b><${Count} v=${plan.p} fmt=${toman}/> <small>تومان</small></b></div>
+    <${AnimatePresence} initial=${false}>${dv>0&&html`<${motion.div} key="d" class="sx-lo"
         initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1}} exit=${reduced?{opacity:0}:{height:0,opacity:0,transition:{duration:.22,ease:EASE_IN}}}
         transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>
-      <div class="sbl-r d"><span>تخفیف${ap&&ap.t==="pct"?" ("+fa(ap.v)+"٪)":""}</span><b><${Count} v=${dv} fmt=${toman}/> <small>تومان</small></b></div>
+      <div class="sx-lr d"><span>تخفیف${ap&&ap.t==="pct"?" ("+fa(ap.v)+"٪)":""}</span><b><span class="mn" aria-hidden="true">−</span><${Count} v=${dv} fmt=${toman}/> <small>تومان</small></b></div>
     </${motion.div}>`}</${AnimatePresence}>
-    <div class="sbl-t"><span>مبلغ پرداخت</span><b><${Count} v=${total} fmt=${toman}/><small>تومان</small></b></div>
+    <div class="sx-lt"><span>مبلغ پرداخت</span><b><${Count} v=${total} fmt=${toman}/><small>تومان</small></b></div>
   </div>`;
 }
 function EndDate({plan,end,active,reduced}){
-  return html`<div class="sbe"><${I} n="cal"/><span>
-    <span class="sbe-u">اشتراک شما تا <b><${DateRoll} doy=${end} reduced=${reduced}/></b></span>
-    <small>${active?html`<${Count} v=${plan.d} fmt=${fa}/> روز بعد از پایان اشتراک فعلی، <b>${jds(CUREND,false)}</b>، اضافه می‌شود.`:html`از امروز، <b>${jds(TODAY,false)}</b>، به مدت <${Count} v=${plan.d} fmt=${fa}/> روز.`}</small>
-  </span></div>`;
+  const a=TODAY,b=active?CUREND:TODAY,c=end,span=c-a;
+  const w1=((b-a)/span)*100;
+  return html`<div class="sx-end">
+    <div class="sx-eh"><${I} n="cal"/><span><span class="sx-eu">اشتراک شما تا <b><${DateRoll} doy=${end} reduced=${reduced}/></b></span>
+      <small>${active?html`<${Count} v=${plan.d} fmt=${fa}/> روز بعد از پایان اشتراک فعلی، <b>${jds(CUREND,false)}</b>، اضافه می‌شود.`:html`از امروز، <b>${jds(TODAY,false)}</b>، به مدت <${Count} v=${plan.d} fmt=${fa}/> روز.`}</small></span></div>
+    <div class="sx-tl" aria-hidden="true"><i class="r"></i><span class="tr"><b class="old" style=${{width:w1+"%"}}></b><b class="new" style=${{width:(100-w1)+"%"}}></b></span><i class="l"></i></div>
+    <div class="sx-tll" aria-hidden="true"><span>امروز، ${jds(TODAY,false)}</span><span>${jds(end,false)}</span></div>
+  </div>`;
 }
-function PayBtn({plan,total,act,reduced}){
-  return html`<${motion.button} type="button" class="cta lg-cta" onClick=${act.pay} disabled=${!plan} whileTap=${plan&&!reduced?{scale:.97}:undefined}>
-    <span class="lg-cl"><${Cross} k=${plan?"pay":"pick"} reduced=${reduced} dur=${.3}>${plan?html`<span>پرداخت <${Count} v=${total} fmt=${toman}/> تومان</span>`:html`<span>یک طرح را انتخاب کنید</span>`}</${Cross}></span>
+function PayBtn({plan,total,act,reduced,cls}){
+  return html`<${motion.button} type="button" class=${"sx-pay"+(cls?" "+cls:"")} onClick=${act.pay} disabled=${!plan} whileTap=${plan&&!reduced?{scale:.97}:undefined}>
+    <span class="sx-pl2"><${Cross} k=${plan?"pay":"pick"} reduced=${reduced} dur=${.3}>${plan?html`<span>پرداخت <${Count} v=${total} fmt=${toman}/> تومان</span>`:html`<span>یک طرح را انتخاب کنید</span>`}</${Cross}></span>
   </${motion.button}>`;
 }
+function Trust({total}){
+  return html`<div class="sx-tr2"><${I} n="shield"/><div>
+    <p>پرداخت در درگاه امن بانکی سِپ (<bdi dir="ltr">sep.shaparak.ir</bdi>) انجام می‌شود و پس از آن به همین‌جا برمی‌گردید.</p>
+    <small>${total?"مبلغ در درگاه به ریال نوشته می‌شود: "+faN(total*10)+" ریال. ":""}اطلاعات کارت شما را رول‌وانا نمی‌بیند.</small>
+  </div></div>`;
+}
 function Card({st,act,plan,dv,total,end,ap,reduced}){
-  if(st.guest)return html`<div class="sbs-c">
-    <div class="sbs-k">خرید اشتراک</div>
-    <div class="sbs-n">اول وارد شوید</div>
-    <p class="sbs-g">هر طرحی را بزنید به صفحه‌ی ورود می‌روید و پس از ورود، با همان طرح به همین‌جا برمی‌گردید.</p>
-    <${motion.a} class="cta lg-cta" href=${LOGIN} whileTap=${{scale:.97}}>ورود به حساب</${motion.a}>
+  if(st.guest)return html`<div class="sx-sum">
+    <span class="sx-sk">خرید اشتراک</span>
+    <div class="sx-sn gate"><${I} n="lock"/>اول وارد شوید</div>
+    <p class="sx-sg">هر طرحی را بزنید به صفحه‌ی ورود می‌روید و پس از ورود، با همان طرح به همین‌جا برمی‌گردید.</p>
+    <${motion.a} class="sx-pay" href=${LOGIN} whileTap=${{scale:.97}}>ورود به حساب</${motion.a}>
+    <${Trust} total=${0}/>
   </div>`;
-  if(!plan)return html`<div class="sbs-c">
-    <div class="sbs-k">طرح انتخاب‌شده</div>
-    <div class="sbs-n is-none">هنوز طرحی انتخاب نکرده‌اید</div>
-    <p class="sbs-g">از فهرست طرح‌ها یکی را بزنید؛ قیمت، کد تخفیف و تاریخ پایان اشتراک همین‌جا می‌آید.</p>
+  if(!plan)return html`<div class="sx-sum">
+    <span class="sx-sk">طرح انتخاب‌شده</span>
+    <div class="sx-sn none">هنوز طرحی انتخاب نکرده‌اید</div>
+    <p class="sx-sg">از فهرست طرح‌ها یکی را بزنید؛ قیمت، کد تخفیف و تاریخ پایان اشتراک همین‌جا می‌آید.</p>
     <${PayBtn} plan=${null} total=${0} act=${act} reduced=${reduced}/>
+    <${Trust} total=${0}/>
   </div>`;
-  return html`<div class="sbs-c">
-    <div class="sbs-k">طرح انتخاب‌شده</div>
-    <div class="sbs-n"><${Words} text=${plan.n} k=${plan.id} reduced=${reduced} stagger=${.02}/></div>
+  return html`<div class="sx-sum">
+    <span class="sx-sk">طرح انتخاب‌شده</span>
+    <div class="sx-sn"><span class="sx-snn"><${Words} text=${plan.n} k=${plan.id} reduced=${reduced} stagger=${.02}/></span><small>${fa(plan.d)} روز</small></div>
     <${Code} c=${st.code} act=${act} reduced=${reduced}/>
     <${Lines} plan=${plan} dv=${dv} total=${total} ap=${ap} reduced=${reduced}/>
     <${EndDate} plan=${plan} end=${end} active=${st.sub==="active"} reduced=${reduced}/>
-    <p class="sbs-g">پرداخت در درگاه بانکی انجام می‌شود و پس از آن به همین‌جا برمی‌گردید.</p>
-    <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced}/>
+    <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced} cls="dk"/>
+    <${Trust} total=${total}/>
   </div>`;
 }
 function GuestGo({plan,reduced}){
-  return html`<div class="go lg-go acgo sbo" role="status">
-    <span class="go-p lg-hm"><${I} n="lock"/></span>
-    <span class="go-k">برای خرید، اول وارد شوید</span>
-    <h2 id="h1" tabindex="-1">رفتن به صفحه‌ی ورود</h2>
-    <span class="go-k">پس از ورود، با طرح <b>«${plan.n}»</b> به همین صفحه برمی‌گردید.</span>
-    <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${900} reduced=${reduced} k="g" cls="go-f"/></span>
-    <a class="go-l" href=${LOGIN}>اگر صفحه‌ی ورود باز نشد، اینجا را بزنید</a>
+  return html`<div class="sx-go" role="status">
+    <${MiniBand}/>
+    <div class="sx-gc">
+      <span class="sx-gg"><${I} n="lock"/></span>
+      <span class="sx-gk">برای خرید، اول وارد شوید</span>
+      <h2 id="h1" tabindex="-1">رفتن به صفحه‌ی ورود</h2>
+      <p>پس از ورود، با طرح <b>«${plan.n}»</b> به همین صفحه برمی‌گردید.</p>
+      <span class="sx-gt" aria-hidden="true"><${Fill} run=${true} dur=${900} reduced=${reduced} k="g" cls="sx-gf"/></span>
+      <a class="sx-gl" href=${LOGIN}>اگر صفحه‌ی ورود باز نشد، اینجا را بزنید</a>
+    </div>
   </div>`;
 }
-function Gateway({plan,total,reduced}){
-  return html`<div class="go sbo" role="status">
-    <span class="go-p lg-hm"><${I} n="lock"/></span>
-    <span class="go-k">در حال رفتن به درگاه پرداخت</span>
-    <h2 id="h1" tabindex="-1">${faN(total)} تومان</h2>
-    <span class="go-k">اشتراک <b>${plan.n}</b>، ${fa(plan.d)} روز</span>
-    <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${1600} reduced=${reduced} k="p" cls="go-f"/></span>
-    <a class="go-l" href="#">اگر درگاه باز نشد، اینجا را بزنید</a>
+function Gateway({plan,total,end,reduced}){
+  return html`<div class="sx-go" role="status">
+    <${MiniBand}/>
+    <div class="sx-gc">
+      <${Steps} n=${2}/>
+      <span class="sx-gk">در حال رفتن به درگاه پرداخت</span>
+      <h2 id="h1" tabindex="-1"><span class="num">${faN(total)}</span> <small>تومان</small></h2>
+      <p>اشتراک <b>${plan.n}</b>، ${fa(plan.d)} روز، تا ${jds(end)}</p>
+      <span class="sx-gt" aria-hidden="true"><${Fill} run=${true} dur=${1600} reduced=${reduced} k="p" cls="sx-gf"/></span>
+      <a class="sx-gl" href="#">اگر درگاه باز نشد، اینجا را بزنید</a>
+      <ul class="sx-gn">
+        <li><${I} n="shield"/>در درگاه، مبلغ به ریال نوشته می‌شود: ${faN(total*10)} ریال</li>
+        <li><${I} n="clock"/>در درگاه حدود ۱۰ دقیقه برای پرداخت وقت دارید.</li>
+        <li><${I} n="cc"/>اطلاعات کارت شما را رول‌وانا نمی‌بیند.</li>
+      </ul>
+    </div>
   </div>`;
 }
 const RK={ok:["پرداخت شد","اشتراک شما فعال است"],err:["ناموفق","پرداخت انجام نشد"],no:["لغو شد","پرداخت را لغو کردید"],wait:["در انتظار تأیید","پرداخت در حال تأیید است"]};
 function Glyph({r,reduced}){
   const draw=(d,i=0)=>html`<${motion.path} class="ck" d=${d} initial=${reduced?false:{pathLength:0}} animate=${{pathLength:1}} transition=${{duration:.45,delay:.12+i*.12,ease:EASE}}/>`;
-  if(r==="wait")return html`<${Spin} reduced=${reduced}/>`;
+  if(r==="wait")return html`<${Spin} reduced=${reduced} cls="sx-sp lg"/>`;
   return html`<svg viewBox="0 0 24 24" aria-hidden="true">${r==="ok"?draw("M5 12.5l4.6 4.6L19 7.6"):r==="err"?[draw("M7 7l10 10"),draw("M17 7L7 17",1)]:draw("M6.5 12h11")}</svg>`;
 }
-function Result({st,act,plan,total,end,reduced}){
-  const r=st.res;
-  return html`<div class="lg-in sbr" role="status" aria-live="polite">
-    <${motion.div} class=${"sbr-g "+r} initial=${reduced?false:{scale:.84}} animate=${{scale:1}} transition=${{type:"spring",stiffness:300,damping:15}}>
-      <${Cross} k=${r} reduced=${reduced} dur=${.32}><${Glyph} r=${r} reduced=${reduced}/></${Cross}>
-    </${motion.div}>
-    <span class=${"sbr-k "+r}><${Words} text=${RK[r][0]} k=${"k"+r} reduced=${reduced}/></span>
-    <h1 id="h1" tabindex="-1"><${Words} text=${RK[r][1]} k=${"h"+r} reduced=${reduced}/></h1>
-    <${Fade} k=${r} reduced=${reduced} delay=${.2} cls="sbr-b">
-      ${r==="ok"&&html`<${React.Fragment}>
-        <div class="sbr-u"><small>اشتراک فعال تا</small><b>${jds(end)}</b></div>
-        <p class="sbr-x">از همین حالا همه‌ی فیلم‌ها و سریال‌ها را آنلاین ببینید یا دانلود کنید.</p>
-        <div class="acl sbr-l">
-          <div class="acy"><span class="acy-a"><b>طرح</b></span><span class="acy-b"><b>${plan.n}</b></span></div>
-          <div class="acy"><span class="acy-a"><b>مبلغ پرداخت‌شده</b></span><span class="acy-b"><b>${faN(total)} <small>تومان</small></b></span></div>
-          <div class="acy"><span class="acy-a"><b>کد پیگیری</b></span><span class="acy-b"><b><bdi>${fa("274910385")}</bdi></b></span></div>
-        </div>
-        <div class="sbr-a">
-          <${motion.a} class="cta lg-cta" href=${FROM} whileTap=${{scale:.97}}>ادامه‌ی تماشای «تلماسه: بخش دوم»</${motion.a}>
-          <${motion.a} class="acg" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی</${motion.a}>
-        </div>
-      </${React.Fragment}>`}
-      ${(r==="err"||r==="no")&&html`<${React.Fragment}>
-        <p class="sbr-x">${r==="err"?"اشتراک شما تغییری نکرد.":"اشتراک شما تغییری نکرد. هر وقت خواستید، دوباره امتحان کنید."}</p>
-        ${r==="err"&&html`<div class="sbr-m"><small>پیام درگاه پرداخت</small><q>موجودی حساب کافی نیست</q></div>`}
-        <div class="acl sbr-l">
-          <div class="acy"><span class="acy-a"><b>طرح</b></span><span class="acy-b"><b>${plan.n}</b></span></div>
-          <div class="acy"><span class="acy-a"><b>مبلغ</b></span><span class="acy-b"><b>${faN(total)} <small>تومان</small></b></span></div>
-        </div>
-        <div class="sbr-a">
-          <${motion.button} type="button" class="cta lg-cta" onClick=${act.retry} whileTap=${{scale:.97}}>تلاش دوباره</${motion.button}>
-          <${motion.button} type="button" class="acg" onClick=${act.plans} whileTap=${PRESS}>برگشت به طرح‌ها</${motion.button}>
-        </div>
-      </${React.Fragment}>`}
-      ${r==="wait"&&html`<p class="sbr-x">چند ثانیه صبر کنید؛ نتیجه همین‌جا می‌آید. لطفاً این صفحه را نبندید.</p>`}
-    </${Fade}>
+function Row({k,v,l}){return html`<div class="sx-rw"><span>${k}</span><b class=${l?"ltr":""}>${v}</b></div>`}
+function Result({st,act,plan,total,dv,end,reduced}){
+  const r=st.res;const ap=st.code.st==="ok"?st.code.ap:null;
+  return html`<div class="sx-go res" role="status" aria-live="polite">
+    <${MiniBand} img=${r==="ok"?"b-dune-part-two":"b-severance"}/>
+    <div class="sx-gc">
+      <${Steps} n=${r==="ok"?3:2} bad=${r==="err"||r==="no"}/>
+      <${motion.div} class=${"sx-rg "+r} initial=${reduced?false:{scale:.84}} animate=${{scale:1}} transition=${{type:"spring",stiffness:300,damping:15}}>
+        <${Cross} k=${r} reduced=${reduced} dur=${.32}><${Glyph} r=${r} reduced=${reduced}/></${Cross}>
+      </${motion.div}>
+      <span class=${"sx-rk "+r}><${Words} text=${RK[r][0]} k=${"k"+r} reduced=${reduced}/></span>
+      <h1 id="h1" tabindex="-1"><${Words} text=${RK[r][1]} k=${"h"+r} reduced=${reduced}/></h1>
+      <${Fade} k=${r} reduced=${reduced} delay=${.2} cls="sx-rb">
+        ${r==="ok"&&html`<${React.Fragment}>
+          <div class="sx-until"><small>اشتراک فعال تا</small><b>${jds(end)}</b></div>
+          <p class="sx-rx">از همین حالا همه‌ی فیلم‌ها و سریال‌ها را آنلاین ببینید یا دانلود کنید.</p>
+          <div class="sx-tk">
+            <${Row} k="طرح" v=${plan.n+"، "+fa(plan.d)+" روز"}/>
+            ${dv>0&&html`<${Row} k=${"کد تخفیف "}v=${html`<bdi dir="ltr">${st.code.val}</bdi>`}/>`}
+            <${Row} k="مبلغ پرداخت‌شده" v=${html`${faN(total)} <small>تومان</small>`}/>
+            <${Row} k="درگاه" v="سِپ"/>
+            <${Row} k="کد پیگیری" v=${html`<bdi dir="ltr">${fa("274910385")}</bdi>`}/>
+          </div>
+          <div class="sx-ra">
+            <${motion.a} class="sx-pay wide" href=${FROM} whileTap=${{scale:.97}}><img src=${HM+"p-dune-part-two.jpg"} alt=""/><span>ادامه‌ی تماشای «تلماسه: بخش دوم»</span></${motion.a}>
+            <${motion.a} class="sx-btn" href="../home/home-v3.html" whileTap=${PRESS}>رفتن به صفحه‌ی اصلی</${motion.a}>
+            <a class="sx-gl" href=${ACCOUNT+"#payments"}>پرداخت‌های من</a>
+          </div>
+        </${React.Fragment}>`}
+        ${(r==="err"||r==="no")&&html`<${React.Fragment}>
+          <p class="sx-rx">${r==="err"?"اشتراک شما تغییری نکرد.":"اشتراک شما تغییری نکرد. هر وقت خواستید، دوباره امتحان کنید."}</p>
+          ${r==="err"&&html`<div class="sx-msg"><small>پیام درگاه پرداخت</small><q>موجودی حساب کافی نیست</q></div>`}
+          <div class="sx-tk">
+            <${Row} k="طرح" v=${plan.n+"، "+fa(plan.d)+" روز"}/>
+            <${Row} k="مبلغ" v=${html`${faN(total)} <small>تومان</small>`}/>
+          </div>
+          <div class="sx-ra">
+            <${motion.button} type="button" class="sx-pay" onClick=${act.retry} whileTap=${{scale:.97}}>تلاش دوباره</${motion.button}>
+            <${motion.button} type="button" class="sx-btn" onClick=${act.plans} whileTap=${PRESS}>برگشت به طرح‌ها</${motion.button}>
+          </div>
+        </${React.Fragment}>`}
+        ${r==="wait"&&html`<p class="sx-rx">چند ثانیه صبر کنید؛ نتیجه همین‌جا می‌آید. لطفاً این صفحه را نبندید.</p>`}
+      </${Fade}>
+    </div>
   </div>`;
 }
 function Review(){
@@ -426,7 +544,7 @@ function App(){
   useEffect(()=>()=>tm.current.forEach(clearTimeout),[]);
   const [say,setSay]=useState("");
   const first=useRef(true);
-  useEffect(()=>{if(innerWidth<1024&&["activesum","codeempty","checking","pct","amt","unknown","expired","inactive","used"].includes(S0)){const c=document.querySelector(".sbs-c");c&&c.scrollIntoView({block:"center"})}},[]);
+  useEffect(()=>{if(innerWidth<1024&&["activesum","codeempty","checking","pct","amt","unknown","expired","inactive","used"].includes(S0)){const c=document.querySelector(".sx-sum");c&&c.scrollIntoView({block:"center"})}},[]);
   useEffect(()=>{if(first.current){first.current=false;return}requestAnimationFrame(()=>{const h=document.getElementById("h1");h&&h.focus({preventScroll:true})})},[st.view]);
   useEffect(()=>{if(st.view==="result"&&st.res==="wait"){const t=setTimeout(()=>{up({res:RQ==="err"?"err":"ok"});setSay(RQ==="err"?"پرداخت انجام نشد":"پرداخت شد، اشتراک فعال است")},3200);return()=>clearTimeout(t)}},[st.view,st.res]);
   const list=SETS[st.set];const plan=list.find(p=>p.id===st.sel)||null;
@@ -447,29 +565,40 @@ function App(){
   };
   const card=html`<${Card} st=${st} act=${act} plan=${plan} dv=${dv} total=${total} end=${end} ap=${ap} reduced=${reduced}/>`;
   let body;
-  if(st.view==="plans")body=html`<${Fade} k="plans" cls="sbp-in" reduced=${reduced}>
-      <${Head}/>
-      ${st.back&&html`<div class="sbk ok" role="status"><${I} n="check-circle"/><span>وارد شدید. طرح <b>«${plan.n}»</b> را برایتان نگه داشتیم.</span></div>`}
-      ${st.guest&&html`<div class="sbk gu"><${I} n="lock"/><span>برای خرید، اول وارد شوید. هر طرحی را بزنید، پس از ورود با همان طرح به اینجا برمی‌گردید.</span></div>`}
-      ${!st.guest&&st.sub==="active"&&html`<${Now}/>`}
-      ${list.length?html`<${Plans} list=${list} sel=${st.guest?null:st.sel} onPick=${act.pick} reduced=${reduced}/>`:html`<${NoPlans}/>`}
-      ${list.length>0&&(desk?html`<aside class="sbs" aria-label="خلاصه‌ی خرید">${card}</aside>`
-        :html`<${AnimatePresence} initial=${false}>${plan&&!st.guest&&html`<${motion.section} key="s" class="sbs" aria-label="خلاصه‌ی خرید" style=${{overflow:"hidden"}}
-            initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} exit=${{height:0,opacity:0}}
-            transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>${card}</${motion.section}>`}</${AnimatePresence}>`)}
+  if(st.view==="plans")body=html`<${Fade} k="plans" cls="sx-in" reduced=${reduced}>
+      <${Band}/>
+      <div class="sx-wrap">
+        <${Steps} n=${1}/>
+        ${st.back&&html`<div class="sx-note ok" role="status"><${I} n="check-circle"/><span>وارد شدید. طرح <b>«${plan.n}»</b> را برایتان نگه داشتیم.</span></div>`}
+        ${st.guest&&html`<div class="sx-note" role="note"><${I} n="lock"/><span>برای خرید، اول وارد شوید. هر طرحی را بزنید، پس از ورود با همان طرح به اینجا برمی‌گردید.</span></div>`}
+        ${!st.guest&&st.sub==="active"&&html`<${Now}/>`}
+        <div class=${"sx-grid"+(list.length?"":" none")}>
+          <div class="sx-main">
+            ${list.length?html`<${Plans} list=${list} sel=${st.guest?null:st.sel} onPick=${act.pick} reduced=${reduced} desk=${desk}/>`:html`<${NoPlans}/>`}
+            ${list.length>0&&!desk&&html`<${AnimatePresence} initial=${false}>${plan&&!st.guest&&html`<${motion.section} key="s" class="sx-sec sx-sumw" aria-label="خلاصه‌ی خرید" style=${{overflow:"hidden"}}
+                initial=${reduced?{opacity:0}:{height:0,opacity:0}} animate=${{height:"auto",opacity:1,transitionEnd:{overflow:"visible"}}} exit=${{height:0,opacity:0}}
+                transition=${reduced?{duration:.15}:{height:SOFT,opacity:{duration:.3,ease:EASE}}}>${card}</${motion.section}>`}</${AnimatePresence}>`}
+            ${!desk&&list.length>0&&st.guest&&html`<section class="sx-sec sx-sumw" aria-label="خلاصه‌ی خرید">${card}</section>`}
+            <${Cmp}/>
+            <${Faq}/>
+          </div>
+          ${desk&&list.length>0&&html`<aside class="sx-aside" aria-label="خلاصه‌ی خرید">${card}</aside>`}
+        </div>
+      </div>
     </${Fade}>`;
-  else if(st.view==="guestgo")body=html`<${Fade} k="gg" cls="lg-in" reduced=${reduced}><${GuestGo} plan=${plan} reduced=${reduced}/></${Fade}>`;
-  else if(st.view==="gateway")body=html`<${Fade} k="gw" cls="lg-in" reduced=${reduced}><${Gateway} plan=${plan} total=${total} reduced=${reduced}/></${Fade}>`;
-  else body=html`<${Fade} k="rs" reduced=${reduced}><${Result} st=${st} act=${act} plan=${plan} total=${total} end=${end} reduced=${reduced}/></${Fade}>`;
+  else if(st.view==="guestgo")body=html`<${Fade} k="gg" cls="sx-in" reduced=${reduced}><${GuestGo} plan=${plan} reduced=${reduced}/></${Fade}>`;
+  else if(st.view==="gateway")body=html`<${Fade} k="gw" cls="sx-in" reduced=${reduced}><${Gateway} plan=${plan} total=${total} end=${end} reduced=${reduced}/></${Fade}>`;
+  else body=html`<${Fade} k="rs" cls="sx-in" reduced=${reduced}><${Result} st=${st} act=${act} plan=${plan} total=${total} dv=${dv} end=${end} reduced=${reduced}/></${Fade}>`;
   const bar=!desk&&st.view==="plans"&&plan&&!st.guest&&list.length>0;
   return html`<${React.Fragment}>
     <${Header} user=${!st.guest} desk=${desk}/>
-    <main class="sbp" id="page">${body}</main>
+    <main class="sxp" id="page">${body}</main>
     <div class="sbv"><${Review}/></div>
     <p class="acsr" role="status" aria-live="polite">${say}</p>
-    <${AnimatePresence} initial=${false}>${bar&&html`<${motion.div} key="bar" class="sbbar"
+    <${AnimatePresence} initial=${false}>${bar&&html`<${motion.div} key="bar" class="sx-bar"
         initial=${reduced?{opacity:0}:{y:"110%"}} animate=${{y:"0%",opacity:1}} exit=${reduced?{opacity:0}:{y:"110%",transition:{duration:.22,ease:EASE_IN}}} transition=${reduced?{duration:.15}:PANEL}>
-      <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced}/>
+      <div class="sx-bt"><small>مبلغ پرداخت</small><b><${Count} v=${total} fmt=${toman}/> <i>تومان</i></b></div>
+      <${PayBtn} plan=${plan} total=${total} act=${act} reduced=${reduced} cls="bar"/>
     </${motion.div}>`}</${AnimatePresence}>
   </${React.Fragment}>`;
 }

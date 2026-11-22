@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>آرشیو | Rollvana</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css">
-</head><body>
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
+</head><body class="axpage">
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -78,7 +80,7 @@ function Header({user,desk}){
       <${I} n="search"/><input id="q" placeholder="جستجوی فیلم، سریال یا بازیگر" aria-label="جستجو"/><kbd>/</kbd>
     </${motion.label}>`}
     <div class="hl">
-      ${user&&html`<${motion.button} class="ib bell" aria-label="اعلان‌ها، ۲ مورد تازه" whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><i class="dot"></i></${motion.button}>`}
+      ${user&&html`<${motion.button} class="ib bell" aria-label=${RVC.bellLabel(RVC.N0)} whileTap=${{scale:.9}} initial=${{opacity:0}} animate=${{opacity:1}}><${I} n="bell"/><${RVC.Count}/></${motion.button}>`}
       <${AnimatePresence} mode="popLayout" initial=${false}>
         ${!user&&html`<${motion.a} key="sub" class="sub" href="#" whileTap=${{scale:.96}} initial=${{opacity:0,width:0,paddingLeft:0,paddingRight:0}} animate=${{opacity:1,width:"auto",paddingLeft:14,paddingRight:14}} exit=${{opacity:0,width:0,paddingLeft:0,paddingRight:0,marginLeft:0,marginRight:0}} transition=${SOFT} style=${{overflow:"hidden"}}>خرید اشتراک</${motion.a}>`}
         ${user?html`<${Account} key="av"/>`
@@ -91,9 +93,9 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
@@ -136,9 +138,9 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}>س</span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
-      :html`<div class="mg"><p>با حساب رول‌وانا لیست تماشا، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+    ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+      :html`<div class="mg"><p>با حساب رول‌وانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
     <div class="mcol">
       <h3>بخش‌ها</h3>
       <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
@@ -241,10 +243,52 @@ mk(H+"p-slow-horses.jpg","اسب‌های کند","Slow Horses",2022,["crime","t
 mk(H+"p-squid-game.jpg","بازی مرکب","Squid Game",2021,["thriller","drama"],"kr",8.0,1,1,{s:3,y2:2025}),
 mk(H+"p-the-white-lotus.jpg","نیلوفر سفید","The White Lotus",2021,["comedy","drama"],"us",8.0,0,1,{s:3})
 ];
+const EXTRA={
+"One Battle After Another":{tt:"tt30144839",sum:"باب، انقلابی سابقی که سال‌ها بی‌سروصدا و دور از گذشته‌اش زندگی کرده، وقتی دخترش ناپدید می‌شود ناچار به دنیای قدیمش برمی‌گردد. دشمنی قدیمی دوباره پیدایش شده و باب باید یاران پراکنده‌اش را پیدا کند، پیش از آن‌که دیر شود."},
+"Sinners":{tt:"tt31193180",sum:"دو برادر دوقلو بعد از سال‌ها به زادگاهشان در می‌سی‌سی‌پی برمی‌گردند تا با پول پس‌اندازشان یک کافه‌ی موسیقی راه بیندازند. شب افتتاح، شری قدیمی‌تر از هر چیزی که می‌شناسند پشت در منتظر است."},
+"Weapons":{tt:"tt26581740",sum:"در یک شب، ساعت ۲:۱۷ بامداد، همه‌ی بچه‌های یک کلاس به‌جز یک پسر از خانه‌هایشان بیرون می‌روند و ناپدید می‌شوند. شهر کوچک دنبال پاسخی است که شاید کسی نخواهد بشنود."},
+"Frankenstein":{tt:"tt1312221",sum:"دانشمندی جاه‌طلب در قرن نوزدهم موجودی را از مرگ به زندگی برمی‌گرداند اما از ساخته‌ی خودش روی برمی‌تابد. روایت گیرمو دل‌تورو از رمان مری شلی، درباره‌ی خالق و مخلوقی که هر دو تنها می‌مانند."},
+"The Running Man":{sum:"در آینده‌ای نزدیک، مردی بی‌کار برای نجات خانواده‌اش وارد مرگبارترین برنامه‌ی تلویزیونی جهان می‌شود. او باید ۳۰ روز از دست شکارچیانی که تعقیبش می‌کنند جان به در ببرد."},
+"F1":{tt:"tt16311594",sum:"راننده‌ی پیشین فرمول یک سال‌ها بعد به پیست برمی‌گردد تا تیمی در آستانه‌ی ورشکستگی را نجات دهد. کنار هم‌تیمی جوانش باید غرور و گذشته را کنار بگذارد."},
+"Mission: Impossible – The Final Reckoning":{tt:"tt9603208",sum:"ایتان هانت برای متوقف کردن هوش مصنوعی‌ای که جهان را تهدید می‌کند، به آخرین و خطرناک‌ترین مأموریتش می‌رود. زمان کم است و همه‌چیز به او و تیمش بستگی دارد."},
+"Anora":{tt:"tt28607951",sum:"دختری که در بروکلین کار می‌کند با پسر جوان یک خانواده‌ی ثروتمند روس ازدواجی شتاب‌زده می‌کند. وقتی خبر به خانواده‌ی داماد می‌رسد، رؤیای او زیر فشار می‌رود."},
+"Dune: Part Two":{tt:"tt15239678",sum:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندانی می‌رود که خانواده‌اش را نابود کرد. میان عشق و سرنوشت کهکشان، باید یکی را انتخاب کند."},
+"Poor Things":{tt:"tt14230458",sum:"زنی جوان که دانشمندی عجیب او را به زندگی برگردانده، برای شناختن دنیا از لندن راهی سفری دور می‌شود. هر شهر و هر آدم چیز تازه‌ای به او می‌آموزد."},
+"Oppenheimer":{tt:"tt15398776",sum:"داستان فیزیکدان آمریکایی که پروژه‌ی منهتن و ساخت نخستین بمب اتم را رهبری کرد. فیلم بهای اخلاقی و سیاسی این دستاورد را دنبال می‌کند."},
+"Past Lives":{tt:"tt13238346",sum:"دو دوست کودکی که در کره از هم جدا شدند، بیست سال بعد در نیویورک دوباره یکدیگر را می‌بینند. روایتی آرام از عشق، مهاجرت و آنچه می‌توانست باشد."},
+"Everything Everywhere All at Once":{tt:"tt6710474",sum:"زنی مهاجر که درگیر مالیات و خانواده است، ناگهان در میان جهان‌های موازی گرفتار می‌شود. تنها اوست که می‌تواند جلوی تهدیدی را بگیرد که همه‌ی جهان‌ها را در خطر می‌اندازد."},
+"Dune: Part One":{tt:"tt1160419",sum:"پسر جوانی از یک خاندان اشرافی همراه خانواده‌اش به سیاره‌ی خطرناک شن‌ها می‌رود، جایی که گران‌بهاترین ماده‌ی کیهان پیدا می‌شود. توطئه‌ای برای نابودی خاندان او در کار است."},
+"Parasite":{tt:"tt6751668",sum:"خانواده‌ای فقیر یکی‌یکی به خانه‌ی خانواده‌ای ثروتمند راه پیدا می‌کنند و خودشان را جای آدم‌های دیگری جا می‌زنند. نقشه خوب پیش می‌رود، تا شبی که مهمانی ناخوانده از راه می‌رسد."},
+"Blade Runner 2049":{tt:"tt1856101",sum:"افسر جوان پلیس لس‌آنجلس رازی را پیدا می‌کند که می‌تواند نظم جامعه را بر هم بزند. برای یافتن حقیقت باید سراغ بلید رانر قدیمی‌ای برود که سال‌هاست ناپدید شده."},
+"The Salesman":{tt:"tt5186714",sum:"زوجی بازیگر که خانه‌شان فرو ریخته، به آپارتمانی تازه می‌روند و حادثه‌ای برای همسر پیش می‌آید. جست‌وجوی مرد غریبه، رابطه‌ی آن‌ها را آرام‌آرام می‌فرساید."},
+"Arrival":{tt:"tt2543164",sum:"وقتی موجودات فضایی در ۱۲ نقطه‌ی زمین فرود می‌آیند، زبان‌شناسی برای برقراری ارتباط با آن‌ها فراخوانده می‌شود. هر واژه‌ای که می‌فهمد، نگاهش به زمان را عوض می‌کند."},
+"Whiplash":{tt:"tt2582802",sum:"درامرِ جوانی در هنرستانی سخت‌گیر زیر دست استادی بی‌رحم قرار می‌گیرد. او برای بزرگ شدن حاضر است همه‌چیز را فدا کند."},
+"Interstellar":{tt:"tt0816692",sum:"زمین رو به نابودی است و گروهی از فضانوردان از دریچه‌ای در کیهان می‌گذرند تا سیاره‌ای تازه برای بشر پیدا کنند. پدری باید میان مأموریت و بازگشت به دخترش یکی را انتخاب کند."},
+"Prisoners":{tt:"tt1392214"},
+"Her":{tt:"tt1798709",sum:"نویسنده‌ای تنها با یک سیستم‌عامل هوشمند که صدایی انسانی دارد دوست می‌شود. این رابطه‌ی غیرمعمول، پرسش‌هایی درباره‌ی عشق و تنهایی پیش می‌کشد."},
+"A Separation":{tt:"tt1832382",sum:"سیمین می‌خواهد مهاجرت کند و نادر نمی‌خواهد پدر بیمارش را رها کند؛ پس زنی را برای مراقبت از او استخدام می‌کند. حادثه‌ای ساده، دو خانواده را به دادگاه و آزمونی اخلاقی می‌کشاند."},
+"Inception":{tt:"tt1375666",sum:"دزدی که رویاهای مردم را می‌دزدد، برای پاک کردن پرونده‌اش باید فکری را به جای دزدیدن در ذهن کسی بکارد. هر لایه‌ی رویا خطر تازه‌ای دارد."},
+"Spirited Away":{tt:"tt0245429",sum:"دختری ده‌ساله در راه خانه‌ی تازه به جهان ارواح قدم می‌گذارد. او باید در حمام ارواح کار کند تا راه برگشت را پیدا کند."},
+"The Penguin":{tt:"tt15435876",sum:"پس از ماجراهای گاتهام، اوزوالد کوبلپات برای رسیدن به رأس دنیای جنایت شهر قدم برمی‌دارد. او باید با خانواده‌ها و رقیبانی خطرناک روبه‌رو شود."},
+"Shōgun":{tt:"tt2788316",sum:"در ژاپن قرن هفدهم، ناخدایی انگلیسی در سرزمینی ناشناس گرفتار می‌شود، جایی که اربابی قدرتمند برای رسیدن به تاج‌وتخت می‌جنگد. میان فرهنگ‌ها و وفاداری‌ها راهی باریک در پیش است."},
+"Fallout":{tt:"tt12637874",sum:"ساکنان یک پناهگاه زیرزمینی بعد از ۲۰۰ سال به دنیای ویران سطح زمین برمی‌گردند. آنچه می‌بینند با تصورشان بسیار فرق دارد."},
+"Shahrzad":{sum:"ماجرای عاشقانه‌ای در تهران دهه‌های ۲۰ و ۳۰ که میان خانواده، سیاست و دگرگونی‌های اجتماعی دنبال می‌شود."},
+"The Last of Us":{tt:"tt3581920",sum:"بیست سال پس از فروپاشی تمدن، مردی سرسخت مأمور می‌شود دختری نوجوان را از میان خطرها به مقصدی دور برساند. پیوند آن دو همه‌چیز را تغییر می‌دهد."},
+"House of the Dragon":{tt:"tt11198330",sum:"سال‌ها پیش از ماجراهای بازی تاج‌وتخت، خاندان تارگرین بر سر جانشینی به دو جبهه تقسیم می‌شود. جدال خانوادگی، اژدهاها را به میدان می‌آورد."},
+"Andor":{tt:"tt9253284",sum:"پیش از آن‌که شورش علیه امپراتوری شکل بگیرد، دزدی عادی کم‌کم به جنگی بزرگ‌تر از خودش کشیده می‌شود. روایتی جدی از ساخته شدن یک شورشی."},
+"Severance":{tt:"tt11280740",sum:"کارمندان یک شرکت اسرارآمیز با عمل جراحی، خاطره‌های کار و زندگی شخصی‌شان را از هم جدا کرده‌اند. یکی از آن‌ها شروع به پرسیدن می‌کند که این جدایی برای چیست."},
+"The Bear":{tt:"tt14452776",sum:"آشپزی جوان بعد از مرگ برادرش اداره‌ی ساندویچ‌فروشی خانوادگی در شیکاگو را به دست می‌گیرد. با کارکنانی پراکنده، بدهی و فشار آشپزخانه، همه‌چیز در آستانه‌ی فروپاشی است."},
+"Wednesday":{tt:"tt13443470",sum:"ونزدی آدامز در مدرسه‌ای مخصوص دانش‌آموزان غیرعادی ثبت‌نام می‌کند و ماجرای قتل‌هایی مرموز را دنبال می‌کند. طنزی تاریک و خانواده‌ای عجیب همراه اوست."},
+"Slow Horses":{tt:"tt5875444",sum:"گروهی از جاسوس‌های شکست‌خورده‌ی سازمان اطلاعات بریتانیا در دفتری فراموش‌شده کار می‌کنند. با این‌که کسی روی آن‌ها حساب نمی‌کند، گاهی فقط آن‌ها حقیقت را می‌بینند."},
+"Squid Game":{tt:"tt10919420",sum:"صدها نفر که زیر بار بدهی‌اند، به بازی‌هایی کودکانه با جایزه‌ی هنگفت دعوت می‌شوند. شرط بازی بسیار سنگین‌تر از آن است که فکرش را می‌کردند."},
+"The White Lotus":{tt:"tt13406094",sum:"در هر فصل گروهی از مهمانان ثروتمند در یک استراحتگاه لوکس جمع می‌شوند. زیر سطح آرام تعطیلات، رازها و تنش‌ها آرام‌آرام رو می‌شود."}
+};
+[...FILMS,...SERIES].forEach(t=>Object.assign(t,EXTRA[t.en]||{}));
 const LONGT=mk(null,"ماجراهای شگفت‌انگیز و باورنکردنی مردی که خواست با یک چمدان کهنه و نقشه‌ای ناتمام دور دنیا را بگردد","The Extraordinary and Entirely Unbelievable Adventures of a Man Who Tried to Travel Around the Whole World with an Old Suitcase and a Map",2024,["comedy","adventure"],"us",7.1,1,1);
+LONGT.sum="سفری طولانی با یک چمدان کهنه و نقشه‌ای ناتمام، که مرد داستان را از شهری به شهر دیگر می‌کشاند. هر ایستگاه ماجرایی تازه، آدمی تازه و دلیلی تازه برای ادامه‌ی راه است؛ و راه، هیچ‌وقت همان‌قدر که گمان می‌رفت کوتاه نیست.";
 const KIND={
-films:{data:FILMS,total:12480,yr:[1930,2025],t:"فیلم‌ها",one:"فیلم",path:"/movies",yl:"سال ساخت",sy:"جدیدترین سال ساخت",title:"../title/rollvana-title.html?kind=film"},
-series:{data:SERIES,total:2316,yr:[1990,2025],t:"سریال‌ها",one:"سریال",path:"/series",yl:"سال شروع پخش",sy:"جدیدترین سال پخش",title:"../title/rollvana-title.html?kind=series"}
+films:{data:FILMS,total:12480,yr:[1930,2025],t:"فیلم‌ها",one:"فیلم",path:"/movies",yl:"سال ساخت",sy:"جدیدترین سال ساخت",title:"../title/rollvana-title.html?kind=film",ph:"نام فارسی یا انگلیسی، یا شناسه‌ی IMDb",intro:"از تازه‌های اکران تا کلاسیک‌هایی که باید دید؛ با زیرنویس و دوبله‌ی فارسی.",still:"../home/media/w-interstellar.jpg"},
+series:{data:SERIES,total:3210,yr:[1990,2025],t:"سریال‌ها",one:"سریال",path:"/series",yl:"سال شروع پخش",sy:"جدیدترین سال پخش",title:"../title/rollvana-title.html?kind=series",ph:"نام فارسی یا انگلیسی سریال، یا شناسه‌ی IMDb",intro:"از سریال‌های تازه تا فصل‌های کامل؛ قسمت‌به‌قسمت با زیرنویس و دوبله.",still:"../home/media/w-house-of-the-dragon.jpg"}
 };
 const KN=Q.get("k")==="series"?"series":"films";
 const K=KIND[KN];
@@ -259,11 +303,15 @@ const filtered=f=>f.genres.length||f.countries.length||f.imdb||f.dub!=="any"||f.
 const nOn=f=>f.genres.length+f.countries.length+(f.imdb?1:0)+(f.dub!=="any")+(f.sub!=="any")+(yrOn(f)?1:0);
 const match=(t,f)=>(!f.genres.length||t.g.some(g=>f.genres.includes(g)))&&(!f.countries.length||f.countries.includes(t.c))&&t.y>=f.yr[0]&&t.y<=f.yr[1]&&(!f.imdb||(t.imdb!=null&&t.imdb>=f.imdb))&&(f.dub==="any"||(f.dub==="yes")===t.dub)&&(f.sub==="any"||(f.sub==="yes")===t.sub);
 const hash=s=>{let h=7;for(const ch of s)h=(h*31+ch.charCodeAt(0))%9973;return h/9973};
-const count=f=>{if(!filtered(f))return K.total;const m=K.data.filter(t=>match(t,f)).length;if(!m)return 0;if(f.countries.length)return m;return Math.max(m,Math.round(K.total*m/K.data.length*(.78+.34*hash(JSON.stringify(f)))))};
-const pagesOf=f=>Math.max(1,Math.ceil(count(f)/PER));
+const qNorm=s=>String(s||"").replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace(/ي/g,"ی").replace(/ك/g,"ک").replace(/\u200c/g," ").replace(/\s+/g," ").trim().toLowerCase();
+const qOf=s=>{const n=qNorm(s);return n.length>=2?n:""};
+const qHit=(t,q)=>!q||(/^tt\d+$/.test(q)?(t.tt||"").startsWith(q):qNorm(t.fa).includes(q)||qNorm(t.en).includes(q));
+const count=(f,q)=>{if(q)return K.data.filter(t=>match(t,f)&&qHit(t,q)).length;if(!filtered(f))return K.total;const m=K.data.filter(t=>match(t,f)).length;if(!m)return 0;if(f.countries.length)return m;return Math.max(m,Math.round(K.total*m/K.data.length*(.78+.34*hash(JSON.stringify(f)))))};
+const pagesOf=(f,q)=>Math.max(1,Math.ceil(count(f,q)/PER));
 const sortL=(l,s)=>{l=l.slice();if(s==="imdb")l.sort((a,b)=>(b.imdb??-1)-(a.imdb??-1));if(s==="year")l.sort((a,b)=>b.y-a.y);return l};
-function itemsOf(f,page,sort,long){
-  let d=K.data;if(long)d=[LONGT,...d];
+function itemsOf(f,page,sort,long,q){
+  let d=K.data;if(long&&!q)d=[LONGT,...d];
+  if(q)return sortL(d.filter(t=>match(t,f)&&qHit(t,q)),sort).map((t,i)=>({...t,k:t.en+"|q"+i}));
   const base=sortL(filtered(f)?d.filter(t=>match(t,f)):d,sort);
   const n=base.length;if(!n)return [];
   const tot=count(f),pc=pagesOf(f);
@@ -282,7 +330,7 @@ function pageRange(page,total,sib,edge){
   if(lg&&!rg)return [...range(1,edge),"e0",...range(total-(edge+1+sib*2),total)];
   return [...range(1,edge),"e0",...range(left,right),"e1",...range(total-edge+1,total)];
 }
-function urlOf(f,sort,page){
+function urlOf(f,sort,page,q){
   const p=[];
   if(f.genres.length)p.push("genre="+f.genres.join(","));
   if(yrOn(f))p.push("year="+f.yr[0]+"-"+f.yr[1]);
@@ -292,6 +340,7 @@ function urlOf(f,sort,page){
   if(f.sub!=="any")p.push("sub="+f.sub);
   if(sort!=="new")p.push("sort="+sort);
   if(page>1)p.push("page="+page);
+  if(q)p.unshift("q="+encodeURIComponent(q));
   return K.path+(p.length?"?"+p.join("&"):"");
 }
 const yearsOf=t=>{if(!t.y)return "";if(KN!=="series")return fa(t.y);if(!t.y2)return "از "+fa(t.y);if(t.y2===t.y)return fa(t.y);return fa(t.y)+" تا "+fa(t.y2)};
@@ -299,13 +348,16 @@ const genresOf=t=>t.g.map(g=>GEN[g]).join("، ");
 const badgeOf=t=>t.dub?"دوبله":t.sub?"زیرنویس":null;
 function yrLabel(f){const [a,b]=f.yr,[m,M]=K.yr;if(a!==m&&b!==M)return fa(a)+" تا "+fa(b);if(a!==m)return "از "+fa(a);if(b!==M)return "تا "+fa(b);return "همه‌ی سال‌ها"}
 const genreKeys=Object.keys(GEN).filter(g=>KN==="series"?g!=="sport"&&g!=="animation":true);
-const STATES=[["first","صفحه‌ی اول، کارت"],["list","نمای فهرست"],["mid","صفحه‌ی میانی"],["last","صفحه‌ی آخر"],["oor","صفحه‌ی خارج از محدوده"],["sort","منوی ترتیب باز"],["genre","ژانر انتخاب‌شده"],["filter","فیلتر پیشرفته باز"],["applied","فیلترهای اعمال‌شده"],["empty","بدون نتیجه"],["loading","در حال بارگذاری"],["one","نتیجه‌ی یک‌صفحه‌ای"]];
+const STATES=[["first","صفحه‌ی اول، کارت"],["list","نمای فهرست با خلاصه"],["list-nosum","فهرست، عنوان بدون خلاصه"],["q","جستجو، نتیجه"],["q-none","جستجو، بدون نتیجه"],["mid","صفحه‌ی میانی"],["last","صفحه‌ی آخر"],["oor","صفحه‌ی خارج از محدوده"],["sort","منوی ترتیب باز"],["genre","ژانر انتخاب‌شده"],["filter","فیلتر پیشرفته باز"],["applied","فیلترهای اعمال‌شده"],["empty","بدون نتیجه با فیلتر"],["loading","در حال بارگذاری"],["one","نتیجه‌ی یک‌صفحه‌ای"]];
 const S0=STATES.some(s=>s[0]===Q.get("s"))?Q.get("s"):"first";
 function preset(s){
-  const P={f:blank(),page:1,req:0,sort:"new",sortOpen:false,sheet:false,loading:false,draft:null,view:null};
+  const P={f:blank(),page:1,req:0,sort:"new",sortOpen:false,sheet:false,loading:false,draft:null,view:null,q:Q.get("q")||""};
   const pc=()=>pagesOf(P.f);
   if(s==="first")P.view=Q.has("s")?"grid":null;
   if(s==="list")P.view="list";
+  if(s==="list-nosum"){P.view="list";P.f.genres=["crime"]}
+  if(s==="q"){P.view="grid";P.q=KN==="series"?"the":"تلما"}
+  if(s==="q-none"){P.view="grid";P.q="xyzq"}
   if(s==="mid")P.page=Math.ceil(pc()/2);
   if(s==="last")P.page=pc();
   if(s==="oor"){P.req=999;P.page=pc()}
@@ -362,41 +414,38 @@ function Poster({t,small}){
   return t.img?html`<${Img} src=${t.img}/>`
     :html`<span class="nop"><${I} n=${KN==="series"?"tv":"film"}/></span>`;
 }
+const badgesOf=t=>[t.sub&&"زیرنویس",t.dub&&"دوبله"].filter(Boolean);
+const metaOf=t=>{const a=[];if(KN==="series"){if(t.s)a.push(fa(t.s)+" فصل");else if(t.y)a.push(yearsOf(t))}else if(t.y)a.push(fa(t.y));const g=t.g.slice(0,2).map(x=>GEN[x]).join("، ");if(g)a.push(g);return a.join(" · ")};
 function Item({t,view,i}){
   const reduced=useReducedMotion();
   const enter=reduced?{opacity:0}:{opacity:0,y:10,scale:.98,filter:"blur(4px)"};
   const show={opacity:1,y:0,scale:1,filter:"blur(0px)",transitionEnd:{filter:"none"},transition:{duration:reduced?.15:.45,ease:EASE,delay:reduced?0:Math.min(i*.022,.3)}};
   const exit=reduced?{opacity:0,transition:{duration:.1}}:{opacity:0,scale:.96,filter:"blur(4px)",transition:{duration:.18,ease:EASE_LEAVE}};
-  const b=badgeOf(t),y=yearsOf(t),grid=view==="grid";
-  const txt=reduced?{initial:{opacity:0},animate:{opacity:1,transition:{duration:.15}}}:{initial:{opacity:0,y:4,filter:"blur(4px)"},animate:{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"},transition:{duration:.36,ease:EASE,delay:.22}}};
+  const grid=view==="grid",b=badgesOf(t);
   const score=t.imdb!=null&&Score({v:t.imdb.toFixed(1)});
-  return html`<${motion.a} href=${K.title} class=${grid?"card arc":"lr"} title=${t.en} layout=${reduced?false:"position"}
-      initial=${enter} animate=${show} exit=${exit} transition=${{layout:SPR}} whileTap=${{scale:.97}}>
-    <${motion.div} class=${grid?"pw":"lpw"} layout=${reduced?false:true} transition=${{layout:SPR,y:SPR}} whileHover=${grid&&!reduced?{y:-6}:undefined}>
-      <${motion.div} class=${grid?"po":"lp"} layout=${reduced?false:true} transition=${{layout:SPR}}>
-        <${Poster} t=${t}/>
-        ${grid&&html`<${React.Fragment} key="g">
-          ${b&&html`<span class="ctr"><span class="bdg cbdg">${b}</span></span>`}
-          ${score&&html`<span class="ctl"><span class="cscore">${score}</span></span>`}
-          <${motion.div} class="ov" ...${txt}>
-            <div class="cf">${t.fa}</div>
-            <div class="ct" dir="ltr">${t.en}</div>
-            <div class="cg">${y&&html`<span class="cy num">${y}</span>`}${t.s&&html`<span class="cy num">${fa(t.s)} فصل</span>`}<span class="cgg">${genresOf(t)}</span></div>
-          </${motion.div}></${React.Fragment}>`}
-      </${motion.div}>
-    </${motion.div}>
-    ${!grid&&html`<${motion.div} class="lb" key="l" ...${txt}>
-      <span class="lf">${t.fa}</span>
-      <span class="le">${t.en}</span>
-      <span class="lm num">${y&&html`<span>${y}</span>`}${y&&html`<i class="dot2"></i>`}${t.s&&html`<span>${fa(t.s)} فصل</span>`}${t.s&&html`<i class="dot2"></i>`}<span>${genresOf(t)}</span></span>
-      ${(score||b)&&html`<span class="lx">${score}${b&&html`<span class="bdg">${b}</span>`}</span>`}
-    </${motion.div}>`}
+  if(grid)return html`<${motion.a} href=${K.title} class="axc" title=${t.en} layout=${reduced?false:"position"} initial=${enter} animate=${show} exit=${exit} transition=${{layout:SPR}}>
+    <div class="axp"><${Poster} t=${t}/>
+      ${score&&html`<span class="axs">${score}</span>`}
+      ${b.length>0&&html`<span class="axb">${b.map(x=>html`<span key=${x}>${x}</span>`)}</span>`}
+    </div>
+    <span class="axn">${t.fa}</span>
+    <span class="axm">${metaOf(t)}</span>
+  </${motion.a}>`;
+  return html`<${motion.a} href=${K.title} class="axr" title=${t.en} layout=${reduced?false:"position"} initial=${enter} animate=${show} exit=${exit} transition=${{layout:SPR}}>
+    <div class="axrp"><div class="axp"><${Poster} t=${t}/>${score&&html`<span class="axs">${score}</span>`}</div></div>
+    <div class="axrb">
+      <span class="axn">${t.fa}</span>
+      <span class="axe" dir="ltr">${t.en}</span>
+      <span class="axm">${metaOf(t)}${b.length>0?" · "+b.join(" و "):""}</span>
+      ${t.sum&&html`<p class="axsum">${t.sum}</p>`}
+      <span class="axgo">جزئیات و تماشا<${I} n="left"/></span>
+    </div>
   </${motion.a}>`;
 }
 function Skeleton({view}){
   useEffect(()=>{RVM.shimmer(3)},[view]);
-  return view==="grid"?html`<div class="agrid" aria-hidden="true">${range(1,12).map(i=>html`<div class="card arc" key=${i}><div class="po sk"></div></div>`)}</div>`
-    :html`<div class="alist" aria-hidden="true">${range(1,8).map(i=>html`<div class="lr lsk" key=${i}><div class="lpw"><div class="lp sk"></div></div><div class="lb"><span class="sk" style=${{width:"72%",height:16}}></span><span class="sk" style=${{width:"48%"}}></span><span class="sk" style=${{width:"60%"}}></span></div></div>`)}</div>`;
+  return view==="grid"?html`<div class="agrid" aria-hidden="true">${range(1,12).map(i=>html`<div class="axc" key=${i}><div class="axp sk"></div><span class="sk axn-sk"></span><span class="sk axm-sk"></span></div>`)}</div>`
+    :html`<div class="alist" aria-hidden="true">${range(1,8).map(i=>html`<div class="axr" key=${i}><div class="axrp"><div class="axp sk"></div></div><div class="axrb"><span class="sk" style=${{width:"62%",height:14}}></span><span class="sk" style=${{width:"40%",height:11}}></span><span class="sk" style=${{width:"90%",height:11}}></span><span class="sk" style=${{width:"84%",height:11}}></span></div></div>`)}</div>`;
 }
 function Pager({page,total,go,desk,href}){
   const r=pageRange(page,total,desk?1:0,1);const prev=page>1,next=page<total;const reduced=useReducedMotion();
@@ -496,13 +545,24 @@ function FilterSheet({open,close,draft,setDraft,apply,desk,back}){
       </div>
     </${motion.div}></${React.Fragment}>`}</${AnimatePresence}>`;
 }
-function Empty({clear}){
+function SearchBox({q,setQ}){
+  const ref=useRef();const reduced=useReducedMotion();
+  return html`<label class="axsf" role="search"><span class="axsl">جستجو در ${K.t}</span>
+    <${I} n="search"/>
+    <input ref=${ref} id="aq" class="axin" type="text" inputMode="search" enterKeyHint="search" autoComplete="off" autoCapitalize="off" spellCheck="false" dir=${/^[A-Za-z0-9]/.test(q.trim())?"ltr":"rtl"} value=${q} placeholder=${K.ph}
+      onChange=${e=>setQ(e.target.value)} onKeyDown=${e=>{if(e.key==="Escape"&&q){e.preventDefault();setQ("")}}}/>
+    <${AnimatePresence} initial=${false}>${q&&html`<${motion.button} key="x" type="button" class="axx" aria-label="پاک کردن جستجو"
+      initial=${{opacity:0,scale:.8}} animate=${{opacity:1,scale:1}} exit=${{opacity:0,scale:.8}} transition=${{duration:reduced?0:.16,ease:EASE}}
+      onClick=${e=>{e.preventDefault();setQ("");ref.current&&ref.current.focus()}}><${I} n="x"/></${motion.button}>`}</${AnimatePresence}>
+  </label>`;
+}
+function Empty({clear,qOn,q}){
   const reduced=useReducedMotion();
-  return html`<${motion.div} class="emp" initial=${reduced?{opacity:0}:{opacity:0,y:8,filter:"blur(6px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}} transition=${{duration:.5,ease:EASE}}>
+  return html`<${motion.div} class="emp" role="status" initial=${reduced?{opacity:0}:{opacity:0,y:8,filter:"blur(6px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}} transition=${{duration:.5,ease:EASE}}>
     <span class="eg"><${I} n="search"/></span>
-    <h2>هیچ ${K.one}ی با این فیلترها پیدا نشد</h2>
-    <p>یکی دو فیلتر را بردارید یا بازه‌ی سال را بازتر کنید؛ ${K.t} زیادی منتظرند.</p>
-    <${motion.button} type="button" class="cta" onClick=${clear} whileTap=${PRESS}>پاک کردن فیلترها</${motion.button}>
+    ${qOn?html`<h2>${K.one}ی با این نام یا شناسه پیدا نشد</h2><p>املای نام را بررسی کنید یا فیلترها را بردارید.</p>`
+      :html`<h2>هیچ ${K.one}ی با این فیلترها پیدا نشد</h2><p>یکی دو فیلتر را بردارید یا بازه‌ی سال را بازتر کنید.</p>`}
+    <${motion.button} type="button" class="axbtn" onClick=${clear} whileTap=${PRESS}>حذف فیلترها</${motion.button}>
   </${motion.div}>`;
 }
 function ArchReview({view}){
@@ -522,45 +582,58 @@ function App(){
   const [view,setViewS]=useState(()=>P0.view||(localStorage.getItem("rv-archive-view")==="list"?"list":"grid"));
   const setView=v=>{setViewS(v);try{localStorage.setItem("rv-archive-view",v)}catch(e){}};
   const [f,setF0]=useState(P0.f);const [page,setPage]=useState(P0.page);const [req,setReq]=useState(P0.req);
+  const [q,setQ0]=useState(P0.q||"");
   const [sort,setSort0]=useState(P0.sort);const [sortOpen,setSortOpen]=useState(P0.sortOpen);
   const [sheet,setSheet]=useState(P0.sheet);const [draft,setDraft]=useState(P0.draft);const [loading]=useState(P0.loading);
   const resRef=useRef();const fbRef=useRef();
-  const total=count(f),pc=pagesOf(f),list=useMemo(()=>itemsOf(f,page,sort,LONG),[f,page,sort]);
+  const qe=qOf(q);
+  const total=count(f,qe),pc=pagesOf(f,qe),list=useMemo(()=>itemsOf(f,page,sort,LONG,qe),[f,page,sort,qe]);
   const top=()=>{const el=resRef.current;if(!el)return;const y=el.getBoundingClientRect().top+scrollY-(desk?100:80);if(scrollY>y)scrollTo({top:y,behavior:reduced?"auto":"smooth"})};
   const setF=x=>{setF0(x);setPage(1);setReq(0)};
+  const setQ=v=>{setQ0(v);setPage(1);setReq(0)};
   const setSort=s=>{setSort0(s);setPage(1);setReq(0)};
   const go=n=>{setPage(n);setReq(0);top()};
-  const clear=()=>setF(blank());
+  const clear=()=>{setF0(blank());setQ0("");setPage(1);setReq(0)};
   const pick=g=>setF({...f,genres:g?[g]:[]});
   const openSheet=()=>{setDraft({...f,yr:f.yr.slice()});setSheet(true)};
-  useEffect(()=>{const a=document.getElementById("addr");if(a)a.textContent=urlOf(f,sort,page)},[f,sort,page]);
+  useEffect(()=>{const a=document.getElementById("addr");if(a)a.textContent=urlOf(f,sort,page,qe)},[f,sort,page,qe]);
   const empty=!loading&&total===0;
-  const href=n=>urlOf(f,sort,n);
+  const href=n=>urlOf(f,sort,n,qe);
   const nf=nOn(f);
+  const narrowed=!!qe||filtered(f);
   const vt=html`<${ViewToggle} view=${view} setView=${setView}/>`;
   return html`<${React.Fragment}>
     <${Header} user=${false} desk=${desk}/>
-    <main class="arch" id="arch">
-      <div class="ahd">
-        <div class="ah"><div class="ah1"><h1>${K.t}</h1>${!desk&&vt}</div>
-          <p class="am" aria-live="off">${loading?html`<span class="sk"></span>`:empty?html`<span>بدون نتیجه با این فیلترها</span>`:html`
-            <span><b><${Count} v=${total} fmt=${fmtN}/></b> ${K.one}</span>
-            <${AnimatePresence} initial=${false}>${pc>1&&html`<${motion.span} key="pg" class="pgx" initial=${{opacity:0,filter:"blur(4px)"}} animate=${{opacity:1,filter:"blur(0px)"}} exit=${{opacity:0,filter:"blur(4px)"}} transition=${{duration:.3,ease:EASE}}>
-              <i class="dot2" aria-hidden="true"></i><span>صفحه‌ی <${AnimChars} text=${grp(page)} label=${grp(page)}/> از <${Count} v=${pc} fmt=${fmtN}/></span></${motion.span}>`}</${AnimatePresence}>`}</p>
-        </div>
-        <div class="tools">
-          <${motion.button} type="button" class="tb" ref=${fbRef} aria-haspopup="dialog" aria-expanded=${sheet} onClick=${openSheet} whileTap=${PRESS}>
-            <${I} n="sliders"/>فیلتر${nf>0&&html`<span class="n num" aria-label=${fa(nf)+" فیلتر فعال"}><${AnimChars} text=${fa(nf)}/></span>`}
+    <main class=${"arch ax-"+KN} id="arch">
+      <div class="axbd" aria-hidden="true"><img src=${K.still} alt=""/></div>
+      <header class="axtop">
+        <p class="axk"><i aria-hidden="true"></i>آرشیو رول‌وانا</p>
+        <div class="axnm"><h1>${K.t}</h1><span class="axcn"><b class="num"><${Count} v=${K.total} fmt=${fmtN}/></b> عنوان</span></div>
+        <p class="axin1">${K.intro}</p>
+      </header>
+      <section class="axfr" aria-label=${"جستجو و فیلتر "+K.t}>
+        <div class="axr1">
+          <${SearchBox} q=${q} setQ=${setQ}/>
+          <${motion.button} type="button" class="tb axfb" ref=${fbRef} aria-haspopup="dialog" aria-expanded=${sheet} onClick=${openSheet} whileTap=${PRESS}>
+            <${I} n="sliders"/><span class="fl">فیلتر</span>${nf>0&&html`<span class="n num" aria-label=${fa(nf)+" فیلتر فعال"}><${AnimChars} text=${fa(nf)}/></span>`}
           </${motion.button}>
-          <${SortMenu} sort=${sort} setSort=${setSort} open=${sortOpen} setOpen=${setSortOpen} href=${k=>urlOf(f,k,1)}/>
-          ${desk&&vt}
+        </div>
+        <hr class="axhr"/>
+        <${GenreRow} sel=${f.genres} pick=${pick} desk=${desk}/>
+      </section>
+      <${Applied} f=${f} setF=${setF} clear=${clear}/>
+      <div class="axbar">
+        <p class="axinfo" aria-live="off">${loading?html`<span class="sk"></span>`:empty?html`<span>بدون نتیجه</span>`:html`
+          ${narrowed&&html`<span><b class="num"><${Count} v=${total} fmt=${fmtN}/></b> نتیجه${qe?html` برای «<bdi>${q.trim()}</bdi>»`:""}</span><i class="dot2" aria-hidden="true"></i>`}
+          <span>صفحه‌ی <${AnimChars} text=${grp(page)} label=${grp(page)}/> از <${Count} v=${pc} fmt=${fmtN}/></span>`}</p>
+        <div class="axctl">
+          <${SortMenu} sort=${sort} setSort=${setSort} open=${sortOpen} setOpen=${setSortOpen} href=${k=>urlOf(f,k,1,qe)}/>
+          ${vt}
         </div>
       </div>
-      <${GenreRow} sel=${f.genres} pick=${pick} desk=${desk}/>
-      <${Applied} f=${f} setF=${setF} clear=${clear}/>
       ${req>0&&!empty&&html`<div class="nt" role="status"><${I} n="info"/><p>صفحه‌ی <b class="num">${grp(req)}</b> وجود ندارد. آخرین صفحه، صفحه‌ی <b class="num">${grp(pc)}</b>، را می‌بینید.</p></div>`}
       <p class="sr-only" role="status" aria-live="polite">${loading?"در حال بارگذاری":empty?"بدون نتیجه":grp(total)+" "+K.one}</p>
-      ${empty?html`<${Empty} clear=${clear}/>`:html`<div class="res" ref=${resRef} aria-busy=${loading}>
+      ${empty?html`<${Empty} clear=${clear} qOn=${!!qe}/>`:html`<div class="res" ref=${resRef} aria-busy=${loading}>
         ${loading?html`<${Skeleton} view=${view}/>`:html`<${LayoutGroup}><${motion.div} class=${view==="grid"?"agrid":"alist"}>
           <${AnimatePresence} mode="popLayout" initial=${false}>${list.map((t,i)=>html`<${Item} key=${t.k} t=${t} view=${view} i=${i}/>`)}</${AnimatePresence}>
         </${motion.div}></${LayoutGroup}>`}

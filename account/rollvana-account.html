@@ -3,10 +3,12 @@
 <link rel="icon" type="image/svg+xml" sizes="32x32" href="../brand/rollvana-favicon-32.svg"><link rel="icon" type="image/svg+xml" sizes="16x16" href="../brand/rollvana-favicon-16.svg">
 <title>حساب من | Rollvana</title>
 <link rel="stylesheet" href="../system/rollvana-tokens.css"><link rel="stylesheet" href="../system/rollvana-base.css"><link rel="stylesheet" href="../system/rollvana-catalog.css"><link rel="stylesheet" href="../system/rollvana-archive.css"><link rel="stylesheet" href="../system/rollvana-search.css"><link rel="stylesheet" href="../system/rollvana-player.css"><link rel="stylesheet" href="../system/rollvana-account.css">
+<link rel="stylesheet" href="../system/rollvana-chrome.css">
 </head><body>
 <div id="app"></div>
 <script src="../home/media/vendor/react.production.min.js"></script>
 <script src="../home/media/vendor/react-dom.production.min.js"></script>
+<script src="../system/rollvana-chrome.js"></script>
 <script src="../home/media/vendor/framer-motion.js"></script>
 <script src="../home/media/vendor/htm.umd.js"></script>
 <script src="../system/rollvana-motion.js"></script>
@@ -63,7 +65,7 @@ function Header({user,desk,bell}){
   useEffect(()=>{let last=scrollY;const f=()=>{const y=scrollY;setSc(y>24);if(!desk)if(y>160&&y>last+4)setHide(true);else if(y<last-4||y<160)setHide(false);last=y};f();addEventListener("scroll",f,{passive:true});return()=>removeEventListener("scroll",f)},[desk]);
   const NAV=["خانه","فیلم‌ها","سریال‌ها"];
   return html`<${React.Fragment}><${motion.header} class="hdr" initial=${false} animate=${{y:hide?"-100%":"0%"}} transition=${{duration:.32,ease:EASE}}>
-    <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:1}} transition=${{duration:.35}}/>
+    <${motion.div} class="hdr-bg" initial=${false} animate=${{opacity:sc?1:0}} transition=${{duration:.35}}/>
     <a class="wm" href="../home/home-v3.html" aria-label="Rollvana"><svg viewBox="-185.15 -1070.84 5639.51 1330" aria-hidden="true"><g transform="translate(-205.54 -1261.62) scale(14.24)"><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="var(--logo-petal,#6A55C2)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="var(--light)"/></g><path transform="translate(1622.2 0)" d="M76 -700V0H210V-259H275.74L445 0H604L409.94 -274.01Q426.49 -279.32 441.5 -286.5Q499 -314 530.5 -364Q562 -414 562 -479Q562 -546 530.5 -595.5Q499 -645 441.5 -672.5Q384 -700 304 -700ZM635 -230Q635 -159 668 -105Q701 -51 758.5 -20.5Q816 10 887 10Q960 10 1017 -20.5Q1074 -51 1107 -105Q1140 -159 1140 -230Q1140 -302 1107 -356Q1074 -410 1017 -440Q960 -470 887 -470Q816 -470 758.5 -440Q701 -410 668 -356Q635 -302 635 -230ZM2242 -334Q2252 -341 2273 -351Q2294 -361 2322.5 -368.5Q2351 -376 2383 -376Q2404 -376 2421.5 -372Q2439 -368 2451.5 -359Q2464 -350 2470.5 -336Q2477 -322 2477 -302V-250.59Q2455.24 -263.21 2422.5 -272.5Q2389 -282 2344 -282Q2258 -282 2210.5 -242.5Q2163 -203 2163 -137Q2163 -90 2185.5 -57Q2208 -24 2245 -7Q2282 10 2325 10Q2367 10 2405 -5Q2443 -20 2468 -50Q2473 -56 2477 -62.56V0H2595V-326Q2595 -373 2569.5 -405.5Q2549.16 -431.42 2516.43 -447.48Q2470.77 -418.04 2437 -369V-469.69Q2417.38 -472 2396 -472Q2331 -472 2280 -454Q2229 -436 2196 -417ZM3294 -334Q3304 -341 3325 -351Q3346 -361 3374.5 -368.5Q3403 -376 3435 -376Q3456 -376 3473.5 -372Q3491 -368 3503.5 -359Q3516 -350 3522.5 -336Q3529 -322 3529 -302V-250.59Q3507.24 -263.21 3474.5 -272.5Q3441 -282 3396 -282Q3310 -282 3262.5 -242.5Q3215 -203 3215 -137Q3215 -90 3237.5 -57Q3260 -24 3297 -7Q3334 10 3377 10Q3419 10 3457 -5Q3495 -20 3520 -50Q3525 -56 3529 -62.56V0H3647V-326Q3647 -373 3621.5 -405.5Q3601.16 -431.42 3568.43 -447.48Q3522.77 -418.04 3489 -369V-469.69Q3469.38 -472 3448 -472Q3383 -472 3332 -454Q3281 -436 3248 -417ZM3006 -280V0H3130V-294Q3130 -376 3089.5 -423Q3049 -470 2969 -470Q2921 -470 2886.5 -449.5Q2852 -429 2830 -390V-460H2709V0H2830V-280Q2830 -310 2842 -332Q2854 -354 2875.5 -366Q2897 -378 2926 -378Q2967 -378 2986.5 -353Q3006 -328 3006 -280ZM1476 1H1597V-580C1597 -808 1535.29 -937.2 1494.15 -960C1486.89 -937.2 1476 -808 1476 -580ZM1231 1H1352V-580C1352 -808 1341.11 -937.2 1333.85 -960C1292.71 -937.2 1231 -808 1231 -580ZM1653 -460 1900 46 2147 -460H2016L1900 -175L1784 -460ZM759 -230Q759 -271 776 -302Q793 -333 822 -350Q851 -367 887 -367Q924 -367 953 -350Q982 -333 999 -302Q1016 -271 1016 -230Q1016 -189 999 -158.5Q982 -128 953 -111Q924 -94 887 -94Q851 -94 822 -111Q793 -128 776 -158.5Q759 -189 759 -230ZM210 -366V-586H297Q336 -586 364.5 -573Q393 -560 409 -535.5Q425 -511 425 -476Q425 -441 409 -416.5Q393 -392 364.5 -379Q336 -366 297 -366ZM2285 -143Q2285 -163 2294.5 -177.5Q2304 -192 2324 -200Q2344 -208 2376 -208Q2414 -208 2448 -198Q2463.09 -193.56 2477 -186.96V-184Q2477 -150 2462 -125.5Q2447 -101 2421.5 -88.5Q2396 -76 2366 -76Q2343 -76 2324.5 -83.5Q2306 -91 2295.5 -106.5Q2285 -122 2285 -143ZM3337 -143Q3337 -163 3346.5 -177.5Q3356 -192 3376 -200Q3396 -208 3428 -208Q3466 -208 3500 -198Q3515.09 -193.56 3529 -186.96V-184Q3529 -150 3514 -125.5Q3499 -101 3473.5 -88.5Q3448 -76 3418 -76Q3395 -76 3376.5 -83.5Q3358 -91 3347.5 -106.5Q3337 -122 3337 -143Z" fill="currentColor"/></svg></a>
     ${desk&&html`<nav class="nav" aria-label="ناوبری اصلی" onMouseLeave=${()=>setHov(null)}>
       ${NAV.map((l,k)=>html`<a href=${NAVH[k]} aria-current=${k===CUR?"page":undefined} onMouseEnter=${()=>setHov(k)} onFocus=${()=>setHov(k)}>
@@ -75,6 +77,7 @@ function Header({user,desk,bell}){
     </nav>`}
     <div class="hl">
       ${user&&bell}
+      ${user?html`<${Account}/>`:html`<a class="login" href="rollvana-login.html?s=empty" style=${{borderRadius:10}}>ورود</a>`}
     </div>
   </${motion.header}><${AppMenu} user=${user} desk=${desk}/></${React.Fragment}>`;
 }
@@ -82,13 +85,13 @@ function Account(){
   const [open,setOpen]=useState(false);const ref=useRef();const reduced=useReducedMotion();
   useEffect(()=>{if(!open)return;const c=e=>{if(!ref.current.contains(e.target))setOpen(false)};const k=e=>{if(e.key==="Escape"){setOpen(false);ref.current.querySelector("button").focus()}};
     addEventListener("pointerdown",c);addEventListener("keydown",k);return()=>{removeEventListener("pointerdown",c);removeEventListener("keydown",k)}},[open]);
-  const L=[["user","پروفایل من"],["list","لیست تماشا"],["card","اشتراک من"],["gear","تنظیمات"]];
+  const L=[["user","پروفایل من"],["list","نشان‌شده"],["card","اشتراک من"],["gear","تنظیمات"]];
   return html`<div class="acct" ref=${ref}>
-    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}>س</${motion.span}></${motion.button}>
+    <${motion.button} layoutId="me" class="av" aria-label="حساب من" aria-haspopup="menu" aria-expanded=${open} onClick=${()=>setOpen(o=>!o)} style=${{borderRadius:16}} transition=${SPR}><${motion.span} initial=${{opacity:0}} animate=${{opacity:1,transition:{delay:.15}}}><${RVC.Avatar}/></${motion.span}></${motion.button}>
     <${AnimatePresence}>${open&&html`<${motion.div} class="menu" role="menu"
         initial=${reduced?{opacity:0}:{opacity:0,scale:.96,y:-4}} animate=${{opacity:1,scale:1,y:0}} exit=${reduced?{opacity:0}:{opacity:0,scale:.98,y:-2,transition:{duration:.12}}} transition=${{duration:.2,ease:EASE}}>
       <div class="who"><b>سینا</b><small>اشتراک فعال تا ۱۲ آذر</small></div>
-      ${L.map(([n,l])=>html`<a href="#" role="menuitem"><${I} n=${n}/>${l}</a>`)}
+      ${L.map(([n,l])=>html`<a href=${{user:"#page",list:"../library/rollvana-library.html",card:"../subscription/rollvana-subscription.html",gear:"#prefs"}[n]} role="menuitem"><${I} n=${n}/>${l}</a>`)}
       <hr/><a href="#" role="menuitem"><${I} n="out"/>خروج</a>
     </${motion.div}>`}</${AnimatePresence}>
   </div>`;
@@ -117,8 +120,8 @@ const TG=[["@Rollvana","کانال رول‌وانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
-    ${user?html`<a href="#page" class="mu" aria-current="page"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44}}><${I} n="user"/></span><span><b><bdi dir="ltr">${phf(PHONE)}</bdi></b><small>${muLine()}</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
-      <div class="mlib"><a href="#"><${I} n="list"/>لیست تماشا</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
+    ${user?html`<a href="#page" class="mu" aria-current="page"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>${muLine()}</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
+      <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
       :null}
     <div class="mcol">
       <h3>بخش‌ها</h3>
@@ -184,14 +187,18 @@ const H="../home/media/";
 const {Fill,TALLY,DIGIT,stagger}=RVM;
 const PHONE="09123456789";
 const phf=n=>fa(n.slice(0,4)+" "+n.slice(4,7)+" "+n.slice(7));
-const STATES=[["active","اشتراک فعال"],["nosub","بی‌اشتراک"],["freedate","دوره‌ی رایگان تا تاریخ"],["freeopen","دوره‌ی رایگان بی‌پایان"],["paynone","بی‌پرداخت"],["dev1","یک دستگاه"],["devconfirm","خروج دستگاه دیگر، تأیید"],["devdone","خروج دستگاه دیگر، انجام شد"],["saved","تنظیم ذخیره شد"],["savefail","ذخیره نشد"],["logout","خروج از حساب، تأیید"],["notif","اعلان‌ها"],["nlong","اطلاعیه‌ی بلند با لینک"],["nempty","اعلان‌ها، خالی"],["nread","پس از «همه را خواندم»"],["guest","مهمان"]];
-const S0=STATES.some(x=>x[0]===Q.get("s"))?Q.get("s"):"active";
+const STATES=[["active","اشتراک فعال"],["expiring","به‌زودی تمام می‌شود"],["ended","اشتراک تمام شد"],["nosub","بی‌اشتراک"],["freedate","دوره‌ی رایگان تا تاریخ"],["freeopen","دوره‌ی رایگان بی‌پایان"],["empty","حساب تازه، بدون فعالیت"],["paynone","بی‌پرداخت"],["dev1","یک دستگاه"],["devconfirm","خروج دستگاه دیگر، تأیید"],["devdone","خروج دستگاه دیگر، انجام شد"],["saved","تنظیم ذخیره شد"],["savefail","ذخیره نشد"],["edit","ویرایش پروفایل"],["editerr","ویرایش: خطاها"],["editfail","ویرایش: ذخیره نشد"],["logout","خروج از حساب، تأیید"],["notif","اعلان‌ها"],["nlong","اطلاعیه‌ی بلند با لینک"],["nempty","اعلان‌ها، خالی"],["nread","پس از «همه را خواندم»"],["guest","مهمان"]];
+const AL={none:"nosub",default:"active",expired:"ended",soon:"expiring",activity:"empty"};
+const S1=AL[Q.get("s")]||Q.get("s");
+const S0=STATES.some(x=>x[0]===S1)?S1:"active";
 const BQ=Q.get("b");
 const B0=["nempty","nread"].includes(S0)?0:BQ!=null&&/^\d+$/.test(BQ)?Math.min(+BQ,150):3;
 const FAIL0=Q.get("fail")==="1"||S0==="savefail";
 const SUBS={
   active:{k:"active",plan:"سه‌ماهه",days:24,dur:90,from:"۱۷ شهریور",until:"۱۶ آذر ۱۴۰۵"},
   none:{k:"none"},
+  exp:{k:"exp",plan:"سه‌ماهه",days:3,dur:90,from:"۱۷ شهریور",until:"۱۶ آذر ۱۴۰۵"},
+  ended:{k:"ended",until:"۱۶ آذر ۱۴۰۵"},
   freeDate:{k:"free",days:8,until:"۳۰ آبان ۱۴۰۵"},
   freeOpen:{k:"free"}
 };
@@ -210,6 +217,7 @@ const PAY_B=[
 ];
 const RES={ok:["پرداخت شد","check-circle"],err:["ناموفق","x-circle"],no:["لغو شد","minus-circle"]};
 const D0={id:"a",g:"device-mobile",n:"Chrome روی Android",me:true,last:"فعال، همین حالا"};
+const REFS=["274910385","273180246","271566903","269440127"];
 const D1={id:"b",g:"laptop",n:"Chrome روی Windows",last:"آخرین فعالیت ۵ ساعت پیش"};
 const SUBC={white:["سفید","--sub-white"],yellow:["زرد","--sub-yellow"],cyan:["فیروزه‌ای","--sub-cyan"]};
 const SZ={s:12,m:14.5,l:17.5};
@@ -218,7 +226,7 @@ const LONGX="از امروز تا پایان آذر، مجموعه‌ی «جشن
 const KIND={ep:"قسمت تازه",hit:"خبرم کن",bc:"از رول‌وانا"};
 const TL={series:"../title/rollvana-title.html?kind=series",film:"../title/rollvana-title.html?kind=film",home:"../home/home-v3.html"};
 const NF0=[
-  {k:"ep",t:"قسمت ۴ از فصل ۲ «جداسازی» آمد",x:"قسمت تازه‌ی سریالی که در لیست تماشای شماست، با زیرنویس فارسی.",img:"p-severance.jpg",to:TL.series,lt:"دیدن قسمت",time:"۱۲ دقیقه پیش",g:"امروز"},
+  {k:"ep",t:"قسمت ۴ از فصل ۲ «جداسازی» آمد",x:"قسمت تازه‌ی سریالی که در نشان‌شده‌های شماست، با زیرنویس فارسی.",img:"p-severance.jpg",to:TL.series,lt:"دیدن قسمت",time:"۱۲ دقیقه پیش",g:"امروز"},
   {k:"hit",t:"«تلماسه: بخش دوم» آمد",x:"فیلمی که خواسته بودید خبرتان کنیم، حالا در رول‌وانا است.",img:"p-dune-part-two.jpg",to:TL.film,lt:"دیدن فیلم",time:"۲ ساعت پیش",g:"امروز"},
   {k:"bc",t:"زیرنویس فارسی ۲۰۰ فیلم کلاسیک تازه شد",x:"زیرنویس‌ها از نو ترجمه و با صدای فیلم هماهنگ شده‌اند.",to:TL.home,lt:"دیدن فیلم‌ها",time:"۵ ساعت پیش",g:"امروز"},
   {k:"ep",t:"قسمت ۸ از فصل ۱ «پنگوئن» آمد",img:"p-the-penguin.jpg",to:TL.series,lt:"دیدن قسمت",time:"دیروز، ۲۱:۴۰",g:"دیروز"},
@@ -249,18 +257,24 @@ function makeNf(b,mode){
   return all.map((n,i)=>({...n,un:i<b}));
 }
 const muLine=()=>{const s=preset(S0).sub;return s.k==="active"?"اشتراک "+s.plan+" · "+fa(s.days)+" روز مانده":s.k==="free"?"دوره‌ی رایگان":"بدون اشتراک"};
-const SPOT=[["sub","اشتراک","crown"],["pay","پرداخت‌ها","receipt"],["dev","دستگاه‌ها","device-mobile"],["set","تنظیمات","gear"]];
 function preset(s){
-  const o={sub:SUBS.active,pays:PAY_A,devs:[D0,D1],set:{size:"m",color:"white",box:false,dual:true,auto:true,low:false,spoil:false},sv:{},fl:{},q:null,busy:false,toast:null,nf:makeNf(B0,S0==="nlong"?"long":null),shown:20,exp:{},open:false,wave:false,fail:FAIL0,scroll:null,guest:false};
-  if(s==="nosub"){o.sub=SUBS.none;o.pays=PAY_B}
-  if(s==="freedate"){o.sub=SUBS.freeDate;o.pays=PAY_B}
-  if(s==="freeopen"){o.sub=SUBS.freeOpen;o.pays=PAY_B}
-  if(s==="paynone"){o.sub=SUBS.none;o.pays=[];o.scroll="pay"}
-  if(s==="dev1"){o.devs=[D0];o.scroll="dev"}
-  if(s==="devconfirm"){o.q={k:"dev",id:"b"};o.scroll="dev"}
-  if(s==="devdone"){o.devs=[D0];o.toast={k:"dev",t:"«Chrome روی Windows» از حساب خارج شد"};o.scroll="dev"}
+  const o={sub:SUBS.active,pays:PAY_A.map(p=>({...p,ref:REFS[(p.id-1)%4]})),devs:[D0,D1],set:{size:"m",color:"white",bg:"none",dual:true,audio:"orig",auto:true,low:false,spoil:false,nep:true,nhit:true,nbc:false},sv:{},fl:{},q:null,busy:false,toast:null,nf:makeNf(B0,S0==="nlong"?"long":null),shown:20,exp:{},open:false,wave:false,fail:FAIL0,scroll:null,guest:false,rm:[],edit:null,emp:false};
+  const PB=PAY_B.map(p=>({...p,ref:REFS[(p.id+1)%4]}));
+  if(s==="expiring")o.sub=SUBS.exp;
+  if(s==="ended"){o.sub=SUBS.ended;o.pays=PB}
+  if(s==="nosub"){o.sub=SUBS.none;o.pays=PB}
+  if(s==="freedate"){o.sub=SUBS.freeDate;o.pays=PB}
+  if(s==="freeopen"){o.sub=SUBS.freeOpen;o.pays=PB}
+  if(s==="empty"){o.sub=SUBS.none;o.pays=[];o.emp=true;o.devs=[D0];o.nf=[]}
+  if(s==="paynone"){o.sub=SUBS.none;o.pays=[];o.scroll="payments"}
+  if(s==="dev1"){o.devs=[D0];o.scroll="devices"}
+  if(s==="devconfirm"){o.q={k:"dev",id:"b"};o.scroll="devices"}
+  if(s==="devdone"){o.devs=[D0];o.toast={k:"dev",t:"«Chrome روی Windows» از حساب خارج شد"};o.scroll="devices"}
   if(s==="saved"){o.set.auto=false;o.sv={auto:"ok"};o.scroll="set2"}
-  if(s==="savefail"){o.sv={low:"err"};o.fl={low:{v:true}};o.scroll="set2"}
+  if(s==="savefail"){o.sv={low:"err"};o.fl={low:{v:true}};o.scroll="prefs"}
+  if(s==="edit")o.edit="ok";
+  if(s==="editerr")o.edit="err";
+  if(s==="editfail")o.edit="fail";
   if(s==="logout")o.q={k:"out"};
   if(["notif","nlong","nempty","nread"].includes(s))o.open=true;
   if(s==="nlong")o.exp={L:true};
@@ -271,27 +285,13 @@ function preset(s){
 function Spin({reduced}){
   return html`<${motion.svg} class="lg-sp" viewBox="0 0 24 24" aria-hidden="true" animate=${reduced?{}:{rotate:360}} transition=${{duration:.8,ease:"linear",repeat:Infinity}}><circle class="tr" cx="12" cy="12" r="9"/><path class="ar" d="M12 3a9 9 0 0 1 9 9"/></${motion.svg}>`;
 }
-function Seg({opts,value,onChange,label,cls}){
-  const n=opts.length,idx=Math.max(0,opts.findIndex(o=>o[0]===value));
-  const reduced=useReducedMotion();const pos=useMotionValue(idx);
-  const x=useTransform(pos,v=>(-v*100)+"%");
-  useEffect(()=>{if(reduced){pos.set(idx);return}const c=Motion.animate(pos,idx,SNAP);return()=>c.stop()},[idx,reduced]);
-  const refs=useRef([]);
-  const go=i=>{const j=(i+n)%n;refs.current[j]&&refs.current[j].focus();onChange(opts[j][0])};
-  const key=(e,i)=>{const m={ArrowLeft:1,ArrowDown:1,ArrowRight:-1,ArrowUp:-1}[e.key];if(m){e.preventDefault();go(i+m)}else if(e.key==="Home"){e.preventDefault();go(0)}else if(e.key==="End"){e.preventDefault();go(n-1)}};
-  return html`<div class=${"sgc "+(cls||"")} role="radiogroup" aria-label=${label}>
-    <${motion.span} class="sgc-th" aria-hidden="true" style=${{width:`calc((100% - 6px) / ${n})`,right:3,x}}/>
-    ${opts.map((o,i)=>html`<button key=${o[0]} type="button" role="radio" ref=${el=>refs.current[i]=el} aria-checked=${i===idx} tabindex=${i===idx?0:-1}
-      onClick=${()=>onChange(o[0])} onKeyDown=${e=>key(e,i)}>${o[1]}</button>`)}
-  </div>`;
-}
 function Bell({n,open,onOpen,reduced}){
   const lab=n>0?"اعلان‌ها، "+fa(n)+" اعلان خوانده‌نشده":"اعلان‌ها، اعلان تازه‌ای نیست";
   return html`<${motion.button} id="bell" class="ib bell" aria-label=${lab} aria-haspopup="dialog" aria-expanded=${open} onClick=${onOpen} whileTap=${{scale:.9}}>
     <${I} n="bell"/>
     <${AnimatePresence} initial=${false}>${n>0&&html`<${motion.span} key="c" class="cnt" aria-hidden="true"
       initial=${reduced?{opacity:0}:{opacity:0,scale:.4}} animate=${{opacity:1,scale:1}} exit=${reduced?{opacity:0}:{opacity:0,scale:.4,transition:{duration:.18,ease:EASE_LEAVE}}} transition=${reduced?{duration:.12}:SNAP}>
-      <${AnimChars} text=${n>99?"+۹۹":fa(n)} dur=${380} blur=${4}/></${motion.span}>`}</${AnimatePresence}>
+      <${AnimChars} text=${n>99?"۹۹+":fa(n)} dur=${380} blur=${4}/></${motion.span}>`}</${AnimatePresence}>
   </${motion.button}>`;
 }
 function SaveSt({v,reduced}){
@@ -308,109 +308,12 @@ function FailLine({k,st,act,reduced}){
     <${motion.button} type="button" onClick=${()=>act.retry(k)} whileTap=${PRESS}>تلاش دوباره</${motion.button}></div>
   </${motion.div}>`}</${AnimatePresence}>`;
 }
-function SwRow({k,label,hint,st,act,reduced}){
-  const on=st.set[k];
-  return html`<div>
-    <button type="button" class="aco acw" role="switch" aria-checked=${on} aria-describedby=${hint?"h-"+k:undefined} onClick=${()=>act.set(k,!on)}>
-      <span class="aco-a"><span>${label}<${SaveSt} v=${st.sv[k]} reduced=${reduced}/></span>${hint&&html`<small id=${"h-"+k}>${hint}</small>`}</span>
-      <span class="sw2" aria-hidden="true"><${motion.i} initial=${false} animate=${{x:on?-16:0}} transition=${reduced?{duration:0}:SPR}/></span>
-    </button>
-    <${FailLine} k=${k} st=${st} act=${act} reduced=${reduced}/>
-  </div>`;
-}
-function SubCard({sub,reduced}){
-  const lab=sub.k==="active"?["فعال",""]:sub.k==="free"?["دوره‌ی رایگان","free"]:["بدون اشتراک","none"];
-  return html`<section class="asb" id="sub" aria-labelledby="subh">
-    <div class="asb-k"><span id="subh">اشتراک</span><span class=${"asb-c "+lab[1]}><i></i>${lab[0]}</span></div>
-    ${sub.k==="active"&&html`<${React.Fragment}>
-      <div class="asb-p">${sub.plan}</div>
-      <div class="asb-d"><b class="num">${fa(sub.days)}</b><span>روز مانده</span></div>
-      <div class="asb-u">تا <b>${sub.until}</b></div>
-      <div class="asb-t" role="progressbar" aria-label="روزهای مانده از اشتراک" aria-valuemin="0" aria-valuemax=${sub.dur} aria-valuenow=${sub.days} aria-valuetext=${fa(sub.days)+" روز از "+fa(sub.dur)+" روز"}><b style=${{transform:`scaleX(${sub.days/sub.dur})`}}></b></div>
-      <div class="asb-m"><span>از ${sub.from}</span><span>${fa(sub.dur)} روزه</span></div>
-      <div class="asb-a"><${motion.a} class="acg" href="#plans" whileTap=${PRESS}>تمدید یا تغییر اشتراک<${I} n="left"/></${motion.a}></div>
-    </${React.Fragment}>`}
-    ${sub.k==="none"&&html`<${React.Fragment}>
-      <div class="asb-free">اشتراک فعالی ندارید</div>
-      <p class="asb-x">با اشتراک، همه‌ی فیلم‌ها و سریال‌ها را آنلاین ببینید یا دانلود کنید.</p>
-      <div class="asb-a"><${motion.a} class="cta" href="#plans" whileTap=${{scale:.97}}>دیدن طرح‌های اشتراک</${motion.a}></div>
-    </${React.Fragment}>`}
-    ${sub.k==="free"&&sub.days!=null&&html`<${React.Fragment}>
-      <div class="asb-d"><b class="num">${fa(sub.days)}</b><span>روز دیگر رایگان</span></div>
-      <div class="asb-u">تا <b>${sub.until}</b></div>
-      <p class="asb-x">در این دوره همه‌ی فیلم‌ها و سریال‌ها برای اعضا رایگان است؛ بدون اشتراک ببینید و دانلود کنید.</p>
-    </${React.Fragment}>`}
-    ${sub.k==="free"&&sub.days==null&&html`<${React.Fragment}>
-      <div class="asb-free">همه‌چیز رایگان است</div>
-      <p class="asb-x">فعلاً همه‌ی فیلم‌ها و سریال‌ها برای اعضا رایگان است؛ بدون اشتراک ببینید و دانلود کنید. پایان این دوره را همین‌جا اعلام می‌کنیم.</p>
-    </${React.Fragment}>`}
-  </section>`;
-}
-function Pays({pays}){
-  return html`<section class="asx" id="pay" aria-labelledby="payh">
-    <div class="asx-h"><h2 id="payh">پرداخت‌ها</h2>${pays.length>0&&html`<small><b>${fa(pays.length)}</b> پرداخت</small>`}</div>
-    <div class="acl">${pays.length?pays.map(p=>html`<div class="acy" key=${p.id}>
-        <span class="acy-a"><b>اشتراک ${p.p}</b><small>${p.d} <span class="dotsep">·</span> ساعت ${p.t}</small></span>
-        <span class="acy-b"><b class="num">${faN(p.a)} <small>تومان</small></b><span class=${"acr "+p.r}><${I} n=${RES[p.r][1]}/>${RES[p.r][0]}</span></span>
-      </div>`)
-      :html`<div class="ace"><span><${I} n="receipt"/></span><div><b>هنوز پرداختی نداشته‌اید</b><p>هر بار که اشتراک بخرید، تاریخ، طرح، مبلغ و نتیجه‌اش این‌جا می‌آید.</p></div></div>`}
-    </div>
-  </section>`;
-}
-function Devs({st,act,reduced}){
-  const n=st.devs.length;
-  return html`<section class="asx" id="dev" aria-labelledby="devh">
-    <div class="asx-h"><h2 id="devh">دستگاه‌ها</h2><small><b><${Count} v=${n} fmt=${fa}/></b> از ${fa(LIMIT)} دستگاه</small></div>
-    <div class="acl"><${AnimatePresence} initial=${false}>${st.devs.map(d=>html`<${motion.div} key=${d.id} class=${"acd"+(d.me?" me":"")}
-        exit=${reduced?{opacity:0,transition:{duration:.12}}:{opacity:0,height:0,paddingTop:0,paddingBottom:0,minHeight:0,filter:"blur(6px)",transition:{duration:.38,ease:EASE}}}>
-        <span class="acd-g" aria-hidden="true"><${I} n=${d.g}/></span>
-        <span class="acd-a"><b><bdi dir="rtl">${d.n}</bdi>${d.me&&html`<span class="acd-me">همین دستگاه</span>`}</b><small>${d.last}</small></span>
-        ${!d.me&&html`<${motion.button} type="button" class="acd-x" onClick=${()=>act.ask({k:"dev",id:d.id})} whileTap=${PRESS} aria-label=${"خروج "+d.n+" از حساب"}>خروج</${motion.button}>`}
-      </${motion.div}>`)}</${AnimatePresence}>
-    </div>
-    ${n===1&&html`<p class="asx-n">فقط همین دستگاه وارد حساب شده است. تا ${fa(LIMIT)} دستگاه هم‌زمان می‌توانند وارد باشند.</p>`}
-  </section>`;
-}
-function Preview({set,reduced}){
-  const c=tok(SUBC[set.color][1])||"#fff";
-  return html`<div class="acpv" aria-hidden="true">
-    <img src=${H+"e-sev-2-3.jpg"} alt=""/>
-    <span class="acpv-l">پیش‌نمایش</span>
-    <${motion.div} class=${"vp-subs"+(set.box?" bx":"")} initial=${false} animate=${{fontSize:SZ[set.size]+"px",color:c}} transition=${reduced?{duration:0}:{fontSize:SOFT,color:{duration:.3,ease:EASE}}}>
-      <${AnimatePresence} initial=${false}>${set.dual&&html`<${motion.span} key="en" class="en" lang="en"
-        initial=${reduced?{opacity:0}:{opacity:0,y:6,filter:"blur(6px)"}} animate=${{opacity:1,y:0,filter:"blur(0px)",transitionEnd:{filter:"none"}}} exit=${reduced?{opacity:0}:{opacity:0,y:4,filter:"blur(6px)",transition:{duration:.2,ease:EASE_LEAVE}}} transition=${{duration:.36,ease:EASE}}>I'm not sure we're supposed to be down here.</${motion.span}>`}</${AnimatePresence}>
-      <${motion.span} layout="position" transition=${SOFT}>مطمئن نیستم اجازه داریم این پایین باشیم.</${motion.span}>
-    </${motion.div}>
-  </div>`;
-}
-function Settings({st,act,reduced}){
-  const s=st.set;
-  return html`<section class="asx" id="set" aria-labelledby="seth">
-    <div class="asx-h"><h2 id="seth">تنظیمات</h2><small>هر تغییر خودش ذخیره می‌شود</small></div>
-    <div class="acl">
-      <div class="acl-g">زیرنویس</div>
-      <${Preview} set=${s} reduced=${reduced}/>
-      <div class="aco"><span class="aco-a"><span>اندازه<${SaveSt} v=${st.sv.size} reduced=${reduced}/></span></span>
-        <${Seg} label="اندازه‌ی زیرنویس" value=${s.size} onChange=${v=>act.set("size",v)} opts=${[["s","کوچک"],["m","متوسط"],["l","بزرگ"]]}/></div>
-      <div><div class="aco"><span class="aco-a"><span>رنگ<${SaveSt} v=${st.sv.color} reduced=${reduced}/></span><small>${SUBC[s.color][0]}</small></span>
-        <div class="vp-swatches" role="radiogroup" aria-label="رنگ زیرنویس">${Object.entries(SUBC).map(([k,[l,v]])=>html`<button key=${k} type="button" class="vp-swatch" role="radio" aria-checked=${s.color===k} aria-label=${l} onClick=${()=>act.set("color",k)}><i style=${{"--c":`var(${v})`}}></i></button>`)}</div></div>
-        <${FailLine} k="color" st=${st} act=${act} reduced=${reduced}/></div>
-      <${SwRow} k="box" label="کادر پشت متن" hint="زیرنویس روی صحنه‌های روشن هم خوانا می‌ماند." st=${st} act=${act} reduced=${reduced}/>
-      <${SwRow} k="dual" label="فارسی و انگلیسی با هم" hint="دو خط؛ انگلیسی بالا، فارسی پایین." st=${st} act=${act} reduced=${reduced}/>
-    </div>
-    <div class="acl acl2" id="set2">
-      <div class="acl-g">پخش</div>
-      <${SwRow} k="auto" label="پخش خودکار قسمت بعد" hint="در پایان هر قسمت، قسمت بعدی سریال خودش پخش می‌شود." st=${st} act=${act} reduced=${reduced}/>
-      <${SwRow} k="low" label="حالت کم‌مصرف" hint="کمترین کیفیت بالاتر از 360p، پیش‌نمایش‌ها خودشان پخش نمی‌شوند و تصویرها کوچک‌ترند." st=${st} act=${act} reduced=${reduced}/>
-      <${SwRow} k="spoil" label="بدون لو رفتن داستان" hint="خلاصه و تصویر قسمت‌های بعدی محو می‌مانند تا رویشان بزنید." st=${st} act=${act} reduced=${reduced}/>
-    </div>
-  </section>`;
-}
 function Confirm({q,st,act,desk,reduced}){
   const ref=useRef();
   useEffect(()=>{if(!q)return;const k=e=>{if(e.key==="Escape")act.cancel()};addEventListener("keydown",k);requestAnimationFrame(()=>{const b=ref.current&&ref.current.querySelector(".acq-no");b&&b.focus({preventScroll:true})});return()=>removeEventListener("keydown",k)},[q&&q.k]);
   const dev=q&&q.k==="dev"?st.devs.find(d=>d.id===q.id):null;
-  const lab=st.busy?(dev?"در حال خروج دستگاه…":"در حال خروج…"):(dev?"خروج این دستگاه":"خروج");
+  const all=q&&q.k==="all";
+  const lab=st.busy?(dev?"در حال خروج دستگاه…":"در حال خروج…"):(dev?"خروج این دستگاه":all?"خروج از همه":"خروج");
   return html`<${AnimatePresence}>${q&&html`<${React.Fragment} key="q">
     <${motion.div} class="scrim" onClick=${act.cancel} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
     <${motion.div} ref=${ref} class="sheet acq" role="alertdialog" aria-modal="true" aria-labelledby="acqh" aria-describedby="acqp" style=${desk?{x:"-50%"}:undefined}
@@ -418,13 +321,13 @@ function Confirm({q,st,act,desk,reduced}){
       exit=${reduced?{opacity:0}:desk?{opacity:0,scale:.98,y:"-48%",transition:{duration:.15,ease:EASE_LEAVE}}:{y:"100%",transition:{duration:.24,ease:EASE_LEAVE}}} transition=${reduced?{duration:.15}:desk?SPR:SHEET}>
       ${!desk&&html`<div class="grab"><i></i></div>`}
       <span class="acq-g"><${I} n=${dev?dev.g:"out"}/></span>
-      <h2 id="acqh">${dev?html`<bdi dir="rtl">${dev.n}</bdi> از حساب خارج شود؟`:"از حساب خارج می‌شوید؟"}</h2>
-      <p id="acqp">${dev?"اگر با آن دستگاه فیلمی پخش می‌شود، قطع می‌شود. برای ورود دوباره، آن دستگاه کد پیامکی تازه لازم دارد.":html`فقط همین دستگاه خارج می‌شود و دستگاه‌های دیگر وارد می‌مانند. برای ورود دوباره، کد به <bdi dir="ltr">${phf(PHONE)}</bdi> پیامک می‌شود.`}</p>
+      <h2 id="acqh">${dev?html`<bdi dir="rtl">${dev.n}</bdi> از حساب خارج شود؟`:all?"از همه‌ی دستگاه‌های دیگر خارج می‌شوید؟":"از حساب خارج می‌شوید؟"}</h2>
+      <p id="acqp">${dev?"اگر با آن دستگاه فیلمی پخش می‌شود، قطع می‌شود. برای ورود دوباره، آن دستگاه کد پیامکی تازه لازم دارد.":all?"همین دستگاه وارد می‌ماند. هر دستگاه دیگر برای ورود دوباره، کد پیامکی تازه لازم دارد.":html`فقط همین دستگاه خارج می‌شود و دستگاه‌های دیگر وارد می‌مانند. برای ورود دوباره، کد به <bdi dir="ltr">${phf(PHONE)}</bdi> پیامک می‌شود.`}</p>
       <div class="acq-a">
         <${motion.button} type="button" class="acq-dz" aria-busy=${st.busy} onClick=${act.confirm} whileTap=${st.busy?undefined:{scale:.97}}>
           <span class="lg-cl"><${Cross} k=${lab} reduced=${reduced} blur=${6} dur=${.3}><span style=${{display:"inline-flex",alignItems:"center",gap:10}}>${st.busy&&html`<${Spin} reduced=${reduced}/>`}${lab}</span></${Cross}></span>
         </${motion.button}>
-        <${motion.button} type="button" class="acq-no" onClick=${act.cancel} whileTap=${{scale:.97}}>${dev?"انصراف":"می‌مانم"}</${motion.button}>
+        <${motion.button} type="button" class="acq-no" onClick=${act.cancel} whileTap=${{scale:.97}}>${dev||all?"انصراف":"می‌مانم"}</${motion.button}>
       </div>
     </${motion.div}>
   </${React.Fragment}>`}</${AnimatePresence}>`;
@@ -453,7 +356,7 @@ function NItem({n,i,st,act,reduced}){
 }
 function NList({st,act,reduced}){
   const list=st.nf.slice(0,st.shown);const total=st.nf.length;
-  if(!total)return html`<div class="emp"><span class="eg"><${I} n="bell"/></span><h2>اعلانی ندارید</h2><p>وقتی فیلمی که خواسته‌اید بیاید یا قسمت تازه‌ی سریالی از لیست تماشایتان پخش شود، این‌جا خبرتان می‌کنیم.</p></div>`;
+  if(!total)return html`<div class="emp"><span class="eg"><${I} n="bell"/></span><h2>اعلانی ندارید</h2><p>وقتی فیلمی که خواسته‌اید بیاید یا قسمت تازه‌ی سریالی از نشان‌شده‌هایتان پخش شود، این‌جا خبرتان می‌کنیم.</p></div>`;
   const groups=[];list.forEach((n,i)=>{const g=groups[groups.length-1];if(!g||g.g!==n.g)groups.push({g:n.g,items:[[n,i]]});else g.items.push([n,i])});
   return html`<${React.Fragment}>
     ${groups.map(g=>html`<div key=${g.g} role="group" aria-label=${g.g}><div class="nfg">${g.g}</div>
@@ -490,29 +393,352 @@ function NPanel({st,act,desk,reduced}){
       </${motion.div}>
     </${React.Fragment}>`)}</${AnimatePresence}>`;
 }
-function SideNav({cur,go,out}){
-  return html`<nav class="acn" aria-label="بخش‌های حساب">
-    ${SPOT.map(([id,l,g])=>html`<a key=${id} href=${"#"+id} aria-current=${cur===id?"true":undefined} onClick=${e=>{e.preventDefault();go(id)}}>
-      ${cur===id&&html`<${motion.span} class="on" layoutId="acnon" transition=${SPR}/>`}<${I} n=${g}/>${l}</a>`)}
-    <hr/>
-    <button type="button" class="acn-o" onClick=${out}><${I} n="out"/>خروج از حساب</button>
-  </nav>`;
+const HB="../home/media/";
+const AV=RVC.AVK;
+const SINCE="مهر ۱۴۰۴";
+const WHO={name:"سینا رضایی",user:"sina_r",mail:"sina@example.com"};
+const CW=[
+{id:"pg",t:"The Penguin",img:"w-the-penguin",to:TL.series,s:1,e:8,left:"۳۷ دقیقه مانده",p:.58},
+{id:"sn",t:"Sinners",img:"w-sinners",to:TL.film,left:"۱ ساعت و ۱۲ دقیقه مانده",p:.31},
+{id:"br",t:"The Bear",img:"w-the-bear",to:TL.series,s:4,e:2,left:"۲۱ دقیقه مانده",p:.64},
+{id:"an",t:"Andor",img:"w-star-wars-andor",to:TL.series,s:2,e:3,left:"۴۸ دقیقه مانده",p:.22},
+{id:"sh",t:"Slow Horses",img:"w-slow-horses",to:TL.series,s:3,e:5,left:"۱۵ دقیقه مانده",p:.82}
+];
+const BM0=[
+{id:"d2",t:"Dune: Part Two",img:"p-dune-part-two",sc:"8.5",to:TL.film},
+{id:"sv",t:"Severance",img:"p-severance",sc:"8.7",to:TL.series},
+{id:"pl",t:"Past Lives",img:"p-past-lives",sc:"7.9",to:TL.film},
+{id:"op",t:"Oppenheimer",img:"p-oppenheimer",sc:"8.3",to:TL.film},
+{id:"sg",t:"Shōgun",img:"p-shogun",sc:"8.6",to:TL.series},
+{id:"pa",t:"Parasite",img:"p-parasite",sc:"8.5",to:TL.film},
+{id:"br",t:"Blade Runner 2049",img:"p-blade-runner-2049",sc:"8.0",to:TL.film},
+{id:"fo",t:"Fallout",img:"p-fallout",sc:"8.3",to:TL.series}
+];
+const HIST=[
+["امروز",[{id:"h1",t:"The Penguin",img:"p-the-penguin",k:"سریال",s:1,e:8,p:.58,to:TL.series},{id:"h2",t:"Sinners",img:"p-sinners",k:"فیلم",dur:"۲ ساعت و ۷ دقیقه",p:.31,to:TL.film}]],
+["دیروز",[{id:"h3",t:"Past Lives",img:"p-past-lives",k:"فیلم",dur:"۱ ساعت و ۴۶ دقیقه",done:1,to:TL.film},{id:"h4",t:"Arrival",img:"p-arrival",k:"فیلم",dur:"۱ ساعت و ۵۶ دقیقه",done:1,to:TL.film}]],
+["۱۷ آبان",[{id:"h5",t:"The Bear",img:"p-the-bear",k:"سریال",s:4,e:2,p:.64,to:TL.series},{id:"h6",t:"Wednesday",img:"p-wednesday",k:"سریال",s:2,e:5,done:1,to:TL.series}]]
+];
+const PREF=["size","color","bg","dual","audio","auto","low","spoil","nep","nhit","nbc"];
+const SZS=[["xs","خیلی کوچک"],["s","کوچک"],["m","متوسط"],["l","بزرگ"],["xl","خیلی بزرگ"]];
+const SZPX={xs:11,s:13,m:15,l:18,xl:22};
+const CLS=[["white","سفید","#FFFFFF"],["yellow","زرد","#FFE45C"],["cyan","فیروزه‌ای","#7FE6FF"],["green","سبز","#7CFF9B"],["red","قرمز","#FF6B6B"]];
+const BGS=[["none","بی‌رنگ"],["soft","تیره‌ی کم‌رنگ"],["black","مشکی"]];
+const SECS=[["films","فیلم‌های من","film"],["payments","پرداخت‌ها","receipt"],["devices","دستگاه‌ها","device-mobile"],["prefs","تنظیمات","gear"],["profile","پروفایل","user"]];
+const PREFSUB="../subscription/rollvana-subscription.html";
+Object.assign(ICON,{ck:'<path d="M5 12.5l4.6 4.6L19 7.6"/>',dash:'<path d="M8 12h8"/>',plus2:'<path d="M12 5v14M5 12h14"/>',play2:'<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/>',
+q1:'<path d="M6 19v-4M12 19v-8M18 19V5"/>',q2:'<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M10 9.5v5l4.2-2.5z"/><path d="M4 20 20 4"/>',q3:'<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="m5 18 5-5 3 3 2-2 4 4"/>',
+cc:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7.5 10.5h3M7.5 14h6M13.5 10.5h3"/>',spk:'<path d="M5 9.5v5h3.5L13 18.5v-13L8.5 9.5Z"/><path d="M16.5 9a4 4 0 0 1 0 6"/>',nxt:'<path d="M5 6.5v11l8-5.5z"/><path d="M17 6v12"/>',eyes:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/>',
+sun:'<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/>',moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/>',tr:'<path d="M4 7h16M9 7V4.5h6V7M6.5 7l.8 12.5h9.4L17.5 7"/>',eyeh:'<path d="M3 3l18 18M10.6 6a9.6 9.6 0 0 1 1.4-.1c6 0 9.5 6.1 9.5 6.1a16 16 0 0 1-2.6 3.3M6.7 7.7A15.6 15.6 0 0 0 2.5 12S6 18.1 12 18.1a9.6 9.6 0 0 0 4-.9"/>',key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l3 3"/>',at:'<circle cx="12" cy="12" r="4"/><path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1"/>',mail:'<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 8 8 5.5L20 8"/>'});
+function Av({size,k}){
+  return html`<span class="ax-av" style=${size?{width:size,height:size}:undefined}><${RVC.Avatar} kind=${k}/></span>`;
 }
+function Who({sub,desk,bn,onEdit,onBell}){
+  const act=sub.k==="active"||sub.k==="exp",ok=act||sub.k==="free";
+  const st=sub.k==="active"?"اشتراک فعال":sub.k==="exp"?"به‌زودی تمام می‌شود":sub.k==="free"?"دوره‌ی رایگان":sub.k==="ended"?"اشتراک تمام شد":"بدون اشتراک";
+  return html`<div class="ax-who">
+    <div class="ax-ava"><${Av}/></div>
+    <div class="ax-wt">
+      <h1 id="h1" tabindex="-1">${WHO.name}</h1>
+      <div class="ax-ids"><bdi dir="ltr" class="ax-h">@${WHO.user}</bdi><span class="ax-ph"><${I} n="device-mobile"/><bdi dir="ltr">${phf(PHONE)}</bdi></span></div>
+      <div class=${"ax-stl "+(sub.k==="active"||sub.k==="free"?"ok":sub.k==="exp"?"warn":"off")}><i></i>${st}</div>
+      <p class="ax-since">عضو از ${SINCE}</p>
+    </div>
+    <div class="ax-wa">
+      <${motion.button} type="button" class="ax-gl" onClick=${onEdit} whileTap=${PRESS}><${I} n="pen"/>ویرایش پروفایل</${motion.button}>
+      <${motion.button} type="button" class="ax-gl" onClick=${onBell} whileTap=${PRESS} aria-label=${bn>0?"اعلان‌ها، "+fa(bn)+" خوانده‌نشده":"اعلان‌ها"}><${I} n="bell"/>اعلان‌ها${bn>0&&html`<span class="ax-bc" aria-hidden="true">${RVC.countText(bn)}</span>`}</${motion.button}>
+    </div>
+  </div>`;
+}
+function Ring({left,total,size}){
+  const r=size/2-5,c=2*Math.PI*r,f=Math.max(0,Math.min(1,left/total));
+  return html`<span class="ax-ring" style=${{width:size,height:size}}>
+    <svg viewBox=${"0 0 "+size+" "+size} aria-hidden="true"><circle class="t" cx=${size/2} cy=${size/2} r=${r}/><circle class="a" cx=${size/2} cy=${size/2} r=${r} stroke-dasharray=${c} stroke-dashoffset=${c*(1-f)}/></svg>
+    <span class="ax-rn"><b class="num">${fa(left)}</b><small>روز مانده</small></span></span>`;
+}
+function SubCard({sub,reduced}){
+  const chip={active:["فعال","ok"],exp:["به‌زودی تمام می‌شود","warn"],ended:["تمام شد","off"],none:["بدون اشتراک","off"],free:["دوره‌ی رایگان","ok"]}[sub.k];
+  return html`<section class=${"ax-sub "+sub.k} id="sub" aria-labelledby="subh">
+    <div class="ax-sk"><span id="subh">اشتراک</span><span class=${"ax-chip "+chip[1]}><i></i>${chip[0]}</span></div>
+    ${(sub.k==="active"||sub.k==="exp")&&html`<${React.Fragment}>
+      <div class="ax-sb">
+        <${Ring} left=${sub.days} total=${sub.dur} size=${108}/>
+        <div class="ax-st"><b class="ax-plan">${sub.plan}</b><span class="ax-until">تا <b>${sub.until}</b></span>
+          ${sub.k==="exp"&&html`<span class="ax-soon">اگر تمدید نکنید، بعد از این تاریخ فقط بخش‌های رایگان باز می‌ماند.</span>`}</div>
+      </div>
+      <div class="ax-bar" role="progressbar" aria-label="روزهای مانده از اشتراک" aria-valuemin="0" aria-valuemax=${sub.dur} aria-valuenow=${sub.days} aria-valuetext=${fa(sub.days)+" روز از "+fa(sub.dur)+" روز"}><b style=${{transform:`scaleX(${sub.days/sub.dur})`}}></b></div>
+      <div class="ax-bm"><span>از ${sub.from}</span><span>${fa(sub.dur)} روزه</span></div>
+      <div class="ax-sa"><${motion.a} class="ax-pri" href=${PREFSUB+"?s=active"} whileTap=${{scale:.97}}>تمدید اشتراک</${motion.a}><a class="ax-lk" href=${PREFSUB}>همه‌ی طرح‌ها</a></div>
+    </${React.Fragment}>`}
+    ${sub.k==="ended"&&html`<${React.Fragment}>
+      <div class="ax-sb col"><b class="ax-plan">اشتراک شما در ${sub.until} تمام شد</b><p class="ax-sx">فیلم‌ها و سریال‌ها را هنوز می‌شود پیدا کرد و تریلرها را دید؛ برای تماشا و دانلود، اشتراک را تمدید کنید.</p></div>
+      <div class="ax-sa"><${motion.a} class="ax-pri" href=${PREFSUB} whileTap=${{scale:.97}}>تمدید اشتراک</${motion.a}></div>
+    </${React.Fragment}>`}
+    ${sub.k==="none"&&html`<${React.Fragment}>
+      <div class="ax-sb col"><b class="ax-plan">اشتراک فعالی ندارید</b><p class="ax-sx">با اشتراک، همه‌ی فیلم‌ها و سریال‌ها را آنلاین ببینید یا دانلود کنید.</p></div>
+      <div class="ax-sa"><${motion.a} class="ax-pri" href=${PREFSUB} whileTap=${{scale:.97}}>دیدن طرح‌های اشتراک</${motion.a}></div>
+    </${React.Fragment}>`}
+    ${sub.k==="free"&&sub.days!=null&&html`<${React.Fragment}>
+      <div class="ax-sb"><${Ring} left=${sub.days} total=${30} size=${108}/><div class="ax-st"><b class="ax-plan">${fa(sub.days)} روز دیگر رایگان</b><span class="ax-until">تا <b>${sub.until}</b></span></div></div>
+      <p class="ax-sx">در این دوره همه‌ی فیلم‌ها و سریال‌ها برای اعضا رایگان است؛ بدون اشتراک ببینید و دانلود کنید.</p>
+    </${React.Fragment}>`}
+    ${sub.k==="free"&&sub.days==null&&html`<${React.Fragment}>
+      <div class="ax-sb col"><b class="ax-plan">همه‌چیز رایگان است</b><p class="ax-sx">فعلاً همه‌ی فیلم‌ها و سریال‌ها برای اعضا رایگان است؛ بدون اشتراک ببینید و دانلود کنید. پایان این دوره را همین‌جا اعلام می‌کنیم.</p></div>
+    </${React.Fragment}>`}
+  </section>`;
+}
+function Sec({id,title,count,link,children,lab}){
+  return html`<section class="ax-sec" id=${id} aria-labelledby=${id+"h"}>
+    <div class="ax-sh"><h2 id=${id+"h"}>${title}</h2>${count&&html`<small class="ax-n">${count}</small>`}${link&&html`<a class="ax-ml" href=${link[1]}>${link[0]}<${I} n="left"/></a>`}</div>
+    ${children}
+  </section>`;
+}
+function Empty({icon,t,x,a,href}){
+  return html`<div class="ax-em"><span class="ax-eg"><${I} n=${icon}/></span><div><b>${t}</b><p>${x}</p></div>${a&&html`<a class="ax-gl" href=${href}>${a}</a>`}</div>`;
+}
+function Cont({items,empty}){
+  if(empty)return html`<${Empty} icon="play2" t="هنوز چیزی را شروع نکرده‌اید" x="هر فیلم یا سریالی که ببینید، همین‌جا نیمه‌ی راهش را نگه می‌داریم." a="از آرشیو فیلم‌ها شروع کنید" href="../catalog/rollvana-archive.html"/>`;
+  return html`<div class="ax-cw" role="list">${items.map(c=>html`<a role="listitem" class="ax-cc" key=${c.id} href=${c.to} aria-label=${c.t+"، "+c.left}>
+    <span class="ax-ci"><img src=${HB+c.img+".jpg"} alt="" loading="lazy"/><span class="ax-pb" aria-hidden="true"><b style=${{width:(c.p*100)+"%"}}></b></span><span class="ax-pp" aria-hidden="true"><${I} n="play2"/></span></span>
+    <b class="ax-ct" lang="en" dir="ltr">${c.t}</b>
+    <span class="ax-cm">${c.s?html`<span class="ax-se">فصل ${fa(c.s)} · قسمت ${fa(c.e)}</span>`:html`<span>فیلم</span>`}<i></i><span>${c.left}</span></span>
+  </a>`)}</div>`;
+}
+function Marks({items,onRemove,empty}){
+  if(empty||!items.length)return html`<${Empty} icon="list" t="هنوز عنوانی نشان نکرده‌اید" x="روی هر فیلم یا سریال «نشان کردن» را بزنید تا اینجا جمع شود." a="رفتن به فیلم‌ها" href="../catalog/rollvana-archive.html"/>`;
+  return html`<div class="ax-bk" role="list"><${AnimatePresence} initial=${false}>${items.map(b=>html`<${motion.div} role="listitem" class="ax-bc2" key=${b.id} layout=${false} exit=${{opacity:0,scale:.94,transition:{duration:.2}}}>
+    <a href=${b.to} class="ax-pst" aria-label=${b.t+"، امتیاز "+b.sc+" از ۱۰"}><img src=${HB+b.img+".jpg"} alt="" loading="lazy"/><span class="ax-sc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/></svg><bdi dir="ltr">${b.sc}/10</bdi></span></a>
+    <${motion.button} type="button" class="ax-rm" onClick=${()=>onRemove(b)} whileTap=${PRESS} aria-label=${"برداشتن «"+b.t+"» از نشان‌شده"}><${I} n="x"/></${motion.button}>
+    <b class="ax-bt" lang="en" dir="ltr">${b.t}</b>
+  </${motion.div}>`)}</${AnimatePresence}></div>`;
+}
+function Hist({empty}){
+  if(empty)return html`<${Empty} icon="clock" t="تاریخچه‌ات خالی است" x="فیلم‌هایی که ببینید، به ترتیب روز، اینجا می‌آید." a="" href=""/>`;
+  return html`<div class="ax-hs">${HIST.map(([g,rows])=>html`<div class="ax-hg" key=${g} role="group" aria-label=${g}>
+    <h3>${g}</h3>
+    ${rows.map(r=>html`<div class="ax-hr" key=${r.id}>
+      <a class="ax-ht" href=${r.to} aria-label=${r.t}><img src=${HB+r.img+".jpg"} alt="" loading="lazy"/></a>
+      <a class="ax-hb" href=${r.to}><b lang="en" dir="ltr">${r.t}</b>
+        <span class="ax-hm"><span>${r.k}</span>${r.s?html`<i></i><span class="ax-se">فصل ${fa(r.s)} · قسمت ${fa(r.e)}</span>`:html`<i></i><span>${r.dur}</span>`}</span>
+        <span class="ax-hp" aria-hidden="true"><b style=${{width:(r.done?100:r.p*100)+"%"}} class=${r.done?"d":""}></b></span></a>
+      ${r.done?html`<span class="ax-dn"><${I} n="ck"/>تمام شد</span>`:html`<a class="ax-gl sm" href=${r.to}><${I} n="play2"/>ادامه‌ی تماشا</a>`}
+    </div>`)}
+  </div>`)}</div>`;
+}
+function Pays({pays}){
+  return html`<${Sec} id="payments" title="پرداخت‌ها" count=${pays.length>0?fa(pays.length)+" پرداخت":null}>
+    ${pays.length?html`<div class="ax-pt" role="table" aria-label="پرداخت‌ها">
+      <div class="ax-pth" role="row"><span role="columnheader">طرح</span><span role="columnheader">تاریخ</span><span role="columnheader">مبلغ</span><span role="columnheader">وضعیت</span></div>
+      ${pays.map(p=>html`<div class="ax-pr" role="row" key=${p.id}>
+        <span class="ax-pa" role="cell"><b>اشتراک ${p.p}</b><small>درگاه سِپ${p.r==="ok"?html` · کد پیگیری <bdi dir="ltr">${fa(p.ref)}</bdi>`:""}</small></span>
+        <span class="ax-pd" role="cell">${p.d}<small>ساعت ${p.t}</small></span>
+        <span class="ax-pm" role="cell"><b class="num">${faN(p.a)}</b> <small>تومان</small></span>
+        <span class=${"ax-ps "+p.r} role="cell"><${I} n=${RES[p.r][1]}/>${RES[p.r][0]}</span>
+      </div>`)}
+    </div>`:html`<${Empty} icon="receipt" t="هنوز پرداختی نداشته‌اید" x="هر بار که اشتراک بخرید، تاریخ، طرح، مبلغ و نتیجه‌اش این‌جا می‌آید." a="دیدن طرح‌های اشتراک" href=${PREFSUB}/>`}
+  </${Sec}>`;
+}
+function Devs({st,act,reduced}){
+  const n=st.devs.length;
+  return html`<${Sec} id="devices" title="دستگاه‌ها" count=${html`<b class="num"><${Count} v=${n} fmt=${fa}/></b> از ${fa(LIMIT)} دستگاه`}>
+    <div class="ax-dl"><${AnimatePresence} initial=${false}>${st.devs.map(d=>html`<${motion.div} key=${d.id} class=${"ax-dv"+(d.me?" me":"")}
+        exit=${reduced?{opacity:0,transition:{duration:.12}}:{opacity:0,height:0,paddingTop:0,paddingBottom:0,minHeight:0,filter:"blur(6px)",transition:{duration:.38,ease:EASE}}}>
+        <span class="ax-dg" aria-hidden="true"><${I} n=${d.g}/></span>
+        <span class="ax-da"><b><bdi dir="rtl">${d.n}</bdi>${d.me&&html`<span class="ax-me">همین دستگاه</span>`}</b><small>${d.last}</small></span>
+        ${!d.me&&html`<${motion.button} type="button" class="ax-gl sm" onClick=${()=>act.ask({k:"dev",id:d.id})} whileTap=${PRESS} aria-label=${"خروج "+d.n+" از حساب"}>خروج</${motion.button}>`}
+      </${motion.div}>`)}</${AnimatePresence}>
+    </div>
+    ${n===1?html`<p class="ax-note">فقط همین دستگاه وارد حساب شده است. تا ${fa(LIMIT)} دستگاه هم‌زمان می‌توانند وارد باشند.</p>`
+      :html`<${motion.button} type="button" class="ax-tx" onClick=${()=>act.ask({k:"all"})} whileTap=${PRESS}><${I} n="out"/>خروج از همه‌ی دستگاه‌های دیگر</${motion.button}>`}
+  </${Sec}>`;
+}
+
+function Sw({on,label,hint,id,onClick,icon,st,k,act,reduced}){
+  return html`<div class="ax-rwp">
+    <button type="button" class="ax-rw" role="switch" aria-checked=${on} aria-describedby=${hint?"h-"+id:undefined} onClick=${onClick}>
+      ${icon&&html`<span class="ax-ri" aria-hidden="true"><${I} n=${icon}/></span>`}
+      <span class="ax-rt"><span class="ax-rl">${label}<${SaveSt} v=${st.sv[k]} reduced=${reduced}/></span>${hint&&html`<small id=${"h-"+id}>${hint}</small>`}</span>
+      <span class=${"ax-sw"+(on?" on":"")} aria-hidden="true"><${motion.i} initial=${false} animate=${{x:on?-18:0}} transition=${reduced?{duration:0}:SPR}/></span>
+    </button>
+    <${FailLine} k=${k} st=${st} act=${act} reduced=${reduced}/>
+  </div>`;
+}
+function Seg({opts,value,onChange,label,cls}){
+  const n=opts.length,idx=Math.max(0,opts.findIndex(o=>o[0]===value));
+  const reduced=useReducedMotion();const pos=useMotionValue(idx);
+  const x=useTransform(pos,v=>(-v*100)+"%");
+  useEffect(()=>{if(reduced){pos.set(idx);return}const c=Motion.animate(pos,idx,SNAP);return()=>c.stop()},[idx,reduced]);
+  const refs=useRef([]);
+  const go=i=>{const j=(i+n)%n;refs.current[j]&&refs.current[j].focus();onChange(opts[j][0])};
+  const key=(e,i)=>{const m={ArrowLeft:1,ArrowDown:1,ArrowRight:-1,ArrowUp:-1}[e.key];if(m){e.preventDefault();go(i+m)}else if(e.key==="Home"){e.preventDefault();go(0)}else if(e.key==="End"){e.preventDefault();go(n-1)}};
+  return html`<div class=${"ax-seg "+(cls||"")} role="radiogroup" aria-label=${label}>
+    <${motion.span} class="ax-th" aria-hidden="true" style=${{width:`calc((100% - 6px) / ${n})`,right:3,x}}/>
+    ${opts.map((o,i)=>html`<button key=${o[0]} type="button" role="radio" ref=${el=>refs.current[i]=el} aria-checked=${i===idx} tabindex=${i===idx?0:-1}
+      onClick=${()=>onChange(o[0])} onKeyDown=${e=>key(e,i)}>${o[1]}</button>`)}
+  </div>`;
+}
+function Ctl({label,children,st,k,hint,reduced}){
+  return html`<div class="ax-ct2"><div class="ax-cl"><span>${label}<${SaveSt} v=${st.sv[k]} reduced=${reduced}/></span>${hint&&html`<small>${hint}</small>`}</div>${children}</div>`;
+}
+function Sample({set,reduced}){
+  const [bright,setB]=useState(false);
+  const c=(CLS.find(x=>x[0]===set.color)||CLS[0])[2];
+  const px=SZPX[set.size];
+  return html`<figure class="ax-smp">
+    <div class="ax-sf"><img src=${HB+(bright?"w-the-white-lotus":"e-sev-2-3")+".jpg"} alt=""/>
+      <figcaption class="ax-sl">زیرنویس با این تنظیم این‌طور دیده می‌شود</figcaption>
+      <${motion.button} type="button" class="ax-gl sm ax-bt2" aria-pressed=${bright} onClick=${()=>setB(b=>!b)} whileTap=${PRESS}><${I} n=${bright?"moon":"sun"}/>${bright?"صحنه‌ی تیره":"صحنه‌ی روشن"}</${motion.button}>
+      <${motion.div} class=${"ax-sb2 b-"+set.bg} initial=${false} animate=${{fontSize:px+"px",color:c}} transition=${reduced?{duration:0}:{fontSize:SOFT,color:{duration:.3,ease:EASE}}} aria-hidden="true">
+        <${AnimatePresence} initial=${false}>${set.dual&&html`<${motion.span} key="en" class="en" lang="en" dir="ltr"
+          initial=${reduced?{opacity:0}:{opacity:0,y:6}} animate=${{opacity:1,y:0}} exit=${{opacity:0,transition:{duration:.15}}} transition=${{duration:.3,ease:EASE}}>I'm not sure we're supposed to be down here.</${motion.span}>`}</${AnimatePresence}>
+        <${motion.span} layout="position" transition=${SOFT} class="fa">مطمئن نیستم اجازه داریم این پایین باشیم.</${motion.span}>
+      </${motion.div}>
+    </div>
+  </figure>`;
+}
+function Prefs({st,act,reduced}){
+  const s=st.set,un=st.nf.filter(n=>n.un).length;
+  const cur=CLS.find(x=>x[0]===s.color)||CLS[0];
+  return html`<${Sec} id="prefs" title="تنظیمات" count="هر تغییر خودش ذخیره می‌شود">
+    <div class="ax-pg">
+      <h3 class="ax-gh">حالت کم‌مصرف</h3>
+      <div class=${"ax-low"+(s.low?" on":"")}>
+        <${Sw} on=${s.low} id="low" k="low" icon="q1" label="حالت کم‌مصرف" onClick=${()=>act.set("low",!s.low)} st=${st} act=${act} reduced=${reduced}/>
+        <ul class="ax-lines" aria-label="حالت کم‌مصرف چه می‌کند">
+          <li><${I} n="q1"/>پخش‌کننده روی پایین‌ترین کیفیت می‌ماند، مگر خودتان کیفیت دیگری انتخاب کنید.</li>
+          <li><${I} n="q2"/>تریلرها هیچ‌وقت خودکار پخش نمی‌شوند.</li>
+          <li><${I} n="q3"/>تصویرها با اندازه‌ی کوچک‌تر بارگیری می‌شوند.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ax-pg">
+      <h3 class="ax-gh">زیرنویس</h3>
+      <div class="ax-subs">
+        <${Sample} set=${s} reduced=${reduced}/>
+        <div class="ax-ctl">
+          <${Ctl} label="اندازه" k="size" st=${st} reduced=${reduced}><${Seg} label="اندازه‌ی زیرنویس" value=${s.size} onChange=${v=>act.set("size",v)} opts=${SZS} cls="five"/></${Ctl}>
+          <${Ctl} label="رنگ" k="color" st=${st} hint=${cur[1]} reduced=${reduced}>
+            <div class="ax-swa" role="radiogroup" aria-label="رنگ زیرنویس">${CLS.map(([k,l,v])=>html`<button key=${k} type="button" class="ax-swt" role="radio" aria-checked=${s.color===k} aria-label=${l} onClick=${()=>act.set("color",k)}><i style=${{background:v}}></i></button>`)}</div>
+            <${FailLine} k="color" st=${st} act=${act} reduced=${reduced}/>
+          </${Ctl}>
+          <${Ctl} label="پس‌زمینه" k="bg" st=${st} reduced=${reduced}><${Seg} label="پس‌زمینه‌ی زیرنویس" value=${s.bg} onChange=${v=>act.set("bg",v)} opts=${BGS} cls="three"/></${Ctl}>
+          <${Sw} on=${s.dual} id="dual" k="dual" icon="cc" label="فارسی و انگلیسی با هم" hint="دو خط؛ انگلیسی بالا، فارسی پایین." onClick=${()=>act.set("dual",!s.dual)} st=${st} act=${act} reduced=${reduced}/>
+        </div>
+      </div>
+    </div>
+    <div class="ax-pg" id="set2">
+      <h3 class="ax-gh">پخش</h3>
+      <div class="ax-box">
+        <div class="ax-ct2 in"><div class="ax-ri" aria-hidden="true"><${I} n="spk"/></div><div class="ax-cl"><span>زبان صدای پیش‌فرض<${SaveSt} v=${st.sv.audio} reduced=${reduced}/></span><small>اگر دوبله‌ای نباشد، زبان اصلی پخش می‌شود.</small></div>
+          <${Seg} label="زبان صدای پیش‌فرض" value=${s.audio} onChange=${v=>act.set("audio",v)} opts=${[["orig","زبان اصلی"],["dub","دوبله‌ی فارسی"]]} cls="two"/></div>
+        <${Sw} on=${s.auto} id="auto" k="auto" icon="nxt" label="پخش خودکار قسمت بعد" hint="در پایان هر قسمت، قسمت بعدی سریال خودش پخش می‌شود." onClick=${()=>act.set("auto",!s.auto)} st=${st} act=${act} reduced=${reduced}/>
+        <${Sw} on=${s.spoil} id="spoil" k="spoil" icon="eyeh" label="بدون لو رفتن داستان" hint="خلاصه و تصویر قسمت‌های بعدی محو می‌مانند تا رویشان بزنید." onClick=${()=>act.set("spoil",!s.spoil)} st=${st} act=${act} reduced=${reduced}/>
+      </div>
+    </div>
+    <div class="ax-pg">
+      <h3 class="ax-gh">اعلان‌ها</h3>
+      <div class="ax-box">
+        <button type="button" class="ax-rw ax-lnk" onClick=${act.open}>
+          <span class="ax-ri" aria-hidden="true"><${I} n="bell"/></span>
+          <span class="ax-rt"><span class="ax-rl">اعلان‌ها</span><small>${un>0?fa(un)+" خوانده‌نشده":"اعلان تازه‌ای نیست"}</small></span>
+          ${un>0&&html`<span class="ax-bc" aria-hidden="true">${RVC.countText(un)}</span>`}<${I} n="left"/>
+        </button>
+        <${Sw} on=${s.nep} id="nep" k="nep" label="قسمت تازه‌ی سریال‌های نشان‌شده" onClick=${()=>act.set("nep",!s.nep)} st=${st} act=${act} reduced=${reduced}/>
+        <${Sw} on=${s.nhit} id="nhit" k="nhit" label="خبرم کن، وقتی فیلم خواسته‌شده آمد" onClick=${()=>act.set("nhit",!s.nhit)} st=${st} act=${act} reduced=${reduced}/>
+        <${Sw} on=${s.nbc} id="nbc" k="nbc" label="خبرهای رول‌وانا" onClick=${()=>act.set("nbc",!s.nbc)} st=${st} act=${act} reduced=${reduced}/>
+      </div>
+    </div>
+  </${Sec}>`;
+}
+const GL={f:["دختر","f"],m:["پسر","m"],n:["نگفته","n"]};
+function Field({id,label,value,onChange,err,ok,hint,ltr,type,ro,icon,ph}){
+  return html`<div class=${"ax-fd"+(err?" err":"")+(ok?" ok":"")+(ro?" ro":"")}>
+    <label for=${id}>${label}</label>
+    <span class="ax-fi">${icon&&html`<${I} n=${icon}/>`}<input id=${id} value=${value} onInput=${e=>onChange&&onChange(e.target.value)} dir=${ltr?"ltr":undefined} type=${type||"text"} readonly=${ro} aria-invalid=${!!err} aria-describedby=${id+"-h"} placeholder=${ph} autocomplete="off"/></span>
+    <small id=${id+"-h"} class=${err?"e":ok?"o":""}>${err?html`<${I} n="warning-circle"/>`:ok?html`<${I} n="check-circle"/>`:null}${err||ok||hint||"\u00a0"}</small>
+  </div>`;
+}
+function Edit({mode,desk,onClose,onSave,reduced}){
+  const bad=mode==="err";
+  const [name,setName]=useState(bad?"":WHO.name);
+  const [g,setG]=useState(AV);
+  const [user,setUser]=useState(bad?"ali":WHO.user);
+  const [mail,setMail]=useState(WHO.mail);
+  const [pw,setPw]=useState(bad);
+  const [cur,setCur]=useState(bad?"abc":"");
+  const [nw,setNw]=useState(bad?"abc12345":"");
+  const [rp,setRp]=useState(bad?"abc1234":"");
+  const [tried,setTried]=useState(bad);
+  const [busy,setBusy]=useState(mode==="saving");
+  const [fail,setFail]=useState(mode==="fail");
+  const ref=useRef();
+  useEffect(()=>{const k=e=>{if(e.key==="Escape")onClose()};addEventListener("keydown",k);const t=setTimeout(()=>{const b=ref.current&&ref.current.querySelector("input:not([readonly])");if(b&&!bad)b.focus({preventScroll:true})},350);return()=>{removeEventListener("keydown",k);clearTimeout(t)}},[]);
+  const taken=["ali","admin","rollvana"].includes(user.toLowerCase());
+  const eName=tried&&!name.trim()?"نام را بنویسید":null;
+  const eCur=tried&&pw&&cur&&cur!=="rollvana123"?"رمز فعلی درست نیست":null;
+  const eRp=tried&&pw&&nw&&rp!==nw?"دو رمز یکسان نیستند":null;
+  const score=[nw.length>=8,/[A-Za-z]/.test(nw)&&/\d/.test(nw),/[A-Z]/.test(nw)||/[^A-Za-z0-9]/.test(nw),nw.length>=12].filter(Boolean).length;
+  const go=()=>{setTried(true);setFail(false);const ok=name.trim()&&!taken&&!(pw&&cur&&cur!=="rollvana123")&&!(pw&&nw&&rp!==nw);if(!ok)return;setBusy(true);setTimeout(()=>{setBusy(false);onSave(name)},800)};
+  return html`<${React.Fragment}>
+    <${motion.div} class="scrim" onClick=${onClose} initial=${{opacity:0}} animate=${{opacity:1}} exit=${{opacity:0}} transition=${{duration:.25}}/>
+    <${motion.div} ref=${ref} class="ax-ed" role="dialog" aria-modal="true" aria-labelledby="edh"
+      initial=${reduced?{opacity:0}:desk?{x:"-100%"}:{y:"100%"}} animate=${desk?{x:0,opacity:1}:{y:0,opacity:1}} exit=${reduced?{opacity:0}:desk?{x:"-100%"}:{y:"100%"}} transition=${reduced?{duration:.15}:SHEET}>
+      <div class="ax-eh"><h2 id="edh">ویرایش پروفایل</h2><${motion.button} type="button" class="ax-x" onClick=${onClose} whileTap=${PRESS} aria-label="بستن"><${I} n="x"/></${motion.button}></div>
+      <div class="ax-eb">
+        <div class="ax-pv"><${Av} k=${g} size=${88}/><span>${name||"بدون نام"}</span></div>
+        ${fail&&html`<div class="ax-ban" role="alert"><${I} n="warning-circle"/>ذخیره نشد. دوباره تلاش کنید.</div>`}
+        <${Field} id="f-name" label="نام" value=${name} onChange=${setName} err=${eName}/>
+        <fieldset class="ax-gd"><legend>جنسیت</legend>
+          <div role="radiogroup" aria-label="جنسیت">${["f","m","n"].map(k=>html`<button key=${k} type="button" role="radio" aria-checked=${g===k} class=${"ax-gt"+(g===k?" on":"")} onClick=${()=>setG(k)}><${Av} k=${k} size=${40}/><span>${GL[k][0]}</span></button>`)}</div>
+        </fieldset>
+        <${Field} id="f-user" label="نام کاربری" value=${user} onChange=${setUser} ltr=${true} icon="at" err=${taken?"این نام کاربری را کس دیگری دارد":null} ok=${!taken&&user?"این نام آزاد است":null}/>
+        <${Field} id="f-mail" label="ایمیل (اختیاری)" value=${mail} onChange=${setMail} ltr=${true} icon="mail" hint="برای بازیابی رمز"/>
+        <${Field} id="f-ph" label="شماره‌ی موبایل" value=${phf(PHONE)} ro=${true} ltr=${true} icon="lock" hint="برای تغییر شماره با پشتیبانی تماس بگیرید"/>
+        <div class="ax-pw">
+          <button type="button" class="ax-pwb" aria-expanded=${pw} onClick=${()=>setPw(o=>!o)}><${I} n="key"/>تغییر رمز عبور<${I} n=${pw?"dash":"plus2"}/></button>
+          ${pw&&html`<div class="ax-pwf">
+            <${Field} id="f-cur" label="رمز فعلی" value=${cur} onChange=${setCur} type="password" ltr=${true} err=${eCur}/>
+            <${Field} id="f-new" label="رمز تازه" value=${nw} onChange=${setNw} type="password" ltr=${true} hint="حداقل ۸ نویسه، با حرف و عدد"/>
+            <div class=${"ax-ms s"+score} aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <${Field} id="f-rp" label="تکرار رمز تازه" value=${rp} onChange=${setRp} type="password" ltr=${true} err=${eRp}/>
+          </div>`}
+        </div>
+      </div>
+      <div class="ax-ef">
+        <${motion.button} type="button" class="ax-pri" onClick=${go} aria-busy=${busy} whileTap=${busy?undefined:{scale:.97}}>${busy?html`<${Spin} reduced=${reduced}/>`:null}${busy?"در حال ذخیره…":"ذخیره‌ی تغییرات"}</${motion.button}>
+        <${motion.button} type="button" class="ax-gl" onClick=${onClose} whileTap=${PRESS}>انصراف</${motion.button}>
+      </div>
+    </${motion.div}>
+  </${React.Fragment}>`;
+}
+function ProfileSec({onEdit}){
+  const rows=[["user","نام",WHO.name],["at","نام کاربری",html`<bdi dir="ltr">@${WHO.user}</bdi>`],["mail","ایمیل",html`<bdi dir="ltr">${WHO.mail}</bdi>`],["device-mobile","شماره‌ی موبایل",html`<bdi dir="ltr">${phf(PHONE)}</bdi>`],["key","رمز عبور","••••••••"]];
+  return html`<${Sec} id="profile" title="پروفایل">
+    <div class="ax-kv">
+      <div class="ax-kh"><${Av} size=${56}/><div><b>${WHO.name}</b><small>عضو از ${SINCE}</small></div><${motion.button} type="button" class="ax-gl" onClick=${onEdit} whileTap=${PRESS}><${I} n="pen"/>ویرایش پروفایل</${motion.button}></div>
+      ${rows.map(([ic,k,v])=>html`<div class="ax-kr" key=${k}><span class="ax-ri"><${I} n=${ic}/></span><span class="ax-kk">${k}</span><span class="ax-vv">${v}</span></div>`)}
+    </div>
+  </${Sec}>`;
+}
+const WALL=["p-dune-part-two","p-severance","p-shogun","p-oppenheimer","p-fallout","p-past-lives","p-parasite","p-the-bear","p-sinners","p-arrival","p-wednesday","p-interstellar","p-the-last-of-us","p-poor-things","p-whiplash","p-her","p-slow-horses","p-prisoners"];
 function Guest({reduced}){
-  return html`<div class="go lg-go acgo" role="status">
-    <span class="go-p lg-hm"><${I} n="lock"/></span>
-    <span class="go-k">این صفحه فقط برای اعضاست</span>
-    <h2>اول وارد شوید</h2>
-    <span class="go-k">پس از ورود، به همین صفحه برمی‌گردید.</span>
-    <span class="go-t" aria-hidden="true"><${Fill} run=${true} dur=${900} reduced=${reduced} k="g" cls="go-f"/></span>
-    <a class="go-l" href="rollvana-login.html?s=empty">اگر صفحه‌ی ورود باز نشد، اینجا را بزنید</a>
+  return html`<div class="ax-gs">
+    <div class="ax-wall" aria-hidden="true">${WALL.map(p=>html`<img key=${p} src=${HB+p+".jpg"} alt=""/>`)}</div>
+    <div class="ax-gc" role="status">
+      <span class="ax-gg"><${I} n="lock"/></span>
+      <span class="ax-gk">این صفحه فقط برای اعضاست</span>
+      <h1 id="h1" tabindex="-1">اول وارد شوید</h1>
+      <p>پس از ورود، به همین صفحه برمی‌گردید.</p>
+      <div class="ax-ga"><${motion.a} class="ax-pri" href="rollvana-login.html?s=empty" whileTap=${{scale:.97}}>ورود به حساب</${motion.a}><${motion.a} class="ax-gl" href="rollvana-login.html?s=signup" whileTap=${PRESS}>ساخت حساب</${motion.a}></div>
+    </div>
   </div>`;
 }
 function AccReview({s,fail}){
   const nav=p=>{const u=new URL(location.href);Object.entries(p).forEach(([k,v])=>v==null?u.searchParams.delete(k):u.searchParams.set(k,v));location.href=u};
   return html`<section class="review" aria-label="حالت‌های طرح">
-    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: تنظیم‌ها ذخیره می‌شوند، دستگاه دیگر را می‌شود خارج کرد، زنگ بالای صفحه اعلان‌ها را باز می‌کند و هر اعلان با زدن خوانده می‌شود. تاریخ‌ها، مبلغ‌ها و دستگاه‌ها نمونه‌اند.</span>
+    <span>حالت‌های طرح (فقط برای بررسی، در سایت نیست). صفحه زنده است: تنظیم‌ها ذخیره می‌شوند، دستگاه دیگر را می‌شود خارج کرد، عنوان نشان‌شده را می‌شود برداشت، زنگ بالای صفحه اعلان‌ها را باز می‌کند و هر اعلان با زدن خوانده می‌شود. در ویرایش پروفایل رمز فعلی نمونه rollvana123 است. تاریخ‌ها، مبلغ‌ها، امتیازها و دستگاه‌ها نمونه‌اند.</span>
     <div class="grp"><span>حالت</span><div>${STATES.map(([k,l])=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${S0===k} onClick=${()=>nav({s:k})}>${l}</${motion.button}>`)}</div></div>
+    <div class="grp"><span>آیکن حساب</span><div>${[["m","پسر"],["f","دختر"],["n","نگفته"]].map(([k,l])=>html`<${motion.button} key=${k} whileTap=${{scale:.95}} aria-pressed=${AV===k} onClick=${()=>nav({av:k==="m"?null:k})}>${l}</${motion.button}>`)}</div></div>
     <div class="grp"><span>شمار اعلان‌های خوانده‌نشده روی زنگ</span><div>${[[1,"۱"],[3,"۳"],[12,"۱۲"],[120,"بیش از ۹۹ (۱۲۰ از ۱۵۰)"],[0,"هیچ"]].map(([n,l])=>html`<${motion.button} key=${n} whileTap=${{scale:.95}} aria-pressed=${B0===n} onClick=${()=>nav({b:n===3?null:n})}>${l}</${motion.button}>`)}</div></div>
     <div class="grp"><span>ذخیره‌ی تنظیم‌ها</span><div>${[[false,"موفق"],[true,"ناموفق (تلاش دوباره موفق است)"]].map(([v,l])=>html`<${motion.button} key=${l} whileTap=${{scale:.95}} aria-pressed=${fail===v} onClick=${()=>nav({fail:v?"1":null})}>${l}</${motion.button}>`)}</div></div>
     <div class="grp"><span>نشانی این صفحه</span><code dir="ltr">/account</code><code dir="ltr">${"guest → /login?next=/account"}</code></div>
@@ -525,10 +751,10 @@ function App(){
   const up=p=>set(o=>{const x=typeof p==="function"?p(o):p;return x===o?o:{...o,...x}});
   const tm=useRef([]);const later=(f,ms)=>tm.current.push(setTimeout(f,ms));
   useEffect(()=>()=>tm.current.forEach(clearTimeout),[]);
-  const [cur,setCur]=useState("sub");const [say,setSay]=useState("");
+  const [cur,setCur]=useState("films");const [say,setSay]=useState("");
   useEffect(()=>{if(st.scroll){const el=document.getElementById(st.scroll);el&&el.scrollIntoView({block:"start"})}},[]);
-  useEffect(()=>{if(!desk||st.guest)return;const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setCur(e.target.id)})},{rootMargin:"-30% 0px -60% 0px"});
-    SPOT.forEach(([id])=>{const el=document.getElementById(id);el&&io.observe(el)});return()=>io.disconnect()},[desk]);
+  useEffect(()=>{if(st.guest)return;const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setCur(e.target.id)})},{rootMargin:"-30% 0px -60% 0px"});
+    SECS.forEach(([id])=>{const el=document.getElementById(id);el&&io.observe(el)});return()=>io.disconnect()},[]);
   useEffect(()=>{if(!st.toast)return;const t=setTimeout(()=>up({toast:null}),4000);return()=>clearTimeout(t)},[st.toast]);
   const save=(k,v,force)=>{
     up(o=>{const prev=o.set[k];const fl={...o.fl};delete fl[k];return {set:{...o.set,[k]:v},sv:{...o.sv,[k]:"wait"},fl,prev:{...(o.prev||{}),[k]:prev}}});
@@ -545,36 +771,60 @@ function App(){
     cancel:()=>up(o=>o.busy?o:{q:null}),
     confirm:()=>{if(st.busy)return;const q=st.q;up({busy:true});
       later(()=>{if(q.k==="dev"){const d=st.devs.find(x=>x.id===q.id);up({q:null,busy:false});later(()=>{up(o=>({devs:o.devs.filter(x=>x.id!==q.id),toast:{k:"dev",t:"«"+d.n+"» از حساب خارج شد"}}));setSay(d.n+" از حساب خارج شد")},280)}
-        else{location.href="../home/home-v3.html"}},q.k==="dev"?700:900)},
+        else if(q.k==="all"){up({q:null,busy:false});later(()=>{up(o=>({devs:o.devs.filter(x=>x.me),toast:{k:"dev",t:"از همه‌ی دستگاه‌های دیگر خارج شدید"}}));setSay("از همه‌ی دستگاه‌های دیگر خارج شدید")},280)}
+        else{location.href="../home/home-v3.html"}},q.k==="dev"||q.k==="all"?700:900)},
     open:()=>up(o=>({open:!o.open,wave:false})),
     close:()=>{up({open:false});requestAnimationFrame(()=>{const b=document.getElementById("bell");b&&b.focus({preventScroll:true})})},
     read:id=>up(o=>({wave:false,nf:o.nf.map(n=>n.id===id?{...n,un:false}:n)})),
     readAll:()=>{up(o=>({wave:true,nf:o.nf.map(n=>({...n,un:false}))}));setSay("همه‌ی اعلان‌ها خوانده شد")},
     exp:id=>up(o=>({exp:{...o.exp,[id]:!o.exp[id]}})),
     more:()=>up(o=>({shown:o.shown+20})),
-    go:to=>later(()=>{location.href=to},260)
+    go:to=>later(()=>{location.href=to},260),
+    unmark:b=>{up(o=>({rm:[...o.rm,b.id],toast:{k:"bm",t:"«"+b.t+"» از نشان‌شده برداشته شد"}}));setSay(b.t+" از نشان‌شده برداشته شد")},
+    edit:()=>up({edit:"ok"}),
+    editClose:()=>{up({edit:null});requestAnimationFrame(()=>{const b=document.querySelector(".ax-wa .ax-gl");b&&b.focus({preventScroll:true})})},
+    editSave:()=>{up({edit:null,toast:{k:"ed",t:"پروفایل ذخیره شد"}});setSay("پروفایل ذخیره شد")}
   };
   const un=st.nf.filter(n=>n.un).length;
   const goSec=id=>{const el=document.getElementById(id);el&&el.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"});setCur(id)};
   const bell=html`<${Bell} n=${un} open=${st.open} onOpen=${act.open} reduced=${reduced}/>`;
+  const bm=BM0.filter(b=>!st.rm.includes(b.id));
+  const emp=st.emp;
   return html`<${React.Fragment}>
     <${Header} user=${!st.guest} desk=${desk} bell=${bell} sub=${st.sub}/>
-    <main class="acp" id="page">
-      ${st.guest?html`<div class="lg-in"><${Guest} reduced=${reduced}/></div>`:html`<div class="acp-in">
-        <${SideNav} cur=${cur} go=${goSec} out=${()=>act.ask({k:"out"})}/>
-        <div class="acm">
-          <header class="ach"><h1>حساب من</h1><span class="ach-n"><${I} n="device-mobile"/><bdi dir="ltr">${phf(PHONE)}</bdi><small>شماره‌ی ورود</small></span></header>
-          <${SubCard} sub=${st.sub} reduced=${reduced}/>
-          <${Pays} pays=${st.pays}/>
-          <${Devs} st=${st} act=${act} reduced=${reduced}/>
-          <${Settings} st=${st} act=${act} reduced=${reduced}/>
-          <section class="asx" aria-label="خروج"><div class="acl"><${motion.button} type="button" class="acq-o" onClick=${()=>act.ask({k:"out"})} whileTap=${{scale:.99}}><${I} n="out"/><span>خروج از حساب<small>فقط از همین دستگاه</small></span></${motion.button}></div></section>
+    <main class="axp" id="page">
+      ${st.guest?html`<div class="ax-in"><${Guest} reduced=${reduced}/></div>`:html`<div class="ax-in">
+        <section class="ax-band" aria-label="پروفایل و اشتراک">
+          <div class="ax-bgi" aria-hidden="true"><img src=${HB+"b-the-last-of-us.jpg"} alt=""/></div>
+          <div class="ax-bi">
+            <${Who} sub=${st.sub} desk=${desk} bn=${un} onEdit=${act.edit} onBell=${act.open}/>
+            <${SubCard} sub=${st.sub} reduced=${reduced}/>
+          </div>
+        </section>
+        <div class="ax-body">
+          <nav class="ax-nav" aria-label="بخش‌های حساب"><div class="ax-nv">
+            ${SECS.map(([id,l,g])=>html`<a key=${id} href=${"#"+id} aria-current=${cur===id?"true":undefined} onClick=${e=>{e.preventDefault();goSec(id)}}>${cur===id&&html`<${motion.span} class="on" layoutId="axnon" transition=${SPR}/>`}<${I} n=${g}/><span>${l}</span></a>`)}
+            <hr/><button type="button" class="ax-no" onClick=${()=>act.ask({k:"out"})}><${I} n="out"/><span>خروج از حساب</span></button>
+          </div></nav>
+          <div class="ax-main">
+            <${Sec} id="films" title="فیلم‌های من">
+              <div class="ax-sub2"><div class="ax-sh2"><h3>ادامه‌ی تماشا</h3><a class="ax-ml" href="../library/rollvana-library.html">تاریخچه‌ی کامل<${I} n="left"/></a></div><${Cont} items=${CW} empty=${emp}/></div>
+              <div class="ax-sub2"><div class="ax-sh2"><h3>نشان‌شده</h3>${!emp&&html`<small class="ax-n">${fa(18-st.rm.length)} عنوان</small>`}<a class="ax-ml" href="../library/rollvana-library.html">همه‌ی نشان‌شده‌ها<${I} n="left"/></a></div><${Marks} items=${bm} onRemove=${act.unmark} empty=${emp}/></div>
+              <div class="ax-sub2"><div class="ax-sh2"><h3>تاریخچه‌ی اخیر</h3></div><${Hist} empty=${emp}/></div>
+            </${Sec}>
+            <${Pays} pays=${st.pays}/>
+            <${Devs} st=${st} act=${act} reduced=${reduced}/>
+            <${Prefs} st=${st} act=${act} reduced=${reduced}/>
+            <${ProfileSec} onEdit=${act.edit}/>
+            <div class="ax-lo"><${motion.button} type="button" class="ax-out" onClick=${()=>act.ask({k:"out"})} whileTap=${{scale:.99}}><${I} n="out"/><span>خروج از حساب<small>فقط از همین دستگاه</small></span></${motion.button}></div>
+          </div>
         </div>
       </div>`}
     </main>
     <div class="acv"><${AccReview} s=${S0} fail=${st.fail}/></div>
     <p class="acsr" role="status" aria-live="polite">${say}</p>
     <${Confirm} q=${st.q} st=${st} act=${act} desk=${desk} reduced=${reduced}/>
+    <${AnimatePresence}>${st.edit&&html`<${Edit} key="ed" mode=${st.edit} desk=${desk} onClose=${act.editClose} onSave=${act.editSave} reduced=${reduced}/>`}</${AnimatePresence}>
     <${NPanel} st=${st} act=${act} desk=${desk} reduced=${reduced}/>
     <${AnimatePresence}>${st.toast&&html`<${motion.div} key="t" class="toast" role="status" style=${{x:"-50%"}}
       initial=${reduced?{opacity:0}:{opacity:0,y:12,scale:.98}} animate=${{opacity:1,y:0,scale:1}} exit=${reduced?{opacity:0}:{opacity:0,y:8,transition:{duration:.18,ease:EASE_LEAVE}}} transition=${{duration:.28,ease:EASE}}>${st.toast.t}</${motion.div}>`}</${AnimatePresence}>
