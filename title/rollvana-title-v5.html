@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="../brand/rollvana-favicon-32.svg">
+<title>رول‌وانا · صفحه‌ی فیلم و سریال · نسخه‌ی ۵</title>
+<style>
+@font-face{font-family:IRANYekanX;src:url(../home/media/vendor/iranyekanx.woff2) format("woff2");font-weight:100 1000;font-display:block}
+:root{--bg:#0E0E10;--bg2:#131316;--card:#151518;--card2:#1B1B1F;--line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.13);--ink:#F2EFF8;--ink2:rgba(242,239,248,.74);--mute:rgba(226,224,232,.56);--mute2:rgba(226,224,232,.34);--white:#F4F1FA;--v:#8C7BE0;--acc:#C9853A;--glass:rgba(255,255,255,.06);--good:#7BC98F;--bad:#E07A7A;--wrap:1320px;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+body{background:var(--bg);color:var(--ink);font-family:IRANYekanX,system-ui,sans-serif;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block}
+.i{width:20px;height:20px;flex:none;fill:currentColor}
+.num{font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 40px}
+.gl{background:var(--glass);border:1px solid var(--line2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header.top{position:fixed;inset:0 0 auto;z-index:40;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.top.solid{background:rgba(14,14,16,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:34px;height:76px}
+.logo img{height:28px}
+nav.main{display:flex;gap:24px;font-size:14px;color:var(--ink2)}
+nav.main a:hover{color:var(--ink)}
+.hd-act{margin-inline-start:auto;display:flex;gap:10px;align-items:center}
+.hb{height:42px;min-width:42px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;font-size:13px;font-weight:600}
+.hb.sub{background:rgba(140,123,224,.16);border:1px solid rgba(140,123,224,.42);color:#E4DEFF}
+.hb.sub .i{width:17px;height:17px}
+.hero{position:relative;padding:136px 0 34px;overflow:hidden;isolation:isolate}
+.hero .bd{position:absolute;inset:0;z-index:-1}
+.hero .bd video,.hero .bd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.5}
+.hero .bd::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,var(--bg) 18%,rgba(14,14,16,.5) 54%,rgba(14,14,16,.82) 100%),linear-gradient(0deg,var(--bg) 1%,rgba(14,14,16,0) 42%,rgba(14,14,16,.75) 100%)}
+.tctl{position:absolute;left:40px;bottom:30px;display:flex;gap:8px;z-index:3}
+.cbtn{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.cbtn .i{width:17px;height:17px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:start}
+.poster{grid-column:2;grid-row:1;border-radius:16px;overflow:hidden;aspect-ratio:2/3;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px var(--line2);position:relative}
+.poster img{width:100%;height:100%;object-fit:cover}
+.info{grid-column:1;grid-row:1;max-width:980px}
+.crumb{font-size:12px;color:var(--mute);display:flex;gap:8px}
+.crumb a:hover{color:var(--ink)}
+.kin{margin-top:16px;font-size:13px;color:var(--ink2)}
+.kin b{color:var(--acc);font-weight:700}
+.tlogo{margin-top:12px;height:96px;width:auto;max-width:420px;object-fit:contain;object-position:right center;filter:drop-shadow(0 6px 24px rgba(0,0,0,.6))}
+.fa{font-size:19px;font-weight:700;margin-top:10px}
+.dir{margin-top:6px;font-size:13px;color:var(--mute)}
+.dir a{color:var(--ink);margin-inline-start:4px;border-bottom:1px solid var(--line2)}
+.stats{display:flex;align-items:stretch;gap:26px;margin-top:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.st{display:flex;flex-direction:column;gap:6px;justify-content:space-between}
+.st+.st{padding-inline-start:26px;border-inline-start:1px solid var(--line)}
+.st .lb{font-size:11.5px;color:var(--mute)}
+.st .v{display:flex;align-items:center;gap:8px;direction:ltr;justify-content:flex-end}
+.st .v b{font-size:24px;font-weight:800;line-height:1}
+.st .v small{font-size:12px;color:var(--mute)}
+.st .bi{height:22px;width:auto}
+.st .mcl{width:22px;height:22px}
+.st .plain{font-size:15px;font-weight:700;direction:rtl}
+.age{display:inline-flex;align-items:center;height:24px;padding:0 8px;border:1px solid var(--line2);border-radius:6px;font-size:12px;font-weight:700}
+.bdg{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:11.5px;font-weight:600;background:rgba(242,239,248,.1);color:var(--ink)}
+.genres{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px;flex-wrap:wrap}
+.genres .lb{color:var(--mute)}
+.genres a{font-weight:700}
+.genres a:hover{color:var(--acc)}
+.genres i{color:var(--mute2);font-style:normal}
+.genres .subs{margin-inline-start:auto;display:flex;gap:6px;align-items:center;color:var(--mute);font-size:12.5px}
+.story{padding:20px 0;border-bottom:1px solid var(--line)}
+.tq{font-size:22px;font-weight:300;line-height:1.6;color:var(--ink)}
+.tq q{quotes:"«" "»"}
+.tq q::before,.tq q::after{color:var(--acc);font-weight:400}
+.story p{margin-top:10px;font-size:14.5px;line-height:2.05;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.story.open p{-webkit-line-clamp:unset}
+.more{margin-top:4px;color:var(--acc);font-size:12.5px;font-weight:700}
+.vote{display:flex;align-items:center;gap:26px;padding:18px 0;border-bottom:1px solid var(--line)}
+.vote .q{font-size:12.5px;color:var(--mute)}
+.vbs{display:flex;gap:8px;margin-top:8px}
+.vb{height:42px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.vb .i{width:17px;height:17px}
+.vb .pc{color:var(--mute);font-weight:500}
+.vb[aria-pressed=true].up{background:rgba(123,201,143,.16);border-color:rgba(123,201,143,.5)}
+.vb[aria-pressed=true].dn{background:rgba(224,122,122,.14);border-color:rgba(224,122,122,.5)}
+.urate{padding-inline-start:26px;border-inline-start:1px solid var(--line)}
+.urate .q{font-size:12.5px;color:var(--mute)}
+.urate .v{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+.urate b{font-size:28px;font-weight:800;line-height:1}
+.urate span{color:var(--mute);font-size:12px}
+.mine{margin-inline-start:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.stars{display:flex;gap:3px;direction:ltr}
+.stars button{width:20px;height:20px;border-radius:4px;background:rgba(255,255,255,.08);font-size:10.5px;color:var(--mute)}
+.stars button.on{background:var(--acc);color:#16120c;font-weight:800}
+.news{margin-top:16px;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 16px;border-radius:12px;background:rgba(255,255,255,.035);border-inline-start:3px solid var(--acc);font-size:12.5px;color:var(--ink2)}
+.news b{color:var(--ink);font-weight:700}
+.news .i{width:17px;height:17px;color:var(--acc)}
+.news .cd{margin-inline-start:auto;display:flex;gap:6px;direction:ltr}
+.news .cd span{min-width:40px;text-align:center;background:rgba(255,255,255,.06);border-radius:8px;padding:2px 6px;font-weight:700;color:var(--ink)}
+.news .cd small{display:block;font-size:9.5px;color:var(--mute);font-weight:500}
+.cta{display:flex;gap:10px;margin-top:16px;align-items:center;flex-wrap:wrap}
+.play{position:relative;overflow:hidden;height:56px;padding:0 26px 0 30px;border-radius:14px;background:var(--white);color:#141218;font-weight:800;font-size:15.5px;display:inline-flex;align-items:center;gap:12px}
+.play .i{width:20px;height:20px}
+.play small{font-weight:500;font-size:12px;color:#4a4652}
+.play .pb{position:absolute;inset:auto 0 0;height:4px;background:rgba(20,18,24,.12)}
+.play .pb i{position:absolute;inset:0 0 0 auto;background:var(--acc)}
+.gbtn{height:56px;padding:0 20px;border-radius:14px;display:inline-flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700}
+.sq{width:56px;height:56px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center}
+.sq[aria-pressed=true]{color:var(--acc);border-color:var(--acc)}
+.recap{margin-top:14px;border-radius:14px;padding:0 18px;max-height:0;overflow:hidden;transition:max-height .4s,padding .4s;background:rgba(255,255,255,.035)}
+.recap.open{max-height:400px;padding:16px 18px}
+.recap small{color:var(--acc);font-weight:700;font-size:12px}
+.recap p{margin-top:6px;font-size:13.5px;color:var(--ink2);line-height:2}
+.tabs{position:sticky;top:76px;z-index:30;background:rgba(19,19,22,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:38px;height:62px;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.tabs a{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--mute);border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s}
+.tabs a .i{width:17px;height:17px}
+.tabs a.on{color:var(--ink);border-color:var(--acc)}
+.tabs .cnt{font-size:10.5px;background:rgba(255,255,255,.07);border-radius:6px;padding:0 6px;line-height:19px}
+section.ch{padding-top:84px}
+.sh{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sh h2{font-size:22px;font-weight:900;line-height:1.3;background:linear-gradient(transparent 58%,color-mix(in srgb,var(--acc) 55%,transparent) 58%,color-mix(in srgb,var(--acc) 55%,transparent) 92%,transparent 92%);padding:0 2px}
+.sh .x{margin-inline-start:auto;display:flex;gap:8px;align-items:center}
+.seg{display:inline-flex;padding:4px;border-radius:999px;gap:2px}
+.seg button{height:34px;padding:0 16px;border-radius:999px;font-size:12.5px;color:var(--ink2)}
+.seg button[aria-pressed=true]{background:rgba(255,255,255,.12);color:var(--ink);font-weight:700}
+.pill{height:40px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600}
+.pill .i{width:16px;height:16px}
+.note{margin-top:18px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mute)}
+.note .i{width:16px;height:16px}
+.note a{color:var(--ink2);border-bottom:1px dashed var(--line2)}
+.lock{margin-top:18px;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;background:rgba(140,123,224,.08);border:1px solid rgba(140,123,224,.28);font-size:13px}
+.lock .i{color:#C9BEFF}
+.lock button{white-space:nowrap;margin-inline-start:auto;height:40px;padding:0 18px;border-radius:10px;background:var(--white);color:#141218;font-weight:800;font-size:13px}
+.rows{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.qr{border:1px solid var(--line);border-radius:12px;background:var(--card);transition:border-color .2s}
+.qr:hover{border-color:var(--line2)}
+.qr.rec{border-color:color-mix(in srgb,var(--acc) 45%,transparent)}
+.qh{width:100%;display:grid;grid-template-columns:44px 170px 1fr 1fr auto;align-items:center;gap:18px;padding:14px 18px;text-align:right}
+.dev{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:var(--ink2)}
+.qn b{font-size:15.5px;font-weight:800;direction:ltr;unicode-bidi:isolate}
+.qn small{display:block;font-size:11.5px;color:var(--mute)}
+.recb{display:inline-block;margin-inline-start:8px;font-size:10.5px;font-weight:800;color:var(--acc)}
+.qs{font-size:12.5px;color:var(--ink2);direction:ltr;text-align:right}
+.qf{font-size:12.5px;color:var(--mute)}
+.qh .chv{width:16px;height:16px;color:var(--mute);transition:transform .3s}
+.qr.open .chv{transform:rotate(180deg)}
+.qb{display:none;gap:10px;padding:0 18px 16px 18px;padding-inline-start:80px}
+.qr.open .qb{display:flex}
+.lang{flex:1;max-width:280px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:13.5px;font-weight:700}
+.lang:hover{border-color:var(--acc)}
+.lang span{font-weight:500;color:var(--mute);font-size:12.5px;direction:ltr}
+.lang .i{width:17px;height:17px}
+.eprow{display:grid;grid-template-columns:30px 168px 1fr auto;gap:18px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.eprow.cur{border-color:color-mix(in srgb,var(--acc) 55%,transparent)}
+.eprow .n{font-size:13px;color:var(--mute);text-align:center}
+.eth{position:relative;aspect-ratio:16/9;border-radius:9px;overflow:hidden;background:var(--bg2)}
+.eth img{width:100%;height:100%;object-fit:cover}
+.eth .pg{position:absolute;inset:auto 0 0;height:3px;background:rgba(255,255,255,.18)}
+.eth .pg i{position:absolute;inset:0 0 0 auto;background:var(--acc)}
+.eth .wt{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.eth .ck{position:absolute;top:6px;left:6px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.eth .ck .i{width:12px;height:12px}
+.et b{font-size:14.5px;font-weight:700}
+.et small{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.et small em{font-style:normal;color:var(--acc);font-weight:700}
+.et p{font-size:12.5px;color:var(--ink2);margin-top:6px;display:none}
+.eprow.open .et p{display:block}
+.ea{display:flex;gap:8px;align-items:center}
+.rb{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.rb .i{width:17px;height:17px}
+.rb.pri{background:var(--white);color:#141218;border:0}
+.epdl{grid-column:1/-1;display:none;flex-direction:column;gap:8px;padding:6px 0 4px;padding-inline-start:48px}
+.eprow.dl .epdl{display:flex}
+.epq{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.03)}
+.epq .qn{min-width:150px}
+.epq .lang{height:42px;max-width:220px}
+.tlay{display:grid;grid-template-columns:1.55fr 1fr;gap:20px;margin-top:20px}
+.tplayer{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
+.tplayer img,.tplayer video{width:100%;height:100%;object-fit:cover}
+.tplayer .big{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%}
+.tplayer .big .i{width:28px;height:28px}
+.tplayer .cap{position:absolute;inset:auto 0 0;padding:40px 20px 16px;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent);font-weight:700}
+.tlist{display:flex;flex-direction:column;gap:8px}
+.ti{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:center;padding:8px;border-radius:12px;border:1px solid transparent;text-align:right}
+.ti:hover{background:rgba(255,255,255,.03)}
+.ti.on{border-color:var(--line2);background:rgba(255,255,255,.04)}
+.ti img{width:132px;aspect-ratio:16/9;object-fit:cover;border-radius:8px}
+.ti b{font-size:13.5px}
+.ti small{display:block;color:var(--mute);font-size:12px}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-top:20px}
+.pp{display:flex;align-items:center;gap:14px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);transition:border-color .2s}
+.pp:hover{border-color:var(--line2)}
+.pp img{width:52px;height:66px;border-radius:8px;object-fit:cover;object-position:top}
+.pp.dr img{width:56px;height:56px;border-radius:50%}
+.pp b{display:block;font-size:13.5px}
+.pp span{display:block;font-size:12px;color:var(--mute)}
+.pp .i{margin-inline-start:auto;width:15px;height:15px;color:var(--mute)}
+.sub{margin-top:28px;font-size:13px;color:var(--mute);font-weight:600}
+.facts{display:grid;grid-template-columns:1fr 1fr;column-gap:44px;margin-top:8px}
+.fact{display:grid;grid-template-columns:130px 1fr;padding:15px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.fact .k{color:var(--mute);font-size:12.5px}
+.fact .v{font-weight:600}
+.fact.hid{display:none}
+.facts.all .fact.hid{display:grid}
+.tog{margin-top:16px;color:var(--acc);font-size:13px;font-weight:700;display:inline-flex;gap:6px;align-items:center}
+.tog .i{width:15px;height:15px}
+.mus{display:grid;grid-template-columns:200px 1fr;gap:34px;margin-top:22px;align-items:start}
+.mus .cv{border-radius:12px;overflow:hidden;aspect-ratio:2/3}
+.mus .cv img{width:100%;height:100%;object-fit:cover}
+.mus .cv+small{display:block;margin-top:10px;font-size:12px;color:var(--mute)}
+.tracks{list-style:none;display:flex;flex-direction:column}
+.tr{display:grid;grid-template-columns:76px 1fr auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.tr .at{font-size:12px;color:var(--mute);direction:ltr;text-align:right}
+.tr b{display:block;font-size:14px;direction:ltr;text-align:right}
+.tr small{display:block;font-size:12px;color:var(--mute)}
+.aud{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:22px}
+.box{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:20px 22px}
+.box h3{font-size:14px;font-weight:800}
+.box .meta{font-size:11.5px;color:var(--mute);margin-top:2px}
+.box p.tone{margin-top:12px;font-size:14px;line-height:2;color:var(--ink2)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.pn h4{font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.pn h4::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--good)}
+.pn .ng h4::before{background:var(--bad)}
+.pn ul{list-style:none;margin-top:8px;font-size:13px;color:var(--ink2)}
+.pn li{padding:6px 0;border-bottom:1px solid var(--line)}
+.mood{display:flex;height:8px;border-radius:99px;overflow:hidden;margin-top:16px;gap:2px}
+.mood i{background:var(--good)}
+.mood i:nth-child(2){background:#CDBB7A}
+.mood i:nth-child(3){background:var(--bad)}
+.ml{display:flex;gap:16px;margin-top:8px;font-size:11.5px;color:var(--mute)}
+.topics{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.topics button{height:34px;padding:0 14px;border-radius:999px;font-size:12.5px;display:inline-flex;gap:6px;align-items:center}
+.topics button span{color:var(--mute);font-size:11.5px}
+.topics button[aria-pressed=true]{background:rgba(255,255,255,.12);color:var(--ink);font-weight:700}
+.tw{margin-top:14px;padding:16px 0 4px;border-top:1px solid var(--line)}
+.tw p{font-size:16px;line-height:2;font-weight:500}
+.tw mark{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--acc) 50%,transparent) 55%);color:inherit;padding:0 2px}
+.tw small{display:flex;gap:10px;margin-top:8px;color:var(--mute);font-size:12px}
+.talk{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:44px;margin-top:6px}
+.cbar{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sort{display:flex;gap:18px;font-size:12.5px;color:var(--mute);margin-inline-start:auto}
+.sort button[aria-pressed=true]{color:var(--ink);font-weight:700;box-shadow:inset 0 -2px 0 var(--acc);padding-bottom:4px}
+.cm{padding:20px 0;border-bottom:1px solid var(--line)}
+.cm .who{display:flex;align-items:center;gap:12px}
+.av{width:38px;height:38px;border-radius:50%;background:#26262B;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--ink2);flex:none}
+.cm .who b{font-size:13.5px}
+.cm .who small{font-size:11px;color:var(--mute);margin-inline-start:8px}
+.cm .sd{margin-inline-start:auto;font-size:11.5px;color:var(--mute);display:flex;align-items:center;gap:6px}
+.cm .sd::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--good)}
+.cm .sd.n::before{background:var(--bad)}
+.cm p{margin-top:10px;font-size:14px;color:var(--ink2);line-height:2;padding-inline-start:50px}
+.cm .sp{position:relative}
+.cm .sp p{filter:blur(6px);user-select:none}
+.cm .sp button{position:absolute;inset:0;margin:auto;width:max-content;height:34px;padding:0 14px;border-radius:999px;font-size:12px}
+.cm .act{display:flex;gap:18px;margin-top:10px;font-size:12px;color:var(--mute);align-items:center;padding-inline-start:50px}
+.cm .act button{display:flex;gap:6px;align-items:center}
+.cm .act button:hover{color:var(--ink)}
+.cm .act .i{width:15px;height:15px}
+.cm .act button[aria-pressed=true]{color:var(--ink)}
+.cm .rep{margin-top:14px;margin-inline-start:50px;padding-inline-start:18px;border-inline-start:1px solid var(--line2)}
+.cm .rep .cm{border:0;padding:10px 0}
+.side{position:sticky;top:160px;display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.write textarea{width:100%;min-height:110px;resize:vertical;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:12px;color:var(--ink);font:inherit;padding:12px 14px;font-size:13.5px}
+.write textarea:focus{outline:none;border-color:var(--acc)}
+.write .r{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px;color:var(--mute)}
+.write .r label{display:flex;gap:6px;align-items:center}
+.write .send{margin-inline-start:auto;height:40px;padding:0 18px;border-radius:10px;background:var(--white);color:#141218;font-weight:800;font-size:13px}
+.join small{color:var(--acc);font-size:11.5px;font-weight:700}
+.join h3{font-size:19px;margin-top:4px}
+.join p{font-size:13px;margin-top:10px;color:var(--ink2);line-height:2}
+.join .g{display:block;width:100%;height:46px;border-radius:12px;background:var(--white);color:#141218;font-weight:800;margin-top:16px}
+.join .o{display:block;width:100%;height:46px;border-radius:12px;margin-top:8px;font-weight:700}
+.simh{display:flex;gap:30px;margin-top:22px;font-size:13px;color:var(--mute);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:22px;margin-top:14px}
+.kc{position:relative}
+.kc .pic{position:relative;aspect-ratio:2/3;border-radius:12px;overflow:hidden;background:var(--bg2)}
+.kc .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.kc:hover .pic img{transform:scale(1.04)}
+.kc .pic::before{content:"";position:absolute;inset:0 0 auto;height:34%;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.3) 35%,rgba(0,0,0,.1) 70%,transparent);z-index:1}
+.kc .sc{position:absolute;top:10px;left:10px;z-index:2;display:flex;align-items:baseline;gap:3px;direction:ltr;font-weight:800;font-size:15px}
+.kc .sc .i{width:14px;height:14px;color:#F5C518;align-self:center}
+.kc .sc small{font-size:10.5px;color:var(--ink2);font-weight:500}
+.kc .bdg{position:absolute;top:10px;right:10px;z-index:2;height:22px;font-size:10.5px;background:rgba(14,14,16,.55);backdrop-filter:blur(8px)}
+.kc .ov{position:absolute;inset:0;z-index:3;background:rgba(10,10,12,.86);padding:16px;display:flex;align-items:flex-end;font-size:12.5px;line-height:1.95;color:var(--ink2);opacity:0;transition:opacity .3s}
+@media (hover:hover){.kc:hover .ov{opacity:1}}
+.kc h4{margin-top:10px;font-size:15px;font-weight:800;direction:ltr;text-align:right}
+.kc .why{font-size:12px;color:var(--acc);font-weight:700;margin-top:2px}
+.kc .m{font-size:12px;color:var(--mute);margin-top:2px}
+.kc.cur .pic{box-shadow:0 0 0 2px var(--acc)}
+.lists{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.ul{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:18px}
+.ul h4{font-size:15px;font-weight:800}
+.ul .by{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--mute);margin-top:6px}
+.ul .by .av{width:22px;height:22px;font-size:11px}
+.ul .ps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:14px}
+.ul .ps div{aspect-ratio:2/3;border-radius:7px;overflow:hidden;position:relative}
+.ul .ps img{width:100%;height:100%;object-fit:cover}
+.ul .ps div.me{box-shadow:0 0 0 2px var(--acc)}
+.ul .rk{font-size:11.5px;color:var(--acc);font-weight:800;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.ul q{display:block;font-size:12.5px;color:var(--ink2);margin-top:4px}
+footer.ft{margin-top:110px;border-top:1px solid var(--line);background:#0B0B0D}
+footer.ft .wrap{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:30px;padding-top:50px;padding-bottom:40px}
+footer.ft img{height:28px}
+footer.ft p{margin-top:12px;font-size:13px;color:var(--mute);max-width:300px;line-height:2}
+footer.ft h5{font-size:13px;color:var(--mute);font-weight:700}
+footer.ft ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px;font-size:13.5px}
+footer.ft .cp{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;font-size:12px;color:var(--mute2)}
+.pop{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.pop.on{display:flex}
+.sheet{width:min(640px,94vw);max-height:88vh;overflow:auto;background:#17171A;border:1px solid var(--line2);border-radius:20px;padding:22px}
+.sheet .hd{display:flex;align-items:center;gap:10px}
+.sheet .hd h3{font-size:17px}
+.sheet .hd button{margin-inline-start:auto}
+.sheet .lb{font-size:12px;color:var(--mute);margin-top:18px}
+.ls2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.ls2 button,.qc button{height:58px;border-radius:14px;font-weight:700;font-size:14px}
+.qc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.qc button{height:auto;padding:14px;text-align:right;display:flex;flex-direction:column;gap:4px}
+.qc button small{font-weight:500;color:var(--mute);font-size:11.5px}
+.ls2 button[aria-pressed=true],.qc button[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.sheet .go{display:flex;width:100%;height:52px;border-radius:14px;margin-top:20px;align-items:center;justify-content:center;gap:10px;background:var(--acc);color:#111;font-weight:800}
+.toast{position:fixed;top:92px;left:50%;transform:translate(-50%,-20px);opacity:0;z-index:70;padding:10px 18px;border-radius:12px;font-size:13px;transition:.3s;pointer-events:none;background:rgba(30,30,34,.92)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.dstate{max-width:900px;margin:60px auto 30px;padding:14px 18px;border:1px dashed var(--line2);border-radius:14px;font-size:12px;color:var(--mute);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.dstate a{color:var(--ink2);border-bottom:1px solid var(--line2)}
+.dstate a.on{color:var(--acc);border-color:var(--acc)}
+.mnav{display:none}
+@media (max-width:1200px){.qh{grid-template-columns:44px 150px 1fr auto}.qh .qf{display:none}.talk{grid-template-columns:minmax(0,1fr) 300px}.lists{grid-template-columns:1fr 1fr}.lists .ul:nth-child(3){display:none}}
+@media (max-width:1023px){
+.wrap{padding:0 18px}
+header.top .wrap{height:62px;gap:12px}
+nav.main,.hd-act .srch{display:none}
+.logo img{height:24px}
+.hb{height:38px;min-width:38px;border-radius:11px;padding:0 12px}
+.hb.sub{display:none}
+html{scroll-padding-top:120px}
+.hero{padding:0 0 20px}
+.hero .bd{position:relative;height:56vw;max-height:420px;z-index:0}
+.hero .bd video,.hero .bd img{opacity:.85}
+.hero .bd::after{background:linear-gradient(0deg,var(--bg) 2%,rgba(14,14,16,0) 50%,rgba(14,14,16,.55) 100%)}
+.tctl{display:none}
+.ea .pill{display:none}
+.lock{flex-wrap:wrap}
+.lock button{white-space:nowrap}
+.dk{display:none}
+.stars button{width:24px;height:24px}
+.mine{margin-inline-start:0;align-items:flex-start}
+.hero .wrap{grid-template-columns:minmax(0,1fr) 108px;gap:14px;margin-top:-64px;position:relative;z-index:2}
+.poster{border-radius:10px}
+.info{display:contents}
+.ti1{grid-column:1;grid-row:1;align-self:end}
+.ti2{grid-column:1/-1;grid-row:2}
+.crumb{display:none}
+.kin{margin-top:0;font-size:12px}
+.tlogo{height:58px;max-width:100%;margin-top:6px}
+.fa{font-size:16px;margin-top:4px}
+.dir{font-size:12px}
+.stats{gap:0;justify-content:space-between;margin-top:6px;padding:14px 0}
+.st+.st{padding-inline-start:12px}
+.st{flex:1;align-items:flex-start}
+.st .v{justify-content:flex-start;flex-direction:row-reverse}
+.st .v b{font-size:19px}
+.st .bi{height:18px}
+.st .mcl{width:18px;height:18px}
+.st .lb{font-size:10.5px}
+.st .v small{display:none}
+.st.rt-dur{display:none}
+.genres .subs{margin-inline-start:0;width:100%}
+.tq{font-size:19px}
+.vote{flex-wrap:wrap;gap:14px}
+.vote>div:first-child{flex:1 1 100%}
+.vbs{display:grid;grid-template-columns:1fr 1fr}
+.vb{justify-content:center}
+.urate{padding:0;border:0}
+.news{flex-wrap:wrap;line-height:1.9}
+.news .cd{margin-inline-start:0}
+.cta{display:grid;grid-template-columns:1fr 1fr 52px 52px;gap:8px}
+.cta .play{grid-column:1/-1;justify-content:center;height:54px}
+.cta .gbtn{height:52px;justify-content:center;font-size:13.5px;padding:0 10px}
+.sq{width:52px;height:52px}
+.tabs{top:62px}
+.tabs .wrap{gap:24px;height:52px}
+.tabs a{font-size:12.5px}
+section.ch{padding-top:64px}
+.sh h2{font-size:18px}
+.sh .x{margin-inline-start:0;width:100%;justify-content:space-between}
+.qh{grid-template-columns:40px 1fr auto;gap:12px;padding:12px 14px}
+.qh .qs{display:none}
+.dev{width:40px;height:40px}
+.qb{padding:0 14px 14px;flex-direction:column}
+.lang{max-width:none}
+.eprow{grid-template-columns:120px 1fr auto;gap:12px;padding:10px}
+.eprow .n{display:none}
+.et b{font-size:13.5px}
+.ea .rb:not(.dlb){display:none}
+.epdl{padding-inline-start:0}
+.epq{flex-wrap:wrap}
+.epq .qn{min-width:0;flex:1 1 100%}
+.epq .lang{flex:1}
+.tlay{grid-template-columns:1fr}
+.tlist{flex-direction:row;overflow-x:auto;scrollbar-width:none}
+.ti{grid-template-columns:1fr;min-width:170px}
+.ti img{width:100%}
+.people{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:220px;overflow-x:auto;scrollbar-width:none}
+.facts{grid-template-columns:1fr}
+.fact{grid-template-columns:110px 1fr;padding:13px 0;font-size:13px}
+.mus{grid-template-columns:1fr}
+.mus .cv{display:none}
+.mus .cv+small{display:none}
+.tr{grid-template-columns:60px 1fr auto}
+.aud{grid-template-columns:1fr}
+.pn{grid-template-columns:1fr}
+.talk{grid-template-columns:1fr}
+.side{position:static;order:-1;margin-top:16px}
+.cm p,.cm .act{padding-inline-start:0}
+.cm .rep{margin-inline-start:10px}
+.grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:146px;overflow-x:auto;scrollbar-width:none;gap:12px}
+.kc h4{font-size:14px}
+.simh{flex-direction:column;gap:0}
+.lists{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:290px;overflow-x:auto;scrollbar-width:none}
+.lists .ul:nth-child(3){display:block}
+footer.ft{margin-bottom:68px}
+footer.ft .wrap{grid-template-columns:1fr 1fr}
+footer.ft .wrap>div:first-child{grid-column:1/-1}
+.pop{align-items:flex-end}
+.sheet{width:100%;border-radius:20px 20px 0 0;max-height:86vh}
+.qc{grid-template-columns:1fr}
+.mnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;inset:auto 0 0;height:64px;padding-bottom:env(safe-area-inset-bottom);background:rgba(17,17,20,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);z-index:45}
+.mnav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10.5px;color:var(--mute)}
+.mnav a .i{width:20px;height:20px}
+.mnav a.on{color:var(--ink)}
+.toast{top:72px}
+}
+</style>
+</head>
+<body>
+<header class="top" id="hdr"><div class="wrap">
+<a class="logo" href="../home/home-v3.html"><img src="../brand/rollvana-lockup-dark.svg" alt="Rollvana"></a>
+<nav class="main"><a href="#">فیلم‌ها</a><a href="#">سریال‌ها</a><a href="#">۲۵۰ فیلم برتر</a><a href="#">فیلم‌بازها</a><a href="#">مجله</a><a href="#">اپلیکیشن‌ها</a></nav>
+<div class="hd-act" id="hdact"></div>
+</div></header>
+<div id="app"></div>
+<div class="pop" id="pop"><div class="sheet" id="sheet"></div></div>
+<div class="toast gl" id="toast"></div>
+<script>
+const FILM={kind:"film",acc:"#C9853A",s:"dune-part-two",en:"Dune: Part Two",fa:"تلماسه: بخش دوم",y:"2024",rt:"۲ ساعت و ۴۶ دقیقه",g:["علمی‌تخیلی","ماجراجویی","درام"],
+  imdb:8.5,imdbVotes:681354,tomato:92,meta:79,age:"+۱۳",dir:"دنی ویلنوو",progress:{at:"۱:۰۷:۱۲",p:.41,left:"۹۹ دقیقه",leftLong:"۹۹ دقیقه مانده"},
+  recap:{upto:"تا دقیقه‌ی ۶۷",text:"پل و مادرش جسیکا به فرمن‌ها پناه برده‌اند. پل کنار چانی راه‌ورسم صحرا را یاد می‌گیرد و برای اولین بار سوار کرم شنی می‌شود و فرمن‌ها کم‌کم او را همان منجی موعود می‌بینند. جسیکا آب حیات را می‌نوشد و مادر مقدس قبیله می‌شود. در همین حال هارکونن‌ها فید-روتا را وارث خود معرفی می‌کنند و او در میدان مبارزه نشان می‌دهد چقدر بی‌رحم است."},
+  mood:[88,8,4],
+  syn:"پل آتریدیز در کنار چانی و فرمن‌ها به جنگ خاندان هارکونن می‌رود؛ خاندانی که پدرش را کشت و خانواده‌اش را نابود کرد. هرچه به قدرت نزدیک‌تر می‌شود، رؤیاهای آینده روشن‌تر می‌شوند: جنگی مقدس که به نام او میلیون‌ها نفر را می‌کشد. پل باید میان عشق به چانی و سرنوشتی که برایش نوشته‌اند یکی را انتخاب کند.",
+  dub:true,subs:["فارسی","انگلیسی"],
+  cast:[["تیموتی شالامه","پل آتریدیز"],["زندیا","چانی"],["ربکا فرگوسن","جسیکا"],["خاویر باردم","استیلگار"],["جاش برولین","گرنی هلک"],["آستین باتلر","فید-روتا"],["فلورنس پیو","پرنسس ایرولان"],["دیو باتیستا","رابان"]],
+  dl:{dub:[["2160p","4K · HDR",19.6],["1080p","Full HD",4.6],["720p","HD",2.1],["480p","SD",0.95]],sub:[["2160p","4K · HDR",18.4],["1080p","Full HD",4.2],["720p","HD",1.9],["480p","SD",0.85]]},
+  review:{n:4210,date:"۸ آبان",tone:"بیشتر بینندگان تصویر و موسیقی فیلم را ستوده‌اند و آن را از بخش اول کامل‌تر دانسته‌اند.",
+    pos:["تصویربرداری و جلوه‌های بصری در اندازه‌ی سینما","موسیقی هانس زیمر","بازی آستین باتلر و ربکا فرگوسن"],
+    neg:["مدت طولانی فیلم","شتاب‌زدگی پرده‌ی آخر","شخصیت‌های فرعی کم‌عمق"]},
+  music:[["Beginnings Are Such Delicate Times","Hans Zimmer","۰:۰۲:۱۰","آغاز فیلم، صحرای آراکیس"],["Harvester Attack","Hans Zimmer","۰:۲۱:۴۰","حمله به برداشت‌کننده‌ی ادویه"],["Worm Ride","Hans Zimmer","۰:۵۸:۰۵","اولین سواری پل بر کرم شنی"],["Harkonnen Arena","Hans Zimmer","۱:۰۴:۳۰","مبارزه‌ی فید-روتا در میدان"],["Kiss the Ring","Hans Zimmer","۲:۲۸:۱۵","رویارویی پایانی"]],
+  rating:{avg:8.4,n:1230},votes:{up:1132,down:98},
+  trs:[["تریلر رسمی ۲","۲:۵۸","b-dune-part-two.jpg"],["تریلر رسمی ۱","۳:۰۳","c-dune-0.jpg"],["تیزر","۱:۲۷","c-dune-4.jpg"],["پشت صحنه: ساختن آراکیس","۵:۴۰","c-dune-1.jpg"]],
+  tag:"زنده باد جنگجویان.",tweet:{x:"نیم ساعت آخر تلماسه رو باید توی سینما دید. وقتی پل روی کرم شنی می‌ایسته، سالن یه لحظه نفس نمی‌کشه.",n:"مهسا",d:"۳ روز پیش",l:2840,c:248},
+  facts:[["کارگردان","دنی ویلنوو"],["نویسندگان","دنی ویلنوو، جان اسپیتس"],["بر اساس","رمان «تلماسه» نوشته‌ی فرانک هربرت"],["فیلم‌برداری","گرگ فریزر"],["موسیقی","هانس زیمر"],["کشور","آمریکا، کانادا"],["زبان اصلی","انگلیسی"],["اکران","۱۰ اسفند ۱۴۰۲"],["مدت","۲ ساعت و ۴۶ دقیقه"],["رده‌ی سنی","+۱۳"],["استودیو","لجندری پیکچرز، برادران وارنر"],["بودجه","۱۹۰ میلیون دلار"],["فروش جهانی","۷۱۴ میلیون دلار"],["جوایز","برنده‌ی ۲ اسکار: صدا و جلوه‌های ویژه"]],
+  lists:[{n:"علمی‌تخیلی‌هایی که باید دید",u:"امیر",c:24,f:1248,p:["dune-part-two","interstellar","arrival","blade-runner-2049","her"],q:"اگه فقط وقت یه علمی‌تخیلی داری، همین رو ببین."},{n:"با صدای بلند ببینید",u:"نگار",c:18,f:840,p:["oppenheimer","f1","dune-part-two","sinners","mission-impossible-the-final-reckoning"],q:"صدای کرم شنی باید کف اتاق رو بلرزونه."},{n:"دنیاهایی که ساختند",u:"رضا",c:21,f:490,p:["dune-part-one","dune-part-two","poor-things","frankenstein","star-wars-andor"],q:"آراکیس رو باور می‌کنی، انگار واقعاً یه جایی هست."}],
+  similar:["dune-part-one","blade-runner-2049","interstellar","arrival","oppenheimer","poor-things"],
+  franchise:[["dune-part-one","تلماسه","2021"],["dune-part-two","تلماسه: بخش دوم","2024"]]};
+const SEV_EP={
+1:[["خبر خوب درباره‌ی جهنم","۱۷ فوریه‌ی ۲۰۲۲","۵۷","هلی در اتاق کنفرانس به هوش می‌آید و نمی‌داند کیست. مارک، رئیس تازه‌ی بخش، باید او را با قوانین لومن آشنا کند."],
+["نیم‌حلقه","۱۸ فوریه‌ی ۲۰۲۲","۵۳","هلی دنبال راه فرار است. مارک بیرون از کار با پیامی عجیب از همکاری قدیمی روبه‌رو می‌شود."],
+["تا ابد","۲۵ فوریه‌ی ۲۰۲۲","۴۷","بخش به بال پرستشگاه کی‌یر می‌رود. اروینگ چیزی را می‌بیند که نباید."],
+["خودِ تو","۴ مارس ۲۰۲۲","۵۱","هلی برای اولین بار پیامی از «خودِ بیرونی‌اش» می‌گیرد. مارک به حرف‌های پتی فکر می‌کند."],
+["بربریت تلخ اپتیک و طراحی","۱۱ مارس ۲۰۲۲","۵۴","دیلن برای پاداشی تازه هر کاری می‌کند. اروینگ و برت به هم نزدیک‌تر می‌شوند."],
+["قایم‌باشک","۱۸ مارس ۲۰۲۲","۵۴","هلی تهدیدی جدی می‌کند و لومن مجبور به واکنش می‌شود."],
+["جاز سرکش","۲۵ مارس ۲۰۲۲","۵۳","کارکنان راهی برای بیدار شدن در دنیای بیرون پیدا می‌کنند."],
+["شام چی داریم؟","۱ آوریل ۲۰۲۲","۴۰","نقشه آماده است؛ فقط یک شب برای اجرا وقت دارند."],
+["ما که هستیم","۸ آوریل ۲۰۲۲","۴۰","چهار همکار برای چند دقیقه در دنیای بیرون بیدارند و هر لحظه ممکن است همه‌چیز لو برود."]],
+2:[["سلام، خانم کوبل","۱۶ ژانویه‌ی ۲۰۲۵","۵۴","مارک به شرایطی تازه به کار برمی‌گردد. رازهایی از دنیای بیرون آشکار می‌شود."],
+["خداحافظ، خانم سلویگ","۲۳ ژانویه‌ی ۲۰۲۵","۴۹","مارک به معنای پیامی فکر می‌کند که به دستش رسیده."],
+["چه کسی زنده است؟","۳۰ ژانویه‌ی ۲۰۲۵","۴۸","بخش به رقابتی ناخواسته کشیده می‌شود. هلی رفتاری متفاوت دارد."],
+["دره‌ی وو","۶ فوریه‌ی ۲۰۲۵","۵۲","سفر کاری به یک دره‌ی برفی حقایقی را رو می‌کند که کسی منتظرش نبود."],
+["اسب تروا","۱۳ فوریه‌ی ۲۰۲۵","۵۲","مارک و هلی با پیامدهای سفر روبه‌رو می‌شوند. میلچیک زیر فشار است."],
+["آتیلا","۲۰ فوریه‌ی ۲۰۲۵","۵۴","شامی رسمی در خانه‌ی خانواده‌ی ایگان همه را در موقعیتی خطرناک قرار می‌دهد."],
+["چیخای باردو","۶ مارس ۲۰۲۵","۵۲","گذشته‌ی گما بالاخره روشن می‌شود."],
+["زاج شیرین","۱۳ مارس ۲۰۲۵","۵۵","کوبل به جایی برمی‌گردد که همه‌چیز از آن‌جا شروع شد."]]};
+const SERIES_T={kind:"series",acc:"#3C86B4",s:"severance",en:"Severance",fa:"جداسازی",y:"2022",rt:"۲ فصل",g:["درام","معمایی","علمی‌تخیلی"],
+  imdb:8.7,imdbVotes:322487,tomato:96,meta:84,age:"+۱۶",dir:"بن استیلر",
+  syn:"کارمندان شرکت لومن با یک عمل جراحی، خاطرات کار را از زندگی شخصی‌شان جدا کرده‌اند: در دفتر هیچ‌چیز از بیرون به یاد نمی‌آورند و بیرون هیچ‌چیز از دفتر. مارک، که این کار را بعد از مرگ همسرش انتخاب کرده، کم‌کم می‌فهمد پشت این دیوارهای سفید چه می‌گذرد.",
+  dub:true,subs:["فارسی","انگلیسی"],
+  cast:[["آدام اسکات","مارک اسکات"],["بریت لوئر","هلی ریگز"],["ترامل تیلمن","سث میلچیک"],["زک چری","دیلن جورج"],["جن تولوک","کیسی"],["کریستوفر واکن","برت گودمن"],["جان تورتورو","اروینگ بیلی"],["پاتریشیا آرکت","هارمونی کوبل"]],
+  progress:{s:2,e:5,at:"۲۳:۴۰",p:.46,left:"۲۸ دقیقه",leftLong:"۲۸ دقیقه مانده"},
+  recap:{upto:"تا پایان فصل ۲، قسمت ۴",text:"مارک پس از شورش بخش به لومن برمی‌گردد و می‌فهمد همسرش، گما، شاید زنده باشد. همکاران تازه‌ای جای قبلی‌ها را گرفته‌اند و میلچیک حالا مدیر بخش است. هلی وانمود می‌کند همان هلیِ همیشگی است. در سفر کاری به دره‌ی وو، مارک و هلی به هم نزدیک می‌شوند، اما در پایان قسمت ۴ معلوم می‌شود کسی که کنار مارک بوده، هلنا ایگان، دختر خانواده‌ی صاحب لومن، است."},
+  mood:[91,6,3],
+  epReview:{s:2,e:4,n:1240,date:"۷ آبان",mood:[94,4,2],
+    tone:"بیشتر بینندگان این قسمت را از بهترین‌های سریال دانسته‌اند و پایانش را تکان‌دهنده خوانده‌اند؛ چند نفری هم شروعش را کند دیده‌اند.",
+    pos:["پایان غافلگیرکننده","بازی بریت لوئر در دو نقش هلی و هلنا","فضای برفی، متفاوت با دفتر همیشگی"],
+    neg:["شروع کمی کند","چند شوخی که جا نمی‌افتد","سؤال‌هایی که باز هم بی‌جواب می‌ماند"]},lastWatched:{s:2,e:4},
+  next:{s:2,e:8,in:2*86400+5*3600+38*60+12},
+  trailers:{"1-1":["تیزر قسمت ۱","۱:۰۸"],"1-5":["تیزر قسمت ۵","۰:۵۲"],"2-1":["تیزر قسمت ۱","۱:۰۴"],"2-3":["تیزر قسمت ۳","۰:۵۸"],"2-6":["تیزر قسمت ۶","۱:۰۱"],"2-7":["تیزر قسمت ۷","۰:۴۹"]},
+  rating:{avg:8.8,n:2140},votes:{up:1985,down:155},
+  trs:[["تریلر فصل ۲","۲:۲۱","b-severance.jpg"],["تیزر فصل ۲","۱:۰۴","e-sev-2-1.jpg"],["تریلر فصل ۱","۲:۱۰","e-sev-1-1.jpg"]],
+  tag:"کار و زندگی، جدا از هم.",tweet:{x:"Severance تنها سریالیه که بعد از هر قسمت ده دقیقه به دیوار نگاه می‌کنم. اون راهروهای سفید از هر هیولایی ترسناک‌ترن.",n:"آرش",d:"هفته‌ی پیش",l:1930,c:176},
+  facts:[["سازنده","دن اریکسون"],["کارگردان‌ها","بن استیلر، آئوفه مک‌آردل"],["موسیقی","تئودور شاپیرو"],["شبکه","اپل تی‌وی پلاس"],["کشور","آمریکا"],["زبان اصلی","انگلیسی"],["شروع پخش","۲۸ بهمن ۱۴۰۰"],["فصل‌ها","۲ فصل، ۱۹ قسمت"],["هر قسمت","حدود ۵۰ دقیقه"],["رده‌ی سنی","+۱۶"],["جوایز","برنده‌ی جوایز امی، از جمله بهترین بازیگر زن نقش اول"]],
+  lists:[{n:"سریال‌های یک‌نفس",u:"سارا",c:12,f:610,p:["severance","the-bear","slow-horses","the-penguin","the-white-lotus"],q:"قسمت آخر فصل اول رو نمی‌شه وسطش ول کرد."},{n:"معماهایی که ولت نمی‌کنند",u:"امیر",c:16,f:730,p:["prisoners","severance","the-last-of-us","shogun","wednesday"],q:"هر جوابی که می‌ده دو تا سؤال تازه می‌سازه."},{n:"بهترین‌های اپل",u:"نگار",c:9,f:320,p:["slow-horses","the-bear","squid-game","severance","star-wars-andor"],q:"دلیل اصلی‌ای که اشتراک اپل می‌ارزه."}],
+  review:{n:6180,date:"۷ آبان",tone:"بیشتر بینندگان ایده و فضای سرد سریال را ستوده‌اند و فصل دوم را تاریک‌تر اما جسورتر از فصل اول دانسته‌اند.",
+    pos:["فضای سرد و طراحی منحصربه‌فرد دفتر","بازی آدام اسکات و بریت لوئر","معماهایی که مخاطب را تا آخر نگه می‌دارد"],
+    neg:["ریتم کند چند قسمت میانی","پاسخ‌های کم به سؤال‌های اصلی","فاصله‌ی طولانی میان فصل‌ها"]},
+  music:[["Main Title Theme","Theodore Shapiro","ف۱ ق۱","تیتراژ آغاز"],["Defiant Jazz","Theodore Shapiro","ف۱ ق۷","رقص بخش ام‌دی‌آر"],["Kier, Chosen","Theodore Shapiro","ف۲ ق۴","سفر به دره‌ی وو"]],
+  dl:{dub:[["1080p","Full HD",1.6],["720p","HD",0.8],["480p","SD",0.38]],sub:[["1080p","Full HD",1.5],["720p","HD",0.75],["480p","SD",0.35]]},
+  similar:["the-last-of-us","fallout","shogun","slow-horses","the-bear","the-white-lotus"]};
+const COMMENTS=[
+  {id:1,v:1,n:"مهسا",t:"۲ ساعت پیش",likes:48,text:"صحنه‌ی سواری روی کرم شنی رو باید توی بزرگ‌ترین صفحه‌ای که دارید ببینید. موسیقی‌اش هنوز توی گوشمه.",replies:[{id:11,n:"آرش",t:"۱ ساعت پیش",likes:6,text:"دقیقاً. نسخه‌ی 4K اینجا هم خیلی تمیزه."}]},
+  {id:2,v:1,n:"رضا",t:"دیروز",likes:21,spoiler:true,text:"آخرش که پل با امپراتور روبه‌رو می‌شه و چانی می‌ره، یعنی بخش سوم کاملاً یه جنگ دیگه‌ست."},
+  {id:3,v:1,n:"نگار",t:"۳ روز پیش",likes:15,text:"از قسمت اول بهتره، فقط کاش نیم ساعت کوتاه‌تر بود."},
+  {id:4,v:-1,n:"سروش",t:"۴ روز پیش",likes:19,text:"تصویرش خیره‌کننده‌ست ولی شخصیت‌ها سردن. تا آخر فیلم با هیچ‌کدوم نتونستم همراه بشم.",replies:[{id:41,n:"ترانه",t:"۳ روز پیش",likes:3,text:"به نظرم این سردی عمدیه؛ قراره از پل بترسی، نه اینکه دوستش داشته باشی."}]},
+  {id:5,v:-1,n:"هومن",t:"هفته‌ی پیش",likes:7,text:"بدون دیدن قسمت اول هیچی ازش نمی‌فهمید. فیلم مستقلی نیست."}];
+const COMMENTS_S=[
+  {id:1,v:1,n:"سارا",t:"۳ ساعت پیش",likes:62,text:"ایده‌ی جدا کردن خودِ درونی از خودِ بیرونی هنوز ترسناک‌ترین ایده‌ای است که این چند سال توی یه سریال دیدم. آدم از خودش می‌پرسه اگه جای مارک بودم، من هم این کار رو می‌کردم؟",replies:[{id:11,n:"کیان",t:"۲ ساعت پیش",likes:9,text:"قسمت اول رو که دیدم تا صبح خوابم نبرد. اون راهروهای سفید لومن آدم رو خفه می‌کنه."}]},
+  {id:2,v:1,n:"پویا",t:"دیروز",likes:34,spoiler:true,text:"آخر فصل ۲ که مارکِ درونی به‌جای گما هلی رو انتخاب می‌کنه و برمی‌گرده توی لومن، یعنی فصل سوم دعوای دو تا مارک با همه."},
+  {id:3,v:1,n:"الهام",t:"۲ روز پیش",likes:27,text:"بازی بریت لوئر توی نقش هلی عالیه؛ از یه نگاهش می‌فهمی هلیِ درونی جلوته یا اون یکی.",replies:[{id:31,n:"نیما",t:"۲ روز پیش",likes:4,text:"آدام اسکات هم همین‌طور. مارکِ بیرونی خسته و غمگینه، مارکِ درونی انگار تازه به دنیا اومده."}]},
+  {id:4,v:1,n:"بهراد",t:"۴ روز پیش",likes:12,text:"فصل دوم یه کم کند شروع شد، ولی از قسمت دره‌ی وو به بعد دیگه نمی‌شه ولش کرد. فقط کاش این بار سه سال منتظر فصل بعد نمونیم."},
+  {id:5,v:-1,n:"هانیه",t:"۵ روز پیش",likes:18,text:"خیلی‌ها عاشقشن ولی برای من زیادی کند بود. نصف فصل اول تقریباً هیچ اتفاقی نمی‌افته."}];
+const TWT={"dune-part-two":[
+  ["داستان",58,[["پل از اون پسر مردد قسمت اول رسید به کسی که [خودت هم ازش می‌ترسی]. پایانش قهرمانی نیست، هشداره.","کیان","دیروز",1480],["چانی تنها کسیه که تا آخر فیلم سر حرفش می‌مونه.","نگار","۵ روز پیش",912],["نصف دوم کتاب رو بهتر از این نمی‌شد جمع کرد.","حسام","هفته‌ی پیش",431]]],
+  ["بازی‌ها",38,[["آستین باتلر توی ده دقیقه‌ی اول حضورش [کل فیلم رو مال خودش می‌کنه].","ترانه","۶ روز پیش",1284],["شالامه بالاخره اون پلی شد که کتاب می‌گفت.","حامد","دیروز",702],["ربکا فرگوسن بی‌سروصدا بهترین بازی فیلمه.","شیدا","هفته‌ی پیش",455]]],
+  ["موسیقی",41,[["زیمر این بار [با صدا شن ساخته]. با هدفون ببینید، پشیمون نمی‌شید.","سامان","هفته‌ی پیش",1620],["تم چانی هنوز توی سرمه.","الهه","۲ روز پیش",540],["صدای فیلم خودش یه شخصیته.","پویا","۴ روز پیش",377]]],
+  ["تصویر",64,[["نیم ساعت آخر تلماسه رو باید توی سینما دید. وقتی پل روی کرم شنی می‌ایسته، [سالن یه لحظه نفس نمی‌کشه].","مهسا","۳ روز پیش",2840],["سکانس سیاه‌وسفید گیدی پرایم رو باید قاب گرفت زد به دیوار.","بهراد","۴ روز پیش",1105],["گرگ فریزر با نور بیابون جادو کرده.","سروش","هفته‌ی پیش",296]]]],
+"severance":[
+  ["داستان",44,[["هر قسمت یه سؤال جواب می‌ده و [دو تا سؤال تازه می‌ذاره جلوت]. و عجیبه که کلافه نمی‌شی.","سپهر","۲ روز پیش",1340],["ایده‌اش ساده‌ست ولی هر چی جلوتر می‌ری ترسناک‌تر می‌شه.","لیلا","۳ روز پیش",610],["پایان فصل اول رو ایستاده دیدم.","امید","دیروز",344]]],
+  ["بازی‌ها",27,[["آدام اسکات دو تا آدم رو بازی می‌کنه و [با یه پلک زدن می‌فهمی کدومه].","مانی","۴ روز پیش",980],["میلچیک ترسناک‌ترین لبخند تلویزیونه.","یاسمن","دیروز",455],["جان تورتورو و کریستوفر واکن کنار هم طلا هستن.","رضا","۶ روز پیش",301]]],
+  ["موسیقی",33,[["تیتراژ این سریال رو [حتی یک بار هم رد نکردم].","غزل","۵ روز پیش",1210],["موسیقی تیتراژ دو روزه ولم نمی‌کنه.","نیما","۲ روز پیش",498],["اون پیانوی سرد دقیقاً صدای خود لومونه.","هستی","هفته‌ی پیش",270]]],
+  ["تصویر",52,[["Severance تنها سریالیه که بعد از هر قسمت ده دقیقه به دیوار نگاه می‌کنم. اون راهروهای سفید [از هر هیولایی ترسناک‌ترن].","آرش","هفته‌ی پیش",1930],["هیچ‌وقت فکر نمی‌کردم یه دفتر کار این‌قدر دلهره داشته باشه.","مریم","۳ روز پیش",587],["طراحی صحنه خودش نصف داستانه.","داوود","دیروز",322]]]]};
+const DLSPEC={"2160p":["4K","HEVC 10-bit","HDR · Dolby Vision"],"1080p":["Full HD","HEVC 10-bit","SDR"],"720p":["HD","x264","SDR"],"480p":["SD","x264","SDR"]};
+const FIT={"2160p":"برای تلویزیون 4K","1080p":"برای لپ‌تاپ و تلویزیون","720p":"برای گوشی و تبلت","480p":"کم‌حجم، برای اینترنت ضعیف"};
+const KC={
+"dune-part-one":{syn:"پل آتریدیز با خانواده‌اش به آراکیس می‌رود، خطرناک‌ترین سیاره‌ی کهکشان، و آنجا گرفتار توطئه‌ای می‌شود که آینده‌اش را عوض می‌کند.",en:"Dune: Part One",y:2021,g:"علمی‌تخیلی، ماجراجویی",imdb:"8.0",b:"دوبله، زیرنویس"},
+"dune-part-two":{syn:"پل همراه چانی و فرمن‌ها برای انتقام خانواده‌اش می‌جنگد و میان عشق و سرنوشتی که از آن می‌ترسد گیر می‌افتد.",en:"Dune: Part Two",y:2024,g:"علمی‌تخیلی، ماجراجویی",imdb:"8.5",b:"دوبله، زیرنویس"},
+"blade-runner-2049":{syn:"شکارچی تازه‌کاری رازی را کشف می‌کند که می‌تواند جامعه را به هم بریزد و ردش او را به ریک دکارد، که سی سال ناپدید بوده، می‌رساند.",en:"Blade Runner 2049",y:2017,g:"علمی‌تخیلی، معمایی",imdb:"8.0",b:"زیرنویس",why:"از همین کارگردان"},
+"interstellar":{syn:"زمین رو به نابودی است و گروهی فضانورد از کرم‌چاله‌ای می‌گذرند تا خانه‌ی تازه‌ای برای بشر پیدا کنند.",en:"Interstellar",y:2014,g:"علمی‌تخیلی، درام",imdb:"8.7",b:"دوبله، زیرنویس",why:"موسیقی از هانس زیمر"},
+"arrival":{syn:"زبان‌شناسی مأمور می‌شود با موجوداتی فضایی که به زمین آمده‌اند حرف بزند، پیش از آنکه جهان وارد جنگ شود.",en:"Arrival",y:2016,g:"علمی‌تخیلی، درام",imdb:"7.9",b:"زیرنویس",why:"از همین کارگردان"},
+"oppenheimer":{syn:"داستان رابرت اوپنهایمر و ساخت بمب اتم؛ مردی که جهان را نجات داد و شاید نابودش کرد.",en:"Oppenheimer",y:2023,g:"زندگی‌نامه، درام",imdb:"8.3",b:"دوبله",why:"ساخته‌شده برای پرده‌ی بزرگ"},
+"poor-things":{syn:"بلا، زنی که دانشمندی عجیب او را دوباره زنده کرده، از خانه فرار می‌کند تا دنیا و خودش را کشف کند.",en:"Poor Things",y:2023,g:"کمدی، فانتزی",imdb:"7.8",b:"زیرنویس",why:"دنیایی که جای دیگری ندیده‌اید"},
+"the-last-of-us":{syn:"بیست سال بعد از فروپاشی تمدن، جوئل مأمور می‌شود الی نوجوان را از میان آمریکای ویران‌شده عبور دهد.",en:"The Last of Us",y:2023,g:"درام، ماجراجویی",imdb:"8.6",b:"دوبله",why:"درام پرتعلیق"},
+"fallout":{syn:"دویست سال بعد از جنگ هسته‌ای، دختری از پناهگاه زیرزمینی بیرون می‌آید و با دنیای وحشی بیرون روبه‌رو می‌شود.",en:"Fallout",y:2024,g:"علمی‌تخیلی، اکشن",imdb:"8.3",b:"دوبله",why:"زندگی پشت درهای بسته"},
+"shogun":{syn:"ژاپن سال ۱۶۰۰؛ دریانوردی انگلیسی در میان جنگ قدرت اربابان گرفتار می‌شود و به ابزار لرد توراناگا بدل می‌شود.",en:"Shōgun",y:2024,g:"تاریخی، درام",imdb:"8.6",b:"دوبله",why:"بازی قدرت"},
+"slow-horses":{syn:"گروهی از مأموران اخراجی MI5 زیر دست رئیسی بدعنق، ناخواسته وسط پرونده‌های خطرناک می‌افتند.",en:"Slow Horses",y:2022,g:"جاسوسی، درام",imdb:"8.3",b:"زیرنویس",why:"از همین شبکه"},
+"the-bear":{syn:"آشپزی جوان از دنیای رستوران‌های لوکس به شیکاگو برمی‌گردد تا ساندویچ‌فروشی آشفته‌ی خانوادگی را سرپا کند.",en:"The Bear",y:2022,g:"درام، کمدی",imdb:"8.5",b:"زیرنویس",why:"محل کاری که نفس را می‌بُرد"}};
+const BRAND={"imdb": "M22.3781 0H1.6218C.7411.0583.0587.7437.0018 1.5953l-.001 20.783c.0585.8761.7125 1.543 1.5559 1.6191A.337.337 0 0 0 1.6016 24h20.7971a.4579.4579 0 0 0 .0437-.002c.8727-.0768 1.5568-.8271 1.5568-1.7085V1.7098c0-.8914-.696-1.6416-1.584-1.7078A.3294.3294 0 0 0 22.3781 0zm0 .496a1.2144 1.2144 0 0 1 1.1252 1.2139v20.5797c0 .6377-.4875 1.1602-1.1045 1.2145H1.6016c-.5967-.0543-1.0645-.5297-1.1053-1.1258V1.6284C.5371 1.0185 1.0184.5364 1.6217.496h20.7564zM4.7954 8.2603v7.3636H2.8899V8.2603h1.9055zm6.5367 0v7.3636H9.6707v-4.9704l-.6711 4.9704H7.813l-.6986-4.8618-.0066 4.8618h-1.668V8.2603h2.468c.0748.4476.1492.9694.2307 1.5734l.2712 1.8713.4407-3.4447h2.4817zm2.9772 1.3289c.0742.0404.122.108.1417.2034.0279.0953.0345.3118.0345.6442v2.8548c0 .4881-.0345.7867-.0955.8954-.0609.1152-.2304.1695-.5018.1695V9.5211c.204 0 .3457.0205.4211.0681zm-.0211 6.0347c.4543 0 .8006-.0265 1.0245-.0742.2304-.0477.4204-.1357.5694-.2648.1556-.1218.2642-.298.3251-.5219.0611-.2238.1021-.6648.1021-1.3224v-2.5832c0-.6986-.0271-1.1668-.0742-1.4039-.041-.237-.1431-.4543-.3126-.6437-.1695-.1973-.4198-.3324-.7456-.421-.3191-.0808-.8542-.1285-1.7694-.1285h-1.4244v7.3636h2.3051zm5.14-1.7827c0 .3523-.0199.5762-.0544.6708-.033.0947-.1894.1424-.3046.1424-.1086 0-.19-.0477-.2238-.1351-.041-.0887-.0609-.2986-.0609-.6238v-1.9469c0-.3324.0199-.5423.0543-.6237.0338-.0808.1086-.122.2171-.122.1153 0 .2709.0412.3114.1425.041.0947.0609.2986.0609.6032v1.8926zm-2.4747-5.5809v7.3636h1.7157l.1152-.4675c.1556.1894.3251.3324.5152.4271.1828.0881.4608.1357.678.1357.3047 0 .5629-.0748.7802-.237.2165-.1562.3589-.3462.4198-.5628.0543-.2173.0887-.543.0887-.9841v-2.0675c0-.4409-.0139-.7324-.0344-.8681-.0199-.1357-.0742-.2781-.1695-.4204-.1021-.1425-.2437-.251-.4272-.3325-.1834-.0742-.3999-.1152-.6576-.1152-.2172 0-.4952.0477-.6846.1285-.1835.0887-.353.2238-.5086.4007V8.2603h-1.8309z", "rottentomatoes": "M5.866 0L4.335 1.262l2.082 1.8c-2.629-.989-4.842 1.4-5.012 2.338 1.384-.323 2.24-.422 3.344-.335-7.042 4.634-4.978 13.148-1.434 16.094 5.784 4.612 13.77 3.202 17.91-1.316C27.26 13.363 22.993.65 10.86 2.766c.107-1.17.633-1.503 1.243-1.602-.89-1.493-3.67-.734-4.556 1.374C7.52 2.602 5.866 0 5.866 0zM4.422 7.217H6.9c2.673 0 2.898.012 3.55.202 1.06.307 1.868.973 2.313 1.904.05.106.092.206.13.305l7.623.008.027 2.912-2.745-.024v7.549l-2.982-.016v-7.522l-2.127.016a2.92 2.92 0 0 1-1.056 1.134c-.287.176-.3.19-.254.264.127.2 2.125 3.642 2.125 3.659l-3.39.019-2.013-3.376c-.034-.047-.122-.068-.344-.084l-.297-.02.037 3.48-3.075-.038zm3.016 2.288l.024.338c.014.186.024.729.024 1.206v.867l.582-.025c.32-.013.695-.049.833-.078.694-.146 1.048-.478 1.087-1.018.027-.378-.063-.636-.303-.87-.318-.309-.761-.416-1.733-.418Z", "metacritic": "M11.99 0A12 12 0 1 0 24 12v-.014A12 12 0 0 0 11.99 0Zm-.055 2.564a9.399 9.399 0 0 1 9.407 9.389v.01a9.399 9.399 0 1 1-9.408-9.399Zm-1.61 17.198 2.046-2.046-3.94-3.94c-.165-.166-.345-.373-.442-.608-.221-.47-.318-1.203.221-1.742.664-.664 1.548-.387 2.406.47l3.788 3.788 2.046-2.046-3.954-3.954a2.48 2.48 0 0 1-.456-.622c-.263-.539-.25-1.216.235-1.7.677-.678 1.562-.429 2.544.553l3.677 3.677 2.046-2.046-3.982-3.982c-2.018-2.018-3.912-1.949-5.212-.65-.498.499-.802 1.024-.954 1.618a4.026 4.026 0 0 0-.055 1.686l-.027.028c-.996-.414-2.13-.166-3 .705-1.162 1.161-1.12 2.392-.982 3.11l-.042.043-1.009-.816-1.77 1.77a64.1 64.1 0 0 1 2.213 2.1z"};
+const MC_MARK='<circle fill="#000" stroke="#FFCC34" stroke-width="7" cx="44" cy="44" r="40"/><path transform="translate(-10 -961) matrix(1.2756629,-1.3487733,1.3685717,1.2634987,-267.04706,1066.0743)" fill="#fff" d="m126.73438,92.087002 5.05859,0 0,2.832031 c 1.80989-2.200501 3.96483-3.30076 6.46484-3.300781 1.32811,2.1e-5 2.48045,.273458 3.45703,.820312 .97655,.546895 1.77733,1.373717 2.40235,2.480469 .91144-1.106752 1.89451-1.933574 2.94922-2.480469 1.05466-0.546854 2.18096-0.820291 3.3789-0.820312 1.52341,2.1e-5 2.81247,.309265 3.86719,.927734 1.05466,.618509 1.84242,1.526711 2.36328,2.724609 .37757,.885434 .56637,2.317724 .56641,4.296875 l 0,13.26172-5.48828,0 0-11.85547 c-3e-5-2.057277-0.18883-3.385401-0.56641-3.984375-0.50784-0.781233-1.28909-1.171858-2.34375-1.171875-0.76825,1.7e-5-1.49091,.234392-2.16797,.703125-0.6771,.468766-1.16538,1.155614-1.46484,2.060547-0.2995,.904961-0.44924,2.333998-0.44922,4.287108 l 0,9.96094-5.48828,0 0-11.36719 c-2e-5-2.018214-0.0977-3.320296-0.29297-3.906248-0.19533-0.585922-0.49806-1.02212-0.9082-1.308594-0.41017-0.286442-0.96681-0.429671-1.66993-0.429688-0.84636,1.7e-5-1.60808,.227882-2.28515,.683594-0.6771,.455745-1.16212,1.113297-1.45508,1.972656-0.29298,.859389-0.43946,2.28517-0.43945,4.27734 l 0,10.07813-5.48828,0z"/>';
+const RV_SVG='<defs><linearGradient id="rvS" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="52"><stop offset="0" stop-color="#6450BE"/><stop offset="1" stop-color="#7360CC"/></linearGradient><linearGradient id="rvM" gradientUnits="userSpaceOnUse" x1="60" y1="104" x2="60" y2="16"><stop offset="0" stop-color="#6C4FDB"/><stop offset="1" stop-color="#9B7DF8"/></linearGradient></defs><g><path d="M38.84 65.48L36.32 63.7 33.73 62.06 32.42 61.29 29.76 59.88 28.42 59.23 27.07 58.63 25.72 58.07 24.37 57.55 23.02 57.07 21.67 56.65 20.32 56.27 18.98 55.93 17.64 55.65 16.31 55.41 14.99 55.23 14.9 56.92 14.87 58.6 14.92 60.29 15.02 61.98 15.19 63.66 15.43 65.33 15.72 67 16.08 68.65 16.49 70.3 16.95 71.92 17.47 73.54 18.04 75.13 18.66 76.71 19.34 78.26 20.06 79.79 20.82 81.29 21.63 82.76 22.48 84.2 23.38 85.61 24.31 86.99 25.28 88.33 26.29 89.63 27.33 90.89 28.4 92.11 29.51 93.29 30.65 94.42 31.81 95.5 33 96.53 34.22 97.5 35.46 98.43 36.73 99.3 38.01 100.1 39.31 100.85 40.63 101.54 41.96 102.16 43.31 102.72 44.67 103.21 46.04 103.62 47.42 103.97 48.81 104.24 50.21 104.44 51.61 104.55 53.01 104.59 54.41 104.54 54.99 104.49 54.41 103.96 53.14 102.68 51.79 101.17 50.52 99.59 49.21 97.8 48.1 96.1 47.07 94.34 46.11 92.54 45.22 90.68 44.47 88.93 43.71 86.98 42.98 84.86 42.38 82.85 41.86 80.93 41.36 78.72 40.94 76.61 40.59 74.48 40.32 72.45 40.09 70.16 39.93 68.09 39.84 66.24ZM65.59 104.54L66.99 104.59 68.39 104.55 69.79 104.44 71.19 104.24 72.58 103.97 73.96 103.62 75.33 103.21 76.69 102.72 78.04 102.16 79.37 101.54 80.69 100.85 81.99 100.1 83.27 99.3 84.54 98.43 85.78 97.5 87 96.53 88.19 95.5 89.35 94.42 90.49 93.29 91.6 92.11 92.67 90.89 93.71 89.63 94.72 88.33 95.69 86.99 96.62 85.61 97.52 84.2 98.37 82.76 99.18 81.29 99.94 79.79 100.66 78.26 101.34 76.71 101.96 75.13 102.53 73.54 103.05 71.92 103.51 70.3 103.92 68.65 104.28 67 104.57 65.33 104.81 63.66 104.98 61.98 105.08 60.29 105.13 58.6 105.1 56.92 105.01 55.23 103.69 55.41 102.36 55.65 101.02 55.93 99.68 56.27 98.33 56.65 96.98 57.07 95.63 57.55 94.28 58.07 92.93 58.63 91.58 59.23 90.24 59.88 88.91 60.56 86.27 62.06 83.68 63.7 82.41 64.57 80.16 66.24 80.07 68.09 79.91 70.16 79.69 72.33 79.39 74.6 79.03 76.74 78.64 78.72 78.17 80.8 77.62 82.85 76.97 85 76.29 86.98 75.59 88.78 74.78 90.68 73.89 92.54 72.93 94.34 71.9 96.1 70.68 97.95 69.6 99.44 68.34 101.01 66.86 102.68 65.59 103.96 65.01 104.49Z" fill="url(#rvS)"/><path d="M60 103.5C83.04 85.9 80.16 38.38 60 15.5C39.84 38.38 36.96 85.9 60 103.5Z" fill="url(#rvM)"/></g>';
+const FT_COLS=[["تماشا",["فیلم‌ها","سریال‌ها","۲۵۰ فیلم برتر","تقویم پخش"]],["رول‌وانا",["مجله‌ی رول‌وانا","فیلم‌بازها","خرید اشتراک","اپلیکیشن‌ها"]],["راهنما",["پرسش‌های رایج","تماس با ما","قوانین","حریم خصوصی"]]];
+const PHOSPHOR={"arrow": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8\"/></g>", "bell": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06M128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216m-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z\"/></g>", "cal": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32h-24v-8a8 8 0 0 0-16 0v8H88v-8a8 8 0 0 0-16 0v8H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16M72 48v8a8 8 0 0 0 16 0v-8h80v8a8 8 0 0 0 16 0v-8h24v32H48V48Zm136 160H48V96h160z\"/></g>", "card": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 16v24H32V64Zm0 128H32v-88h192zm-16-24a8 8 0 0 1-8 8h-32a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8m-64 0a8 8 0 0 1-8 8h-16a8 8 0 0 1 0-16h16a8 8 0 0 1 8 8\"/></g>", "check": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69L218.34 66.34a8 8 0 0 1 11.32 11.32\"/></g>", "chev": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "clock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m64-88a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8V72a8 8 0 0 1 16 0v48h48a8 8 0 0 1 8 8\"/></g>", "copy": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 90.34a8 8 0 0 1 0 11.32l-64 64a8 8 0 0 1-11.32-11.32l64-64a8 8 0 0 1 11.32 0M215.6 40.4a56 56 0 0 0-79.2 0l-30.06 30.05a8 8 0 0 0 11.32 11.32l30.06-30a40 40 0 0 1 56.57 56.56l-30.07 30.06a8 8 0 0 0 11.31 11.32l30.07-30.11a56 56 0 0 0 0-79.2m-77.26 133.82l-30.06 30.06a40 40 0 1 1-56.56-56.57l30.05-30.05a8 8 0 0 0-11.32-11.32L40.4 136.4a56 56 0 0 0 79.2 79.2l30.06-30.07a8 8 0 0 0-11.32-11.31\"/></g>", "crown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.9 73.6a15.85 15.85 0 0 0-18.9 3.79l-33.67 36.29l-35.8-80.29a1 1 0 0 1 0-.1a16 16 0 0 0-29.06 0a1 1 0 0 1 0 .1l-35.8 80.29L44 77.39a16 16 0 0 0-27.75 13.42c0 .11 0 .21.07.32L39 195a16 16 0 0 0 15.72 13h146.57A16 16 0 0 0 217 195l22.68-103.87c0-.11 0-.21.07-.32a15.85 15.85 0 0 0-8.85-17.21m-29.55 118.08l-.06.32H54.71l-.06-.32L32 88l.14.16l42 45.24a8 8 0 0 0 13.18-2.18L128 40l40.69 91.25a8 8 0 0 0 13.18 2.18l42-45.24l.13-.19Z\"/></g>", "dl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/></g>", "down": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32\"/></g>", "eyeoff": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M53.92 34.62a8 8 0 1 0-11.84 10.76l19.24 21.17C25 88.84 9.38 123.2 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208a127.1 127.1 0 0 0 52.07-10.83l22 24.21a8 8 0 1 0 11.84-10.76Zm47.33 75.84l41.67 45.85a32 32 0 0 1-41.67-45.85M128 192c-30.78 0-57.67-11.19-79.93-33.25A133.2 133.2 0 0 1 25 128c4.69-8.79 19.66-33.39 47.35-49.38l18 19.75a48 48 0 0 0 63.66 70l14.73 16.2A112 112 0 0 1 128 192m6-95.43a8 8 0 0 1 3-15.72a48.16 48.16 0 0 1 38.77 42.64a8 8 0 0 1-7.22 8.71a6 6 0 0 1-.75 0a8 8 0 0 1-8-7.26A32.09 32.09 0 0 0 134 96.57m113.28 34.69c-.42.94-10.55 23.37-33.36 43.8a8 8 0 1 1-10.67-11.92a132.8 132.8 0 0 0 27.8-35.14a133.2 133.2 0 0 0-23.12-30.77C185.67 75.19 158.78 64 128 64a118.4 118.4 0 0 0-19.36 1.57A8 8 0 1 1 106 49.79A134 134 0 0 1 128 48c34.88 0 66.57 13.26 91.66 38.35c18.83 18.83 27.3 37.62 27.65 38.41a8 8 0 0 1 0 6.5Z\"/></g>", "film": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "flag": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M42.76 50A8 8 0 0 0 40 56v168a8 8 0 0 0 16 0v-44.23c26.79-21.16 49.87-9.75 76.45 3.41c16.4 8.11 34.06 16.85 53 16.85c13.93 0 28.54-4.75 43.82-18a8 8 0 0 0 2.76-6V56a8 8 0 0 0-13.27-6c-28 24.23-51.72 12.49-79.21-1.12C111.07 34.76 78.78 18.79 42.76 50M216 172.25c-26.79 21.16-49.87 9.74-76.45-3.41c-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16 49.87-9.75 76.45 3.4c25 12.35 52.82 26.13 83.55 8.4Z\"/></g>", "frown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.08 64a8 8 0 1 1-13.84 8c-7.47-12.91-19.21-20-33.08-20s-25.61 7.1-33.08 20a8 8 0 1 1-13.84-8c10.29-17.79 27.39-28 46.92-28s36.63 10.2 46.92 28\"/></g>", "gear": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 80a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48m0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32m88-29.84q.06-2.16 0-4.32l14.92-18.64a8 8 0 0 0 1.48-7.06a107.2 107.2 0 0 0-10.88-26.25a8 8 0 0 0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186 40.54a8 8 0 0 0-3.94-6a107.7 107.7 0 0 0-26.25-10.87a8 8 0 0 0-7.06 1.49L130.16 40h-4.32L107.2 25.11a8 8 0 0 0-7.06-1.48a107.6 107.6 0 0 0-26.25 10.88a8 8 0 0 0-3.93 6l-2.64 23.76q-1.56 1.49-3 3L40.54 70a8 8 0 0 0-6 3.94a107.7 107.7 0 0 0-10.87 26.25a8 8 0 0 0 1.49 7.06L40 125.84v4.32L25.11 148.8a8 8 0 0 0-1.48 7.06a107.2 107.2 0 0 0 10.88 26.25a8 8 0 0 0 6 3.93l23.72 2.64q1.49 1.56 3 3L70 215.46a8 8 0 0 0 3.94 6a107.7 107.7 0 0 0 26.25 10.87a8 8 0 0 0 7.06-1.49L125.84 216q2.16.06 4.32 0l18.64 14.92a8 8 0 0 0 7.06 1.48a107.2 107.2 0 0 0 26.25-10.88a8 8 0 0 0 3.93-6l2.64-23.72q1.56-1.48 3-3l23.78-2.8a8 8 0 0 0 6-3.94a107.7 107.7 0 0 0 10.87-26.25a8 8 0 0 0-1.49-7.06Zm-16.1-6.5a74 74 0 0 1 0 8.68a8 8 0 0 0 1.74 5.48l14.19 17.73a91.6 91.6 0 0 1-6.23 15l-22.6 2.56a8 8 0 0 0-5.1 2.64a74 74 0 0 1-6.14 6.14a8 8 0 0 0-2.64 5.1l-2.51 22.58a91.3 91.3 0 0 1-15 6.23l-17.74-14.19a8 8 0 0 0-5-1.75h-.48a74 74 0 0 1-8.68 0a8 8 0 0 0-5.48 1.74l-17.78 14.2a91.6 91.6 0 0 1-15-6.23L82.89 187a8 8 0 0 0-2.64-5.1a74 74 0 0 1-6.14-6.14a8 8 0 0 0-5.1-2.64l-22.58-2.52a91.3 91.3 0 0 1-6.23-15l14.19-17.74a8 8 0 0 0 1.74-5.48a74 74 0 0 1 0-8.68a8 8 0 0 0-1.74-5.48L40.2 100.45a91.6 91.6 0 0 1 6.23-15L69 82.89a8 8 0 0 0 5.1-2.64a74 74 0 0 1 6.14-6.14A8 8 0 0 0 82.89 69l2.51-22.57a91.3 91.3 0 0 1 15-6.23l17.74 14.19a8 8 0 0 0 5.48 1.74a74 74 0 0 1 8.68 0a8 8 0 0 0 5.48-1.74l17.77-14.19a91.6 91.6 0 0 1 15 6.23L173.11 69a8 8 0 0 0 2.64 5.1a74 74 0 0 1 6.14 6.14a8 8 0 0 0 5.1 2.64l22.58 2.51a91.3 91.3 0 0 1 6.23 15l-14.19 17.74a8 8 0 0 0-1.74 5.53Z\"/></g>", "grid": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "heart": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M178 40c-20.65 0-38.73 8.88-50 23.89C116.73 48.88 98.65 40 78 40a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 228.66 240 172 240 102a62.07 62.07 0 0 0-62-62m-50 174.8c-18.26-10.64-96-59.11-96-112.8a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8\"/></g>", "home": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m219.31 108.68l-80-80a16 16 0 0 0-22.62 0l-80 80A15.87 15.87 0 0 0 32 120v96a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-56h32v56a8 8 0 0 0 8 8h64a8 8 0 0 0 8-8v-96a15.87 15.87 0 0 0-4.69-11.32M208 208h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48v-88l80-80l80 80Z\"/></g>", "info": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12\"/></g>", "left": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M165.66 202.34a8 8 0 0 1-11.32 11.32l-80-80a8 8 0 0 1 0-11.32l80-80a8 8 0 0 1 11.32 11.32L91.31 128Z\"/></g>", "list": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16m0 177.57l-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z\"/></g>", "lock": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160zm-68-56a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "meh": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m48-56a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8m-96-52a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "menu": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16\"/></g>", "news": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M88 112a8 8 0 0 1 8-8h80a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m8 40h80a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16m136-88v120a24 24 0 0 1-24 24H32a24 24 0 0 1-24-23.89V88a8 8 0 0 1 16 0v96a8 8 0 0 0 16 0V64a16 16 0 0 1 16-16h160a16 16 0 0 1 16 16m-16 0H56v120a23.8 23.8 0 0 1-1.37 8H208a8 8 0 0 0 8-8Z\"/></g>", "out": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M120 216a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h64a8 8 0 0 1 0 16H56v160h56a8 8 0 0 1 8 8m109.66-93.66l-40-40a8 8 0 0 0-11.32 11.32L204.69 120H112a8 8 0 0 0 0 16h92.69l-26.35 26.34a8 8 0 0 0 11.32 11.32l40-40a8 8 0 0 0 0-11.32\"/></g>", "pen": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m227.32 73.37l-44.69-44.68a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h168a8 8 0 0 0 0-16H115.32l112-112a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.69L147.32 64l24-24L216 84.69Z\"/></g>", "play": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128\"/></g>", "plus": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8\"/></g>", "reply": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 109.66l-48 48a8 8 0 0 1-11.32-11.32L204.69 112H128a88.1 88.1 0 0 0-88 88a8 8 0 0 1-16 0A104.11 104.11 0 0 1 128 96h76.69l-34.35-34.34a8 8 0 0 1 11.32-11.32l48 48a8 8 0 0 1 0 11.32\"/></g>", "right": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128L90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32\"/></g>", "search": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72\"/></g>", "share": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M176 160a39.9 39.9 0 0 0-28.62 12.09l-46.1-29.63a39.8 39.8 0 0 0 0-28.92l46.1-29.63a40 40 0 1 0-8.66-13.45l-46.1 29.63a40 40 0 1 0 0 55.82l46.1 29.63A40 40 0 1 0 176 160m0-128a24 24 0 1 1-24 24a24 24 0 0 1 24-24M64 152a24 24 0 1 1 24-24a24 24 0 0 1-24 24m112 72a24 24 0 1 1 24-24a24 24 0 0 1-24 24\"/></g>", "smile": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88M80 108a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96 0a12 12 0 1 1-12-12a12 12 0 0 1 12 12m-1.07 48c-10.29 17.79-27.4 28-46.93 28s-36.63-10.2-46.92-28a8 8 0 1 1 13.84-8c7.47 12.91 19.21 20 33.08 20s25.61-7.1 33.07-20a8 8 0 0 1 13.86 8\"/></g>", "spark": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sparkles": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "stack": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M230.91 172a8 8 0 0 1-2.91 10.91l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 36 169.09l92 53.65l92-53.65a8 8 0 0 1 10.91 2.91M220 121.09l-92 53.65l-92-53.65a8 8 0 0 0-8 13.82l96 56a8 8 0 0 0 8.06 0l96-56a8 8 0 1 0-8.06-13.82M24 80a8 8 0 0 1 4-6.91l96-56a8 8 0 0 1 8.06 0l96 56a8 8 0 0 1 0 13.82l-96 56a8 8 0 0 1-8.06 0l-96-56A8 8 0 0 1 24 80m23.88 0L128 126.74L208.12 80L128 33.26Z\"/></g>", "tg": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "tgm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M228.88 26.19a9 9 0 0 0-9.16-1.57L17.06 103.93a14.22 14.22 0 0 0 2.43 27.21L72 141.45V200a15.92 15.92 0 0 0 10 14.83a15.91 15.91 0 0 0 17.51-3.73l25.32-26.26L165 220a15.88 15.88 0 0 0 10.51 4a16.3 16.3 0 0 0 5-.79a15.85 15.85 0 0 0 10.67-11.63L231.77 35a9 9 0 0 0-2.89-8.81m-61.14 36l-89.59 64.16l-49.6-9.73ZM88 200v-47.48l24.79 21.74Zm87.53 8l-82.68-72.5l119-85.29Z\"/></g>", "thumbdown": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"m239.82 157l-12-96A24 24 0 0 0 204 40H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h43.06l37.78 75.58A8 8 0 0 0 120 240a40 40 0 0 0 40-40v-16h56a24 24 0 0 0 23.82-27M72 144H32V56h40Zm150 21.29a7.88 7.88 0 0 1-6 2.71h-64a8 8 0 0 0-8 8v24a24 24 0 0 1-19.29 23.54L88 150.11V56h116a8 8 0 0 1 7.94 7l12 96a7.87 7.87 0 0 1-1.94 6.29\"/></g>", "thumbup": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12M32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9\"/></g>", "top": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5\"/></g>", "trailer": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 216h-48.64A103.95 103.95 0 1 0 128 232h104a8 8 0 0 0 0-16M40 128a88 88 0 1 1 88 88a88.1 88.1 0 0 1-88-88m88-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m24 104a24 24 0 1 0-24 24a24 24 0 0 0 24-24m-32 0a8 8 0 1 1 8 8a8 8 0 0 1-8-8m56-24a24 24 0 1 0-24-24a24 24 0 0 0 24 24m0-32a8 8 0 1 1-8 8a8 8 0 0 1 8-8m-96-16a24 24 0 1 0 24 24a24 24 0 0 0-24-24m0 32a8 8 0 1 1 8-8a8 8 0 0 1-8 8\"/></g>", "tv": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 64h-68.69l34.35-34.34a8 8 0 1 0-11.32-11.32L128 60.69L85.66 18.34a8 8 0 0 0-11.32 11.32L108.69 64H40a16 16 0 0 0-16 16v120a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16M40 80h104v120H40Zm176 120h-56V80h56zm-16-84a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 48a12 12 0 1 1-12-12a12 12 0 0 1 12 12\"/></g>", "user": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24M74.08 197.5a64 64 0 0 1 107.84 0a87.83 87.83 0 0 1-107.84 0M96 120a32 32 0 1 1 32 32a32 32 0 0 1-32-32m97.76 66.41a79.66 79.66 0 0 0-36.06-28.75a48 48 0 1 0-59.4 0a79.66 79.66 0 0 0-36.06 28.75a88 88 0 1 1 131.52 0\"/></g>", "users": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M117.25 157.92a60 60 0 1 0-66.5 0a95.83 95.83 0 0 0-47.22 37.71a8 8 0 1 0 13.4 8.74a80 80 0 0 1 134.14 0a8 8 0 0 0 13.4-8.74a95.83 95.83 0 0 0-47.22-37.71M40 108a44 44 0 1 1 44 44a44.05 44.05 0 0 1-44-44m210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16a44 44 0 1 0-16.34-84.87a8 8 0 1 1-5.94-14.85a60 60 0 0 1 55.53 105.64a95.83 95.83 0 0 1 47.22 37.71a8 8 0 0 1-2.33 11.07\"/></g>", "x": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "x2": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z\"/></g>", "sCont": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M136 80v43.47l36.12 21.67a8 8 0 0 1-8.24 13.72l-40-24A8 8 0 0 1 120 128V80a8 8 0 0 1 16 0m-8-48a95.44 95.44 0 0 0-67.92 28.15C52.81 67.51 46.35 74.59 40 82V64a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16H49c7.15-8.42 14.27-16.35 22.39-24.57a80 80 0 1 1 1.66 114.75a8 8 0 1 0-11 11.64A96 96 0 1 0 128 32\"/></g>", "sTaste": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M197.58 129.06L146 110l-19-51.62a15.92 15.92 0 0 0-29.88 0L78 110l-51.62 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0L146 178l51.62-19a15.92 15.92 0 0 0 0-29.88ZM137 164.22a8 8 0 0 0-4.74 4.74L112 223.85L91.78 169a8 8 0 0 0-4.78-4.78L32.15 144L87 123.78a8 8 0 0 0 4.78-4.78L112 64.15L132.22 119a8 8 0 0 0 4.74 4.74L191.85 144ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8m104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8\"/></g>", "sPick": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 96a88 88 0 1 0-144 67.83V240a8 8 0 0 0 11.58 7.16L128 225l44.43 22.21a8.1 8.1 0 0 0 3.57.79a8 8 0 0 0 8-8v-76.17A87.85 87.85 0 0 0 216 96M56 96a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72m112 131.06l-36.43-18.21a8 8 0 0 0-7.16 0L88 227.06v-52.69a87.89 87.89 0 0 0 80 0ZM128 152a56 56 0 1 0-56-56a56.06 56.06 0 0 0 56 56m0-96a40 40 0 1 1-40 40a40 40 0 0 1 40-40\"/></g>", "sFilm": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 104H102.09L210 75.51a8 8 0 0 0 5.68-9.84l-8.16-30a15.93 15.93 0 0 0-19.42-11.13L35.81 64.74a15.75 15.75 0 0 0-9.7 7.4a15.5 15.5 0 0 0-1.55 12L32 111.56V200a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-88a8 8 0 0 0-8-8m-23.84-64l6 22.07l-22.62 6l-28.12-16.24Zm-66.69 17.6l28.12 16.24l-36.94 9.75l-28.12-16.22Zm-79.4 44.62l-6-22.08l26.5-7L94.69 89.4ZM208 200H48v-80h160z\"/></g>", "sSeries": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 40H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V64a24 24 0 0 0-24-24m8 136a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8V64a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8Zm-48 48a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8m-3.56-110.66l-48-32A8 8 0 0 0 104 88v64a8 8 0 0 0 12.44 6.66l48-32a8 8 0 0 0 0-13.32M120 137.05V103l25.58 17Z\"/></g>", "sReview": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M248 92.68a15.86 15.86 0 0 0-4.69-11.31l-68.68-68.69a16 16 0 0 0-22.63 0l-28.43 28.43l-58 21.77a16.06 16.06 0 0 0-10.22 12.35L32.11 214.68A8 8 0 0 0 40 224a8.4 8.4 0 0 0 1.32-.11l139.44-23.24a16 16 0 0 0 12.35-10.17l21.77-58L243.31 104A15.87 15.87 0 0 0 248 92.68m-69.87 92.19L63.32 204l47.37-47.37a28 28 0 1 0-11.32-11.32L52 192.7L71.13 77.86L126 57.29L198.7 130ZM112 132a12 12 0 1 1 12 12a12 12 0 0 1-12-12m96-15.32L139.31 48l24-24L232 92.68Z\"/></g>", "sNews": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M216 40H40a16 16 0 0 0-16 16v160a8 8 0 0 0 11.58 7.15L64 208.94l28.42 14.21a8 8 0 0 0 7.16 0L128 208.94l28.42 14.21a8 8 0 0 0 7.16 0L192 208.94l28.42 14.21A8 8 0 0 0 232 216V56a16 16 0 0 0-16-16m0 163.06l-20.42-10.22a8 8 0 0 0-7.16 0L160 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L96 207.06l-28.42-14.22a8 8 0 0 0-7.16 0L40 203.06V56h176ZM136 112a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m0 32a8 8 0 0 1 8-8h48a8 8 0 0 1 0 16h-48a8 8 0 0 1-8-8m-72 24h48a8 8 0 0 0 8-8V96a8 8 0 0 0-8-8H64a8 8 0 0 0-8 8v64a8 8 0 0 0 8 8m8-64h32v48H72Z\"/></g>", "cEps": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M32 64a8 8 0 0 1 8-8h176a8 8 0 0 1 0 16H40a8 8 0 0 1-8-8m8 72h120a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m72 48H40a8 8 0 0 0 0 16h72a8 8 0 0 0 0-16m135.66-57.7a8 8 0 0 1-10 5.36L208 122.75V192a32.05 32.05 0 1 1-16-27.69V112a8 8 0 0 1 10.3-7.66l40 12a8 8 0 0 1 5.36 9.96M192 192a16 16 0 1 0-16 16a16 16 0 0 0 16-16\"/></g>", "cDl": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 32H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16m0 16v104h-28.7a15.86 15.86 0 0 0-11.3 4.69L148.69 176h-41.38L88 156.69A15.86 15.86 0 0 0 76.69 152H48V48Zm0 160H48v-40h28.69L96 187.31a15.86 15.86 0 0 0 11.31 4.69h41.38a15.86 15.86 0 0 0 11.31-4.69L179.31 168H208zM90.34 125.66a8 8 0 0 1 11.32-11.32L120 132.69V72a8 8 0 0 1 16 0v60.69l18.34-18.35a8 8 0 0 1 11.32 11.32l-32 32a8 8 0 0 1-11.32 0Z\"/></g>", "cAbout": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232 48h-72a40 40 0 0 0-32 16a40 40 0 0 0-32-16H24a8 8 0 0 0-8 8v144a8 8 0 0 0 8 8h72a24 24 0 0 1 24 24a8 8 0 0 0 16 0a24 24 0 0 1 24-24h72a8 8 0 0 0 8-8V56a8 8 0 0 0-8-8M96 192H32V64h64a24 24 0 0 1 24 24v112a39.8 39.8 0 0 0-24-8m128 0h-64a39.8 39.8 0 0 0-24 8V88a24 24 0 0 1 24-24h64ZM160 88h40a8 8 0 0 1 0 16h-40a8 8 0 0 1 0-16m48 40a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8m0 32a8 8 0 0 1-8 8h-40a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8\"/></g>", "cCmt": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M232.07 186.76a80 80 0 0 0-62.5-114.17a80 80 0 1 0-145.64 66.17l-7.27 24.71a16 16 0 0 0 19.87 19.87l24.71-7.27a80.4 80.4 0 0 0 25.18 7.35a80 80 0 0 0 108.34 40.65l24.71 7.27a16 16 0 0 0 19.87-19.86ZM62 159.5a8.3 8.3 0 0 0-2.26.32L32 168l8.17-27.76a8 8 0 0 0-.63-6A64 64 0 1 1 65.8 160.5a8 8 0 0 0-3.8-1m153.79 28.73L224 216l-27.76-8.17a8 8 0 0 0-6 .63a64.05 64.05 0 0 1-85.87-24.88a79.93 79.93 0 0 0 70.33-93.87a64 64 0 0 1 41.75 92.48a8 8 0 0 0-.63 6.04Z\"/></g>", "cMore": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M208 88H48a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16m0 112H48v-96h160zM48 64a8 8 0 0 1 8-8h144a8 8 0 0 1 0 16H56a8 8 0 0 1-8-8m16-32a8 8 0 0 1 8-8h112a8 8 0 0 1 0 16H72a8 8 0 0 1-8-8\"/></g>", "sound": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M155.51 24.81a8 8 0 0 0-8.42.88L77.25 80H32a16 16 0 0 0-16 16v64a16 16 0 0 0 16 16h45.25l69.84 54.31A8 8 0 0 0 160 224V32a8 8 0 0 0-4.49-7.19M32 96h40v64H32Zm112 111.64l-56-43.55V91.91l56-43.55Zm54-106.08a40 40 0 0 1 0 52.88a8 8 0 0 1-12-10.58a24 24 0 0 0 0-31.72a8 8 0 0 1 12-10.58M248 128a79.9 79.9 0 0 1-20.37 53.34a8 8 0 0 1-11.92-10.67a64 64 0 0 0 0-85.33a8 8 0 1 1 11.92-10.67A79.83 79.83 0 0 1 248 128\"/></g>", "cc": "<g transform=\"scale(.09375)\" stroke=\"none\"><path fill=\"currentColor\" d=\"M224 48H32a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16m0 144H32V64h192zm-105.08-40.29a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92m80 0a8 8 0 0 1-2.92 10.93a40 40 0 1 1 0-69.28a8 8 0 1 1-8 13.85a24 24 0 1 0 0 41.58a8 8 0 0 1 10.92 2.92\"/></g>"};
+const BRAND2={"imdb-light": {"vb": "0 127 512 258", "body": "<path fill=\"currentColor\" d=\"M308.7 210.3c.4 2 .7 6.5.7 13.6v60.6c0 10.4-.7 16.8-2 19.1c-1.4 2.4-5 3.5-10.8 3.5V204.4c4.4 0 7.4.5 9 1.4c1.6 1.1 2.7 2.5 3.1 4.5m98.3 28.5c-2.4 0-4 .9-4.7 2.6c-.7 1.8-1.1 6.2-1.1 13.3V296q0 10.35 1.2 13.2c.8 1.9 2.4 2.9 4.9 2.9s5.8-1 6.5-3c.5-1.3.9-6.1 1.1-14.3v-40.1c0-6.6-.4-10.9-1.3-13c-.8-1.9-4.1-2.9-6.6-2.9m105-89.7v213.4c-1.5 12.7-11.9 22.5-24.4 22.5h-463C11 385 0 373.5 0 359.2V152.4c0-12.9 9-23.5 20.8-25.5h470.7c10.7 1.8 19.1 10.9 20.5 22.2m-409.6 29.7H61.8v156.4h40.6zm139.2-1h-53.1l-9.4 73.1c-3.5-23.8-5.4-37.1-5.8-39.7c-1.7-12.8-3.3-23.9-4.9-33.3h-52.7v156.4h35.6l.1-103.3l15 103.3h25.4L206 228.6l.1 105.6h35.5zm106.7 55.1c0-14.8-.6-24.7-1.5-29.8c-.9-5-3.2-9.6-6.8-13.7s-8.9-7.1-15.8-8.9s-18.2-2.7-37.9-2.7H256v156.4h49.2c11.3-.4 18.6-.9 21.9-1.6c4.8-1.1 8.9-2.9 12.2-5.6q4.95-4.05 6.9-11.1c1.3-4.7 2.1-14.1 2.1-28.1zM454.2 253c0-9.4-.2-15.6-.6-18.5s-1.7-5.8-3.7-8.9c-2.1-3-5.1-5.4-9-7c-4-1.7-8.6-2.5-14-2.5c-4.7 0-10.7.9-14.6 2.8q-6 2.7-10.8 8.4v-50.9h-39.1v156.4H399c1.5-6 2.4-9.3 2.5-10c3.3 4 7 7 11 9s9.9 3 14.5 3c6.4 0 12-1.7 16.6-5.1c4.7-3.4 7.6-7.4 8.9-11.9c1.3-4.6 1.9-11.6 1.9-21c-.2-4.3-.2-39.4-.2-43.8\"/>"}, "rotten-tomatoes-light": {"vb": "0 0 512 512", "body": "<path fill=\"currentColor\" d=\"m401.2 113.7l-.7-1.9C391.3 87.2 332 61 276 72.9c2.7-10.2 10.6-16.8 24.4-20.5l8.1-2.2l-5.8-6C287.3 28.1 271 21 254.1 22.8c-19.5 2.2-36.6 16.9-47.7 32L182.5 0l-43.3 25.5l24.9 32.2c-37.8-9.5-72 3.8-97.6 38.6l-6.7 9.1l11.2-1.2c14.6-1.6 28.3-2.7 43.4-.3c-17.4 5.7-33.8 16.6-47.9 25.9c-9.2 6.1-17.1 11.3-22.6 13.2l-14.2 4.9l14.4 4.5c7.2 2.2 13.9 4.2 20.2 5.8c-92.2 101.5-40.4 220-11.7 259.6c132.2 157.4 348.1 95.1 419.7-22.2c17.4-29.6 79.8-188-71.1-281.9M72.1 138c19-12.6 42.7-28.2 65.3-28.3l27.7-.1l-26-9.5c-21.4-7.8-39.6-8.3-57.3-6.9c19.3-21.6 49.9-39.3 94.3-21.2l17 6.9L154 28.3l24-14.2l26.9 61.7l4.9-8.2c9.3-15.5 26.1-32.9 45.4-35c11.6-1.3 23.2 3 34.6 12.9c-15.6 6.4-23.9 17.7-24.7 33.6l-.3 6.8l6.6-1.8c45.4-12.5 94.4 4.3 113 21.6c-16.5-1.6-34.9 3.9-54.1 9.7c-29.9 9-60.9 18.3-88.6 2.5l-7.4-4.2v8.5c0 23-8 38.8-24.6 48.3c-11.3 6.5-25.1 9-37.3 10.2c.2-.4.4-.9.6-1.3c7.4-16.1 15.8-34.4.9-52.5l-3.6-4.3l-3.8 4.1c-24.7 26.5-44.2 37.6-107.5 19.7c4-2.4 8.4-5.3 13.1-8.4\"/>"}, "metacritic": {"vb": "0 0 24 24", "body": "<path fill=\"currentColor\" d=\"M11.99 0A12 12 0 1 0 24 12v-.014A12 12 0 0 0 11.99 0Zm-.055 2.564a9.399 9.399 0 0 1 9.407 9.389v.01a9.399 9.399 0 1 1-9.408-9.399Zm-1.61 17.198 2.046-2.046-3.94-3.94c-.165-.166-.345-.373-.442-.608-.221-.47-.318-1.203.221-1.742.664-.664 1.548-.387 2.406.47l3.788 3.788 2.046-2.046-3.954-3.954a2.48 2.48 0 0 1-.456-.622c-.263-.539-.25-1.216.235-1.7.677-.678 1.562-.429 2.544.553l3.677 3.677 2.046-2.046-3.982-3.982c-2.018-2.018-3.912-1.949-5.212-.65-.498.499-.802 1.024-.954 1.618a4.026 4.026 0 0 0-.055 1.686l-.027.028c-.996-.414-2.13-.166-3 .705-1.162 1.161-1.12 2.392-.982 3.11l-.042.043-1.009-.816-1.77 1.77a64.1 64.1 0 0 1 2.213 2.1z\"/>"}};
+const Q=new URLSearchParams(location.search);
+const KIND=Q.get("kind")==="series"?"series":"film";
+const ACCESS=["guest","free","sub"].includes(Q.get("access"))?Q.get("access"):"sub";
+const T=KIND==="series"?SERIES_T:FILM;
+const CMTS=KIND==="series"?COMMENTS_S:COMMENTS;
+document.documentElement.style.setProperty("--acc",T.acc);
+const M=s=>"../home/media/"+s;
+const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const sep=n=>fa(Number(n).toLocaleString("en").replace(/,/g,"٬"));
+const gb=v=>v<1?Math.round(v*1000)+" MB":v.toFixed(v<10?1:1)+" GB";
+const I=(n,c="")=>{const p=PHOSPHOR[n];return p?`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`:""};
+const BM=`<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M6.5 3.5h11v17l-5.5-3.6-5.5 3.6z"/></svg>`;
+const PHONE=`<svg class="i" viewBox="0 0 24 24"><rect x="7" y="2.8" width="10" height="18.4" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 18h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const LAPTOP=`<svg class="i" viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="10" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 18.5h19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const WIFI=`<svg class="i" viewBox="0 0 24 24"><path d="M4 9.5a12 12 0 0 1 16 0M7 13a7.5 7.5 0 0 1 10 0M10 16.4a3 3 0 0 1 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="19.4" r="1.1" fill="currentColor"/></svg>`;
+const DEV={"2160p":I("tv"),"1080p":LAPTOP,"720p":PHONE,"480p":WIFI};
+const PAUSE=`<svg class="i" viewBox="0 0 24 24"><rect x="6.5" y="5" width="3.6" height="14" rx="1" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1" fill="currentColor"/></svg>`;
+const MC=`<svg class="mcl" viewBox="0 0 88 88" aria-hidden="true">${MC_MARK}</svg>`;
+const IMDB=`<svg class="bi" viewBox="${BRAND2["imdb-light"].vb}" aria-hidden="true">${BRAND2["imdb-light"].body}</svg>`;
+const RT=`<svg class="bi" viewBox="${BRAND2["rotten-tomatoes-light"].vb}" aria-hidden="true">${BRAND2["rotten-tomatoes-light"].body}</svg>`;
+const KSTAR=`<svg class="i" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9z"/></svg>`;
+const toast=t=>{const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2200)};
+const pct=(a,b)=>Math.round(a*100/(a+b));
+const S={vote:0,list:false,mark:false,season:T.progress&&T.progress.s||1,sort:"new",filt:"all",topic:0,tr:0,spoil:{},cv:{},mine:0,openQ:"1080p",openEp:null,dlEp:null,story:false,recap:false,factsAll:false};
+
+function hdr(){
+  document.getElementById("hdact").innerHTML=(ACCESS!=="sub"?`<a class="hb sub" href="#">${I("crown")}خرید اشتراک</a>`:"")+
+  `<a class="hb gl srch" href="#">${I("search")}</a><a class="hb gl" href="#">${I("bell")}</a>`+
+  (ACCESS==="guest"?`<a class="hb gl" href="#">ورود</a>`:`<a class="hb gl" href="#">${I("user")}</a>`);
+  const h=document.getElementById("hdr");addEventListener("scroll",()=>h.classList.toggle("solid",scrollY>40),{passive:true});
+}
+
+function nextEp(){
+  if(!T.next)return"";
+  const d=Math.floor(T.next.in/86400),h=Math.floor(T.next.in%86400/3600),m=Math.floor(T.next.in%3600/60);
+  return `<div class="news">${I("cal")}<span><b>قسمت ${fa(T.next.e)} فصل ${fa(T.next.s)}</b> به‌زودی با زیرنویس فارسی</span>
+  <div class="cd num" id="cd"><span>${fa(m)}<small>دقیقه</small></span><span>${fa(h)}<small>ساعت</small></span><span>${fa(d)}<small>روز</small></span></div></div>`;
+}
+
+function hero(){
+  const p=T.progress, isS=KIND==="series";
+  const up=T.votes.up+(S.vote===1?1:0),dn=T.votes.down+(S.vote===-1?1:0);
+  const label=isS?`ادامه‌ی فصل ${fa(p.s)} قسمت ${fa(p.e)}`:"ادامه‌ی تماشا";
+  const showP=ACCESS!=="guest";
+  return `<div class="hero">
+  <div class="bd"><video id="tv" src="${M("t-"+T.s+".mp4")}" poster="${M("b-"+T.s+".jpg")}" autoplay muted loop playsinline></video></div>
+  <div class="tctl"><button class="cbtn gl" id="tpause" aria-label="توقف تریلر">${PAUSE}</button><button class="cbtn gl" id="tmute" aria-label="صدا">${I("sound")}</button></div>
+  <div class="wrap">
+    <div class="poster"><img src="${M("p-"+T.s+".jpg")}" alt="${T.en}"></div>
+    <div class="info">
+     <div class="ti1">
+      <div class="crumb"><a href="#">خانه</a><span>/</span><a href="#">${isS?"سریال‌ها":"فیلم‌ها"}</a><span>/</span><span>${T.fa}</span></div>
+      <div class="kin"><b>${isS?"سریال":"فیلم"}</b> · <span class="num">${fa(T.y)}</span> · ${T.rt}</div>
+      <h1><img class="tlogo" src="${M("l-"+T.s+".png")}" alt="${T.en}"></h1>
+      <div class="fa">${T.fa}</div>
+      <div class="dir">${isS?"سازنده":"کارگردان"}:<a href="#about">${isS?T.facts[0][1]:T.dir}</a></div>
+     </div>
+     <div class="ti2">
+      <div class="stats">
+        <div class="st"><span class="lb">امتیاز IMDb · ${sep(T.imdbVotes)} رأی</span><div class="v">${IMDB}<b class="num">${T.imdb.toFixed(1)}</b><small>/10</small></div></div>
+        <div class="st"><span class="lb">راتن تومیتوز</span><div class="v">${RT}<b class="num">${T.tomato}%</b></div></div>
+        <div class="st"><span class="lb">متاکریتیک</span><div class="v">${MC}<b class="num">${T.meta}</b></div></div>
+        <div class="st rt-dur"><span class="lb">${isS?"فصل‌ها":"مدت"} · رده‌ی سنی</span><div class="v" style="direction:rtl;justify-content:flex-start"><span class="plain">${T.rt}</span><span class="age">${T.age}</span></div></div>
+      </div>
+      <div class="genres"><span class="lb">ژانر</span>${T.g.map(g=>`<a href="#">${g}</a>`).join("<i>·</i>")}
+        <span class="subs">${T.dub?`<span class="bdg">دوبله فارسی</span>`:""}<span class="bdg">زیرنویس ${T.subs.join(" و ")}</span></span></div>
+      <div class="story${S.story?" open":""}" id="story">
+        <div class="tq"><q>${T.tag}</q></div>
+        <p>${T.syn}</p>
+        <button class="more" id="more">${S.story?"کمتر":"بیشتر"}</button>
+      </div>
+      <div class="vote">
+        <div><div class="q">${isS?"این سریال رو دوست داشتی؟":"ارزش تماشا داشت؟"}</div>
+          <div class="vbs"><button class="vb gl up" data-v="1" aria-pressed="${S.vote===1}">${I("thumbup")}پسندیدم <span class="pc num">${fa(pct(up,dn))}٪</span></button><button class="vb gl dn" data-v="-1" aria-pressed="${S.vote===-1}">${I("thumbdown")}نپسندیدم <span class="pc num">${fa(pct(dn,up))}٪</span></button></div></div>
+        <div class="urate"><div class="q">امتیاز کاربران رول‌وانا</div><div class="v"><b class="num">${fa(((T.rating.avg*T.rating.n+S.mine)/(T.rating.n+(S.mine?1:0))).toFixed(1)).replace(".","٫")}</b><span>/ ۱۰ · ${sep(T.rating.n+(S.mine?1:0))} رأی</span></div></div>
+        ${ACCESS!=="guest"?`<div class="mine"><span class="q" style="font-size:12px;color:var(--mute)">${S.mine?"امتیاز شما: "+fa(S.mine):"امتیاز شما"}</span><div class="stars">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<button class="${n<=S.mine?"on":""}" data-r="${n}">${fa(n)}</button>`).join("")}</div></div>`:""}
+      </div>
+      ${isS?nextEp():`<div class="news">${I("bell")}<span><b>تازه‌های اثر</b> · نسخه‌ی 4K با زیرنویس فارسی اضافه شد</span><a href="#dl" style="margin-inline-start:auto;color:var(--acc);font-weight:700">دانلود</a></div>`}
+      <div class="cta">
+        <a class="play" href="../playback/rollvana-playback.html">${I("play")}${showP?label:"تماشای "+(isS?"قسمت ۱":"فیلم")}${showP?`<small>${p.leftLong}</small><span class="pb"><i style="width:${p.p*100}%"></i></span>`:""}</a>
+        <a class="gbtn gl" href="#dl">${I("dl")}دانلود</a>
+        ${showP?`<button class="gbtn gl" id="recapb">${I("sparkles")}خلاصه<span class="dk"> تا اینجا</span></button>`:""}
+        <button class="sq gl" id="lst" aria-pressed="${S.list}" title="لیست من">${S.list?I("check"):I("plus")}</button>
+        <button class="sq gl" id="bmk" aria-pressed="${S.mark}" title="نشان کردن">${BM}</button>
+      </div>
+      ${showP?`<div class="recap${S.recap?" open":""}" id="recap"><small>${T.recap.upto}</small><p>${T.recap.text}</p></div>`:""}
+     </div>
+    </div>
+  </div></div>`;
+}
+
+const CH=()=>KIND==="series"
+ ?[["dl","قسمت‌ها و دانلود","cEps"],["tr","تریلرها","trailer"],["about","اطلاعات اثر","cAbout"],["music","موسیقی","sound"],["talk","نظرها","cCmt",CMTS.length],["sim","مشابه","cMore"],["ulists","لیست‌ها","list"]]
+ :[["dl","دانلود","cDl"],["tr","تریلرها","trailer"],["about","اطلاعات اثر","cAbout"],["music","موسیقی","sound"],["talk","نظرها","cCmt",CMTS.length],["sim","مشابه","cMore"],["ulists","لیست‌ها","list"]];
+const tabs=()=>`<div class="tabs" id="tabs"><div class="wrap">${CH().map((c,i)=>`<a href="#${c[0]}" data-t="${c[0]}" class="${i?"":"on"}">${I(c[2])}${c[1]}${c[3]?`<span class="cnt num">${fa(c[3])}</span>`:""}</a>`).join("")}</div></div>`;
+
+function lockBox(){
+  if(ACCESS==="sub")return"";
+  return `<div class="lock">${I("lock")}<span>${ACCESS==="guest"?"برای دانلود وارد شوید و اشتراک بخرید.":"دانلود برای مشترک‌هاست. با اشتراک، همه‌ی کیفیت‌ها با لینک مستقیم."}</span><button>${ACCESS==="guest"?"ورود":"خرید اشتراک"}</button></div>`;
+}
+
+function filmDl(){
+  const qs=T.dl.sub.map((r,i)=>[r[0],r[1],r[2],T.dl.dub[i]?T.dl.dub[i][2]:null]);
+  return `<section class="ch" id="dl"><div class="sh"><h2>دانلود ${T.en}</h2></div>
+  ${lockBox()}
+  <div class="rows">${qs.map(q=>{const sp=DLSPEC[q[0]];const rec=q[0]==="1080p";const open=S.openQ===q[0];
+    return `<div class="qr${rec?" rec":""}${open?" open":""}" data-q="${q[0]}">
+      <button class="qh"><span class="dev">${DEV[q[0]]}</span><span class="qn"><b>${q[0]}</b>${rec?`<span class="recb">پیشنهادی</span>`:""}<small>${sp[0]}</small></span><span class="qs">${sp[1]} · ${sp[2]}</span><span class="qf">${FIT[q[0]]}</span>${I("down","chv")}</button>
+      <div class="qb"><a class="lang gl" href="#" data-act="dl">${I("cc")}زیرنویس فارسی<span class="num">${gb(q[2])}</span></a>${q[3]?`<a class="lang gl" href="#" data-act="dl">${I("sound")}دوبله فارسی<span class="num">${gb(q[3])}</span></a>`:""}</div>
+    </div>`}).join("")}</div>
+  <div class="note">${I("info")}<span>لینک مستقیم و قابل ادامه · زیرنویس جدا (SRT): <a href="#">فارسی</a> · <a href="#">انگلیسی</a></span></div>
+  </section>`;
+}
+
+function seriesDl(){
+  const eps=SEV_EP[S.season]||[];const p=T.progress;
+  return `<section class="ch" id="dl"><div class="sh"><h2>قسمت‌ها و دانلود</h2>
+   <div class="x"><div class="seg gl">${Object.keys(SEV_EP).map(s=>`<button data-season="${s}" aria-pressed="${+s===S.season}">فصل ${fa(s)}</button>`).join("")}</div>
+   <button class="pill gl" id="wholes">${I("dl")}دانلود کل فصل ${fa(S.season)}</button></div></div>
+  ${lockBox()}
+  <div class="rows">${eps.map((e,i)=>{const n=i+1;const cur=p.s===S.season&&p.e===n;const done=S.season<p.s||(S.season===p.s&&n<p.e);const tk=T.trailers[S.season+"-"+n];
+   return `<div class="eprow${cur?" cur":""}${S.openEp===n?" open":""}${S.dlEp===n?" dl":""}" data-ep="${n}">
+     <span class="n num">${fa(n)}</span>
+     <div class="eth"><img src="${M("e-sev-"+S.season+"-"+n+".jpg")}" alt="">${done?`<span class="wt"></span><span class="ck">${I("check")}</span>`:""}${cur?`<span class="pg"><i style="width:${p.p*100}%"></i></span>`:""}</div>
+     <button class="et" data-open="${n}" style="text-align:right"><b>${fa(n)}. ${e[0]}</b><small class="num">${fa(e[2])} دقیقه · ${e[1]}${cur?` · <em>در حال تماشا · ${p.leftLong}</em>`:""}</small><p>${e[3]}</p></button>
+     <div class="ea">${tk?`<button class="pill gl" data-act="teaser" title="${tk[0]}">${I("trailer")}تیزر</button>`:""}<button class="rb gl${cur?" pri":""}" data-act="play" aria-label="تماشا">${I("play")}</button><button class="rb gl dlb" data-dl="${n}" aria-label="دانلود قسمت">${I("dl")}</button></div>
+     <div class="epdl">${T.dl.sub.map((q,j)=>`<div class="epq"><span class="dev">${DEV[q[0]]}</span><span class="qn"><b>${q[0]}</b><small>${FIT[q[0]]}</small></span><a class="lang gl" href="#" data-act="dl">${I("cc")}زیرنویس<span class="num">${gb(q[2])}</span></a><a class="lang gl" href="#" data-act="dl">${I("sound")}دوبله<span class="num">${gb(T.dl.dub[j][2])}</span></a></div>`).join("")}</div>
+   </div>`}).join("")}</div>
+  <div class="note">${I("info")}<span>لینک مستقیم و قابل ادامه · زیرنویس جدا (SRT): <a href="#">فارسی</a> · <a href="#">انگلیسی</a></span></div>
+  </section>`;
+}
+
+function trailers(){
+  const t=T.trs[S.tr];
+  return `<section class="ch" id="tr"><div class="sh"><h2>تریلرها</h2></div>
+  <div class="tlay"><div class="tplayer" id="tpl">${S.tr===0?`<video src="${M("t-"+T.s+".mp4")}" poster="${M(t[2])}" controls playsinline preload="none"></video>`:`<img src="${M(t[2])}" alt=""><button class="big gl">${I("play")}</button>`}<div class="cap" ${S.tr===0?'style="display:none"':""}>${t[0]} · <span class="num">${t[1]}</span></div></div>
+  <div class="tlist">${T.trs.map((x,i)=>`<button class="ti${i===S.tr?" on":""}" data-tr="${i}"><img src="${M(x[2])}" alt=""><span><b>${x[0]}</b><small class="num">${x[1]}</small></span></button>`).join("")}</div></div>
+  </section>`;
+}
+
+function about(){
+  const isS=KIND==="series";const key=isS?"sev":"dune";
+  const dname=isS?T.facts[0][1]:T.dir;
+  const keyN=6;
+  return `<section class="ch" id="about"><div class="sh"><h2>اطلاعات اثر</h2></div>
+  <div class="people">
+    <a class="pp dr" href="#"><img src="${M("d-"+key+".jpg")}" alt=""><span><b>${dname}</b><span>${isS?"سازنده":"کارگردان"} · ${fa(isS?4:11)} اثر دیگر</span></span>${I("left")}</a>
+    ${T.cast.map((c,i)=>`<a class="pp" href="#"><img src="${M("c-"+key+"-"+i+".jpg")}" alt=""><span><b>${c[0]}</b><span>${c[1]}</span></span>${I("left")}</a>`).join("")}
+  </div>
+  <div class="sub">جزئیات</div>
+  <div class="facts${S.factsAll?" all":""}">${T.facts.map((f,i)=>`<div class="fact${i>=keyN*2?" hid":""}"><span class="k">${f[0]}</span><span class="v">${f[1]}</span></div>`).join("")}</div>
+  ${T.facts.length>keyN*2?`<button class="tog" id="facts">${S.factsAll?"جزئیات کمتر":"همه‌ی جزئیات"}${I(S.factsAll?"top":"down")}</button>`:""}
+  </section>`;
+}
+
+function music(){
+  return `<section class="ch" id="music"><div class="sh"><h2>موسیقی</h2></div>
+  <div class="mus"><div><div class="cv"><img src="${M("p-"+T.s+".jpg")}" alt=""></div><small>موسیقی متن ${T.fa} · ${fa(T.music.length)} قطعه</small></div>
+  <ol class="tracks">${T.music.map(m=>`<li class="tr"><span class="at num">${m[2]}</span><span><b>${m[0]}</b><small>${m[1]} · ${m[3]}</small></span><a class="rb gl" href="#" data-act="dl" aria-label="دانلود">${I("dl")}</a></li>`).join("")}</ol></div>
+  </section>`;
+}
+
+function audience(){
+  const r=T.review;const tw=(TWT[T.s]||[]);const top=tw[S.topic];
+  const hl=s=>s.replace(/\[(.+?)\]/g,"<mark>$1</mark>");
+  return `<div class="aud">
+   <div class="box"><h3>نظر مخاطبان در یک نگاه</h3><div class="meta">خلاصه‌ی ${sep(r.n)} نظر · به‌روز شده ${r.date}</div>
+     <p class="tone">${r.tone}</p>
+     <div class="mood"><i style="width:${T.mood[0]}%"></i><i style="width:${T.mood[1]}%"></i><i style="width:${T.mood[2]}%"></i></div>
+     <div class="ml num"><span>راضی ${fa(T.mood[0])}٪</span><span>بینابین ${fa(T.mood[1])}٪</span><span>ناراضی ${fa(T.mood[2])}٪</span></div>
+     <div class="pn"><div><h4>نقاط قوت</h4><ul>${r.pos.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="ng"><h4>نقاط ضعف</h4><ul>${r.neg.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
+   </div>
+   ${top?`<div class="box"><h3>بیشتر درباره‌ی چه حرف می‌زنند؟</h3>
+     <div class="topics">${tw.map((t,i)=>`<button class="gl" data-topic="${i}" aria-pressed="${i===S.topic}">${t[0]}<span class="num">${fa(t[1])}٪</span></button>`).join("")}</div>
+     ${top[2].slice(0,2).map(c=>`<div class="tw"><p>${hl(c[0])}</p><small><b>${c[1]}</b><span>${c[2]}</span><span class="num">${I("heart")} ${sep(c[3])}</span></small></div>`).join("")}
+   </div>`:""}
+  </div>`;
+}
+
+function cmItem(c,rep){
+  const k=c.id;const sp=c.spoiler&&!S.spoil[k];const my=S.cv[k]||0;
+  return `<div class="cm"><div class="who"><span class="av">${c.n[0]}</span><div><b>${c.n}</b><small>${c.t}</small></div>${!rep&&c.v?`<span class="sd${c.v<0?" n":""}">${c.v>0?"پسندید":"نپسندید"}</span>`:""}</div>
+   ${sp?`<div class="sp"><p>${c.text}</p><button class="gl" data-spoil="${k}">${I("eyeoff")}داستان را لو می‌دهد · نمایش</button></div>`:`<p>${c.text}</p>`}
+   <div class="act"><button data-cl="${k}" data-d="1" aria-pressed="${my===1}">${I("thumbup")}<span class="num">${fa(c.likes+(my===1?1:0))}</span></button><button data-cl="${k}" data-d="-1" aria-pressed="${my===-1}">${I("thumbdown")}<span class="num">${fa((c.dislikes||Math.round(c.likes/7))+(my===-1?1:0))}</span></button>${rep?"":`<button>${I("reply")}پاسخ</button>`}<button data-act="report" title="گزارش">${I("flag")}</button></div>
+   ${c.replies&&c.replies.length?`<div class="rep">${c.replies.map(r=>cmItem(r,true)).join("")}</div>`:""}
+  </div>`;
+}
+
+function comments(){
+  let L=CMTS.slice();
+  if(S.filt==="up")L=L.filter(c=>c.v>0);if(S.filt==="dn")L=L.filter(c=>c.v<0);
+  if(S.sort==="top")L.sort((a,b)=>b.likes-a.likes);
+  const nu=CMTS.filter(c=>c.v>0).length,nd=CMTS.filter(c=>c.v<0).length;
+  const side=ACCESS==="guest"
+   ?`<div class="box join"><small>گفت‌وگو در رول‌وانا</small><h3>شما چه فکر می‌کنید؟</h3><p>برای نوشتن نظر وارد حساب‌تان شوید. داستان را برای دیگران لو ندهید.</p><button class="g">ورود یا عضویت</button></div>`
+   :`<div class="box write"><h3 style="font-size:14px;margin-bottom:10px">نظر شما</h3><textarea placeholder="از تجربه‌ی تماشا بگویید..." maxlength="1000"></textarea><div class="r"><label><input type="checkbox"> داستان را لو می‌دهد</label><button class="send">ارسال</button></div></div>`;
+  return `<section class="ch" id="talk"><div class="sh"><h2>نظرها</h2></div>
+  ${audience()}
+  <div class="talk"><div>
+   <div class="cbar"><div class="seg gl"><button data-f="all" aria-pressed="${S.filt==="all"}">همه <span class="num">${fa(CMTS.length)}</span></button><button data-f="up" aria-pressed="${S.filt==="up"}">پسندیدند <span class="num">${fa(nu)}</span></button><button data-f="dn" aria-pressed="${S.filt==="dn"}">نپسندیدند <span class="num">${fa(nd)}</span></button></div>
+   <div class="sort"><button data-s="new" aria-pressed="${S.sort==="new"}">جدیدترین</button><button data-s="top" aria-pressed="${S.sort==="top"}">محبوب‌ترین</button></div></div>
+   ${L.map(c=>cmItem(c)).join("")}
+  </div><aside class="side">${side}</aside></div>
+  </section>`;
+}
+
+function card(s,why,cur){
+  const k=KC[s];if(!k)return"";
+  return `<a class="kc${cur?" cur":""}" href="#"><div class="pic"><img src="${M("p-"+s+".jpg")}" alt=""><span class="sc">${KSTAR}${k.imdb}<small>/10</small></span><span class="bdg">${k.b.replace("، "," · ")}</span><div class="ov">${k.syn}</div></div><h4>${k.en}</h4>${why?`<div class="why">${why}</div>`:""}<div class="m num">${fa(k.y)} · ${k.g}</div></a>`;
+}
+function similar(){
+  const fr=T.franchise||[];
+  return `<section class="ch" id="sim"><div class="sh"><h2>مشابه</h2></div>
+  ${fr.length?`<div class="simh"><span>مجموعه‌ی ${T.fa.split(":")[0]}</span></div><div class="grid">${fr.map(f=>card(f[0],f[0]===T.s?"همین فیلم":"",f[0]===T.s)).join("")}</div>`:""}
+  <div class="simh" style="margin-top:${fr.length?34:22}px"><span>عنوان‌های مشابه</span></div>
+  <div class="grid">${T.similar.map(s=>card(s,KC[s]&&KC[s].why)).join("")}</div>
+  </section>`;
+}
+function ulists(){
+  return `<section class="ch" id="ulists"><div class="sh"><h2>در لیست‌های کاربران</h2></div>
+  <div class="lists">${T.lists.map(l=>{const at=l.p.indexOf(T.s);return `<a class="ul" href="#"><h4>${l.n}</h4><div class="by"><span class="av">${l.u[0]}</span><b>${l.u}</b> · <span class="num">${fa(l.c)} عنوان · ${sep(l.f)} دنبال‌کننده</span></div>
+   <div class="ps">${l.p.map(p=>`<div class="${p===T.s?"me":""}"><img src="${M("p-"+p+".jpg")}" alt=""></div>`).join("")}</div>
+   <div class="rk num">شماره‌ی ${fa(at+1)} از ${fa(l.c)}</div><q>${l.q}</q></a>`}).join("")}</div>
+  </section>`;
+}
+function footer(){
+  return `<footer class="ft"><div class="wrap"><div><img src="../brand/rollvana-lockup-dark.svg" alt="Rollvana"><p>حس خلسه‌ی تماشای فیلم و سریال؛ با دوبله و زیرنویس فارسی، هر جا که هستی.</p></div>
+  ${FT_COLS.map(c=>`<div><h5>${c[0]}</h5><ul>${c[1].map(x=>`<li><a href="#">${x}</a></li>`).join("")}</ul></div>`).join("")}
+  <div class="cp">© ۱۴۰۵ رول‌وانا، همه‌ی حقوق محفوظ است</div></div></footer>`;
+}
+function dstate(){
+  const u=(k,a)=>`?kind=${k}${a!=="sub"?"&access="+a:""}`;
+  return `<div class="dstate">حالت‌های طرح (فقط برای بررسی):
+   <a class="${KIND==="film"?"on":""}" href="${u("film",ACCESS)}">فیلم</a><a class="${KIND==="series"?"on":""}" href="${u("series",ACCESS)}">سریال</a> |
+   <a class="${ACCESS==="sub"?"on":""}" href="${u(KIND,"sub")}">مشترک</a><a class="${ACCESS==="free"?"on":""}" href="${u(KIND,"free")}">بدون اشتراک</a><a class="${ACCESS==="guest"?"on":""}" href="${u(KIND,"guest")}">مهمان</a></div>`;
+}
+function mnav(){
+  return `<nav class="mnav"><a href="../home/home-v3.html">${I("home")}خانه</a><a class="${KIND==="film"?"on":""}" href="#">${I("film")}فیلم</a><a class="${KIND==="series"?"on":""}" href="#">${I("tv")}سریال</a><a href="#">${I("search")}جستجو</a><a href="#">${I("menu")}منو</a></nav>`;
+}
+
+function wholeSheet(){
+  const qs=T.dl.sub;const ne=(SEV_EP[S.season]||[]).length;
+  S.wl=S.wl||"sub";S.wq=S.wq||"1080p";
+  const sh=document.getElementById("sheet");
+  const draw=()=>{sh.innerHTML=`<div class="hd"><h3>دانلود کل فصل ${fa(S.season)} · ${fa(ne)} قسمت</h3><button class="rb gl" data-close>${I("x")}</button></div>
+   <div class="lb">زبان</div><div class="ls2"><button class="gl" data-wl="sub" aria-pressed="${S.wl==="sub"}">زیرنویس فارسی</button><button class="gl" data-wl="dub" aria-pressed="${S.wl==="dub"}">دوبله فارسی</button></div>
+   <div class="lb">کیفیت</div><div class="qc">${qs.map((q,j)=>{const sz=(S.wl==="sub"?q[2]:T.dl.dub[j][2])*ne;return `<button class="gl" data-wq="${q[0]}" aria-pressed="${S.wq===q[0]}"><b class="ltr">${q[0]}</b><small>${FIT[q[0]]}</small><small class="num ltr" style="text-align:right">${gb(sz)}</small></button>`}).join("")}</div>
+   <button class="go" data-act="copy">${I("copy")}کپی همه‌ی لینک‌ها</button>`};
+  draw();
+  sh.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.wl){S.wl=b.dataset.wl;draw()}if(b.dataset.wq){S.wq=b.dataset.wq;draw()}if(b.dataset.close!==undefined)closePop();if(b.dataset.act==="copy"){closePop();toast("لینک‌های "+fa(ne)+" قسمت کپی شد")}};
+  document.getElementById("pop").classList.add("on");
+}
+function closePop(){document.getElementById("pop").classList.remove("on")}
+document.getElementById("pop").addEventListener("click",e=>{if(e.target.id==="pop")closePop()});
+
+function render(keep){
+  const y=scrollY;
+  document.getElementById("app").innerHTML=hero()+tabs()+`<main class="wrap">`+(KIND==="series"?seriesDl():filmDl())+trailers()+about()+music()+comments()+similar()+ulists()+`</main>`+dstate()+footer()+mnav();
+  if(keep)scrollTo(0,y);
+  bind();
+}
+function bind(){
+  const app=document.getElementById("app");
+  const v=document.getElementById("tv");
+  document.getElementById("tpause").onclick=()=>{v.paused?v.play():v.pause()};
+  document.getElementById("tmute").onclick=()=>{v.muted=!v.muted;toast(v.muted?"صدای تریلر بسته شد":"صدای تریلر باز شد")};
+  spy();
+}
+app.onclick=e=>{
+  const b=e.target.closest("[data-v],[data-r],[data-q] .qh,[data-season],[data-dl],[data-open],[data-tr],[data-topic],[data-f],[data-s],[data-spoil],[data-cl],[data-act],#more,#recapb,#lst,#bmk,#facts,#wholes,.lock button");
+  if(!b)return;
+  if(b.matches("a[href='#']"))e.preventDefault();
+  const d=b.dataset;
+  if(d.v){if(ACCESS==="guest")return toast("برای رأی دادن وارد شوید");S.vote=S.vote===+d.v?0:+d.v;return render(1)}
+  if(d.r){S.mine=+d.r;toast("امتیاز شما ثبت شد");return render(1)}
+  if(b.classList.contains("qh")){const q=b.parentNode.dataset.q;S.openQ=S.openQ===q?null:q;return render(1)}
+  if(d.season){S.season=+d.season;S.openEp=null;S.dlEp=null;return render(1)}
+  if(d.dl){const n=+d.dl;if(ACCESS!=="sub")return toast("دانلود برای مشترک‌هاست");S.dlEp=S.dlEp===n?null:n;return render(1)}
+  if(d.open){const n=+d.open;S.openEp=S.openEp===n?null:n;return render(1)}
+  if(d.tr!==undefined){S.tr=+d.tr;return render(1)}
+  if(d.topic!==undefined){S.topic=+d.topic;return render(1)}
+  if(d.f){S.filt=d.f;return render(1)}
+  if(d.s){S.sort=d.s;return render(1)}
+  if(d.spoil){S.spoil[d.spoil]=1;return render(1)}
+  if(d.cl){if(ACCESS==="guest")return toast("برای رأی دادن وارد شوید");S.cv[d.cl]=S.cv[d.cl]===+d.d?0:+d.d;return render(1)}
+  if(d.act==="dl"){e.preventDefault();if(ACCESS!=="sub")return toast("دانلود برای مشترک‌هاست");return toast("دانلود شروع شد")}
+  if(d.act==="report")return toast("گزارش شما ثبت شد");
+  if(d.act==="teaser"){return toast("پخش تیزر")}
+  if(d.act==="play")return toast("پخش قسمت");
+  if(b.id==="more"){S.story=!S.story;return render(1)}
+  if(b.id==="recapb"){S.recap=!S.recap;return render(1)}
+  if(b.id==="lst"){S.list=!S.list;toast(S.list?"به لیست من اضافه شد":"از لیست من برداشته شد");return render(1)}
+  if(b.id==="bmk"){S.mark=!S.mark;toast(S.mark?"نشان شد":"نشان برداشته شد");return render(1)}
+  if(b.id==="facts"){S.factsAll=!S.factsAll;return render(1)}
+  if(b.id==="wholes"){if(ACCESS!=="sub")return toast("دانلود برای مشترک‌هاست");return wholeSheet()}
+  if(b.matches(".lock button"))return toast(ACCESS==="guest"?"صفحه‌ی ورود":"صفحه‌ی خرید اشتراک");
+};
+function spy(){
+  const ids=CH().map(c=>c[0]);
+  const f=()=>{let cur=ids[0];for(const id of ids){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<180)cur=id}
+    document.querySelectorAll("#tabs a").forEach(a=>{const on=a.dataset.t===cur;if(on!==a.classList.contains("on")){a.classList.toggle("on",on);if(on)a.scrollIntoView({block:"nearest",inline:"center"})}})};
+  removeEventListener("scroll",window.__spy||(()=>{}));window.__spy=f;addEventListener("scroll",f,{passive:true});f();
+}
+if(T.next){let left=T.next.in;setInterval(()=>{left--;const el=document.getElementById("cd");if(!el)return;const d=Math.floor(left/86400),h=Math.floor(left%86400/3600),m=Math.floor(left%3600/60);el.innerHTML=`<span>${fa(m)}<small>دقیقه</small></span><span>${fa(h)}<small>ساعت</small></span><span>${fa(d)}<small>روز</small></span>`},30000)}
+hdr();render();
+</script>
+</body>
+</html>
