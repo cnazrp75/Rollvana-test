@@ -645,7 +645,7 @@ const HIST=[{s:"interstellar",img:"w-interstellar.jpg",fa:"میان‌ستاره
   {s:"f1",img:"w-f1.jpg",fa:"اف وان",sub:"فیلم",when:"هفته‌ی پیش"},
   {s:"poor-things",img:"b-poor-things.jpg",fa:"موجودات بیچاره",sub:"فیلم",when:"دو هفته پیش"}];
 function ContinueRow({loading,desk,long}){
-  return html`<${ContinueList} loading=${loading} desk=${desk} long=${long} head=${html`<div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا</span></h2><a href="#" class="more">تاریخچه<${I} n="left"/></a></div>`}/>`;
+  return html`<${ContinueList} loading=${loading} desk=${desk} long=${long} head=${html`<div class="rh"><h2><span class="rhi"><${I} n="sCont"/></span><span>ادامه‌ی تماشا</span></h2><a href="#" class="more">تاریخچه تماشا<${I} n="left"/></a></div>`}/>`;
 }
 function ContinueList({loading,desk,head,long}){
   const C0=long?[{...CONT0[1],s:"dune-long",en:LONG.en,fa:LONG.fa},CONT0[0],...CONT0.slice(2)]:CONT0;
@@ -664,7 +664,7 @@ function ContinueList({loading,desk,head,long}){
         <span class="cwl"><${I} n="clock"/>${c.left}<em class="num">${fa(Math.round(c.p*100))}٪ دیده‌شده</em></span>
       </${motion.a}>
       <button class="cwx" aria-label=${"برداشتن "+c.fa+" از ادامه‌ی تماشا"} onClick=${()=>remove(c)}><${I} n="x"/></button>
-    </${motion.div}>`)}</${AnimatePresence}>${!loading&&html`<a href="#" class="cw histc"><span class="hci"><${I} n="clock"/></span><b>تاریخچه‌ی تماشا</b><small>هرچه دیده‌اید، به ترتیب</small><span class="hcg">مشاهده<${I} n="left"/></span></a>`}</div>
+    </${motion.div}>`)}</${AnimatePresence}></div>
     <${AnimatePresence}>${undo&&html`<${motion.div} class="undo" role="status" initial=${{opacity:0,y:12}} animate=${{opacity:1,y:0}} exit=${{opacity:0,y:12}}>
       «${undo.fa}» از ادامه‌ی تماشا برداشته شد<button onClick=${back}>برگردان</button></${motion.div}>`}</${AnimatePresence}>
   </section>`;
