@@ -93,7 +93,7 @@
 html body main .row.row.row.row.row.row{margin-top:var(--secg)!important}
 html body main .jr.jr.jr.jr.jr.jr{margin-top:calc(var(--secg) - var(--jrx))!important}
 html body main>.row.row.row.row.row.row:first-child{margin-top:calc(var(--secg) - var(--herox))!important}
-html body main .row.row.row.row.row.cmx{margin-top:calc(var(--secg) - 4px)!important}
+html body main .row.row.row.row.row.cmx{margin-top:var(--secg)!important}
 html body main .row .sc{padding-bottom:28px!important;margin-bottom:-28px!important}
 html body main{--secg:44px;--herox:20px;--jrx:3px}
 @media (min-width:1024px){html body main{--secg:56px;--herox:28px;--jrx:2px}}
@@ -119,7 +119,7 @@ html.gold .wm svg [fill="var(--light)"]{fill:#A98BFF!important}
 .l6{gap:0}.fv .acc{fill:var(--light,#F5C451)}.fv .cut{fill:#0D0A12}
 .lg.mono .acc{fill:currentColor}.lg.mono .cut{fill:var(--mono-bg,#0D0A12)}.lg.mono .tk b{color:inherit}.lg.mono .dot{background:currentColor}
 .lg .b1{height:1.3em;width:auto;flex:none}.lg.n1{gap:.4em}.lg .w{letter-spacing:.09em}.lg .b2{height:1.55em;width:auto}.lg .b3{height:1.25em;width:auto}.lg .b4{height:1.45em;width:auto}
-html body .cmc{background:#121018;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);border-radius:16px;padding:0;gap:0;overflow:hidden;min-height:236px;width:calc(100vw - 2*var(--pad,16px) - 14px);max-width:460px}
+html body .cmc{background:#121018;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);border-radius:16px;padding:0;gap:0;overflow:hidden;min-height:236px;width:calc(100vw - 2*var(--pad,16px) - 52px);max-width:400px}
 html body .cmc:hover{background:#16131d}
 html body .cmb{padding:16px 16px 16px 6px;gap:7px;justify-content:center}
 html body .cmk{align-self:flex-start;margin:0 0 4px;padding:5px 10px;border-radius:var(--r-tag,6px);background:color-mix(in srgb,var(--light) 14%,transparent);color:var(--light);font-weight:var(--w-medium);font-size:var(--fs-11-5);white-space:nowrap}
@@ -130,7 +130,64 @@ html body .cmgo .i{stroke:currentColor}
 html body .cmv{width:44%;border-radius:0;background:#0b0a0f;box-shadow:none;position:relative}
 html body .cmv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 html body .cmv::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
-@media (min-width:1024px){html body .cmc{width:720px;max-width:none;min-height:340px;border-radius:18px}html body .cmb{padding:28px 28px 28px 10px;gap:9px}html body .cmk{font-size:var(--fs-12-5);padding:6px 12px}html body .cmh{font-size:var(--fs-30,30px)}html body .cmd{font-size:var(--fs-14)}html body .cmgo{margin-top:14px;padding:11px 18px;font-size:var(--fs-14)}html body .cmv{width:48%}}
+@media (min-width:1024px){html body .cmc{width:600px;max-width:none;min-height:340px;border-radius:18px}html body .cmb{padding:28px 28px 28px 10px;gap:9px}html body .cmk{font-size:var(--fs-12-5);padding:6px 12px}html body .cmh{font-size:var(--fs-30,30px)}html body .cmd{font-size:var(--fs-14)}html body .cmgo{margin-top:14px;padding:11px 18px;font-size:var(--fs-14)}html body .cmv{width:48%}}
+html body .cmv.cv-tw,html body .cmv.cv-fb{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:14px;background:#0c0b10;border-inline-start:1px solid rgba(255,255,255,.05)}
+@media (max-width:1023px){html body .cv-tw .bub.b2,html body .cv-tw .bh .bf{display:none}html body .cv-tw .bub.b1{margin-inline-start:10px}html body .cv-tw .bx{-webkit-line-clamp:3}html body .cmv.cv-tw,html body .cmv.cv-fb{padding:12px 10px}html body .cv-fb .br{gap:6px;padding:7px}html body .cv-fb .twa{width:24px;height:24px;font-size:var(--fs-11)}html body .cv-fb .bm small,html body .cv-fb .bp img:nth-child(n+2){display:none}html body .cv-fb .bn{flex-direction:row;align-items:center;justify-content:space-between}html body .cv-fb .bp img{width:16px;height:24px;border-radius:3px}html body .cv-fb .bm .num{font-size:var(--fs-12-5)}}
+html body .cv-tw .bub{position:relative;display:flex;flex-direction:column;gap:5px;padding:9px 11px;border-radius:12px 12px 12px 4px;background:#1a1722;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+html body .cv-tw .bub.b1{margin-inline-start:18px;border-radius:12px 12px 4px 12px;background:color-mix(in srgb,var(--light) 10%,#1a1722);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--light) 22%,transparent)}
+html body .cv-tw .bub.b2{opacity:.55}
+html body .cv-tw .bh{display:flex;align-items:center;gap:6px;font-size:var(--fs-11);color:var(--ink-3);white-space:nowrap;min-width:0}
+html body .cv-tw .bh b{color:var(--ink-1);font-weight:var(--w-bold)}
+html body .cv-tw .bh .bf{direction:ltr;overflow:hidden;text-overflow:ellipsis;margin-inline-start:auto}
+html body .cv-tw .twa{width:18px;height:18px;font-size:10px}
+html body .cv-tw .twa,html body .cv-fb .twa{background:#2a2633!important;color:var(--ink-1)!important;box-shadow:none!important}html body .cv-fb .br:first-child .twa{background:var(--light)!important;color:#14100a!important}
+html body .cv-tw .bx{font-size:var(--fs-12);line-height:1.6;color:var(--ink-1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body .cv-tw .bx mark{background:none;color:var(--light);font-weight:var(--w-bold)}
+html body .cv-tw .bl{display:none}
+html body .cv-fb .br{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:12px;background:#16141c;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+html body .cv-fb .br:first-child{background:color-mix(in srgb,var(--light) 9%,#16141c);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--light) 22%,transparent)}
+html body .cv-fb .twa{width:28px;height:28px;font-size:var(--fs-12);flex:none}
+html body .cv-fb .bn{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+html body .cv-fb .bn b{font-size:var(--fs-12);font-weight:var(--w-bold);white-space:nowrap}
+html body .cv-fb .bp{display:flex;gap:3px}
+html body .cv-fb .bp img{position:static;inset:auto;width:20px;height:30px;object-fit:cover;border-radius:4px;display:block}
+html body .cv-fb .bm{display:flex;flex-direction:column;align-items:center;line-height:1.2;flex:none}
+html body .cv-fb .bm .num{font-size:var(--fs-14);font-weight:var(--w-heavy);color:var(--light)}
+html body .cv-fb .bm small{font-size:10px;color:var(--ink-3);white-space:nowrap}
+@media (min-width:1024px){html body .cmv.cv-tw,html body .cmv.cv-fb{padding:22px;gap:10px}html body .cv-tw .bub{padding:12px 14px;gap:7px}html body .cv-tw .bub.b1{margin-inline-start:28px}html body .cv-tw .bh{font-size:var(--fs-12)}html body .cv-tw .twa{width:22px;height:22px;font-size:11px}html body .cv-tw .bx{font-size:var(--fs-13)}html body .cv-tw .bl{display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-11);color:var(--ink-3)}html body .cv-tw .bl svg{width:12px;height:12px;fill:#E5566F}html body .cv-fb .br{padding:11px 13px;gap:12px}html body .cv-fb .twa{width:34px;height:34px;font-size:var(--fs-13)}html body .cv-fb .bn b{font-size:var(--fs-13)}html body .cv-fb .bp img{width:26px;height:39px}html body .cv-fb .bm .num{font-size:var(--fs-16)}html body .cv-fb .bm small{font-size:var(--fs-11)}}
+html body .cmv.cx-tw,html body .cmv.cx-fb{position:relative;overflow:hidden;background:transparent}
+html body .cmv.cx-tw::after,html body .cmv.cx-fb::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;box-shadow:none;background:linear-gradient(to left,#121018 0%,rgba(18,16,24,.85) 12%,rgba(18,16,24,0) 42%)}
+html body .cmc:hover .cmv.cx-tw::after,html body .cmc:hover .cmv.cx-fb::after{background:linear-gradient(to left,#16131d 0%,rgba(22,19,29,.85) 12%,rgba(22,19,29,0) 42%)}
+html body .cx-tw .strip{position:absolute;left:-30%;right:-30%;top:50%;height:42%;transform:translateY(-50%) rotate(-14deg);background:#050407;display:flex;gap:5px;padding:13px 5px;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+html body .cx-tw .strip::before,html body .cx-tw .strip::after{content:"";position:absolute;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--light) 55%,transparent) 0 7px,transparent 7px 15px)}
+html body .cx-tw .strip::before{top:4px}html body .cx-tw .strip::after{bottom:4px}
+html body .cx-tw .strip img{position:static;inset:auto;flex:1 1 0;min-width:0;width:auto;height:100%;object-fit:cover;border-radius:2px;filter:saturate(.75) brightness(.85)}
+html body .cx-tw .sp{position:absolute;z-index:4;display:flex;align-items:center;gap:7px;max-width:78%;padding:9px 12px;border-radius:14px;font-size:var(--fs-12);font-weight:var(--w-bold);line-height:1.5;box-shadow:0 8px 20px rgba(0,0,0,.45)}
+html body .cx-tw .sp i{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:7px;font-style:normal;font-size:10px}
+html body .cx-tw .s1{top:14%;right:9%;background:var(--light);color:#14100a;border-bottom-right-radius:4px}
+html body .cx-tw .s1 i{background:#14100a;color:var(--light)}
+html body .cx-tw .s2{bottom:13%;left:8%;background:#24202c;color:var(--ink-1);border-bottom-left-radius:4px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 8px 20px rgba(0,0,0,.45)}
+html body .cx-tw .s2 i{background:#3a3445;color:var(--ink-1)}
+html body .cx-fb .scr{position:absolute;top:9%;left:12%;right:12%;height:34%;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+html body .cx-fb .scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+html body .cx-fb .beam{position:absolute;top:43%;left:12%;right:12%;bottom:22%;background:rgba(245,196,81,.06);clip-path:polygon(0 0,100% 0,62% 100%,38% 100%)}
+html body .cx-fb .seats{position:absolute;left:8%;right:8%;bottom:9%;display:flex;justify-content:space-between;align-items:flex-end}
+html body .cx-fb .st{position:relative;width:22%;display:flex;flex-direction:column;align-items:center}
+html body .cx-fb .st svg{width:100%;height:auto;fill:#1d1a24}
+html body .cx-fb .st i{display:grid;place-items:center;width:58%;aspect-ratio:1;margin-bottom:-14%;border-radius:50%;background:#2c2836;color:var(--ink-2);font-style:normal;font-size:var(--fs-12);font-weight:var(--w-bold);position:relative;z-index:1}
+html body .cx-fb .st.on i{background:var(--light);color:#14100a}
+html body .cx-fb .st.on svg{fill:#2a2531}
+html body .cx-fb .match{position:absolute;left:50%;bottom:43%;transform:translate(-50%,50%);z-index:2;padding:5px 10px;border-radius:var(--r-tag,6px);background:#14100a;color:var(--light);font-size:var(--fs-12);font-weight:var(--w-heavy);white-space:nowrap;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--light) 40%,transparent)}
+@media (min-width:1024px){html body .cx-tw .sp{font-size:var(--fs-14);padding:12px 15px;gap:9px}html body .cx-tw .sp i{width:26px;height:26px;font-size:var(--fs-12)}html body .cx-fb .st i{font-size:var(--fs-14)}html body .cx-fb .match{font-size:var(--fs-14);padding:6px 12px}}
+@media (max-width:1023px){html body .cx-tw .sp{max-width:74%;padding:5px 7px;font-size:10px;line-height:1.45;border-radius:9px;font-weight:var(--w-medium);box-shadow:0 4px 10px rgba(0,0,0,.4)}html body .cx-tw .sp i{display:none}html body .cx-tw .s1{top:16%;right:14%;border-bottom-right-radius:3px}html body .cx-tw .s2{bottom:15%;left:7%;border-bottom-left-radius:3px}html body .cx-tw .strip{height:30%;gap:3px;padding:8px 3px}html body .cx-tw .strip::before,html body .cx-tw .strip::after{height:3px;background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--light) 55%,transparent) 0 4px,transparent 4px 9px)}html body .cx-tw .strip::before{top:2.5px}html body .cx-tw .strip::after{bottom:2.5px}html body .cx-fb .scr{top:14%;left:16%;right:22%;height:28%;border-radius:3px}html body .cx-fb .beam{top:42%;left:16%;right:22%;bottom:26%}html body .cx-fb .seats{left:10%;right:16%;bottom:13%}html body .cx-fb .st i{font-size:9px;width:54%}}
+html body .cmc{position:relative}
+html body .cmx .cmc{border:1px solid rgba(255,255,255,.09);box-shadow:none}
+@media (max-width:1023px){html body .cmc{width:calc(100vw - 2*var(--pad,16px) - 22px);max-width:none}}
+html body .cmx .cmc{aspect-ratio:2.13/1;min-height:0!important;height:auto}
+html body .cmx .cmv{width:47%}
+@media (max-width:1023px){html body .cmx .cmb{padding:10px 12px 10px 2px;gap:4px}html body .cmx .cmk{font-size:10px;padding:3px 7px;margin:0 0 2px}html body .cmx .cmh{font-size:var(--fs-15,15px);line-height:1.3}html body .cmx .cmd{font-size:var(--fs-11);line-height:1.55;-webkit-line-clamp:2}html body .cmx .cmgo{margin-top:6px;padding:6px 10px;font-size:var(--fs-11)}}
+html body .cmx .cmh{font-size:var(--fs-22,22px)}html body .cmx .cmd{font-size:var(--fs-13)}html body .cmx .cmk{font-size:var(--fs-11-5);padding:5px 10px}html body .cmx .cmgo{font-size:var(--fs-13);padding:9px 14px;margin-top:10px}
+@media (max-width:1023px){html body .cmx .cmh{font-size:var(--fs-13-5,13.5px)}html body .cmx .cmd{font-size:10.5px}html body .cmx .cmk{font-size:9.5px;padding:3px 6px}html body .cmx .cmgo{font-size:10.5px;padding:5px 9px;margin-top:5px}}
 html body .hdr .wm.wm2{width:auto!important;display:flex;align-items:center;font-size:22px}
 @media (max-width:1023px){html body .hdr .wm.wm2{font-size:19px}}
 html.gold body{--light:#F5C451;--light-top:#F8D57A;--light-hi:#FADF92;--on-light:#1A1405;--light-glow:rgba(245,186,60,.4);--v:#F5C451;--v-2:#E0A834;--v-line:rgba(245,196,81,.28);--v-soft:rgba(245,196,81,.14)}
@@ -141,11 +198,11 @@ html body .hdr .nav a,html body .hdr .more3,html body .hdr label.search,html bod
 html body .card .cbdg.cbdg.cbdg,html body .epc .cbdg.cbdg.cbdg,html body main .cbdg,html body main .cscore,html body main .jzk em,html body .hdr label.search kbd{border-radius:var(--r-tag)!important}
 html body .hdr .hl{gap:8px!important}
 @media (max-width:1023px){html body .hdr .hl{margin-left:8px!important;gap:6px!important}}
-html body .hdr .login,html body .hdr .sub,html body .hdr .ib.bell,html body .hdr .av{height:40px!important;border-radius:10px!important;background:rgba(12,10,18,.42)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)!important;backdrop-filter:blur(4px) saturate(1.2)!important;-webkit-backdrop-filter:blur(4px) saturate(1.2)!important;color:var(--ink-1)!important;display:inline-flex!important;align-items:center;justify-content:center;gap:6px;font-size:var(--fs-12-5)!important;font-weight:var(--w-medium)!important;white-space:nowrap;text-decoration:none}
+html body .hdr .login,html body .hdr .sub,html body .hdr .ib.bell,html body .hdr .av{height:40px!important;border-radius:10px!important;background:rgba(12,10,18,.42)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;color:var(--ink-1)!important;display:inline-flex!important;align-items:center;justify-content:center;gap:6px;font-size:var(--fs-12-5)!important;font-weight:var(--w-medium)!important;white-space:nowrap;text-decoration:none}
 html body .hdr .login,html body .hdr .sub{padding:0 12px!important}
 html body .hdr .ib.bell,html body .hdr .av{width:40px!important;min-width:40px!important;padding:0!important}
 html body .hdr .login:hover,html body .hdr .ib.bell:hover,html body .hdr .av:hover{background:rgba(255,255,255,.1)!important}
-html body .hdr .sub{background:color-mix(in srgb,var(--light) 10%,rgba(12,10,18,.42))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--light) 70%,transparent)!important;color:var(--light-hi)!important;font-weight:300!important;-webkit-font-smoothing:antialiased}
+html body .hdr .sub{background:color-mix(in srgb,var(--light) 10%,rgba(12,10,18,.42))!important;box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--light) 45%,transparent)!important;color:var(--light-hi)!important;font-weight:300!important;-webkit-font-smoothing:antialiased}
 html body .hdr .sub:hover{background:color-mix(in srgb,var(--light) 22%,rgba(12,10,18,.42))!important}
 html body .hdr .login svg.i,html body .hdr .sub svg.i{display:none!important}
 html body .hdr::before{content:"";position:absolute;z-index:-1;inset:0 0 auto 0;height:150%;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.72) 0,rgba(0,0,0,.38) 55%,rgba(0,0,0,0) 100%)}
@@ -265,12 +322,12 @@ const CFA={"sinners":["گناهکاران","۱۳۷ دقیقه"],"one-battle-afte
 const SNEW={"the-bear":"فصل ۴ · قسمت ۲","star-wars-andor":"فصل ۲ · قسمت ۱۲","slow-horses":"فصل ۵ · قسمت ۶","the-penguin":"فصل ۱ · قسمت ۸","the-white-lotus":"فصل ۳ · قسمت ۸","squid-game":"فصل ۳ · قسمت ۶","house-of-the-dragon":"فصل ۲ · قسمت ۸","wednesday":"فصل ۲ · قسمت ۸"};
 SERIES.forEach(c=>{c.ep=SNEW[c.s]});
 const REVIEWS=[
- {s:"one-battle-after-another",img:"w-one-battle-after-another.jpg",t:"«نبردی پس از نبرد دیگر»: پل توماس اندرسون در اوج",by:"تحریریه‌ی رول‌وانا",d:"امروز",min:7,score:"۴٫۵"},
+ {s:"one-battle-after-another",img:"w-one-battle-after-another.jpg",t:"«نبردی پس از نبرد دیگر»: پل توماس اندرسون در اوج",by:"تحریریه‌ی رولوانا",d:"امروز",min:7,score:"۴٫۵"},
  {s:"sinners",img:"w-sinners.jpg",t:"«گناهکاران»؛ ترسناکی که موسیقی‌اش را فراموش نمی‌کنید",by:"مریم ک.",d:"دیروز",min:5,score:"۴"},
  {s:"frankenstein",img:"w-frankenstein.jpg",t:"فرانکنشتاینِ دل تورو: هیولا یا قربانی؟",by:"آرش م.",d:"۳ روز پیش",min:6,score:"۳٫۵"},
- {s:"the-penguin",img:"w-the-penguin.jpg",t:"«پنگوئن» بهترین سریال کمیک‌بوکی این سال‌هاست؟",by:"تحریریه‌ی رول‌وانا",d:"۵ روز پیش",min:8,score:"۴"}];
+ {s:"the-penguin",img:"w-the-penguin.jpg",t:"«پنگوئن» بهترین سریال کمیک‌بوکی این سال‌هاست؟",by:"تحریریه‌ی رولوانا",d:"۵ روز پیش",min:8,score:"۴"}];
 const NEWS=[
- {img:"w-squid-game.jpg",t:"فصل آخر «بازی مرکب» با دوبله‌ی فارسی روی رول‌وانا",tag:"رول‌وانا",d:"۲ ساعت پیش"},
+ {img:"w-squid-game.jpg",t:"فصل آخر «بازی مرکب» با دوبله‌ی فارسی روی رولوانا",tag:"رولوانا",d:"۲ ساعت پیش"},
  {img:"w-wednesday.jpg",t:"تاریخ پخش قسمت‌های تازه‌ی «ونزدی» اعلام شد",tag:"سریال",d:"امروز"},
  {img:"w-f1.jpg",t:"«اف وان» پرفروش‌ترین فیلم ورزشی تاریخ شد",tag:"باکس‌آفیس",d:"دیروز"},
  {img:"w-house-of-the-dragon.jpg",t:"فصل سوم «خاندان اژدها» تابستان سال بعد می‌آید",tag:"سریال",d:"۲ روز پیش"}];
@@ -628,16 +685,17 @@ const TW=[
     {n:"رضا",f:"Interstellar",p:"w-interstellar",x:"بار پنجم است می‌بینم و [هنوز همان‌جا بغض می‌کنم].",l:451}];
 const TW_HEART=html`<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.4C19 15.6 12 20 12 20Z"/></svg>`;
 const BUFFS=[{n:"نگار",c:0,m:94},{n:"کاوه",c:1,m:91},{n:"سارا",c:2,m:88}];
+const BUFF_P=[["past-lives","her","arrival"],["oppenheimer","interstellar","prisoners"],["dune-part-two","blade-runner-2049","sinners"]];
 function Community(){
-  return html`<section class="row cmx" aria-label="جامعه‌ی رول‌وانا"><div class="sc">
+  return html`<section class="row cmx" aria-label="جامعه‌ی رولوانا"><div class="sc">
     <${motion.a} href="../tweet/rollvana-tweet.html" class="cmc tw" whileTap=${{scale:.98}}>
       <span class="cmb">
         <span class="cmk">فضای گفت‌وگوی سینمایی</span>
-        <b class="cmh">رول‌وانا توییت</b>
+        <b class="cmh">رولوانا توییت</b>
         <span class="cmd">اینجا درباره‌ی سینما حرف می‌زنیم، بدون اسپویل!</span>
         <span class="cmgo">مشاهده‌ی توییت‌ها<${I} n="left"/></span>
       </span>
-      <span class="cmv"><img src=${M("cm-tweet.jpg")} alt="" loading="lazy" draggable="false"/></span>
+      <span class="cmv cx-tw"><img src=${M("cm-tweet.jpg")} alt="" loading="lazy" draggable="false"/></span>
     </${motion.a}>
     <${motion.a} href="#" class="cmc fb" whileTap=${{scale:.98}}>
       <span class="cmb">
@@ -646,7 +704,7 @@ function Community(){
         <span class="cmd">سینمادوستان هم‌سلیقه‌ات را پیدا کن و فهرست‌های اختصاصی‌شان را دنبال کن.</span>
         <span class="cmgo">دیدن فیلم‌بازها<${I} n="left"/></span>
       </span>
-      <span class="cmv"><img src=${M("cm-buffs.jpg")} alt="" loading="lazy" draggable="false"/></span>
+      <span class="cmv cx-fb"><img src=${M("cm-buffs2.jpg")} alt="" loading="lazy" draggable="false"/></span>
     </${motion.a}>
   </div></section>`;
 }
@@ -661,10 +719,10 @@ function Journal(){
   const [f,...rest]=REVIEWS;
   const Star=html`<svg class="jzst" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9Z"/></svg>`;
   const Lk=(l)=>html`<a href="#" class="jrl">${l}<${I} n="left"/></a>`;
-  return html`<section class="jr jz" aria-label="مجله‌ی رول‌وانا">
+  return html`<section class="jr jz" aria-label="مجله‌ی رولوانا">
     <${motion.a} href="#" class="jzc" whileTap=${{scale:.995}}>
       <img class="jzci" src=${M(f.img)} alt=""/>
-      <span class="jzmh"><b class="jrt" dir="ltr">Rollvana <i>Journal</i></b><small>مجله‌ی رول‌وانا</small></span>
+      <span class="jzmh"><b class="jrt" dir="ltr">Rollvana <i>Journal</i></b><small>مجله‌ی رولوانا</small></span>
       <span class="jzcb">
         <span class="jzk"><em>نقد هفته</em></span>
         <h3>${f.t}</h3>
@@ -686,14 +744,14 @@ function Journal(){
 }
 const FT_TG='<path d="m21 4-8.5 16-2.5-7-7-2.5Z"/><path d="m10 13 4-4"/>';
 const FT_IG='<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>';
-const FT_COLS=[["تماشا",["فیلم‌ها","سریال‌ها","۲۵۰ فیلم برتر","تقویم پخش"]],["رول‌وانا",["مجله‌ی رول‌وانا","فیلم‌بازها","خرید اشتراک","اپلیکیشن‌ها"]],["راهنما",["پرسش‌های رایج","تماس با ما","قوانین","حریم خصوصی"]]];
+const FT_COLS=[["تماشا",["فیلم‌ها","سریال‌ها","۲۵۰ فیلم برتر","تقویم پخش"]],["رولوانا",["مجله‌ی رولوانا","فیلم‌بازها","خرید اشتراک","اپلیکیشن‌ها"]],["راهنما",["پرسش‌های رایج","تماس با ما","قوانین","حریم خصوصی"]]];
 function Footer(){
   const Ic=d=>html`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML=${{__html:d}}></svg>`;
   return html`<footer class="ft"><div class="fti">
     <div class="ftb"><img src="../brand/rollvana-lockup-dark.svg" alt="Rollvana"/><p>حس خلسه‌ی تماشای فیلم و سریال؛ با دوبله و زیرنویس فارسی، هر جا که هستی.</p>
-      <div class="ftso"><a href="#" aria-label="رول‌وانا در تلگرام">${Ic(FT_TG)}</a><a href="#" aria-label="رول‌وانا در اینستاگرام">${Ic(FT_IG)}</a></div></div>
+      <div class="ftso"><a href="#" aria-label="رولوانا در تلگرام">${Ic(FT_TG)}</a><a href="#" aria-label="رولوانا در اینستاگرام">${Ic(FT_IG)}</a></div></div>
     ${FT_COLS.map(([h,l])=>html`<nav class="ftc" key=${h} aria-label=${h}><h3>${h}</h3><ul>${l.map(x=>html`<li key=${x}><a href="#">${x}</a></li>`)}</ul></nav>`)}
-    <div class="ftl"><span>© ۱۴۰۵ رول‌وانا، همه‌ی حقوق محفوظ است</span></div>
+    <div class="ftl"><span>© ۱۴۰۵ رولوانا، همه‌ی حقوق محفوظ است</span></div>
   </div></footer>`;
 }
 function Tabs(){
@@ -720,7 +778,7 @@ function Review({user,setUser,content,setContent}){
     <div class="grp"><span>بارگذاری کند صفحه</span><div>${[[0,"خاموش"],[3,"۳ ثانیه"],[6,"۶ ثانیه"]].map(([k,l])=>B(slow===k,l,()=>nav({slow:k||null,intro:null})))}
       <${motion.button} whileTap=${{scale:.95}} onClick=${()=>nav({intro:null})}>بارگذاری دوباره</${motion.button}>
       <${motion.button} whileTap=${{scale:.95}} onClick=${()=>nav({intro:"1",slow:slow||3})}>اینترو از اول</${motion.button}></div></div>
-    <a class="syslink" href="../system/rollvana-design-system.html">سیستم طراحی رول‌وانا ←</a>
+    <a class="syslink" href="../system/rollvana-design-system.html">سیستم طراحی رولوانا ←</a>
   </section>`;
 }
 
@@ -750,8 +808,8 @@ function App(){
         <main>
           ${user&&html`<${ContinueRow} loading=${loading} desk=${desk} long=${long}/>`}
           ${user&&html`<${Row} title="پیشنهاد برای شما" more="همه‌ی پیشنهادها" icon="sTaste" big=${true} items=${PICKS} loading=${loading} desk=${desk}/>`}
-          <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
           ${!loading&&html`<${Community}/>`}
+          <${Row} title="فیلم‌های تازه" more="آرشیو فیلم‌ها" icon="sFilm" items=${films} loading=${loading} desk=${desk}/>
           <${Row} title="قسمت‌های تازه" more="آرشیو سریال‌ها" icon="sSeries" items=${series} loading=${loading} desk=${desk}/>
           ${!loading&&html`<${Journal}/>`}
           <${Row} title="مستندها" items=${[]} loading=${false}/>
@@ -773,13 +831,13 @@ const MSEC=[["خانه","home"],["همه‌ی فیلم‌ها","film"],["همه�
 Object.assign(ICON,{top:'<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',stack:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M6 5h12M9 2.5h6"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>'});
 const MOODS=["حال خوب","هیجان","فکر کردن","ترس","گریه","با خانواده","کوتاه و سریع"];
 const MGEN={"فیلم":["اکشن","علمی‌تخیلی","درام","کمدی","ترسناک","انیمیشن","جنایی","عاشقانه","مستند"],"سریال":["درام","جنایی","علمی‌تخیلی","کمدی","فانتزی","انیمه","مینی‌سریال"]};
-const TG=[["@Rollvana","کانال رول‌وانا"]];
+const TG=[["@Rollvana","کانال رولوانا"]];
 function MenuBody({user,close}){
   const [g,setG]=useState(null);
   return html`<div class="mb">
     ${user?html`<a href="#" class="mu"><span class="av" style=${{borderRadius:"50%",margin:0,width:44,height:44,fontSize:17}}><${RVC.Avatar}/></span><span><b>سینا</b><small>اشتراک فعال · ۲۴ روز مانده</small></span><svg class="i" viewBox="0 0 24 24" dangerouslySetInnerHTML=${{__html:ICON.left}}></svg></a>
       <div class="mlib"><a href="#"><${I} n="list"/>نشان‌شده</a><a href="#"><${I} n="cal"/>تاریخچه</a></div>`
-      :html`<div class="mg"><p>با حساب رول‌وانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
+      :html`<div class="mg"><p>با حساب رولوانا نشان‌شده‌ها، ادامه‌ی تماشا و اعلان قسمت‌های تازه داری.</p><div class="mg2"><a href="#" class="cta">ورود یا ثبت‌نام</a><a href="#" class="sub">خرید اشتراک</a></div></div>`}
     <div class="mcol">
       <h3>بخش‌ها</h3>
       <div class="msec">${MSEC.map(([l,n])=>html`<a href="#" key=${l}><${I} n=${n}/>${l}</a>`)}</div>
