@@ -500,7 +500,7 @@ function Hero({items,loading,desk}){
   const DUR=6000;
   const go=useCallback(d=>{setDir(d);setI(x=>(x+d+n)%n)},[n]);
   const to=(k,d)=>{setDir(d||(k>i?1:-1));setI(k)};
-  const stop=paused||hold||hovering;
+  const stop=paused||hold;
   const prog=useMotionValue(0),progI=useRef(i);
   useEffect(()=>{if(progI.current!==i){progI.current=i;prog.set(0)}if(stop||loading)return;const left=DUR*(1-prog.get());if(reduced){const t=setTimeout(()=>go(1),left);return()=>clearTimeout(t)}const c=Motion.animate(prog,1,{duration:left/1000,ease:"linear",onComplete:()=>go(1)});return()=>c.stop()},[i,stop,loading]);
   const dragX=useMotionValue(0);
